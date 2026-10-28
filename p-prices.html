@@ -118,7 +118,7 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
 
 <div class="pb-wrap">
   <header id="top" class="pb-mast">
-    <p class="pb-eyebrow"><i aria-hidden="true"></i>AI 밸류체인 · 매일 장 마감 후 갱신</p>
+    <p class="pb-eyebrow"><i aria-hidden="true"></i>AI 밸류체인 · 하루 4번 갱신(프리마켓·장중·종가)</p>
     <h1 class="pb-h1"><span class="m">AI 밸류체인</span> <span class="s">시세 보드</span></h1>
     <div class="pb-take" id="take">
       <span class="pb-chipd dash-skeleton" id="asof" data-source="board_tiles" data-field="as_of" data-row="0">—</span>
@@ -278,6 +278,8 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
         n_priced: d1.length,
         n_upside: up.length,
         n_intraday: prices.filter((r) => r.price_kind === 'intraday').length,
+        n_pre: prices.filter((r) => r.price_kind === 'premarket').length,
+        ptime: prices.map((r) => r.price_time_kst || '').sort().pop() || '',
         med_1d: med(d1),
         n_up: d1.filter((x) => x > 0).length,
         n_down: d1.filter((x) => x < 0).length,
@@ -344,7 +346,7 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
     const setT = (el, txt, c) => { if (typeof el === 'string') el = document.getElementById(el); el.textContent = txt; el.className = el.className.replace(/\bpb-(up|dn)\b/g, '').trim(); if (c) el.classList.add(c); };
     const fillMarks = (f) => document.querySelectorAll('#take-line [data-field], #tiles .s [data-field]').forEach((el) => { setT(el, f ? f(el.dataset.field) : '—'); });
     if (t) {
-      setT('asof', fmtDate(t.as_of) + (t.n_intraday > 0 ? ' 종가·장중 기준' : ' 종가 기준'));
+      setT('asof', fmtDate(t.as_of) + (t.n_pre > 0 ? ' 프리마켓 포함' : t.n_intraday > 0 ? ' 종가·장중 기준' : ' 종가 기준') + (t.ptime ? ' · ' + t.ptime.slice(-5) + ' 갱신' : ''));
       setT('t-med1d', fmtPct(t.med_1d, 2), cls(t.med_1d));
       setT('t-up', `${t.n_up}`);
       setT('t-hi', `${t.near_high}`);
