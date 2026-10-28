@@ -4,7 +4,7 @@ body .mm-take.hu b:not(.mm-chipx){font-weight:800}
 body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
 body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}
 /* 형광펜은 더 옅게(사용자 2026-10-29) */
-body .mm-take :is(b,mark,[class*="hlt"]):not(.mm-chipx):not(.mm-take>b:first-child){background:linear-gradient(transparent 62%,rgba(233,196,120,.38) 62%)!important;box-shadow:none!important;text-decoration:none!important;border-bottom:0!important}
+body .mm-take :is(b,mark,[class*="hlt"]):not(.mm-chipx):not(.mm-take>b:first-child):not(:is(.o-new,.tk-new,.sh3,.tg3) *){background:linear-gradient(transparent 62%,rgba(233,196,120,.38) 62%)!important;box-shadow:none!important;text-decoration:none!important;border-bottom:0!important}
 /* 공매도 오늘 한마디: 3줄 */
 body #take.sh-rows>:not(.sh3){display:none!important}
 body #take .sh3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}

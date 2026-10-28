@@ -1,14 +1,22 @@
-/* 페이지 줄 → 화면 아래 아이콘 독(사용자 2026-10-29) */
-body nav.ib{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;z-index:9000!important;display:flex!important;flex-wrap:nowrap!important;gap:2px!important;overflow-x:auto!important;scrollbar-width:none;margin:0!important;padding:5px 6px calc(5px + env(safe-area-inset-bottom))!important;background:rgba(255,255,255,.96)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:0!important;border-top:1px solid #e8e6df!important;box-shadow:0 -4px 14px rgba(11,11,11,.06)!important;border-radius:0!important}
-body nav.ib::-webkit-scrollbar{display:none}
-body nav.ib>*{all:unset!important;box-sizing:border-box!important;flex:none!important;width:60px!important;text-align:center!important;font:600 10.5px/1.25 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif!important;color:#8a877f!important;padding:4px 0 3px!important;border-radius:10px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;cursor:pointer}
-body nav.ib>*::before{display:block;font-size:20px;line-height:1.2;margin-bottom:2px;content:"•"}
-body nav.ib>[aria-current=page]{background:#f3efe4!important;color:#0b0b0b!important;font-weight:800!important}
-body nav.ib>.tg{width:1px!important;min-width:1px!important;padding:0!important;margin:8px 3px!important;background:#e8e6df!important;font-size:0!important;align-self:stretch}
-body nav.ib>.tg::before{display:none!important}
-body nav.ib>a.home::before{content:"🏠"}
-body nav.ib>a[href*="p-lights"]::before{content:"🚦"}body nav.ib>a[href*="p-brief"]::before{content:"📰"}body nav.ib>a[href*="p-prices"]::before{content:"📈"}body nav.ib>a[href*="p-earn"]::before{content:"📑"}body nav.ib>a[href*="p-cal"]::before{content:"🗓️"}body nav.ib>a[href*="p-econ"]::before{content:"📊"}body nav.ib>a[href*="p-bond"]::before{content:"🏦"}body nav.ib>a[href*="p-opt"]::before{content:"🌡️"}body nav.ib>a[href*="p-targets"]::before{content:"🎯"}
-body nav.ib>a[href*="p-trend"]::before{content:"🧭"}body nav.ib>a[href*="p-short"]::before{content:"🐻"}body nav.ib>a[href*="p-fx"]::before{content:"💱"}body nav.ib>a[href*="p-capex"]::before{content:"🏗️"}body nav.ib>a[href*="p-policy"]::before{content:"🌐"}body nav.ib>a[href*="p-tech"]::before{content:"🎤"}body nav.ib>a[href*="p-supply"]::before{content:"🚢"}body nav.ib>a[href*="p-neo"]::before{content:"☁️"}body nav.ib>a[href*="p-qtr"]::before{content:"📉"}body nav.ib>a[href*="p-insider"]::before{content:"🕵️"}
-body{padding-bottom:calc(74px + env(safe-area-inset-bottom))!important}
-body #mm-snd{bottom:calc(84px + env(safe-area-inset-bottom))!important}
-body nav.ib{touch-action:none!important;overscroll-behavior:none!important;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+/* 아래 메뉴: 자주 쓰는 칸 + ☰ 전체 메뉴판(사용자 2026-10-29) */
+body.mmd-on nav.ib{display:none!important}
+body.mmd-on{padding-bottom:calc(80px + env(safe-area-inset-bottom))!important}
+body.mmd-on #mm-snd{bottom:calc(90px + env(safe-area-inset-bottom))!important}
+body .mmd{position:fixed;left:0;right:0;bottom:0;z-index:9000;padding:0 0 calc(6px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid #e8e6df;box-shadow:0 -4px 14px rgba(11,11,11,.06);touch-action:none}
+body .mmd .grab{all:unset;display:block;width:100%;height:14px;cursor:pointer}body .mmd .grab em{display:block;width:38px;height:4px;border-radius:3px;background:#cfccc4;margin:5px auto 0}
+body .mmd .row{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding:0 6px}body .mmd .row::-webkit-scrollbar{display:none}
+body .mmd .row>a{all:unset;flex:none;width:60px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px 0;border-radius:10px;cursor:pointer;font:600 10.5px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#8a877f;-webkit-tap-highlight-color:transparent}
+body .mmd .row>a i{font-style:normal;font-size:21px;line-height:1.2}body .mmd .row>a span{white-space:nowrap;max-width:58px;overflow:hidden;text-overflow:ellipsis}
+body .mmd .row>a.on{color:#0b0b0b;font-weight:800;background:#f3efe4}
+body .mmd .row>.sep{flex:none;width:1px;margin:6px 3px;background:#e8e6df}
+body .mmd-sheet[hidden]{display:none!important}
+body .mmd-dim{position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.35)}
+body .mmd-pan{position:fixed;left:0;right:0;bottom:0;z-index:9999;max-height:82vh;overflow-y:auto;background:#fff;border-radius:18px 18px 0 0;padding:8px 14px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(0,0,0,.15);animation:mmdup .18s ease-out}
+@keyframes mmdup{from{transform:translateY(30px);opacity:.6}to{transform:none;opacity:1}}
+body .mmd-grab{width:40px;height:5px;border-radius:3px;background:#ddd;margin:2px auto 6px}
+body .mmd-g{margin:10px 2px 6px!important;font:800 13px/1 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:#9a6200!important}
+body .mmd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+body .mmd-grid a{all:unset;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 2px;border-radius:12px;background:#f6f4ee;font:600 11.5px/1.2 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3a3833;cursor:pointer;box-shadow:0 2px 0 rgba(30,22,8,.08)}
+body .mmd-grid a i{font-style:normal;font-size:22px}
+body .mmd-grid a span{white-space:nowrap;max-width:76px;overflow:hidden;text-overflow:ellipsis}
+body .mmd-grid a.on{background:#0b0b0b;color:#fff}

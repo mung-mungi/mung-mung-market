@@ -451,5 +451,7 @@ def tidy_dock(s):
     s = re.sub(r'<style data-dock>.*?</style>', '', s, flags=re.S)
     if 'class="ib"' not in s:
         return s
-    css = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dock.css'), encoding='utf-8').read()
-    return s.replace('</body>', '<style data-dock>' + css + '</style></body>', 1) if '</body>' in s else s + '<style data-dock>' + css + '</style>'
+    s = re.sub(r'<script data-dock>.*?</script>', '', s, flags=re.S)
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-dock>' + open(os.path.join(d, 'dock.css'), encoding='utf-8').read() + '</style><script data-dock>' + open(os.path.join(d, 'dock.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
