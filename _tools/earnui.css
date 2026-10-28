@@ -68,3 +68,6 @@ body #spot .sl-hint{display:block;text-align:center;font:600 12px/1.4 -apple-sys
 body #spot .sl:has(>article:nth-of-type(5))::after{content:"";position:sticky;bottom:-10px;display:block;height:46px;margin-top:-46px;pointer-events:none;background:linear-gradient(rgba(255,255,255,0),#fff 85%)}
 body #spot .sl:has(>article:not(.fold))::after{display:none}
 body #spot .sl-hint{color:#9a6200!important;font-weight:700!important}
+
+/* 형광펜 옅게(사용자 2026-10-29: 너무 진함) */
+article mark,.note mark,mark{background:linear-gradient(transparent 62%, color-mix(in srgb,var(--accent) 16%,transparent) 62%)!important}
