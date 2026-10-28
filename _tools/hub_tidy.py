@@ -77,12 +77,12 @@ def tidy_targets(s):
 
 
 # 데일리 시황 맨 위 요약을 신문 1면처럼(사용자 2026-10-29): 제호 · 판 정보 · 첫 문장 = 큰 제목 · 나머지 = 본문(첫 글자 크게)
-PAPER = r'''<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=UnifrakturMaguntia&display=swap"><style data-paper>
+PAPER = r'''<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap"><style data-paper>
 #take.np{display:block!important;padding:12px 14px 12px!important;background:#f3f2ee!important;border:1px solid #cfccc4!important;border-radius:4px!important;box-shadow:none!important;color:#262626!important}
 #take.np::before{content:none!important;display:none!important}
-#take.np .np-mast{text-align:center;font-family:"UnifrakturMaguntia","Old English Text MT",ui-serif,Georgia,serif;font-weight:400;font-size:22px;line-height:1.1;color:#333;padding:0 0 5px;border-bottom:1px solid #8f8c85}
+#take.np .np-mast{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;font-family:"Noto Serif KR",ui-serif,serif;font-weight:900;font-size:23px;line-height:1;letter-spacing:-.04em;color:#222;padding:0 0 6px;border-bottom:3px solid #333}#take.np .np-mast em{font:600 10.5px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;font-style:normal;letter-spacing:0;color:#77746d;text-align:right}
 #take.np .np-mast small{display:none}
-#take.np .np-line{display:flex;justify-content:space-between;gap:8px;font:500 11px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#77746d;padding:4px 0;border-bottom:1px solid #cfccc4;margin-bottom:10px}
+#take.np .np-line{display:flex;justify-content:space-between;gap:8px;font:500 11px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#77746d;padding:4px 0;border-bottom:1px solid #8f8c85;margin:2px 0 10px}
 #take.np .np-hd{font-family:"Noto Serif KR",ui-serif,Georgia,serif;font-weight:700;font-size:19px;line-height:1.4;letter-spacing:-.02em;color:#1f1f1f;margin:0;text-wrap:balance}
 #take.np .np-body{font-family:"Noto Serif KR",ui-serif,Georgia,serif;font-weight:500;font-size:15px;line-height:1.75;text-align:left;word-break:keep-all;color:#333;margin:10px 0 0!important;padding-top:10px;border-top:1px solid #cfccc4}
 #take.np .np-body b,#take.np .np-body strong{font-weight:700;color:#111}
@@ -92,7 +92,7 @@ if(!bd||!bd.textContent.trim()){if(++k<40)setTimeout(go,250);return}
 var a=dl?(dl.querySelector('b')||{}).textContent||'':'',u=dl?(dl.querySelector('.bf-us')||{}).textContent||'':'';a=a.replace(/\s*\([^)]*\)/,'');
 var h=bd.innerHTML,i=h.search(/다\.(\s|$)/),hd,rest;if(i>0){hd=h.slice(0,i+2);rest=h.slice(i+2).trim()}else{hd=h;rest=''}
 var tmp=document.createElement('div');tmp.innerHTML=hd;hd=tmp.textContent.replace(/\.$/,'');
-t.classList.add('np');t.innerHTML='<div class="np-mast"><small>AI VALUE CHAIN DAILY</small>The Mungmung Times</div><div class="np-line"><span>'+a+'</span><span>'+u+'</span></div><h2 class="np-hd"></h2>'+(rest?'<p class="np-body" hidden>'+rest+'</p><button type="button" class="np-more">기사 펼치기 ▾</button>':'');t.querySelector('.np-hd').textContent=hd;var mb=t.querySelector('.np-more');if(mb)mb.onclick=function(){var p=t.querySelector('.np-body'),o=p.hidden;p.hidden=!o;mb.textContent=o?'접기 ▴':'기사 펼치기 ▾'}}
+t.classList.add('np');t.innerHTML='<div class="np-mast"><span>멍뭉일보</span><em>AI 밸류체인<br>아침판</em></div><div class="np-line"><span>'+a+'</span><span>'+u+'</span></div><h2 class="np-hd"></h2>'+(rest?'<p class="np-body" hidden>'+rest+'</p><button type="button" class="np-more">기사 펼치기 ▾</button>':'');t.querySelector('.np-hd').textContent=hd;var mb=t.querySelector('.np-more');if(mb)mb.onclick=function(){var p=t.querySelector('.np-body'),o=p.hidden;p.hidden=!o;mb.textContent=o?'접기 ▴':'기사 펼치기 ▾'}}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go()})();</script>'''
 
 
