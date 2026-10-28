@@ -32,6 +32,8 @@ for f in glob.glob(os.path.join(src, '*.html')):
         s = '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">' + s
     if 'http-equiv="Cache-Control"' not in s:  # 카톡 안 브라우저가 예전 화면을 붙잡지 않게
         s = re.sub(r'(<meta charset[^>]*>)', r'\1<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache">', s, count=1, flags=re.I)
+    if 'setAttribute("data-theme","light")' not in s:  # 사용자 지시: 주간(라이트) 모드로만 보이게
+        s = re.sub(r'(<meta charset[^>]*>)', r'\1<meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script>', s, count=1, flags=re.I)
     if not re.match(r'\s*<!doctype', s, re.I):
         s = '<!doctype html>' + s
     if 'name="robots"' not in s:
