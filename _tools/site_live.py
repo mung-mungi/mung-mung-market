@@ -86,6 +86,7 @@ def fix_hub(root):
     s = s.replace('.bn img{flex:none;height:100%;width:auto;max-width:42%;object-fit:cover;object-position:left top}',
                   '.bn img{position:absolute;right:4px;bottom:-34px;height:148px;width:auto;max-width:none;pointer-events:none;filter:drop-shadow(0 4px 8px rgba(80,50,10,.16))}\n.bn .tx{padding-right:118px!important}')
     s = s.replace(' 기준 · 하루 6~8회 갱신', ' 기준 · 80종목 한눈에')
+    sys.path.insert(0, T); import hub_tidy; s = hub_tidy.tidy(s)  # 첫 화면 정리(사용자 2026-10-29)
     if s != o: open(p, 'w', encoding='utf-8').write(s); return ['index.html']
     return []
 
