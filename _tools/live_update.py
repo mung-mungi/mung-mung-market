@@ -144,14 +144,21 @@ def long_update(L, tickers):
     except Exception: old = {}
     now = dt.datetime.now(ZoneInfo('Asia/Seoul'))
     fresh = old.get('at') and (now - dt.datetime.fromisoformat(old['at'])).total_seconds() < 20 * 3600
+    if old.get('v') != 2: old = {}  # 10년판(주간 5년 + 그 앞은 월간)으로 바뀜
     need = [t for t in tickers if t not in old.get('d', {})]
     if fresh and not need: return False
     todo = tickers if not fresh else need
+    def get(t, rg, iv):
+        o = subprocess.run(['curl', '-sS', '-m', '25', '-A', 'Mozilla/5.0', 'https://query1.finance.yahoo.com/v8/finance/chart/' + urllib.parse.quote(t) + '?range=' + rg + '&interval=' + iv], capture_output=True, text=True).stdout
+        r = json.loads(o)['chart']['result'][0]; off = r['meta'].get('gmtoffset', 0)
+        return [[dt.datetime.fromtimestamp(ts + off, dt.timezone.utc).strftime('%Y-%m-%d'), round(float(v), 4)] for ts, v in zip(r.get('timestamp') or [], r['indicators']['quote'][0]['close']) if v is not None]
     def one(t):
         try:
-            o = subprocess.run(['curl', '-sS', '-m', '25', '-A', 'Mozilla/5.0', 'https://query1.finance.yahoo.com/v8/finance/chart/' + urllib.parse.quote(t) + '?range=5y&interval=1wk'], capture_output=True, text=True).stdout
-            r = json.loads(o)['chart']['result'][0]; off = r['meta'].get('gmtoffset', 0)
-            return t, [[dt.datetime.fromtimestamp(ts + off, dt.timezone.utc).strftime('%Y-%m-%d'), round(float(v), 4)] for ts, v in zip(r['timestamp'], r['indicators']['quote'][0]['close']) if v is not None]
+            wk = get(t, '5y', '1wk')
+            try: mo = get(t, '10y', '1mo')
+            except Exception: mo = []
+            first = wk[0][0] if wk else '9999'
+            return t, [x for x in mo if x[0] < first] + wk
         except Exception:
             return t, None
     import concurrent.futures as cf
@@ -160,7 +167,7 @@ def long_update(L, tickers):
         for t, v in ex.map(one, todo):
             if v: D[t] = v
     D = {t: D[t] for t in tickers if t in D}
-    json.dump({'at': now.isoformat(timespec='seconds'), 'd': D}, open(fp, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+    json.dump({'v': 2, 'at': now.isoformat(timespec='seconds'), 'd': D}, open(fp, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     return True
 
 
