@@ -122,7 +122,7 @@ function tidy(){
 .mmt-pen .mmt-clr{margin-left:auto}
 .mmt-pen .mmt-hint{flex:1 0 100%;margin:0;font-size:11.5px;color:#9a6200;font-weight:600}
 #main.mmt-detail .mmt-pen{display:none!important}html.mm-full .mmt-pen,html.mm-land .mmt-pen{display:none!important}.mmt-x{display:none!important}
-#main.mmt-detail .ch{padding-top:34px}
+#main.mmt-detail .ch{padding-top:0}#main.mmt-detail .ch>.mmt-tools{top:-2px}#main .zhint{display:none!important}
 #main .rg .zm{display:none!important}
 #main .rg{background:#f3f1ec;padding:3px!important;border-radius:12px;gap:4px!important;overflow:hidden!important}
 #main .rg .pb-chip{flex:1 1 0!important;min-width:0;border:0!important;background:transparent!important;box-shadow:none!important;color:#8a877f!important;font-size:14px!important;font-weight:700!important;padding:7px 0!important;border-radius:9px!important;justify-content:center;text-align:center}
@@ -396,6 +396,9 @@ function mmtStyleDetail(){ // 자세한 차트: 추세선은 가늘고 옅게, �
     else if(st==='var(--color-bad)'||st==='var(--color-ok)'){ l.setAttribute('stroke-width','1.1'); l.setAttribute('opacity', d?'.3':'.5'); } });
   svg.querySelectorAll('rect').forEach(function(r){ if(A(r,'opacity')==='0.08') r.setAttribute('opacity','.05'); });
   svg.querySelectorAll('text').forEach(function(t){ if(/^고점/.test(t.textContent)) t.setAttribute('opacity','.75'); });
+  // 차트 위 설명은 왼쪽 위에 작게(사용자 2026-10-29): '그래프 기간 …' → '기간 +10.0%', 평균 목표가도 그 아래 왼쪽으로
+  svg.querySelectorAll('text').forEach(function(t){ var m=t.textContent.match(/^그래프 기간\s*([−+\-]?[\d.,]+%)/); if(m){ t.textContent='기간 '+m[1]; t.setAttribute('font-size','11.5'); t.setAttribute('font-weight','700'); t.setAttribute('opacity','.85'); }
+    if(/^↑?\s*평균 목표가/.test(t.textContent)&&+t.getAttribute('y')<40){ t.setAttribute('x','8'); t.setAttribute('text-anchor','start'); t.setAttribute('y','29'); t.setAttribute('font-size','10.5'); } });
   // 내 관점 1차 관문선: 선은 가늘고 옅게, 차트 안 글자는 빼고 오른쪽 눈금 꼬리표로(사용자 2026-10-29)
   svg.querySelectorAll('line').forEach(function(l){ if(A(l,'stroke')==='var(--color-warn)'){ l.setAttribute('stroke-width','1.3'); l.setAttribute('opacity', A(l,'stroke-dasharray')?'.45':'.65'); } });
   svg.querySelectorAll('circle').forEach(function(c){ if(A(c,'stroke')==='var(--color-warn)'){ c.setAttribute('r','2.6'); c.setAttribute('stroke-width','1.2'); c.setAttribute('opacity','.7'); } });
