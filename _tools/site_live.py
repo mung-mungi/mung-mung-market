@@ -40,8 +40,38 @@ def run(root):
         s = re.sub(r'<script data-live>[\s\S]*?</script>', '', s)
         s = s.replace('</body>', LJ + '</body>', 1) if '</body>' in s else s + LJ
         if s != o: open(p, 'w', encoding='utf-8').write(s); n.append(f)
+    n += fix_nav(root)
     print('site_live', n)
 
+
+
+def fix_nav(root):
+    # 손으로 만든 페이지(실적 캘린더·실적 결과·차트 길잡이)는 <head>·<body> 꼬리표가 없어 빌더가 맨 위 페이지 줄(⌂ 홈 …)을 못 넣음 → 여기서 넣음(사용자 2026-10-29 지적)
+    import glob
+    src = None
+    for f in sorted(glob.glob(os.path.join(root, 'p-*.html'))):
+        m = re.search(r'<nav class="ib"[\s\S]*?</nav><script>[\s\S]*?</script>', open(f, encoding='utf-8').read())
+        if m: src = m.group(0); break
+    css_p = os.path.join(root, 'kit', 'barcss.css')
+    if not src or not os.path.exists(css_p): return []
+    css = open(css_p, encoding='utf-8').read(); done = []
+    for f in sorted(glob.glob(os.path.join(root, 'p-*.html'))):
+        s = open(f, encoding='utf-8').read()
+        if 'class="ib"' in s: continue
+        me = os.path.basename(f)
+        nav = re.sub(r' aria-current="page"', '', src)
+        nav = re.sub(r'(<a href="' + re.escape(me) + r'(?:\?v=\d+)?")', r'\1 aria-current="page"', nav)
+        add = '<style data-barcss>' + css + '\n.ib{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;white-space:nowrap!important}.ib>*{flex:none!important}</style>'
+        # 첫 화면 요소 바로 앞에 페이지 줄 — title·style·script·meta·link·주석은 건너뜀
+        k = 0; skip = re.compile(r'\s*(?:<!doctype[^>]*>|<!--[\s\S]*?-->|<(script|style|title)\b[\s\S]*?</\1>|<(?:meta|link|html|head|body)\b[^>]*>|</(?:head|html)>)', re.I)
+        while True:
+            m = skip.match(s, k)
+            if not m or m.end() == k: break
+            k = m.end()
+        if not re.match(r'\s*<[a-zA-Z]', s[k:]): continue
+        s = s[:k] + add + nav + s[k:]
+        open(f, 'w', encoding='utf-8').write(s); done.append(me)
+    return done
 
 if __name__ == '__main__':
     run(sys.argv[1] if len(sys.argv) > 1 else '.')
