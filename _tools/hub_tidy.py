@@ -282,14 +282,16 @@ RNG_FN = (r"""let __IDX=null;fetch('live/idx.json',{cache:'no-store'}).then(r=>r
           r"""b.onclick=()=>{st.rng=o[0];w.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawChart()};w.appendChild(b)});lg.parentNode.insertBefore(w,lg)}"""
           r"""function __cb(){__rngui();const mo=(st.rng||3);const by={};(__IDX||[]).forEach(r=>{by[r.date]=Object.assign({},r)});B.forEach(r=>{by[r.date]=r});"""
           r"""const all=Object.keys(by).sort().map(k=>by[k]);if(!all.length)return B;const L=new Date(all[all.length-1].date+'T00:00:00Z');L.setUTCMonth(L.getUTCMonth()-mo);const c=L.toISOString().slice(0,10);"""
-          r"""return all.filter(r=>r.date>c)}""" "\n")
+          r"""const rows=all.filter(r=>r.date>c);const acc={};return rows.map(r=>{const o=Object.assign({},r);SER.forEach(s=>{const k=s[0];if(r[k]==null){o[k]=acc[k]==null?null:+((acc[k]-1)*100).toFixed(2);return}if(acc[k]==null){acc[k]=1;o[k]=0;return}acc[k]=acc[k]*(1+r[k]/100);o[k]=+((acc[k]-1)*100).toFixed(2)});return o})}"""
+          r"""function __cbnote(){const c=$('chart-card');if(!c||c.dataset.cum)return;const p=c.querySelector('p');const h=c.querySelector('h2,h3');if(h)h.textContent='지수 흐름 · 분위기';if(p){p.textContent='선 = 기간 첫날 대비 누적 등락(%). 아래 띠 = 그날 분위기(초록 위험선호 · 회색 혼조 · 빨강 위험회피). 점을 누르면 그날 기록이 열립니다.';c.dataset.cum=1}}""" "\n")
 
 
 def tidy_rng(s):
     s = re.sub(r'(?:let __IDX=null;|function __cb\(\)\{)[^\n]*\n(function drawChart\(\)\{)const B=__cb\(\);', r'\1', s)
+    s = s.replace("function drawChart(){try{__cbnote()}catch(e){}\n", "function drawChart(){\n")
     if RNG_ANCHOR not in s:
         return s
-    s = s.replace(RNG_ANCHOR, RNG_FN + "function drawChart(){const B=__cb();\n  const box=$('chart');", 1)
+    s = s.replace(RNG_ANCHOR, RNG_FN + "function drawChart(){const B=__cb();try{__cbnote()}catch(e){}\n  const box=$('chart');", 1)
     # 점 크기: 길어지면 작게
     s = s.replace(".attr('r',3).attr('fill',dash.colors[i])});\n  // hover columns", ".attr('r',B.length>40?1.6:3).attr('fill',dash.colors[i])});\n  // hover columns", 1)
     return s
@@ -328,7 +330,8 @@ def tidy_earnui(s):
 
 # 홈 '오늘 한눈에' 숫자 칸을 누르면 해당 차트로(사용자 2026-10-29): 나스닥→종목 차트 QQQ, 반도체→SOXX, 10년물→채권·금리, WTI→데일리 시황 금리·유가 차트(WTI)
 STATGO = (r"""<style data-statgo>.stats .stat[data-go]{cursor:pointer;transition:transform .08s}.stats .stat[data-go]:active{transform:translateY(1px);background:rgba(154,98,0,.06)}"""
-          r""".stats .stat[data-go] .k::after{content:" ›";color:#b9b6ae;font-weight:700}</style>""")
+          r""".stats .stat[data-go] .k::after{content:" ›";color:#b9b6ae;font-weight:700}</style>"""
+          r"""<script data-statgo>document.addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('.stats .stat[data-go]');if(!s)return;var g=s.dataset.go;if(/\.html/.test(g))return;e.stopPropagation();e.preventDefault();location.href='p-trend.html?per=1y#'+g},true);</script>""")
 
 
 def tidy_statgo(s):
@@ -358,3 +361,15 @@ def tidy_lights(s):
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-ltui>' + open(os.path.join(d, 'ltui.css'), encoding='utf-8').read() + '</style><script data-ltui>' + open(os.path.join(d, 'ltui.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+# 종목 차트: 주소에 ?per=1y 등이 있으면 그 기간 알약을 눌러 둠(홈 숫자 칸 → 1년 기본, 사용자 2026-10-29)
+PERGO = (r"""<script data-pergo>(function(){var m=(location.search||'').match(/per=(1d|1w|1m|3m|1y|5y|10y)/);if(!m)return;var L={'1d':'1일','1w':'1주','1m':'1달','3m':'3달','1y':'1년','5y':'5년','10y':'10년'}[m[1]];try{window.__mmT=window.__mmT||{};window.__mmT.per=m[1]}catch(e){}var k=0;"""
+         r"""(function go(){var b=[...document.querySelectorAll('button')].find(function(x){return x.textContent.trim()===L&&x.offsetParent});if(b){if(b.getAttribute('aria-pressed')!=='true'&&!b.classList.contains('on'))b.click();if(++k<4)setTimeout(go,500);return}if(++k<30)setTimeout(go,300)})()})();</script>""")
+
+
+def tidy_pergo(s):
+    s = re.sub(r'<script data-pergo>.*?</script>', '', s, flags=re.S)
+    if 'MMT_PER' not in s:
+        return s
+    return s.replace('</body>', PERGO + '</body>', 1) if '</body>' in s else s + PERGO

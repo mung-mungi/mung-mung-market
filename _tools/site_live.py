@@ -60,6 +60,11 @@ def run(root):
         sys.path.insert(0, T); import hub_tidy
         o = open(pe, encoding='utf-8').read(); b = hub_tidy.tidy_hits(o)
         if b != o: open(pe, 'w', encoding='utf-8').write(b); n.append('p-earn')
+    ptr = os.path.join(root, 'p-trend.html')
+    if os.path.exists(ptr):
+        sys.path.insert(0, T); import hub_tidy
+        o = open(ptr, encoding='utf-8').read(); b = hub_tidy.tidy_pergo(o)
+        if b != o: open(ptr, 'w', encoding='utf-8').write(b); n.append('p-trend')
     pl = os.path.join(root, 'p-lights.html')
     if os.path.exists(pl):
         sys.path.insert(0, T); import hub_tidy
