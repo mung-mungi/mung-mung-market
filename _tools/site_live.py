@@ -42,6 +42,11 @@ def run(root):
         if s != o: open(p, 'w', encoding='utf-8').write(s); n.append(f)
     n += fix_nav(root)
     n += fix_hub(root)
+    pe = os.path.join(root, 'p-earn.html')
+    if os.path.exists(pe):
+        sys.path.insert(0, T); import hub_tidy
+        o = open(pe, encoding='utf-8').read(); b = hub_tidy.tidy_hits(o)
+        if b != o: open(pe, 'w', encoding='utf-8').write(b); n.append('p-earn')
     pt = os.path.join(root, 'p-targets.html')
     if os.path.exists(pt):
         sys.path.insert(0, T); import hub_tidy

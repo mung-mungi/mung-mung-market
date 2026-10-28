@@ -137,3 +137,23 @@ def tidy_units(s):
     # 날짜 줄(t-date)은 위 코드가 VIX 칸 아랫줄을 바꾼 뒤에 다시 쓰지 않도록 대상만 없앰
     s = s.replace(UNITS_ANCHOR, UNITS_JS.replace("sx.removeAttribute('id');", "") + "  if(0)$('t-date').textContent=", 1)
     return s.replace('</body>', UNITS_CSS + '</body>', 1) if '</body>' in s else s + UNITS_CSS
+
+
+# 실적 결과 회사 바로가기: 들쭉날쭉한 알약 → 한 줄 3칸 격자로 가지런히(사용자 2026-10-29 — 줄 정리·공간 낭비)
+HITS = ('<style data-hits>body .hits{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}'
+        'body .hits>.hday,body .hits>.hmore,body .hits>.hrest{grid-column:1/-1}'
+        'body .hits>.hday{justify-self:start}'
+        'body .hits .hrest{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}'
+        'body .hits button:not(.hmore) span{display:none!important}'
+        'body .hits button:not(.hmore){display:flex!important;flex-direction:row!important;align-items:baseline!important;justify-content:space-between;gap:4px!important;'
+        'min-width:0;padding:6px 8px!important;border-radius:10px!important;box-shadow:0 2px 0 rgba(0,0,0,.06);text-align:left}'
+        'body .hits button:not(.hmore):active{transform:translateY(1px)}'
+        'body .hits b{font-size:14px!important;line-height:1.3;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
+        'body .hits span{font-size:11px!important;line-height:1.2;flex:none}'
+        'body .hits .hmore{border-radius:10px!important;padding:6px 10px!important;font-size:13.5px!important}</style>')
+
+
+def tidy_hits(s):
+    if 'data-hits' in s or 'id="hits"' not in s:
+        return s
+    return s.replace('</body>', HITS + '</body>', 1) if '</body>' in s else s + HITS
