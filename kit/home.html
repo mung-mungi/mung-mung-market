@@ -192,18 +192,22 @@ details.note>summary .r{flex-basis:100%;font-size:13.5px;color:var(--muted);line
 }
 
 .item.wide{grid-column:1/-1}
+.today .c{display:none}.today.open .c{display:block}
+.today .more{display:inline-flex;align-items:center;gap:4px;margin:10px 0 0;font:inherit;font-size:14.5px;font-weight:700;color:var(--accent);background:transparent;border:0;padding:0;cursor:pointer}
+.today .v{font-size:clamp(21px,5.6vw,25px)!important}
+.stats{grid-template-columns:repeat(4,1fr)!important}.stat{padding:8px 10px!important}.stat .k{font-size:12px!important}.stat .n{font-size:16px!important}
 </style>
 <div class="wrap">
   <section class="view" id="v-home">
     <header class="mast">
       <p class="eyebrow"><i aria-hidden="true"></i>AI 밸류체인 레이더<span class="date" id="h-date"></span></p>
       <h1>멍뭉 <span class="dim">터미널</span></h1>
-      <p class="lede">미국·한국·대만·일본의 AI 인프라 종목 78개와 반도체 지수 ETF 2개를 매일 추적하는 레이더입니다. 자주 보는 순서대로 시장·실적·수급·돈길 네 갈래로 묶었습니다. 카드를 누르면 원본과 같은 화면으로 들어가고, 위쪽 막대로 다른 페이지로 바로 옮겨 갈 수 있습니다.</p>
+      <p class="lede">카드를 누르면 원본 화면으로, 위쪽 막대로 다른 페이지로 바로 옮겨 갑니다.</p>
     </header>
     <div>
       <p class="sh">오늘 한눈에</p>
       <div class="today">
-        <div class="body"><span class="lab" id="t-lab">오늘</span><p class="v" id="t-v">불러오는 중입니다</p><p class="c" id="t-c"></p></div>
+        <div class="body"><span class="lab" id="t-lab">오늘</span><p class="v" id="t-v">불러오는 중입니다</p><p class="c" id="t-c"></p><button class="more" id="t-more" type="button" aria-expanded="false" hidden>자세히 보기 ▾</button></div>
         <div class="stats" id="t-stats"></div>
       </div>
     </div>
@@ -257,13 +261,13 @@ details.note>summary .r{flex-basis:100%;font-size:13.5px;color:var(--muted);line
   fetch('d/meta.json',{cache:'no-store'}).then(r=>r.json()).then(m=>{$('f-sync').textContent='마지막 동기화 '+(m.label||'')+' · 한국시간';}).catch(()=>{});
   fetch('d/hub.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{
     const t=d.today||{};
-    if(t.label)$('t-lab').textContent=t.label;
-    bold($('t-v'),t.headline||'');bold($('t-c'),t.comment||'');
+    if(t.label)$('t-lab').textContent=String(t.label).replace(/\s*\([^)]*\)\s*$/,'');
+    bold($('t-v'),t.headline||'');bold($('t-c'),t.comment||'');{const mb=$('t-more'),box=document.querySelector('.today');if(t.comment){mb.hidden=false;mb.onclick=()=>{const o=box.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.textContent=o?'접기 ▴':'자세히 보기 ▾'}}}
     const st=$('t-stats');st.replaceChildren();
     (t.chips||[]).forEach(c=>{const s=el('div','stat');s.append(el('span','k',c.k),el('span','n'+(c.d>0?' up':c.d<0?' dn':''),c.v));st.appendChild(s);});
     const cards=d.cards||{};
     document.querySelectorAll('.hl[data-k]').forEach(h=>{const v=cards[h.dataset.k];if(v)bold(h,typeof v==='string'?v:v.line);});
-    if(d.asof)$('h-date').textContent=String(d.asof).split(' ')[0];
+    if(d.asof)$('h-date').textContent=String(d.asof).split(' ')[0].replace(/\([^)]*\)/,'');
   }).catch(()=>{$('t-v').textContent='아래 카드를 눌러 각 페이지로 들어가십시오';});
 })();
 </script>

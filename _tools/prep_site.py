@@ -25,6 +25,8 @@ for f in glob.glob(os.path.join(src, '*.html')):
     s = re.sub(r'https://claude\.ai/(?:code/)?artifact/([A-Za-z0-9-]+)[^"\'\s)<]*',
                lambda x: m.get(x[1], x[0]), s)
     s = re.sub(r'(<a [^>]*href="(?:index|p-[a-z]+)\.html"[^>]*?)\s+target="_blank"', r'\1', s)
+    if not re.search(r"<meta charset", s, re.I):
+        s = '<meta charset="utf-8">' + s
     if 'name="robots"' not in s:
         s = re.sub(r'(<head[^>]*>)', r'\1' + META, s, count=1) if '<head' in s else META + s
     s = re.sub(r'<meta (?:property="og:[a-z:_]+"|name="twitter:card") content="[^"]*">', '', s)
