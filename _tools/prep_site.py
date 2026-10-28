@@ -55,8 +55,8 @@ import time as _t
 STAMP = _t.strftime('%m%d%H%M')
 for f in glob.glob(os.path.join(src, '*.html')):
     s = open(f, encoding='utf-8').read()
-    n = re.sub(r'href="((?:index|p-[a-z0-9]+)\.html)(?:\?v=\d+)?(#[^"]*)?"', lambda x: 'href="' + x[1] + '?v=' + STAMP + (x[2] or '') + '"', s)
-    if n != s: open(f, 'w', encoding='utf-8').write(n)
+    n2 = re.sub(r'href="((?:index|p-[a-z0-9]+)\.html)(?:\?v=\d+)?(#[^"]*)?"', lambda x: 'href="' + x[1] + '?v=' + STAMP + (x[2] or '') + '"', s)
+    if n2 != s: open(f, 'w', encoding='utf-8').write(n2)
 open(os.path.join(src, 'robots.txt'), 'w').write('User-agent: kakaotalk-scrap\nAllow: /\n\nUser-agent: facebookexternalhit\nAllow: /\n\nUser-agent: *\nDisallow: /\n')
 open(os.path.join(src, '.nojekyll'), 'w').write('')
 left = [f for f in glob.glob(os.path.join(src, '*.html')) if 'claude.ai/' in open(f, encoding='utf-8').read()]
