@@ -42,6 +42,11 @@ def run(root):
         if s != o: open(p, 'w', encoding='utf-8').write(s); n.append(f)
     n += fix_nav(root)
     n += fix_hub(root)
+    pb = os.path.join(root, 'p-brief.html')
+    if os.path.exists(pb):
+        sys.path.insert(0, T); import hub_tidy
+        o = open(pb, encoding='utf-8').read(); b = hub_tidy.tidy_brief(o)
+        if b != o: open(pb, 'w', encoding='utf-8').write(b); n.append('p-brief')
     print('site_live', n)
 
 
