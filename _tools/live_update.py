@@ -27,7 +27,16 @@ def window(now):
 
 def gate(now):
     us, ko, earn = window(now)
-    if not (us or ko): return 'rest: 장 시간 아님'
+    if not (us or ko):
+        # 장 밖이라도 통합본 동기화로 바탕이 바뀌었으면 한 번만 다시 맞춤(주말에 옛 가격으로 돌아가지 않게)
+        try:
+            meta = json.load(open(os.path.join(R, 'd', 'meta.json'), encoding='utf-8'))
+            base = dt.datetime.fromisoformat(meta['synced']).strftime('%Y%m%d%H%M')
+            st = json.load(open(os.path.join(R, 'live', 'stamp.json'), encoding='utf-8'))
+            if st.get('base') == base: return 'rest: 장 시간 아님'
+        except Exception:
+            return 'rest: 장 시간 아님'
+        earn = False
     if FORCE: return None
     log = sh('git', 'log', '-40', '--format=%ct|%an', 'origin/main').splitlines()
     ts = [(int(x.split('|')[0]), x.split('|', 1)[1]) for x in log if '|' in x]
