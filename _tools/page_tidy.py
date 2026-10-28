@@ -268,7 +268,7 @@ function mmtDraw(){
     var hd=main.querySelector('.hd'); hd.after(wrap);
     var pr=wrap.querySelector('.mmt-per'); MMT_PER.forEach(function(p){ var b=document.createElement('button'); b.type='button'; b.textContent=p[1]; b.dataset.p=p[0]; b.addEventListener('click',function(){ T.per=p[0]; mmtDraw(); }); pr.appendChild(b); });
     wrap.querySelector('.mmt-trd').addEventListener('click',function(){ T.tr=!T.tr; mmtDraw(); });
-    var cb=wrap.querySelector('input'); cb.addEventListener('change',function(){ T.det=cb.checked; wrap.querySelector('.mmt-det').classList.toggle('on',T.det); main.classList.toggle('mmt-detail',T.det); setTimeout(function(){ window.dispatchEvent(new Event('resize')); },30); }); }
+    var cb=wrap.querySelector('input'); cb.addEventListener('change',function(){ T.det=cb.checked; wrap.querySelector('.mmt-det').classList.toggle('on',T.det); main.classList.toggle('mmt-detail',T.det); setTimeout(function(){ window.__mmForce=1; window.dispatchEvent(new Event('resize')); },30); }); }
   wrap.querySelector('.mmt-trd').setAttribute('aria-pressed',String(!!T.tr)); wrap.querySelector('.mmt-det').classList.toggle('on',!!T.det);
   wrap.querySelector('input').checked=T.det; main.classList.toggle('mmt-detail',T.det); main.classList.add('mmt-on');
   wrap.dataset.tk=r.ticker;
@@ -395,6 +395,8 @@ def run(root):
         s = s.replace("+ ' ' + r.currency", "+ (r.currency === '%' ? '%' : ' ' + r.currency)")
         s = s.replace("const rank = (c) => (/지수|ETF/.test(c) ? 0 :", "const rank = (c) => (/지수|ETF/.test(c) ? 0 : /금리|유가/.test(c) ? 0.5 :")  # 채권·유가 층위는 지수 바로 뒤
         s = s.replace("Math.pow(10, Math.max(0, Math.floor(Math.log10(Math.abs(v))) - 3))", "Math.pow(10, Math.max((typeof r !== 'undefined' && r && r.currency === '%') ? -3 : 0, Math.floor(Math.log10(Math.abs(v))) - 3))")  # 금리는 소수까지
+        # 휴대폰 스크롤 때 주소창이 숨었다 나오며 생기는 '높이만 바뀐' resize로 차트 전체를 다시 그려 깜빡이던 것 막기(사용자 2026-10-29)
+        s = s.replace("let rt0 = null; addEventListener('resize', () => { clearTimeout(rt0); rt0 = setTimeout(draw, 150); });", "let rt0 = null, rw0 = innerWidth; addEventListener('resize', () => { if (innerWidth === rw0 && !window.__mmForce) return; rw0 = innerWidth; window.__mmForce = 0; clearTimeout(rt0); rt0 = setTimeout(draw, 150); });")
         s = re.sub(r'const MYLINES = \{.*?\};\n', 'const MYLINES = {};\n', s, count=1)  # 내 관점 관문선은 사이트에서 생략(사용자 2026-10-29)
         if s != o: open(p, 'w', encoding='utf-8').write(s); done.append('trend-height')
     for f, cfg in PAGES.items():

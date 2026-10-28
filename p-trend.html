@@ -26,7 +26,7 @@ html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
   });
 })();
 </script>
-<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610290305">(function(){var me="202610290305";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>차트 길잡이</title>
+<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610290306">(function(){var me="202610290306";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>차트 길잡이</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 /* layout: 왼쪽 종목 목록(찾기·분야) + 오른쪽 큰 추세 그래프, 휴대폰은 그래프 먼저 */
@@ -170,7 +170,7 @@ const MYLINES = {};
   const bySlug = new Map(P.map((r) => [slug(r.ticker), r.ticker]));
   document.getElementById('asof').textContent = DATA.label || ('대부분 ' + fmtDate(DATA.asof) + ' 종가 기준');
   // 분야 칩
-  const rank = (c) => (/지수|ETF/.test(c) ? 0 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : c === '빅테크' ? 1 : 2);
+  const rank = (c) => (/지수|ETF/.test(c) ? 0 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : c === '빅테크' ? 1 : 2);
   const cats = []; P.forEach((r) => { if (!cats.includes(r.category)) cats.push(r.category); });
   const cats0 = cats.slice(); cats.sort((a, b) => rank(a) - rank(b) || cats0.indexOf(a) - cats0.indexOf(b));
   const catBox = document.getElementById('cats');
@@ -475,7 +475,7 @@ const MYLINES = {};
   const fromHash = bySlug.get(location.hash.slice(1));
   select(fromHash || (byTk.has('QQQ') ? 'QQQ' : P[0].ticker), false);
   addEventListener('hashchange', () => { const t = bySlug.get(location.hash.slice(1)); if (t && t !== cur) select(t, false); });
-  let rt0 = null; addEventListener('resize', () => { clearTimeout(rt0); rt0 = setTimeout(draw, 150); });
+  let rt0 = null, rw0 = innerWidth; addEventListener('resize', () => { if (innerWidth === rw0 && !window.__mmForce) return; rw0 = innerWidth; window.__mmForce = 0; clearTimeout(rt0); rt0 = setTimeout(draw, 150); });
   function unzoom() { if (!zoomOn) return; zoomOn = false; main.classList.remove('zoom'); document.body.classList.remove('zoomed'); draw(); main.scrollIntoView({ block: 'start' }); }
   addEventListener('keydown', (e) => { if (e.key === 'Escape') unzoom(); });
   { const zbk = document.createElement('button'); zbk.type = 'button'; zbk.className = 'zback'; zbk.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>원래 크기로'; zbk.onclick = unzoom; document.body.appendChild(zbk); }
@@ -979,7 +979,7 @@ function mmtDraw(){
     var hd=main.querySelector('.hd'); hd.after(wrap);
     var pr=wrap.querySelector('.mmt-per'); MMT_PER.forEach(function(p){ var b=document.createElement('button'); b.type='button'; b.textContent=p[1]; b.dataset.p=p[0]; b.addEventListener('click',function(){ T.per=p[0]; mmtDraw(); }); pr.appendChild(b); });
     wrap.querySelector('.mmt-trd').addEventListener('click',function(){ T.tr=!T.tr; mmtDraw(); });
-    var cb=wrap.querySelector('input'); cb.addEventListener('change',function(){ T.det=cb.checked; wrap.querySelector('.mmt-det').classList.toggle('on',T.det); main.classList.toggle('mmt-detail',T.det); setTimeout(function(){ window.dispatchEvent(new Event('resize')); },30); }); }
+    var cb=wrap.querySelector('input'); cb.addEventListener('change',function(){ T.det=cb.checked; wrap.querySelector('.mmt-det').classList.toggle('on',T.det); main.classList.toggle('mmt-detail',T.det); setTimeout(function(){ window.__mmForce=1; window.dispatchEvent(new Event('resize')); },30); }); }
   wrap.querySelector('.mmt-trd').setAttribute('aria-pressed',String(!!T.tr)); wrap.querySelector('.mmt-det').classList.toggle('on',!!T.det);
   wrap.querySelector('input').checked=T.det; main.classList.toggle('mmt-detail',T.det); main.classList.add('mmt-on');
   wrap.dataset.tk=r.ticker;
