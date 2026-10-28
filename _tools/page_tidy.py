@@ -124,17 +124,17 @@ function tidy(){
 #main.mmt-detail .mmt-pen{display:none!important}html.mm-full .mmt-pen,html.mm-land .mmt-pen{display:none!important}.mmt-x{display:none!important}
 #main.mmt-detail .ch{padding-top:0;margin-top:-10px!important;margin-bottom:-10px!important}#main.mmt-detail .ch>.mmt-tools{top:0}#main .zhint{display:none!important}
 #list{max-height:560px;overflow-y:auto;overscroll-behavior:contain;padding:2px 4px 8px;margin:0 -4px;border-radius:12px;-webkit-overflow-scrolling:touch}
-#list .grp h3{position:sticky;top:0;z-index:2;background:#fff;margin:0!important;padding:10px 4px 6px!important;font-size:14.5px!important}
+#list .grp+.grp{margin-top:4px!important}#list .grp h3{position:sticky;top:0;z-index:2;background:#fff;margin:0!important;padding:10px 4px 6px!important;font-size:14.5px!important}
 #list .grp h3 span{font-size:11.5px!important}
 #list button.row[data-mm]{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) auto 12px;align-items:center;gap:8px;padding:10px 10px 10px 14px!important;min-height:0!important;margin:0 0 7px!important;border:1px solid #ecdcb8!important;border-radius:14px!important;background:#fff!important;box-shadow:0 2px 0 rgba(30,22,8,.06),0 4px 10px rgba(30,22,8,.05)!important;text-align:left}
 #list button.row[data-mm][aria-current=true]{background:#fbf3e2!important;border-color:#d9b46a!important}
 #list .grp{margin:0!important;padding:0!important}#list .grp .rows{margin:0!important;gap:0!important}
 #list .row .l{min-width:0;display:flex;flex-direction:column;gap:2px}#list .row .l b{order:1;font-size:15.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#list .row .l i{order:2;font-style:normal;font-size:11.5px;color:#8a877f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #list .row .m{min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:3px}#list .row .m em{font-style:normal;font-weight:800;font-size:15px;text-align:right}
-#list .row .bar{position:relative;height:5px;border-radius:3px;background:linear-gradient(90deg,#e7b4b0,#e8e4dc,#a9d1b6)}#list .row .bar s{position:absolute;top:-3px;width:3px;height:11px;margin-left:-1.5px;border-radius:2px;background:#141210;text-decoration:none}
+#list .row .bar{position:relative;height:5px;border-radius:3px;background:linear-gradient(90deg,#b4c6ec,#e8e4dc,#efb3ae)}#list .row .bar s{position:absolute;top:-3px;width:3px;height:11px;margin-left:-1.5px;border-radius:2px;background:#141210;text-decoration:none}
 #list .row .rg{display:flex;justify-content:space-between;font-size:10.5px;color:#9a978f}#list .row .rg u{text-decoration:none}
 #list .row .r{display:flex;flex-direction:column;align-items:flex-end;gap:2px;min-width:52px}#list .row .r strong{font-size:16px;font-weight:800}#list .row .r small{font-size:11px;color:#8a877f;white-space:nowrap}
-#list .row .r strong.up{color:#1f8a4c}#list .row .r strong.dn,#list .row .r strong.down{color:#c4453a}
+#list .row .r strong.up{color:#e0423a!important}#list .row .r strong.dn,#list .row .r strong.down{color:#3a6fe0!important}
 #list .row .go{color:#9a6200;font-size:20px;font-weight:700;line-height:1}
 .mm-lhint{margin:4px 2px 0;font-size:12px;color:#9a6200;text-align:center}
 /* 종목 차트에선 멍뭉이 배너·오늘 한눈에 카드 숨기고 차트가 바로 보이게(사용자 2026-10-29) — 기준 시각은 차트 카드 위에 작게 */
