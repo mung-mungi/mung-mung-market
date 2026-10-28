@@ -109,6 +109,7 @@ def build():
     W = os.path.join(R, '.live_tmp'); shutil.rmtree(W, ignore_errors=True); os.makedirs(W)
     for f in ('prices.json', 'history.json'):
         shutil.copy(os.path.join(R, 'd', 'prices', f), os.path.join(W, f))
+    os.environ['MM_INTRA'] = os.path.join(W, 'intraday.json')
     out = sh(sys.executable, '-I', os.path.join(T, 'refresh_prices.py'), 'update', os.path.join(W, 'prices.json'), os.path.join(W, 'history.json'))
     res = json.loads(out.splitlines()[-1])
     if not res.get('ok'): print('fail: 시세 받기 실패', res); return None
@@ -133,6 +134,7 @@ def build():
     json.dump(tr, open(os.path.join(L, 'trend.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     for f in ('prices.json', 'history.json'):
         shutil.copy(os.path.join(W, f), os.path.join(L, f))
+    if os.path.exists(os.path.join(W, 'intraday.json')): shutil.copy(os.path.join(W, 'intraday.json'), os.path.join(L, 'intraday.json'))
     kinds = res.get('kinds', {})
     st = {'at': now.isoformat(timespec='seconds'), 'key': now.strftime('%Y%m%d%H%M'), 'label': now.strftime('%m.%d %H:%M') + ' 기준(5분 갱신)',
           'base': base, 'files': ['prices', 'history'], 'ok': res.get('ok'), 'fail': res.get('fail', []), 'kinds': kinds}
