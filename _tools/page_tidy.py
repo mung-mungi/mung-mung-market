@@ -106,7 +106,7 @@ function tidy(){
 #main details.mm-fold{display:none!important}
 #main .mmt-stage,#main .ch{margin-left:-12px!important;margin-right:-10px!important}
 #main .mmt-per{margin-left:-4px;margin-right:-4px}
-.mm-dtip{min-height:20px;margin:2px 0 0;font-size:12.5px;color:#8a877f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mm-dtip b{color:#141210;font-weight:800}.mm-dtip em{font-style:normal;font-weight:700}
+.mm-dtip{min-height:18px;height:18px;line-height:18px;margin:0;font-size:12.5px;color:#8a877f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mm-dtip b{color:#141210;font-weight:800}.mm-dtip em{font-style:normal;font-weight:700}
 #main.mmt-on:not(.mmt-detail) .mm-dtip{display:none}
 .mmt-stage,#main .ch{position:relative}
 .mmt-tools{position:absolute;top:0;right:0;z-index:3;display:flex;gap:5px}
@@ -122,7 +122,7 @@ function tidy(){
 .mmt-pen .mmt-clr{margin-left:auto}
 .mmt-pen .mmt-hint{flex:1 0 100%;margin:0;font-size:11.5px;color:#9a6200;font-weight:600}
 #main.mmt-detail .mmt-pen{display:none!important}html.mm-full .mmt-pen,html.mm-land .mmt-pen{display:none!important}.mmt-x{display:none!important}
-#main.mmt-detail .ch{padding-top:0}#main.mmt-detail .ch>.mmt-tools{top:-2px}#main .zhint{display:none!important}
+#main.mmt-detail .ch{padding-top:0;margin-top:-10px!important;margin-bottom:-10px!important}#main.mmt-detail .mmt-stage{display:none!important}#main.mmt-detail .ch>.mmt-tools{top:0}#main .zhint{display:none!important}
 #main .rg .zm{display:none!important}
 #main .rg{background:#f3f1ec;padding:3px!important;border-radius:12px;gap:4px!important;overflow:hidden!important}
 #main .rg .pb-chip{flex:1 1 0!important;min-width:0;border:0!important;background:transparent!important;box-shadow:none!important;color:#8a877f!important;font-size:14px!important;font-weight:700!important;padding:7px 0!important;border-radius:9px!important;justify-content:center;text-align:center}
@@ -268,6 +268,7 @@ function mmtKst(sec,withDate){ var d=new Date(sec*1000+9*3600000), p=function(n)
 function mmtChart(box, pts, base, cur, intra){
   var LAND=document.documentElement.classList.contains('mm-land')||document.documentElement.classList.contains('mm-full'), W=Math.max(260,box.clientWidth||330), H=LAND?Math.max(150,(box.clientHeight||innerHeight-120)-22):Math.round(Math.min(430,Math.max(280,W*0.86))), m={l:4,r:38,t:40,b:30};
   var t0=pts[0][0], t1=pts[pts.length-1][0]; if(intra){ t0=Math.min(t0,intra.x0); t1=Math.max(t1,intra.x1); }
+  if(!LAND) window.__mmH=H; // 자세한 차트도 같은 높이로
   var vs=pts.map(function(a){return a[1]}); if(base!=null) vs.push(base);
   // 추세(사용자 2026-10-29): 기간 안 가장 최근의 큰 꼭짓점(최고점·최저점)부터 지금까지의 흐름만 — 하락이면 고점들을 잇는 선 + 같은 기울기 아래 선, 상승이면 저점들을 잇는 선 + 위 선
   var RG=null; if(window.__mmT&&window.__mmT.tr&&pts.length>8){ var N=pts.length, iX=0, iN=0; pts.forEach(function(p,k){ if(p[1]>pts[iX][1])iX=k; if(p[1]<pts[iN][1])iN=k; });
@@ -484,10 +485,11 @@ function mmFull(on){ var h=document.documentElement; h.classList.toggle('mm-full
 document.addEventListener('fullscreenchange',function(){ if(!document.fullscreenElement&&document.documentElement.classList.contains('mm-full')) mmFull(false); });
 addEventListener('keydown',function(e){ if(e.key==='Escape'&&document.documentElement.classList.contains('mm-full')) mmFull(false); });
 // 모서리 도구: 기본 차트에서는 차트 위에, 자세한 차트에서는 그 차트 위에(같은 자리)
+function mmDtipSlot(){ var ch=document.querySelector('#main .ch'); if(ch&&!ch.querySelector('.mm-dtip')) mmDtip('','', '', ''); }
 function mmTools(){ var main=document.getElementById('main'), w=main&&main.querySelector('.mmt'), t=w&&w.querySelector('.mmt-tools'); if(!t){ t=main&&main.querySelector('.ch > .mmt-tools'); } if(!t)return;
   var tg=(main.classList.contains('mmt-detail')?main.querySelector('.ch'):w&&w.querySelector('.mmt-stage')); if(tg&&t.parentNode!==tg) tg.insertBefore(t,tg.firstChild); }
 function mmDtip(d,p,rel,rc){ var main=document.getElementById('main'), ch=main&&main.querySelector('.ch'); if(!ch)return; var el=main.querySelector('.mm-dtip');
-  if(!el){ el=document.createElement('p'); el.className='mm-dtip'; ch.parentNode.insertBefore(el,ch); }
+  if(!el){ el=document.createElement('p'); el.className='mm-dtip'; } var sv=ch.querySelector(':scope > svg'); if(sv&&el.nextSibling!==sv) ch.insertBefore(el,sv);
   el.innerHTML='<span></span> <b></b> <em></em>'; el.children[0].textContent=d; el.children[1].textContent=p; el.children[2].textContent=rel||''; el.children[2].style.color=rc&&rc.indexOf('ok')>=0?'#1f7a3f':''; }
 function mmLines(tk,v){ var k='mm-lines'; try{ var all=JSON.parse(localStorage.getItem(k)||'{}'); if(v===undefined) return all[tk]||[]; if(v&&v.length) all[tk]=v; else delete all[tk]; localStorage.setItem(k,JSON.stringify(all)); }catch(e){ if(v===undefined) return (window.__mmLn=window.__mmLn||{})[tk]||[]; (window.__mmLn=window.__mmLn||{})[tk]=v; } return v; }
 function mmToolsSync(){ var t=document.querySelector('#main .mmt-tools'); if(!t)return; var T=window.__mmT||{}; var pen=document.querySelector('#main .mmt-pen'); if(pen){ pen.style.display=T.draw&&!document.querySelector('#main.mmt-detail')?'':'none'; var pk=T.pk||'tr', pc=T.pc||'#9a6200';
@@ -521,7 +523,7 @@ function mmtTidy(){ var main=document.getElementById('main'); if(!main||!main.qu
 
 function tidy(){
   try{ var RN={'1개월':'1달','3개월':'3달','6개월':'6달','12개월':'1년'}; document.querySelectorAll('#main .rg .pb-chip').forEach(function(b){ var k=b.textContent.trim(); if(RN[k]) b.textContent=RN[k]; }); }catch(e){}
-  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){} try{mmTools()}catch(e){} try{mmPerPlace()}catch(e){} try{mmtAxisTags()}catch(e){console.log(e)}
+  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){} try{mmTools()}catch(e){} try{mmDtipSlot()}catch(e){} try{mmPerPlace()}catch(e){} try{mmtAxisTags()}catch(e){console.log(e)}
   // 차트 안에서 선과 겹치던 글자 빼기(장기 추세·단기 상단·하단) — 같은 내용은 위 4칸에
   main.querySelectorAll('.ch svg text').forEach(function(t){ if(/^(장기 추세|단기 상단|단기 하단)/.test(t.textContent))t.remove(); });
   var gl=main.querySelector('p.gl'), ch=main.querySelector('.ch');
@@ -585,7 +587,11 @@ def run(root):
     p = os.path.join(root, 'p-trend.html')
     if os.path.exists(p):  # 종목 차트: 휴대폰에서 차트를 크게(사용자 2026-10-29)
         s = open(p, encoding='utf-8').read(); o = s
-        s = s.replace('Math.round(Math.min(300, Math.max(200, W * 0.42)))', 'Math.round(Math.min(430, Math.max(280, W * 0.86)))')
+        NEWH = '(window.__mmH || Math.round(Math.min(430, Math.max(280, W * 0.86))))'
+        s = s.replace(NEWH, '@@NEWH@@')
+        for old in ('Math.round(Math.min(300, Math.max(200, W * 0.42)))', 'Math.round(Math.min(440, Math.max(300, W * 0.95)))', 'Math.round(Math.min(380, Math.max(260, W * 0.78)))', 'Math.round(Math.min(430, Math.max(280, W * 0.86)))'):
+            s = s.replace(old, NEWH)
+        s = s.replace('@@NEWH@@', NEWH)
         # 금리(%) 표시: 소수 둘째 자리, 'USD' 대신 '%'(사용자 2026-10-29 채권·유가 층위)
         s = s.replace("const fmtShort = (x, cur) => { if (x == null) return ''; const d = cur === 'USD'", "const fmtShort = (x, cur) => { if (x == null) return ''; const d = cur === '%' ? 2 : cur === 'USD'")
         s = s.replace("+ ' ' + r.currency", "+ (r.currency === '%' ? '%' : ' ' + r.currency)")
