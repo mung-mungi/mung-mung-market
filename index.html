@@ -28,7 +28,7 @@ html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
   });
 })();
 </script>
-<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610290405">(function(){var me="202610290405";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>멍뭉 터미널</title>
+<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610290406">(function(){var me="202610290406";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>멍뭉 터미널</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>document.documentElement.setAttribute("data-theme","light")</script><style>
 /* 한 단 세로 + 위쪽 고정 탭: 홈(오늘 한눈에·카드) → 브리핑 · 실적 · 목표주가 · 시세 · 네오클라우드. 탭은 #주소로 열림 */
@@ -487,7 +487,7 @@ body #take .sh3 .up{color:#c62828;font-weight:800}body #take .sh3 .dn{color:#1a7
 });
  var hero=document.querySelector('.mm-hero');if(hero){document.querySelectorAll('nav[class$="-nav"]:not(.ib)').forEach(function(n){if(n.dataset.hu)return;if(n.compareDocumentPosition(hero)&Node.DOCUMENT_POSITION_FOLLOWING){n.dataset.hu=1;var t=document.querySelector('.mm-take');(t&&t.nextElementSibling&&t.nextElementSibling.classList.contains('hu-more')?t.nextElementSibling:(t||hero)).after(n)}})}}
 var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
-</script><style data-statgo>.stats .stat[data-go]{cursor:pointer;transition:transform .08s}.stats .stat[data-go]:active{transform:translateY(1px);background:rgba(154,98,0,.06)}.stats .stat[data-go] .k::after{content:" ›";color:#b9b6ae;font-weight:700}</style><script data-statgo>document.addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('.stats .stat[data-go]');if(!s)return;var g=s.dataset.go;if(/\.html/.test(g))return;e.stopPropagation();e.preventDefault();location.href='p-trend.html?per=1y#'+g},true);</script><script data-mkt>(function(){
+</script><script data-mkt>(function(){
   // 홈 '오늘 한눈에' 숫자 4개를 5분 시세 갱신(live/market.json) 값으로 바꿈 — 사용자 2026-10-29 지시. 페이지를 열어 둔 동안 5분마다 다시 읽음
   var MAP = [[/나스닥/, 'nasdaq'], [/반도체|SOX/, 'sox'], [/10년/, 'us10y'], [/WTI|유가/, 'wti']];
   function f2(v){ return v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
@@ -582,4 +582,4 @@ var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
   go(); document.addEventListener('DOMContentLoaded', go); window.addEventListener('load', go);
   var q = 0; try { new MutationObserver(function(){ if (q) return; q = 1; setTimeout(function(){ q = 0; go(); }, 80); }).observe(document.documentElement, { subtree: true, childList: true }); } catch (e) {}
 })();
-</script>
+</script><style data-statgo>.stats .stat[data-go]{cursor:pointer;transition:transform .08s}.stats .stat[data-go]:active{transform:translateY(1px);background:rgba(154,98,0,.06)}.stats .stat[data-go] .k::after{content:" ›";color:#b9b6ae;font-weight:700}</style><script data-statgo>document.addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('.stats .stat[data-go]');if(!s)return;var g=s.dataset.go;if(/\.html/.test(g))return;e.stopPropagation();e.preventDefault();location.href='p-trend.html?per=1y#'+g},true);</script>
