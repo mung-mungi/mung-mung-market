@@ -83,20 +83,24 @@ PAPER = r'''<link rel="stylesheet" href="https://fonts.googleapis.com/css2?famil
 #take.np .np-mast{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;font-family:"Noto Serif KR",ui-serif,serif;font-weight:900;font-size:23px;line-height:1;letter-spacing:-.04em;color:#222;padding:0 0 6px;border-bottom:3px solid #333}#take.np .np-mast em{font:600 10.5px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;font-style:normal;letter-spacing:0;color:#77746d;text-align:right}
 #take.np .np-mast small{display:none}
 #take.np .np-line{display:flex;justify-content:space-between;gap:8px;font:500 11px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#77746d;padding:4px 0;border-bottom:1px solid #8f8c85;margin:2px 0 10px}
-#take.np .np-hd{font-family:"Noto Serif KR",ui-serif,Georgia,serif;font-weight:700;font-size:19px;line-height:1.4;letter-spacing:-.02em;color:#1f1f1f;margin:0;text-wrap:balance}
+#take.np .np-hd{font-family:"Noto Serif KR",ui-serif,Georgia,serif;font-weight:900;font-size:clamp(16px,4.7vw,21px);line-height:1.4;letter-spacing:-.045em;color:#1a1a1a;margin:0;word-break:keep-all}
 #take.np .np-body{font-family:"Noto Serif KR",ui-serif,Georgia,serif;font-weight:500;font-size:15px;line-height:1.75;text-align:left;word-break:keep-all;color:#333;margin:10px 0 0!important;padding-top:10px;border-top:1px solid #cfccc4}
 #take.np .np-body b,#take.np .np-body strong{font-weight:700;color:#111}
 #take.np .np-more{display:block;width:100%;margin:10px 0 0;padding:6px 0 0;border:0;border-top:1px solid #cfccc4;background:none;font:600 12.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#66635c;text-align:right;cursor:pointer}
 </style><script data-paper>(function(){var k=0;function go(){var t=document.getElementById('take');if(!t||t.classList.contains('np'))return;var dl=t.querySelector('.bf-dl'),bd=t.querySelector('[data-field=comment]');
 if(!bd||!bd.textContent.trim()){if(++k<40)setTimeout(go,250);return}
 var a=dl?(dl.querySelector('b')||{}).textContent||'':'',u=dl?(dl.querySelector('.bf-us')||{}).textContent||'':'';a=a.replace(/\s*\([^)]*\)/,'');
-var h=bd.innerHTML,i=h.search(/다\.(\s|$)/),hd,rest;if(i>0){hd=h.slice(0,i+2);rest=h.slice(i+2).trim()}else{hd=h;rest=''}
-var tmp=document.createElement('div');tmp.innerHTML=hd;hd=tmp.textContent.replace(/\.$/,'');
-t.classList.add('np');t.innerHTML='<div class="np-mast"><span>멍뭉일보</span><em>AI 밸류체인<br>아침판</em></div><div class="np-line"><span>'+a+'</span><span>'+u+'</span></div><h2 class="np-hd"></h2>'+(rest?'<p class="np-body" hidden>'+rest+'</p><button type="button" class="np-more">기사 펼치기 ▾</button>':'');t.querySelector('.np-hd').textContent=hd;var mb=t.querySelector('.np-more');if(mb)mb.onclick=function(){var p=t.querySelector('.np-body'),o=p.hidden;p.hidden=!o;mb.textContent=o?'접기 ▴':'기사 펼치기 ▾'}}
+var h=bd.innerHTML,hd,rest;if(t.dataset.hd){hd=t.dataset.hd;rest=h}else{var i=h.search(/다\.(\s|$)/);if(i>0){hd=h.slice(0,i+2);rest=h.slice(i+2).trim()}else{hd=h;rest=''}var tmp=document.createElement('div');tmp.innerHTML=hd;hd=tmp.textContent.replace(/\.$/,'')}
+t.classList.add('np');t.innerHTML='<div class="np-mast"><span>멍뭉일보</span><em>AI 밸류체인<br>아침판</em></div><div class="np-line"><span>'+a+'</span><span>'+u+'</span></div><h2 class="np-hd"></h2>'+(rest?'<p class="np-body" hidden>'+rest+'</p><button type="button" class="np-more">기사 펼치기 ▾</button>':'');var he=t.querySelector('.np-hd');String(hd).replace(/\*\*/g,'').split(/\s*(?:,|…|\.\.\.)\s*/).filter(Boolean).forEach(function(x,k){if(k)he.appendChild(document.createElement('br'));he.appendChild(document.createTextNode(x.trim()))});var pb=t.querySelector('.np-body');if(pb)pb.innerHTML=pb.innerHTML.replace(/다\.\s+/g,'다.<br>');var mb=t.querySelector('.np-more');if(mb)mb.onclick=function(){var p=t.querySelector('.np-body'),o=p.hidden;p.hidden=!o;mb.textContent=o?'접기 ▴':'기사 펼치기 ▾'}}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go()})();</script>'''
 
 
+HD_ANCHOR = "const tk=$('take');tk.textContent='';const lastAll=ALL[ALL.length-1];"
+
+
 def tidy_paper(s):
+    if HD_ANCHOR in s and 'tk.dataset.hd' not in s:
+        s = s.replace(HD_ANCHOR, HD_ANCHOR + "if(lastAll&&lastAll.headline)tk.dataset.hd=lastAll.headline;", 1)
     if 'data-paper' in s or 'id="take"' not in s:
         return s
     return s.replace('</body>', PAPER + '</body>', 1) if '</body>' in s else s + PAPER
