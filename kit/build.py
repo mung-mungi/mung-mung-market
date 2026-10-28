@@ -52,4 +52,13 @@ for g, items in C['groups']:
         open(W + f'out/p-{v}.html', 'w').write(txt)
 shutil.copy(K + 'shim.js', W + 'out/shim.js')
 shutil.copy(K + 'home.html', W + 'out/index.html')
+# 누름 소리(틱): 모든 페이지에 인라인으로(사용자 2026-10-28 지시)
+if os.path.exists(K + 'tick.js'):
+    TICK = '<script data-tick>' + open(K + 'tick.js').read() + '</script>'
+    for fn in os.listdir(W + 'out'):
+        if fn.endswith('.html'):
+            p = W + 'out/' + fn; s = open(p).read()
+            if 'data-tick' not in s:
+                s = s.replace('</body>', TICK + '</body>', 1) if '</body>' in s else s + TICK
+                open(p, 'w').write(s)
 print('built', SYNC)
