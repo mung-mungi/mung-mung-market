@@ -3,7 +3,7 @@
 # Claude 우선: 최근 1시간 사이트 게시(커밋) 7번 이상이면 건너뜀, Claude(봇 아닌 커밋)가 10분 안에 올렸으면 쉼.
 # 실적 시간대(뉴욕 06:00~09:30, 16:00~19:30)는 15분 간격.
 # 결과는 live/ 에만 씀(통합본 동기화가 덮어쓰는 d/prices 와 분리). 충돌 시 최신본 받고 다시 계산.
-import urllib.parse
+import urllib.parse, re
 import datetime as dt, json, os, shutil, subprocess, sys
 from zoneinfo import ZoneInfo
 
@@ -171,6 +171,40 @@ def long_update(L, tickers):
     return True
 
 
+def ohlc_update(L, tickers):
+    """캔들 자료(사용자 2026-10-29): 종목별 일봉 1년 + 주봉 10년 → live/ohlc/<slug>.json, 하루 한 번"""
+    D = os.path.join(L, 'ohlc'); os.makedirs(D, exist_ok=True)
+    ip = os.path.join(D, '_index.json')
+    try: idx = json.load(open(ip, encoding='utf-8'))
+    except Exception: idx = {}
+    now = dt.datetime.now(ZoneInfo('Asia/Seoul'))
+    fresh = idx.get('at') and (now - dt.datetime.fromisoformat(idx['at'])).total_seconds() < 20 * 3600
+    slug = lambda t: re.sub(r'[^A-Za-z0-9]', '-', t)
+    todo = [t for t in tickers if not fresh or not os.path.exists(os.path.join(D, slug(t) + '.json'))]
+    if not todo: return False
+    def get(t, rg, iv):
+        o = subprocess.run(['curl', '-sS', '-m', '25', '-A', 'Mozilla/5.0', 'https://query1.finance.yahoo.com/v8/finance/chart/' + urllib.parse.quote(t) + '?range=' + rg + '&interval=' + iv], capture_output=True, text=True).stdout
+        r = json.loads(o)['chart']['result'][0]; off = r['meta'].get('gmtoffset', 0); q = r['indicators']['quote'][0]
+        sig = lambda v: float('%.5g' % v)
+        out = []
+        for i, ts in enumerate(r.get('timestamp') or []):
+            o_, h_, l_, c_ = q['open'][i], q['high'][i], q['low'][i], q['close'][i]
+            if None in (o_, h_, l_, c_): continue
+            out.append([dt.datetime.fromtimestamp(ts + off, dt.timezone.utc).strftime('%Y-%m-%d'), sig(o_), sig(h_), sig(l_), sig(c_)])
+        return out
+    def one(t):
+        try: return t, {'d': get(t, '1y', '1d'), 'w': get(t, '10y', '1wk')}
+        except Exception: return t, None
+    import concurrent.futures as cf
+    n = 0
+    with cf.ThreadPoolExecutor(6) as ex:
+        for t, v in ex.map(one, todo):
+            if v and v['d']:
+                json.dump(v, open(os.path.join(D, slug(t) + '.json'), 'w', encoding='utf-8'), separators=(',', ':')); n += 1
+    json.dump({'at': now.isoformat(timespec='seconds'), 'n': n}, open(ip, 'w', encoding='utf-8'))
+    return n > 0
+
+
 def build():
     W = os.path.join(R, '.live_tmp'); shutil.rmtree(W, ignore_errors=True); os.makedirs(W)
     for f in ('prices.json', 'history.json'):
@@ -215,6 +249,8 @@ def build():
     lch = False
     try: lch = long_update(L, [r['ticker'] for r in json.load(open(ap, encoding='utf-8'))])
     except Exception as e: print('long fail', e)
+    try: lch = ohlc_update(L, [r['ticker'] for r in json.load(open(ap, encoding='utf-8'))]) or lch
+    except Exception as e: print('ohlc fail', e)
     if old == new and oldst.get('base') == base and not idxch and not mch and not lch:
         print('same: 시세 변화 없음', res); shutil.rmtree(W, ignore_errors=True); return None
     now = dt.datetime.now(ZoneInfo('Asia/Seoul'))

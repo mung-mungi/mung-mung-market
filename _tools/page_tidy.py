@@ -102,7 +102,7 @@ function tidy(){
 .mm-sum .ttl{display:block;font-size:14.5px;font-weight:800;color:#141210;margin-bottom:6px}
 .mm-sum p{margin:0 0 5px;font-size:13.5px;line-height:1.5;color:#3a372f}.mm-sum p em{display:block;font-style:normal;font-weight:800;font-size:12.5px;color:#9a6200}
 .mm-sum p.lg{margin:8px 0 0;font-size:11.5px;color:#8a877f}.mm-sum p.lg i{display:inline-block;width:12px;height:3px;border-radius:2px;margin:0 2px 2px;vertical-align:middle}
-#main.mmt-on:not(.mmt-detail) .mm-sum{display:none}
+
 #main details.mm-fold{display:none!important}
 #main .mmt-stage,#main .ch{margin-left:-12px!important;margin-right:-10px!important}
 #main .mmt-per{margin-left:-4px;margin-right:-4px}
@@ -122,7 +122,7 @@ function tidy(){
 .mmt-pen .mmt-clr{margin-left:auto}
 .mmt-pen .mmt-hint{flex:1 0 100%;margin:0;font-size:11.5px;color:#9a6200;font-weight:600}
 #main.mmt-detail .mmt-pen{display:none!important}html.mm-full .mmt-pen,html.mm-land .mmt-pen{display:none!important}.mmt-x{display:none!important}
-#main.mmt-detail .ch{padding-top:0;margin-top:-10px!important;margin-bottom:-10px!important}#main.mmt-detail .mmt-stage{display:none!important}#main.mmt-detail .ch>.mmt-tools{top:0}#main .zhint{display:none!important}
+#main.mmt-detail .ch{padding-top:0;margin-top:-10px!important;margin-bottom:-10px!important}#main.mmt-detail .ch>.mmt-tools{top:0}#main .zhint{display:none!important}
 #main .rg .zm{display:none!important}
 #main .rg{background:#f3f1ec;padding:3px!important;border-radius:12px;gap:4px!important;overflow:hidden!important}
 #main .rg .pb-chip{flex:1 1 0!important;min-width:0;border:0!important;background:transparent!important;box-shadow:none!important;color:#8a877f!important;font-size:14px!important;font-weight:700!important;padding:7px 0!important;border-radius:9px!important;justify-content:center;text-align:center}
@@ -157,7 +157,8 @@ html.mm-land .mmt-per{margin:4px 0 0}html.mm-land .mmt-per button{padding:5px 0}
 #main.mmt-detail .mmt-trd{display:none}
 
 #main.mmt-on:not(.mmt-detail) .rg,#main.mmt-on:not(.mmt-detail) .ch,#main.mmt-on:not(.mmt-detail) .mm-lv,#main.mmt-on:not(.mmt-detail) details.mm-fold,#main.mmt-on:not(.mmt-detail) p.nt{display:none!important}
-#main.mmt-detail .mmt-box{display:none!important}#main.mmt-on .rg{display:none!important}#main.mmt-detail .mmt-trd{display:none}
+#main.mmt-on .ch,#main.mmt-on .rt,#main.mmt-on .mm-dtip,#main.mmt-on .mm-lv:not(.mm2),#main.mmt-on .mm-sum:not(.mm2),#main.mmt-on details.mm-fold{display:none!important}#main.mmt-detail .mmt-zn{display:none}
+.mmt-chg b.sc{color:#141210;font-weight:800;font-size:13.5px}#main.mmt-on .rg{display:none!important}#main.mmt-detail .mmt-trd{display:none}
 #main .rg{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:6px!important;scrollbar-width:none}#main .rg::-webkit-scrollbar{display:none}#main .rg>*{flex:none!important}
 /* 토스식 1일 차트 */
 #main.mm-1d-on .mm-lv{display:none!important}
@@ -265,19 +266,21 @@ function mmtDaily(tk){ try{ return (DATA.H[tk]||[]).filter(function(a){return !a
 function mmtFmt(v,cur){ if(cur==='%') return v.toFixed(3).replace(/0$/,'')+'%'; var d=(cur==='KRW'||cur==='JPY')?0:2; return (cur==='USD'?'$':'')+v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})+(cur==='KRW'?'원':cur&&cur!=='USD'?' '+cur:''); }
 function mmtTick(v,cur,st){ if(Math.abs(v)<st*1e-6) v=0; var d=st<0.01?3:st<0.1?2:st<1?1:0; if(cur==='%') return v.toFixed(Math.max(d,1))+'%'; if(v>=100000) return (v/10000).toLocaleString('en-US',{maximumFractionDigits:1})+'만'; return v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
 function mmtKst(sec,withDate){ var d=new Date(sec*1000+9*3600000), p=function(n){return (n<10?'0':'')+n}; return withDate?(d.getUTCFullYear()%100)+'.'+(d.getUTCMonth()+1)+'.'+d.getUTCDate():p(d.getUTCHours())+':'+p(d.getUTCMinutes()); }
-function mmtChart(box, pts, base, cur, intra){
-  var LAND=document.documentElement.classList.contains('mm-land')||document.documentElement.classList.contains('mm-full'), W=Math.max(260,box.clientWidth||330), H=LAND?Math.max(150,(box.clientHeight||innerHeight-120)-22):Math.round(Math.min(430,Math.max(280,W*0.86))), m={l:4,r:38,t:40,b:30};
-  var t0=pts[0][0], t1=pts[pts.length-1][0]; if(intra){ t0=Math.min(t0,intra.x0); t1=Math.max(t1,intra.x1); }
-  if(!LAND) window.__mmH=H; // 자세한 차트도 같은 높이로
-  var vs=pts.map(function(a){return a[1]}); if(base!=null) vs.push(base);
-  // 추세(사용자 2026-10-29): 기간 안 가장 최근의 큰 꼭짓점(최고점·최저점)부터 지금까지의 흐름만 — 하락이면 고점들을 잇는 선 + 같은 기울기 아래 선, 상승이면 저점들을 잇는 선 + 위 선
-  var RG=null; if(window.__mmT&&window.__mmT.tr&&pts.length>8){ var N=pts.length, iX=0, iN=0; pts.forEach(function(p,k){ if(p[1]>pts[iX][1])iX=k; if(p[1]<pts[iN][1])iN=k; });
+function mmRG(pts){ var RG=null; if(pts.length>8){ var N=pts.length, iX=0, iN=0; pts.forEach(function(p,k){ if(p[1]>pts[iX][1])iX=k; if(p[1]<pts[iN][1])iN=k; });
     var minLeg=Math.max(5,Math.round(N*0.15)), cand=[[iX,-1],[iN,1]].filter(function(c){return N-1-c[0]>=minLeg}).sort(function(a,b){return b[0]-a[0]});
     if(cand.length){ var a0=cand[0][0], dir=cand[0][1], A=pts[a0], best=null;
-      for(var k=a0+1;k<N;k++){ var sl=(pts[k][1]-A[1])/(pts[k][0]-A[0]); if(best===null||(dir<0?sl>best:sl<best)) best=sl; } // 하락: 모든 점 아래로 두는 가장 완만한 선 / 상승: 모든 점 위로 두는 가장 완만한 선
+      var gap=Math.max(3,Math.round((N-1-a0)*0.25)); // 꼭짓점 바로 옆 날(거의 같은 높이)에 걸려 선이 평평해지던 것 방지
+      for(var k=a0+gap;k<Math.max(a0+gap+1,N-2);k++){ var sl=(pts[k][1]-A[1])/(pts[k][0]-A[0]); /* 마지막 이틀은 빼야 지금 가격이 선을 넘었는지 볼 수 있음 */ if(best===null||(dir<0?sl>best:sl<best)) best=sl; } if(best===null) best=0; // 하락: 모든 점 아래로 두는 가장 완만한 선 / 상승: 모든 점 위로 두는 가장 완만한 선
       var main_=function(t){return A[1]+best*(t-A[0])}, off=0; for(var k=a0;k<N;k++){ var d=pts[k][1]-main_(pts[k][0]); if(dir<0? d<off : d>off) off=d; }
       var par=function(t){return main_(t)+off};
-      RG={dir:dir, ta:A[0], tb:pts[N-1][0], te:t1, up:dir<0?main_:par, dn:dir<0?par:main_, anchor:A}; } }
+      RG={dir:dir, ta:A[0], tb:pts[N-1][0], up:dir<0?main_:par, dn:dir<0?par:main_, anchor:A}; } } return RG; }
+function mmtChart(box, pts, base, cur, intra, opt){ opt=opt||{}; var OV=opt.ov||{}, CD=opt.cdl||null;
+  var LAND=document.documentElement.classList.contains('mm-land')||document.documentElement.classList.contains('mm-full'), W=Math.max(260,box.clientWidth||330), H=LAND?Math.max(150,(box.clientHeight||innerHeight-120)-22):Math.round(Math.min(430,Math.max(280,W*0.86))), m={l:4,r:38,t:50,b:30};
+  var t0=pts[0][0], t1=pts[pts.length-1][0]; if(intra){ t0=Math.min(t0,intra.x0); t1=Math.max(t1,intra.x1); }
+  if(!LAND) window.__mmH=H; // 자세한 차트도 같은 높이로
+  var RNG=opt.rng||CD; var vs=RNG?[].concat.apply([],RNG.map(function(c){return [c[2],c[3]]})):pts.map(function(a){return a[1]}); if(base!=null) vs.push(base);
+  // 추세(사용자 2026-10-29): 기간 안 가장 최근의 큰 꼭짓점(최고점·최저점)부터 지금까지의 흐름만 — 하락이면 고점들을 잇는 선 + 같은 기울기 아래 선, 상승이면 저점들을 잇는 선 + 위 선
+  var RG=((OV.tr||(window.__mmT&&window.__mmT.tr))&&!opt.noTr)?mmRG(pts):null;
   var lo=Math.min.apply(0,vs), hi=Math.max.apply(0,vs), pad=(hi-lo)*0.08||hi*0.01; lo-=pad; hi+=pad;
   var sx=function(t){return m.l+(t-t0)/((t1-t0)||1)*(W-m.l-m.r)}, sy=function(v){return m.t+(hi-v)/(hi-lo)*(H-m.t-m.b)};
   var last=pts[pts.length-1], up=base==null||last[1]>=base, col=up?'#e0423a':'#3a6fe0';
@@ -295,7 +298,14 @@ function mmtChart(box, pts, base, cur, intra){
       s+='<line x1="'+m.l+'" x2="'+(W-m.r+4)+'" y1="'+y+'" y2="'+y+'" stroke="#ece9e2" stroke-width="1"/><text x="'+(W-2)+'" y="'+(y+4)+'" font-size="10.5" fill="#a29f97" text-anchor="end">'+mmtTick(v,cur,st)+'</text>'; }
     if(!intra){ var sp=(t1-t0)/86400; for(var k=0;k<4;k++){ var t=t0+(t1-t0)*(k+0.5)/4, d=new Date(t*1000+9*3600000), lb=sp<=100?(d.getUTCMonth()+1)+'/'+d.getUTCDate():sp<=400?(d.getUTCFullYear()%100)+'.'+(d.getUTCMonth()+1):(d.getUTCFullYear())+'';
       s+='<text x="'+sx(t)+'" y="'+(H-8)+'" font-size="10.5" fill="#a29f97" text-anchor="middle">'+lb+'</text>'; } }
-    else { [intra.rs+(intra.re-intra.rs)/3, intra.rs+(intra.re-intra.rs)*2/3].forEach(function(t){ s+='<text x="'+sx(t)+'" y="'+(H-8)+'" font-size="10.5" fill="#c2bfb8" text-anchor="middle">'+mmtKst(t)+'</text>'; }); }
+
+    s+='<clipPath id="mmclip2"><rect x="'+m.l+'" y="'+m.t+'" width="'+(W-m.l-m.r)+'" height="'+(H-m.t-m.b)+'"/></clipPath>';
+    if(OV.zn&&opt.zones){ var Z=opt.zones; s+='<g clip-path="url(#mmclip2)">';
+      [[Z.up2,'#c4453a',.06,0],[Z.dn2,'#2f8a4c',.06,0],[Z.up,'#c4453a',.13,1],[Z.dn,'#2f8a4c',.13,1]].forEach(function(z){ var c=z[0]; if(!c)return; var ya=sy(c.b), yb=sy(c.a); if(yb<m.t||ya>H-m.b) return;
+        s+='<rect x="'+m.l+'" width="'+(W-m.l-m.r)+'" y="'+ya+'" height="'+Math.max(3,yb-ya)+'" fill="'+z[1]+'" opacity="'+z[2]+'"/>';
+        if(z[3]) s+='<text x="'+(m.l+4)+'" y="'+(c===Z.up?ya-3:yb+11)+'" font-size="10" font-weight="700" fill="'+z[1]+'" opacity=".9" paint-order="stroke" stroke="#fff" stroke-width="3">'+(c===Z.up?'저항 ':'지지 ')+mmtTick(c.a,cur,(hi-lo)/40)+'~'+mmtTick(c.b,cur,(hi-lo)/40)+'</text>'; });
+      s+='</g>'; }
+    if(OV.lt&&opt.lt){ var tA=Math.max(t0,Date.now()/1000-366*86400), ya_=opt.lt(tA), yb_=opt.lt(t1); s+='<g clip-path="url(#mmclip2)"><line x1="'+sx(tA)+'" x2="'+sx(t1)+'" y1="'+sy(ya_)+'" y2="'+sy(yb_)+'" stroke="#8a877f" stroke-width="1.2" stroke-dasharray="7 4" opacity=".55"/></g>'; }
     if(RG){ // 추세 채널: 꼭짓점부터 지금까지 실선, 오른쪽 끝까지 점선 연장
       var xa=sx(RG.ta), xb=sx(RG.tb), xe=W-m.r, Ua=RG.up(RG.ta), Ub=RG.up(RG.tb), Da=RG.dn(RG.ta), Db=RG.dn(RG.tb), ch=(((Ub+Db)/2)/((Ua+Da)/2)-1)*100;
       var Ue=RG.up(RG.tb+(RG.tb-RG.ta)*0.12), De=RG.dn(RG.tb+(RG.tb-RG.ta)*0.12), xE=sx(RG.tb+(RG.tb-RG.ta)*0.12);
@@ -308,17 +318,26 @@ function mmtChart(box, pts, base, cur, intra){
        +'<circle cx="'+xa+'" cy="'+sy(RG.anchor[1])+'" r="3" fill="none" stroke="#6b675f" stroke-width="1.2"/></g>'
        +(CY[0]<0?'':'<text x="'+(W-2)+'" y="'+(CY[0]+4)+'" font-size="10" font-weight="700" fill="#c4453a" text-anchor="end">'+mmtTick(Ub,cur,(hi-lo)/40)+'</text>')
        +(CY[1]<0?'':'<text x="'+(W-2)+'" y="'+(CY[1]+4)+'" font-size="10" font-weight="700" fill="#2f8a4c" text-anchor="end">'+mmtTick(Db,cur,(hi-lo)/40)+'</text>')
-       +'<text x="'+(m.l+2)+'" y="'+(m.t-20)+'" font-size="11" font-weight="700" fill="#6b675f">'+(RG.dir<0?'하락 추세 ↘':'상승 추세 ↗')+' <tspan font-weight="500">'+mmtKst(RG.ta,true).replace(/^\d+\./,'').replace('.','/')+' '+(RG.dir<0?'고점':'저점')+'부터 · </tspan><tspan fill="#c4453a">위</tspan>·<tspan fill="#2f8a4c">아래</tspan><tspan font-weight="500"> 값은 오른쪽</tspan></text>'; }
+       +'<text x="'+(m.l+2)+'" y="'+(m.t-9)+'" font-size="11" font-weight="700" fill="#6b675f">'+(RG.dir<0?'하락 추세 ↘':'상승 추세 ↗')+' <tspan font-weight="500">'+mmtKst(RG.ta,true).replace(/^\d+\./,'').replace('.','/')+' '+(RG.dir<0?'고점':'저점')+'부터</tspan></text>'; }
   })();
   if(base!=null) s+='<line x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+sy(base)+'" y2="'+sy(base)+'" stroke="#c9c6bf" stroke-dasharray="2 4" stroke-width="1"/>';
-  s+='<path d="'+path+'" fill="none" stroke="'+col+'" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>'+lab(iMax,true)+lab(iMin,false)
-   +'<circle cx="'+sx(last[0])+'" cy="'+sy(last[1])+'" r="4.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>'
+  if(CD){ var bw=Math.max(1,Math.min(9,(W-m.l-m.r)/CD.length*0.62));
+    CD.forEach(function(c){ var x=sx(c[0]), u=c[4]>=c[1], cc=u?'#e0423a':'#3a6fe0', yo=sy(c[1]), yc=sy(c[4]);
+      s+='<line x1="'+x+'" x2="'+x+'" y1="'+sy(c[2])+'" y2="'+sy(c[3])+'" stroke="'+cc+'" stroke-width="1"/><rect x="'+(x-bw/2)+'" y="'+Math.min(yo,yc)+'" width="'+bw+'" height="'+Math.max(1,Math.abs(yc-yo))+'" fill="'+cc+'"/>'; });
+    var jX=0,jN=0; CD.forEach(function(c,i){ if(c[2]>CD[jX][2])jX=i; if(c[3]<CD[jN][3])jN=i; });
+    var lab2=function(c,top){ var x=sx(c[0]), v=top?c[2]:c[3], y=sy(v), anc=x<W*0.2?'start':x>W*0.8?'end':'middle'; return '<text x="'+x+'" y="'+(top?y-7:y+15)+'" font-size="11.5" fill="'+(top?'#e0423a':'#3a6fe0')+'" text-anchor="'+anc+'">'+(top?'최고 ':'최저 ')+mmtFmt(v,cur)+'</text>'; };
+    s+=lab2(CD[jX],true)+lab2(CD[jN],false); }
+  else s+='<path d="'+path+'" fill="none" stroke="'+col+'" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>'+lab(iMax,true)+lab(iMin,false);
+  s+=''
+   +(CD?'':'<circle cx="'+sx(last[0])+'" cy="'+sy(last[1])+'" r="4.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>')
    +'<line class="cx" x1="0" x2="0" y1="'+m.t+'" y2="'+(H-m.b)+'" stroke="#141210" stroke-width="1" opacity="0"/><circle class="cd" r="4.5" fill="#141210" opacity="0"/></svg>';
-  box.innerHTML='<div class="mmt-tip"></div>'+s;
-  var el=box.querySelector('svg'), tip=box.querySelector('.mmt-tip');
+  box.innerHTML=s;
+  var el=box.querySelector('svg'), chgEl=document.querySelector('#main .mmt-chg'), tip={set textContent(v){ if(!chgEl)return; if(!chgEl.dataset.sc){ chgEl.dataset.sc=1; chgEl.dataset.o=chgEl.innerHTML; } chgEl.innerHTML='<b class="sc"></b>'; chgEl.firstChild.textContent=v; }};
   function mv(e){ var r=el.getBoundingClientRect(), t=t0+((e.clientX-r.left)/r.width*W-m.l)/(W-m.l-m.r)*(t1-t0), b=pts[0];
     pts.forEach(function(a){ if(Math.abs(a[0]-t)<Math.abs(b[0]-t))b=a; });
     var cx=el.querySelector('.cx'), cd=el.querySelector('.cd'); cx.setAttribute('x1',sx(b[0]));cx.setAttribute('x2',sx(b[0]));cx.setAttribute('opacity','.3'); cd.setAttribute('cx',sx(b[0]));cd.setAttribute('cy',sy(b[1]));cd.setAttribute('opacity','1');
+    var cc=CD&&CD.filter(function(c){return c[0]===b[0]})[0];
+    if(cc){ tip.textContent=(intra?mmtKst(b[0]):mmtKst(b[0],true))+'  시 '+mmtTick(cc[1],cur,(hi-lo)/40)+' 고 '+mmtTick(cc[2],cur,(hi-lo)/40)+' 저 '+mmtTick(cc[3],cur,(hi-lo)/40)+' 종 '+mmtFmt(cc[4],cur); return; }
     tip.textContent=(intra?mmtKst(b[0]):mmtKst(b[0],true))+'  '+mmtFmt(b[1],cur)+(base?'  ('+((b[1]/base-1)*100>=0?'+':'−')+Math.abs((b[1]/base-1)*100).toFixed(2)+'%)':''); }
   // 내 선 그리기(사용자 2026-10-29): '✎ 선'을 켜고 차트 위를 끌면 직선, 종목별로 이 기기에 저장
   var NS='http://www.w3.org/2000/svg', tk=mmTk(), inv=function(e){ var r=el.getBoundingClientRect(), x=(e.clientX-r.left)/r.width*W, y=(e.clientY-r.top)/r.height*H; return [t0+(x-m.l)/(W-m.l-m.r)*(t1-t0), hi-(y-m.t)/(H-m.t-m.b)*(hi-lo)]; };
@@ -346,24 +365,62 @@ function mmtChart(box, pts, base, cur, intra){
     if(l.k==='par'){ window.__mmPend={tk:tk,l:l}; drawL(l,true); mmToolsSync(); return; }
     var Ls=mmLines(tk); Ls.push(l); mmLines(tk,Ls); drawL(l); mmToolsSync(); },true);
   el.addEventListener('pointermove',function(e){ if(!(window.__mmT&&window.__mmT.draw)) mv(e); }); el.addEventListener('pointerdown',function(e){ if(!(window.__mmT&&window.__mmT.draw)) mv(e); });
-  el.addEventListener('pointerleave',function(){ el.querySelector('.cx').setAttribute('opacity','0'); el.querySelector('.cd').setAttribute('opacity','0'); });
-  return {up:up, last:last};
+  el.addEventListener('pointerleave',function(){ el.querySelector('.cx').setAttribute('opacity','0'); el.querySelector('.cd').setAttribute('opacity','0'); if(chgEl&&chgEl.dataset.sc){ chgEl.innerHTML=chgEl.dataset.o||''; delete chgEl.dataset.sc; } });
+  return {up:up, last:last, RG:RG};
 }
+var __mmO={};
+function mmOhlc(tk,cb){ if(__mmO[tk]&&__mmO[tk].d) return cb(__mmO[tk].d); if(__mmO[tk]){ __mmO[tk].q.push(cb); return; } __mmO[tk]={q:[cb]};
+  var v=''; try{ v=(window.__SYNC__||'')+'-'+String(Math.floor(Date.now()/3600000)); }catch(e){}
+  fetch('live/ohlc/'+tk.replace(/[^A-Za-z0-9]/g,'-')+'.json?v='+v).then(function(x){return x.ok?x.json():null}).catch(function(){return null}).then(function(d){ var o=__mmO[tk]; o.d=d||{d:[],w:[]}; var q=o.q; o.q=[]; q.forEach(function(f){ try{f(o.d)}catch(e){} }); }); }
+function mmTs(d){ return Date.parse(d+'T21:00:00Z')/1000; }
+// 매물대: 최근 1년 일별 종가의 고점·저점 꺾인 자리를 ±4%로 묶음(자세한 차트와 같은 계산)
+function mmZones(tk,now){ var H=(DATA.H[tk]||[]).filter(function(a){return !a[2]}); if(H.length<30) return null; var lastD=H[H.length-1][0], y1=new Date(Date.parse(lastD+'T00:00:00Z')-370*864e5).toISOString().slice(0,10);
+  var ser=H.filter(function(a){return a[0]>=y1}).map(function(a){return {d:a[0],v:a[1]}}); if(ser.length<20) return null;
+  var ch=ser.slice(1).map(function(a,i){return Math.abs(a.v/ser[i].v-1)}).sort(function(x,y){return x-y}), med=ch[Math.floor(ch.length/2)]||0.02, th=Math.min(0.14,Math.max(0.06,med*5));
+  var piv=[], dir=0, ex=ser[0], hiP=ser[0], loP=ser[0];
+  ser.slice(1).forEach(function(a){ if(dir===0){ if(a.v>hiP.v)hiP=a; if(a.v<loP.v)loP=a; if(a.v<hiP.v*(1-th)){piv.push({v:hiP.v,d:hiP.d,k:'H'});ex=a;dir=-1;} else if(a.v>loP.v*(1+th)){piv.push({v:loP.v,d:loP.d,k:'L'});ex=a;dir=1;} return; }
+    if(dir>0){ if(a.v>ex.v)ex=a; else if(a.v<ex.v*(1-th)){piv.push({v:ex.v,d:ex.d,k:'H'});ex=a;dir=-1;} return; }
+    if(a.v<ex.v)ex=a; else if(a.v>ex.v*(1+th)){piv.push({v:ex.v,d:ex.d,k:'L'});ex=a;dir=1;} });
+  var cl=[]; piv.slice().sort(function(x,y){return x.v-y.v}).forEach(function(p){ var c=cl[cl.length-1]; if(c&&p.v<=c.a*1.04){c.p.push(p);c.b=p.v;} else cl.push({a:p.v,b:p.v,p:[p]}); });
+  cl.forEach(function(c){ if(c.b/c.a<1.015){ var md=(c.a+c.b)/2; c.a=md*0.9925; c.b=md*1.0075; } c.n=c.p.length; var nh=c.p.filter(function(p){return p.k==='H'}).length, nl=c.n-nh;
+    c.why=(nh&&nl?'고점·저점':nh?'고점':'저점')+' '+c.n+'번 꺾인 자리('+c.p.slice().sort(function(x,y){return x.d<y.d?-1:1}).map(function(p){return (p.d.slice(0,4)!==lastD.slice(0,4)?'작년 ':'')+(+p.d.slice(5,7))+'/'+(+p.d.slice(8))}).join('·')+')'; });
+  var gHi=Math.max.apply(0,ser.map(function(x){return x.v})), gLo=Math.min.apply(0,ser.map(function(x){return x.v})), rc=new Date(Date.parse(lastD+'T00:00:00Z')-120*864e5).toISOString().slice(0,10), r45=new Date(Date.parse(lastD+'T00:00:00Z')-45*864e5).toISOString().slice(0,10);
+  var sc=function(c){ return c.n+(c.p.some(function(p){return p.d>=rc})?1:0)+(c.p.some(function(p){return p.d>=r45})?1:0)+(c.p.some(function(p){return p.v===gHi||p.v===gLo})?1:0); };
+  var U=cl.filter(function(c){return c.a>now*1.003&&c.a<now*1.6}).sort(function(x,y){return x.a-y.a}), D=cl.filter(function(c){return c.b<now*0.997&&c.b>now*0.5}).sort(function(x,y){return y.b-x.b});
+  var p2=function(L,z){ return L.filter(function(c){return c!==z}).sort(function(x,y){return sc(y)-sc(x)||L.indexOf(x)-L.indexOf(y)})[0]; };
+  return {up:U[0], dn:D[0], up2:U[0]&&p2(U,U[0]), dn2:D[0]&&p2(D,D[0])}; }
+// 1년 추세선(로그 직선) — 지금 가격이 그 선보다 몇 % 위·아래인지
+function mmLT(tk){ var H=(DATA.H[tk]||[]).filter(function(a){return !a[2]}); if(H.length<60) return null; var lastD=H[H.length-1][0], y1=new Date(Date.parse(lastD+'T00:00:00Z')-370*864e5).toISOString().slice(0,10);
+  var P=H.filter(function(a){return a[0]>=y1}).map(function(a){return [mmTs(a[0]),Math.log(a[1])]}); var n=P.length, mx=0, my=0; P.forEach(function(p){mx+=p[0];my+=p[1]}); mx/=n; my/=n; var a=0,b=0; P.forEach(function(p){a+=(p[0]-mx)*(p[1]-my); b+=(p[0]-mx)*(p[0]-mx)}); var k=b?a/b:0;
+  return function(t){ return Math.exp(my+k*(t-mx)); }; }
+function mmFacts(main,r,now,Z,LT,RG,cur){ main.querySelectorAll('.mm2').forEach(function(e){e.remove()}); if(!r)return;
+  var f=function(v){ var a=Math.abs(v); return mmtTick(v,cur,cur==='%'?0.01:a>=1000?10:a>=100?1:a>=10?0.1:0.01); }, zf=function(c){return c?f(c.a)+'~'+f(c.b):''}, ltp=LT?((now/LT(Date.now()/1000)-1)*100):null;
+  var rgU=RG?RG.up(RG.tb):null, rgD=RG?RG.dn(RG.tb):null, dd=RG?(function(){var d=new Date(RG.ta*1000+9*36e5);return (d.getUTCMonth()+1)+'/'+d.getUTCDate()})():'';
+  var lv=document.createElement('div'); lv.className='mm-lv mm2';
+  [[Z&&Z.up,'up','▲ 저항',zf(Z&&Z.up)],[Z&&Z.dn,'dn','▼ 지지',zf(Z&&Z.dn)],[RG,'',RG?(RG.dir<0?'단기 하락':'단기 상승'):'',RG?f(rgU)+'/'+f(rgD):''],[ltp!=null,'','1년 추세',ltp!=null?((ltp>=0?'+':'−')+Math.abs(ltp).toFixed(1)+'%'):'']].forEach(function(c){ if(!c[0])return; var d=document.createElement('div'); if(c[1])d.className=c[1]; d.innerHTML='<small></small><b></b>'; d.children[0].textContent=c[2]; d.children[1].textContent=c[3]; lv.appendChild(d); });
+  var rows=[]; var where=RG?(now>rgU?' 채널 위로 벗어남':now<rgD?' 채널 아래로 이탈':' 채널 안'):''; rows.push(['지금 자리',(RG?'단기 '+(RG.dir<0?'하락':'상승')+where+'('+dd+' '+(RG.dir<0?'고점':'저점')+' 이후 흐름)':'')+(ltp!=null?(RG?' · ':'')+'1년 추세보다 '+(ltp>=0?'+':'−')+Math.abs(ltp).toFixed(1)+'%':'')]);
+  if(Z&&Z.up) rows.push(['넘어야 할 곳',zf(Z.up)+(Z.up2?' → 그다음 '+zf(Z.up2):'')+' · '+Z.up.why]);
+  if(Z&&Z.dn) rows.push(['버텨야 할 곳',zf(Z.dn)+(Z.dn2?' → 그다음 '+zf(Z.dn2):'')+' · '+Z.dn.why]);
+  if(RG) rows.push([RG.dir<0?'전환 신호':'경계 신호', RG.dir<0?(now>rgU?('하락 추세선('+f(rgU)+')을 넘어선 상태 → 이 위에서 종가로 버티고 다음 눌림에서 저점을 높이면 상승 전환 · 다시 '+f(rgU)+' 아래로 밀리면 실패'):('종가로 '+f(rgU)+' 위(채널 위 선)면 하락 추세 탈출 · '+f(rgD)+' 아래면 더 약해짐')):('종가로 '+f(rgD)+' 아래(채널 아래 선)면 상승 추세 이탈 · '+f(rgU)+' 근처는 과열')]);
+  var sm=document.createElement('div'); sm.className='mm-sum mm2'; sm.innerHTML='<b class="ttl">추세 한눈에</b>'+rows.map(function(x,i){return '<p><em>'+'①②③④'[i]+' '+x[0]+'</em><span></span></p>'}).join('')+'<p class="lg">캔들 <i style="background:#e0423a"></i>오름 <i style="background:#3a6fe0"></i>내림 · <i style="background:#c4453a"></i><i style="background:#2f8a4c"></i> 추세 채널 · <i style="background:#8a877f"></i> 1년 추세 · 띠 = 매물대(진하면 1차)</p>';
+  rows.forEach(function(x,i){ sm.querySelectorAll('p span')[i].textContent=x[1]; });
+  var anchor=main.querySelector('.mmt'); anchor.after(lv); lv.after(sm); }
 var __mmL=null, __mmLq=null;
 function mmLong(cb){ if(__mmL) return cb(__mmL); if(__mmLq){ __mmLq.push(cb); return; } __mmLq=[cb];
   var v=''; try{ v=(window.__SYNC__||'')+String(Math.floor(Date.now()/3600000)); }catch(e){}
   fetch('live/long.json?v=2-'+v).then(function(x){return x.ok?x.json():null}).catch(function(){return null}).then(function(d){ __mmL=d||{d:{}}; var q=__mmLq; __mmLq=null; q.forEach(function(f){ try{f(__mmL)}catch(e){} }); }); }
 function mmtDraw(){
   var main=document.getElementById('main'); if(!main)return; var T=window.__mmT, r=mmtRow(); if(!r)return;
-  var wrap=main.querySelector('.mmt'); if(!wrap){ wrap=document.createElement('div'); wrap.className='mmt'; wrap.innerHTML='<div class="mmt-ttl"></div><div class="mmt-top"><p class="mmt-chg"></p></div><div class="mmt-tools"><button type="button" class="mmt-tg mmt-trd">추세</button><button type="button" class="mmt-tg mmt-drw">✎ 선</button><label class="mmt-det mmt-tg"><input type="checkbox">자세히</label><button type="button" class="mmt-tg mmt-fs" aria-label="전체 화면"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button><button type="button" class="mmt-tg mmt-q" aria-label="종목 찾기">🔍</button><a class="mmt-tg mmt-ext" href="#">사파리로 크게 ↗</a><button type="button" class="mmt-tg mmt-x" aria-label="닫기">✕</button></div><div class="mmt-pen"><button type="button" data-k="tr" class="on">／추세</button><button type="button" data-k="h">―수평</button><button type="button" data-k="par">▱평행</button><i></i><button type="button" class="pc on" data-c="#9a6200" style="--c:#9a6200"></button><button type="button" class="pc" data-c="#c4453a" style="--c:#c4453a"></button><button type="button" class="pc" data-c="#2f6fd6" style="--c:#2f6fd6"></button><button type="button" class="pc" data-c="#141210" style="--c:#141210"></button><button type="button" class="mmt-clr">지우기</button><p class="mmt-hint"></p></div><div class="mmt-find"><input type="search" placeholder="종목 이름·티커" autocomplete="off"><div class="mmt-res"></div></div><div class="mmt-stage"><div class="mmt-box"></div></div><div class="mmt-per"></div>';
+  var wrap=main.querySelector('.mmt'); if(!wrap){ wrap=document.createElement('div'); wrap.className='mmt'; wrap.innerHTML='<div class="mmt-ttl"></div><div class="mmt-top"><p class="mmt-chg"></p></div><div class="mmt-tools"><button type="button" class="mmt-tg mmt-trd">추세</button><button type="button" class="mmt-tg mmt-zn">매물대</button><button type="button" class="mmt-tg mmt-drw">✎ 선</button><label class="mmt-det mmt-tg"><input type="checkbox">자세히</label><button type="button" class="mmt-tg mmt-fs" aria-label="전체 화면"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button><button type="button" class="mmt-tg mmt-q" aria-label="종목 찾기">🔍</button><a class="mmt-tg mmt-ext" href="#">사파리로 크게 ↗</a><button type="button" class="mmt-tg mmt-x" aria-label="닫기">✕</button></div><div class="mmt-pen"><button type="button" data-k="tr" class="on">／추세</button><button type="button" data-k="h">―수평</button><button type="button" data-k="par">▱평행</button><i></i><button type="button" class="pc on" data-c="#9a6200" style="--c:#9a6200"></button><button type="button" class="pc" data-c="#c4453a" style="--c:#c4453a"></button><button type="button" class="pc" data-c="#2f6fd6" style="--c:#2f6fd6"></button><button type="button" class="pc" data-c="#141210" style="--c:#141210"></button><button type="button" class="mmt-clr">지우기</button><p class="mmt-hint"></p></div><div class="mmt-find"><input type="search" placeholder="종목 이름·티커" autocomplete="off"><div class="mmt-res"></div></div><div class="mmt-stage"><div class="mmt-box"></div></div><div class="mmt-per"></div>';
     var hd=main.querySelector('.hd'); hd.after(wrap);
-    var pr=wrap.querySelector('.mmt-per'); MMT_PER.forEach(function(p){ var b=document.createElement('button'); b.type='button'; b.textContent=p[1]; b.dataset.p=p[0]; b.addEventListener('click',function(){ T.per=p[0]; mmtDraw(); mmSetRange(); }); pr.appendChild(b); });
+    var pr=wrap.querySelector('.mmt-per'); MMT_PER.forEach(function(p){ var b=document.createElement('button'); b.type='button'; b.textContent=p[1]; b.dataset.p=p[0]; b.addEventListener('click',function(){ T.per=p[0]; mmtDraw(); }); pr.appendChild(b); });
     wrap.querySelector('.mmt-trd').addEventListener('click',function(){ T.tr=!T.tr; mmtDraw(); });
+    wrap.querySelector('.mmt-zn').addEventListener('click',function(){ T.zn=!T.zn; mmtDraw(); });
     wrap.querySelector('.mmt-drw').addEventListener('click',function(){ T.draw=!T.draw; mmToolsSync(); var b=main.querySelector('.mmt-box'); if(b) b.classList.toggle('drawing',T.draw); });
     wrap.querySelector('.mmt-clr').addEventListener('click',function(){ var Ls=mmLines(mmTk()); Ls.pop(); mmLines(mmTk(),Ls); window.__mmPend=null; mmtDraw(); mmToolsSync(); });
     wrap.querySelectorAll('.mmt-pen [data-k]').forEach(function(b){ b.addEventListener('click',function(){ T.pk=b.dataset.k; window.__mmPend=null; mmToolsSync(); }); });
     wrap.querySelectorAll('.mmt-pen .pc').forEach(function(b){ b.addEventListener('click',function(){ T.pc=b.dataset.c; mmToolsSync(); }); });
-    wrap.querySelector('.mmt-fs').addEventListener('click',function(){ if(T.det){ var z=main.querySelector('.rg .zm'); if(z) z.click(); return; } mmFull(true); });
+    wrap.querySelector('.mmt-fs').addEventListener('click',function(){ mmFull(true); });
     wrap.querySelector('.mmt-x').addEventListener('click',function(){ mmFull(false); });
     // 큰 화면에서 종목 찾기(사용자 2026-10-29)
     var fd=wrap.querySelector('.mmt-find'), fi=fd.querySelector('input'), fr=fd.querySelector('.mmt-res');
@@ -373,7 +430,7 @@ function mmtDraw(){
     wrap.querySelector('.mmt-q').addEventListener('click',function(){ var on=!fd.classList.contains('on'); fd.classList.toggle('on',on); if(on){ list(); setTimeout(function(){ fi.focus(); },30); } });
     fi.addEventListener('input',list); fi.addEventListener('keydown',function(e){ if(e.key==='Enter'){ var b=fr.querySelector('button'); if(b) b.click(); } if(e.key==='Escape') fd.classList.remove('on'); });
     var ex=wrap.querySelector('.mmt-ext'); if(ex){ ex.href='kakaotalk://web/openExternal?url='+encodeURIComponent(location.href); if(MM_KAKAO) wrap.classList.add('kakao'); }
-    var cb=wrap.querySelector('input'); cb.addEventListener('change',function(){ T.det=cb.checked; var dl=main.querySelector('.mmt-det'); if(dl) dl.classList.toggle('on',T.det); main.classList.toggle('mmt-detail',T.det); mmTools(); mmPerPlace(); mmSetRange(); setTimeout(function(){ window.__mmForce=1; window.dispatchEvent(new Event('resize')); },30); }); }
+    var cb=wrap.querySelector('input'); cb.addEventListener('change',function(){ T.det=cb.checked; var dl=main.querySelector('.mmt-det'); if(dl) dl.classList.toggle('on',T.det); main.classList.toggle('mmt-detail',T.det); mmtDraw(); }); }
   mmTools(); var TL=main.querySelector('.mmt-tools'); mmToolsSync();
   TL.querySelector('input').checked=T.det; main.classList.toggle('mmt-detail',T.det); main.classList.add('mmt-on');
   wrap.dataset.tk=r.ticker;
@@ -382,12 +439,33 @@ function mmtDraw(){
   wrap.querySelectorAll('.mmt-per button').forEach(function(b){ b.setAttribute('aria-pressed',String(b.dataset.p===T.per)); });
   var box=wrap.querySelector('.mmt-box'), chg=wrap.querySelector('.mmt-chg'), cur=r.currency, now=Number(r.price);
   var pe=main.querySelector('.hd .pr'); var lv=pe&&pe.textContent.match(/[\d,]+\.?\d*/); if(pe&&pe.classList.contains('mm-fh')&&lv) now=Number(lv[0].replace(/,/g,''));
-  function setChg(base,label){ if(base==null){chg.textContent='';return} var dv=now-base, dp=dv/base*100, c=dv>=0?'#e0423a':'#3a6fe0'; chg.innerHTML='<span></span> <b style="color:'+c+'"></b>'; chg.firstChild.textContent=label; chg.lastChild.textContent=(cur==='%')?((dv>=0?'+':'−')+Math.round(Math.abs(dv)*100)+'bp'):((dv>=0?'+':'−')+mmtFmt(Math.abs(dv),cur)+' ('+Math.abs(dp).toFixed(1)+'%)'); }
+  function setChg(base,label){ delete chg.dataset.sc; if(base==null){chg.textContent='';return} var dv=now-base, dp=dv/base*100, c=dv>=0?'#e0423a':'#3a6fe0'; chg.innerHTML='<span></span> <b style="color:'+c+'"></b>'; chg.firstChild.textContent=label; chg.lastChild.textContent=(cur==='%')?((dv>=0?'+':'−')+Math.round(Math.abs(dv)*100)+'bp'):((dv>=0?'+':'−')+mmtFmt(Math.abs(dv),cur)+' ('+Math.abs(dp).toFixed(1)+'%)'); }
+  var DET=!!T.det, ZN=mmZones(r.ticker,now), LT=mmLT(r.ticker), OV={tr:DET||!!T.tr, zn:DET||!!T.zn, lt:DET};
+  var opt0={ov:OV, zones:ZN, lt:LT};
+  var RG3=(function(){ var d=mmtDaily(r.ticker), from=Date.now()/1000-92*86400; var p=d.filter(function(a){return a[0]>=from}); p.push([Date.now()/1000,now]); return mmRG(p); })();
+  var done=function(res,base){ if(DET) mmFacts(main,r,now,ZN,LT,RG3,cur); else mmFacts(main,null); };
   if(T.per==='1d'){
-    mmIntra(function(D){ var x=D&&D.d&&D.d[r.ticker]; if(!x||!x.p||x.p.length<2){ box.innerHTML='<p class="mmt-empty">오늘 흐름 자료가 아직 없습니다 · 장 시작 후 5분마다 채워집니다</p>'; setChg(r.prev_close,'어제보다'); return; }
+    mmIntra(function(D){ var x=D&&D.d&&D.d[r.ticker]; if(!x||!x.p||x.p.length<2){ box.innerHTML='<p class="mmt-empty">오늘 흐름 자료가 아직 없습니다 · 장 시작 후 5분마다 채워집니다</p>'; setChg(r.prev_close,'어제보다'); done(null); return; }
       var pts=x.p.map(function(a){return [x.s+a[0]*60,a[1]]}); if(Math.abs(pts[pts.length-1][1]-now)>1e-9 && pe&&pe.classList.contains('mm-fh')) pts.push([Date.now()/1000,now]);
-      var rs=x.reg&&x.reg[0]||x.s, re=x.reg&&x.reg[1]||x.s+57600; mmtChart(box,pts,x.pc,cur,{rs:rs,re:re,x0:rs-330*60,x1:re+240*60}); setChg(x.pc,'어제보다'); });
+      var cd=null; if(DET){ cd=[]; var bk=null; pts.forEach(function(p){ var k=Math.floor(p[0]/900)*900; if(!bk||bk[0]!==k){ bk=[k,p[1],p[1],p[1],p[1]]; cd.push(bk); } else { bk[2]=Math.max(bk[2],p[1]); bk[3]=Math.min(bk[3],p[1]); bk[4]=p[1]; } }); cd.forEach(function(c){ c[0]+=450; }); }
+      var rs=x.reg&&x.reg[0]||x.s, re=x.reg&&x.reg[1]||x.s+57600; var res=mmtChart(box,pts,x.pc,cur,{rs:rs,re:re,x0:rs-330*60,x1:re+240*60},{ov:OV,zones:ZN,lt:null,cdl:cd}); setChg(x.pc,'어제보다'); done(res); });
     return; }
+  // 1주~10년: 캔들 자료(일봉 1년·주봉 10년)를 받아서 — 기본은 그 종가로 선, 자세히는 캔들. 둘 다 고가·저가로 눈금을 잡아 모양이 같음
+  var tkNow=r.ticker; mmOhlc(tkNow,function(O){ if(mmTk()!==tkNow||T.per==='1d')return;
+    var YRS={'1w':7/365,'1m':31/365,'3m':92/365,'1y':366/365,'5y':5,'10y':10}[T.per], from=Date.now()/1000-YRS*365.25*86400;
+    var src=(T.per==='5y'||T.per==='10y')?O.w:O.d; var cd=(src||[]).map(function(a){return [mmTs(a[0]),a[1],a[2],a[3],a[4]]});
+    if(cd.length>=2){ var prevC=cd.filter(function(c){return c[0]<from}); cd=cd.filter(function(c){return c[0]>=from});
+      var pd=r.price_date, lc=cd[cd.length-1]; if(lc&&pd){ var ld=new Date(lc[0]*1000).toISOString().slice(0,10); if(ld===pd||T.per==='5y'||T.per==='10y'){ lc[4]=now; lc[2]=Math.max(lc[2],now); lc[3]=Math.min(lc[3],now); } else if(pd>ld){ cd.push([mmTs(pd),lc[4],Math.max(lc[4],now),Math.min(lc[4],now),now]); } }
+      if(cd.length>=2){ var pts=cd.map(function(c){return [c[0],c[4]]}), base=prevC.length?prevC[prevC.length-1][4]:cd[0][1];
+        var res=mmtChart(box,pts,base,cur,null,{ov:OV,zones:ZN,lt:LT,cdl:DET?cd:null,rng:cd,noTr:(T.per==='5y'||T.per==='10y')});
+        var lab=MMT_PER.filter(function(p){return p[0]===T.per})[0][2]; if((T.per==='5y'||T.per==='10y')&&!prevC.length&&cd[0][0]>Date.now()/1000-(YRS-0.5)*365*86400) lab='상장 이후';
+        setChg(base,lab); done(res); return; } }
+    mmtDrawOld(); });
+  return;
+}
+function mmtDrawOld(){ var main=document.getElementById('main'), T=window.__mmT, r=mmtRow(); if(!r)return; var wrap=main.querySelector('.mmt'), box=wrap.querySelector('.mmt-box'), chg=wrap.querySelector('.mmt-chg'), cur=r.currency, now=Number(r.price);
+  var pe=main.querySelector('.hd .pr'); var lv=pe&&pe.textContent.match(/[\d,]+\.?\d*/); if(pe&&pe.classList.contains('mm-fh')&&lv) now=Number(lv[0].replace(/,/g,''));
+  function setChg(base,label){ delete chg.dataset.sc; if(base==null){chg.textContent='';return} var dv=now-base, dp=dv/base*100, c=dv>=0?'#e0423a':'#3a6fe0'; chg.innerHTML='<span></span> <b style="color:'+c+'"></b>'; chg.firstChild.textContent=label; chg.lastChild.textContent=(cur==='%')?((dv>=0?'+':'−')+Math.round(Math.abs(dv)*100)+'bp'):((dv>=0?'+':'−')+mmtFmt(Math.abs(dv),cur)+' ('+Math.abs(dp).toFixed(1)+'%)'); }
   if(T.per==='5y'||T.per==='10y'){ // 5년: 하루 한 번 받는 주간 종가(live/long.json) + 최근 일별
     var YR=T.per==='10y'?10:5; mmLong(function(Lg){ if((T.per!=='5y'&&T.per!=='10y')||mmTk()!==r.ticker)return; var wk=(Lg&&Lg.d&&Lg.d[r.ticker])||[], dly=mmtDaily(r.ticker), t0=dly.length?dly[0][0]:Infinity;
       var from=Date.now()/1000-YR*365.25*86400; var pts=wk.map(function(a){return [Date.parse(a[0]+'T21:00:00Z')/1000,a[1]]}).filter(function(a){return a[0]<t0&&a[0]>=from}).concat(dly); pts.push([Date.now()/1000,now]);
@@ -488,7 +566,7 @@ addEventListener('keydown',function(e){ if(e.key==='Escape'&&document.documentEl
 function mmDtipSlot(){ var ch=document.querySelector('#main .ch'); if(ch&&!ch.querySelector('.mm-dtip')) mmDtip('','', '', ''); }
 function mmTools(){ var main=document.getElementById('main'), w=main&&main.querySelector('.mmt'), t=w&&w.querySelector('.mmt-tools'); if(!t){ t=main&&main.querySelector('.ch > .mmt-tools'); } if(!t)return;
   if(document.documentElement.classList.contains('mm-full')&&w){ var tp=w.querySelector('.mmt-top'); if(tp&&t.previousElementSibling!==tp) tp.after(t); return; }
-  var tg=(main.classList.contains('mmt-detail')?main.querySelector('.ch'):w&&w.querySelector('.mmt-stage')); if(tg&&t.parentNode!==tg) tg.insertBefore(t,tg.firstChild); }
+  var tg=w&&w.querySelector('.mmt-stage'); if(tg&&t.parentNode!==tg) tg.insertBefore(t,tg.firstChild); }
 function mmDtip(d,p,rel,rc){ var main=document.getElementById('main'), ch=main&&main.querySelector('.ch'); if(!ch)return; var el=main.querySelector('.mm-dtip');
   if(!el){ el=document.createElement('p'); el.className='mm-dtip'; } var sv=ch.querySelector(':scope > svg'); if(sv&&el.nextSibling!==sv) ch.insertBefore(el,sv);
   el.innerHTML='<span></span> <b></b> <em></em>'; el.children[0].textContent=d; el.children[1].textContent=p; el.children[2].textContent=rel||''; el.children[2].style.color=rc&&rc.indexOf('ok')>=0?'#1f7a3f':''; }
@@ -497,7 +575,7 @@ function mmToolsSync(){ var t=document.querySelector('#main .mmt-tools'); if(!t)
     pen.querySelectorAll('[data-k]').forEach(function(b){ b.classList.toggle('on',b.dataset.k===pk); }); pen.querySelectorAll('.pc').forEach(function(b){ b.classList.toggle('on',b.dataset.c===pc); });
     var n=mmLines(mmTk()).length, cl=pen.querySelector('.mmt-clr'); cl.style.display=n?'':'none'; cl.textContent='되돌리기';
     pen.querySelector('.mmt-hint').textContent=window.__mmPend?'평행선 놓을 곳을 한 번 누르세요':pk==='h'?'원하는 가격 높이를 누르거나 끌어 놓으세요':pk==='par'?'먼저 추세선을 긋고, 평행선 자리를 누르세요':'두 점을 잇듯 끌어서 그으세요'; } var d=t.querySelector('.mmt-drw'), c=t.querySelector('.mmt-clr'); if(d) d.classList.toggle('on',!!T.draw); if(c) 
-  var tr=t.querySelector('.mmt-trd'); if(tr) tr.classList.toggle('on',!!T.tr); var de=t.querySelector('.mmt-det'); if(de) de.classList.toggle('on',!!T.det); var ch=document.querySelector('#main .mmt-chg'); }
+  var tr=t.querySelector('.mmt-trd'); if(tr) tr.classList.toggle('on',!!T.tr); var zn=t.querySelector('.mmt-zn'); if(zn) zn.classList.toggle('on',!!T.zn); var de=t.querySelector('.mmt-det'); if(de) de.classList.toggle('on',!!T.det); var ch=document.querySelector('#main .mmt-chg'); }
 var MM_DR={'1d':'1m','1w':'1m','1m':'1m','3m':'3m','1y':'12m','5y':'5y','10y':'10y'};
 function mmMergeLong(Lg){ if(!Lg||!Lg.d||window.__mmMerged)return; window.__mmMerged=1; try{ Object.keys(Lg.d).forEach(function(t){ var H=DATA.H[t]||(DATA.H[t]=[]); var first=H.length?H[0][0]:'9999'; var add=Lg.d[t].filter(function(a){return a[0]<first}).map(function(a){return [a[0],a[1],0]}); if(add.length) DATA.H[t]=add.concat(H); }); }catch(e){} }
 function mmSetRange(){ var T=window.__mmT||{}; if(!T.det)return; var k=MM_DR[T.per]||'3m';
@@ -505,7 +583,7 @@ function mmSetRange(){ var T=window.__mmT||{}; if(!T.det)return; var k=MM_DR[T.p
   if(k==='5y'||k==='10y'){ mmLong(function(Lg){ var was=window.__mmMerged; mmMergeLong(Lg); go(); if(!was){ var b=document.querySelector('#main .rg [data-k="'+k+'"]'); if(b) b.click(); } }); } else go(); }
 // 기간 줄은 두 모드 모두 차트 아래 같은 자리
 function mmPerPlace(){ var main=document.getElementById('main'), per=main&&main.querySelector('.mmt-per'); if(!per)return; var det=main.classList.contains('mmt-detail');
-  var after=det?(main.querySelector('.mm-dtip')&&false||main.querySelector('.ch')):main.querySelector('.mmt-stage'); if(after&&per.previousElementSibling!==after) after.after(per); }
+  var after=main.querySelector('.mmt-stage'); if(after&&per.previousElementSibling!==after) after.after(per); }
 // 추세 가이드 요약(사용자 2026-10-29): 긴 설명 대신 4줄 — 지금 자리 / 넘어야 할 곳 / 버텨야 할 곳 / 전환 신호, 선 읽는 법은 한 줄
 function mmGuide(main,gl){ if(!gl||main.querySelector('.mm-sum'))return; var t=gl.textContent.replace(/\s+/g,' ');
   var g=function(re){var m=t.match(re);return m}, R=g(/위 저항 후보\s*([\d,.~]+)[^(]*\(([^)]*)\)/), R2=g(/더 위 저항\s*([\d,.~]+)/), S=g(/아래 지지 후보\s*([\d,.~]+)[^(]*\(([^)]*)\)/), S2=g(/더 아래 지지\s*([\d,.~]+)/);
