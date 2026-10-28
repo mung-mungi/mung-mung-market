@@ -180,6 +180,7 @@ IBDRAG = (r'''<style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll
 
 
 def tidy_ibdrag(s):
+    s = tidy_navorder(s)
     if 'data-ibdrag' in s or 'class="ib"' not in s:
         return s
     return s.replace('</body>', IBDRAG + '</body>', 1) if '</body>' in s else s + IBDRAG
@@ -383,3 +384,15 @@ def tidy_pergo(s):
     if 'MMT_PER' not in s:
         return s
     return s.replace('</body>', PERGO + '</body>', 1) if '</body>' in s else s + PERGO
+
+
+# 맨 위 페이지 줄 '핵심' 순서를 홈 '매일 아침 핵심'과 같게 — _tools/navorder.js (사용자 2026-10-29)
+def tidy_navorder(s):
+    s = re.sub(r'<script data-navorder>.*?</script>', '', s, flags=re.S)
+    if 'class="ib"' not in s:
+        return s
+    i = s.find('</nav>', s.find('class="ib"'))
+    if i < 0:
+        return s
+    js = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'navorder.js'), encoding='utf-8').read()
+    return s[:i + 6] + '<script data-navorder>' + js + '</script>' + s[i + 6:]
