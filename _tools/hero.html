@@ -13,6 +13,9 @@
 .mm-hero>.mm-take b,.mm-hero>.mm-take strong{font-weight:700!important}
 .mm-hero>.mm-take>:first-child.mm-chipx{margin:0 0 8px!important;display:flex!important;width:max-content!important;max-width:100%}
 .mm-foot{margin:36px 0 8px!important;padding-top:14px!important;border-top:1px solid rgba(11,11,11,.08)!important;font:400 12px/1.6 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;color:#9a978f!important;text-align:center}
+/* 요약 칸 큰 숫자는 모든 페이지에서 가운데 — 사용자 2026-10-28 지시(이름·설명 글자는 왼쪽 유지) */
+[class*="-tile"]:not([class*="-tiles"])>.v{display:flex!important;justify-content:center!important;align-items:baseline!important;flex-wrap:wrap!important;width:100%!important;text-align:center!important}
+[class*="-tile"]:not([class*="-tiles"])>.v.mm-vtxt{justify-content:flex-start!important;text-align:left!important}
 </style>
 <script data-hero>(function(){
 function run(){
@@ -34,6 +37,7 @@ function run(){
     else if(/date|chip|asof/.test(s))k.classList.add('mm-chip');
     else k.classList.add('mm-x');
   }
+  var vs=document.querySelectorAll('[class*="-tile"]>.v');for(var j=0;j<vs.length;j++){var tx=(vs[j].textContent||'').trim();vs[j].classList.toggle('mm-vtxt',tx!==''&&!/^[\s+\-−~—]*[\d.]/.test(tx)&&tx!=='—')}
   var w=c.parentElement;
   if(w&&!document.querySelector('.mm-foot')){var p=document.createElement('p');p.className='mm-foot';p.textContent='참고용 정보이며 매수·매도 권유가 아닙니다.';w.appendChild(p)}
 }
