@@ -61,3 +61,10 @@ body article>.sumrow .ar{position:absolute;right:9px;top:50%;transform:translate
 .mk-ck{display:flex;flex-wrap:wrap;gap:3px;margin-top:6px}.mk-ck i{font-style:normal;font:700 11.5px/1.5 sans-serif;padding:0 6px;border-radius:5px;background:rgba(26,127,55,.1);color:#1a7f37}.mk-ck i.n{background:rgba(198,40,40,.1);color:#c62828}
 .mk-et{display:block;margin-top:4px;font:500 12.5px/1.45 -apple-system,sans-serif;color:#6f6d68;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 body #spot .sum{font:600 14.5px/1.6 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:#3a3833!important;background:#fff!important;border-radius:12px!important;box-shadow:0 0 0 1px rgba(154,98,0,.12),0 3px 0 rgba(11,11,11,.08)!important;padding:10px 12px!important}
+/* 최근 나온 실적이 많으면(5곳 이상) 상자 안에서 스크롤, 노트를 펼치면 상자 제한 풀림 */
+body #spot .sl:has(>article:nth-of-type(5)){max-height:var(--slh,min(56vh,500px));overflow-y:auto;overscroll-behavior:contain;padding:3px 4px 10px;margin:0 -4px;border-radius:12px;box-shadow:inset 0 -14px 12px -12px rgba(11,11,11,.18)}
+body #spot .sl:has(>article:not(.fold)){max-height:none!important;overflow:visible!important;box-shadow:none!important}
+body #spot .sl-hint{display:block;text-align:center;font:600 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#6f6d68;margin:6px 0 0}
+body #spot .sl:has(>article:nth-of-type(5))::after{content:"";position:sticky;bottom:-10px;display:block;height:46px;margin-top:-46px;pointer-events:none;background:linear-gradient(rgba(255,255,255,0),#fff 85%)}
+body #spot .sl:has(>article:not(.fold))::after{display:none}
+body #spot .sl-hint{color:#9a6200!important;font-weight:700!important}
