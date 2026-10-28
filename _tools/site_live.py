@@ -65,6 +65,12 @@ def run(root):
         sys.path.insert(0, T); import hub_tidy
         o = open(ptr, encoding='utf-8').read(); b = hub_tidy.tidy_pergo(o)
         if b != o: open(ptr, 'w', encoding='utf-8').write(b); n.append('p-trend')
+    sys.path.insert(0, T); import hub_tidy
+    for _f in hub_tidy.UNI_PAGES:
+        _p = os.path.join(root, _f)
+        if os.path.exists(_p):
+            o = open(_p, encoding='utf-8').read(); b = hub_tidy.tidy_uni(o)
+            if b != o: open(_p, 'w', encoding='utf-8').write(b); n.append(_f[:-5])
     pc = os.path.join(root, 'p-cal.html')
     if os.path.exists(pc):
         sys.path.insert(0, T); import hub_tidy

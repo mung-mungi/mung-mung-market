@@ -13,3 +13,8 @@ import glob as _g
 for p in _g.glob(os.path.join(R, 'p-*.html')):
     o = open(p, encoding='utf-8').read(); a = h.tidy_navorder(h.tidy_headui(o))
     if a != o: open(p, 'w', encoding='utf-8').write(a)
+for f in h.UNI_PAGES:
+    p = os.path.join(R, f)
+    if os.path.exists(p):
+        o = open(p, encoding='utf-8').read(); a = h.tidy_uni(o)
+        if a != o: open(p, 'w', encoding='utf-8').write(a)

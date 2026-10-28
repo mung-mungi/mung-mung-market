@@ -417,3 +417,14 @@ def tidy_headui(s):
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-headui>' + open(os.path.join(d, 'headui.css'), encoding='utf-8').read() + '</style><script data-headui>' + open(os.path.join(d, 'headui.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+# 나머지 페이지 공통 정리 — _tools/uniui.css·uniui.js (사용자 2026-10-29)
+UNI_PAGES = ['p-bond.html', 'p-econ.html', 'p-cal.html', 'p-short.html', 'p-fx.html', 'p-capex.html', 'p-policy.html', 'p-tech.html', 'p-supply.html', 'p-neo.html', 'p-qtr.html', 'p-insider.html']
+
+
+def tidy_uni(s):
+    s = re.sub(r'<(style|script) data-uniui>.*?</\1>', '', s, flags=re.S)
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-uniui>' + open(os.path.join(d, 'uniui.css'), encoding='utf-8').read() + '</style><script data-uniui>' + open(os.path.join(d, 'uniui.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
