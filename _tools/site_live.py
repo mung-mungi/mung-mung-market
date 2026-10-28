@@ -41,6 +41,13 @@ def run(root):
         s = s.replace('</body>', LJ + '</body>', 1) if '</body>' in s else s + LJ
         if s != o: open(p, 'w', encoding='utf-8').write(s); n.append(f)
     n += fix_nav(root)
+    # 누름 소리: 통합본 빌더가 넣은 예전 틱을 사이트 최신본(_tools/tick.js)으로 교체(사용자 2026-10-29 — 들릴 듯 말 듯하게)
+    import glob as _g
+    TK = open(os.path.join(T, 'tick.js'), encoding='utf-8').read()
+    for f in _g.glob(os.path.join(root, '*.html')):
+        s0 = open(f, encoding='utf-8').read()
+        s1 = re.sub(r'<script data-tick>[\s\S]*?</script>', lambda m: '<script data-tick>' + TK + '</script>', s0)
+        if s1 != s0: open(f, 'w', encoding='utf-8').write(s1); n.append('tick:' + os.path.basename(f))
     n += fix_hub(root)
     pe = os.path.join(root, 'p-earn.html')
     if os.path.exists(pe):

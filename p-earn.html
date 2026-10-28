@@ -415,14 +415,14 @@ db.collection('notes').onSnapshot(snap=>{const list=[];snap.docs.forEach(d=>{con
   function ac(){
     if (!ctx) { var A = window.AudioContext || window.webkitAudioContext; if (!A) return null; ctx = new A(); }
     if (ctx.state !== 'running' && ctx.resume) ctx.resume();
-    if (!buf) { // 짧은 '틱' = 25ms 잡음을 고음대만 걸러서(휴대폰 스피커에서도 잘 들림)
-      var n = Math.floor(ctx.sampleRate * 0.025); buf = ctx.createBuffer(1, n, ctx.sampleRate); var d = buf.getChannelData(0);
-      for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 4);
+    if (!buf) { // 아이폰 키보드처럼 들릴 듯 말 듯한 '똑' = 7ms짜리 아주 짧은 잡음(손끝에 닿는 느낌만 남김, 사용자 2026-10-29)
+      var n = Math.floor(ctx.sampleRate * 0.007); buf = ctx.createBuffer(1, n, ctx.sampleRate); var d = buf.getChannelData(0);
+      for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 7);
     }
     return ctx;
   }
   // 소리 종류: tap(기본 틱) · nav(페이지 이동, 조금 낮은 톡) · open(펼침, 올라가는 두 번 틱) · close(닫힘, 낮은 틱)
-  var TONE = { tap: [[2300, 0.2, 0]], nav: [[1500, 0.22, 0]], open: [[2700, 0.18, 0]], close: [[1700, 0.16, 0]] };
+  var TONE = { tap: [[3400, 0.07, 0]], nav: [[2600, 0.075, 0]], open: [[3800, 0.06, 0]], close: [[2900, 0.055, 0]] };
   function tick(kind){
     if (off) return;
     try { if (navigator.vibrate) navigator.vibrate(6); } catch (e) {}  // 안드로이드만 살짝 진동(아이폰 웹은 진동 불가)
@@ -430,7 +430,7 @@ db.collection('notes').onSnapshot(snap=>{const list=[];snap.docs.forEach(d=>{con
       var c = ac(); if (!c) return;
       (TONE[kind] || TONE.tap).forEach(function(x){
         var t = c.currentTime + 0.005 + x[2], s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
-        s.buffer = buf; f.type = 'bandpass'; f.frequency.value = x[0]; f.Q.value = 0.9; g.gain.value = x[1];
+        s.buffer = buf; f.type = 'bandpass'; f.frequency.value = x[0]; f.Q.value = 1.4; g.gain.value = x[1];
         s.connect(f); f.connect(g); g.connect(c.destination); s.start(t);
       });
     } catch (e) {}
@@ -601,7 +601,7 @@ function run(){
 }
 run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);[300,900,1600,2600,4000].forEach(function(t){setTimeout(run,t)});
 })();</script>
-<style>body .hits>.hday{font-size:12px!important;padding:1px 8px!important}</style><style data-hits>body .hits{display:flex!important;flex-wrap:wrap!important;gap:4px!important;align-items:center}body .hits>.hday,body .hits>.hmore,body .hits>.hrest{flex-basis:100%}body .hits>.hday{flex-basis:auto;font-size:12px!important;padding:1px 8px!important;margin-right:2px}body .hits .hrest:not([hidden]){display:flex!important;flex-wrap:wrap!important;gap:4px!important}body .hits .hrest[hidden]{display:none!important}body .hits button:not(.hmore){display:inline-flex!important;align-items:center!important;gap:3px!important;padding:3px 9px!important;border-radius:999px!important;min-height:0!important;line-height:1.3!important;box-shadow:0 1px 0 rgba(0,0,0,.08)}body .hits button:not(.hmore) b{font-size:13px!important;font-weight:700;letter-spacing:-.02em}body .hits button:not(.hmore) span{display:none!important}body .hits .hmore{flex-basis:auto!important;border-radius:999px!important;padding:3px 10px!important;font-size:12.5px!important}</style></body></html>
+<style>body .hits>.hday{font-size:12px!important;padding:1px 8px!important}</style><style data-hits>body .hits{display:flex!important;flex-wrap:wrap!important;gap:3px!important;align-items:center}body .hits>.hday,body .hits>.hmore,body .hits>.hrest{flex-basis:100%}body .hits>.hday{flex-basis:auto;font-size:11.5px!important;padding:1px 7px!important;margin-right:2px}body .hits .hrest:not([hidden]){display:flex!important;flex-wrap:wrap!important;gap:3px!important}body .hits .hrest[hidden]{display:none!important}body .hits button:not(.hmore){display:inline-flex!important;align-items:center!important;gap:3px!important;padding:2px 7px!important;border-radius:999px!important;min-height:0!important;line-height:1.3!important;box-shadow:0 1px 0 rgba(0,0,0,.08)}body .hits button:not(.hmore) b{font-size:12px!important;font-weight:700;letter-spacing:-.03em}body .hits button:not(.hmore) span{display:none!important}body .hits .hmore{flex-basis:auto!important;border-radius:999px!important;padding:2px 9px!important;font-size:12px!important}</style></body></html>
 <script>
 /* 가독성: 한 덩어리에 ①②③이 이어 붙은 문단은 번호마다 줄을 바꿔 보여 줍니다(내용은 그대로). */
 (function () {
