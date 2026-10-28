@@ -124,7 +124,10 @@ function tidy(){
 #main.mmt-detail .mmt-pen{display:none!important}html.mm-full .mmt-pen,html.mm-land .mmt-pen{display:none!important}.mmt-x{display:none!important}
 #main.mmt-detail .ch{padding-top:0;margin-top:-10px!important;margin-bottom:-10px!important}#main.mmt-detail .ch>.mmt-tools{top:0}#main .zhint{display:none!important}
 /* 종목 차트에선 멍뭉이 배너·오늘 한눈에 카드 숨기고 차트가 바로 보이게(사용자 2026-10-29) — 기준 시각은 차트 카드 위에 작게 */
-html body header.mm-hero.mm-hx,html body .mm-hero,html body .mm-take,html body .hx-card{display:none!important}
+html body .mm-take,html body .hx-card{display:none!important}
+/* 멍뭉이 배너: 처음 5초 보이고 접힘, 20초 동안 아무것도 안 하면 다시 펼쳐짐(사용자 2026-10-29) */
+html body header.mm-hero.mm-hx{overflow:hidden;max-height:240px;transition:max-height .45s ease,opacity .35s ease,margin .45s ease,padding .45s ease}
+html.mm-hx-off body header.mm-hero.mm-hx{max-height:0!important;min-height:0!important;height:0!important;opacity:0;margin-top:0!important;margin-bottom:0!important;padding-top:0!important;padding-bottom:0!important;border-width:0!important}
 .mm-asof2{margin:2px 4px 8px;font-size:12px;color:#8a877f;text-align:right}
 #main .rg .zm{display:none!important}
 #main .rg{background:#f3f1ec;padding:3px!important;border-radius:12px;gap:4px!important;overflow:hidden!important}
@@ -627,6 +630,11 @@ function mmGuide(main,gl){ if(!gl||main.querySelector('.mm-sum'))return; var t=g
   rows.forEach(function(r,i){ box.querySelectorAll('p span')[i].textContent=r[1]; });
   var lv=main.querySelector('.mm-lv'); (lv||main.querySelector('.ch')).after(box); }
 function mmAsof(){ var main=document.getElementById('main'), a=document.getElementById('asof'); if(!main||!a||!a.textContent.trim())return; var e=document.querySelector('.mm-asof2'); var card=main.closest('section,.card,.panel')||main; if(!e){ e=document.createElement('p'); e.className='mm-asof2'; card.parentNode.insertBefore(e,card); } var t='● '+a.textContent.trim(); if(e.textContent!==t) e.textContent=t; }
+(function(){ var h=document.documentElement, t=null, idle=null;
+  function off(){ h.classList.add('mm-hx-off'); } function on(){ if(h.classList.contains('mm-land')||h.classList.contains('mm-full')) return; h.classList.remove('mm-hx-off'); }
+  function act(){ clearTimeout(idle); if(!h.classList.contains('mm-hx-off')){ clearTimeout(t); t=setTimeout(off,1500); } idle=setTimeout(on,20000); }
+  t=setTimeout(off,5000); idle=setTimeout(on,25000);
+  ['pointerdown','scroll','keydown','wheel','touchstart'].forEach(function(e){ addEventListener(e,act,{passive:true,capture:true}); }); })();
 function mmtTidy(){ var main=document.getElementById('main'); if(!main||!main.querySelector('.hd'))return; var w=main.querySelector('.mmt'); if(!w||w.dataset.tk!==mmTk()) mmtDraw(); }
 
 function tidy(){
