@@ -51,10 +51,11 @@ function mgGrade(a){
   return {p:p,ai:ai}}
 function mgBadge(t,lab,ai){var i=document.createElement('em');var c=MGC[t]||'#a8a49b';if(ai){i.className='ai';i.style.borderColor=c;i.style.color=c}else{i.style.background=c;i.style.borderColor=c}var sm=document.createElement('small');sm.textContent=lab;var b=document.createElement('b');b.textContent=t;i.append(sm,b);return i}
 function tidy(){
+  if(window.mmStepCards)window.mmStepCards();  // 실적 DB가 새로 들어와 카드가 다시 그려지면 한 줄 카드 모양도 다시(사용자 2026-10-29)
   var arts=[].slice.call(document.querySelectorAll('article[data-sum]'));
   arts.forEach(function(a){var G=a.__mg||(a.__mg=mgGrade(a));
-    var sr=a.querySelector(':scope>.sumrow');if(sr&&!sr.querySelector('.mg')){var d=document.createElement('span');d.className='mg';d.append(mgBadge(G.p,'실적'),mgBadge(G.ai,'AI 관점',1));var ck=sr.querySelector('.mk-ck');if(ck)ck.insertBefore(d,ck.firstChild);else{var mr=sr.querySelector('.mk-row');if(mr)mr.after(d);else sr.insertBefore(d,sr.firstChild)}}
-    if(!a.dataset.mgk){a.dataset.mgk=1;[[/실적 자체/,'📊 시장이 본 이 실적 ',G.p,0],[/AI/,'🧠 AI 사슬에서 본 이 실적 ',G.ai,1]].forEach(function(z){var v=mgVd(a,z[0]).v;if(!v)return;var k=v.querySelector('.k');k.textContent=z[1];var e=document.createElement('span');e.className='mgk'+(z[3]?' ai':'');var c=MGC[z[2]]||'#a8a49b';if(z[3]){e.style.borderColor=c;e.style.color=c}else e.style.background=c;e.textContent=(z[3]?'AI 관점 ':'실적 ')+z[2];k.appendChild(e)})}});
+    var sr=a.querySelector(':scope>.sumrow');if(sr&&sr.querySelector('.mk-row')&&!sr.querySelector('.mg')){var d=document.createElement('span');d.className='mg';d.append(mgBadge(G.p,'실적'),mgBadge(G.ai,'AI 관점',1));var ck=sr.querySelector('.mk-ck');if(ck)ck.insertBefore(d,ck.firstChild);else{var mr=sr.querySelector('.mk-row');if(mr)mr.after(d);else sr.insertBefore(d,sr.firstChild)}}
+    if(!a.__mgk||!a.querySelector('.verdict .mgk')){a.__mgk=1;[[/실적 자체/,'📊 시장이 본 이 실적 ',G.p,0],[/AI/,'🧠 AI 사슬에서 본 이 실적 ',G.ai,1]].forEach(function(z){var v=mgVd(a,z[0]).v;if(!v)return;var k=v.querySelector('.k');k.textContent=z[1];var e=document.createElement('span');e.className='mgk'+(z[3]?' ai':'');var c=MGC[z[2]]||'#a8a49b';if(z[3]){e.style.borderColor=c;e.style.color=c}else e.style.background=c;e.textContent=(z[3]?'AI 관점 ':'실적 ')+z[2];k.appendChild(e)})}});
   var SP=document.getElementById('spot');if(!SP||SP.hidden)return;var cur=[].slice.call(SP.querySelectorAll('#spl article[data-sum]'));if(!cur.length)return;
   var h=SP.querySelector('.mg-how');if(!h){h=document.createElement('div');h.className='mg-how';var after=SP.querySelector('p.sum')||SP.querySelector('.sh');after.after(h)}
   var nP=cur.filter(function(a){return /^A/.test(a.__mg.p)}).length,nA=cur.filter(function(a){return /^A/.test(a.__mg.ai)}).length;

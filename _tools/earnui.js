@@ -31,7 +31,7 @@ var u=document.getElementById('ups');if(u&&!f.querySelector('.nx')){var now=new 
 // 검색창 → 돋보기
 var q=document.getElementById('fq');if(q&&!f.querySelector('.qbtn')){q.classList.add('qhide');var qb=document.createElement('button');qb.type='button';qb.className='qbtn';qb.textContent='🔍';qb.onclick=function(){q.classList.toggle('qhide');if(!q.classList.contains('qhide'))q.focus()};var et=f.querySelector('.etab');et.parentNode.insertBefore(qb,et.nextSibling);var w=document.createElement('div');w.className='etw';et.parentNode.insertBefore(w,et);w.appendChild(et);w.appendChild(qb)}
 })();}
-function stepCards(){(function(){document.querySelectorAll('article>.sumrow').forEach(function(b){var a=b.parentElement;if(a.dataset.mk)return;var sm=b.querySelector('.sm.sx');if(!sm)return;a.dataset.mk=1;
+window.mmStepCards=function(){try{stepCards()}catch(e){}};function stepCards(){(function(){document.querySelectorAll('article>.sumrow').forEach(function(b){var a=b.parentElement;if(b.querySelector('.mk-row'))return;var sm=b.querySelector('.sm.sx');if(!sm)return;a.dataset.mk=1;
 var nm=b.querySelector('.nm');var lt=nm.querySelector('.lt'),gr=nm.querySelector('.gr');var name=[...nm.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent).join('').trim();
 var ai=sm.querySelector('.sx-ai'),ck=sm.querySelector('.sx-ck'),et=sm.querySelector('.sx-et');var mv=ck?ck.querySelector('i.m'):null;var mt=mv?mv.textContent:'';var mm=mt.match(/^(\S+)\s*(.*)$/)||['','',''];
 var pct=(mm[2].match(/[+\-−~\d.]+%/)||[mm[2]])[0];var lab=mm[1]+(mm[2].replace(pct,'').trim()?' '+mm[2].replace(pct,'').trim():'');
