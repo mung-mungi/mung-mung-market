@@ -11,7 +11,7 @@ function fx(){
  // 3) 긴 설명 문단: 2줄 + 더 읽기
  document.querySelectorAll('p.sub,p.note,p[class$="-note"],p.m,p.nt,p[class$="-one"],p.how,p.nc-sub,.sh-guide,p.in-foot').forEach(function(p){if(p.dataset.u||p.closest('.u-fold')||p.closest('.mm-take')||p.closest('details'))return;if(p.textContent.trim().length<110)return;more(p,/how|guide/.test(p.className)?'읽는 법':'더 읽기')});
  // 4) 아주 긴 목록(타임라인·주간 일정)은 상자 안 스크롤
- document.querySelectorAll('#tl-sec .pg-card,#week,#weeks-sec .mc-card,#campus,#mix,#view').forEach(function(c){if(c.dataset.ub||c.offsetHeight<1400)return;c.dataset.ub=1;c.classList.add('u-box');var h=document.createElement('p');h.className='u-hint';h.textContent='↕ 상자 안에서 내려 보면 전체가 있습니다';c.after(h);c.addEventListener('scroll',function(){h.style.opacity=c.scrollTop+c.clientHeight>=c.scrollHeight-8?'0':'1'})});
+ document.querySelectorAll('#tl-sec .pg-card,#weeks-sec .mc-card,#campus,#mix,#view').forEach(function(c){if(c.dataset.ub||c.offsetHeight<1400)return;c.dataset.ub=1;c.classList.add('u-box');var h=document.createElement('p');h.className='u-hint';h.textContent='↕ 상자 안에서 내려 보면 전체가 있습니다';c.after(h);c.addEventListener('scroll',function(){h.style.opacity=c.scrollTop+c.clientHeight>=c.scrollHeight-8?'0':'1'})});
 }
 var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})();
 try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}catch(e){}
