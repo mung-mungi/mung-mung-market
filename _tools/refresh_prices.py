@@ -49,7 +49,8 @@ def update(pp, hp):
     syms = [r['ticker'] for r in P]
     with cf.ThreadPoolExecutor(6) as ex:
         res = {s: (a, b) for s, a, b in ex.map(fetch, syms)}
-    out = {'ok': 0, 'fail': [], 'split': [], 'kinds': {}, 'new_closes': 0}
+    out = {'ok': 0, 'fail': [], 'split': [], 'kinds': {}, 'new_closes': 0, 'changed': 0}
+    before = {r['ticker']: (r.get('price'), r.get('price_kind'), r.get('price_date')) for r in P}
     for r in P:
         t = r['ticker']; a, b = res.get(t, (None, None))
         if not a or not b:
@@ -109,6 +110,7 @@ def update(pp, hp):
         win = [c for d, c in dd if d >= yr]
         if win:
             r['hi_52w'] = max(win); r['lo_52w'] = min(win)
+        if before.get(t) != (r['price'], r['price_kind'], r['price_date']): out['changed'] += 1
         out['ok'] += 1; out['kinds'][kind] = out['kinds'].get(kind, 0) + 1
     H2 = []
     for t, th in hist.items():
