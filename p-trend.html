@@ -26,7 +26,7 @@ html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
   });
 })();
 </script>
-<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610290259">(function(){var me="202610290259";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>차트 길잡이</title>
+<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610290301">(function(){var me="202610290301";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>차트 길잡이</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 /* layout: 왼쪽 종목 목록(찾기·분야) + 오른쪽 큰 추세 그래프, 휴대폰은 그래프 먼저 */
@@ -170,7 +170,7 @@ const MYLINES = {};
   const bySlug = new Map(P.map((r) => [slug(r.ticker), r.ticker]));
   document.getElementById('asof').textContent = DATA.label || ('대부분 ' + fmtDate(DATA.asof) + ' 종가 기준');
   // 분야 칩
-  const rank = (c) => (/지수|ETF/.test(c) ? 0 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : c === '빅테크' ? 1 : 2);
+  const rank = (c) => (/지수|ETF/.test(c) ? 0 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : c === '빅테크' ? 1 : 2);
   const cats = []; P.forEach((r) => { if (!cats.includes(r.category)) cats.push(r.category); });
   const cats0 = cats.slice(); cats.sort((a, b) => rank(a) - rank(b) || cats0.indexOf(a) - cats0.indexOf(b));
   const catBox = document.getElementById('cats');
@@ -909,7 +909,7 @@ function mm1dTidy(){
 
 /* 토스식 종목 차트(사용자 2026-10-29): 큰 가격 · 기간 등락 한 줄 · 깔끔한 선 차트(최고·최저) · 아래 기간 알약 한 줄 · '자세한 차트'로 추세선·매물대 */
 window.__mmT = window.__mmT || { per: '3m', det: false };
-var MMT_PER = [['1d','1일','오늘'],['1w','1주','지난주보다'],['1m','1달','지난달보다'],['3m','3달','3달 전보다'],['1y','1년','1년 전보다']];
+var MMT_PER = [['1d','1일','오늘'],['1w','1주','지난주보다'],['1m','1달','지난달보다'],['3m','3달','3달 전보다'],['1y','1년','1년 전보다'],['5y','5년','5년 전보다']];
 function mmtRow(){ var tk=mmTk(); try{ return DATA.P.filter(function(r){return r.ticker===tk})[0]; }catch(e){ return null; } }
 function mmtDaily(tk){ try{ return (DATA.H[tk]||[]).filter(function(a){return !a[2]}).map(function(a){return [Date.parse(a[0]+'T21:00:00Z')/1000,a[1]]}); }catch(e){ return []; } }
 function mmtFmt(v,cur){ if(cur==='%') return v.toFixed(3).replace(/0$/,'')+'%'; var d=(cur==='KRW'||cur==='JPY')?0:2; return (cur==='USD'?'$':'')+v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})+(cur==='KRW'?'원':cur&&cur!=='USD'?' '+cur:''); }
@@ -942,6 +942,10 @@ function mmtChart(box, pts, base, cur, intra){
   el.addEventListener('pointerleave',function(){ el.querySelector('.cx').setAttribute('opacity','0'); el.querySelector('.cd').setAttribute('opacity','0'); tip.textContent=''; });
   return {up:up, last:last};
 }
+var __mmL=null, __mmLq=null;
+function mmLong(cb){ if(__mmL) return cb(__mmL); if(__mmLq){ __mmLq.push(cb); return; } __mmLq=[cb];
+  var v=''; try{ v=(window.__SYNC__||'')+String(Math.floor(Date.now()/3600000)); }catch(e){}
+  fetch('live/long.json?v='+v).then(function(x){return x.ok?x.json():null}).catch(function(){return null}).then(function(d){ __mmL=d||{d:{}}; var q=__mmLq; __mmLq=null; q.forEach(function(f){ try{f(__mmL)}catch(e){} }); }); }
 function mmtDraw(){
   var main=document.getElementById('main'); if(!main)return; var T=window.__mmT, r=mmtRow(); if(!r)return;
   var wrap=main.querySelector('.mmt'); if(!wrap){ wrap=document.createElement('div'); wrap.className='mmt'; wrap.innerHTML='<p class="mmt-chg"></p><div class="mmt-box"></div><div class="mmt-per"></div><label class="mmt-det"><input type="checkbox"> 자세한 차트 <small>추세선·매물대·지지·저항</small></label>';
@@ -958,6 +962,12 @@ function mmtDraw(){
     mmIntra(function(D){ var x=D&&D.d&&D.d[r.ticker]; if(!x||!x.p||x.p.length<2){ box.innerHTML='<p class="mmt-empty">오늘 흐름 자료가 아직 없습니다 · 장 시작 후 5분마다 채워집니다</p>'; setChg(r.prev_close,'어제보다'); return; }
       var pts=x.p.map(function(a){return [x.s+a[0]*60,a[1]]}); if(Math.abs(pts[pts.length-1][1]-now)>1e-9 && pe&&pe.classList.contains('mm-fh')) pts.push([Date.now()/1000,now]);
       var rs=x.reg&&x.reg[0]||x.s, re=x.reg&&x.reg[1]||x.s+57600; mmtChart(box,pts,x.pc,cur,{rs:rs,re:re,x0:rs-330*60,x1:re+240*60}); setChg(x.pc,'어제보다'); });
+    return; }
+  if(T.per==='5y'){ // 5년: 하루 한 번 받는 주간 종가(live/long.json) + 최근 일별
+    mmLong(function(Lg){ if(T.per!=='5y'||mmTk()!==r.ticker)return; var wk=(Lg&&Lg.d&&Lg.d[r.ticker])||[], dly=mmtDaily(r.ticker), t0=dly.length?dly[0][0]:Infinity;
+      var pts=wk.map(function(a){return [Date.parse(a[0]+'T21:00:00Z')/1000,a[1]]}).filter(function(a){return a[0]<t0}).concat(dly); pts.push([Date.now()/1000,now]);
+      if(pts.length<3){ box.innerHTML='<p class="mmt-empty">5년 자료를 불러오는 중입니다 · 잠시 뒤 다시 열어 주세요</p>'; chg.textContent=''; return; }
+      mmtChart(box,pts,pts[0][1],cur,null); setChg(pts[0][1],(pts[0][0]<Date.now()/1000-4.5*365*86400)?'5년 전보다':'자료 시작보다'); });
     return; }
   var all=mmtDaily(r.ticker); var tNow=Date.now()/1000; all.push([tNow,now]);
   var days={'1w':7,'1m':31,'3m':92,'1y':366}[T.per]; var from=tNow-days*86400; var pts=all.filter(function(a){return a[0]>=from});

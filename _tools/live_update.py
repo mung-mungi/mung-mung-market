@@ -137,6 +137,33 @@ def macro_files(W, L):
     return mp, mh
 
 
+def long_update(L, tickers):
+    """5년치 주간 종가(토스식 5년 차트용, 사용자 2026-10-29) — 하루 한 번만 받음(5분마다 받을 필요 없음)"""
+    fp = os.path.join(L, 'long.json')
+    try: old = json.load(open(fp, encoding='utf-8'))
+    except Exception: old = {}
+    now = dt.datetime.now(ZoneInfo('Asia/Seoul'))
+    fresh = old.get('at') and (now - dt.datetime.fromisoformat(old['at'])).total_seconds() < 20 * 3600
+    need = [t for t in tickers if t not in old.get('d', {})]
+    if fresh and not need: return False
+    todo = tickers if not fresh else need
+    def one(t):
+        try:
+            o = subprocess.run(['curl', '-sS', '-m', '25', '-A', 'Mozilla/5.0', 'https://query1.finance.yahoo.com/v8/finance/chart/' + urllib.parse.quote(t) + '?range=5y&interval=1wk'], capture_output=True, text=True).stdout
+            r = json.loads(o)['chart']['result'][0]; off = r['meta'].get('gmtoffset', 0)
+            return t, [[dt.datetime.fromtimestamp(ts + off, dt.timezone.utc).strftime('%Y-%m-%d'), round(float(v), 4)] for ts, v in zip(r['timestamp'], r['indicators']['quote'][0]['close']) if v is not None]
+        except Exception:
+            return t, None
+    import concurrent.futures as cf
+    D = dict(old.get('d', {}))
+    with cf.ThreadPoolExecutor(6) as ex:
+        for t, v in ex.map(one, todo):
+            if v: D[t] = v
+    D = {t: D[t] for t in tickers if t in D}
+    json.dump({'at': now.isoformat(timespec='seconds'), 'd': D}, open(fp, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+    return True
+
+
 def build():
     W = os.path.join(R, '.live_tmp'); shutil.rmtree(W, ignore_errors=True); os.makedirs(W)
     for f in ('prices.json', 'history.json'):
@@ -178,7 +205,10 @@ def build():
     except Exception: pass
     try: idxch = idx_update(L, dt.datetime.now(ZoneInfo('Asia/Seoul')))
     except Exception as e: idxch = False; print('idx fail', e)
-    if old == new and oldst.get('base') == base and not idxch and not mch:
+    lch = False
+    try: lch = long_update(L, [r['ticker'] for r in json.load(open(ap, encoding='utf-8'))])
+    except Exception as e: print('long fail', e)
+    if old == new and oldst.get('base') == base and not idxch and not mch and not lch:
         print('same: 시세 변화 없음', res); shutil.rmtree(W, ignore_errors=True); return None
     now = dt.datetime.now(ZoneInfo('Asia/Seoul'))
     tr = json.load(open(os.path.join(W, 'trend.json'), encoding='utf-8')); tr['at'] = now.isoformat(timespec='seconds')
