@@ -16,6 +16,7 @@ background:radial-gradient(120% 90% at 0% 0%,#ffe9c4 0%,transparent 55%),radial-
 .mm-hero.mm-hx>.mm-chip,.mm-hero.mm-hx>.hx-meta.hx-off{display:none!important}
 .mm-hero.mm-hx>img.hx-cat{display:block!important}
 .mm-take.hx-card{display:block!important;margin:0 0 16px!important;padding:14px 16px 13px!important;border-radius:16px!important;background:#fff!important;border:1px solid rgba(0,0,0,.06)!important;box-shadow:0 3px 0 rgba(30,22,8,.08),0 8px 18px rgba(30,22,8,.08)!important;font:400 16px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;color:#1d1c1a!important;text-wrap:pretty}
+.mm-take.hx-card .hx-sub{display:block!important;margin:8px 0 0!important;padding:8px 0 0!important;border:0!important;border-radius:0!important;box-shadow:none!important;border-top:1px dashed rgba(0,0,0,.1)!important;font-size:14.5px!important;color:#4a463f!important;background:none!important}
 .mm-take.hx-card b,.mm-take.hx-card strong{font-weight:700!important}
 .mm-take.hx-card .mm-chipx{display:flex!important;width:max-content!important;max-width:100%;margin:0 0 6px!important;padding:2px 9px!important;border:1px solid rgba(162,106,12,.4)!important;border-radius:999px!important;background:rgba(162,106,12,.06)!important;color:#8a5a08!important;font:700 12px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important}
 .mm-take.hx-card::before{content:"오늘 한눈에";display:block;font:800 12px/1.3 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;letter-spacing:.06em;color:#a26a0c;margin-bottom:6px}
@@ -63,8 +64,9 @@ function run(){
   var meta=c.querySelector(':scope>.hx-meta'),chip=c.querySelector(':scope>.mm-chip');
   if(chip&&meta){var sp=meta.querySelector('span');if(!sp){sp=document.createElement('span');meta.appendChild(sp)}var ct=chip.textContent.trim();if(sp.textContent!==ct)sp.textContent=ct}
   if(meta)meta.classList.toggle('hx-off',!meta.querySelector('span'));
-  var tk=c.querySelector(':scope>.mm-take');if(tk){c.after(tk);}
-  tk=document.querySelector('.mm-take');if(tk)tk.classList.add('hx-card');
+  var tks=[].slice.call(c.querySelectorAll(':scope>.mm-take'));tks.forEach(function(t){c.after(t)});
+  var all=[].slice.call(document.querySelectorAll('.mm-take'));if(all.length){var base=all.filter(function(t){return t.querySelector('.mm-chipx')})[0]||all[0];base.classList.add('hx-card');
+    all.forEach(function(t){if(t===base)return;t.classList.remove('mm-take');t.classList.add('hx-sub');base.appendChild(t)});}
   var s=c.querySelector(':scope>.hx-side');if(s)badge(c,s);
 }
 run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);[300,900,1600,2600,4000].forEach(function(t){setTimeout(run,t)});

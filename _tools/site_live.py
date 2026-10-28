@@ -53,6 +53,7 @@ def run(root):
         s1 = re.sub(r'<script data-tick>[\s\S]*?</script>', lambda m: '<script data-tick>' + TK + '</script>', s0)
         if s1 != s0: open(f, 'w', encoding='utf-8').write(s1); n.append('tick:' + os.path.basename(f))
     n += fix_hub(root)
+    sys.path.insert(0, T); import page_tidy; n += page_tidy.run(root)
     pe = os.path.join(root, 'p-earn.html')
     if os.path.exists(pe):
         sys.path.insert(0, T); import hub_tidy
