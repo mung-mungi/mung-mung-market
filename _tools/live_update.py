@@ -39,8 +39,8 @@ def gate(now):
             return 'rest: 장 시간 아님'
         earn = False
     if FORCE: return None
-    # 자료(d/·p-*.html 내용) 올림만 셈 — 화면 다듬기(_tools/·CSS) 커밋 때문에 시세가 멈추지 않게(사용자 2026-10-29)
-    log = sh('git', 'log', '-40', '--format=%ct|%an', 'origin/main', '--', 'd/', 'live/').splitlines()
+    # 자료(d/, 통합본 동기화) 올림만 셈 — 화면 다듬기(_tools/·CSS) 커밋 때문에 시세가 멈추지 않게(사용자 2026-10-29)
+    log = sh('git', 'log', '-40', '--format=%ct|%an', 'origin/main', '--', 'd/').splitlines()
     ts = [(int(x.split('|')[0]), x.split('|', 1)[1]) for x in log if '|' in x]
     t0 = now.timestamp()
     if sum(1 for t, _ in ts if t0 - t < 3600) >= 7: return 'skip: 최근 1시간 게시 7번'
