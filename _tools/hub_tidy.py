@@ -181,6 +181,7 @@ IBDRAG = (r'''<style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll
 
 def tidy_ibdrag(s):
     s = tidy_navorder(s)
+    s = tidy_headui(s)
     if 'data-ibdrag' in s or 'class="ib"' not in s:
         return s
     return s.replace('</body>', IBDRAG + '</body>', 1) if '</body>' in s else s + IBDRAG
@@ -405,4 +406,14 @@ def tidy_cal(s):
         return s
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-calui>' + open(os.path.join(d, 'calui.css'), encoding='utf-8').read() + '</style><script data-calui>' + open(os.path.join(d, 'calui.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+# 페이지 맨 위 '오늘 한눈에' 양식 통일 — _tools/headui.css·headui.js (사용자 2026-10-29)
+def tidy_headui(s):
+    s = re.sub(r'<(style|script) data-headui>.*?</\1>', '', s, flags=re.S)
+    if 'mm-take' not in s and 'mm-hero' not in s:
+        return s
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-headui>' + open(os.path.join(d, 'headui.css'), encoding='utf-8').read() + '</style><script data-headui>' + open(os.path.join(d, 'headui.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add

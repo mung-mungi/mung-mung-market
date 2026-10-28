@@ -1,0 +1,5 @@
+body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
+body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
+body .mm-take.hu b:not(.mm-chipx){font-weight:800}
+body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
+body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}

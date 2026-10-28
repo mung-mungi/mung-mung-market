@@ -9,3 +9,7 @@ for f, fn in M.items():
     if not os.path.exists(p): continue
     o = open(p, encoding='utf-8').read(); a = fn(fn(o))
     if a != o: open(p, 'w', encoding='utf-8').write(a); print('tidy', f)
+import glob as _g
+for p in _g.glob(os.path.join(R, 'p-*.html')):
+    o = open(p, encoding='utf-8').read(); a = h.tidy_navorder(h.tidy_headui(o))
+    if a != o: open(p, 'w', encoding='utf-8').write(a)
