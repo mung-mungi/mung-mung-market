@@ -274,37 +274,37 @@ function mmtStyleDetail(){ // 자세한 차트: 추세선은 가늘고 옅게, �
     [].slice.call(g.querySelectorAll('circle')).filter(function(c){return A(c,'fill')==='var(--line)'}).forEach(function(c){ g.appendChild(c); }); }
 }
 
-function mmtAxisTags(){ // 자세한 차트: 오른쪽 가격 눈금 칸에 지지·저항 꼬리표 — 현재가 표시를 피하고, 겹치는 눈금 숫자는 흐리게
+function mmtAxisTags(){ // 자세한 차트: 지지·저항 수치를 주가 선이 없는 빈 자리에 쓰고, 오른쪽 눈금까지 점선으로 이음(사용자 2026-10-29)
   var svg=document.querySelector('#main .ch svg'); if(!svg||svg.dataset.tg)return; var gl=document.querySelector('#main p.gl'); if(!gl)return;
-  var t=gl.textContent.replace(/\s+/g,' '), R=t.match(/위 저항 후보\s*([\d,.]+)~([\d,.]+)/), S=t.match(/아래 지지 후보\s*([\d,.]+)~([\d,.]+)/); if(!R&&!S&&!svg.dataset.gate)return;
-  var num=function(x){return +String(x).replace(/,/g,'')};
+  var t=gl.textContent.replace(/\s+/g,' '), R=t.match(/위 저항 후보\s*([\d,.]+)~([\d,.]+)/), S=t.match(/아래 지지 후보\s*([\d,.]+)~([\d,.]+)/); if(!R&&!S)return;
+  var num=function(x){return +String(x).replace(/,/g,'')}, A=function(e,n){return e.getAttribute(n)||''};
   var W=svg.viewBox.baseVal.width, ticks=[].slice.call(svg.querySelectorAll('text')).filter(function(e){return +e.getAttribute('x')>W-70&&/^[\d,.]+$/.test(e.textContent.trim())});
-  if(ticks.length<2)return; svg.dataset.tg=1;
+  var pr=[].slice.call(svg.querySelectorAll('path')).filter(function(p){return A(p,'stroke')==='var(--line)'&&A(p,'fill')==='none'&&A(p,'stroke-width')!=='5.5'})[0];
+  if(ticks.length<2||!pr)return; svg.dataset.tg=1;
   var a=ticks.map(function(e){return [num(e.textContent),+e.getAttribute('y')-4]}).sort(function(x,y){return x[0]-y[0]}), Y=function(v){return a[0][1]+(v-a[0][0])/(a[a.length-1][0]-a[0][0])*(a[a.length-1][1]-a[0][1])};
-  var pill=[].slice.call(svg.querySelectorAll('rect')).filter(function(r){return r.getAttribute('fill')==='var(--line)'&&+r.getAttribute('x')>W-70})[0];
-  var busy=[]; [].slice.call(svg.querySelectorAll('rect')).forEach(function(r){ if(+r.getAttribute('x')>W-75&&+r.getAttribute('height')>8) busy.push([+r.getAttribute('y')-2,+r.getAttribute('y')+(+r.getAttribute('height'))+2]); });
-  var ns='http://www.w3.org/2000/svg', h=15, x=W-54, w=50;
-  var tags=[];
-  function put(lo,hi,txt,col,bg){ var ya=Y(hi), yb=Y(lo); tags.push({ya:ya,yb:yb,ym:(ya+yb)/2,txt:txt,col:col,bg:bg}); }
-  if(R) put(num(R[1]),num(R[2]),'저항 '+R[1],'#b23a2e','#fdecea');
-  if(S) put(num(S[1]),num(S[2]),'지지 '+S[1],'#1f7a3f','#e7f5ea');
-  if(svg.dataset.gate){ var gv=num(svg.dataset.gate); put(gv,gv,'관문 '+svg.dataset.gate+(svg.dataset.gateOk?' ★':''),'#9a6200','#fbf1dc'); }
-  // 겹침 정리: 현재가 알약은 고정, 꼬리표는 위에서부터 차례로 밀어 내림 → 아래로 넘치면 다시 위로
-  var items=tags.map(function(t){t.y=t.ym-h/2;return t}).concat(busy.map(function(b){return {fix:1,y:b[0],hh:b[1]-b[0]}})).sort(function(p,q){return (p.y+(p.hh||h)/2)-(q.y+(q.hh||h)/2)});
-  var HH=function(o){return o.hh||h};
-  for(var pass=0;pass<4;pass++){
-    for(var k=1;k<items.length;k++){ var p=items[k-1], c=items[k], ov=p.y+HH(p)+1-c.y; if(ov>0){ if(!c.fix) c.y+=ov; else if(!p.fix) p.y-=ov; } }
-    var bot=a[0][1]+6; for(var k=items.length-1;k>=0;k--){ var c=items[k], lim=(k===items.length-1?bot:items[k+1].y-1)-HH(c); if(c.y>lim&&!c.fix) c.y=lim; }
-  }
-  tags.forEach(function(t){ var y=t.y, ya=t.ya, yb=t.yb, ym=t.ym, col=t.col;
+  var L=pr.getTotalLength(), pts=[]; for(var i=0;i<=160;i++){ var p=pr.getPointAtLength(L*i/160); pts.push([p.x,p.y]); }
+  var x0=Math.min.apply(null,pts.map(function(p){return p[0]})), x1=+ticks[0].getAttribute('x')-6;
+  var boxes=[].slice.call(svg.querySelectorAll('text')).filter(function(e){return ticks.indexOf(e)<0&&e.textContent.trim()}).map(function(e){ try{var b=e.getBBox();return [b.x-3,b.y-2,b.x+b.width+3,b.y+b.height+2]}catch(x){return null} }).filter(Boolean);
+  var ns='http://www.w3.org/2000/svg', h=15;
+  function put(lo,hi,txt,col,bg){ var ym=(Y(hi)+Y(lo))/2, w=txt.length*7+10, best=null;
+    // 선 높이(ym) 그대로가 비어 있으면 거기에, 주가가 그 높이를 계속 오가면 점선 바로 위·아래로 살짝 띄워 주가 선과 안 겹치는 자리에
+    for(var dy=-26;dy<=26;dy+=2){ var yc=ym+dy; if(yc-h/2<a[a.length-1][1]-6||yc+h/2>a[0][1]+6)continue;
+      for(var x=x0+2;x<=x1-w-14;x+=3){
+        if(boxes.some(function(b){return x<b[2]&&x+w>b[0]&&yc-h/2<b[3]&&yc+h/2>b[1]}))continue;
+        var cl=99; pts.forEach(function(p){ if(p[0]>=x-6&&p[0]<=x+w+6) cl=Math.min(cl,Math.abs(p[1]-yc)-h/2); });
+        if(cl<3)continue;
+        var sc=Math.min(cl,10)*2-Math.abs(dy)*0.6+x*0.01; if(!best||sc>best.sc) best={x:x,y:yc,sc:sc}; } }
+    if(!best) best={x:x1-w-14,y:ym};
     var g=document.createElementNS(ns,'g'); g.setAttribute('class','mm-tag');
-    var bar=document.createElementNS(ns,'rect'); bar.setAttribute('x',x-4); bar.setAttribute('y',ya); bar.setAttribute('width',2.5); bar.setAttribute('height',Math.max(2,yb-ya)); bar.setAttribute('fill',col); bar.setAttribute('opacity','.55'); bar.setAttribute('rx',1); g.appendChild(bar);
-    if(Math.abs(y+h/2-ym)>2){ var ln=document.createElementNS(ns,'line'); ln.setAttribute('x1',x-2.5); ln.setAttribute('x2',x); ln.setAttribute('y1',ym); ln.setAttribute('y2',y+h/2); ln.setAttribute('stroke',col); ln.setAttribute('stroke-width','.8'); ln.setAttribute('opacity','.6'); g.appendChild(ln); }
-    var r=document.createElementNS(ns,'rect'); r.setAttribute('x',x); r.setAttribute('y',y); r.setAttribute('width',w); r.setAttribute('height',h); r.setAttribute('rx',4); r.setAttribute('fill',t.bg); r.setAttribute('opacity','.92'); g.appendChild(r);
-    var tx=document.createElementNS(ns,'text'); tx.setAttribute('x',x+w/2); tx.setAttribute('y',y+h-4); tx.setAttribute('text-anchor','middle'); tx.setAttribute('font-size','9.5'); tx.setAttribute('font-weight','700'); tx.setAttribute('fill',col); tx.textContent=t.txt; g.appendChild(tx);
-    ticks.forEach(function(e){ var ty=+e.getAttribute('y')-4; if(ty>y-6&&ty<y+h+6) e.setAttribute('opacity','.25'); });
-    svg.appendChild(g); });
-  if(pill) svg.appendChild(pill.parentNode===svg?pill:pill.parentNode); // 현재가 알약은 맨 위
+    var near=Math.abs(best.y-ym)<4, lx=near?best.x+w+2:best.x+w/2;
+    var ln=document.createElementNS(ns,'line'); ln.setAttribute('x1',lx); ln.setAttribute('x2',x1); ln.setAttribute('y1',ym); ln.setAttribute('y2',ym); ln.setAttribute('stroke',col); ln.setAttribute('stroke-width','1'); ln.setAttribute('stroke-dasharray','3 3'); ln.setAttribute('opacity','.55'); g.appendChild(ln);
+    if(!near){ var st=document.createElementNS(ns,'line'); st.setAttribute('x1',lx); st.setAttribute('x2',lx); st.setAttribute('y1',ym); st.setAttribute('y2',best.y+(best.y<ym?h/2:-h/2)); st.setAttribute('stroke',col); st.setAttribute('stroke-width','1'); st.setAttribute('opacity','.45'); g.appendChild(st); }
+    var r=document.createElementNS(ns,'rect'); r.setAttribute('x',best.x); r.setAttribute('y',best.y-h/2); r.setAttribute('width',w); r.setAttribute('height',h); r.setAttribute('rx',7.5); r.setAttribute('fill',bg); r.setAttribute('stroke',col); r.setAttribute('stroke-opacity','.25'); r.setAttribute('stroke-width','.8'); g.appendChild(r);
+    var tx=document.createElementNS(ns,'text'); tx.setAttribute('x',best.x+w/2); tx.setAttribute('y',best.y+3.5); tx.setAttribute('text-anchor','middle'); tx.setAttribute('font-size','10'); tx.setAttribute('font-weight','700'); tx.setAttribute('fill',col); tx.textContent=txt; g.appendChild(tx);
+    boxes.push([best.x-4,best.y-h/2-2,best.x+w+4,best.y+h/2+2]);
+    pr.parentNode.insertBefore(g, pr.previousSibling&&A(pr.previousSibling,'stroke-width')==='5.5'?pr.previousSibling:pr); }
+  if(R) put(num(R[1]),num(R[2]),'저항 '+R[1],'#b23a2e','#fff5f4');
+  if(S) put(num(S[1]),num(S[2]),'지지 '+S[1],'#1f7a3f','#f2faf4');
 }
 function mmtTidy(){ var main=document.getElementById('main'); if(!main||!main.querySelector('.hd'))return; var w=main.querySelector('.mmt'); if(!w||w.dataset.tk!==mmTk()) mmtDraw(); }
 
@@ -346,6 +346,7 @@ def run(root):
     if os.path.exists(p):  # 종목 차트: 휴대폰에서 차트를 크게(사용자 2026-10-29)
         s = open(p, encoding='utf-8').read(); o = s
         s = s.replace('Math.round(Math.min(300, Math.max(200, W * 0.42)))', 'Math.round(Math.min(440, Math.max(300, W * 0.95)))')
+        s = re.sub(r'const MYLINES = \{.*?\};\n', 'const MYLINES = {};\n', s, count=1)  # 내 관점 관문선은 사이트에서 생략(사용자 2026-10-29)
         if s != o: open(p, 'w', encoding='utf-8').write(s); done.append('trend-height')
     for f, cfg in PAGES.items():
         p = os.path.join(root, f)
