@@ -351,3 +351,13 @@ def tidy_macrogo(s):
     if 'id="mchips"' not in s:
         return s
     return s.replace('</body>', MACROGO + '</body>', 1) if '</body>' in s else s + MACROGO
+
+
+# 시장 경고등 화면 정리 — _tools/ltui.css·ltui.js (사용자 2026-10-29)
+def tidy_lights(s):
+    s = re.sub(r'<(style|script) data-ltui>.*?</\1>', '', s, flags=re.S)
+    if 'id="areas"' not in s:
+        return s
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-ltui>' + open(os.path.join(d, 'ltui.css'), encoding='utf-8').read() + '</style><script data-ltui>' + open(os.path.join(d, 'ltui.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add

@@ -60,6 +60,11 @@ def run(root):
         sys.path.insert(0, T); import hub_tidy
         o = open(pe, encoding='utf-8').read(); b = hub_tidy.tidy_hits(o)
         if b != o: open(pe, 'w', encoding='utf-8').write(b); n.append('p-earn')
+    pl = os.path.join(root, 'p-lights.html')
+    if os.path.exists(pl):
+        sys.path.insert(0, T); import hub_tidy
+        o = open(pl, encoding='utf-8').read(); b = hub_tidy.tidy_lights(o)
+        if b != o: open(pl, 'w', encoding='utf-8').write(b); n.append('p-lights')
     po = os.path.join(root, 'p-opt.html')
     if os.path.exists(po):
         sys.path.insert(0, T); import hub_tidy
