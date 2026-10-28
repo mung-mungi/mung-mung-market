@@ -123,6 +123,9 @@ def fix_hub(root):
                   '.bn img{position:absolute;right:4px;bottom:-34px;height:148px;width:auto;max-width:none;pointer-events:none;filter:drop-shadow(0 4px 8px rgba(80,50,10,.16))}\n.bn .tx{padding-right:118px!important}')
     s = s.replace(' 기준 · 하루 6~8회 갱신', ' 기준 · 80종목 한눈에')
     sys.path.insert(0, T); import hub_tidy; s = hub_tidy.tidy(s)  # 첫 화면 정리(사용자 2026-10-29)
+    MJ = '<script data-mkt>' + open(os.path.join(T, 'market.js'), encoding='utf-8').read() + '</script>'
+    s = re.sub(r'<script data-mkt>[\s\S]*?</script>', '', s)
+    s = s.replace('</body>', MJ + '</body>', 1) if '</body>' in s else s + MJ
     if s != o: open(p, 'w', encoding='utf-8').write(s); return ['index.html']
     return []
 

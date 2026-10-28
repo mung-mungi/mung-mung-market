@@ -50,6 +50,28 @@ def gate(now):
     return None
 
 
+MKT = [('nasdaq', '^IXIC', 'pct'), ('sox', '^SOX', 'pct'), ('us10y', '^TNX', 'lvl'), ('wti', 'CL=F', 'usd')]
+
+
+def market():
+    # 홈 '오늘 한눈에' 숫자 4개(나스닥·반도체·10년물·WTI) — 사용자 2026-10-29 지시
+    sys.path.insert(0, T); import refresh_prices as rp
+    out = {}
+    for k, sym, kind in MKT:
+        r = rp.get('https://query1.finance.yahoo.com/v8/finance/chart/' + sym.replace('^', '%5E').replace('=', '%3D') + '?range=1d&interval=5m&includePrePost=true')
+        if not r: continue
+        m = r['meta']; v = m.get('regularMarketPrice'); pc = m.get('chartPreviousClose') or m.get('previousClose')
+        try:
+            q = r['indicators']['quote'][0]['close']; ts = r['timestamp']
+            last = [(t, c) for t, c in zip(ts, q) if c is not None]
+            if last: v = last[-1][1]; tt = last[-1][0]
+            else: tt = m.get('regularMarketTime')
+        except Exception: tt = m.get('regularMarketTime')
+        if v is None: continue
+        out[k] = {'v': round(v, 3), 'pc': pc, 'chg': round((v / pc - 1) * 100, 2) if pc else None, 'kind': kind, 't': tt}
+    return out
+
+
 def build():
     W = os.path.join(R, '.live_tmp'); shutil.rmtree(W, ignore_errors=True); os.makedirs(W)
     for f in ('prices.json', 'history.json'):
@@ -80,6 +102,8 @@ def build():
     st = {'at': now.isoformat(timespec='seconds'), 'key': now.strftime('%Y%m%d%H%M'), 'label': now.strftime('%m.%d %H:%M') + ' 기준(5분 갱신)',
           'base': base, 'files': ['prices', 'history'], 'ok': res.get('ok'), 'fail': res.get('fail', []), 'kinds': kinds}
     json.dump(st, open(os.path.join(L, 'stamp.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    mk = market()
+    if mk: json.dump({'at': st['at'], 'label': now.strftime('%H:%M'), 'items': mk}, open(os.path.join(L, 'market.json'), 'w', encoding='utf-8'), ensure_ascii=False)
     shutil.rmtree(W, ignore_errors=True)
     return st
 
