@@ -85,6 +85,20 @@ function tidy(){
  },
  'p-trend.html': {
   'css': """
+/* 토스식 기본 화면: 큰 가격, 기간 등락 한 줄, 깔끔한 차트, 기간 알약 한 줄. '자세한 차트'를 켜면 추세선·매물대 차트 */
+#main .hd .pr{font:800 32px/1.15 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;letter-spacing:-.02em;border:0!important}
+#main .hd .kind{font-size:12px!important}
+.mmt-chg{margin:2px 0 6px;font-size:15px;color:#6b675f}.mmt-chg b{font-weight:700}
+.mmt-tip{min-height:18px;font-size:12.5px;font-weight:700;color:#141210;text-align:center}
+.mmt-empty{margin:40px 0;text-align:center;color:#8a877f;font-size:14px}
+.mmt-per{display:flex;gap:4px;margin:8px 0 4px;padding:3px;border-radius:12px;background:#f3f1ec}
+.mmt-per button{flex:1;font:inherit;font-size:14.5px;font-weight:700;padding:7px 0;border:0;border-radius:9px;background:transparent;color:#8a877f}
+.mmt-per button[aria-pressed=true]{background:#fff;color:#141210;box-shadow:0 1px 0 rgba(0,0,0,.06),0 2px 6px rgba(0,0,0,.08)}
+.mmt-det{display:flex;align-items:center;gap:7px;margin:10px 2px 2px;font-size:14px;font-weight:700;color:#4a463f;cursor:pointer}
+.mmt-det input{width:18px;height:18px;accent-color:#9a6200}.mmt-det small{font-weight:500;color:#9a978f;font-size:12px}
+#main.mmt-on:not(.mmt-detail) .rg,#main.mmt-on:not(.mmt-detail) .ch,#main.mmt-on:not(.mmt-detail) .mm-lv,#main.mmt-on:not(.mmt-detail) details.mm-fold,#main.mmt-on:not(.mmt-detail) p.nt{display:none!important}
+#main.mmt-detail .mmt-box,#main.mmt-detail .mmt-chg,#main.mmt-detail .mmt-per{display:none!important}
+#main .rg{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:6px!important;scrollbar-width:none}#main .rg::-webkit-scrollbar{display:none}#main .rg>*{flex:none!important}
 /* 토스식 1일 차트 */
 #main.mm-1d-on .mm-lv{display:none!important}
 #main .hd .pr{cursor:pointer;border-bottom:1px dashed rgba(0,0,0,.18)}
@@ -183,8 +197,68 @@ function mm1dTidy(){
   else main.classList.remove('mm-1d-on');
 }
 
+/* 토스식 종목 차트(사용자 2026-10-29): 큰 가격 · 기간 등락 한 줄 · 깔끔한 선 차트(최고·최저) · 아래 기간 알약 한 줄 · '자세한 차트'로 추세선·매물대 */
+window.__mmT = window.__mmT || { per: '3m', det: false };
+var MMT_PER = [['1d','1일','오늘'],['1w','1주','지난주보다'],['1m','1달','지난달보다'],['3m','3달','3달 전보다'],['1y','1년','1년 전보다']];
+function mmtRow(){ var tk=mmTk(); try{ return DATA.P.filter(function(r){return r.ticker===tk})[0]; }catch(e){ return null; } }
+function mmtDaily(tk){ try{ return (DATA.H[tk]||[]).filter(function(a){return !a[2]}).map(function(a){return [Date.parse(a[0]+'T21:00:00Z')/1000,a[1]]}); }catch(e){ return []; } }
+function mmtFmt(v,cur){ var d=(cur==='KRW'||cur==='JPY')?0:2; return (cur==='USD'?'$':'')+v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})+(cur==='KRW'?'원':cur&&cur!=='USD'?' '+cur:''); }
+function mmtKst(sec,withDate){ var d=new Date(sec*1000+9*3600000), p=function(n){return (n<10?'0':'')+n}; return withDate?(d.getUTCFullYear()%100)+'.'+(d.getUTCMonth()+1)+'.'+d.getUTCDate():p(d.getUTCHours())+':'+p(d.getUTCMinutes()); }
+function mmtChart(box, pts, base, cur, intra){
+  var W=Math.max(260,box.clientWidth||330), H=Math.round(Math.min(380,Math.max(260,W*0.78))), m={l:4,r:4,t:34,b:30};
+  var t0=pts[0][0], t1=pts[pts.length-1][0]; if(intra){ t0=Math.min(t0,intra.x0); t1=Math.max(t1,intra.x1); }
+  var vs=pts.map(function(a){return a[1]}); if(base!=null) vs.push(base);
+  var lo=Math.min.apply(0,vs), hi=Math.max.apply(0,vs), pad=(hi-lo)*0.08||hi*0.01; lo-=pad; hi+=pad;
+  var sx=function(t){return m.l+(t-t0)/((t1-t0)||1)*(W-m.l-m.r)}, sy=function(v){return m.t+(hi-v)/(hi-lo)*(H-m.t-m.b)};
+  var last=pts[pts.length-1], up=base==null||last[1]>=base, col=up?'#e0423a':'#3a6fe0';
+  var path=pts.map(function(a,i){return (i?'L':'M')+sx(a[0]).toFixed(1)+','+sy(a[1]).toFixed(1)}).join('');
+  var iMax=0,iMin=0; pts.forEach(function(a,i){ if(a[1]>pts[iMax][1])iMax=i; if(a[1]<pts[iMin][1])iMin=i; });
+  var lab=function(i,top){ var a=pts[i], x=sx(a[0]), y=sy(a[1]), anc=x<W*0.2?'start':x>W*0.8?'end':'middle';
+    return '<circle cx="'+x+'" cy="'+y+'" r="3" fill="'+col+'" opacity=".55"/><text x="'+x+'" y="'+(top?y-9:y+17)+'" font-size="11.5" fill="'+col+'" text-anchor="'+anc+'">'+(top?'최고 ':'최저 ')+mmtFmt(a[1],cur)+'</text>'; };
+  var s='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:auto;display:block;touch-action:pan-y">';
+  if(intra){ s+='<rect x="'+sx(intra.rs)+'" y="'+m.t+'" width="'+(sx(intra.re)-sx(intra.rs))+'" height="'+(H-m.t-m.b)+'" fill="#000" opacity=".025"/>'
+     +'<text x="'+sx(intra.rs)+'" y="'+(H-8)+'" font-size="10.5" fill="#9a978f" text-anchor="middle">'+mmtKst(intra.rs)+' 개장</text><text x="'+sx(intra.re)+'" y="'+(H-8)+'" font-size="10.5" fill="#9a978f" text-anchor="middle">'+mmtKst(intra.re)+' 마감</text>'; }
+  if(base!=null) s+='<line x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+sy(base)+'" y2="'+sy(base)+'" stroke="#c9c6bf" stroke-dasharray="2 4" stroke-width="1"/>';
+  s+='<path d="'+path+'" fill="none" stroke="'+col+'" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>'+lab(iMax,true)+lab(iMin,false)
+   +'<circle cx="'+sx(last[0])+'" cy="'+sy(last[1])+'" r="4.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>'
+   +'<line class="cx" x1="0" x2="0" y1="'+m.t+'" y2="'+(H-m.b)+'" stroke="#141210" stroke-width="1" opacity="0"/><circle class="cd" r="4.5" fill="#141210" opacity="0"/></svg>';
+  box.innerHTML='<div class="mmt-tip"></div>'+s;
+  var el=box.querySelector('svg'), tip=box.querySelector('.mmt-tip');
+  function mv(e){ var r=el.getBoundingClientRect(), t=t0+((e.clientX-r.left)/r.width*W-m.l)/(W-m.l-m.r)*(t1-t0), b=pts[0];
+    pts.forEach(function(a){ if(Math.abs(a[0]-t)<Math.abs(b[0]-t))b=a; });
+    var cx=el.querySelector('.cx'), cd=el.querySelector('.cd'); cx.setAttribute('x1',sx(b[0]));cx.setAttribute('x2',sx(b[0]));cx.setAttribute('opacity','.3'); cd.setAttribute('cx',sx(b[0]));cd.setAttribute('cy',sy(b[1]));cd.setAttribute('opacity','1');
+    tip.textContent=(intra?mmtKst(b[0]):mmtKst(b[0],true))+'  '+mmtFmt(b[1],cur)+(base?'  ('+((b[1]/base-1)*100>=0?'+':'−')+Math.abs((b[1]/base-1)*100).toFixed(2)+'%)':''); }
+  el.addEventListener('pointermove',mv); el.addEventListener('pointerdown',mv);
+  el.addEventListener('pointerleave',function(){ el.querySelector('.cx').setAttribute('opacity','0'); el.querySelector('.cd').setAttribute('opacity','0'); tip.textContent=''; });
+  return {up:up, last:last};
+}
+function mmtDraw(){
+  var main=document.getElementById('main'); if(!main)return; var T=window.__mmT, r=mmtRow(); if(!r)return;
+  var wrap=main.querySelector('.mmt'); if(!wrap){ wrap=document.createElement('div'); wrap.className='mmt'; wrap.innerHTML='<p class="mmt-chg"></p><div class="mmt-box"></div><div class="mmt-per"></div><label class="mmt-det"><input type="checkbox"> 자세한 차트 <small>추세선·매물대·지지·저항</small></label>';
+    var hd=main.querySelector('.hd'); hd.after(wrap);
+    var pr=wrap.querySelector('.mmt-per'); MMT_PER.forEach(function(p){ var b=document.createElement('button'); b.type='button'; b.textContent=p[1]; b.dataset.p=p[0]; b.addEventListener('click',function(){ T.per=p[0]; mmtDraw(); }); pr.appendChild(b); });
+    var cb=wrap.querySelector('input'); cb.addEventListener('change',function(){ T.det=cb.checked; main.classList.toggle('mmt-detail',T.det); setTimeout(function(){ window.dispatchEvent(new Event('resize')); },30); }); }
+  wrap.querySelector('input').checked=T.det; main.classList.toggle('mmt-detail',T.det); main.classList.add('mmt-on');
+  wrap.dataset.tk=r.ticker;
+  wrap.querySelectorAll('.mmt-per button').forEach(function(b){ b.setAttribute('aria-pressed',String(b.dataset.p===T.per)); });
+  var box=wrap.querySelector('.mmt-box'), chg=wrap.querySelector('.mmt-chg'), cur=r.currency, now=Number(r.price);
+  var pe=main.querySelector('.hd .pr'); var lv=pe&&pe.textContent.match(/[\d,]+\.?\d*/); if(pe&&pe.classList.contains('mm-fh')&&lv) now=Number(lv[0].replace(/,/g,''));
+  function setChg(base,label){ if(base==null){chg.textContent='';return} var dv=now-base, dp=dv/base*100, c=dv>=0?'#e0423a':'#3a6fe0'; chg.innerHTML='<span></span> <b style="color:'+c+'"></b>'; chg.firstChild.textContent=label; chg.lastChild.textContent=(dv>=0?'+':'−')+mmtFmt(Math.abs(dv),cur)+' ('+Math.abs(dp).toFixed(1)+'%)'; }
+  if(T.per==='1d'){
+    mmIntra(function(D){ var x=D&&D.d&&D.d[r.ticker]; if(!x||!x.p||x.p.length<2){ box.innerHTML='<p class="mmt-empty">오늘 흐름 자료가 아직 없습니다 · 장 시작 후 5분마다 채워집니다</p>'; setChg(r.prev_close,'어제보다'); return; }
+      var pts=x.p.map(function(a){return [x.s+a[0]*60,a[1]]}); if(Math.abs(pts[pts.length-1][1]-now)>1e-9 && pe&&pe.classList.contains('mm-fh')) pts.push([Date.now()/1000,now]);
+      var rs=x.reg&&x.reg[0]||x.s, re=x.reg&&x.reg[1]||x.s+57600; mmtChart(box,pts,x.pc,cur,{rs:rs,re:re,x0:rs-330*60,x1:re+240*60}); setChg(x.pc,'어제보다'); });
+    return; }
+  var all=mmtDaily(r.ticker); var tNow=Date.now()/1000; all.push([tNow,now]);
+  var days={'1w':7,'1m':31,'3m':92,'1y':366}[T.per]; var from=tNow-days*86400; var pts=all.filter(function(a){return a[0]>=from});
+  if(pts.length<2) pts=all.slice(-2);
+  var prev=all.filter(function(a){return a[0]<from}); var base=prev.length?prev[prev.length-1][1]:pts[0][1];
+  mmtChart(box,pts,base,cur,null); setChg(base,MMT_PER.filter(function(p){return p[0]===T.per})[0][2]);
+}
+function mmtTidy(){ var main=document.getElementById('main'); if(!main||!main.querySelector('.hd'))return; var w=main.querySelector('.mmt'); if(!w||w.dataset.tk!==mmTk()) mmtDraw(); }
+
 function tidy(){
-  var main=document.getElementById('main'); if(!main)return; try{mm1dTidy()}catch(e){}
+  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)}
   // 차트 안에서 선과 겹치던 글자 빼기(장기 추세·단기 상단·하단) — 같은 내용은 위 4칸에
   main.querySelectorAll('.ch svg text').forEach(function(t){ if(/^(장기 추세|단기 상단|단기 하단)/.test(t.textContent))t.remove(); });
   var gl=main.querySelector('p.gl'), ch=main.querySelector('.ch');
