@@ -139,21 +139,16 @@ def tidy_units(s):
     return s.replace('</body>', UNITS_CSS + '</body>', 1) if '</body>' in s else s + UNITS_CSS
 
 
-# 실적 결과 회사 바로가기: 들쭉날쭉한 알약 → 한 줄 4칸 작은 격자로 가지런히(사용자 2026-10-29 — 줄 정리·공간 낭비)
-HITS = ('<style data-hits>body .hits{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important}'
-        'body .hits>.hday,body .hits>.hmore,body .hits>.hrest{grid-column:1/-1}'
-        'body .hits>.hday{justify-self:start}'
-        'body .hits .hrest{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important}'
+# 실적 결과 회사 바로가기: 이름 길이만큼만 차지하는 작은 알약을 촘촘히(사용자 2026-10-29 — 공간 아끼기)
+HITS = ('<style data-hits>body .hits{display:flex!important;flex-wrap:wrap!important;gap:4px!important;align-items:center}'
+        'body .hits>.hday,body .hits>.hmore,body .hits>.hrest{flex-basis:100%}'
+        'body .hits>.hday{flex-basis:auto;font-size:12px!important;padding:1px 8px!important;margin-right:2px}'
+        'body .hits .hrest:not([hidden]){display:flex!important;flex-wrap:wrap!important;gap:4px!important}body .hits .hrest[hidden]{display:none!important}'
+        'body .hits button:not(.hmore){display:inline-flex!important;align-items:center!important;gap:3px!important;padding:3px 9px!important;'
+        'border-radius:999px!important;min-height:0!important;line-height:1.3!important;box-shadow:0 1px 0 rgba(0,0,0,.08)}'
+        'body .hits button:not(.hmore) b{font-size:13px!important;font-weight:700;letter-spacing:-.02em}'
         'body .hits button:not(.hmore) span{display:none!important}'
-        'body .hits button:not(.hmore){display:flex!important;flex-direction:row!important;align-items:baseline!important;justify-content:center;gap:4px!important;'
-        'min-width:0;padding:4px 4px!important;border-radius:8px!important;box-shadow:0 2px 0 rgba(0,0,0,.06);text-align:left}'
-        'body .hits button:not(.hmore):active{transform:translateY(1px)}'
-        'body .hits b{font-size:13px!important;font-weight:700;letter-spacing:-.02em;line-height:1.3;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
-        'body .hits span{font-size:11px!important;line-height:1.2;flex:none}'
-        'body .hits .hmore{border-radius:8px!important;padding:4px 10px!important;font-size:13px!important}'
-        "</style><script data-hits>(function(){function fit(){var SH={'TE커넥티비티':'TE커넥','텍사스인스트루먼트':'텍사스인스','마이크로소프트':'MS','슈퍼마이크로':'슈퍼마이크로'};document.querySelectorAll('.hits button:not(.hmore) b').forEach(function(b){var t=b.textContent.trim();if(SH[t]&&SH[t]!==t){b.title=t;b.textContent=SH[t]}b.style.fontSize='';var f=13;while(b.scrollWidth>b.clientWidth+1&&f>10){f-=.5;b.style.setProperty('font-size',f+'px','important')}})}"
-        "var h=document.getElementById('hits');if(h){new MutationObserver(fit).observe(h,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});fit()}})();</script><style>"
-        'body .hits>.hday{font-size:12px!important;padding:1px 8px!important}</style>')
+        'body .hits .hmore{flex-basis:auto!important;border-radius:999px!important;padding:3px 10px!important;font-size:12.5px!important}</style>')
 
 
 def tidy_hits(s):
