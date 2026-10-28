@@ -72,6 +72,39 @@ def market():
     return out
 
 
+# 데일리 시황 '일별 지수 등락' 3개월 차트용 지수 일별 등락(사용자 2026-10-29) — 6시간에 한 번만 받음(요청 4개)
+IDX = [('^GSPC', 'spx_chg'), ('^IXIC', 'ndx_chg'), ('^SOX', 'sox_chg'), ('^DJI', 'dji_chg')]
+
+
+def idx_update(L, now):
+    fp = os.path.join(L, 'idx.json')
+    try:
+        old = json.load(open(fp, encoding='utf-8'))
+        if (now - dt.datetime.fromisoformat(old['at'])).total_seconds() < 6 * 3600: return False
+    except Exception: old = None
+    sys.path.insert(0, T); import refresh_prices as rp
+    ny = now.astimezone(ZoneInfo('America/New_York')); today = ny.strftime('%Y-%m-%d')
+    closed = ny.weekday() >= 5 or ny.hour * 60 + ny.minute >= 16 * 60 + 15
+    rows = {}
+    for sym, key in IDX:
+        r = rp.get('https://query1.finance.yahoo.com/v8/finance/chart/' + sym.replace('^', '%5E') + '?range=6mo&interval=1d')
+        if not r: continue
+        off = r['meta'].get('gmtoffset', -14400); ts = r.get('timestamp') or []; cl = r['indicators']['quote'][0].get('close') or []
+        prev = None
+        for t, c in zip(ts, cl):
+            if c is None: continue
+            d = rp.ldate(t, off)
+            if prev and not (d == today and not closed):
+                rows.setdefault(d, {'date': d})[key] = round((c / prev - 1) * 100, 2)
+            prev = c
+    if not rows: return False
+    out = {'at': now.isoformat(timespec='seconds'), 'rows': [rows[d] for d in sorted(rows)]}
+    if old and old.get('rows') == out['rows']:
+        old['at'] = out['at']; out = old
+    json.dump(out, open(fp, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+    return True
+
+
 def build():
     W = os.path.join(R, '.live_tmp'); shutil.rmtree(W, ignore_errors=True); os.makedirs(W)
     for f in ('prices.json', 'history.json'):
@@ -91,7 +124,9 @@ def build():
     oldst = {}
     try: oldst = json.load(open(os.path.join(L, 'stamp.json'), encoding='utf-8'))
     except Exception: pass
-    if old == new and oldst.get('base') == base:
+    try: idxch = idx_update(L, dt.datetime.now(ZoneInfo('Asia/Seoul')))
+    except Exception as e: idxch = False; print('idx fail', e)
+    if old == new and oldst.get('base') == base and not idxch:
         print('same: 시세 변화 없음', res); shutil.rmtree(W, ignore_errors=True); return None
     now = dt.datetime.now(ZoneInfo('Asia/Seoul'))
     tr = json.load(open(os.path.join(W, 'trend.json'), encoding='utf-8')); tr['at'] = now.isoformat(timespec='seconds')

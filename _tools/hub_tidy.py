@@ -43,6 +43,8 @@ BRIEF_CSS = ('<style data-pmore>.bf-pmore{display:block;margin:6px 0 0;padding:7
 
 def tidy_brief(s):
     s = tidy_np2(s)
+    s = tidy_rng(s)
+    s = tidy_rngui(s)
     s = tidy_deep(s)
     s = tidy_paper(s)
     s = tidy_tiles(s)
@@ -243,20 +245,21 @@ def tidy_opt(s):
 # 데일리 시황 펼친 카드: 시장 이야기를 맨 앞 신문 기사로, 나머지 섹션은 제목만 보이는 접이식 신문 목차로(사용자 2026-10-29 — 전체 글이 너무 김)
 NP2 = (r"""<style data-np2>body #days .bf-more{gap:0!important;row-gap:0!important;background:#f3f2ee;border-top:3px solid #333;margin-top:8px;padding:10px 12px 6px;border-radius:2px}"""
        r"""body #days .bf-more .bf-toc{display:none!important}"""
-       r"""body #days .bf-more .np-lead{border:0!important;background:none!important;padding:0 0 6px!important;margin:0!important}"""
-       r"""body #days .bf-more .np-lead>.k{display:block;font:900 19px/1.3 "Noto Serif KR","Nanum Myeongjo",serif!important;color:#111!important;letter-spacing:-.01em;padding-bottom:6px;margin-bottom:8px;border-bottom:1px solid #cfccc4}"""
+       r"""body #days .bf-more .np-lead{border:0!important;border-top:1px solid #cfccc4!important;background:none!important;padding:12px 0 6px!important;margin:0!important}"""
+       r"""body #days .bf-more .np-lead>.k{display:block;font:900 21px/1.3 "Noto Serif KR","Nanum Myeongjo",serif!important;color:#111!important;letter-spacing:-.01em;padding-bottom:6px;margin-bottom:8px;border-bottom:1px solid #cfccc4}"""
        r"""body #days .bf-more .np-lead>.k::before{content:"시황 해설";display:block;font:700 11px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#7a766d;letter-spacing:.08em;margin-bottom:2px}"""
-       r"""body #days .bf-more .np-lead p{font-size:15px!important;line-height:1.72!important;color:#222!important;margin:0 0 10px!important}"""
+       r"""body #days .bf-more .np-lead p{font-size:16.5px!important;line-height:1.75!important;color:#222!important;margin:0 0 10px!important}"""
        r"""body #days .bf-more .np-lead .bf-hlt{background:none!important;font-weight:800;box-shadow:inset 0 -.42em 0 #e4dfd2}"""
        r"""body #days .bf-day.on>.bf-com{display:none!important}body #days .np-lead .np-x{display:none!important}body #days .np-lead.op .np-x{display:block!important}"""
        r"""body #days .np-lead .np-rd{all:unset;display:block;margin:2px 0 8px;font:600 13px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#66635c;cursor:pointer}"""
+       r"""body #days .bf-more .bf-sec li{font-size:16px!important;line-height:1.6!important}body #days .bf-more .bf-sec .it{font-size:16.5px!important}body #days .bf-more .bf-sec .sub2,body #days .bf-more .bf-sec .q{font-size:15px!important}body #days .bf-day>.bf-hl{font-size:19px!important}"""
        r"""body #days .bf-more .bf-cite{font-size:11px!important;opacity:.7}"""
        r"""body #days .bf-more .bf-sec.npf{border:0!important;border-top:1px solid #cfccc4!important;background:none!important;border-radius:0!important;padding:0!important;margin:0!important}"""
-       r"""body #days .bf-more .bf-sec.npf>.k{display:flex!important;justify-content:space-between;align-items:center;cursor:pointer;padding:9px 2px!important;margin:0!important;font:800 15px/1.35 "Noto Serif KR","Nanum Myeongjo",serif!important;color:#222!important;border:0!important;background:none!important}"""
+       r"""body #days .bf-more .bf-sec.npf>.k{display:flex!important;justify-content:space-between;align-items:center;cursor:pointer;padding:9px 2px!important;margin:0!important;font:800 16.5px/1.35 "Noto Serif KR","Nanum Myeongjo",serif!important;color:#222!important;border:0!important;background:none!important}"""
        r"""body #days .bf-more .bf-sec.npf>.k::after{content:"▾";font:400 13px sans-serif;color:#7a766d}body #days .bf-more .bf-sec.npf.op>.k::after{content:"▴"}"""
        r"""body #days .bf-more .bf-sec.npf:not(.op)>:not(.k){display:none!important}body #days .bf-more .bf-sec.npf.op{padding-bottom:10px!important}</style>"""
-       r"""<script data-np2>(function(){function fix(){document.querySelectorAll('#days .bf-more').forEach(function(m){if(m.dataset.np2)return;m.dataset.np2=1;var st=m.querySelector('.bf-story');if(st){st.classList.add('np-lead');m.insertBefore(st,m.firstChild);var ps=st.querySelectorAll('p');if(ps.length>2){for(var i=2;i<ps.length;i++)ps[i].classList.add('np-x');var rb=document.createElement('button');rb.type='button';rb.className='np-rd';rb.textContent='기사 이어 읽기 ▾ ('+(ps.length-2)+'단락)';rb.onclick=function(){st.classList.toggle('op');rb.textContent=st.classList.contains('op')?'접기 ▴':'기사 이어 읽기 ▾ ('+(ps.length-2)+'단락)'};st.appendChild(rb)}}var ex=[m.querySelector(':scope>.bf-macro'),m.querySelector(':scope>.bf-src')].filter(Boolean);if(ex.length){var w=document.createElement('div');w.className='bf-sec';var kk=document.createElement('span');kk.className='k';kk.textContent='수치 · 출처';w.appendChild(kk);ex.forEach(function(e){w.appendChild(e)});m.appendChild(w)}"""
-       r"""m.querySelectorAll('.bf-sec').forEach(function(c){if(c.classList.contains('np-lead'))return;c.classList.add('npf');var k=c.querySelector(':scope>.k');if(k)k.addEventListener('click',function(){c.classList.toggle('op')})})})}"""
+       r"""<script data-np2>(function(){function fix(){document.querySelectorAll('#days .bf-more').forEach(function(m){if(m.dataset.np2)return;m.dataset.np2=1;var st=m.querySelector('.bf-story');if(st){st.classList.add('np-lead');var aft=m.querySelector(':scope>.bf-sec[id$="-changes"]')||m.querySelector(':scope>.bf-sec.iss');if(aft)aft.after(st);var ps=st.querySelectorAll('p');if(ps.length>2){for(var i=2;i<ps.length;i++)ps[i].classList.add('np-x');var rb=document.createElement('button');rb.type='button';rb.className='np-rd';rb.textContent='기사 이어 읽기 ▾ ('+(ps.length-2)+'단락)';rb.onclick=function(){st.classList.toggle('op');rb.textContent=st.classList.contains('op')?'접기 ▴':'기사 이어 읽기 ▾ ('+(ps.length-2)+'단락)'};st.appendChild(rb)}}var ex=[m.querySelector(':scope>.bf-macro'),m.querySelector(':scope>.bf-src')].filter(Boolean);if(ex.length){var w=document.createElement('div');w.className='bf-sec';var kk=document.createElement('span');kk.className='k';kk.textContent='수치 · 출처';w.appendChild(kk);ex.forEach(function(e){w.appendChild(e)});m.appendChild(w)}"""
+       r"""m.querySelectorAll('.bf-sec').forEach(function(c){if(c.classList.contains('np-lead'))return;c.classList.add('npf');if(c.classList.contains('iss'))c.classList.add('op');var k=c.querySelector(':scope>.k');if(k)k.addEventListener('click',function(){c.classList.toggle('op')})})})}"""
        r"""var k=0;(function go(){fix();if(!document.__np2){var d=document.getElementById('days');if(d){document.__np2=1;new MutationObserver(fix).observe(d,{childList:true,subtree:true})}}if(++k<10)setTimeout(go,500)})()})();</script>""")
 
 
@@ -265,3 +268,34 @@ def tidy_np2(s):
     if 'id="days"' not in s:
         return s
     return s.replace('</body>', NP2 + '</body>', 1) if '</body>' in s else s + NP2
+
+
+# 데일리 시황 '일별 지수 등락·분위기' 차트: 기본 3개월(사용자 2026-10-29). 브리핑 이전 날짜는 live/idx.json(Actions가 받는 지수 일별 등락)으로 채움, 1·3·6개월 버튼
+RNG_ANCHOR = "function drawChart(){\n  const box=$('chart');"
+RNG_FN = (r"""let __IDX=null;fetch('live/idx.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.rows){__IDX=j.rows;try{drawChart()}catch(e){}}}).catch(()=>{});"""
+          r"""function __rngui(){const lg=$('legend');if(!lg||document.querySelector('.bf-rng'))return;const w=document.createElement('div');w.className='bf-rng';[[1,'1개월'],[3,'3개월'],[6,'6개월']].forEach(o=>{const b=document.createElement('button');b.type='button';b.textContent=o[1];b.setAttribute('aria-pressed',o[0]===(st.rng||3));"""
+          r"""b.onclick=()=>{st.rng=o[0];w.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawChart()};w.appendChild(b)});lg.parentNode.insertBefore(w,lg)}"""
+          r"""function __cb(){__rngui();const mo=(st.rng||3);const by={};(__IDX||[]).forEach(r=>{by[r.date]=Object.assign({},r)});B.forEach(r=>{by[r.date]=r});"""
+          r"""const all=Object.keys(by).sort().map(k=>by[k]);if(!all.length)return B;const L=new Date(all[all.length-1].date+'T00:00:00Z');L.setUTCMonth(L.getUTCMonth()-mo);const c=L.toISOString().slice(0,10);"""
+          r"""return all.filter(r=>r.date>c)}""" "\n")
+
+
+def tidy_rng(s):
+    s = re.sub(r'(?:let __IDX=null;|function __cb\(\)\{)[^\n]*\n(function drawChart\(\)\{)const B=__cb\(\);', r'\1', s)
+    if RNG_ANCHOR not in s:
+        return s
+    s = s.replace(RNG_ANCHOR, RNG_FN + "function drawChart(){const B=__cb();\n  const box=$('chart');", 1)
+    # 점 크기: 길어지면 작게
+    s = s.replace(".attr('r',3).attr('fill',dash.colors[i])});\n  // hover columns", ".attr('r',B.length>40?1.6:3).attr('fill',dash.colors[i])});\n  // hover columns", 1)
+    return s
+
+
+RNG_UI = (r"""<style data-rng>body .bf-rng{display:flex;gap:4px;margin:2px 0 6px}body .bf-rng button{all:unset;cursor:pointer;font:600 12.5px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:5px 10px;border-radius:999px;border:1px solid var(--color-border-line,#ddd);color:var(--color-fg-muted,#666);box-shadow:0 1px 2px rgba(0,0,0,.06)}"""
+          r"""body .bf-rng button[aria-pressed=true]{background:#111;color:#fff;border-color:#111}</style>""")
+
+
+def tidy_rngui(s):
+    s = re.sub(r'<(style|script) data-rng>.*?</\1>', '', s, flags=re.S)
+    if 'id="chart-card"' not in s:
+        return s
+    return s.replace('</body>', RNG_UI + '</body>', 1) if '</body>' in s else s + RNG_UI
