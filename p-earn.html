@@ -26,7 +26,7 @@ html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
   });
 })();
 </script>
-<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610281426">(function(){var me="202610281426";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 결과</title>
+<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610281431">(function(){var me="202610281431";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 결과</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
@@ -511,6 +511,14 @@ function run(){
   if(w&&!document.querySelector('.mm-foot')){var p=document.createElement('p');p.className='mm-foot';p.textContent='참고용 정보이며 매수·매도 권유가 아닙니다.';w.appendChild(p)}
 }
 run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);setTimeout(run,800);setTimeout(run,2500);
+})();</script>
+<script data-hero-fix>(function(){
+/* 아이폰 사파리: 숨긴 열이 있는 표에서 펼침 줄(colspan)이 숨은 열 폭까지 잡아 표가 찌그러지는 문제 — 펼침 줄 colspan을 보이는 열 수로 맞춤 */
+function fix(){var ts=document.querySelectorAll('table');for(var i=0;i<ts.length;i++){var t=ts[i],hs=t.querySelectorAll('thead th');if(!hs.length)continue;var n=0;for(var j=0;j<hs.length;j++)if(getComputedStyle(hs[j]).display!=='none')n++;if(!n)n=hs.length;var cs=t.querySelectorAll('tbody td[colspan]');for(var k=0;k<cs.length;k++){if(cs[k].colSpan!==n)cs[k].colSpan=n}}}
+var q=0;function later(){if(q)return;q=1;requestAnimationFrame(function(){q=0;fix()})}
+document.addEventListener('click',function(){setTimeout(fix,0);setTimeout(fix,120)},true);
+try{new MutationObserver(later).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['class']})}catch(e){}
+window.addEventListener('load',fix);setTimeout(fix,600);setTimeout(fix,2000);
 })();</script>
 </body></html>
 <script>
