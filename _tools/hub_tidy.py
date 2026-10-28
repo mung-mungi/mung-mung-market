@@ -396,3 +396,13 @@ def tidy_navorder(s):
         return s
     js = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'navorder.js'), encoding='utf-8').read()
     return s[:i + 6] + '<script data-navorder>' + js + '</script>' + s[i + 6:]
+
+
+# 실적 일정 맨 위 요약 — _tools/calui.css·calui.js (사용자 2026-10-29)
+def tidy_cal(s):
+    s = re.sub(r'<(style|script) data-calui>.*?</\1>', '', s, flags=re.S)
+    if 'id="next"' not in s:
+        return s
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-calui>' + open(os.path.join(d, 'calui.css'), encoding='utf-8').read() + '</style><script data-calui>' + open(os.path.join(d, 'calui.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add

@@ -65,6 +65,11 @@ def run(root):
         sys.path.insert(0, T); import hub_tidy
         o = open(ptr, encoding='utf-8').read(); b = hub_tidy.tidy_pergo(o)
         if b != o: open(ptr, 'w', encoding='utf-8').write(b); n.append('p-trend')
+    pc = os.path.join(root, 'p-cal.html')
+    if os.path.exists(pc):
+        sys.path.insert(0, T); import hub_tidy
+        o = open(pc, encoding='utf-8').read(); b = hub_tidy.tidy_cal(o)
+        if b != o: open(pc, 'w', encoding='utf-8').write(b); n.append('p-cal')
     pl = os.path.join(root, 'p-lights.html')
     if os.path.exists(pl):
         sys.path.insert(0, T); import hub_tidy
