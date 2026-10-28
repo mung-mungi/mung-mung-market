@@ -127,7 +127,7 @@ function tidy(){
 .mm-rec .lb{flex:none;font-size:11.5px;font-weight:700;color:#9a978f;margin-right:2px}
 .mm-rec button{flex:none;font:inherit;font-size:13px;font-weight:700;height:28px;padding:0 11px;border-radius:999px;border:1px solid #e3dfd6;background:#fff;color:#4a463f;box-shadow:0 1px 0 rgba(0,0,0,.05),0 2px 5px rgba(0,0,0,.05)}
 .mm-rec button.on{background:#141210;color:#fff;border-color:#141210}
-.mm-shbar{position:fixed;z-index:9980;left:50%;transform:translateX(-50%);height:38px;padding:0 16px;border-radius:999px;border:1px solid #e6dfcf;background:rgba(255,253,248,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#3a372f;font:inherit;font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:6px;white-space:nowrap;box-shadow:0 3px 10px rgba(30,22,8,.10)}
+#main .mm-shbar{display:flex;width:100%;margin:10px 0 0;justify-content:center;height:40px;border-radius:12px;border:1px dashed #e0d6c0;background:#fbf9f4;color:#4a463f;font:inherit;font-size:14px;font-weight:700;align-items:center;gap:6px;box-shadow:none}
 .mm-shbar small{font-size:11px;font-weight:600;color:#a39f96}
 #mm-snd{display:none!important}
 html.mm-land .mm-shbar,html.mm-full .mm-shbar{display:none}
@@ -677,14 +677,15 @@ function mmList(){ var L=document.getElementById('list'); if(!L)return; var byT=
 function mmSheet(){ var side=document.querySelector('section.side'); if(!side||document.querySelector('.mm-sheet'))return;
   var sh=document.createElement('div'); sh.className='mm-sheet'; sh.innerHTML='<div class="mm-shbg"></div><div class="mm-shbox"><div class="mm-shhd"><i></i><b>종목 바꾸기</b><button type="button" class="mm-shx" aria-label="닫기">✕</button></div><div class="mm-shbody"></div></div>';
   document.body.appendChild(sh); sh.querySelector('.mm-shbody').appendChild(side);
-  var bar=document.createElement('button'); bar.type='button'; bar.className='mm-shbar'; bar.innerHTML='<span>🔍</span> 종목 바꾸기 <small>89종목 · 층위별</small>'; document.body.appendChild(bar);
-  var n=0; try{ n=DATA.P.length; bar.querySelector('small').textContent=n+'종목 · 층위별'; }catch(e){}
-  var place=function(){ var nv=document.querySelector('nav.ib'), h=0; if(nv){ var r=nv.getBoundingClientRect(), cs=getComputedStyle(nv); if(cs.position==='fixed'&&r.top>innerHeight/2) h=innerHeight-r.top; } bar.style.bottom='calc('+(h+10)+'px + '+(h?'0px':'env(safe-area-inset-bottom)')+')'; document.body.style.paddingBottom=(h+70)+'px'; };
-  place(); addEventListener('resize',place); setTimeout(place,800); setTimeout(place,2500);
+  
+
+  document.body.style.paddingBottom='';
   var open=function(o){ document.documentElement.classList.toggle('mm-shon',o); if(o){ var b=sh.querySelector('.mm-shbody'); b.scrollTop=0; } };
-  bar.addEventListener('click',function(){ open(true); }); sh.querySelector('.mm-shbg').addEventListener('click',function(){ open(false); }); sh.querySelector('.mm-shx').addEventListener('click',function(){ open(false); });
+  window.__mmShOpen=open; sh.querySelector('.mm-shbg').addEventListener('click',function(){ open(false); }); sh.querySelector('.mm-shx').addEventListener('click',function(){ open(false); });
   side.addEventListener('click',function(e){ if(e.target.closest&&e.target.closest('#list button.row')){ setTimeout(function(){ open(false); scrollTo({top:0,behavior:'smooth'}); },120); } },true);
   addEventListener('hashchange',function(){ open(false); }); }
+function mmShBar(){ var mn=document.getElementById('main'); if(!mn||!mn.querySelector('.mmt-per')||mn.querySelector('.mm-shbar'))return; var bar=document.createElement('button'); bar.type='button'; bar.className='mm-shbar'; bar.innerHTML='<span>🔍</span> 종목 바꾸기 <small></small>'; try{ bar.querySelector('small').textContent=DATA.P.length+'종목 · 층위별'; }catch(e){}
+  bar.addEventListener('click',function(){ if(window.__mmShOpen) window.__mmShOpen(true); }); mn.appendChild(bar); }
 function mmRecent(){ var main=document.getElementById('main'); if(!main||!main.querySelector('.hd'))return; var tk=mmTk(); if(!tk)return; var R=[]; try{ R=JSON.parse(localStorage.getItem('mm-recent')||'[]'); }catch(e){}
   if(R[0]!==tk){ R=[tk].concat(R.filter(function(x){return x!==tk})).slice(0,8); try{ localStorage.setItem('mm-recent',JSON.stringify(R)); }catch(e){} }
   if(R.length<3) ['QQQ','SOXL','NVDA','^TNX','SOXX'].forEach(function(x){ if(R.indexOf(x)<0&&R.length<6) R.push(x); });
@@ -697,7 +698,7 @@ function mmtTidy(){ var main=document.getElementById('main'); if(!main||!main.qu
 
 function tidy(){
   try{ var RN={'1개월':'1달','3개월':'3달','6개월':'6달','12개월':'1년'}; document.querySelectorAll('#main .rg .pb-chip').forEach(function(b){ var k=b.textContent.trim(); if(RN[k]) b.textContent=RN[k]; }); }catch(e){}
-  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){} try{mmAsof()}catch(e){} try{mmList()}catch(e){} try{mmSheet()}catch(e){} try{mmRecent()}catch(e){} try{mmTools()}catch(e){} try{mmDtipSlot()}catch(e){} try{mmPerPlace()}catch(e){} try{mmtAxisTags()}catch(e){console.log(e)}
+  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){} try{mmAsof()}catch(e){} try{mmList()}catch(e){} try{mmSheet()}catch(e){} try{mmShBar()}catch(e){} try{mmRecent()}catch(e){} try{mmTools()}catch(e){} try{mmDtipSlot()}catch(e){} try{mmPerPlace()}catch(e){} try{mmtAxisTags()}catch(e){console.log(e)}
   // 차트 안에서 선과 겹치던 글자 빼기(장기 추세·단기 상단·하단) — 같은 내용은 위 4칸에
   main.querySelectorAll('.ch svg text').forEach(function(t){ if(/^(장기 추세|단기 상단|단기 하단)/.test(t.textContent))t.remove(); });
   var gl=main.querySelector('p.gl'), ch=main.querySelector('.ch');
