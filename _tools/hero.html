@@ -1,0 +1,41 @@
+<style data-hero>
+/* 페이지 머리(제목 영역) 통일 — 사용자 2026-10-28 지시: 모든 페이지 같은 모양, 정보와 무관한 안내문은 지움 */
+.mm-hero{display:flex!important;flex-direction:column!important;gap:12px!important;padding:6px 0 0!important;margin:0 0 22px!important;background:none!important;border:0!important;box-shadow:none!important}
+.mm-hero>.mm-x{display:none!important}
+.mm-hero>.mm-eb{display:flex!important;align-items:center!important;gap:8px!important;margin:0!important;font:700 12px/1.3 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;letter-spacing:.14em!important;color:#8a877f!important;text-transform:none!important}
+.mm-hero>.mm-eb i{flex:none;width:6px!important;height:6px!important;border-radius:50%;background:#b23434!important;box-shadow:0 0 0 3px rgba(178,52,52,.16)!important}
+.mm-hero>h1.mm-h1{margin:0!important;padding:0 0 14px!important;font-family:ui-serif,"New York","Noto Serif KR",Georgia,serif!important;font-size:clamp(27px,7vw,36px)!important;line-height:1.22!important;letter-spacing:-.02em!important;font-weight:700!important;color:#0b0b0b!important;border-bottom:1px solid rgba(11,11,11,.1)!important;position:relative!important;text-wrap:balance}
+.mm-hero>h1.mm-h1::after{content:""!important;position:absolute!important;left:0!important;bottom:-1px!important;width:44px!important;height:3px!important;border-radius:2px!important;background:#a26a0c!important}
+.mm-hero>h1.mm-h1 .m,.mm-hero>h1.mm-h1 b{font-weight:700!important;color:#0b0b0b!important;font-size:1em!important}
+.mm-hero>h1.mm-h1 .s,.mm-hero>h1.mm-h1 .dim,.mm-hero>h1.mm-h1 .lt{font-weight:400!important;color:#8a877f!important;font-size:1em!important;white-space:normal!important}
+.mm-hero .mm-chipx,.mm-hero>.mm-chip{display:inline-flex!important;align-self:flex-start!important;align-items:center!important;margin:0!important;padding:3px 10px!important;border:1px solid rgba(162,106,12,.45)!important;border-radius:999px!important;background:rgba(162,106,12,.06)!important;color:#8a5a08!important;font:700 12.5px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;letter-spacing:0!important;font-variant-numeric:tabular-nums}
+.mm-hero>.mm-take{margin:2px 0 0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;font-size:17px!important;line-height:1.7!important;font-weight:400!important;letter-spacing:-.005em!important;color:#1d1c1a!important;text-wrap:pretty}
+.mm-hero>.mm-take b,.mm-hero>.mm-take strong{font-weight:700!important}
+.mm-hero>.mm-take>:first-child.mm-chipx{margin:0 0 8px!important;display:flex!important;width:max-content!important;max-width:100%}
+.mm-foot{margin:36px 0 8px!important;padding-top:14px!important;border-top:1px solid rgba(11,11,11,.08)!important;font:400 12px/1.6 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;color:#9a978f!important;text-align:center}
+</style>
+<script data-hero>(function(){
+function run(){
+  var h=null,hs=document.querySelectorAll('h1');
+  for(var i=0;i<hs.length;i++){if(!hs[i].closest('.ib,.bn')){h=hs[i];break}}
+  if(!h)return;var c=h.parentElement;if(!c||c===document.body)return;
+  c.classList.add('mm-hero');h.classList.add('mm-h1');
+  for(var k=c.firstElementChild;k;k=k.nextElementSibling){
+    if(k===h||/^(META|SCRIPT|STYLE|LINK)$/.test(k.tagName))continue;
+    var s=(k.className&&k.className.baseVal===undefined?k.className:'')+' '+k.id;
+    k.classList.remove('mm-eb','mm-chip','mm-take','mm-x');
+    if(/eyebrow|(^|[\s-])eb(\s|$)/.test(s))k.classList.add('mm-eb');
+    else if(/take|chg/.test(s)){
+      var t=(k.textContent||'').replace(/\s+/g,'');
+      if(/chg/.test(s)&&(t===''||t==='—'))k.classList.add('mm-x');else{
+        k.classList.add('mm-take');var f=k.firstElementChild;
+        var n=k.firstChild;while(n&&n.nodeType===3&&!n.textContent.trim())n=n.nextSibling;if(f&&n===f&&(f.tagName==='B'||/chip|dl/.test(f.className||'')))f.classList.add('mm-chipx');}
+    }
+    else if(/date|chip|asof/.test(s))k.classList.add('mm-chip');
+    else k.classList.add('mm-x');
+  }
+  var w=c.parentElement;
+  if(w&&!document.querySelector('.mm-foot')){var p=document.createElement('p');p.className='mm-foot';p.textContent='참고용 정보이며 매수·매도 권유가 아닙니다.';w.appendChild(p)}
+}
+run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);setTimeout(run,800);setTimeout(run,2500);
+})();</script>

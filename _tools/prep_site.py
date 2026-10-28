@@ -40,6 +40,10 @@ for f in glob.glob(os.path.join(src, '*.html')):
     if 'data-tick' not in s:  # 누름 소리(틱) — 사용자 2026-10-28 지시
         TK = '<script data-tick>' + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tick.js'), encoding='utf-8').read() + '</script>'
         s = s.replace('</body>', TK + '</body>', 1) if '</body>' in s else s + TK
+    # 페이지 머리(제목 영역) 통일 + 정보와 무관한 안내문 숨김 — 사용자 2026-10-28 지시. 판을 바꾸면 예전 것을 지우고 새로 넣음
+    HERO = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'hero.html'), encoding='utf-8').read()
+    s = re.sub(r'<style data-hero>[\s\S]*?</style>\s*<script data-hero>[\s\S]*?</script>\s*', '', s)
+    s = s.replace('</body>', HERO + '</body>', 1) if '</body>' in s else s + HERO
     if not re.match(r'\s*<!doctype', s, re.I):
         s = '<!doctype html>' + s
     if 'name="robots"' not in s:
