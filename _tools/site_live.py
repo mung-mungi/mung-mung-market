@@ -58,6 +58,11 @@ def run(root):
         sys.path.insert(0, T); import hub_tidy
         o = open(pe, encoding='utf-8').read(); b = hub_tidy.tidy_hits(o)
         if b != o: open(pe, 'w', encoding='utf-8').write(b); n.append('p-earn')
+    po = os.path.join(root, 'p-opt.html')
+    if os.path.exists(po):
+        sys.path.insert(0, T); import hub_tidy
+        o = open(po, encoding='utf-8').read(); b = hub_tidy.tidy_opt(o)
+        if b != o: open(po, 'w', encoding='utf-8').write(b); n.append('p-opt')
     pt = os.path.join(root, 'p-targets.html')
     if os.path.exists(pt):
         sys.path.insert(0, T); import hub_tidy

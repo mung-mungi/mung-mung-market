@@ -1,3 +1,4 @@
+import re
 # 첫 화면 정리(사용자 2026-10-29 지시): '오늘 한눈에' 제목·날짜 칩 빼기, 묶음 제목 줄이기, 펼친 설명 글꼴을 본문과 맞추고 문장마다 줄바꿈
 # 여러 번 돌려도 같음(이미 바뀌었으면 그대로). kit/home.html과 사이트 index.html 둘 다에 씀
 import sys
@@ -179,13 +180,13 @@ def tidy_ibdrag(s):
 # 실적 결과 '이번 주 발표 예정': 날짜 아래 구간(새벽 장후·아시아·저녁 장전)마다 한 줄씩, 글자 모양 하나로 통일(사용자 2026-10-29 — 산만함 정리)
 UPS = (r'''<style data-ups>body .ups{gap:0!important}body .ups .ud{display:block!important;padding:7px 0!important}'''
        r'''body .ups .ud>em{display:block;width:auto!important;font:800 13px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:var(--accent)!important;margin:0 0 3px}'''
-       r'''body .ups .ur{display:grid;grid-template-columns:4.6em 1fr;gap:6px;align-items:baseline;padding:2px 0}'''
+       r'''body .ups .ur{display:grid;grid-template-columns:4.1em 1fr;gap:4px;align-items:baseline;padding:2px 0}'''
        r'''body .ups .ud .ur>.slot,body .ups .ud .ur>.slot.pre,body .ups .ud .ur>.slot.post,body .ups .ud .ur>.slot.asia{all:unset!important;font:700 11.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:var(--muted)!important;white-space:nowrap!important}'''
        r'''body .ups .ud .ur>.slot.pre{color:var(--accent)!important}'''
-       r'''body .ups .un{display:flex;flex-wrap:wrap;gap:1px 9px}'''
+       r'''body .ups .un{display:flex;flex-wrap:wrap;gap:1px 7px}'''
        r'''body .ups .un>*{all:unset;font:500 13.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:var(--faint,#9a978f);white-space:nowrap}'''
        r'''body .ups .un>button{color:var(--fg);font-weight:700;cursor:pointer}'''
-       r'''body .ups .un>button i{font-style:normal;font-size:11px;color:var(--up);margin-left:2px}</style>'''
+       r'''body .ups .un>button i{font-style:normal;font-size:10.5px;color:var(--up);margin-left:1px}</style>'''
        r'''<script data-ups>(function(){function fix(){var u=document.getElementById('ups');if(!u)return;u.querySelectorAll('.ud').forEach(function(d){if(d.dataset.tidy)return;d.dataset.tidy=1;'''
        r'''var kids=[].slice.call(d.childNodes),row=null,names=null;kids.forEach(function(n){if(n.nodeType===1&&n.tagName==='EM')return;'''
        r'''if(n.nodeType===1&&n.classList.contains('slot')){row=document.createElement('div');row.className='ur';names=document.createElement('div');names.className='un';row.appendChild(n);row.appendChild(names);d.appendChild(row);return}'''
@@ -195,8 +196,9 @@ UPS = (r'''<style data-ups>body .ups{gap:0!important}body .ups .ud{display:block
 
 
 def tidy_ups(s):
-    if 'data-ups' in s or 'id="ups"' not in s:
+    if 'id="ups"' not in s:
         return s
+    s = re.sub(r'<(style|script) data-ups>.*?</\1>', '', s, flags=re.S)
     return s.replace('</body>', UPS + '</body>', 1) if '</body>' in s else s + UPS
 
 
@@ -219,6 +221,19 @@ SUMROW = (r'''<style data-sumrow>body .sumrow{align-items:flex-start!important}b
 
 
 def tidy_sumrow(s):
-    if 'data-sumrow' in s or 'sumrow' not in s:
+    s = re.sub(r'<(style|script) data-sumrow>.*?</\1>', '', s, flags=re.S)
+    if 'sumrow' not in s:
         return s
     return s.replace('</body>', SUMROW + '</body>', 1) if '</body>' in s else s + SUMROW
+
+
+# 옵션 온도계: 기간구조 카드를 차트들 맨 아래(설명 카드 앞)로 내려 VIX 3개월 바로 밑에 풋콜(CBOE)이 오게(사용자 2026-10-29)
+def tidy_opt(s):
+    m = re.search(r'\s*<section class="ot-card" id="term-card">.*?</section>', s, re.S)
+    r = s.find('<section class="ot-card ot-sec" id="rule-card">')
+    if not m or r < 0 or m.start() > s.find('id="earn-card"'):
+        return s
+    blk = m.group(0)
+    s = s[:m.start()] + s[m.end():]
+    r = s.find('<section class="ot-card ot-sec" id="rule-card">')
+    return s[:r] + blk.strip() + '\n\n  ' + s[r:]
