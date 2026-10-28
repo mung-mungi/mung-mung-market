@@ -214,15 +214,23 @@ window.redrawViz=function(){document.querySelectorAll('.viz[data-drawn]').forEac
 <script>
 // 찾기: 기간·층위·회사 이름으로 거르고, 가장 최근 발표일 노트만 펼쳐 두고 나머지는 한 줄 요약으로 접는다
 window.initFind=function(openIds){
+// 시장 중요도(대략 시가총액 순) — 같은 시간대에 나온 실적은 이 순서로 위에서부터
+const IMP=['엔비디아','마이크로소프트','애플','알파벳','아마존','메타','브로드컴','TSMC','테슬라','오라클','삼성전자','SK하이닉스','AMD','ASML','마이크론','팔란티어','IBM','램리서치','어플라이드머티리얼즈','KLA','인텔','시스코','GE버노바','아리스타','캐터필러','텍사스인스트루먼트','암페놀','서비스나우','델','버티브','코어위브','마벨','TE커넥티비티','코닝','시놉시스','케이던스','미디어텍','웨스턴디지털','샌디스크','시게이트','셀레스티카','콴타서비스','코히어런트','루멘텀','삼성전기','키옥시아','온세미','모놀리식파워','슈퍼마이크로','에퀴닉스','디지털리얼티','네비우스','크레도','아스테라랩스','테라다인','블룸에너지','클라우드플레어','팔로알토','앰코','폭스콘','델타일렉트로닉스','콴타컴퓨터','플루오르','아이렌','파브리넷','글로벌파운드리','MKS','램버스','타워세미컨덕터','캠텍','폼팩터','울트라클린','셈텍','바이아비','실리콘모션','루멘','나비타스','어플라이드 옵토','AXT'];
+const nmOf=a=>a.querySelector('h3').firstChild.textContent.replace(/\(.*\)/,'').trim();
+const impRk=a=>{const n=(a.dataset.name||'').split(' ')[0]||nmOf(a);const i=IMP.indexOf(n);return i<0?999:i};
+// 나온 시간대: 미국 장 마감 후(한국 새벽)=1, 아시아=2, 미국 장전(한국 저녁)=3 — 같은 한국 날짜면 숫자가 큰 쪽이 최근
+const slotOf=a=>{const t=(a.querySelector('.tag')||{}).textContent||'';return /장전/.test(t)?3:/장후|장 마감/.test(t)?1:2};
+const kstOf=a=>{const s=slotOf(a);if(s!==1)return a.dataset.date;const x=new Date(a.dataset.date+'T00:00:00Z');x.setUTCDate(x.getUTCDate()+1);return x.toISOString().slice(0,10)};
+const sessKey=a=>kstOf(a)+'-'+slotOf(a);
 ['fd','fl','hits','ups'].forEach(id=>{document.getElementById(id).textContent=''});
 document.querySelectorAll('main>p.empty:not(#loading)').forEach(p=>p.remove());
 const ORDER=['빅테크','칩·메모리','파운드리·실리콘포토닉스','네오클라우드','커스텀칩','장비','서버','네트워크','광학','전력·발전','전력·냉각','인터커넥트','후공정','설계·EDA','전력반도체','엣지·소프트','장비 부품','컨트롤러','백본 광통신','EPC','리츠'];
 // 최신 발표일 묶음이 맨 위로 오게 정렬
-{const runs=[...document.querySelectorAll('.run')];const key=r=>[...r.querySelectorAll('article[data-date]')].map(a=>a.dataset.date).sort().pop()||'';
+{const runs=[...document.querySelectorAll('.run')];const key=r=>[...r.querySelectorAll('article[data-date]')].map(sessKey).sort().pop()||'';
  const anchor=document.getElementById('find');runs.sort((a,b)=>key(b).localeCompare(key(a))).reverse().forEach(r=>anchor.after(r));}
-// 같은 날 묶음 안에서도 늦게 나온 실적이 위로 (data-ts = 발표 시각, 없으면 날짜·같으면 위에 적힌 순서)
+// 같은 묶음 안: 최근 시간대가 위, 같은 시간대면 시장 중요도 순
 document.querySelectorAll('.run').forEach(r=>{const h=r.querySelector('h2');const as=[...r.querySelectorAll(':scope>article')];
-  as.map((a,i)=>({a,i,k:a.dataset.ts||a.dataset.date})).sort((x,y)=>y.k.localeCompare(x.k)||x.i-y.i).reverse().forEach(o=>h.after(o.a))});
+  as.map((a,i)=>({a,i,s:sessKey(a),r:impRk(a)})).sort((x,y)=>y.s.localeCompare(x.s)||x.r-y.r||x.i-y.i).reverse().forEach(o=>h.after(o.a))});
 const arts=[...document.querySelectorAll('article[data-date]')];
 const latest=arts.map(a=>a.dataset.date).sort().pop();
 const st={d:'all',l:'',q:''};
@@ -264,7 +272,7 @@ function render(){
   // 조건을 고르면 맞는 회사 목록을 위에 먼저 — 누르면 그 노트로 이동
   const H=document.getElementById('hits');H.textContent='';H.hidden=!filt;
   // 바로가기: 평소엔 가장 최근 발표일(오늘 있으면 오늘) 회사만 버튼으로, 이전 노트는 '더 보기'로 접어 둠. 조건을 고르면 맞는 것 전부
-  hit.sort((x,y)=>y.dataset.kst.localeCompare(x.dataset.kst));
+  hit.sort((x,y)=>y.dataset.kst.localeCompare(x.dataset.kst)||slotOf(y)-slotOf(x)||impRk(x)-impRk(y));
   const mkb=a=>{const b=document.createElement('button');b.type='button';const n=document.createElement('b');n.textContent=a.querySelector('h3').firstChild.textContent.replace(/\(.*\)/,'').trim();const m=document.createElement('span');m.textContent=md(a.dataset.kst);b.appendChild(n);b.appendChild(m);b.onclick=()=>openAt(a);return b};
   const topK=hit.length?hit[0].dataset.kst:null;
   const first=filt?hit:hit.filter(a=>a.dataset.kst===topK),rest=filt?[]:hit.filter(a=>a.dataset.kst!==topK);
@@ -285,7 +293,7 @@ function render(){
   {const SP=document.getElementById('spot');if(SP){SP.textContent='';
    const BIG=['마이크로소프트','알파벳','아마존','메타','애플','엔비디아','테슬라','오라클','브로드컴','TSMC'],CORE=['SK하이닉스','삼성전자','마이크론','AMD','ASML','샌디스크','시게이트','웨스턴디지털','셀레스티카','아리스타','버티브','GE버노바','코어위브','네비우스','램리서치','KLA','어플라이드머티리얼즈','델','슈퍼마이크로','코닝','루멘텀','코히어런트'];
    const nm=a=>a.querySelector('h3').firstChild.textContent.replace(/\(.*\)/,'').trim();
-   const rk=n=>{const i=BIG.indexOf(n);if(i>=0)return i;const j=CORE.indexOf(n);return j>=0?100+j:999};
+   const rk=n=>{const i=IMP.indexOf(n);return i<0?999:i};
    const rxOf=a=>{const fr=[...a.querySelectorAll('.row')].find(r=>/첫 거래일 종가/.test(r.textContent));if(fr){const m=fr.textContent.match(/\(([+−-]\d+(?:\.\d+)?)%/);if(m)return {t:'종가 '+m[1].replace(/(\.\d)\d+/,'$1')+'%',v:parseFloat(m[1].replace('−','-'))}}
      const m=(a.dataset.sum||'').match(/(시간외|프리마켓)[^·]*?([+−-]\d+(?:\.\d+)?(?:~\d+(?:\.\d+)?)?)%/);if(m)return {t:(m[1]==='프리마켓'?'프리 ':'')+m[2]+'%',v:parseFloat(m[2].replace('−','-'))};return null};
    const vdOf=a=>{const vs=[...a.querySelectorAll('.verdict')];const ai=vs.find(v=>/AI 인프라/.test(v.textContent));const g=(ai||vs[0]||{}).querySelector&&(ai||vs[0]).querySelector('.g');
@@ -293,7 +301,7 @@ function render(){
    const vc=w=>/호재|좋음/.test(w)?'var(--up)':/경고|나쁨/.test(w)?'var(--down)':'#b98900';
    const tone=sum=>/경고|❌/.test(sum)&&!/호재/.test(sum)?'no':/호재|✅/.test(sum)?'ok':'';
    const lk=arts.map(a=>a.dataset.kst).sort().pop();
-   if(lk){const cur=arts.filter(a=>a.dataset.kst===lk).sort((x,y)=>rk(nm(x))-rk(nm(y))||(y.dataset.ts||'').localeCompare(x.dataset.ts||''));
+   if(lk){const cur=arts.filter(a=>a.dataset.kst===lk).sort((x,y)=>slotOf(y)-slotOf(x)||impRk(x)-impRk(y)||(y.dataset.ts||'').localeCompare(x.dataset.ts||''));
     const done=new Set(arts.map(a=>a.dataset.name.split(' ')[0]));
     const ur=UP.find(u=>u[0]===md(lk));const wait=[];if(ur){const bl=typeof ur[1][0]==='string'?[['',ur[1]]]:ur[1];bl.forEach(([t,ns])=>ns.forEach(n=>{if(!done.has(n))wait.push([n,t])}))}
     wait.sort((x,y)=>rk(x[0])-rk(y[0]));
