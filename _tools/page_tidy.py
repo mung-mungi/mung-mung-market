@@ -131,9 +131,9 @@ function tidy(){
 .mmt-per button{font-size:13.5px!important;padding:7px 0!important;letter-spacing:-.02em}
 html.mm-full,html.mm-full body{overflow:hidden!important;height:100%;overscroll-behavior:none}
 html.mm-full #main .mmt{position:fixed;inset:0;z-index:9999;background:#fff;display:flex!important;flex-direction:column;padding:10px max(14px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))}
-html.mm-full .mmt-ttl{display:block;font-size:16px;font-weight:800;color:#141210;padding-right:40px}
+html.mm-full .mmt-ttl{display:block;font-size:16px;font-weight:800;color:#141210}
 html.mm-full .mmt-stage{flex:1;min-height:0;display:flex;flex-direction:column}html.mm-full .mmt-box{flex:1;min-height:0}
-html.mm-full .mmt-tools{position:fixed;top:8px;right:max(10px,env(safe-area-inset-right))}
+html.mm-full .mmt-tools{position:static!important;justify-content:flex-end;margin:4px 0 2px}html.mm-full .mmt-stage{position:relative}html.mm-full #main .mmt{padding-top:max(18px,calc(env(safe-area-inset-top) + 10px))!important}html.mm-full .mmt-find.on{top:118px!important}
 html.mm-full .mmt-tools .mmt-det,html.mm-full .mmt-tools .mmt-fs{display:none!important}html.mm-full .mmt-x{display:inline-flex!important;font-size:15px}
 html.mm-land .mmt-tools .mmt-fs{display:none!important}
 .mmt-ext{display:none!important;text-decoration:none;align-items:center}html.mm-land .mmt.kakao .mmt-ext,html.mm-full .mmt.kakao .mmt-ext{display:inline-flex!important;background:#fee500!important;border-color:#e6cf00!important;color:#191600!important}
@@ -478,7 +478,7 @@ addEventListener('resize',function(){ clearTimeout(window.__mmLt); window.__mmLt
     if(st.sc) window.scrollBy(0, st.ly-t.clientY); st.ly=t.clientY; },{passive:false,capture:true});
   document.addEventListener('wheel',function(e){ if(inChart(e)) e.preventDefault(); },{passive:false,capture:true}); })();
 // 전체 화면(버튼): 기본 차트를 화면 가득. 안드로이드는 가로 고정까지 시도
-function mmFull(on){ var h=document.documentElement; h.classList.toggle('mm-full',on); setTimeout(mmFit,50);
+function mmFull(on){ var h=document.documentElement; h.classList.toggle('mm-full',on); try{mmTools()}catch(e){} setTimeout(mmFit,50);
   try{ if(on){ var q=h.requestFullscreen&&h.requestFullscreen(); if(q&&q.then) q.then(function(){ try{ screen.orientation.lock('landscape').catch(function(){}); }catch(e){} }).catch(function(){}); }
        else if(document.fullscreenElement&&document.exitFullscreen){ document.exitFullscreen().catch(function(){}); } }catch(e){}
   setTimeout(function(){ try{mmtDraw()}catch(e){} },80); }
@@ -487,6 +487,7 @@ addEventListener('keydown',function(e){ if(e.key==='Escape'&&document.documentEl
 // 모서리 도구: 기본 차트에서는 차트 위에, 자세한 차트에서는 그 차트 위에(같은 자리)
 function mmDtipSlot(){ var ch=document.querySelector('#main .ch'); if(ch&&!ch.querySelector('.mm-dtip')) mmDtip('','', '', ''); }
 function mmTools(){ var main=document.getElementById('main'), w=main&&main.querySelector('.mmt'), t=w&&w.querySelector('.mmt-tools'); if(!t){ t=main&&main.querySelector('.ch > .mmt-tools'); } if(!t)return;
+  if(document.documentElement.classList.contains('mm-full')&&w){ var tp=w.querySelector('.mmt-top'); if(tp&&t.previousElementSibling!==tp) tp.after(t); return; }
   var tg=(main.classList.contains('mmt-detail')?main.querySelector('.ch'):w&&w.querySelector('.mmt-stage')); if(tg&&t.parentNode!==tg) tg.insertBefore(t,tg.firstChild); }
 function mmDtip(d,p,rel,rc){ var main=document.getElementById('main'), ch=main&&main.querySelector('.ch'); if(!ch)return; var el=main.querySelector('.mm-dtip');
   if(!el){ el=document.createElement('p'); el.className='mm-dtip'; } var sv=ch.querySelector(':scope > svg'); if(sv&&el.nextSibling!==sv) ch.insertBefore(el,sv);
