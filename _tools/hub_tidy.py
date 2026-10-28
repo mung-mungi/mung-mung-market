@@ -59,3 +59,15 @@ def tidy_deep(s):
     if "'행간 더 읽기 ▾'" in s or DEEP_ANCHOR not in s:
         return s
     return s.replace(DEEP_ANCHOR, DEEP_NEW, 1)
+
+
+# 목표주가 '최근 목표가 변경' 안내문: 한 줄로 짧게(사용자 2026-10-29 — 설명은 친절하되 주저리 없이)
+TGT_OLD = ('<p class="sub">최근 일주일 사이 목표주가나 투자의견을 바꾼 기관과 그 이유(코멘트). 이유가 확인된 변경을 맨 위에 둡니다. '
+           '<b class="newb">NEW</b> = 가장 최근 업데이트에 들어온 변경. 누르면 그 종목 화면으로 갑니다.</p>')
+TGT_NEW = ('<p class="sub">이유가 확인된 변경부터 · <b class="newb">NEW</b> 새로 들어온 것</p>')
+
+
+def tidy_targets(s):
+    import re
+    s = s.replace(TGT_OLD, TGT_NEW)
+    return re.sub(r'<p class="sub">바꾼 이유가 확인된 것부터[^<]*<b class="newb">NEW</b>[^<]*</p>', TGT_NEW, s)

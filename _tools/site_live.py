@@ -42,6 +42,11 @@ def run(root):
         if s != o: open(p, 'w', encoding='utf-8').write(s); n.append(f)
     n += fix_nav(root)
     n += fix_hub(root)
+    pt = os.path.join(root, 'p-targets.html')
+    if os.path.exists(pt):
+        sys.path.insert(0, T); import hub_tidy
+        o = open(pt, encoding='utf-8').read(); b = hub_tidy.tidy_targets(o)
+        if b != o: open(pt, 'w', encoding='utf-8').write(b); n.append('p-targets')
     pb = os.path.join(root, 'p-brief.html')
     if os.path.exists(pb):
         sys.path.insert(0, T); import hub_tidy
