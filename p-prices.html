@@ -64,6 +64,21 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
 .pb-tdet .r.ud .c small{display:block;font-weight:400;color:var(--color-fg-muted);font-size:12.5px}
 .pb-tdet .r.ud .m{display:flex;gap:8px;align-items:baseline;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
 .pb-tdet .r.ud .m small{font-weight:400;color:var(--color-fg-muted);font-size:12.5px}
+.pb-tdet .lg{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12.5px;color:var(--color-fg-muted)}
+.pb-tdet .lg i{width:90px;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--color-bad),var(--color-bg),var(--color-ok));border:1px solid var(--color-border-line)}
+.pb-tdet .lg .up{color:var(--color-ok);font-weight:700}.pb-tdet .lg .dn{color:var(--color-bad);font-weight:700}
+.pb-tdet .lg small{flex-basis:100%;font-size:12px}
+.pb-tdet .hm{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-top:1px solid var(--color-border-line)}
+.pb-tdet .hm:first-child{border-top:0;padding-top:2px}
+.pb-tdet .hh{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.pb-tdet .hh b{font-size:15px}
+.pb-tdet .hh .n{font-weight:700;font-variant-numeric:tabular-nums;font-size:14px}
+.pb-tdet .hh small{color:var(--color-fg-muted);font-size:12.5px;font-variant-numeric:tabular-nums}
+.pb-tdet .cw{display:flex;flex-wrap:wrap;gap:4px}
+.pb-tdet .cp{font:inherit;border:0;border-radius:6px;padding:5px 8px;display:flex;flex-direction:column;align-items:flex-start;gap:0;cursor:pointer;color:var(--color-fg);min-width:4.6rem;line-height:1.25}
+.pb-tdet .cp span{font-size:12.5px;white-space:nowrap}
+.pb-tdet .cp b{font-size:14px;font-variant-numeric:tabular-nums}
+.pb-tdet .cp.dk{color:#fff}
 .pb-tdet .gh{font-size:13.5px;font-weight:700;color:var(--color-warn);padding:10px 0 2px;border-top:1px solid var(--color-border-line)}
 .pb-tdet .gh:first-child{border-top:0;padding-top:0}
 .pb-tdet .r.sk{font:inherit;color:inherit;background:none;border:0;border-top:1px dashed var(--color-border-line);text-align:left;cursor:pointer;grid-template-columns:minmax(0,1fr) 104px 3.4rem;width:100%}
@@ -376,6 +391,31 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
       if (note) r.append(el('span', 'nm', note));
       list.append(r);
     };
+    const chipMap = (key, scale, d, opt = {}) => {
+      const st = cats.map((c) => { const rs = by(c).filter((r) => r[key] != null).sort((a, b) => b[key] - a[key]);
+        return { c, rs, avg: rs.length ? rs.reduce((s, r) => s + r[key], 0) / rs.length : null, up: rs.filter((r) => r[key] > 0.05).length, dn: rs.filter((r) => r[key] < -0.05).length }; })
+        .filter((x) => x.rs.length).sort((a, b) => b.avg - a.avg);
+      const lg = el('div', 'lg'); lg.append(el('span', 'dn', opt.lo || '내림'), el('i'), el('span', 'up', opt.hi || '오름'), el('small', null, opt.legend || '색이 진할수록 많이 움직였습니다 · 종목을 누르면 아래 표에서 열립니다'));
+      box.append(lg);
+      st.forEach((x) => {
+        const g = el('div', 'hm');
+        const h = el('div', 'hh'); h.append(el('b', null, x.c), el('span', 'n ' + cls(x.avg), '평균 ' + fmtPct(x.avg, d)));
+        if (!opt.noCount) h.append(el('small', null, `▲${x.up} ▼${x.dn}`));
+        g.append(h);
+        const w = el('div', 'cw');
+        x.rs.forEach((y) => {
+          const v = y[key], sh = Math.min(1, Math.abs(v) / scale);
+          const b = el('button', 'cp'); b.type = 'button';
+          b.style.background = `color-mix(in srgb, ${v >= 0 ? 'var(--color-ok)' : 'var(--color-bad)'} ${Math.round(12 + sh * 78)}%, var(--color-bg))`;
+          if (sh > 0.55) b.classList.add('dk');
+          b.append(el('span', null, nmS(y)), el('b', null, fmtPct(v, d)));
+          b.addEventListener('click', () => { cat = null; openTk = y.ticker; draw(); const dd = tb.querySelector('tr.pb-det'); (dd || document.getElementById('table-sec')).scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+          w.append(b);
+        });
+        g.append(w); list.append(g);
+      });
+      return st;
+    };
     const medTile = (key, label, d) => {
       const st = cats.map((c) => { const rs = by(c).filter((r) => r[key] != null); const best = rs.slice().sort((a, b) => b[key] - a[key])[0], worst = rs.slice().sort((a, b) => a[key] - b[key])[0];
         return { c, v: medOf(rs.map((r) => r[key])), n: rs.length, up: rs.filter((r) => r[key] > 0.05).length, dn: rs.filter((r) => r[key] < -0.05).length, best, worst }; }).filter((x) => x.v != null).sort((a, b) => b.v - a.v);
@@ -384,23 +424,18 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
       if (st.length) sum(`가장 강한 분야는 ${st[0].c}(${fmtPct(st[0].v, d)}), 가장 약한 분야는 ${st[st.length - 1].c}(${fmtPct(st[st.length - 1].v, d)})입니다.`);
       st.forEach((x) => divRow(x.c, x.v, mx, `오름 ${x.up} · 내림 ${x.dn} / ${x.n}종목` + (x.best ? ` · 강한 종목 ${nmS(x.best)} ${fmtPct(x.best[key], d)}` : '') + (x.worst && x.worst !== x.best ? ` · 약한 종목 ${nmS(x.worst)} ${fmtPct(x.worst[key], d)}` : ''), d));
     };
-    if (openTile === 'd1') medTile('chg_1d', '1일 등락', 2);
-    else if (openTile === 'per') medTile('chg_' + P, PL[0] + ' 등락', 1);
-    else if (openTile === 'upside') {
-      const st = cats.map((c) => { const rs = by(c).filter((r) => r.upside != null); const top = rs.slice().sort((a, b) => b.upside - a.upside)[0]; return { c, v: medOf(rs.map((r) => r.upside)), n: rs.length, top }; }).filter((x) => x.v != null).sort((a, b) => b.v - a.v);
-      const mx = Math.max(1, ...st.map((x) => Math.abs(x.v)));
-      head('상승여력 · 분야별', '증권사 평균 목표가가 지금 가격보다 몇 % 위에 있는지, 분야마다 가운데 값입니다. 클수록 증권사들이 아직 더 오를 여지를 크게 봅니다.');
-      if (st.length) sum(`목표가까지 여유가 가장 큰 분야는 ${st[0].c}(${fmtPct(st[0].v)}), 가장 작은 분야는 ${st[st.length - 1].c}(${fmtPct(st[st.length - 1].v)})입니다.`);
-      st.forEach((x) => divRow(x.c, x.v, mx, `${x.n}종목` + (x.top ? ` · 여력 가장 큰 종목 ${nmS(x.top)} ${fmtPct(x.top.upside)}` : '')));
-    } else if (openTile === 'up') {
-      const st = cats.map((c) => { const rs = by(c).filter((r) => r.chg_1d != null); return { c, n: rs.length, up: rs.filter((r) => r.chg_1d > 0.05).length, dn: rs.filter((r) => r.chg_1d < -0.05).length, avg: rs.length ? rs.reduce((s, r) => s + r.chg_1d, 0) / rs.length : null }; }).filter((x) => x.n).sort((a, b) => (b.up / b.n) - (a.up / a.n) || (a.dn / a.n) - (b.dn / b.n) || (b.avg - a.avg));
-      head('오른 종목 · 분야별', '1일 기준, 분야마다 오른 종목과 내린 종목의 비율입니다. 오른쪽 숫자는 분야 평균 등락률입니다.');
-      const allUp = st.filter((x) => x.up === x.n).map((x) => x.c), allDn = st.filter((x) => x.dn === x.n).map((x) => x.c);
-      sum([allUp.length ? `모두 오른 분야: ${allUp.join(', ')}.` : '', allDn.length ? `모두 내린 분야: ${allDn.join(', ')}.` : ''].filter(Boolean).join(' ') || '분야마다 오르고 내린 종목이 섞여 있습니다.');
-      st.forEach((x) => { const r = el('div', 'r ud'); const cc = el('span', 'c', x.c); cc.append(el('small', null, x.n + '종목')); r.append(cc);
-        const m = el('span', 'm'); const pu = Math.round(x.up / x.n * 100), pd = Math.round(x.dn / x.n * 100);
-        m.append(el('span', 'pb-up', `오름 ${pu}%`), el('span', 'pb-dn', `내림 ${pd}%`));
-        r.append(m, el('span', 'n ' + cls(x.avg), fmtPct(x.avg, 1))); list.append(r); });
+    if (openTile === 'd1' || openTile === 'up' || openTile === 'per') {
+      const key = openTile === 'per' ? 'chg_' + P : 'chg_1d', lab = openTile === 'per' ? PL[0] : '1일', sc = openTile === 'per' ? ({ '1m': 20, '3m': 35, '6m': 50, '12m': 80 }[P] || 25) : 4;
+      head(lab + ' 등락 · 종목 지도', '분야별로 종목을 칸으로 놓고, 오르면 초록·내리면 빨강으로 칠했습니다. 위에 있는 분야일수록 평균이 높습니다.');
+      const tmp = el('div'); const keep = box; 
+      const st = chipMap(key, sc, 1);
+      if (st.length) { const top = st[0], bot = st[st.length - 1]; const allUp = st.filter((x) => x.dn === 0 && x.up === x.rs.length).map((x) => x.c), allDn = st.filter((x) => x.up === 0 && x.dn === x.rs.length).map((x) => x.c);
+        const s1 = el('p', 'sum', `가장 강한 분야 ${top.c}(${fmtPct(top.avg, 1)}), 가장 약한 분야 ${bot.c}(${fmtPct(bot.avg, 1)}).` + (openTile !== 'per' && allUp.length ? ` 모두 오른 분야 ${allUp.length}곳` : '') + (openTile !== 'per' && allDn.length ? `, 모두 내린 분야 ${allDn.join('·')}` : '') + '.');
+        box.insertBefore(s1, box.querySelector('.lg')); }
+    } else if (openTile === 'upside') {
+      head('상승여력 · 종목 지도', '증권사 평균 목표가가 지금 가격보다 몇 % 위에 있는지입니다. 초록이 진할수록 목표가까지 여유가 큽니다.');
+      const st = chipMap('upside', 80, 0, { lo: '목표가 아래', hi: '여유 큼', legend: '색이 진할수록 목표가까지 여유가 큽니다 · 종목을 누르면 아래 표에서 열립니다', noCount: true });
+      if (st.length) box.insertBefore(el('p', 'sum', `여유가 가장 큰 분야 ${st[0].c}(평균 ${fmtPct(st[0].avg, 0)}), 가장 작은 분야 ${st[st.length - 1].c}(평균 ${fmtPct(st[st.length - 1].avg, 0)}).`), box.querySelector('.lg'));
     } else if (openTile === 'hi' || openTile === 'lo') {
       const hi = openTile === 'hi', key = hi ? 'dist_high' : 'dist_low';
       const ok = (r) => r[key] != null && (hi ? r[key] >= -5 : r[key] <= 5);
