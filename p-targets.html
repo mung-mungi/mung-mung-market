@@ -1358,10 +1358,10 @@ dash.calc('trend_sum', {
     return ctx;
   }
   // 소리 종류: tap(기본 틱) · nav(페이지 이동, 조금 낮은 톡) · open(펼침, 올라가는 두 번 틱) · close(닫힘, 낮은 틱)
-  var TONE = { tap: [[2400, 0.55, 0]], nav: [[1500, 0.6, 0]], open: [[2100, 0.42, 0], [3000, 0.38, 0.055]], close: [[1700, 0.45, 0]] };
+  var TONE = { tap: [[2300, 0.2, 0]], nav: [[1500, 0.22, 0]], open: [[2700, 0.18, 0]], close: [[1700, 0.16, 0]] };
   function tick(kind){
     if (off) return;
-    try { if (navigator.vibrate) navigator.vibrate(kind === 'open' ? [6, 40, 6] : 8); } catch (e) {}  // 안드로이드만 살짝 진동(아이폰 웹은 진동 불가)
+    try { if (navigator.vibrate) navigator.vibrate(6); } catch (e) {}  // 안드로이드만 살짝 진동(아이폰 웹은 진동 불가)
     try {
       var c = ac(); if (!c) return;
       (TONE[kind] || TONE.tap).forEach(function(x){
