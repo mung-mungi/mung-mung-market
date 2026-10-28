@@ -87,13 +87,16 @@ PAPER = r'''<link rel="stylesheet" href="https://fonts.googleapis.com/css2?famil
 #take.np .np-body{font-family:"Noto Serif KR",ui-serif,Georgia,serif;font-weight:500;font-size:15.5px;line-height:1.75;text-align:left;word-break:keep-all;margin:0;padding-top:10px;border-top:1px solid #d9d0bd}
 #take.np .np-body::first-letter{float:left;font-weight:900;font-size:44px;line-height:.9;padding:5px 7px 0 0;color:#8a1c1c}
 #take.np .np-body b,#take.np .np-body strong{font-weight:700;background:linear-gradient(transparent 62%,rgba(214,170,60,.35) 0)}
+#take.np .np-more{display:block;width:100%;margin:10px 0 0;padding:7px 0 0;border:0;border-top:1px solid #1d1a15;background:none;font:700 13px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#8a1c1c;text-align:right;cursor:pointer;letter-spacing:.02em}
+#take.np .np-hd{margin-bottom:0}#take.np .np-body:not([hidden])+.np-more{margin-top:10px}
+#take.np .np-body{margin-top:10px!important}
 #take.np .np-foot{margin-top:10px;padding-top:6px;border-top:1px solid #1d1a15;font:600 11px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#7a6a4c;text-align:right;letter-spacing:.04em}
 </style><script data-paper>(function(){var k=0;function go(){var t=document.getElementById('take');if(!t||t.classList.contains('np'))return;var dl=t.querySelector('.bf-dl'),bd=t.querySelector('[data-field=comment]');
 if(!bd||!bd.textContent.trim()){if(++k<40)setTimeout(go,250);return}
 var a=dl?(dl.querySelector('b')||{}).textContent||'':'',u=dl?(dl.querySelector('.bf-us')||{}).textContent||'':'';a=a.replace(/\s*\([^)]*\)/,'');
 var h=bd.innerHTML,i=h.search(/다\.(\s|$)/),hd,rest;if(i>0){hd=h.slice(0,i+2);rest=h.slice(i+2).trim()}else{hd=h;rest=''}
 var tmp=document.createElement('div');tmp.innerHTML=hd;hd=tmp.textContent.replace(/\.$/,'');
-t.classList.add('np');t.innerHTML='<div class="np-mast"><small>AI VALUE CHAIN DAILY</small>The Mungmung Times</div><div class="np-line"><span>'+a+'</span><span>'+u+'</span></div><h2 class="np-hd"></h2>'+(rest?'<p class="np-body">'+rest+'</p>':'')+'<div class="np-foot">아래 숫자·차트로 이어집니다 ▾</div>';t.querySelector('.np-hd').textContent=hd}
+t.classList.add('np');t.innerHTML='<div class="np-mast"><small>AI VALUE CHAIN DAILY</small>The Mungmung Times</div><div class="np-line"><span>'+a+'</span><span>'+u+'</span></div><h2 class="np-hd"></h2>'+(rest?'<p class="np-body" hidden>'+rest+'</p><button type="button" class="np-more">기사 펼치기 ▾</button>':'');t.querySelector('.np-hd').textContent=hd;var mb=t.querySelector('.np-more');if(mb)mb.onclick=function(){var p=t.querySelector('.np-body'),o=p.hidden;p.hidden=!o;mb.textContent=o?'접기 ▴':'기사 펼치기 ▾'}}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go()})();</script>'''
 
 
@@ -118,16 +121,19 @@ def tidy_tiles(s):
     return s.replace('</body>', TILES + '</body>', 1) if '</body>' in s else s + TILES
 
 
-# 숫자 칸 단위: '%'·'달러/배럴'은 숫자 옆에 작게 붙이고, 'YYYY-MM-DD 마감' 같은 날짜 줄은 숨김(사용자 2026-10-29)
-UNITS = (r'''<style data-units>body .bf-tile .v .u{font-family:-apple-system,"Apple SD Gothic Neo",sans-serif;font-size:12px;font-weight:600;color:var(--color-fg-muted,#6f6d68);margin-left:3px;letter-spacing:0}</style>'''
-         r'''<script data-units>(function(){var k=0;function go(){var t=document.querySelectorAll('.bf-tile');if(!t.length||![].some.call(t,function(e){var v=e.querySelector('.v');return v&&v.textContent.trim()})){if(++k<40)setTimeout(go,250);return}'''
-         r'''t.forEach(function(e){var v=e.querySelector('.v'),s=e.querySelector('.s');if(!v||!s||v.querySelector('.u'))return;var x=s.textContent.trim(),u=null;'''
-         r'''if(x==='%')u='%';else if(/^달러\/배럴$/.test(x))u='달러';else if(/^달러/.test(x)&&x.length<8)u=x;else if(/^\d{4}-\d{2}-\d{2}\s*마감$/.test(x))u='';'''
-         r'''if(u===null)return;if(u){var sp=document.createElement('span');sp.className='u';sp.textContent=u;v.appendChild(sp)}s.style.display='none'})}'''
-         r'''if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go()})();</script>''')
+# 숫자 칸 단위: '%'·'달러'는 숫자 옆에 작게, 아랫줄은 전날 대비(10년물 bp, WTI·VIX %)(사용자 2026-10-29)
+UNITS_CSS = ('<style data-units>body .bf-tile .v .u{font-family:-apple-system,"Apple SD Gothic Neo",sans-serif;font-size:12px;font-weight:600;'
+             'color:var(--color-fg-muted,#6f6d68);margin-left:3px;letter-spacing:0}</style>')
+UNITS_ANCHOR = "  $('t-date').textContent="
+UNITS_JS = ("  try{const P=B[B.length-2];[['t-10y','us10y','bp','%'],['t-wti','wti','%','달러'],['t-vix','vix','%','']].forEach(q=>{const v=$(q[0]);if(!v)return;const sx=v.parentNode.querySelector('.s');"
+            "if(q[3]&&!v.querySelector('.u')){const sp=document.createElement('span');sp.className='u';sp.textContent=q[3];v.appendChild(sp)}"
+            "const a=last&&last[q[1]],b=P&&P[q[1]];if(sx){if(a==null||b==null){sx.style.visibility='hidden';return}"
+            "const d=q[2]==='bp'?Math.round((a-b)*1000)/10:(a/b-1)*100;sx.removeAttribute('id');sx.style.visibility='';sx.textContent=Math.abs(d)<0.05?'보합':(d>0?'+':'')+(q[2]==='bp'?d.toFixed(1)+'bp':d.toFixed(1)+'%');sx.className='s '+cl(Math.abs(d)<0.05?0:d)}})}catch(e){}\n")
 
 
 def tidy_units(s):
-    if 'data-units' in s or 'bf-tiles' not in s:
+    if 'data-units' in s or UNITS_ANCHOR not in s:
         return s
-    return s.replace('</body>', UNITS + '</body>', 1) if '</body>' in s else s + UNITS
+    # 날짜 줄(t-date)은 위 코드가 VIX 칸 아랫줄을 바꾼 뒤에 다시 쓰지 않도록 대상만 없앰
+    s = s.replace(UNITS_ANCHOR, UNITS_JS.replace("sx.removeAttribute('id');", "") + "  if(0)$('t-date').textContent=", 1)
+    return s.replace('</body>', UNITS_CSS + '</body>', 1) if '</body>' in s else s + UNITS_CSS
