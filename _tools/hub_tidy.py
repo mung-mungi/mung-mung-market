@@ -43,6 +43,7 @@ BRIEF_CSS = ('<style data-pmore>.bf-pmore{display:block;margin:6px 0 0;padding:7
 def tidy_brief(s):
     s = tidy_deep(s)
     s = tidy_paper(s)
+    s = tidy_tiles(s)
     if "'더 보기 ▾ ('" in s or BRIEF_ANCHOR not in s:
         return s
     s = s.replace(BRIEF_ANCHOR, "s.appendChild(ul);" + BRIEF_ADD + ";if(kind==='eco'", 1)
@@ -99,3 +100,18 @@ def tidy_paper(s):
     if 'data-paper' in s or 'id="take"' not in s:
         return s
     return s.replace('</body>', PAPER + '</body>', 1) if '</body>' in s else s + PAPER
+
+
+# 데일리 시황 숫자 칸: 3열로 작게(사용자 2026-10-29 — 가독성은 지키고 스크롤 압박 줄이기)
+TILES = ('<style data-tiles>body .bf-tiles{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}'
+         'body .bf-tile{padding:8px 9px!important;gap:1px!important;border-radius:10px!important}'
+         'body .bf-tile .k{font-size:11.5px!important;line-height:1.3!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
+         'body .bf-tile .v{font-size:19px!important;line-height:1.25!important;min-height:0!important;margin:1px 0!important}'
+         'body .bf-tile .s{font-size:11.5px!important;line-height:1.3!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
+         'body .bf-moodc{padding:8px 12px!important}body .bf-moodc .mt{gap:6px!important}</style>')
+
+
+def tidy_tiles(s):
+    if 'data-tiles' in s or 'bf-tiles' not in s:
+        return s
+    return s.replace('</body>', TILES + '</body>', 1) if '</body>' in s else s + TILES
