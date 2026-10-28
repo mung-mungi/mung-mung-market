@@ -78,19 +78,15 @@ def tidy_targets(s):
 
 # 데일리 시황 맨 위 요약을 신문 1면처럼(사용자 2026-10-29): 제호 · 판 정보 · 첫 문장 = 큰 제목 · 나머지 = 본문(첫 글자 크게)
 PAPER = r'''<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=UnifrakturMaguntia&display=swap"><style data-paper>
-#take.np{display:block!important;padding:14px 16px 16px!important;background:#fbf8f1!important;border:1px solid #d9d0bd!important;border-radius:6px!important;box-shadow:0 2px 0 rgba(60,45,20,.08),0 8px 18px rgba(60,45,20,.08)!important;color:#1d1a15!important}
+#take.np{display:block!important;padding:12px 14px 12px!important;background:#f3f2ee!important;border:1px solid #cfccc4!important;border-radius:4px!important;box-shadow:none!important;color:#262626!important}
 #take.np::before{content:none!important;display:none!important}
-#take.np .np-mast{text-align:center;font-family:"UnifrakturMaguntia","Old English Text MT",ui-serif,Georgia,serif;font-weight:400;font-size:32px;letter-spacing:.01em;line-height:1.1;padding:2px 0 6px;border-bottom:3px double #1d1a15}
-#take.np .np-mast small{display:block;font:700 10.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;letter-spacing:.32em;color:#7a6a4c;margin-bottom:3px}
-#take.np .np-line{display:flex;justify-content:space-between;gap:8px;font:600 11.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#5d5240;padding:5px 0;border-bottom:1px solid #1d1a15;margin-bottom:12px}
-#take.np .np-hd{font-family:"Noto Serif KR",ui-serif,Georgia,serif;font-weight:900;font-size:22px;line-height:1.35;letter-spacing:-.02em;margin:0 0 10px;text-wrap:balance}
-#take.np .np-body{font-family:"Noto Serif KR",ui-serif,Georgia,serif;font-weight:500;font-size:15.5px;line-height:1.75;text-align:left;word-break:keep-all;margin:0;padding-top:10px;border-top:1px solid #d9d0bd}
-#take.np .np-body::first-letter{float:left;font-weight:900;font-size:44px;line-height:.9;padding:5px 7px 0 0;color:#8a1c1c}
-#take.np .np-body b,#take.np .np-body strong{font-weight:700;background:linear-gradient(transparent 62%,rgba(214,170,60,.35) 0)}
-#take.np .np-more{display:block;width:100%;margin:10px 0 0;padding:7px 0 0;border:0;border-top:1px solid #1d1a15;background:none;font:700 13px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#8a1c1c;text-align:right;cursor:pointer;letter-spacing:.02em}
-#take.np .np-hd{margin-bottom:0}#take.np .np-body:not([hidden])+.np-more{margin-top:10px}
-#take.np .np-body{margin-top:10px!important}
-#take.np .np-foot{margin-top:10px;padding-top:6px;border-top:1px solid #1d1a15;font:600 11px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#7a6a4c;text-align:right;letter-spacing:.04em}
+#take.np .np-mast{text-align:center;font-family:"UnifrakturMaguntia","Old English Text MT",ui-serif,Georgia,serif;font-weight:400;font-size:22px;line-height:1.1;color:#333;padding:0 0 5px;border-bottom:1px solid #8f8c85}
+#take.np .np-mast small{display:none}
+#take.np .np-line{display:flex;justify-content:space-between;gap:8px;font:500 11px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#77746d;padding:4px 0;border-bottom:1px solid #cfccc4;margin-bottom:10px}
+#take.np .np-hd{font-family:"Noto Serif KR",ui-serif,Georgia,serif;font-weight:700;font-size:19px;line-height:1.4;letter-spacing:-.02em;color:#1f1f1f;margin:0;text-wrap:balance}
+#take.np .np-body{font-family:"Noto Serif KR",ui-serif,Georgia,serif;font-weight:500;font-size:15px;line-height:1.75;text-align:left;word-break:keep-all;color:#333;margin:10px 0 0!important;padding-top:10px;border-top:1px solid #cfccc4}
+#take.np .np-body b,#take.np .np-body strong{font-weight:700;color:#111}
+#take.np .np-more{display:block;width:100%;margin:10px 0 0;padding:6px 0 0;border:0;border-top:1px solid #cfccc4;background:none;font:600 12.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#66635c;text-align:right;cursor:pointer}
 </style><script data-paper>(function(){var k=0;function go(){var t=document.getElementById('take');if(!t||t.classList.contains('np'))return;var dl=t.querySelector('.bf-dl'),bd=t.querySelector('[data-field=comment]');
 if(!bd||!bd.textContent.trim()){if(++k<40)setTimeout(go,250);return}
 var a=dl?(dl.querySelector('b')||{}).textContent||'':'',u=dl?(dl.querySelector('.bf-us')||{}).textContent||'':'';a=a.replace(/\s*\([^)]*\)/,'');
