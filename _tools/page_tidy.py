@@ -104,7 +104,6 @@ function tidy(){
 #main .hd .pr{cursor:pointer;border-bottom:1px dashed rgba(0,0,0,.18)}
 .mm1d-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;margin:6px 0 2px;font-size:13px;color:#6b675f}.mm1d-h b{font-size:17px}.mm1d-h .tip{flex-basis:100%;min-height:1.2em;font-weight:700;color:#141210}
 /* 추세선·채널선 가늘고 옅게, 추세 가이드 글씨 작게 */
-#main .ch svg line,#main .ch svg path[stroke-dasharray]{stroke-width:1.1!important}
 #main details.mm-fold p.gl,#main details.mm-fold p.nt{font-size:13px!important;line-height:1.6!important}
 #main details.mm-fold p.gl small{font-size:12px!important}
 /* 기간별 등락 6칸은 빼고 그만큼 차트를 크게(사용자 2026-10-29) */
@@ -255,10 +254,25 @@ function mmtDraw(){
   var prev=all.filter(function(a){return a[0]<from}); var base=prev.length?prev[prev.length-1][1]:pts[0][1];
   mmtChart(box,pts,base,cur,null); setChg(base,MMT_PER.filter(function(p){return p[0]===T.per})[0][2]);
 }
+
+function mmtStyleDetail(){ // 자세한 차트: 추세선은 가늘고 옅게, 주가 선은 맨 위에 흰 테두리로 또렷하게
+  var svg=document.querySelector('#main .ch svg'); if(!svg||svg.dataset.st)return; svg.dataset.st=1;
+  var A=function(e,n){return e.getAttribute(n)||''};
+  svg.querySelectorAll('line').forEach(function(l){ var st=A(l,'stroke'), d=A(l,'stroke-dasharray');
+    if(st==='var(--color-fg)'&&(d==='6 0'||A(l,'stroke-width')==='1.8')){ l.setAttribute('stroke-width','1'); l.setAttribute('opacity','.3'); }
+    else if(st==='var(--color-fg)'){ l.setAttribute('opacity','.18'); }
+    else if(st==='var(--color-bad)'||st==='var(--color-ok)'){ l.setAttribute('stroke-width','1.1'); l.setAttribute('opacity', d?'.3':'.5'); } });
+  svg.querySelectorAll('rect').forEach(function(r){ if(A(r,'opacity')==='0.08') r.setAttribute('opacity','.05'); });
+  svg.querySelectorAll('text').forEach(function(t){ if(/^고점/.test(t.textContent)) t.setAttribute('opacity','.75'); });
+  var pr=[].slice.call(svg.querySelectorAll('path')).filter(function(p){return A(p,'stroke')==='var(--line)'&&A(p,'fill')==='none'})[0];
+  if(pr){ var g=pr.parentNode, halo=pr.cloneNode(); halo.setAttribute('stroke','#fff'); halo.setAttribute('stroke-width','5.5'); halo.setAttribute('opacity','.9');
+    pr.setAttribute('stroke-width','2.4'); g.appendChild(halo); g.appendChild(pr);
+    [].slice.call(g.querySelectorAll('circle')).filter(function(c){return A(c,'fill')==='var(--line)'}).forEach(function(c){ g.appendChild(c); }); }
+}
 function mmtTidy(){ var main=document.getElementById('main'); if(!main||!main.querySelector('.hd'))return; var w=main.querySelector('.mmt'); if(!w||w.dataset.tk!==mmTk()) mmtDraw(); }
 
 function tidy(){
-  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)}
+  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){}
   // 차트 안에서 선과 겹치던 글자 빼기(장기 추세·단기 상단·하단) — 같은 내용은 위 4칸에
   main.querySelectorAll('.ch svg text').forEach(function(t){ if(/^(장기 추세|단기 상단|단기 하단)/.test(t.textContent))t.remove(); });
   var gl=main.querySelector('p.gl'), ch=main.querySelector('.ch');
