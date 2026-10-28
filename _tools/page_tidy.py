@@ -123,11 +123,21 @@ function tidy(){
 .mmt-pen .mmt-hint{flex:1 0 100%;margin:0;font-size:11.5px;color:#9a6200;font-weight:600}
 #main.mmt-detail .mmt-pen{display:none!important}html.mm-full .mmt-pen,html.mm-land .mmt-pen{display:none!important}.mmt-x{display:none!important}
 #main.mmt-detail .ch{padding-top:0;margin-top:-10px!important;margin-bottom:-10px!important}#main.mmt-detail .ch>.mmt-tools{top:0}#main .zhint{display:none!important}
+/* 촘촘하게 */
+#main.mmt-on{padding:10px 10px 8px!important;margin-top:6px!important;row-gap:4px!important;gap:4px!important}
+#main.mmt-on .mm-rec{margin:0 0 2px!important}#main.mmt-on > .mm-shbar{margin-top:0!important}
+/* 차트 페이지 아래 설명문·안내는 화면에서 빼고 '종목 바꾸기' 창 맨 아래로 */
+body .wrap > p.foot,body .wrap > p.mm-foot{display:none!important}.mm-shbody .mm-foot2{margin:14px 4px 6px;font-size:11.5px;line-height:1.55;color:#9a978f}
+#main.mmt-on .mm-rec{margin:0 0 6px}
+#main.mmt-on .hd{margin:0!important;padding:0!important;row-gap:0!important}
+#main.mmt-on .mmt{margin:0!important}#main.mmt-on .mmt-top{margin:2px 0 0!important;min-height:28px}
+#main.mmt-on .mmt-per{margin:4px -4px 0!important}
+html.mm-hx-off .wrap{padding-top:4px!important}
 .mm-rec{display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;margin:-2px 0 10px;padding:2px 0}.mm-rec::-webkit-scrollbar{display:none}
 .mm-rec .lb{flex:none;font-size:11.5px;font-weight:700;color:#9a978f;margin-right:2px}
 .mm-rec button{flex:none;font:inherit;font-size:13px;font-weight:700;height:28px;padding:0 11px;border-radius:999px;border:1px solid #e3dfd6;background:#fff;color:#4a463f;box-shadow:0 1px 0 rgba(0,0,0,.05),0 2px 5px rgba(0,0,0,.05)}
 .mm-rec button.on{background:#141210;color:#fff;border-color:#141210}
-#main .mm-shbar{display:flex;width:calc(100% + 8px);margin:6px -4px -4px;justify-content:center;align-items:center;gap:6px;height:40px;padding:3px;border-radius:12px;border:0;background:#f3f1ec;color:#141210;font:inherit;font-size:14.5px;font-weight:700;box-shadow:none}#main .mm-shbar small{font-size:11.5px;font-weight:600;color:#8a877f}#main .mmt-per{margin-bottom:0!important}
+#main .mm-shbar{display:flex;width:calc(100% + 8px);margin:4px -4px 0;justify-content:center;align-items:center;gap:6px;height:40px;padding:3px;border-radius:12px;border:0;background:#f3f1ec;color:#141210;font:inherit;font-size:14.5px;font-weight:700;box-shadow:none}#main .mm-shbar small{font-size:11.5px;font-weight:600;color:#8a877f}#main .mmt-per{margin-bottom:0!important}
 .mm-shbar small{font-size:11px;font-weight:600;color:#a39f96}
 #mm-snd{display:none!important}
 html.mm-land .mm-shbar,html.mm-full .mm-shbar{display:none}
@@ -325,7 +335,7 @@ function mmLegs(pts, before){ var P=pts.filter(function(p){return p[0]<=before})
     legs.push({dir:dir, ta:A[0], tb:seg[seg.length-1][0], up:dir<0?mf:function(m,o){return function(t){return m(t)+o}}(mf,off), dn:dir<0?function(m,o){return function(t){return m(t)+o}}(mf,off):mf}); }
   return legs.slice(-3); }
 function mmtChart(box, pts, base, cur, intra, opt){ opt=opt||{}; var OV=opt.ov||{}, CD=opt.cdl||null;
-  var LAND=document.documentElement.classList.contains('mm-land')||document.documentElement.classList.contains('mm-full'), W=Math.max(260,box.clientWidth||330), H=LAND?Math.max(150,(box.clientHeight||innerHeight-120)-22):Math.round(Math.min(430,Math.max(280,W*0.86))), m={l:4,r:38,t:50,b:30};
+  var LAND=document.documentElement.classList.contains('mm-land')||document.documentElement.classList.contains('mm-full'), W=Math.max(260,box.clientWidth||330), H=LAND?Math.max(150,(box.clientHeight||innerHeight-120)-22):(window.__mmFitH||Math.round(Math.min(430,Math.max(280,W*0.86)))), m={l:4,r:38,t:50,b:30};
   var t0=pts[0][0], t1=pts[pts.length-1][0]; if(intra){ t0=Math.min(t0,intra.x0); t1=Math.max(t1,intra.x1); }
   if(!LAND) window.__mmH=H; // 자세한 차트도 같은 높이로
   var RNG=opt.rng||CD; var vs=RNG?[].concat.apply([],RNG.map(function(c){return [c[2],c[3]]})):pts.map(function(a){return a[1]}); if(base!=null) vs.push(base);
@@ -685,6 +695,7 @@ function mmSheet(){ var side=document.querySelector('section.side'); if(!side||d
     box.addEventListener('touchstart',function(e){ var t=e.touches[0]; fromBody=!!e.target.closest('.mm-shbody'); if(fromBody&&body.scrollTop>0){ y0=null; return; } y0=t.clientY; dy=0; box.style.transition='none'; },{passive:true});
     box.addEventListener('touchmove',function(e){ if(y0==null)return; dy=e.touches[0].clientY-y0; if(dy<=0){ if(fromBody){ y0=null; box.style.transform=''; box.style.transition=''; } return; } e.preventDefault(); box.style.transform='translateY('+dy+'px)'; },{passive:false});
     box.addEventListener('touchend',function(){ if(y0==null)return; y0=null; box.style.transition=''; box.style.transform=''; if(dy>90) open(false); dy=0; }); })();
+  ['.wrap > p.foot','.wrap > p.mm-foot'].forEach(function(q){ var ft=document.querySelector(q); if(ft){ var c=ft.cloneNode(true); c.className='mm-foot2'; sh.querySelector('.mm-shbody').appendChild(c); } });
   window.__mmShOpen=open; sh.querySelector('.mm-shbg').addEventListener('click',function(){ open(false); }); sh.querySelector('.mm-shx').addEventListener('click',function(){ open(false); });
   side.addEventListener('click',function(e){ if(e.target.closest&&e.target.closest('#list button.row')){ setTimeout(function(){ open(false); scrollTo({top:0,behavior:'smooth'}); },120); } },true);
   addEventListener('hashchange',function(){ open(false); }); }
@@ -698,11 +709,17 @@ function mmRecent(){ var main=document.getElementById('main'); if(!main||!main.q
   var byT={}; try{ DATA.P.forEach(function(r){ byT[r.ticker]=r; }); }catch(e){}
   R.forEach(function(t){ var r=byT[t]; if(!r)return; var b=document.createElement('button'); b.type='button'; b.textContent=t.replace('^','').replace(/=F$/,''); if(t===tk) b.className='on'; b.title=r.name;
     b.addEventListener('click',function(){ location.hash=t.replace(/[^A-Za-z0-9]/g,'-'); }); box.appendChild(b); }); }
+// 첫 화면에 차트 카드만 딱(사용자 2026-10-29): 카드 아래가 아래 아이콘 독 바로 위에 오도록 차트 높이를 맞춤
+function mmFitCard(){ var h=document.documentElement; if(h.classList.contains('mm-land')||h.classList.contains('mm-full'))return; var m=document.getElementById('main'), sv=m&&m.querySelector('.mmt-box > svg'); if(!m||!sv)return;
+  var dockTop=innerHeight; [].slice.call(document.querySelectorAll('nav,div')).forEach(function(e){ var cs=getComputedStyle(e); if(cs.position!=='fixed')return; var r=e.getBoundingClientRect(); if(r.width>300&&r.top>innerHeight*0.6&&r.height>30&&r.top<dockTop) dockTop=r.top; });
+  var hero=document.querySelector('header.mm-hero'), heroH=(hero&&!h.classList.contains('mm-hx-off'))?hero.getBoundingClientRect().height+(parseFloat(getComputedStyle(hero).marginBottom)||0):0;
+  var top=m.getBoundingClientRect().top+scrollY-heroH, non=m.offsetHeight-sv.getBoundingClientRect().height, want=Math.round(Math.max(240,Math.min(620,dockTop-6-top-non)));
+  var cur=Math.round(sv.getBoundingClientRect().height); if(Math.abs(want-cur)>6&&(window.__mmFitN=(window.__mmFitN||0)+1)<4){ window.__mmFitH=want; window.__mmH=want; try{mmtDraw()}catch(e){} } }
 function mmtTidy(){ var main=document.getElementById('main'); if(!main||!main.querySelector('.hd'))return; var w=main.querySelector('.mmt'); if(!w||w.dataset.tk!==mmTk()) mmtDraw(); }
 
 function tidy(){
   try{ var RN={'1개월':'1달','3개월':'3달','6개월':'6달','12개월':'1년'}; document.querySelectorAll('#main .rg .pb-chip').forEach(function(b){ var k=b.textContent.trim(); if(RN[k]) b.textContent=RN[k]; }); }catch(e){}
-  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){} try{mmAsof()}catch(e){} try{mmList()}catch(e){} try{mmSheet()}catch(e){} try{mmShBar()}catch(e){} try{mmRecent()}catch(e){} try{mmTools()}catch(e){} try{mmDtipSlot()}catch(e){} try{mmPerPlace()}catch(e){} try{mmtAxisTags()}catch(e){console.log(e)}
+  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){} try{mmAsof()}catch(e){} try{mmList()}catch(e){} try{mmSheet()}catch(e){} try{mmShBar()}catch(e){} try{mmRecent()}catch(e){} try{mmFitCard()}catch(e){} try{mmTools()}catch(e){} try{mmDtipSlot()}catch(e){} try{mmPerPlace()}catch(e){} try{mmtAxisTags()}catch(e){console.log(e)}
   // 차트 안에서 선과 겹치던 글자 빼기(장기 추세·단기 상단·하단) — 같은 내용은 위 4칸에
   main.querySelectorAll('.ch svg text').forEach(function(t){ if(/^(장기 추세|단기 상단|단기 하단)/.test(t.textContent))t.remove(); });
   var gl=main.querySelector('p.gl'), ch=main.querySelector('.ch');
