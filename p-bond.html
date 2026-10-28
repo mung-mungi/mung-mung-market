@@ -378,6 +378,7 @@ dash.onData(drawBT);})();
   var SEL = 'a,button,summary,select,label,[role=button],[role=tab],[onclick],.pb-row,.pb-hc,.pb-tile,.cp,.item,tr[data-tk],input[type=checkbox],input[type=radio]';
   function tick(){
     if (off) return;
+    try { if (navigator.vibrate) navigator.vibrate(8); } catch (e) {}  // 안드로이드만 살짝 진동(아이폰 웹은 진동 불가)
     try {
       if (!ctx) { var A = window.AudioContext || window.webkitAudioContext; if (!A) return; ctx = new A(); }
       if (ctx.state === 'suspended') ctx.resume();
