@@ -4,7 +4,7 @@ body.mmd-on{padding-bottom:calc(80px + env(safe-area-inset-bottom))!important}
 body.mmd-on #mm-snd{bottom:calc(90px + env(safe-area-inset-bottom))!important}
 body .mmd{position:fixed;left:0;right:0;bottom:0;z-index:9000;padding:0 0 calc(6px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e8e6df;box-shadow:0 -4px 14px rgba(11,11,11,.06);touch-action:none}
 body .mmd .grab{all:unset;display:block;width:100%;height:14px;cursor:pointer}body .mmd .grab em{display:block;width:38px;height:4px;border-radius:3px;background:#cfccc4;margin:5px auto 0}
-body .mmd .row{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding:0 6px}body .mmd .row::-webkit-scrollbar{display:none}
+body .mmd .row{display:flex;flex-wrap:nowrap!important;justify-content:flex-start;border-bottom:0;gap:2px;overflow-x:auto;scrollbar-width:none;padding:0 6px}body .mmd .row::-webkit-scrollbar{display:none}
 body .mmd .row>a{all:unset;flex:none;width:60px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px 0;border-radius:10px;cursor:pointer;font:600 10.5px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#8a877f;-webkit-tap-highlight-color:transparent}
 body .mmd .row>a i{font-style:normal;font-size:21px;line-height:1.2}body .mmd .row>a span{white-space:nowrap;max-width:58px;overflow:hidden;text-overflow:ellipsis}
 body .mmd .row>a.on{color:#0b0b0b;font-weight:800;background:#f3efe4}

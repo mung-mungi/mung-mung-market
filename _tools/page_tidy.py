@@ -853,7 +853,9 @@ def run(root):
         s = s.replace("let rt0 = null; addEventListener('resize', () => { clearTimeout(rt0); rt0 = setTimeout(draw, 150); });", "let rt0 = null, rw0 = innerWidth; addEventListener('resize', () => { if (innerWidth === rw0 && !window.__mmForce) return; rw0 = innerWidth; window.__mmForce = 0; clearTimeout(rt0); rt0 = setTimeout(draw, 150); });")
         # 자세한 차트: 손가락 따라다니며 깜빡이던 말풍선 상자 없애고, 차트 위 고정 한 줄(mmDtip)에 표시(사용자 2026-10-29)
         s = s.replace("const tip = hv.append('g');", "const tip = hv.append('g').style('display', 'none');", 1)
-        s = s.replace("t3.text(rel).attr('fill', relc);", "t3.text(rel).attr('fill', relc); try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {}", 1)
+        _dt = " try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {}"
+        while _dt + _dt in s: s = s.replace(_dt + _dt, _dt)  # 겹쳐 붙은 것 하나로
+        if _dt not in s: s = s.replace("t3.text(rel).attr('fill', relc);", "t3.text(rel).attr('fill', relc);" + _dt, 1)
         # 자세한 차트도 5년·10년, 버튼에 기간 표시(data-k) — 기간 고르기는 아래 공통 줄에서(사용자 2026-10-29)
         s = s.replace("[['1m', '1개월'], ['3m', '3개월'], ['6m', '6개월'], ['12m', '12개월']].forEach(([k, l]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'pb-chip'; b.textContent = l;", "[['1m', '1개월'], ['3m', '3개월'], ['6m', '6개월'], ['12m', '12개월'], ['5y', '5년'], ['10y', '10년']].forEach(([k, l]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'pb-chip'; b.textContent = l; b.dataset.k = k;", 1)
         s = s.replace("const cutDays = { '1m': 31, '3m': 92, '6m': 184, '12m': 370 }[openRange];", "const cutDays = { '1m': 31, '3m': 92, '6m': 184, '12m': 370, '5y': 1830, '10y': 3660 }[openRange] || 370;", 1)
