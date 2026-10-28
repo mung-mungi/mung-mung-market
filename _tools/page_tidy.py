@@ -98,6 +98,14 @@ function tidy(){
 .mmt-tg{flex:none;display:inline-flex;align-items:center;gap:5px;height:30px;padding:0 10px;border-radius:999px;border:1px solid #e3dfd6;background:#fff;font:inherit;font-size:13px;font-weight:700;color:#6b675f;cursor:pointer;box-shadow:0 1px 0 rgba(0,0,0,.05),0 2px 5px rgba(0,0,0,.05)}
 .mmt-tg[aria-pressed=true],.mmt-tg.on{background:#141210;color:#fff;border-color:#141210}
 .mmt-det input{position:absolute;opacity:0;width:1px;height:1px}
+.mm-sum{margin:10px 0 2px;padding:10px 12px;border-radius:12px;background:#faf8f3;border:1px solid #eee9de}
+.mm-sum .ttl{display:block;font-size:14.5px;font-weight:800;color:#141210;margin-bottom:6px}
+.mm-sum p{margin:0 0 5px;font-size:13.5px;line-height:1.5;color:#3a372f}.mm-sum p em{display:block;font-style:normal;font-weight:800;font-size:12.5px;color:#9a6200}
+.mm-sum p.lg{margin:8px 0 0;font-size:11.5px;color:#8a877f}.mm-sum p.lg i{display:inline-block;width:12px;height:3px;border-radius:2px;margin:0 2px 2px;vertical-align:middle}
+#main.mmt-on:not(.mmt-detail) .mm-sum{display:none}
+#main details.mm-fold{display:none!important}
+#main .mmt-stage,#main .ch{margin-left:-12px!important;margin-right:-10px!important}
+#main .mmt-per{margin-left:-4px;margin-right:-4px}
 .mm-dtip{min-height:20px;margin:2px 0 0;font-size:12.5px;color:#8a877f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mm-dtip b{color:#141210;font-weight:800}.mm-dtip em{font-style:normal;font-weight:700}
 #main.mmt-on:not(.mmt-detail) .mm-dtip{display:none}
 .mmt-stage,#main .ch{position:relative}
@@ -174,6 +182,7 @@ html.mm-land .mmt-per{margin:4px 0 0}html.mm-land .mmt-per button{padding:5px 0}
 #list .row .dd{order:4;flex:none;font-size:12px!important;color:#8a877f;min-width:4.6em;text-align:right}
 #list .row[aria-current=true]{background:#f4ecdb!important;border-color:rgba(162,106,12,.35)!important}
 """,
+  'sync': True,
   'js': r"""
 window.__mm1d=window.__mm1d||false; window.__mmIntra=window.__mmIntra||null; window.__mmIntraAt=window.__mmIntraAt||0;
 function mmIntra(cb){ if(window.__mmIntra&&Date.now()-window.__mmIntraAt<60000){cb(window.__mmIntra);return}
@@ -249,7 +258,7 @@ function mmtFmt(v,cur){ if(cur==='%') return v.toFixed(3).replace(/0$/,'')+'%'; 
 function mmtTick(v,cur,st){ if(Math.abs(v)<st*1e-6) v=0; var d=st<0.01?3:st<0.1?2:st<1?1:0; if(cur==='%') return v.toFixed(Math.max(d,1))+'%'; if(v>=100000) return (v/10000).toLocaleString('en-US',{maximumFractionDigits:1})+'만'; return v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}); }
 function mmtKst(sec,withDate){ var d=new Date(sec*1000+9*3600000), p=function(n){return (n<10?'0':'')+n}; return withDate?(d.getUTCFullYear()%100)+'.'+(d.getUTCMonth()+1)+'.'+d.getUTCDate():p(d.getUTCHours())+':'+p(d.getUTCMinutes()); }
 function mmtChart(box, pts, base, cur, intra){
-  var LAND=document.documentElement.classList.contains('mm-land')||document.documentElement.classList.contains('mm-full'), W=Math.max(260,box.clientWidth||330), H=LAND?Math.max(150,(box.clientHeight||innerHeight-120)-22):Math.round(Math.min(380,Math.max(260,W*0.78))), m={l:4,r:44,t:40,b:30};
+  var LAND=document.documentElement.classList.contains('mm-land')||document.documentElement.classList.contains('mm-full'), W=Math.max(260,box.clientWidth||330), H=LAND?Math.max(150,(box.clientHeight||innerHeight-120)-22):Math.round(Math.min(430,Math.max(280,W*0.86))), m={l:4,r:38,t:40,b:30};
   var t0=pts[0][0], t1=pts[pts.length-1][0]; if(intra){ t0=Math.min(t0,intra.x0); t1=Math.max(t1,intra.x1); }
   var vs=pts.map(function(a){return a[1]}); if(base!=null) vs.push(base);
   // 추세(사용자 2026-10-29): 기간 안 가장 최근의 큰 꼭짓점(최고점·최저점)부터 지금까지의 흐름만 — 하락이면 고점들을 잇는 선 + 같은 기울기 아래 선, 상승이면 저점들을 잇는 선 + 위 선
@@ -465,6 +474,20 @@ function mmSetRange(){ var T=window.__mmT||{}; if(!T.det)return; var k=MM_DR[T.p
 // 기간 줄은 두 모드 모두 차트 아래 같은 자리
 function mmPerPlace(){ var main=document.getElementById('main'), per=main&&main.querySelector('.mmt-per'); if(!per)return; var det=main.classList.contains('mmt-detail');
   var after=det?(main.querySelector('.mm-dtip')&&false||main.querySelector('.ch')):main.querySelector('.mmt-stage'); if(after&&per.previousElementSibling!==after) after.after(per); }
+// 추세 가이드 요약(사용자 2026-10-29): 긴 설명 대신 4줄 — 지금 자리 / 넘어야 할 곳 / 버텨야 할 곳 / 전환 신호, 선 읽는 법은 한 줄
+function mmGuide(main,gl){ if(!gl||main.querySelector('.mm-sum'))return; var t=gl.textContent.replace(/\s+/g,' ');
+  var g=function(re){var m=t.match(re);return m}, R=g(/위 저항 후보\s*([\d,.~]+)[^(]*\(([^)]*)\)/), R2=g(/더 위 저항\s*([\d,.~]+)/), S=g(/아래 지지 후보\s*([\d,.~]+)[^(]*\(([^)]*)\)/), S2=g(/더 아래 지지\s*([\d,.~]+)/);
+  var C=g(/단기 (하락|상승) 채널\(([\d.]+) (고점|저점) 이후[^)]*\)\s*·\s*상단\s*([\d,.]+)[^·]*·\s*하단\s*([\d,.]+)/), L=g(/장기 추세선보다\s*([−+\-]?[\d.]+%)/), pos=/아래 경계보다 낮음/.test(t)?'평소보다 많이 눌린 자리':/위 경계보다 높음/.test(t)?'평소보다 많이 오른 자리':'평소 범위 안';
+  var dd=function(x){ var p=x.split('.'); return p.length===3?(+p[1])+'/'+(+p[2]):x; };
+  var rows=[];
+  rows.push(['지금 자리', (C?'단기 '+C[1]+' 채널 안('+dd(C[2])+' '+C[3]+' 이후)':'')+(L?(C?' · ':'')+'1년 추세보다 '+L[1]+' — '+pos:'')]);
+  if(R) rows.push(['넘어야 할 곳', R[1]+(R2?' → 그다음 '+R2[1]:'')]);
+  if(S) rows.push(['버텨야 할 곳', S[1]+(S2?' → 그다음 '+S2[1]:'')]);
+  if(C) rows.push([C[1]==='하락'?'전환 신호':'경계 신호', C[1]==='하락'?('종가로 '+C[4]+' 위(채널 상단)면 하락 추세 탈출 · '+C[5]+' 아래(하단)면 더 약해짐'):('종가로 '+C[5]+' 아래(채널 하단)면 상승 추세 이탈 · '+C[4]+' 위(상단)는 과열 구간')]);
+  var box=document.createElement('div'); box.className='mm-sum';
+  box.innerHTML='<b class="ttl">추세 한눈에</b>'+rows.map(function(r,i){return '<p><em>'+'①②③④'[i]+' '+r[0]+'</em><span></span></p>'}).join('')+'<p class="lg">선: <i style="background:#c4453a"></i><i style="background:#2f8a4c"></i> 단기 채널 · <i style="background:#bdb9b0"></i> 1년 추세 · 띠 = 매물대(진하면 1차, 옅으면 그다음)</p>';
+  rows.forEach(function(r,i){ box.querySelectorAll('p span')[i].textContent=r[1]; });
+  var lv=main.querySelector('.mm-lv'); (lv||main.querySelector('.ch')).after(box); }
 function mmtTidy(){ var main=document.getElementById('main'); if(!main||!main.querySelector('.hd'))return; var w=main.querySelector('.mmt'); if(!w||w.dataset.tk!==mmTk()) mmtDraw(); }
 
 function tidy(){
@@ -485,7 +508,8 @@ function tidy(){
     if(L)cell('','장기 추세',L[1],'');
     if(box.children.length)ch.after(box);
   }
-  if(gl&&!gl.closest('details')){ var nt=main.querySelector('p.nt'); var d=document.createElement('details'); d.className='mm-fold'; d.innerHTML='<summary><span>추세 가이드 자세히 · 선 읽는 법</span></summary>'; gl.before(d); d.appendChild(gl); if(nt)d.appendChild(nt); }
+  try{ mmGuide(main,gl); }catch(e){console.log(e)}
+  if(gl&&!gl.closest('details')){ var nt=main.querySelector('p.nt'); var d=document.createElement('details'); d.className='mm-fold'; d.innerHTML='<summary><span>추세 한눈에</span></summary>'; gl.before(d); d.appendChild(gl); if(nt)d.appendChild(nt); }
 }
 """,
  },
@@ -532,7 +556,7 @@ def run(root):
     p = os.path.join(root, 'p-trend.html')
     if os.path.exists(p):  # 종목 차트: 휴대폰에서 차트를 크게(사용자 2026-10-29)
         s = open(p, encoding='utf-8').read(); o = s
-        s = s.replace('Math.round(Math.min(300, Math.max(200, W * 0.42)))', 'Math.round(Math.min(380, Math.max(260, W * 0.78)))')
+        s = s.replace('Math.round(Math.min(300, Math.max(200, W * 0.42)))', 'Math.round(Math.min(430, Math.max(280, W * 0.86)))')
         # 금리(%) 표시: 소수 둘째 자리, 'USD' 대신 '%'(사용자 2026-10-29 채권·유가 층위)
         s = s.replace("const fmtShort = (x, cur) => { if (x == null) return ''; const d = cur === 'USD'", "const fmtShort = (x, cur) => { if (x == null) return ''; const d = cur === '%' ? 2 : cur === 'USD'")
         s = s.replace("+ ' ' + r.currency", "+ (r.currency === '%' ? '%' : ' ' + r.currency)")
@@ -565,6 +589,8 @@ def run(root):
         s = o = open(p, encoding='utf-8').read()
         s = re.sub(r'<style data-ptidy>[\s\S]*?</style><script data-ptidy>[\s\S]*?</script>', '', s)
         js = COMMON_JS + cfg['js'] + "\n(function(){var q=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(q)return;q=1;setTimeout(function(){q=0;go()},150)}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();"
+        if cfg.get('sync'):
+            js = COMMON_JS + cfg['js'] + "\n(function(){var q=0,n=0,t0=0,busy=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(busy)return;var now=Date.now();if(now-t0>300){t0=now;n=0}if(++n>8){if(!q){q=1;setTimeout(function(){q=0;go()},120)}return}busy=1;try{go()}finally{busy=0}}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();"
         add = '<style data-ptidy>' + CSS_COMMON + cfg['css'] + '</style><script data-ptidy>' + js + '</script>'
         s = s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
         if s != o: open(p, 'w', encoding='utf-8').write(s); done.append(f)
