@@ -1,5 +1,6 @@
 /* 목표주가: 표·목록을 시세 보드 '종목별 시세' 한 줄 카드로 (사용자 2026-10-29) */
-body .pt-tbl-box{overflow:visible!important;max-height:none!important;border:0!important;background:none!important}
+body :is(#trend-card,#firm-card,#log-card) .pt-tbl-box{overflow-y:auto!important;overflow-x:hidden!important;max-height:min(62vh,520px)!important;border:0!important;background:none!important;padding:2px 4px 8px!important;overscroll-behavior:contain}
+body :is(#trend-card,#firm-card,#log-card) table.pt-tbl thead{position:sticky;top:0;z-index:2;background:var(--color-bg-card,#fff)}
 body :is(#trend-card,#firm-card,#log-card) table.pt-tbl{display:block!important;width:100%!important;border:0!important;background:none!important}
 body :is(#trend-card,#firm-card,#log-card) table.pt-tbl :is(thead,tbody){display:flex!important;flex-direction:column;gap:7px}
 body :is(#trend-card,#firm-card,#log-card) table.pt-tbl thead tr{display:flex!important;flex-wrap:nowrap;gap:5px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 6px;background:none!important;box-shadow:none!important}

@@ -160,6 +160,7 @@ HITS = ('<style data-hits>body .hits{display:flex!important;flex-wrap:wrap!impor
 def tidy_hits(s):
     s = tidy_ups(s)
     s = tidy_sumrow(s)
+    s = tidy_earnui(s)
     if 'data-hits' in s or 'id="hits"' not in s:
         return s
     return s.replace('</body>', HITS + '</body>', 1) if '</body>' in s else s + HITS
@@ -310,4 +311,14 @@ def tidy_tgrow(s):
         return s
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-tgrow>' + open(os.path.join(d, 'tgrow.css'), encoding='utf-8').read() + '</style><script data-tgrow>' + open(os.path.join(d, 'tgrow.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+# 실적 결과 화면 정리(시세 보드 양식) — CSS·JS는 _tools/earnui.css·earnui.js (사용자 2026-10-29)
+def tidy_earnui(s):
+    s = re.sub(r'<(style|script) data-earnui>.*?</\1>', '', s, flags=re.S)
+    if 'id="hits"' not in s:
+        return s
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-earnui>' + open(os.path.join(d, 'earnui.css'), encoding='utf-8').read() + '</style><script data-earnui>' + open(os.path.join(d, 'earnui.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add

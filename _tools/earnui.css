@@ -1,0 +1,63 @@
+/* 실적 결과: 시세 보드 양식(사용자 2026-10-29) — 찾기·탭·한 줄 카드 */
+body #find{display:flex;flex-direction:column;gap:8px}
+body #find #fq{border-radius:12px!important;padding:9px 12px!important;font-size:15px!important;border:1px solid rgba(11,11,11,.1)!important;background:#fff!important;box-shadow:inset 0 1px 2px rgba(0,0,0,.05)!important;margin:0!important}
+body #find .fl{display:flex!important;align-items:center;gap:8px;margin:0!important}
+body #find .fl .fk{flex:none;width:2.4em;font:700 12.5px/1 -apple-system,sans-serif;color:#6f6d68}
+body #find #fd{flex:1;display:flex!important;flex-wrap:nowrap!important;gap:0!important;padding:3px!important;border-radius:11px;background:#e8e8e6;overflow-x:auto;scrollbar-width:none}
+body #find #fd>button{all:unset;flex:1 0 auto;text-align:center;cursor:pointer;white-space:nowrap;font:700 13px/1.6 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:4px 8px;border-radius:8px;color:#6f6d68}
+body #find #fd>button[aria-pressed=true]{background:#fff;color:#0b0b0b;box-shadow:0 0 0 1px rgba(154,98,0,.35),0 2px 0 rgba(11,11,11,.12),0 4px 10px rgba(11,11,11,.1)}
+body #find #fl{flex:1;display:flex!important;flex-wrap:nowrap!important;gap:6px!important;overflow-x:auto;scrollbar-width:none;padding:2px 2px 7px!important}
+body #find #fl>button{all:unset;flex:none;cursor:pointer;white-space:nowrap;font:600 13.5px/1.55 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:4px 12px;border:1px solid rgba(11,11,11,.1);border-radius:999px;background:#f9f9f7;color:#0b0b0b;box-shadow:0 3px 0 rgba(30,22,8,.16),0 4px 8px rgba(30,22,8,.1)}
+body #find #fl>button[aria-pressed=true]{background:#0b0b0b;color:#f9f9f7;border-color:#0b0b0b}
+body #find .fcount{margin:0!important;font-size:12px!important;color:#6f6d68}
+body #find .hits{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto;scrollbar-width:none;gap:5px!important;padding:2px 2px 8px!important;align-items:center}
+body #find .hits>*{flex:none!important}
+body #find .hits>button{box-shadow:0 2px 0 rgba(30,22,8,.14)!important}
+body #find .hits .hrest:not([hidden]){display:contents!important}
+body #find .hk{margin:10px 0 0!important;padding-left:10px;border-left:4px solid #9a6200;font:800 17px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:#0b0b0b!important}
+body #find .ups{display:flex!important;flex-direction:column;gap:7px}
+body #find .ups .ud{border:0!important;border-radius:12px;background:#fff;box-shadow:0 0 0 1px rgba(154,98,0,.12),0 3px 0 rgba(11,11,11,.1),0 6px 14px rgba(11,11,11,.08);padding:8px 11px!important;margin:0!important}
+body #find .ups .ud>:first-child{font-size:14px!important;margin-bottom:3px!important}
+body #find .ups .ur{grid-template-columns:4.4em 1fr!important;padding:3px 0!important;border-top:1px dashed rgba(11,11,11,.08)}
+body #find .ups .ur>:first-child{font-size:11.5px!important;justify-self:start;padding:1px 6px!important;border-radius:5px;background:#f1efe8}
+body #find .ups{gap:8px!important}
+body #find .ups .ud .ur{grid-template-columns:3.9em 1fr!important;gap:6px!important}
+body #ups .ud .ur i.slot{font:700 11px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:1px 0!important;border-radius:5px!important;background:#f1efe8!important;text-align:center!important;width:100%!important;display:block!important;color:#6f6d68!important}
+body #ups .ud .ur i.slot.pre{background:rgba(154,98,0,.12)!important;color:#9a6200!important}
+body #ups .ud>em{display:block;font:800 14px/1.3 -apple-system,sans-serif!important;color:#9a6200!important;margin:0 0 3px!important}
+body #find .ebox{margin-top:4px;display:flex;flex-direction:column;gap:8px}
+body #find .etab{display:flex;padding:3px;border-radius:11px;background:#e8e8e6}
+body #find .etab>button{all:unset;flex:1;text-align:center;cursor:pointer;white-space:nowrap;font:700 13.5px/1.6 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:5px 4px;border-radius:8px;color:#6f6d68}
+body #find .etab>button[aria-pressed=true]{background:#fff;color:#0b0b0b;box-shadow:0 0 0 1px rgba(154,98,0,.35),0 2px 0 rgba(11,11,11,.12),0 4px 10px rgba(11,11,11,.1)}
+body #find .ep[hidden]{display:none!important}
+body #find .ep-l{display:flex;align-items:flex-start;gap:6px}
+body #find .ep-row{flex:1;min-width:0;display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 8px}
+body #find .ep-l.wrap .ep-row{flex-wrap:wrap}
+body #find :is(.ep-row,.ep-o)>button{all:unset;flex:none;cursor:pointer;white-space:nowrap;font:700 14px/1.55 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:5px 12px;border:1px solid rgba(11,11,11,.1);border-radius:999px;background:#fff;color:#0b0b0b;box-shadow:0 3px 0 rgba(30,22,8,.16),0 4px 8px rgba(30,22,8,.1)}
+body #find :is(.ep-row,.ep-o)>button span,body #find :is(.ep-row,.ep-o)>button small{display:none}
+body #find .ep-all{all:unset;flex:none;cursor:pointer;white-space:nowrap;font:700 13.5px/1.55 -apple-system,sans-serif;padding:5px 11px;border-radius:999px;background:#0b0b0b;color:#f9f9f7;box-shadow:0 3px 0 rgba(30,22,8,.25);margin-top:2px}
+body #find .ep-o{display:flex;flex-wrap:wrap;gap:6px;padding:2px}
+body #find .hits[hidden],body #find .hk[hidden]{display:none!important}
+body #find .px{font-style:normal;font-weight:800;font-size:12.5px;margin-left:5px}body #find .px.up{color:#1a7f37}body #find .px.dn{color:#c62828}
+body #find .nx{display:flex;align-items:center;gap:7px;padding:7px 11px;border-radius:10px;background:rgba(154,98,0,.08);box-shadow:inset 0 0 0 1px rgba(154,98,0,.2);font:500 13px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b}
+body #find .nx b{flex:none;color:#9a6200;font-weight:800}body #find .nx span{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}body #find .nx i{flex:none;font-style:normal;font-weight:700;color:#9a6200;font-size:12px}
+body #find #fq.qhide{display:none!important}
+body #find .etw{display:flex;gap:6px;align-items:center}body #find .etw .etab{flex:1}
+body #find .qbtn{all:unset;flex:none;cursor:pointer;width:36px;height:36px;display:grid;place-items:center;border-radius:11px;background:#fff;font-size:15px;box-shadow:0 0 0 1px rgba(11,11,11,.1),0 3px 0 rgba(30,22,8,.16)}
+article.flash{animation:fl 1.4s ease-out}@keyframes fl{0%,40%{box-shadow:0 0 0 3px #c9971f,0 6px 18px rgba(154,98,0,.35)}100%{}}
+body #find{gap:9px}
+body .run:not(:has(article)){display:none!important}body #find .nx em.sl{font-style:normal;font-size:11.5px;font-weight:700;color:#6f6d68;margin-right:3px}
+body #find :is(.ep-row,.ep-o)>button{width:auto!important;max-width:none!important}
+body #find .ep-l.wrap{flex-wrap:wrap}body #find .ep-l.wrap .ep-row{flex:1 1 100%}body #find .ep-l.wrap .ep-all{margin-left:auto}body #find :is(.ep-row,.ep-o)>button{padding:5px 11px!important}
+body article:has(>.sumrow){border:0!important;border-radius:12px!important;background:#fff!important;box-shadow:0 0 0 1px rgba(154,98,0,.12),0 3px 0 rgba(11,11,11,.1),0 6px 14px rgba(11,11,11,.08)!important;margin:0 0 7px!important;padding:0!important}
+body article>.sumrow{border:0!important;box-shadow:none!important;background:none!important;padding:9px 26px 9px 11px!important;margin:0!important;position:relative;width:100%}
+body article>.sumrow>span:first-child{display:block;width:100%}
+body article>.sumrow .ar{position:absolute;right:9px;top:50%;transform:translateY(-50%)}body article>.sumrow .ar::after{content:"›"!important;font-size:20px!important;color:#b9b6ae!important}
+.mk-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
+.mk-l{min-width:0}.mk-l b{display:block;font:800 15.5px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#0b0b0b}
+.mk-l small{display:block;font:500 12.5px/1.4 -apple-system,sans-serif;color:#6f6d68;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mk-l small b.g,.mk-l small b{display:inline;font-size:12.5px;color:#1a7f37;margin-right:4px}
+.mk-new{font-style:normal;font:800 10px/1 sans-serif;background:#c62828;color:#fff;border-radius:4px;padding:2px 4px;margin-right:5px;vertical-align:2px}
+.mk-r{text-align:right}.mk-r b{display:block;font:800 16px/1.3 -apple-system,sans-serif}.mk-r small{display:block;font:600 11.5px/1.3 sans-serif;color:#6f6d68;white-space:nowrap}.mk-r.up b{color:#1a7f37}.mk-r.dn b{color:#c62828}
+.mk-ck{display:flex;flex-wrap:wrap;gap:3px;margin-top:6px}.mk-ck i{font-style:normal;font:700 11.5px/1.5 sans-serif;padding:0 6px;border-radius:5px;background:rgba(26,127,55,.1);color:#1a7f37}.mk-ck i.n{background:rgba(198,40,40,.1);color:#c62828}
+.mk-et{display:block;margin-top:4px;font:500 12.5px/1.45 -apple-system,sans-serif;color:#6f6d68;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body #spot .sum{font:600 14.5px/1.6 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:#3a3833!important;background:#fff!important;border-radius:12px!important;box-shadow:0 0 0 1px rgba(154,98,0,.12),0 3px 0 rgba(11,11,11,.08)!important;padding:10px 12px!important}
