@@ -38,11 +38,33 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
 .pb-take{margin:6px 0 0;font-family:var(--font-anthropic-serif);font-size:clamp(19.5px,4.9vw,23px);line-height:1.5;letter-spacing:-.01em;text-wrap:pretty}
 .pb-chipd{display:table;margin-bottom:8px;font-family:var(--font-anthropic-sans);font-size:13.5px;font-weight:700;letter-spacing:.02em;font-variant-numeric:tabular-nums;color:var(--color-warn);padding:3px 10px;border-radius:999px;border:1px solid color-mix(in srgb,var(--color-warn) 55%,transparent);background:color-mix(in srgb,var(--color-warn) 10%,transparent)}
 .pb-take .hl{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--color-warn) 42%,transparent) 58%);font-weight:500;padding:0 1px}
-.pb-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,8.5rem),1fr));gap:var(--cds-gap-sm)}
-.pb-tile{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-md);display:flex;flex-direction:column;gap:var(--cds-gap-xs)}
-.pb-tile .k{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
-.pb-tile .v{font-family:var(--font-anthropic-serif);font-size:var(--cds-font-size-title);font-variant-numeric:tabular-nums;min-height:1.2em;font-weight:400}
-.pb-tile .s{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);font-variant-numeric:tabular-nums}
+.pb-tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pb-tile{font:inherit;text-align:left;cursor:pointer;background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:10px 11px;display:flex;flex-direction:column;gap:2px;min-width:0;color:var(--color-fg);position:relative}
+.pb-tile::after{content:'▾';position:absolute;right:8px;top:8px;font-size:11px;color:var(--color-fg-muted)}
+.pb-tile[aria-expanded=true]{border-color:var(--color-warn);box-shadow:0 0 0 1px var(--color-warn)}
+.pb-tile[aria-expanded=true]::after{content:'▴';color:var(--color-warn)}
+.pb-tile:focus-visible{outline:2px solid var(--color-warn);outline-offset:2px}
+.pb-tile .k{font-size:13px;line-height:1.3;color:var(--color-fg-muted);padding-right:12px;word-break:keep-all}
+.pb-tile .v{font-family:var(--font-anthropic-serif);font-size:clamp(20px,5.6vw,28px);font-variant-numeric:tabular-nums;min-height:1.2em;font-weight:400;white-space:nowrap}
+.pb-tile .s{display:none}
+.pb-tdet{background:var(--color-panel);border:1px solid var(--color-warn);border-radius:var(--cds-radius);padding:12px 14px;display:flex;flex-direction:column;gap:8px;margin-top:-4px}
+.pb-tdet h3{margin:0;font-size:var(--cds-font-size-heading);font-weight:700}
+.pb-tdet .ex{margin:0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.5}
+.pb-tdet .sum{margin:0;font-size:15.5px;line-height:1.5}
+.pb-tdet .rows{display:flex;flex-direction:column}
+.pb-tdet .r{display:grid;grid-template-columns:minmax(0,7.4rem) minmax(0,1fr) auto;gap:8px;align-items:center;padding:6px 0;border-top:1px solid var(--color-border-line);font-size:14.5px}
+.pb-tdet .r:first-child{border-top:0}
+.pb-tdet .r .c{font-weight:600;word-break:keep-all;line-height:1.3}
+.pb-tdet .r .b{height:8px;border-radius:4px;background:color-mix(in srgb,var(--color-fg-muted) 14%,transparent);position:relative;overflow:hidden}
+.pb-tdet .r .b i{position:absolute;top:0;bottom:0;border-radius:4px}
+.pb-tdet .r .b i.u{background:var(--color-ok)}.pb-tdet .r .b i.d{background:var(--color-bad)}.pb-tdet .r .b i.f{background:color-mix(in srgb,var(--color-fg-muted) 45%,transparent)}
+.pb-tdet .r .n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;font-weight:600}
+.pb-tdet .r .nm{grid-column:1/-1;font-size:13.5px;color:var(--color-fg-muted);margin-top:-2px;line-height:1.45}
+.pb-tdet .r.pl{grid-template-columns:minmax(0,7.4rem) minmax(0,1fr)}
+.pb-tdet .r.pl .nm{grid-column:2;margin:0;color:var(--color-fg)}
+.pb-tdet[hidden]{display:none}
+.pb-per2{display:flex;flex-wrap:nowrap;gap:5px;align-items:center;overflow-x:auto}
+.pb-per2 .pb-chip{font-weight:700;padding:5px 10px;text-align:center;flex:none}
 .pb-card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg);display:flex;flex-direction:column;gap:var(--cds-gap-sm);min-width:0}
 .pb-sec{scroll-margin-top:56px}
 .pb-sec .k{font-size:var(--cds-font-size-heading);display:block;margin:0 0 4px;font-weight:700;letter-spacing:-.01em;line-height:1.3;border-left:4px solid var(--color-warn);padding-left:10px}
@@ -129,23 +151,25 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
   <div class="pb-per" id="period" role="group" aria-label="등락 기간 고르기"><span class="lab">등락 기간</span><button type="button" class="pb-chip" data-p="12m">12개월</button><button type="button" class="pb-chip" data-p="6m">6개월</button><button type="button" class="pb-chip" data-p="3m">3개월</button><button type="button" class="pb-chip" data-p="1m">1개월</button></div>
 
   <section class="pb-tiles" id="tiles" data-fetchpriority="high">
-    <div class="pb-tile"><span class="k">1일 등락 중앙값</span><span class="v dash-skeleton" id="t-med1d" data-source="board_tiles" data-field="med_1d" data-row="0">—</span><span class="s">1일 등락이 있는 <span data-source="board_tiles" data-field="n_priced" data-row="0">—</span>종목의 가운데 값</span></div>
-    <div class="pb-tile"><span class="k">오른 종목</span><span class="v dash-skeleton" id="t-up" data-source="board_tiles" data-field="n_up" data-row="0">—</span><span class="s">내린 종목 <span data-source="board_tiles" data-field="n_down" data-row="0">—</span> · 전체 <span data-source="board_tiles" data-field="n_total" data-row="0">—</span>종목</span></div>
-    <div class="pb-tile"><span class="k">52주 고점 근처</span><span class="v dash-skeleton" id="t-hi" data-source="board_tiles" data-field="near_high" data-row="0">—</span><span class="s">고점에서 5% 이내인 종목 수</span></div>
-    <div class="pb-tile"><span class="k">52주 저점 근처</span><span class="v dash-skeleton" id="t-lo" data-source="board_tiles" data-field="near_low" data-row="0">—</span><span class="s">저점에서 5% 이내인 종목 수</span></div>
-    <div class="pb-tile"><span class="k"><span class="per-word">1개월</span> 등락 중앙값</span><span class="v dash-skeleton" id="t-med1m" data-source="board_tiles" data-field="med_1m" data-pf="med" data-row="0">—</span><span class="s"><span class="per-ago">한 달 전</span> 종가 대비 · <span data-source="board_tiles" data-field="n_1m" data-pf="n" data-row="0">—</span>종목</span></div>
-    <div class="pb-tile"><span class="k">상승여력 중앙값</span><span class="v dash-skeleton" id="t-medup" data-source="board_tiles" data-field="med_upside" data-row="0">—</span><span class="s">증권사 평균 목표가 대비 · <span data-source="board_tiles" data-field="n_upside" data-row="0">—</span>종목</span></div>
+    <button type="button" class="pb-tile" data-tile="d1" aria-expanded="false"><span class="k">1일 중앙값</span><span class="v dash-skeleton" id="t-med1d" data-source="board_tiles" data-field="med_1d" data-row="0">—</span><span class="s">1일 등락이 있는 <span data-source="board_tiles" data-field="n_priced" data-row="0">—</span>종목의 가운데 값</span></button>
+    <button type="button" class="pb-tile" data-tile="up" aria-expanded="false"><span class="k">오른 종목</span><span class="v dash-skeleton" id="t-up" data-source="board_tiles" data-field="n_up" data-row="0">—</span><span class="s">내린 종목 <span data-source="board_tiles" data-field="n_down" data-row="0">—</span> · 전체 <span data-source="board_tiles" data-field="n_total" data-row="0">—</span>종목</span></button>
+    <button type="button" class="pb-tile" data-tile="hi" aria-expanded="false"><span class="k">52주 고점권</span><span class="v dash-skeleton" id="t-hi" data-source="board_tiles" data-field="near_high" data-row="0">—</span><span class="s">고점에서 5% 이내인 종목 수</span></button>
+    <button type="button" class="pb-tile" data-tile="lo" aria-expanded="false"><span class="k">52주 저점권</span><span class="v dash-skeleton" id="t-lo" data-source="board_tiles" data-field="near_low" data-row="0">—</span><span class="s">저점에서 5% 이내인 종목 수</span></button>
+    <button type="button" class="pb-tile" data-tile="per" aria-expanded="false"><span class="k"><span class="per-word">1개월</span> 중앙값</span><span class="v dash-skeleton" id="t-med1m" data-source="board_tiles" data-field="med_1m" data-pf="med" data-row="0">—</span><span class="s"><span class="per-ago">한 달 전</span> 종가 대비 · <span data-source="board_tiles" data-field="n_1m" data-pf="n" data-row="0">—</span>종목</span></button>
+    <button type="button" class="pb-tile" data-tile="upside" aria-expanded="false"><span class="k">상승여력</span><span class="v dash-skeleton" id="t-medup" data-source="board_tiles" data-field="med_upside" data-row="0">—</span><span class="s">증권사 평균 목표가 대비 · <span data-source="board_tiles" data-field="n_upside" data-row="0">—</span>종목</span></button>
   </section>
+  <div class="pb-tdet" id="tdet" hidden></div>
 
   <section class="pb-card pb-sec" id="heat-sec">
     <h2 class="k">분야별 온도</h2>
-    <p class="pb-sub">분야마다 종목들의 <b class="per-word">1개월</b> 등락률(위의 등락 기간 버튼으로 바꿉니다)을 단순 평균했습니다. 초록이 짙을수록 많이 올랐고, 빨강이 짙을수록 많이 내렸습니다. 칸을 누르면 아래 표가 그 분야만 보여 줍니다. 그 기간 자료가 없는 종목은 평균에서 뺐고, 칸 아래에 셈에 든 종목 수를 적었습니다. 읽는 법: 분야 전체가 같은 색이면 업황 흐름, 한 분야만 다르면 그 분야 고유의 뉴스를 먼저 찾아보면 됩니다.</p>
+    <div class="pb-per2" role="group" aria-label="분야별 온도 기간"><button type="button" class="pb-chip" data-p="1d">1일</button><button type="button" class="pb-chip" data-p="1m">1개월</button><button type="button" class="pb-chip" data-p="3m">3개월</button><button type="button" class="pb-chip" data-p="6m">6개월</button><button type="button" class="pb-chip" data-p="12m">12개월</button></div>
+    <p class="pb-sub">분야별 평균 <b id="hper-word">1개월</b> 등락률입니다. 칸을 누르면 아래 표가 그 분야만 보여 줍니다.</p>
     <div class="pb-heat" id="heat" data-source="board_heat"></div>
   </section>
 
   <section class="pb-card pb-sec" id="table-sec">
     <h2 class="k">종목별 시세</h2>
-    <p class="pb-sub">가격은 각 거래소 통화 기준이며 기준일은 종목마다 표 끝에 적었습니다. <b>장중</b> 표시는 10월 26일 종가가 아직 자료에 없어 뉴욕 시간 14:50 장중 가격을 쓴 종목입니다. 머리글을 누르면 정렬되고, <b>종목 줄을 누르면 그 아래에 가격 흐름 그래프</b>가 열립니다. 52주 막대의 세로 표시는 지난 1년 최저가(왼쪽)와 최고가(오른쪽) 사이에서 지금 가격이 놓인 자리입니다.</p>
+    <p class="pb-sub">가격은 각 거래소 통화 기준입니다. <b>프리마켓·장중</b> 표시는 장이 끝나기 전 가격입니다. 머리글을 누르면 정렬되고, 종목 줄을 누르면 가격 흐름 그래프가 열립니다.</p>
     <div class="pb-ctrl" id="chips" role="group" aria-label="분야 고르기" data-source="tickers"></div>
     <div class="pb-ctrl"><input class="pb-search" id="q" type="search" placeholder="종목 이름·티커 찾기" aria-label="종목 찾기"><span class="pb-count" id="cnt"></span></div>
     <div class="pb-tbox">
@@ -312,6 +336,69 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
   const tb = document.getElementById('tb');
   const chips = document.getElementById('chips');
   const heatEl = document.getElementById('heat');
+  let heatP = null, openTile = null;
+  const HPL = { '1d': '1일', '1m': '1개월', '3m': '3개월', '6m': '6개월', '12m': '12개월' };
+  document.querySelectorAll('.pb-per2 .pb-chip').forEach((b) => b.addEventListener('click', () => { heatP = b.dataset.p; draw(); }));
+  document.querySelectorAll('#tiles .pb-tile').forEach((b) => b.addEventListener('click', () => { openTile = openTile === b.dataset.tile ? null : b.dataset.tile; draw(); }));
+  const medOf = (a) => { const s = a.filter((x) => x != null).sort((x, y) => x - y); if (!s.length) return null; const m = Math.floor(s.length / 2); return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+  const nmS = (r) => String(r.name || r.ticker).replace(/\s*\(.*\)$/, '');
+  function drawTileDet(rows, P, PL) {
+    const box = document.getElementById('tdet');
+    document.querySelectorAll('#tiles .pb-tile').forEach((b) => b.setAttribute('aria-expanded', String(b.dataset.tile === openTile)));
+    if (!openTile || !rows) { box.hidden = true; box.replaceChildren(); return; }
+    box.hidden = false; box.replaceChildren();
+    const sec = rows.filter((r) => !/ETF/.test(r.category || ''));
+    const cats = []; sec.forEach((r) => { if (!cats.includes(r.category)) cats.push(r.category); });
+    const by = (c) => sec.filter((r) => r.category === c);
+    const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+    const head = (h, ex) => { box.append(el('h3', null, h)); box.append(el('p', 'ex', ex)); };
+    const sum = (s) => box.append(el('p', 'sum', s));
+    const list = el('div', 'rows');
+    const divRow = (c, v, maxAbs, note, d = 1) => {
+      const r = el('div', 'r'); r.append(el('span', 'c', c));
+      const b = el('span', 'b'); const i = el('i', v == null ? 'f' : v >= 0 ? 'u' : 'd');
+      const w = v == null ? 0 : Math.min(50, Math.abs(v) / maxAbs * 50);
+      i.style.width = w + '%'; if (v != null && v >= 0) i.style.left = '50%'; else i.style.right = '50%';
+      b.append(i); r.append(b);
+      const n = el('span', 'n ' + cls(v), fmtPct(v, d)); r.append(n);
+      if (note) r.append(el('span', 'nm', note));
+      list.append(r);
+    };
+    const medTile = (key, label, d) => {
+      const st = cats.map((c) => { const rs = by(c).filter((r) => r[key] != null); const best = rs.slice().sort((a, b) => b[key] - a[key])[0], worst = rs.slice().sort((a, b) => a[key] - b[key])[0];
+        return { c, v: medOf(rs.map((r) => r[key])), n: rs.length, up: rs.filter((r) => r[key] > 0.05).length, dn: rs.filter((r) => r[key] < -0.05).length, best, worst }; }).filter((x) => x.v != null).sort((a, b) => b.v - a.v);
+      const mx = Math.max(1, ...st.map((x) => Math.abs(x.v)));
+      head(label + ' · 분야별', '분야마다 종목들의 가운데 값(절반은 이보다 많이, 절반은 적게 움직임)을 높은 순으로 놓았습니다.');
+      if (st.length) sum(`가장 강한 분야는 ${st[0].c}(${fmtPct(st[0].v, d)}), 가장 약한 분야는 ${st[st.length - 1].c}(${fmtPct(st[st.length - 1].v, d)})입니다.`);
+      st.forEach((x) => divRow(x.c, x.v, mx, `오름 ${x.up} · 내림 ${x.dn} / ${x.n}종목` + (x.best ? ` · 강한 종목 ${nmS(x.best)} ${fmtPct(x.best[key], d)}` : '') + (x.worst && x.worst !== x.best ? ` · 약한 종목 ${nmS(x.worst)} ${fmtPct(x.worst[key], d)}` : ''), d));
+    };
+    if (openTile === 'd1') medTile('chg_1d', '1일 등락', 2);
+    else if (openTile === 'per') medTile('chg_' + P, PL[0] + ' 등락', 1);
+    else if (openTile === 'upside') {
+      const st = cats.map((c) => { const rs = by(c).filter((r) => r.upside != null); const top = rs.slice().sort((a, b) => b.upside - a.upside)[0]; return { c, v: medOf(rs.map((r) => r.upside)), n: rs.length, top }; }).filter((x) => x.v != null).sort((a, b) => b.v - a.v);
+      const mx = Math.max(1, ...st.map((x) => Math.abs(x.v)));
+      head('상승여력 · 분야별', '증권사 평균 목표가가 지금 가격보다 몇 % 위에 있는지, 분야마다 가운데 값입니다. 클수록 증권사들이 아직 더 오를 여지를 크게 봅니다.');
+      if (st.length) sum(`목표가까지 여유가 가장 큰 분야는 ${st[0].c}(${fmtPct(st[0].v)}), 가장 작은 분야는 ${st[st.length - 1].c}(${fmtPct(st[st.length - 1].v)})입니다.`);
+      st.forEach((x) => divRow(x.c, x.v, mx, `${x.n}종목` + (x.top ? ` · 여력 가장 큰 종목 ${nmS(x.top)} ${fmtPct(x.top.upside)}` : '')));
+    } else if (openTile === 'up') {
+      const st = cats.map((c) => { const rs = by(c).filter((r) => r.chg_1d != null); return { c, n: rs.length, up: rs.filter((r) => r.chg_1d > 0.05).length, fl: rs.filter((r) => Math.abs(r.chg_1d) <= 0.05).length, dn: rs.filter((r) => r.chg_1d < -0.05).length }; }).filter((x) => x.n).sort((a, b) => (b.up / b.n - b.dn / b.n) - (a.up / a.n - a.dn / a.n));
+      head('오른 종목 · 분야별', '1일 기준으로 분야마다 오른 종목·보합(±0.05% 안)·내린 종목 수입니다. 초록이 길수록 분야 전체가 함께 오른 날입니다.');
+      const allUp = st.filter((x) => x.dn === 0).map((x) => x.c), allDn = st.filter((x) => x.up === 0).map((x) => x.c);
+      sum((allUp.length ? `모두 오른 분야: ${allUp.join(', ')}.` : '') + (allDn.length ? ` 모두 내린 분야: ${allDn.join(', ')}.` : '') || '분야마다 오르고 내린 종목이 섞여 있습니다.');
+      st.forEach((x) => { const r = el('div', 'r'); r.append(el('span', 'c', x.c)); const b = el('span', 'b');
+        [['u', x.up, 0], ['f', x.fl, x.up], ['d', x.dn, x.up + x.fl]].forEach(([k, v, off]) => { const i = el('i', k); i.style.left = (off / x.n * 100) + '%'; i.style.width = (v / x.n * 100) + '%'; i.style.borderRadius = '0'; b.append(i); });
+        r.append(b, el('span', 'n', `${x.up}·${x.fl}·${x.dn}`)); list.append(r); });
+      box.append(el('p', 'ex', '숫자는 오름·보합·내림 순서입니다.'));
+    } else if (openTile === 'hi' || openTile === 'lo') {
+      const hi = openTile === 'hi', key = hi ? 'dist_high' : 'dist_low';
+      const ok = (r) => r[key] != null && (hi ? r[key] >= -5 : r[key] <= 5);
+      const st = cats.map((c) => ({ c, rs: by(c).filter(ok).sort((a, b) => hi ? b[key] - a[key] : a[key] - b[key]), n: by(c).length })).filter((x) => x.rs.length).sort((a, b) => b.rs.length / b.n - a.rs.length / a.n);
+      head((hi ? '52주 고점' : '52주 저점') + ' 근처 · 분야별', hi ? '지난 1년 최고가에서 5% 안쪽까지 올라온 종목입니다. 숫자는 최고가까지 남은 거리입니다. 한 분야에 몰리면 그 분야가 주도하는 장입니다.' : '지난 1년 최저가에서 5% 안쪽에 있는 종목입니다. 숫자는 최저가보다 얼마나 위인지입니다. 한 분야에 몰리면 그 분야가 눌리는 중입니다.');
+      sum(st.length ? `${st.reduce((s, x) => s + x.rs.length, 0)}종목 · 가장 많이 몰린 분야는 ${st[0].c}(${st[0].rs.length}/${st[0].n})입니다.` : (hi ? '지금 52주 고점 5% 안쪽 종목은 없습니다.' : '지금 52주 저점 5% 안쪽 종목은 없습니다.'));
+      st.forEach((x) => { const r = el('div', 'r pl'); r.append(el('span', 'c', `${x.c} ${x.rs.length}/${x.n}`), el('span', 'nm', x.rs.map((y) => `${nmS(y)} ${fmtPct(y[key])}`).join(' · '))); list.append(r); });
+    }
+    box.append(list);
+  }
 
   document.querySelectorAll('#tbl th').forEach((th) => {
     th.querySelector('button').addEventListener('click', () => {
@@ -365,22 +452,26 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
       if (T.status === 'error' || B.status === 'error') { setT('asof', '—'); }
     }
 
+    drawTileDet(C.status === 'ok' ? C.data : null, P, PL);
     // heat
+    const HP = heatP || P;
+    document.querySelectorAll('.pb-per2 .pb-chip').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.p === HP)));
+    document.getElementById('hper-word').textContent = HPL[HP];
     if (H.status === 'ok') {
       heatEl.replaceChildren();
       const rows = H.data.slice();
-      const maxAbs = Math.max(5, ...rows.map((r) => Math.abs(r['avg_' + P] || 0)));
+      const maxAbs = Math.max(5, ...rows.map((r) => Math.abs(r['avg_' + HP] || 0)));
       rows.forEach((r) => {
         const el = document.createElement('button');
         el.type = 'button'; el.className = 'pb-hc';
-        const v = r['avg_' + P];
+        const v = r['avg_' + HP];
         const share = v == null ? 0 : Math.min(1, Math.abs(v) / maxAbs);
         const col = v == null ? 'var(--color-bg)' : `color-mix(in srgb, ${v >= 0 ? 'var(--color-ok)' : 'var(--color-bad)'} ${Math.round(8 + share * 34)}%, var(--color-bg))`;
         el.style.background = col;
         if (cat === r.category) el.style.outline = '2px solid var(--color-fg)';
         const n = document.createElement('span'); n.className = 'n'; n.textContent = r.category;
         const vv = document.createElement('span'); vv.className = 'v'; vv.textContent = fmtPct(v);
-        const c = document.createElement('span'); c.className = 'c'; c.textContent = `${r['n_' + P]}/${r.n}종목 · 1일 ${fmtPct(r.avg_1d)}`;
+        const c = document.createElement('span'); c.className = 'c'; c.textContent = HP === '1d' ? `${r.n_1d}/${r.n}종목` : `${r['n_' + HP]}/${r.n}종목 · 1일 ${fmtPct(r.avg_1d)}`;
         el.append(n, vv, c);
         el.addEventListener('click', () => { setCat(cat === r.category ? null : r.category); document.getElementById('table-sec').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
         heatEl.appendChild(el);
