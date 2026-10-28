@@ -236,7 +236,17 @@ def tidy_sumrow(s):
 
 
 # 옵션 온도계: 기간구조 카드를 차트들 맨 아래(설명 카드 앞)로 내려 VIX 3개월 바로 밑에 풋콜(CBOE)이 오게(사용자 2026-10-29)
+def tidy_optui(s):
+    s = re.sub(r'<(style|script) data-optui>.*?</\1>', '', s, flags=re.S)
+    if 'id="earn-card"' not in s and 'id="take-txt"' not in s:
+        return s
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-optui>' + open(os.path.join(d, 'optui.css'), encoding='utf-8').read() + '</style><script data-optui>' + open(os.path.join(d, 'optui.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
 def tidy_opt(s):
+    s = tidy_optui(s)
     m = re.search(r'\s*<section class="ot-card" id="term-card">.*?</section>', s, re.S)
     r = s.find('<section class="ot-card ot-sec" id="rule-card">')
     if not m or r < 0 or m.start() > s.find('id="earn-card"'):

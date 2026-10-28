@@ -768,4 +768,77 @@ function run(){
 }
 run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);[300,900,1600,2600,4000].forEach(function(t){setTimeout(run,t)});
 })();</script>
-</body></html>
+<style data-optui>/* 옵션 온도계: 시세 보드 양식(사용자 2026-10-29) */
+body #take.o-on>#take-txt{display:none!important}
+body #take .o-new{margin-top:8px}
+body #take .o-top{display:flex;align-items:baseline;justify-content:space-between}
+body #take .o-st{font:900 22px/1.25 -apple-system,"Apple SD Gothic Neo",sans-serif}
+body #take .o-sc{font:600 14px/1 -apple-system,sans-serif;color:#6f6d68}body #take .o-sc b{font:900 20px/1 -apple-system,sans-serif;color:#0b0b0b}
+body #take .o-rows{list-style:none;margin:8px 0 0!important;padding:8px 0 0!important;border-top:1px dashed rgba(11,11,11,.1);display:flex;flex-direction:column;gap:7px}
+body #take .o-rows li{display:grid;grid-template-columns:1fr auto;grid-template-areas:"k v" "k m";column-gap:10px;align-items:center}
+body #take .o-k{grid-area:k;display:flex;flex-direction:column}body #take .o-k b{font:800 15px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif}body #take .o-k small{font:500 11.5px/1.35 sans-serif;color:#6f6d68}
+body #take .o-v{grid-area:v;text-align:right;font:800 17px/1.2 -apple-system,sans-serif}body #take .o-v small{font:600 11.5px/1 sans-serif;color:#6f6d68;margin-left:4px}
+body .o-lv{grid-area:m;justify-self:end;display:flex;align-items:center;gap:2px}
+body .o-lv i{width:9px;height:5px;border-radius:2px;background:#e4e1d8}body .o-lv em{font-style:normal;font:700 10.5px/1 -apple-system,sans-serif;margin-left:4px;color:var(--lc)}
+body [data-lv="1"]{--lc:#1a7f37}body [data-lv="2"]{--lc:#6aa84f}body [data-lv="3"]{--lc:#c9a20a}body [data-lv="4"]{--lc:#e07b16}body [data-lv="5"]{--lc:#c62828}
+body #take .o-v[data-lv]{color:var(--lc)}
+body .o-lv[data-lv="1"] i:nth-child(-n+1),body .o-lv[data-lv="2"] i:nth-child(-n+2),body .o-lv[data-lv="3"] i:nth-child(-n+3),body .o-lv[data-lv="4"] i:nth-child(-n+4),body .o-lv[data-lv="5"] i:nth-child(-n+5){background:var(--lc)}
+/* 숫자 칸: 3열 작게, '오늘의 온도' 칸은 위와 겹쳐서 숨김 */
+body #tiles.ot-tiles{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}
+body #tiles .ot-tile{min-width:0!important;padding:8px 9px!important;border-radius:12px!important;overflow:hidden}
+body #tiles .ot-tile .k{font-size:11.5px!important;line-height:1.3!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+body #tiles .ot-tile .v{font-size:19px!important;line-height:1.3!important;margin:2px 0!important;text-align:left!important}
+body #tiles .ot-tile .s{font-size:11px!important;line-height:1.35!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+body #tiles #tile-temp,body #tiles .ot-tile:has(#t-vix),body #tiles .ot-tile:has(#t-chg){display:none!important}
+/* 긴 설명: 2줄 + 읽는 법 */
+body .ot-card .how.o-clamp:not(.op){display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+body .ot-card .o-more{all:unset;cursor:pointer;display:inline-block;margin-top:4px;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200}
+/* 초보자용·출처: 제목만, 누르면 펼침 */
+body .o-fold>:not(h2):not(h3){display:none!important}body .o-fold.op>:not(h2):not(h3){display:revert!important}
+body .o-fold>:is(h2,h3){cursor:pointer;margin-bottom:0!important}body .o-fold>:is(h2,h3)::after{content:" ▾";font-size:13px;color:#9a6200}body .o-fold.op>:is(h2,h3)::after{content:" ▴"}
+/* 실적 예상 변동폭: 탭 + 한 줄 카드 + 상자 스크롤 */
+body #earn-card .o-hide{display:none!important}
+body #earn-card .o-tab{display:flex;padding:3px;border-radius:11px;background:#e8e8e6;margin:6px 0 8px}
+body #earn-card .o-tab button{all:unset;flex:1;text-align:center;cursor:pointer;font:700 13.5px/1.6 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:5px 4px;border-radius:8px;color:#6f6d68}
+body #earn-card .o-tab button[aria-pressed=true]{background:#fff;color:#0b0b0b;box-shadow:0 0 0 1px rgba(154,98,0,.35),0 2px 0 rgba(11,11,11,.12),0 4px 10px rgba(11,11,11,.1)}
+body #earn-card .o-list{display:flex;flex-direction:column;gap:7px;max-height:min(58vh,480px);overflow-y:auto;overscroll-behavior:contain;padding:2px 4px 10px;margin:0 -4px}
+body #earn-card .o-list[hidden]{display:none}
+body #earn-card .o-row{display:grid;grid-template-columns:1fr 64px 84px;gap:8px;align-items:center;padding:9px 11px;border-radius:12px;background:#fff;box-shadow:0 0 0 1px rgba(154,98,0,.12),0 3px 0 rgba(11,11,11,.1),0 6px 14px rgba(11,11,11,.08)}
+body #earn-card .o-l{min-width:0}body #earn-card .o-l b{display:block;font:800 15.5px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body #earn-card .o-l small{display:block;font:500 11.5px/1.35 sans-serif;color:#6f6d68;white-space:nowrap}
+body #earn-card .o-m{text-align:right}body #earn-card .o-m small,body #earn-card .o-r small{display:block;font:600 11px/1.3 sans-serif;color:#9a978f}
+body #earn-card .o-m b{display:block;font:700 14px/1.3 -apple-system,sans-serif;color:#3a3833}
+body #earn-card .o-r{text-align:right}body #earn-card .o-r b{display:block;font:800 16px/1.3 -apple-system,sans-serif}
+body #earn-card .o-r.up b{color:#1a7f37}body #earn-card .o-r.dn b{color:#c62828}body #earn-card .o-r.mu b{color:#b9b6ae}
+body #earn-card .o-r small.big{color:#9a6200;font-weight:800}
+</style><script data-optui>// 옵션 온도계: 시세 보드 양식(사용자 2026-10-29) — 오늘 한눈에 3줄+5단계 막대, 숫자 칸 3열, 긴 설명 2줄, 실적 표 한 줄 카드(탭·상자 스크롤), 초보자용·출처 접기
+(function(){
+var LV=['','안전','양호','보통','근접','위험'];
+function lvOf(n,t){if(isNaN(n)||isNaN(t))return 0;if(n>=t)return 5;var x=n/t;return x>=0.9?4:x>=0.8?3:x>=0.6?2:1}
+function meter(k){return '<span class="o-lv" data-lv="'+k+'"><i></i><i></i><i></i><i></i><i></i><em>'+LV[k]+'</em></span>'}
+function take(){var tk=document.getElementById('take'),tx=document.getElementById('take-txt');if(!tk||!tx)return;var s=tx.textContent;if(tk.dataset.sig===s)return;
+ var v=s.match(/VIX\s*([\d.]+)\(([+\-−]?[\d.]+)\)/),r=s.match(/VIX3M\s*([\d.]+)\(([^)]+)\)/),p=s.match(/풋콜\s*([\d.]+)/),st=(s.match(/「([^」]+)」/)||[])[1],sc=(s.match(/점수\s*(\d+)점/)||[])[1];if(!v||!r||!p||!st)return;tk.dataset.sig=s;
+ var col=st==='안정'?'#1a7f37':st==='경계'?'#e07b16':'#c62828',em=st==='안정'?'🟢':st==='경계'?'🟠':'🔴';
+ var rows=[['VIX',v[1],'공포지수 · 20 넘으면 경계',lvOf(+v[1],20),(/^[+\-−]/.test(v[2])?'':'+')+v[2]],['기간구조',r[1],r[2]+' · 1 넘으면 경계',lvOf(+r[1],1),''],['풋콜',p[1],'하락 보험 비율 · 0.9 넘으면 경계',lvOf(+p[1],0.9),'']];
+ var w=tk.querySelector('.o-new');if(!w){w=document.createElement('div');w.className='o-new';tk.appendChild(w)}
+ w.innerHTML='<div class="o-top"><span class="o-st" style="color:'+col+'">'+em+' '+st+'</span><span class="o-sc">점수 <b>'+(sc||0)+'</b> / 4</span></div><ul class="o-rows">'+rows.map(function(x){return '<li><span class="o-k"><b>'+x[0]+'</b><small>'+x[2]+'</small></span><span class="o-v" data-lv="'+x[3]+'">'+x[1]+(x[4]?'<small>'+x[4]+'</small>':'')+'</span>'+meter(x[3])+'</li>'}).join('')+'</ul>';
+ tk.classList.add('o-on')}
+function hows(){document.querySelectorAll('.ot-card .how:not([data-o])').forEach(function(p){p.dataset.o=1;p.classList.add('o-clamp');var b=document.createElement('button');b.type='button';b.className='o-more';b.textContent='읽는 법 ▾';p.after(b);b.onclick=function(){p.classList.toggle('op');b.textContent=p.classList.contains('op')?'접기 ▴':'읽는 법 ▾'}})}
+function folds(){['read-card','src-card'].forEach(function(id){var c=document.getElementById(id);if(!c||c.dataset.o)return;var h=c.querySelector('h2,h3');if(!h)return;c.dataset.o=1;c.classList.add('o-fold');h.addEventListener('click',function(){c.classList.toggle('op')})})}
+function earn(){var c=document.getElementById('earn-card');if(!c)return;var t=c.querySelector('table');if(!t)return;var rows=[...t.querySelectorAll('tbody tr')];if(!rows.length)return;var sig=rows.length+':'+t.textContent.length;if(c.dataset.sig===sig)return;c.dataset.sig=sig;
+ var old=c.querySelector('.o-earn');if(old)old.remove();var box=document.createElement('div');box.className='o-earn';
+ var done=[],todo=[];rows.forEach(function(r){var d=[...r.children].map(function(x){return x.textContent.trim()});if(d.length<7)return;
+  var exp=d[5].replace(/자료 없음/,'—'),act=d[6],am=(act.match(/^([+\-−][\d.]+%)/)||[])[1],tag=(act.match(/예상 (초과|이내)/)||[])[1],dt=d[3].slice(5).replace('-','/'),tm=d[4].replace('장 마감 후','장후').replace('장 시작 전','장전');
+  var cls=/^[\-−]/.test(am||'')?'dn':'up';
+  var h='<div class="o-row"><div class="o-l"><b>'+d[0]+'</b><small>'+d[1]+' · '+dt+' '+tm+'</small></div><div class="o-m"><small>예상</small><b>'+exp+'</b></div><div class="o-r '+(am?cls:'mu')+'">'+(am?'<b>'+am+'</b><small class="'+(tag==='초과'?'big':'')+'">예상 '+tag+'</small>':'<b>—</b><small>발표 전</small>')+'</div></div>';
+  (am?done:todo).push(h)});
+ var tabs=document.createElement('div');tabs.className='o-tab';tabs.innerHTML='<button type="button" aria-pressed="true">나온 것 '+done.length+'</button><button type="button" aria-pressed="false">발표 예정 '+todo.length+'</button>';
+ var L1=document.createElement('div'),L2=document.createElement('div');L1.className=L2.className='o-list';L1.innerHTML=done.join('');L2.innerHTML=todo.join('');L2.hidden=true;
+ if(!done.length){L1.hidden=true;L2.hidden=false;tabs.children[0].setAttribute('aria-pressed','false');tabs.children[1].setAttribute('aria-pressed','true')}
+ [].forEach.call(tabs.children,function(b,i){b.onclick=function(){[].forEach.call(tabs.children,function(x){x.setAttribute('aria-pressed',x===b)});L1.hidden=i!==0;L2.hidden=i!==1}});
+ box.appendChild(tabs);box.appendChild(L1);box.appendChild(L2);var tw=t.closest('.ot-tbl,.tbl,div')||t;t.classList.add('o-hide');if(tw!==c&&tw.querySelector('table')===t&&tw.children.length===1)tw.classList.add('o-hide');t.parentNode.insertBefore(box,t)}
+function all(){try{take()}catch(e){}try{hows()}catch(e){}try{folds()}catch(e){}try{earn()}catch(e){}}
+var k=0;(function go(){all();if(++k<16)setTimeout(go,400)})();
+try{var root=document.querySelector('main')||document.body;new MutationObserver(function(){all()}).observe(root,{childList:true,subtree:true,characterData:true})}catch(e){}
+})();
+</script></body></html>
