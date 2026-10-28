@@ -328,10 +328,7 @@ def tidy_earnui(s):
 
 # 홈 '오늘 한눈에' 숫자 칸을 누르면 해당 차트로(사용자 2026-10-29): 나스닥→종목 차트 QQQ, 반도체→SOXX, 10년물→채권·금리, WTI→데일리 시황 금리·유가 차트(WTI)
 STATGO = (r"""<style data-statgo>.stats .stat[data-go]{cursor:pointer;transition:transform .08s}.stats .stat[data-go]:active{transform:translateY(1px);background:rgba(154,98,0,.06)}"""
-          r""".stats .stat[data-go] .k::after{content:" ›";color:#b9b6ae;font-weight:700}</style>"""
-          r"""<script data-statgo>(function(){var M=[[/나스닥/,'p-trend.html#QQQ'],[/반도체|SOX/,'p-trend.html#SOXX'],[/10년/,'p-bond.html'],[/WTI|유가/,'p-brief.html#wti']];"""
-          r"""function f(){document.querySelectorAll('.stats .stat').forEach(function(s){if(s.dataset.go)return;var k=s.querySelector('.k');if(!k)return;var u=null;M.forEach(function(m){if(!u&&m[0].test(k.textContent))u=m[1]});if(!u)return;s.dataset.go=u;s.setAttribute('role','link');s.addEventListener('click',function(){location.href=u})})}"""
-          r"""f();var n=0,t=setInterval(function(){f();if(++n>10)clearInterval(t)},500)})();</script>""")
+          r""".stats .stat[data-go] .k::after{content:" ›";color:#b9b6ae;font-weight:700}</style>""")
 
 
 def tidy_statgo(s):

@@ -32,3 +32,4 @@ body #area-card #areas .l-q{grid-area:q;font:600 12px/1.4 -apple-system,"Apple S
 body #area-card #areas .l-q::after{content:" ▾";font-size:10px}body #area-card #areas li.lxo .l-q::after{content:" ▴"}
 body #area-card #areas .l-ex{grid-area:x;display:none;margin-top:6px;padding:7px 9px;border-radius:8px;background:#f6f4ee;font:500 13px/1.55 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3a3833}
 body #area-card #areas li.lxo .l-ex{display:block}
+body #area-card #areas .a-desc{margin:0 0 4px!important;font:500 13px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:#6f6d68!important}

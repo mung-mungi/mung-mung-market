@@ -28,6 +28,8 @@ var LX=[[/유가/,'유가 급등이란?','유가가 짧은 기간에 크게 오�
 [/풋콜/,'풋콜 비율이란?','하락에 거는 풋옵션이 상승에 거는 콜옵션보다 얼마나 많이 거래되는지입니다. 높을수록 겁이 많다는 뜻입니다.']];
 function lx(){var A=document.getElementById('areas');if(!A)return;A.querySelectorAll('li[data-lt]:not([data-lx])').forEach(function(li){var nm=(li.querySelector('b')||{}).textContent||'';var hit=LX.find(function(x){return x[0].test(nm)});if(!hit)return;li.dataset.lx=1;
  var q=document.createElement('span');q.className='l-q';q.textContent=hit[1];li.appendChild(q);var d=document.createElement('span');d.className='l-ex';d.textContent=hit[2];li.appendChild(d);li.addEventListener('click',function(){li.classList.toggle('lxo')})});
+ var AD={'유가':'기름값이 급하게 오르면 물가와 금리를 자극해 주식에 부담이 됩니다.','채권·금리':'금리가 높거나 빨리 오르면 주식, 특히 성장주·중소형주에 부담입니다.','신용':'회사들이 돈을 빌리기 어려워지는지, 부도 걱정이 커지는지 봅니다.','옵션·공포':'투자자들이 얼마나 겁먹었는지 옵션 시장 가격으로 봅니다.'};
+ A.querySelectorAll('.area:not([data-ad])').forEach(function(ar){var h=ar.querySelector('.hd');var t=(h&&h.querySelector('b')||{}).textContent||'';if(!h||!AD[t])return;ar.dataset.ad=1;var p=document.createElement('p');p.className='a-desc';p.textContent=AD[t];h.after(p)});
  A.querySelectorAll('.area>a:not([data-lx])').forEach(function(a){a.dataset.lx=1;var h=(a.closest('.area').querySelector('.hd b')||{}).textContent||'';a.textContent=h+' 차트로 보기 →'})}
 var k2=0;(function g2(){try{lx()}catch(e){}if(++k2<14)setTimeout(g2,400)})();
 if(window.MutationObserver){var r2=document.querySelector('.lw');if(r2)new MutationObserver(function(){try{lx()}catch(e){}}).observe(r2,{childList:true,subtree:true})}
