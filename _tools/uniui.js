@@ -25,3 +25,18 @@ var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})()})();
 (function(){function fx(){var t=document.getElementById('tbl');if(!t)return;t.querySelectorAll('tbody td:nth-child(5)').forEach(function(td){var m=td.textContent.match(/^([\d.]+)\s*\(추정\)/);if(m&&!td.querySelector('i')){td.innerHTML=m[1]+'<i class="est">추정</i>'}});
  var c=document.getElementById('list-card');var s=c&&c.querySelector(':scope>p.sub');if(s&&/옆으로 밀어/.test(s.textContent))s.textContent='정렬 버튼으로 순서를 바꾸고, 종목을 누르면 위에 추이가 열립니다. 큰 숫자 = 유통주식 중 숏 비율.'}
 var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})();try{var t0=document.getElementById('list-card');if(t0)new MutationObserver(function(){try{fx()}catch(e){}}).observe(t0,{childList:true,subtree:true})}catch(e){}})();
+// 공매도 종목 추이 카드: 위에 검색·분야·종목 고르기 상자(사용자 2026-10-29) — 고르면 표의 그 줄을 눌러 추이를 바꿈
+(function(){function fx(){var c=document.getElementById('detail-card'),t=document.getElementById('tbl');if(!c||!t||c.querySelector('.dp'))return;var h=c.querySelector('#d-h');if(!h||[].filter.call(t.querySelectorAll('tbody tr'),function(r){return r.children.length>=3}).length<3)return;
+ var box=document.createElement('div');box.className='dp';box.innerHTML='<input type="search" class="dp-q" placeholder="회사·티커 찾기"><div class="dp-l"></div><div class="dp-t"></div>';c.insertBefore(box,h);
+ var q=box.querySelector('.dp-q'),L=box.querySelector('.dp-l'),T=box.querySelector('.dp-t'),cur='전체';
+ function rows(){return [].slice.call(t.querySelectorAll('tbody tr')).filter(function(r){return r.children.length>=3})}
+ function info(r){var d=r.children;return {tk:d[0].textContent.trim(),nm:d[1].textContent.trim(),ly:d[2].textContent.trim(),tr:r}}
+ var lays=['전체'];rows().forEach(function(r){var l=info(r).ly;if(l&&lays.indexOf(l)<0)lays.push(l)});
+ L.innerHTML=lays.map(function(l){return '<button type="button" aria-pressed="'+(l===cur)+'">'+l+'</button>'}).join('');
+ function draw(){var s=q.value.trim().toLowerCase();var sel=(c.querySelector('#d-h').textContent.match(/\(([^)]+)\)/)||[])[1];
+  T.innerHTML=rows().map(info).filter(function(o){return (cur==='전체'||o.ly===cur)&&(!s||(o.nm+o.tk).toLowerCase().indexOf(s)>=0)}).map(function(o){return '<button type="button" data-tk="'+o.tk+'" aria-pressed="'+(o.tk===sel)+'">'+o.nm+'</button>'}).join('')||'<span class="dp-none">맞는 종목이 없습니다</span>'}
+ L.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;cur=b.textContent;L.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});draw()});
+ q.addEventListener('input',draw);
+ T.addEventListener('click',function(e){var b=e.target.closest('button[data-tk]');if(!b)return;var r=rows().find(function(r){return info(r).tk===b.dataset.tk});if(r){var y=scrollY;r.click();setTimeout(function(){scrollTo(0,y);draw()},60)}});
+ draw();new MutationObserver(function(){draw()}).observe(c.querySelector('#d-h'),{childList:true,characterData:true,subtree:true})}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})()})();

@@ -38,3 +38,11 @@ body .kr-detail{margin-top:8px;border-radius:12px;box-shadow:inset 0 0 0 1px rgb
 body .kr-detail .kr-dh{margin:0 0 4px!important;font:800 14px/1.4 -apple-system,sans-serif}
 body .kr-detail td.up{color:#1a7f37;font-weight:700}body .kr-detail td.dn{color:#c62828;font-weight:700}
 body :is(#tw-grid,#krco-grid)>* :is(.hint,.more,.tap,[class*=hint]){font-size:11px!important;margin-top:2px!important}
+/* 네모칸 카드는 좌우 여백을 줄여 칸을 더 크게(위 요약 상자와 끝선 맞춤) — 사용자 2026-10-29 */
+body :is(#tw-card,#krco-card,#kr-table-card).sp-card{padding-left:10px!important;padding-right:10px!important}
+body :is(#tw-card,#krco-card,#kr-table-card)>:is(h3,p.sub){padding-left:6px;padding-right:6px}
+body :is(#tw-grid,#krco-grid,.kr-grid).sp-grid{gap:5px!important}
+body :is(#tw-grid,#krco-grid,.kr-grid)>*{padding:9px 8px 7px!important}
+body :is(#tw-grid,#krco-grid,.kr-grid)>* .n{font-size:14.5px!important}
+body :is(#tw-grid,#krco-grid,.kr-grid)>* .r,body :is(#tw-grid,#krco-grid,.kr-grid)>* .m{font-size:11px!important}
+body :is(#tw-grid,#krco-grid,.kr-grid)>* .y{font-size:19px!important}
