@@ -6,7 +6,7 @@ function meter(k){return '<span class="o-lv" data-lv="'+k+'"><i></i><i></i><i></
 function take(){var tk=document.getElementById('take'),tx=document.getElementById('take-txt');if(!tk||!tx)return;var s=tx.textContent;if(tk.dataset.sig===s)return;
  var v=s.match(/VIX\s*([\d.]+)\(([+\-−]?[\d.]+)\)/),r=s.match(/VIX3M\s*([\d.]+)\(([^)]+)\)/),p=s.match(/풋콜\s*([\d.]+)/),st=(s.match(/「([^」]+)」/)||[])[1],sc=(s.match(/점수\s*(\d+)점/)||[])[1];if(!v||!r||!p||!st)return;tk.dataset.sig=s;
  var col=st==='안정'?'#1a7f37':st==='경계'?'#e07b16':'#c62828',em=st==='안정'?'🟢':st==='경계'?'🟠':'🔴';
- var rows=[['VIX',v[1],'공포지수 · 20 넘으면 경계',lvOf(+v[1],20),(/^[+\-−]/.test(v[2])?'':'+')+v[2]],['기간구조',r[1],r[2]+' · 1 넘으면 경계',lvOf(+r[1],1),''],['풋콜',p[1],'하락 보험 비율 · 0.9 넘으면 경계',lvOf(+p[1],0.9),'']];
+ var rows=[['VIX',v[1],'공포지수 · 20 넘으면 경계',lvOf(+v[1],20),(/^[+\-−]/.test(v[2])?'':'+')+v[2]],['기간구조',r[1],(/백워/.test(r[2])?'백워데이션(당장 불안 큼)':'콘탱고(정상)')+' · 1 넘으면 백워데이션',lvOf(+r[1],1),''],['풋콜',p[1],'하락 보험 비율 · 0.9 넘으면 경계',lvOf(+p[1],0.9),'']];
  var w=tk.querySelector('.o-new');if(!w){w=document.createElement('div');w.className='o-new';tk.appendChild(w)}
  w.innerHTML='<div class="o-top"><span class="o-st" style="color:'+col+'">'+em+' '+st+'</span><span class="o-sc">점수 <b>'+(sc||0)+'</b> / 4</span></div><ul class="o-rows">'+rows.map(function(x){return '<li><span class="o-k"><b>'+x[0]+'</b><small>'+x[2]+'</small></span><span class="o-v" data-lv="'+x[3]+'">'+x[1]+(x[4]?'<small>'+x[4]+'</small>':'')+'</span>'+meter(x[3])+'</li>'}).join('')+'</ul>';
  tk.classList.add('o-on')}

@@ -26,7 +26,7 @@ html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
   });
 })();
 </script>
-<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610290356">(function(){var me="202610290356";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 캘린더</title>
+<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610290357">(function(){var me="202610290357";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 캘린더</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 /* 레이아웃: 머리말 → 상단 요약 띠 → 이번 주 이야기(접기) → 범례·필터 → 평일 5열 주간 그리드(휴대폰은 하루씩 세로) → 다음 주 미리보기 → 실행 규칙 */
@@ -1002,7 +1002,36 @@ function run(){
 }
 run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);[300,900,1600,2600,4000].forEach(function(t){setTimeout(run,t)});
 })();</script>
-<style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
+<style data-calui>body #next.cn-on>div:not(.cn){display:none!important}
+body #next .cn{display:flex;flex-direction:column;gap:10px}
+body #next .cn small{display:block;font:700 11.5px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#6f6d68;margin-bottom:4px}
+body #next .cn-top{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+body #next .cn-tile{padding:8px 11px;border-radius:12px;background:#fff;box-shadow:0 0 0 1px rgba(154,98,0,.12),0 3px 0 rgba(11,11,11,.08)}
+body #next .cn-tile small{margin:0}body #next .cn-tile b{font:900 24px/1.2 -apple-system,sans-serif;color:#0b0b0b}body #next .cn-tile b i{font-style:normal;font-size:13px;font-weight:700;color:#6f6d68;margin-left:2px}
+body #next .cn-sl>div{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+body #next .cn-sl span{display:flex;flex-direction:column;align-items:center;padding:6px 4px;border-radius:10px;background:#f6f4ee;font:800 15px/1.2 -apple-system,sans-serif;color:#0b0b0b}
+body #next .cn-sl span em{font-style:normal;font:700 11.5px/1.3 sans-serif;color:#6f6d68;margin-bottom:2px}body #next .cn-sl span.pre{background:rgba(154,98,0,.1)}body #next .cn-sl span.pre em{color:#9a6200}
+body #next .cn-as ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+body #next .cn-as li{display:grid;grid-template-columns:3.2em 3.2em 1fr auto;gap:8px;align-items:center;padding:6px 2px;border-top:1px dashed rgba(11,11,11,.1)}
+body #next .cn-as li:first-child{border-top:0}
+body #next .cn-as .d{font:700 13px/1 -apple-system,sans-serif;color:#9a6200}body #next .cn-as .t{font:600 13px/1 -apple-system,sans-serif;color:#6f6d68;font-variant-numeric:tabular-nums}
+body #next .cn-as b{font:800 15px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b}
+body #next .cn-as i{font-style:normal;font:700 11px/1 sans-serif;padding:3px 7px;border-radius:999px;background:#f1efe8;color:#6f6d68}
+body #next .cn-as li.past b{color:#6f6d68;font-weight:700}body #next .cn-as li.past i{background:rgba(26,127,55,.1);color:#1a7f37}
+</style><script data-calui>// 실적 일정 맨 위 요약(이번 주·오늘·아시아 추적)을 칸·줄 맞춘 모양으로(사용자 2026-10-29)
+(function(){function fx(){var n=document.getElementById('next');if(!n)return;var t=n.textContent;if(n.dataset.sig===t)return;var d=[].slice.call(n.children);if(d.length<2)return;
+ function part(i){var x=d[i];if(!x)return null;var b=x.querySelector('b');return {k:b?b.textContent.trim():'',v:x.textContent.replace(b?b.textContent:'','').trim()}}
+ var w=part(0),td=part(1),as=part(2);var wN=(w&&w.v.match(/(\d+)곳/)||[])[1],tN=(td&&td.v.match(/(\d+)곳/)||[])[1];
+ var slots=td?(td.v.match(/(장후|아시아|장전)\s*([\d:]+~?)/g)||[]):[];
+ var items=as?as.v.split(/\s*·\s*/).map(function(s){var m=s.match(/^(\d+\/\d+)\s+([\d:]+)\s+(.+)$/);return m?{d:m[1],t:m[2],n:m[3]}:null}).filter(Boolean):[];
+ var now=new Date(),y=now.getFullYear();
+ var h='<div class="cn-top"><div class="cn-tile"><small>이번 주</small><b>'+(wN||'—')+'<i>곳</i></b></div><div class="cn-tile"><small>오늘</small><b>'+(tN||'—')+'<i>곳</i></b></div></div>';
+ if(slots.length)h+='<div class="cn-sl"><small>오늘 발표 시각</small><div>'+slots.map(function(s){var m=s.match(/(장후|아시아|장전)\s*([\d:]+)/);return '<span class="'+(m[1]==='장전'?'pre':'')+'"><em>'+m[1]+'</em>'+m[2]+'</span>'}).join('')+'</div></div>';
+ if(items.length)h+='<div class="cn-as"><small>아시아 실시간 추적</small><ul>'+items.map(function(it){var p=it.d.split('/'),hm=it.t.split(':');var dt=new Date(y,+p[0]-1,+p[1],+hm[0],+hm[1]);var past=dt<now;return '<li class="'+(past?'past':'')+'"><span class="d">'+it.d+'</span><span class="t">'+it.t+'</span><b>'+it.n+'</b><i>'+(past?'✓ 나옴':'예정')+'</i></li>'}).join('')+'</ul></div>';
+ var box=n.querySelector('.cn');if(!box){box=document.createElement('div');box.className='cn';n.appendChild(box)}box.innerHTML=h;n.classList.add('cn-on');n.dataset.sig=n.textContent.replace(box.textContent,'')===t?t:t}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,400)})();
+try{new MutationObserver(function(){try{var n=document.getElementById('next');if(n&&!n.querySelector('.cn'))fx()}catch(e){}}).observe(document.body,{childList:true,subtree:true})}catch(e){}})();
+</script><style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
 body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
 body .mm-take.hu b:not(.mm-chipx){font-weight:800}
 body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
@@ -1047,42 +1076,13 @@ function fx(){
  document.querySelectorAll('table').forEach(function(t){if(t.dataset.ut||!t.rows.length||!t.offsetParent)return;var p=t.parentElement;var wide=t.scrollWidth>p.clientWidth+4,long=t.rows.length>14;if(!wide&&!long)return;t.dataset.ut=1;
   var w=document.createElement('div');w.className='u-tbox'+(long?' u-long':'');t.parentNode.insertBefore(w,t);w.appendChild(t);if(wide)t.classList.add('u-wide')});
  // 3) 긴 설명 문단: 2줄 + 더 읽기
- document.querySelectorAll('p.sub,p.note,p[class$="-note"],p.m,p.nt,p[class$="-one"],p.how,p.nc-sub,.sh-guide,p.in-foot').forEach(function(p){if(p.dataset.u||p.closest('.u-fold')||p.closest('.mm-take'))return;if(p.textContent.trim().length<110)return;more(p,/how|guide/.test(p.className)?'읽는 법':'더 읽기')});
+ document.querySelectorAll('p.sub,p.note,p[class$="-note"],p.m,p.nt,p[class$="-one"],p.how,p.nc-sub,.sh-guide,p.in-foot').forEach(function(p){if(p.dataset.u||p.closest('.u-fold')||p.closest('.mm-take')||p.closest('details'))return;if(p.textContent.trim().length<110)return;more(p,/how|guide/.test(p.className)?'읽는 법':'더 읽기')});
  // 4) 아주 긴 목록(타임라인·주간 일정)은 상자 안 스크롤
  document.querySelectorAll('#tl-sec .pg-card,#week,#weeks-sec .mc-card,#campus,#mix,#view').forEach(function(c){if(c.dataset.ub||c.offsetHeight<1400)return;c.dataset.ub=1;c.classList.add('u-box');var h=document.createElement('p');h.className='u-hint';h.textContent='↕ 상자 안에서 내려 보면 전체가 있습니다';c.after(h);c.addEventListener('scroll',function(){h.style.opacity=c.scrollTop+c.clientHeight>=c.scrollHeight-8?'0':'1'})});
 }
 var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})();
 try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}catch(e){}
 })();
-</script><style data-calui>body #next.cn-on>div:not(.cn){display:none!important}
-body #next .cn{display:flex;flex-direction:column;gap:10px}
-body #next .cn small{display:block;font:700 11.5px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#6f6d68;margin-bottom:4px}
-body #next .cn-top{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-body #next .cn-tile{padding:8px 11px;border-radius:12px;background:#fff;box-shadow:0 0 0 1px rgba(154,98,0,.12),0 3px 0 rgba(11,11,11,.08)}
-body #next .cn-tile small{margin:0}body #next .cn-tile b{font:900 24px/1.2 -apple-system,sans-serif;color:#0b0b0b}body #next .cn-tile b i{font-style:normal;font-size:13px;font-weight:700;color:#6f6d68;margin-left:2px}
-body #next .cn-sl>div{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-body #next .cn-sl span{display:flex;flex-direction:column;align-items:center;padding:6px 4px;border-radius:10px;background:#f6f4ee;font:800 15px/1.2 -apple-system,sans-serif;color:#0b0b0b}
-body #next .cn-sl span em{font-style:normal;font:700 11.5px/1.3 sans-serif;color:#6f6d68;margin-bottom:2px}body #next .cn-sl span.pre{background:rgba(154,98,0,.1)}body #next .cn-sl span.pre em{color:#9a6200}
-body #next .cn-as ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-body #next .cn-as li{display:grid;grid-template-columns:3.2em 3.2em 1fr auto;gap:8px;align-items:center;padding:6px 2px;border-top:1px dashed rgba(11,11,11,.1)}
-body #next .cn-as li:first-child{border-top:0}
-body #next .cn-as .d{font:700 13px/1 -apple-system,sans-serif;color:#9a6200}body #next .cn-as .t{font:600 13px/1 -apple-system,sans-serif;color:#6f6d68;font-variant-numeric:tabular-nums}
-body #next .cn-as b{font:800 15px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b}
-body #next .cn-as i{font-style:normal;font:700 11px/1 sans-serif;padding:3px 7px;border-radius:999px;background:#f1efe8;color:#6f6d68}
-body #next .cn-as li.past b{color:#6f6d68;font-weight:700}body #next .cn-as li.past i{background:rgba(26,127,55,.1);color:#1a7f37}
-</style><script data-calui>// 실적 일정 맨 위 요약(이번 주·오늘·아시아 추적)을 칸·줄 맞춘 모양으로(사용자 2026-10-29)
-(function(){function fx(){var n=document.getElementById('next');if(!n)return;var t=n.textContent;if(n.dataset.sig===t)return;var d=[].slice.call(n.children);if(d.length<2)return;
- function part(i){var x=d[i];if(!x)return null;var b=x.querySelector('b');return {k:b?b.textContent.trim():'',v:x.textContent.replace(b?b.textContent:'','').trim()}}
- var w=part(0),td=part(1),as=part(2);var wN=(w&&w.v.match(/(\d+)곳/)||[])[1],tN=(td&&td.v.match(/(\d+)곳/)||[])[1];
- var slots=td?(td.v.match(/(장후|아시아|장전)\s*([\d:]+~?)/g)||[]):[];
- var items=as?as.v.split(/\s*·\s*/).map(function(s){var m=s.match(/^(\d+\/\d+)\s+([\d:]+)\s+(.+)$/);return m?{d:m[1],t:m[2],n:m[3]}:null}).filter(Boolean):[];
- var now=new Date(),y=now.getFullYear();
- var h='<div class="cn-top"><div class="cn-tile"><small>이번 주</small><b>'+(wN||'—')+'<i>곳</i></b></div><div class="cn-tile"><small>오늘</small><b>'+(tN||'—')+'<i>곳</i></b></div></div>';
- if(slots.length)h+='<div class="cn-sl"><small>오늘 발표 시각</small><div>'+slots.map(function(s){var m=s.match(/(장후|아시아|장전)\s*([\d:]+)/);return '<span class="'+(m[1]==='장전'?'pre':'')+'"><em>'+m[1]+'</em>'+m[2]+'</span>'}).join('')+'</div></div>';
- if(items.length)h+='<div class="cn-as"><small>아시아 실시간 추적</small><ul>'+items.map(function(it){var p=it.d.split('/'),hm=it.t.split(':');var dt=new Date(y,+p[0]-1,+p[1],+hm[0],+hm[1]);var past=dt<now;return '<li class="'+(past?'past':'')+'"><span class="d">'+it.d+'</span><span class="t">'+it.t+'</span><b>'+it.n+'</b><i>'+(past?'✓ 나옴':'예정')+'</i></li>'}).join('')+'</ul></div>';
- var box=n.querySelector('.cn');if(!box){box=document.createElement('div');box.className='cn';n.appendChild(box)}box.innerHTML=h;n.classList.add('cn-on');n.dataset.sig=n.textContent.replace(box.textContent,'')===t?t:t}
-var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,400)})();
-try{new MutationObserver(function(){try{var n=document.getElementById('next');if(n&&!n.querySelector('.cn'))fx()}catch(e){}}).observe(document.body,{childList:true,subtree:true})}catch(e){}})();
 </script></body></html>
 <script>
 /* 가독성: 한 덩어리에 ①②③이 이어 붙은 문단은 번호마다 줄을 바꿔 보여 줍니다(내용은 그대로). */
