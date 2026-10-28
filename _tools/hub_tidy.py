@@ -14,6 +14,7 @@ JS_NEW = "bold($('t-c'),(t.comment||'').replace(/(다\\.)\\s+/g,'$1\\n'))"
 
 
 def tidy(s):
+    s = tidy_statgo(s)
     s = s.replace('      <p class="sh">오늘 한눈에</p>\n', '').replace('<p class="sh">오늘 한눈에</p>', '')
     s = s.replace('매일 아침 핵심 · 하루 한 번 이상 갱신<span>', '매일 아침 핵심<span>')
     s = s.replace('흐름 확인 · 며칠~몇 주 흐름과 소식<span>', '흐름 확인<span>')
@@ -44,6 +45,7 @@ BRIEF_CSS = ('<style data-pmore>.bf-pmore{display:block;margin:6px 0 0;padding:7
 
 def tidy_brief(s):
     s = tidy_np2(s)
+    s = tidy_macrogo(s)
     s = tidy_rng(s)
     s = tidy_rngui(s)
     s = tidy_deep(s)
@@ -322,3 +324,30 @@ def tidy_earnui(s):
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-earnui>' + open(os.path.join(d, 'earnui.css'), encoding='utf-8').read() + '</style><script data-earnui>' + open(os.path.join(d, 'earnui.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+# 홈 '오늘 한눈에' 숫자 칸을 누르면 해당 차트로(사용자 2026-10-29): 나스닥→종목 차트 QQQ, 반도체→SOXX, 10년물→채권·금리, WTI→데일리 시황 금리·유가 차트(WTI)
+STATGO = (r"""<style data-statgo>.stats .stat[data-go]{cursor:pointer;transition:transform .08s}.stats .stat[data-go]:active{transform:translateY(1px);background:rgba(154,98,0,.06)}"""
+          r""".stats .stat[data-go] .k::after{content:" ›";color:#b9b6ae;font-weight:700}</style>"""
+          r"""<script data-statgo>(function(){var M=[[/나스닥/,'p-trend.html#QQQ'],[/반도체|SOX/,'p-trend.html#SOXX'],[/10년/,'p-bond.html'],[/WTI|유가/,'p-brief.html#wti']];"""
+          r"""function f(){document.querySelectorAll('.stats .stat').forEach(function(s){if(s.dataset.go)return;var k=s.querySelector('.k');if(!k)return;var u=null;M.forEach(function(m){if(!u&&m[0].test(k.textContent))u=m[1]});if(!u)return;s.dataset.go=u;s.setAttribute('role','link');s.addEventListener('click',function(){location.href=u})})}"""
+          r"""f();var n=0,t=setInterval(function(){f();if(++n>10)clearInterval(t)},500)})();</script>""")
+
+
+def tidy_statgo(s):
+    s = re.sub(r'<(style|script) data-statgo>.*?</\1>', '', s, flags=re.S)
+    if 'class="stats"' not in s and "stats" not in s:
+        return s
+    return s.replace('</body>', STATGO + '</body>', 1) if '</body>' in s else s + STATGO
+
+
+# 데일리 시황: 주소 끝이 #wti 등이면 금리·유가 차트에서 그 항목을 골라 보여 줌
+MACROGO = (r"""<script data-macrogo>(function(){var h=(location.hash||'').slice(1).toLowerCase();if(!h)return;var L={wti:'WTI',us10y:'10년물',brent:'브렌트',gold:'금',vix:'VIX',dxy:'달러지수'};if(!L[h])return;var k=0;"""
+           r"""(function go(){var c=document.getElementById('mchips');var b=c&&[...c.querySelectorAll('button')].find(function(x){return x.textContent.trim().indexOf(L[h])===0});if(b){b.click();var m=document.getElementById('macro-card');if(m){var y=m.getBoundingClientRect().top+scrollY-70;scrollTo(0,y)}return}if(++k<20)setTimeout(go,300)})()})();</script>""")
+
+
+def tidy_macrogo(s):
+    s = re.sub(r'<script data-macrogo>.*?</script>', '', s, flags=re.S)
+    if 'id="mchips"' not in s:
+        return s
+    return s.replace('</body>', MACROGO + '</body>', 1) if '</body>' in s else s + MACROGO
