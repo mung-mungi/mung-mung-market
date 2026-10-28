@@ -133,6 +133,10 @@ body .wrap > p.foot,body .wrap > p.mm-foot{display:none!important}.mm-shbody .mm
 #main.mmt-on .mmt{margin:0!important}#main.mmt-on .mmt-top{margin:2px 0 0!important;min-height:28px}
 #main.mmt-on .mmt-per{margin:4px -4px 0!important}
 html.mm-hx-off .wrap{padding-top:4px!important}
+body .wrap{padding-top:0!important}#main.mmt-on{margin-top:0!important}
+body{margin:0!important;padding:6px 8px 80px!important}html.mm-hx-off body .wrap{row-gap:0!important;gap:0!important}html.mm-hx-off body header.mm-hero.mm-hx{margin:0!important}
+/* 배너 접힌 뒤엔 페이지가 위아래로 안 움직이게(차트만 고정) */
+html.mm-hx-off.mm-lock,html.mm-hx-off.mm-lock body{overflow:hidden!important;overscroll-behavior:none}
 .mm-rec{display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;margin:-2px 0 10px;padding:2px 0}.mm-rec::-webkit-scrollbar{display:none}
 .mm-rec .lb{flex:none;font-size:11.5px;font-weight:700;color:#9a978f;margin-right:2px}
 .mm-rec button{flex:none;font:inherit;font-size:13px;font-weight:700;height:28px;padding:0 11px;border-radius:999px;border:1px solid #e3dfd6;background:#fff;color:#4a463f;box-shadow:0 1px 0 rgba(0,0,0,.05),0 2px 5px rgba(0,0,0,.05)}
@@ -669,7 +673,7 @@ function mmGuide(main,gl){ if(!gl||main.querySelector('.mm-sum'))return; var t=g
   var lv=main.querySelector('.mm-lv'); (lv||main.querySelector('.ch')).after(box); }
 function mmAsof(){ var main=document.getElementById('main'), a=document.getElementById('asof'); if(!main||!a||!a.textContent.trim())return; var old=document.querySelector('.mm-asof2'); if(old) old.remove(); var kd=main.querySelector('.hd .kind'), pr=main.querySelector('.hd .pr'); var m=a.textContent.match(/(\d{1,2}:\d{2})\s*기준/); if(!kd||!m||(pr&&pr.classList.contains('mm-fh'))) return; var t=' · '+m[1]+' 기준'; if(kd.textContent.indexOf(t)<0) kd.textContent=kd.textContent.replace(/ · \d{1,2}:\d{2} 기준$/,'')+t; return; var e=document.querySelector('.mm-asof2'); var card=main.closest('section,.card,.panel')||main; if(!e){ e=document.createElement('p'); e.className='mm-asof2'; card.parentNode.insertBefore(e,card); } var t='● '+a.textContent.trim(); if(e.textContent!==t) e.textContent=t; }
 (function(){ var h=document.documentElement, t=null, idle=null;
-  function off(){ h.classList.add('mm-hx-off'); } function on(){ if(h.classList.contains('mm-land')||h.classList.contains('mm-full')) return; h.classList.remove('mm-hx-off'); }
+  function off(){ h.classList.add('mm-hx-off'); setTimeout(function(){ window.__mmFitN=0; try{mmFitCard()}catch(e){} if(h.classList.contains('mm-lock')) scrollTo(0,0); },480); } function on(){ if(h.classList.contains('mm-land')||h.classList.contains('mm-full')) return; h.classList.remove('mm-hx-off'); }
   function act(){ clearTimeout(idle); if(!h.classList.contains('mm-hx-off')){ clearTimeout(t); t=setTimeout(off,1500); } idle=setTimeout(on,20000); }
   t=setTimeout(off,5000); idle=setTimeout(on,25000);
   ['pointerdown','scroll','keydown','wheel','touchstart'].forEach(function(e){ addEventListener(e,act,{passive:true,capture:true}); }); })();
@@ -710,10 +714,12 @@ function mmRecent(){ var main=document.getElementById('main'); if(!main||!main.q
   R.forEach(function(t){ var r=byT[t]; if(!r)return; var b=document.createElement('button'); b.type='button'; b.textContent=t.replace('^','').replace(/=F$/,''); if(t===tk) b.className='on'; b.title=r.name;
     b.addEventListener('click',function(){ location.hash=t.replace(/[^A-Za-z0-9]/g,'-'); }); box.appendChild(b); }); }
 // 첫 화면에 차트 카드만 딱(사용자 2026-10-29): 카드 아래가 아래 아이콘 독 바로 위에 오도록 차트 높이를 맞춤
+try{ addEventListener('resize',function(){ clearTimeout(window.__mmFr); window.__mmFr=setTimeout(function(){ window.__mmFitN=0; try{mmFitCard()}catch(e){} },350); }); if(window.visualViewport) visualViewport.addEventListener('resize',function(){ clearTimeout(window.__mmFr); window.__mmFr=setTimeout(function(){ window.__mmFitN=0; try{mmFitCard()}catch(e){} },350); }); }catch(e){}
 function mmFitCard(){ var h=document.documentElement; if(h.classList.contains('mm-land')||h.classList.contains('mm-full'))return; var m=document.getElementById('main'), sv=m&&m.querySelector('.mmt-box > svg'); if(!m||!sv)return;
   var dockTop=innerHeight; [].slice.call(document.querySelectorAll('nav,div')).forEach(function(e){ var cs=getComputedStyle(e); if(cs.position!=='fixed')return; var r=e.getBoundingClientRect(); if(r.width>300&&r.top>innerHeight*0.6&&r.height>30&&r.top<dockTop) dockTop=r.top; });
   var hero=document.querySelector('header.mm-hero'), heroH=(hero&&!h.classList.contains('mm-hx-off'))?hero.getBoundingClientRect().height+(parseFloat(getComputedStyle(hero).marginBottom)||0):0;
-  var top=m.getBoundingClientRect().top+scrollY-heroH, non=m.offsetHeight-sv.getBoundingClientRect().height, want=Math.round(Math.max(240,Math.min(620,dockTop-6-top-non)));
+  var top=m.getBoundingClientRect().top+scrollY-heroH, non=m.offsetHeight-sv.getBoundingClientRect().height, want=Math.round(Math.max(240,Math.min(680,dockTop-4-top-non)));
+  h.classList.toggle('mm-lock', want>240&&want<680); if(h.classList.contains('mm-hx-off')&&h.classList.contains('mm-lock')&&scrollY) scrollTo(0,0);
   var cur=Math.round(sv.getBoundingClientRect().height); if(Math.abs(want-cur)>6&&(window.__mmFitN=(window.__mmFitN||0)+1)<4){ window.__mmFitH=want; window.__mmH=want; try{mmtDraw()}catch(e){} } }
 function mmtTidy(){ var main=document.getElementById('main'); if(!main||!main.querySelector('.hd'))return; var w=main.querySelector('.mmt'); if(!w||w.dataset.tk!==mmTk()) mmtDraw(); }
 
