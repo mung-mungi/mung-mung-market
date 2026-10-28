@@ -500,6 +500,33 @@ details.mm-fold[open]>summary{margin-bottom:8px}
 """
 
 
+PIV_JS = r'''        // 최근 1년 일별 종가에서 꼭짓점(되돌림 기준은 종목 변동성에 맞춰 6~14%) → 가까운 꼭짓점끼리 ±4% 묶음
+        const lastD = full[full.length - 1].d, y1d = new Date(lastD + 'T00:00:00Z'); y1d.setUTCDate(y1d.getUTCDate() - 370); const yc = y1d.toISOString().slice(0, 10);
+        const ser = full.filter((a) => a.kind !== 'm' && a.d >= yc);
+        const chg = ser.slice(1).map((a, i) => Math.abs(a.v / ser[i].v - 1)).sort((x, y) => x - y), med = chg.length ? chg[Math.floor(chg.length / 2)] : 0.02;
+        const th = Math.min(0.14, Math.max(0.06, med * 5));
+        const piv = []; let dir = 0, ex = ser[0], hiP = ser[0], loP = ser[0];
+        ser.slice(1).forEach((a) => {
+          if (dir === 0) { if (a.v > hiP.v) hiP = a; if (a.v < loP.v) loP = a;
+            if (a.v < hiP.v * (1 - th)) { piv.push({ v: hiP.v, d: hiP.d, k: 'H' }); ex = a; dir = -1; } else if (a.v > loP.v * (1 + th)) { piv.push({ v: loP.v, d: loP.d, k: 'L' }); ex = a; dir = 1; } return; }
+          if (dir > 0) { if (a.v > ex.v) ex = a; else if (a.v < ex.v * (1 - th)) { piv.push({ v: ex.v, d: ex.d, k: 'H' }); ex = a; dir = -1; } return; }
+          if (a.v < ex.v) ex = a; else if (a.v > ex.v * (1 + th)) { piv.push({ v: ex.v, d: ex.d, k: 'L' }); ex = a; dir = 1; }
+        });
+        const ps = piv.slice().sort((x, y) => x.v - y.v), cl = [];
+        ps.forEach((p) => { const c = cl[cl.length - 1]; if (c && p.v <= c.a * 1.04) { c.p.push(p); c.b = p.v; } else cl.push({ a: p.v, b: p.v, p: [p] }); });
+        cl.forEach((c) => { if (c.b / c.a < 1.015) { const md = (c.a + c.b) / 2; c.a = md * 0.9925; c.b = md * 1.0075; } c.n = c.p.length;
+          const nh = c.p.filter((p) => p.k === 'H').length, nl = c.n - nh, ds = c.p.slice().sort((x, y) => x.d.localeCompare(y.d)).map((p) => (p.d.slice(0, 4) !== lastD.slice(0, 4) ? '작년 ' : '') + Number(p.d.slice(5, 7)) + '/' + Number(p.d.slice(8))).join('·');
+          c.why = (nh && nl ? '고점·저점' : nh ? '고점' : '저점') + ' ' + c.n + '번 꺾인 자리(' + ds + ')'; });
+        const upC = cl.filter((c) => c.a > nowV * 1.003 && c.a < nowV * 1.6).sort((x, y) => x.a - y.a), dnC = cl.filter((c) => c.b < nowV * 0.997 && c.b > nowV * 0.5).sort((x, y) => y.b - x.b);
+        const above = upC[0], below = dnC[0];
+        // 2차: 꺾인 횟수 + 최근 4달 안이면 +1 + 1년 최고·최저면 +1 → 점수 높은 곳(같으면 가까운 곳)
+        const gHi = Math.max(...ser.map((x) => x.v)), gLo = Math.min(...ser.map((x) => x.v)), rc = new Date(lastD + 'T00:00:00Z'); rc.setUTCDate(rc.getUTCDate() - 120); const rcs = rc.toISOString().slice(0, 10);
+        const r45 = new Date(lastD + 'T00:00:00Z'); r45.setUTCDate(r45.getUTCDate() - 45); const r45s = r45.toISOString().slice(0, 10);
+        const sc = (c) => c.n + (c.p.some((p) => p.d >= rcs) ? 1 : 0) + (c.p.some((p) => p.d >= r45s) ? 1 : 0) + (c.p.some((p) => p.v === gHi || p.v === gLo) ? 1 : 0);
+        const pick2 = (L, z) => L.filter((c) => c !== z).sort((x, y) => sc(y) - sc(x) || (L.indexOf(x) - L.indexOf(y)))[0];
+        const above2 = above && pick2(upC, above), below2 = below && pick2(dnC, below);'''
+
+
 def run(root):
     done = []
     p = os.path.join(root, 'p-trend.html')
@@ -520,6 +547,16 @@ def run(root):
         s = s.replace("[['1m', '1개월'], ['3m', '3개월'], ['6m', '6개월'], ['12m', '12개월']].forEach(([k, l]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'pb-chip'; b.textContent = l;", "[['1m', '1개월'], ['3m', '3개월'], ['6m', '6개월'], ['12m', '12개월'], ['5y', '5년'], ['10y', '10년']].forEach(([k, l]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'pb-chip'; b.textContent = l; b.dataset.k = k;", 1)
         s = s.replace("const cutDays = { '1m': 31, '3m': 92, '6m': 184, '12m': 370 }[openRange];", "const cutDays = { '1m': 31, '3m': 92, '6m': 184, '12m': 370, '5y': 1830, '10y': 3660 }[openRange] || 370;", 1)
         s = s.replace(".text(openRange === '12m' || openRange === '6m' ? String(t.getUTCFullYear()).slice(2)", ".text(openRange === '5y' || openRange === '10y' ? String(t.getUTCFullYear()) : openRange === '12m' || openRange === '6m' ? String(t.getUTCFullYear()).slice(2)", 1)
+        # 매물대: 오래 머문 가격대 → 최근 1년 고점·저점 꺾인 자리를 ±4%로 묶어 여러 번 부딪힌 곳(사용자 2026-10-29)
+        i0 = s.find("        const lo2 = d3.min(dly, (a) => a.v), hi2 = d3.max(dly, (a) => a.v), nb = 14")
+        i1 = s.find("const above = near.filter((z) => z.a > nowV).sort((x, y) => y.n - x.n)[0];", i0)
+        if i0 > 0 and i1 > 0:
+            i1 += len("const above = near.filter((z) => z.a > nowV).sort((x, y) => y.n - x.n)[0];")
+            s = s[:i0] + PIV_JS + s[i1:]
+            s = s.replace("${below.n}거래일 머문 구간</span>`;", "${below.why}</span>` + (below2 ? `<span class=\"ln\">▪ 더 아래 지지 <b>${zf(below2)}</b> · ${below2.why}</span>` : '');", 1)
+            s = s.replace("${above.n}거래일 머문 구간</span>`;", "${above.why}</span>` + (above2 ? `<span class=\"ln\">▪ 더 위 저항 <b>${zf(above2)}</b> · ${above2.why}</span>` : '');", 1)
+            s = s.replace("[[below, 'var(--color-ok)', '아래 지지 후보'], [above, 'var(--color-bad)', '위 저항 후보']].forEach(([z, colz, lab]) => {\n          if (!z) return;\n          const y1 = clampY(z.b), y2 = clampY(z.a);\n          g.insert('rect', ':first-child').attr('x', m.l).attr('width', W - m.r - m.l).attr('y', y1).attr('height', Math.max(3, y2 - y1)).attr('fill', colz).attr('opacity', .08);",
+                          "[[below2, 'var(--color-ok)', '더 아래', .045], [above2, 'var(--color-bad)', '더 위', .045], [below, 'var(--color-ok)', '아래 지지 후보', .08], [above, 'var(--color-bad)', '위 저항 후보', .08]].forEach(([z, colz, lab, zop]) => {\n          if (!z) return;\n          const y1 = clampY(z.b), y2 = clampY(z.a);\n          g.insert('rect', ':first-child').attr('x', m.l).attr('width', W - m.r - m.l).attr('y', y1).attr('height', Math.max(3, y2 - y1)).attr('fill', colz).attr('opacity', zop);\n          if (zop < .06) return;", 1)
         s = re.sub(r'const MYLINES = \{.*?\};\n', 'const MYLINES = {};\n', s, count=1)  # 내 관점 관문선은 사이트에서 생략(사용자 2026-10-29)
         if s != o: open(p, 'w', encoding='utf-8').write(s); done.append('trend-height')
     for f, cfg in PAGES.items():
