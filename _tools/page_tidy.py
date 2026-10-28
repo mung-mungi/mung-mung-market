@@ -256,7 +256,7 @@ function mmtChart(box, pts, base, cur, intra){
     if(!intra){ var sp=(t1-t0)/86400; for(var k=0;k<4;k++){ var t=t0+(t1-t0)*(k+0.5)/4, d=new Date(t*1000+9*3600000), lb=sp<=100?(d.getUTCMonth()+1)+'/'+d.getUTCDate():sp<=400?(d.getUTCFullYear()%100)+'.'+(d.getUTCMonth()+1):(d.getUTCFullYear())+'';
       s+='<text x="'+sx(t)+'" y="'+(H-8)+'" font-size="10.5" fill="#a29f97" text-anchor="middle">'+lb+'</text>'; } }
     else { [intra.rs+(intra.re-intra.rs)/3, intra.rs+(intra.re-intra.rs)*2/3].forEach(function(t){ s+='<text x="'+sx(t)+'" y="'+(H-8)+'" font-size="10.5" fill="#c2bfb8" text-anchor="middle">'+mmtKst(t)+'</text>'; }); }
-    if(window.__mmT&&window.__mmT.tr&&!intra&&pts.length>5){ // 간단 추세선: 보이는 기간 종가의 직선 추세(최소제곱)
+    if(window.__mmT&&window.__mmT.tr&&pts.length>5){ // 간단 추세선: 보이는 기간 종가의 직선 추세(최소제곱)
       var n=pts.length, mx=0, my=0; pts.forEach(function(a){mx+=a[0];my+=a[1]}); mx/=n; my/=n; var sxy=0,sxx=0; pts.forEach(function(a){sxy+=(a[0]-mx)*(a[1]-my); sxx+=(a[0]-mx)*(a[0]-mx)});
       var b1=sxx?sxy/sxx:0, f=function(t){return my+b1*(t-mx)}, ya=f(pts[0][0]), yb=f(pts[n-1][0]), ch=(yb/ya-1)*100;
       s+='<line x1="'+sx(pts[0][0])+'" x2="'+sx(pts[n-1][0])+'" y1="'+sy(ya)+'" y2="'+sy(yb)+'" stroke="#6b675f" stroke-width="1.3" stroke-dasharray="5 4" opacity=".55"/>'
