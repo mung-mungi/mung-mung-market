@@ -9,7 +9,7 @@ m['83yn7caQnHU8MWiVLEHSMi'] = 'index.html'
 META = '<meta name="robots" content="noindex,nofollow">'
 # 카톡·SNS 링크 미리보기 카드(og 태그) — 이미지는 _tools/og-card.jpg를 사이트 루트로 복사
 SITE = 'https://mung-mungi.github.io/mung-mung-market/'
-OGDESC = '실적 속보·실적 캘린더·목표주가·공매도·시세를 한 곳에서. 매일 6~8회 업데이트.'
+OGDESC = 'AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서.'
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'og-card.jpg'), os.path.join(src, 'og-card.jpg'))
 def og(title, fn):
     if fn == 'index.html': title = '멍뭉 터미널 · AI 밸류체인 레이더'
