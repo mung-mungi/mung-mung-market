@@ -134,7 +134,7 @@ function tidy(){
 window.__mm1d=window.__mm1d||false; window.__mmIntra=window.__mmIntra||null; window.__mmIntraAt=window.__mmIntraAt||0;
 function mmIntra(cb){ if(window.__mmIntra&&Date.now()-window.__mmIntraAt<60000){cb(window.__mmIntra);return}
   fetch('live/intraday.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){if(d){window.__mmIntra=d;window.__mmIntraAt=Date.now()}cb(d)}).catch(function(){cb(null)}); }
-function mmTk(){ var t=document.querySelector('#main .hd .tk'); return t?t.textContent.trim():''; }
+function mmTk(){ var t=document.querySelector('#main .hd .tk'), k=t?t.textContent.trim():''; try{ var m=DATA.P.filter(function(r){return r.ticker.replace('^','')===k})[0]; if(m) return m.ticker; }catch(e){} return k; }
 function mmKst(sec){ var d=new Date(sec*1000+9*3600000); var p=function(n){return (n<10?'0':'')+n}; return p(d.getUTCHours())+':'+p(d.getUTCMinutes()); }
 function mmDraw1d(){
   var main=document.getElementById('main'), ch=main&&main.querySelector('.ch'); if(!ch)return;
@@ -201,7 +201,7 @@ window.__mmT = window.__mmT || { per: '3m', det: false };
 var MMT_PER = [['1d','1일','오늘'],['1w','1주','지난주보다'],['1m','1달','지난달보다'],['3m','3달','3달 전보다'],['1y','1년','1년 전보다']];
 function mmtRow(){ var tk=mmTk(); try{ return DATA.P.filter(function(r){return r.ticker===tk})[0]; }catch(e){ return null; } }
 function mmtDaily(tk){ try{ return (DATA.H[tk]||[]).filter(function(a){return !a[2]}).map(function(a){return [Date.parse(a[0]+'T21:00:00Z')/1000,a[1]]}); }catch(e){ return []; } }
-function mmtFmt(v,cur){ var d=(cur==='KRW'||cur==='JPY')?0:2; return (cur==='USD'?'$':'')+v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})+(cur==='KRW'?'원':cur&&cur!=='USD'?' '+cur:''); }
+function mmtFmt(v,cur){ if(cur==='%') return v.toFixed(3).replace(/0$/,'')+'%'; var d=(cur==='KRW'||cur==='JPY')?0:2; return (cur==='USD'?'$':'')+v.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})+(cur==='KRW'?'원':cur&&cur!=='USD'?' '+cur:''); }
 function mmtKst(sec,withDate){ var d=new Date(sec*1000+9*3600000), p=function(n){return (n<10?'0':'')+n}; return withDate?(d.getUTCFullYear()%100)+'.'+(d.getUTCMonth()+1)+'.'+d.getUTCDate():p(d.getUTCHours())+':'+p(d.getUTCMinutes()); }
 function mmtChart(box, pts, base, cur, intra){
   var W=Math.max(260,box.clientWidth||330), H=Math.round(Math.min(380,Math.max(260,W*0.78))), m={l:4,r:4,t:34,b:30};
@@ -242,7 +242,7 @@ function mmtDraw(){
   wrap.querySelectorAll('.mmt-per button').forEach(function(b){ b.setAttribute('aria-pressed',String(b.dataset.p===T.per)); });
   var box=wrap.querySelector('.mmt-box'), chg=wrap.querySelector('.mmt-chg'), cur=r.currency, now=Number(r.price);
   var pe=main.querySelector('.hd .pr'); var lv=pe&&pe.textContent.match(/[\d,]+\.?\d*/); if(pe&&pe.classList.contains('mm-fh')&&lv) now=Number(lv[0].replace(/,/g,''));
-  function setChg(base,label){ if(base==null){chg.textContent='';return} var dv=now-base, dp=dv/base*100, c=dv>=0?'#e0423a':'#3a6fe0'; chg.innerHTML='<span></span> <b style="color:'+c+'"></b>'; chg.firstChild.textContent=label; chg.lastChild.textContent=(dv>=0?'+':'−')+mmtFmt(Math.abs(dv),cur)+' ('+Math.abs(dp).toFixed(1)+'%)'; }
+  function setChg(base,label){ if(base==null){chg.textContent='';return} var dv=now-base, dp=dv/base*100, c=dv>=0?'#e0423a':'#3a6fe0'; chg.innerHTML='<span></span> <b style="color:'+c+'"></b>'; chg.firstChild.textContent=label; chg.lastChild.textContent=(cur==='%')?((dv>=0?'+':'−')+Math.round(Math.abs(dv)*100)+'bp'):((dv>=0?'+':'−')+mmtFmt(Math.abs(dv),cur)+' ('+Math.abs(dp).toFixed(1)+'%)'); }
   if(T.per==='1d'){
     mmIntra(function(D){ var x=D&&D.d&&D.d[r.ticker]; if(!x||!x.p||x.p.length<2){ box.innerHTML='<p class="mmt-empty">오늘 흐름 자료가 아직 없습니다 · 장 시작 후 5분마다 채워집니다</p>'; setChg(r.prev_close,'어제보다'); return; }
       var pts=x.p.map(function(a){return [x.s+a[0]*60,a[1]]}); if(Math.abs(pts[pts.length-1][1]-now)>1e-9 && pe&&pe.classList.contains('mm-fh')) pts.push([Date.now()/1000,now]);
@@ -346,6 +346,11 @@ def run(root):
     if os.path.exists(p):  # 종목 차트: 휴대폰에서 차트를 크게(사용자 2026-10-29)
         s = open(p, encoding='utf-8').read(); o = s
         s = s.replace('Math.round(Math.min(300, Math.max(200, W * 0.42)))', 'Math.round(Math.min(440, Math.max(300, W * 0.95)))')
+        # 금리(%) 표시: 소수 둘째 자리, 'USD' 대신 '%'(사용자 2026-10-29 채권·유가 층위)
+        s = s.replace("const fmtShort = (x, cur) => { if (x == null) return ''; const d = cur === 'USD'", "const fmtShort = (x, cur) => { if (x == null) return ''; const d = cur === '%' ? 2 : cur === 'USD'")
+        s = s.replace("+ ' ' + r.currency", "+ (r.currency === '%' ? '%' : ' ' + r.currency)")
+        s = s.replace("const rank = (c) => (/지수|ETF/.test(c) ? 0 :", "const rank = (c) => (/지수|ETF/.test(c) ? 0 : /금리|유가/.test(c) ? 0.5 :")  # 채권·유가 층위는 지수 바로 뒤
+        s = s.replace("Math.pow(10, Math.max(0, Math.floor(Math.log10(Math.abs(v))) - 3))", "Math.pow(10, Math.max((typeof r !== 'undefined' && r && r.currency === '%') ? -3 : 0, Math.floor(Math.log10(Math.abs(v))) - 3))")  # 금리는 소수까지
         s = re.sub(r'const MYLINES = \{.*?\};\n', 'const MYLINES = {};\n', s, count=1)  # 내 관점 관문선은 사이트에서 생략(사용자 2026-10-29)
         if s != o: open(p, 'w', encoding='utf-8').write(s); done.append('trend-height')
     for f, cfg in PAGES.items():

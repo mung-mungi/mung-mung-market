@@ -3,6 +3,7 @@
 # Claude 우선: 최근 1시간 사이트 게시(커밋) 7번 이상이면 건너뜀, Claude(봇 아닌 커밋)가 10분 안에 올렸으면 쉼.
 # 실적 시간대(뉴욕 06:00~09:30, 16:00~19:30)는 15분 간격.
 # 결과는 live/ 에만 씀(통합본 동기화가 덮어쓰는 d/prices 와 분리). 충돌 시 최신본 받고 다시 계산.
+import urllib.parse
 import datetime as dt, json, os, shutil, subprocess, sys
 from zoneinfo import ZoneInfo
 
@@ -105,6 +106,37 @@ def idx_update(L, now):
     return True
 
 
+# 차트에만 보이는 거시 지표(사용자 2026-10-29): 시세 보드·관심종목에는 안 올리고 종목 차트 층위로만
+MACRO = [('2YY=F', '미국 2년물 금리', '미국채 금리', '%'), ('^TNX', '미국 10년물 금리', '미국채 금리', '%'), ('^TYX', '미국 30년물 금리', '미국채 금리', '%'),
+         ('CL=F', 'WTI 원유', '유가', 'USD'), ('BZ=F', '브렌트유', '유가', 'USD')]
+
+
+def macro_files(W, L):
+    """live/macro_*.json을 작업 폴더로 — 없으면 2년치 일별 종가로 처음 채움"""
+    mp, mh = os.path.join(W, 'mprices.json'), os.path.join(W, 'mhistory.json')
+    try:
+        P = json.load(open(os.path.join(L, 'macro_prices.json'), encoding='utf-8')); H = json.load(open(os.path.join(L, 'macro_history.json'), encoding='utf-8'))
+    except Exception:
+        P, H = [], []
+    have = {r['ticker'] for r in P}
+    for i, (t, n, c, cur) in enumerate(MACRO):
+        if t in have: continue
+        P.append({'ticker': t, 'name': n, 'category': c, 'order': 900 + i, 'currency': cur})
+        try:
+            o = subprocess.run(['curl', '-sS', '-m', '25', '-A', 'Mozilla/5.0', 'https://query1.finance.yahoo.com/v8/finance/chart/' + urllib.parse.quote(t) + '?range=2y&interval=1d'], capture_output=True, text=True).stdout
+            r = json.loads(o)['chart']['result'][0]; off = r['meta'].get('gmtoffset', 0)
+            for ts, v in zip(r['timestamp'], r['indicators']['quote'][0]['close']):
+                if v is not None: H.append({'ticker': t, 'date': dt.datetime.fromtimestamp(ts + off, dt.timezone.utc).strftime('%Y-%m-%d'), 'close': round(float(v), 4), 'kind': 'd'})
+        except Exception as e:
+            print('macro seed fail', t, e)
+    for r in P:  # 이름·층위는 여기 목록을 따름
+        for t, n, c, cur in MACRO:
+            if r['ticker'] == t: r.update(name=n, category=c, currency=cur)
+    P = [r for r in P if r['ticker'] in {m[0] for m in MACRO}]
+    json.dump(P, open(mp, 'w', encoding='utf-8'), ensure_ascii=False); json.dump(H, open(mh, 'w', encoding='utf-8'), ensure_ascii=False)
+    return mp, mh
+
+
 def build():
     W = os.path.join(R, '.live_tmp'); shutil.rmtree(W, ignore_errors=True); os.makedirs(W)
     for f in ('prices.json', 'history.json'):
@@ -113,8 +145,27 @@ def build():
     out = sh(sys.executable, '-I', os.path.join(T, 'refresh_prices.py'), 'update', os.path.join(W, 'prices.json'), os.path.join(W, 'history.json'))
     res = json.loads(out.splitlines()[-1])
     if not res.get('ok'): print('fail: 시세 받기 실패', res); return None
-    sh(sys.executable, '-I', os.path.join(T, 'refresh_prices.py'), 'trendjson', os.path.join(W, 'trend.json'), os.path.join(W, 'prices.json'), os.path.join(W, 'history.json'))
     L = os.path.join(R, 'live'); os.makedirs(L, exist_ok=True)
+    mp = mh = None
+    try:  # 거시 지표(채권 금리·유가)는 따로 받아 차트 자료에만 합침
+        mp, mh = macro_files(W, L)
+        os.environ['MM_INTRA'] = os.path.join(W, 'intra_m.json')
+        sh(sys.executable, '-I', os.path.join(T, 'refresh_prices.py'), 'update', mp, mh)
+        os.environ['MM_INTRA'] = os.path.join(W, 'intraday.json')
+        try:
+            I = json.load(open(os.path.join(W, 'intraday.json'), encoding='utf-8')); Im = json.load(open(os.path.join(W, 'intra_m.json'), encoding='utf-8'))
+            I['d'].update(Im['d']); json.dump(I, open(os.path.join(W, 'intraday.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+        except Exception as e: print('macro intra merge', e)
+        ap, ah = os.path.join(W, 'all_p.json'), os.path.join(W, 'all_h.json')
+        json.dump(json.load(open(os.path.join(W, 'prices.json'), encoding='utf-8')) + json.load(open(mp, encoding='utf-8')), open(ap, 'w', encoding='utf-8'), ensure_ascii=False)
+        json.dump(json.load(open(os.path.join(W, 'history.json'), encoding='utf-8')) + json.load(open(mh, encoding='utf-8')), open(ah, 'w', encoding='utf-8'), ensure_ascii=False)
+    except Exception as e:
+        print('macro fail', e); mp = None; ap, ah = os.path.join(W, 'prices.json'), os.path.join(W, 'history.json')
+    sh(sys.executable, '-I', os.path.join(T, 'refresh_prices.py'), 'trendjson', os.path.join(W, 'trend.json'), ap, ah)
+    mch = False
+    if mp:
+        try: mch = json.load(open(mp, encoding='utf-8')) != json.load(open(os.path.join(L, 'macro_prices.json'), encoding='utf-8'))
+        except Exception: mch = True
     old = None
     try: old = json.load(open(os.path.join(L, 'prices.json'), encoding='utf-8'))
     except Exception: pass
@@ -127,13 +178,15 @@ def build():
     except Exception: pass
     try: idxch = idx_update(L, dt.datetime.now(ZoneInfo('Asia/Seoul')))
     except Exception as e: idxch = False; print('idx fail', e)
-    if old == new and oldst.get('base') == base and not idxch:
+    if old == new and oldst.get('base') == base and not idxch and not mch:
         print('same: 시세 변화 없음', res); shutil.rmtree(W, ignore_errors=True); return None
     now = dt.datetime.now(ZoneInfo('Asia/Seoul'))
     tr = json.load(open(os.path.join(W, 'trend.json'), encoding='utf-8')); tr['at'] = now.isoformat(timespec='seconds')
     json.dump(tr, open(os.path.join(L, 'trend.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     for f in ('prices.json', 'history.json'):
         shutil.copy(os.path.join(W, f), os.path.join(L, f))
+    if mp:
+        shutil.copy(mp, os.path.join(L, 'macro_prices.json')); shutil.copy(mh, os.path.join(L, 'macro_history.json'))
     if os.path.exists(os.path.join(W, 'intraday.json')): shutil.copy(os.path.join(W, 'intraday.json'), os.path.join(L, 'intraday.json'))
     kinds = res.get('kinds', {})
     st = {'at': now.isoformat(timespec='seconds'), 'key': now.strftime('%Y%m%d%H%M'), 'label': now.strftime('%m.%d %H:%M') + ' 기준(5분 갱신)',
