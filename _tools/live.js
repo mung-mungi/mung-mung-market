@@ -29,7 +29,7 @@
       if (!pr.isConnected) return;
       var fresh = q && Date.now() - q.t * 1000 < FRESH;
       if (q && (fresh || !savedLive)) {
-        var lab = (fresh ? '실시간 ' : '기준: ') + kst(q.t) + (fresh ? '' : ' 종가') + ' · ' + pct(q.dp);
+        var lab = (fresh ? '' : '기준: ') + kst(q.t) + (fresh ? '' : ' 종가') + ' · ' + pct(q.dp);
         if (kd) { pr.textContent = fmt(q.c) + ' ' + cur; kd.textContent = lab; }
         else pr.textContent = fmt(q.c) + ' ' + cur + ' · ' + lab;
         pr.title = 'Finnhub 시세 · 1분마다 새로 받음';

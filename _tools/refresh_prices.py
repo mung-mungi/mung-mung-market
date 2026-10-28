@@ -39,6 +39,9 @@ def month_back(d, n):
     return dt.date(y, m, min(d.day, calendar.monthrange(y, m)[1]))
 
 
+INTRA = {}
+
+
 def update(pp, hp):
     P = json.load(open(pp, encoding='utf-8'))
     H = json.load(open(hp, encoding='utf-8'))
@@ -56,6 +59,16 @@ def update(pp, hp):
         if not a or not b:
             out['fail'].append(t); continue
         m = a['meta']; off = m.get('gmtoffset', 0); tp = m.get('currentTradingPeriod', {})
+        try:  # 당일 5분 흐름(토스식 1일 차트용, 사용자 2026-10-29) — MM_INTRA 환경변수가 있을 때만 파일로
+            q5 = a.get('indicators', {}).get('quote', [{}])[0].get('close', []); ts5 = a.get('timestamp', []) or []
+            pts = [(x, round(float(c), 4)) for x, c in zip(ts5, q5) if c is not None]
+            if pts:
+                s0 = pts[0][0]
+                INTRA[t] = {'pc': m.get('chartPreviousClose') or m.get('previousClose'), 'cur': m.get('currency'), 'off': off, 's': s0,
+                            'p': [[(x - s0) // 60, c] for x, c in pts],
+                            'reg': [tp.get('regular', {}).get('start'), tp.get('regular', {}).get('end')]}
+        except Exception:
+            pass
         reg = tp.get('regular', {}); pre = tp.get('pre', {})
         in_reg = reg and reg['start'] <= now < reg['end']
         today = ldate(now, off)
@@ -117,6 +130,9 @@ def update(pp, hp):
         for (d, k), c in th.items():
             H2.append({'ticker': t, 'date': d, 'close': c, 'kind': k})
     H2.sort(key=lambda x: (x['ticker'], x['date'], x['kind']))
+    import os as _os
+    if _os.environ.get('MM_INTRA') and INTRA:
+        json.dump({'at': dt.datetime.now(KST).isoformat(timespec='seconds'), 'd': INTRA}, open(_os.environ['MM_INTRA'], 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     json.dump(P, open(pp, 'w', encoding='utf-8'), ensure_ascii=False)
     json.dump(H2, open(hp, 'w', encoding='utf-8'), ensure_ascii=False)
     out['total'] = len(P)
