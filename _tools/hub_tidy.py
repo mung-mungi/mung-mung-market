@@ -15,6 +15,7 @@ JS_NEW = "bold($('t-c'),(t.comment||'').replace(/(다\\.)\\s+/g,'$1\\n'))"
 
 def tidy(s):
     s = tidy_statgo(s)
+    s = tidy_splash(s)
     s = s.replace('      <p class="sh">오늘 한눈에</p>\n', '').replace('<p class="sh">오늘 한눈에</p>', '')
     s = s.replace('매일 아침 핵심 · 하루 한 번 이상 갱신<span>', '매일 아침 핵심<span>')
     s = s.replace('흐름 확인 · 며칠~몇 주 흐름과 소식<span>', '흐름 확인<span>')
@@ -181,6 +182,7 @@ IBDRAG = (r'''<style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll
 
 def tidy_ibdrag(s):
     s = tidy_perf(s)
+    s = tidy_splash(s)
     s = tidy_navorder(s)
     s = tidy_dock(s)
     s = tidy_headui(s)
@@ -467,3 +469,12 @@ def tidy_perf(s):
         return s[:m.end()] + js + s[m.end():]
     m = re.search(r'<script', s)
     return s[:m.start()] + js + s[m.start():] if m else js + s
+
+
+# 처음 열 때 멍뭉이 로딩 화면 — _tools/splash.* (사용자 2026-10-29)
+def tidy_splash(s):
+    s = re.sub(r'<(style|script) data-splash>.*?</\1>', '', s, flags=re.S)
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-splash>' + open(os.path.join(d, 'splash.css'), encoding='utf-8').read() + '</style><script data-splash>' + open(os.path.join(d, 'splash.js'), encoding='utf-8').read() + '</script>'
+    m = re.search(r'<script data-perf>.*?</script>', s, re.S) or re.search(r'<head[^>]*>', s)
+    return s[:m.end()] + add + s[m.end():] if m else add + s
