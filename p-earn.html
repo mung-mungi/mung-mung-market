@@ -134,6 +134,7 @@ article+article{margin-top:56px;padding-top:44px;border-top:3px solid var(--line
 .vc .vh{font-weight:700;font-size:19.5px;line-height:1.45;color:var(--fg)}.vc .vn{border-top:1px dashed var(--line);padding-top:8px}
 .verdict{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px;border-left:4px solid var(--c)}.verdict .k{margin:0 0 4px;font-size:14.5px;color:var(--muted);letter-spacing:.06em}.verdict .g{display:inline-block;font-weight:900;font-size:15px;color:var(--bg);background:var(--c);border-radius:999px;padding:1px 10px;margin-right:8px;vertical-align:1px}.verdict p{margin:0}
 .sp{display:flex;flex-direction:column;gap:16px;margin-top:4px}.sp-r{--c:var(--up)}.sp-r.dn{--c:var(--down)}.sp-r.eq{--c:var(--muted)}.sp-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px}.sp-k{font-size:17px;font-weight:700}.sp-p{font-size:24px;font-weight:900;color:var(--c);font-variant-numeric:tabular-nums;white-space:nowrap}.sp-p small{font-size:14.5px;font-weight:700;margin-left:5px}.sp-v{display:flex;flex-wrap:wrap;gap:2px 14px;font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums;margin:2px 0 6px}.sp-v b{color:var(--fg);font-size:16px}.sp-t{position:relative;height:14px;border-radius:7px;background:var(--panel-2)}.sp-t{background:linear-gradient(90deg,color-mix(in srgb,var(--down) 7%,var(--panel-2)) 50%,color-mix(in srgb,var(--up) 7%,var(--panel-2)) 50%)}.sp-t i{position:absolute;top:0;bottom:0;background:var(--c)}.sp-r.up .sp-t i{border-radius:0 7px 7px 0}.sp-r.dn .sp-t i{border-radius:7px 0 0 7px}.sp-r.eq .sp-t i{border-radius:3px}.sp-t em{position:absolute;left:50%;top:-4px;bottom:-4px;width:0;border-left:2px solid var(--fg);transform:translateX(-1px)}.sp-s{position:relative;height:1.5em;font-size:14px;color:var(--muted);margin-top:-10px;font-variant-numeric:tabular-nums}.sp-s>*{position:absolute;top:0;transform:translateX(-50%)}.sp-s>:nth-child(1){left:0;transform:none}.sp-s>:nth-child(2){left:25%}.sp-s>:nth-child(3){left:50%}.sp-s>:nth-child(4){left:75%}.sp-s>:nth-child(5){right:0;left:auto;transform:none}.sp-s b{color:var(--fg)}.sp-n{margin:0;font-size:14px;color:var(--muted)}
+.sumrow .gr{display:inline-block;margin-left:8px;font-family:var(--sans);font-size:14px;font-weight:900;color:#fff;background:var(--gc);border-radius:999px;padding:1px 9px;vertical-align:3px;font-variant-numeric:tabular-nums}
 </style>
 <main>
 <header><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="AI 밸류체인 실적 결과"><meta property="og:description" content="실적 속보·실적 캘린더·목표주가·공매도·시세를 한 곳에서. 매일 6~8회 업데이트."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-earn.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
@@ -219,7 +220,10 @@ const IMP=['엔비디아','마이크로소프트','애플','알파벳','아마�
 const nmOf=a=>a.querySelector('h3').firstChild.textContent.replace(/\(.*\)/,'').trim();
 const impRk=a=>{const n=(a.dataset.name||'').split(' ')[0]||nmOf(a);const i=IMP.indexOf(n);return i<0?999:i};
 // 나온 시간대: 미국 장 마감 후(한국 새벽)=1, 아시아=2, 미국 장전(한국 저녁)=3 — 같은 한국 날짜면 숫자가 큰 쪽이 최근
-const slotOf=a=>{const t=(a.querySelector('.tag')||{}).textContent||'';return /장전/.test(t)?3:/장후|장 마감/.test(t)?1:2};
+const slotOf=a=>{const t=((a.querySelector('.tag')||{}).textContent||'').split('·')[0];return /한국|아시아|대만|일본|유럽/.test(t)?2:/장전/.test(t)?3:/장후|장 마감/.test(t)?1:2};
+// 실적 점수: data-sum의 ✅·❌ 개수로 A~D (매출·EPS·영업이익·가이던스 등 예상 대비)
+const gradeOf=a=>{const s=a.dataset.sum||'';const ok=(s.match(/✅/g)||[]).length,no=(s.match(/❌/g)||[]).length,n=ok+no;if(!n)return null;
+  const g=no===0?'A':ok>no?'B':ok===no?'C':'D';return {g,t:g+' '+ok+'/'+n,c:{A:'var(--up)',B:'#4f8a2b',C:'#b98900',D:'var(--down)'}[g]}};
 const kstOf=a=>{const s=slotOf(a);if(s!==1)return a.dataset.date;const x=new Date(a.dataset.date+'T00:00:00Z');x.setUTCDate(x.getUTCDate()+1);return x.toISOString().slice(0,10)};
 const sessKey=a=>kstOf(a)+'-'+slotOf(a);
 ['fd','fl','hits','ups'].forEach(id=>{document.getElementById(id).textContent=''});
@@ -249,6 +253,7 @@ arts.forEach(a=>{const b=document.createElement('button');b.className='sumrow';b
   const sm=document.createElement('span');sm.className='sm';sm.textContent=md(a.dataset.kst)+(a.dataset.sum?' · '+a.dataset.sum:'');
   const box=document.createElement('span');box.style.minWidth='0';box.appendChild(nm);box.appendChild(document.createElement('br'));box.appendChild(sm);
   if(a.dataset.date===latest){const t=document.createElement('span');t.className='lt';t.textContent='최신';nm.prepend(t)}
+  {const gr=gradeOf(a);if(gr){const g=document.createElement('span');g.className='gr';g.textContent=gr.t;g.style.setProperty('--gc',gr.c);g.title='실적 점수 — 예상 대비 상회 항목 수';nm.appendChild(g)}}
   const ar=document.createElement('span');ar.className='ar';b.appendChild(box);b.appendChild(ar);
   b.onclick=()=>{a.classList.toggle('fold');sync(a)};a.prepend(b);
   if(openIds?!openIds.has(a.id):a.dataset.kst!==today)a.classList.add('fold');sync(a)}); // 오늘(한국 날짜) 올라온 실적만 펼침, 나머지는 접기
