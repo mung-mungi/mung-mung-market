@@ -25,7 +25,35 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
 .ib .tg{flex:none;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--ib-fa,#9a978f);padding-left:8px;border-left:1px solid var(--ib-line,rgba(11,11,11,.1));margin-left:2px}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}}
 :root[data-theme="dark"]{--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}
-</style><script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script><script>window.__PAGE__={"page": "short", "ds": ["flows", "leopold", "perf", "px", "si", "sv"], "params": {}};window.__SYNC__="202610282044";</script><script src="shim.js"></script></head><body class="ibody"><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html">경고등</a><a href="p-brief.html">데일리 시황</a><a href="p-earn.html">실적 결과</a><a href="p-prices.html">시세 보드</a><a href="p-targets.html">목표주가</a><a href="p-opt.html">옵션 온도계</a><a href="p-bond.html">채권·금리</a><a href="p-cal.html">실적 캘린더</a><a href="p-econ.html">경제지표</a><span class="tg">흐름</span><a href="p-trend.html">차트 길잡이</a><a href="p-short.html" aria-current="page">공매도</a><a href="p-fx.html">환율</a><a href="p-capex.html">설비투자</a><a href="p-policy.html">정책·지정학</a><a href="p-tech.html">테크 행사</a><span class="tg">점검</span><a href="p-supply.html">한국·대만</a><a href="p-neo.html">네오클라우드</a><a href="p-qtr.html">분기 실적</a><a href="p-insider.html">내부자·기관</a></nav><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script><div id="dash-root" data-dash-state="loading"><style>
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script><script>window.__PAGE__={"page": "short", "ds": ["flows", "leopold", "perf", "px", "si", "sv"], "params": {}};window.__SYNC__="202610282044";</script><script src="shim.js"></script><style data-vt>
+/* 페이지 넘길 때 아이폰 기본 앱처럼 옆으로 밀려 들어오는 전환(지원하는 브라우저만, 아니면 그냥 바로 넘어감) */
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:.34s;animation-timing-function:cubic-bezier(.22,.8,.24,1)}
+::view-transition-old(root){animation:.34s cubic-bezier(.22,.8,.24,1) both mm-vt-out}
+::view-transition-new(root){animation:.34s cubic-bezier(.22,.8,.24,1) both mm-vt-in}
+html.mm-back::view-transition-old(root){animation-name:mm-vt-out-back;z-index:2}
+html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
+@keyframes mm-vt-in{from{transform:translateX(100%);box-shadow:-12px 0 24px rgba(0,0,0,.08)}to{transform:none}}
+@keyframes mm-vt-out{to{transform:translateX(-28%);filter:brightness(.92)}}
+@keyframes mm-vt-in-back{from{transform:translateX(-28%);filter:brightness(.92)}to{transform:none}}
+@keyframes mm-vt-out-back{to{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
+</style><script data-vt>
+(function(){
+  // 홈으로 가거나 '뒤로'일 때는 반대 방향(오른쪽으로 빠짐)
+  window.addEventListener('pagereveal', function(e){
+    if (!e.viewTransition) return;
+    var back = false;
+    try {
+      var a = window.navigation && navigation.activation;
+      if (a) { back = a.navigationType === 'traverse' && a.from && a.entry && a.entry.index < a.from.index; if (!back && /\/(index\.html)?$/.test(new URL(a.entry.url).pathname)) back = true; }
+      else back = /\/(index\.html)?$/.test(location.pathname);
+    } catch (x) {}
+    if (back) { document.documentElement.classList.add('mm-back'); e.viewTransition.finished.finally(function(){ document.documentElement.classList.remove('mm-back'); }); }
+  });
+})();
+</script>
+</head><body class="ibody"><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html">경고등</a><a href="p-brief.html">데일리 시황</a><a href="p-earn.html">실적 결과</a><a href="p-prices.html">시세 보드</a><a href="p-targets.html">목표주가</a><a href="p-opt.html">옵션 온도계</a><a href="p-bond.html">채권·금리</a><a href="p-cal.html">실적 캘린더</a><a href="p-econ.html">경제지표</a><span class="tg">흐름</span><a href="p-trend.html">차트 길잡이</a><a href="p-short.html" aria-current="page">공매도</a><a href="p-fx.html">환율</a><a href="p-capex.html">설비투자</a><a href="p-policy.html">정책·지정학</a><a href="p-tech.html">테크 행사</a><span class="tg">점검</span><a href="p-supply.html">한국·대만</a><a href="p-neo.html">네오클라우드</a><a href="p-qtr.html">분기 실적</a><a href="p-insider.html">내부자·기관</a></nav><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script><div id="dash-root" data-dash-state="loading"><style>
 .sh-guide{background:color-mix(in srgb,var(--color-fg) 4%,transparent);border-radius:var(--cds-radius);padding:10px 12px;display:flex;flex-direction:column;gap:4px;font-size:var(--cds-font-size-body);line-height:1.6}
 .sh-guide b{font-weight:600}
 .sh-dot{display:inline-block;width:.7em;height:.7em;border-radius:2px;margin-right:4px;vertical-align:-.05em}

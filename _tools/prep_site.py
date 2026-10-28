@@ -34,6 +34,9 @@ for f in glob.glob(os.path.join(src, '*.html')):
         s = re.sub(r'(<meta charset[^>]*>)', r'\1<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache">', s, count=1, flags=re.I)
     if 'setAttribute("data-theme","light")' not in s:  # 사용자 지시: 주간(라이트) 모드로만 보이게
         s = re.sub(r'(<meta charset[^>]*>)', r'\1<meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script>', s, count=1, flags=re.I)
+    if 'data-vt' not in s:  # 페이지 전환 슬라이드(아이폰 앱 느낌) — 사용자 2026-10-28 지시
+        VT = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'vt.html'), encoding='utf-8').read()
+        s = re.sub(r'(</head>)', lambda m: VT + m.group(1), s, count=1, flags=re.I) if re.search(r'</head>', s, re.I) else VT + s
     if 'data-tick' not in s:  # 누름 소리(틱) — 사용자 2026-10-28 지시
         TK = '<script data-tick>' + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tick.js'), encoding='utf-8').read() + '</script>'
         s = s.replace('</body>', TK + '</body>', 1) if '</body>' in s else s + TK

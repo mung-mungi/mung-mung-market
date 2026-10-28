@@ -1,3 +1,31 @@
+<!doctype html><style data-vt>
+/* 페이지 넘길 때 아이폰 기본 앱처럼 옆으로 밀려 들어오는 전환(지원하는 브라우저만, 아니면 그냥 바로 넘어감) */
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:.34s;animation-timing-function:cubic-bezier(.22,.8,.24,1)}
+::view-transition-old(root){animation:.34s cubic-bezier(.22,.8,.24,1) both mm-vt-out}
+::view-transition-new(root){animation:.34s cubic-bezier(.22,.8,.24,1) both mm-vt-in}
+html.mm-back::view-transition-old(root){animation-name:mm-vt-out-back;z-index:2}
+html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
+@keyframes mm-vt-in{from{transform:translateX(100%);box-shadow:-12px 0 24px rgba(0,0,0,.08)}to{transform:none}}
+@keyframes mm-vt-out{to{transform:translateX(-28%);filter:brightness(.92)}}
+@keyframes mm-vt-in-back{from{transform:translateX(-28%);filter:brightness(.92)}to{transform:none}}
+@keyframes mm-vt-out-back{to{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
+</style><script data-vt>
+(function(){
+  // 홈으로 가거나 '뒤로'일 때는 반대 방향(오른쪽으로 빠짐)
+  window.addEventListener('pagereveal', function(e){
+    if (!e.viewTransition) return;
+    var back = false;
+    try {
+      var a = window.navigation && navigation.activation;
+      if (a) { back = a.navigationType === 'traverse' && a.from && a.entry && a.entry.index < a.from.index; if (!back && /\/(index\.html)?$/.test(new URL(a.entry.url).pathname)) back = true; }
+      else back = /\/(index\.html)?$/.test(location.pathname);
+    } catch (x) {}
+    if (back) { document.documentElement.classList.add('mm-back'); e.viewTransition.finished.finally(function(){ document.documentElement.classList.remove('mm-back'); }); }
+  });
+})();
+</script>
 <!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>멍뭉 터미널</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>document.documentElement.setAttribute("data-theme","light")</script><style>
