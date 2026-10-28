@@ -28,7 +28,7 @@ html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
   });
 })();
 </script>
-<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610290516">(function(){var me="202610290516";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>멍뭉 터미널</title>
+<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610290525">(function(){var me="202610290525";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>멍뭉 터미널</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <script>document.documentElement.setAttribute("data-theme","light")</script><style>
 /* 한 단 세로 + 위쪽 고정 탭: 홈(오늘 한눈에·카드) → 브리핑 · 실적 · 목표주가 · 시세 · 네오클라우드. 탭은 #주소로 열림 */
@@ -255,10 +255,12 @@ details.note>summary .r{flex-basis:100%;font-size:13.5px;color:var(--muted);line
   <section class="view" id="v-home">
     <header class="bn"><script data-perf>// 휴대폰 버벅임 줄이기(사용자 2026-10-29): 화면 감시 콜백을 한 프레임에 한 번으로 묶고, 탭이 안 보일 땐 쉼
 (function(){var MO=window.MutationObserver;if(!MO||MO.__thr)return;try{var T=class extends MO{constructor(cb){var q=0,self;super(function(){if(q)return;q=1;(window.requestAnimationFrame||setTimeout)(function(){q=0;if(document.hidden)return;try{cb.call(self,[],self)}catch(e){}})});self=this}};T.__thr=1;window.MutationObserver=T}catch(e){}})();
-</script><style data-splash>#mm-splash{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:linear-gradient(180deg,#fbf7ee,#f3efe4);transition:opacity .35s ease,transform .35s ease}
-#mm-splash.out{opacity:0;transform:scale(1.03);pointer-events:none}
-#mm-splash .sp-in{display:flex;flex-direction:column;align-items:center;gap:4px;animation:spUp .5s ease-out}
-#mm-splash img{width:min(62vw,250px);height:auto;border-radius:24px;box-shadow:0 18px 40px rgba(60,40,10,.18);margin-bottom:14px}
+</script><style data-splash>#mm-splash{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:linear-gradient(180deg,#fbf7ee,#f3efe4);transition:opacity .4s ease,transform .4s ease}
+#mm-splash.out{opacity:0;transform:scale(1.06);pointer-events:none}
+#mm-splash .sp-in{display:flex;flex-direction:column;align-items:center;gap:4px;animation:spUp .45s ease-out}
+#mm-splash .sp-v{width:min(70vw,280px);aspect-ratio:3/4;border-radius:24px;overflow:hidden;box-shadow:0 18px 40px rgba(60,40,10,.2);margin-bottom:14px;background:#2a2622;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+#mm-splash.done .sp-v{transform:scale(1.04)}
+#mm-splash video{width:100%;height:100%;object-fit:cover;display:block}
 #mm-splash b{font:900 26px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#1f1e1b;letter-spacing:-.02em}
 #mm-splash small{font:700 12.5px/1.4 -apple-system,sans-serif;color:#9a6200;letter-spacing:.08em}
 #mm-splash i{display:block;width:120px;height:4px;border-radius:3px;background:#e8e1cf;margin-top:16px;overflow:hidden}
@@ -266,12 +268,13 @@ details.note>summary .r{flex-basis:100%;font-size:13.5px;color:var(--muted);line
 @keyframes spUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes spBar{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
 #mm-splash p{margin:14px 0 0!important;font:600 13.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#6f6d68}
-</style><script data-splash>// 처음 열 때 멍뭉이 로딩 화면(사용자 2026-10-29) — 한 번 연 뒤 같은 창에서는 다시 안 뜸, 누르면 바로 닫힘
+</style><script data-splash>// 처음 열 때 멍뭉이 로딩 화면(사용자 2026-10-29) — 의자를 돌려 앉으며 화이팅하는 움짤 뒤 앱으로 들어감. 같은 창에서는 다시 안 뜸, 누르면 바로 닫힘
 (function(){try{if(sessionStorage.getItem('mmSplash'))return;sessionStorage.setItem('mmSplash','1')}catch(e){return}
-var d=document.createElement('div');d.id='mm-splash';d.innerHTML='<div class="sp-in"><img src="img/splash.webp" alt=""><b>멍뭉 터미널</b><small>AI 밸류체인 레이더</small><i><em></em></i><p>성공 투자를 기원합니다 🐾</p></div>';
-function add(){(document.body||document.documentElement).appendChild(d)}if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
-var t0=Date.now();function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},380)}
-d.addEventListener('click',close);window.addEventListener('load',function(){setTimeout(close,Math.max(0,1100-(Date.now()-t0)))});setTimeout(close,3000)})();
+var d=document.createElement('div');d.id='mm-splash';d.innerHTML='<div class="sp-in"><div class="sp-v"><video muted playsinline webkit-playsinline autoplay preload="auto" poster="img/splash0.webp"><source src="img/splash.mp4" type="video/mp4"></video></div><b>멍뭉 터미널</b><small>AI 밸류체인 레이더</small><i><em></em></i><p>성공 투자를 기원합니다 🐾</p></div>';
+function add(){(document.body||document.documentElement).appendChild(d);var v=d.querySelector('video');v.muted=true;var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){v.poster='img/splash.webp';setTimeout(close,1400)});v.addEventListener('ended',function(){d.classList.add('done');setTimeout(close,650)});v.addEventListener('error',function(){setTimeout(close,1200)},true)}
+if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
+function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
+d.addEventListener('click',close);setTimeout(close,6500)})();
 </script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="멍뭉 터미널 · AI 밸류체인 레이더"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
       <div class="tx">
         <p class="k">AI 밸류체인 레이더</p>
@@ -524,7 +527,7 @@ var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
  function chips(l,date){return '<span class="chips">'+l.map(function(x){var d=date&&x.match(/^(\d+\/\d+)\s+(.+)$/);return '<span>'+(d?'<em>'+d[1]+'</em>'+d[2]:x)+'</span>'}).join('')+'</span>'}
  var ul=document.createElement('ul');ul.className='tg3';ul.innerHTML='<li><i>이번 주</i><span>'+chips([m[1]].concat(split(m[2])))+'</span></li><li><i>한 줄 평</i><span><b class="k">'+m[3]+'</b></span></li><li><i>다음 행사</i><span>'+chips(split(nx),1)+'</span></li>';t.appendChild(ul);t.classList.add('tg-rows')}
 var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})()})();
-</script><style data-statgo>.stats .stat[data-go]{cursor:pointer;transition:transform .08s}.stats .stat[data-go]:active{transform:translateY(1px);background:rgba(154,98,0,.06)}.stats .stat[data-go] .k::after{content:" ›";color:#b9b6ae;font-weight:700}</style><script data-statgo>document.addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('.stats .stat[data-go]');if(!s)return;var g=s.dataset.go;if(/\.html/.test(g))return;e.stopPropagation();e.preventDefault();location.href='p-trend.html?per=1y#'+g},true);</script><script data-mkt>(function(){
+</script><script data-mkt>(function(){
   // 홈 '오늘 한눈에' 숫자 4개를 5분 시세 갱신(live/market.json) 값으로 바꿈 — 사용자 2026-10-29 지시. 페이지를 열어 둔 동안 5분마다 다시 읽음
   var MAP = [[/나스닥/, 'nasdaq'], [/반도체|SOX/, 'sox'], [/10년/, 'us10y'], [/WTI|유가/, 'wti']];
   function f2(v){ return v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
@@ -619,4 +622,4 @@ var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})()})();
   go(); document.addEventListener('DOMContentLoaded', go); window.addEventListener('load', go);
   var q = 0; try { new MutationObserver(function(){ if (q) return; q = 1; setTimeout(function(){ q = 0; go(); }, 80); }).observe(document.documentElement, { subtree: true, childList: true }); } catch (e) {}
 })();
-</script>
+</script><style data-statgo>.stats .stat[data-go]{cursor:pointer;transition:transform .08s}.stats .stat[data-go]:active{transform:translateY(1px);background:rgba(154,98,0,.06)}.stats .stat[data-go] .k::after{content:" ›";color:#b9b6ae;font-weight:700}</style><script data-statgo>document.addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('.stats .stat[data-go]');if(!s)return;var g=s.dataset.go;if(/\.html/.test(g))return;e.stopPropagation();e.preventDefault();location.href='p-trend.html?per=1y#'+g},true);</script>
