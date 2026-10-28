@@ -18,3 +18,8 @@ for f in h.UNI_PAGES:
     if os.path.exists(p):
         o = open(p, encoding='utf-8').read(); a = h.tidy_uni(o)
         if a != o: open(p, 'w', encoding='utf-8').write(a)
+# 종목 차트 등 page_tidy 정리도 다시(충돌 뒤 빠지지 않게, 2026-10-29)
+try:
+    import page_tidy as _pt; _pt.run(R)
+except Exception as _e:
+    print('page_tidy fail', _e)
