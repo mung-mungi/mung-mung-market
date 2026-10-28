@@ -1,3 +1,4 @@
+import os
 import re
 # 첫 화면 정리(사용자 2026-10-29 지시): '오늘 한눈에' 제목·날짜 칩 빼기, 묶음 제목 줄이기, 펼친 설명 글꼴을 본문과 맞추고 문장마다 줄바꿈
 # 여러 번 돌려도 같음(이미 바뀌었으면 그대로). kit/home.html과 사이트 index.html 둘 다에 씀
@@ -75,6 +76,7 @@ TGT_NEW = ('<p class="sub">이유가 확인된 변경부터 · <b class="newb">N
 
 
 def tidy_targets(s):
+    s = tidy_tgrow(s)
     import re
     s = s.replace(TGT_OLD, TGT_NEW)
     return re.sub(r'<p class="sub">바꾼 이유가 확인된 것부터[^<]*<b class="newb">NEW</b>[^<]*</p>', TGT_NEW, s)
@@ -299,3 +301,13 @@ def tidy_rngui(s):
     if 'id="chart-card"' not in s:
         return s
     return s.replace('</body>', RNG_UI + '</body>', 1) if '</body>' in s else s + RNG_UI
+
+
+# 목표주가: 최근 변경·평균 목표가·기관별·변경 기록 표를 시세 보드 '종목별 시세' 한 줄 카드로 (사용자 2026-10-29)
+def tidy_tgrow(s):
+    s = re.sub(r'<(style|script) data-tgrow>.*?</\1>', '', s, flags=re.S)
+    if 'rc-list' not in s and 'pt-tbl' not in s:
+        return s
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-tgrow>' + open(os.path.join(d, 'tgrow.css'), encoding='utf-8').read() + '</style><script data-tgrow>' + open(os.path.join(d, 'tgrow.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
