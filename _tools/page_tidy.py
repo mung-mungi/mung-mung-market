@@ -269,10 +269,35 @@ function mmtStyleDetail(){ // 자세한 차트: 추세선은 가늘고 옅게, �
     pr.setAttribute('stroke-width','2.4'); g.appendChild(halo); g.appendChild(pr);
     [].slice.call(g.querySelectorAll('circle')).filter(function(c){return A(c,'fill')==='var(--line)'}).forEach(function(c){ g.appendChild(c); }); }
 }
+
+function mmtAxisTags(){ // 자세한 차트: 오른쪽 가격 눈금 칸에 지지·저항 꼬리표 — 현재가 표시를 피하고, 겹치는 눈금 숫자는 흐리게
+  var svg=document.querySelector('#main .ch svg'); if(!svg||svg.dataset.tg)return; var gl=document.querySelector('#main p.gl'); if(!gl)return;
+  var t=gl.textContent.replace(/\s+/g,' '), R=t.match(/위 저항 후보\s*([\d,.]+)~([\d,.]+)/), S=t.match(/아래 지지 후보\s*([\d,.]+)~([\d,.]+)/); if(!R&&!S)return;
+  var num=function(x){return +String(x).replace(/,/g,'')};
+  var W=svg.viewBox.baseVal.width, ticks=[].slice.call(svg.querySelectorAll('text')).filter(function(e){return +e.getAttribute('x')>W-70&&/^[\d,.]+$/.test(e.textContent.trim())});
+  if(ticks.length<2)return; svg.dataset.tg=1;
+  var a=ticks.map(function(e){return [num(e.textContent),+e.getAttribute('y')-4]}).sort(function(x,y){return x[0]-y[0]}), Y=function(v){return a[0][1]+(v-a[0][0])/(a[a.length-1][0]-a[0][0])*(a[a.length-1][1]-a[0][1])};
+  var pill=[].slice.call(svg.querySelectorAll('rect')).filter(function(r){return r.getAttribute('fill')==='var(--line)'&&+r.getAttribute('x')>W-70})[0];
+  var busy=[]; if(pill) busy.push([+pill.getAttribute('y')-1,+pill.getAttribute('y')+(+pill.getAttribute('height'))+1]);
+  var ns='http://www.w3.org/2000/svg', h=15, x=W-54, w=50;
+  function put(lo,hi,txt,col,bg){ var ya=Y(hi), yb=Y(lo), ym=(ya+yb)/2, y=ym-h/2;
+    for(var k=0;k<6;k++){ var hit=busy.filter(function(b){return y<b[1]&&y+h>b[0]})[0]; if(!hit)break; y = (ym < (hit[0]+hit[1])/2) ? hit[0]-h-1 : hit[1]+1; }
+    busy.push([y,y+h]);
+    var g=document.createElementNS(ns,'g'); g.setAttribute('class','mm-tag');
+    var bar=document.createElementNS(ns,'rect'); bar.setAttribute('x',x-4); bar.setAttribute('y',ya); bar.setAttribute('width',2.5); bar.setAttribute('height',Math.max(2,yb-ya)); bar.setAttribute('fill',col); bar.setAttribute('opacity','.55'); bar.setAttribute('rx',1); g.appendChild(bar);
+    if(Math.abs(y+h/2-ym)>2){ var ln=document.createElementNS(ns,'line'); ln.setAttribute('x1',x-2.5); ln.setAttribute('x2',x); ln.setAttribute('y1',ym); ln.setAttribute('y2',y+h/2); ln.setAttribute('stroke',col); ln.setAttribute('stroke-width','.8'); ln.setAttribute('opacity','.6'); g.appendChild(ln); }
+    var r=document.createElementNS(ns,'rect'); r.setAttribute('x',x); r.setAttribute('y',y); r.setAttribute('width',w); r.setAttribute('height',h); r.setAttribute('rx',4); r.setAttribute('fill',bg); r.setAttribute('opacity','.92'); g.appendChild(r);
+    var tx=document.createElementNS(ns,'text'); tx.setAttribute('x',x+w/2); tx.setAttribute('y',y+h-4); tx.setAttribute('text-anchor','middle'); tx.setAttribute('font-size','9.5'); tx.setAttribute('font-weight','700'); tx.setAttribute('fill',col); tx.textContent=txt; g.appendChild(tx);
+    ticks.forEach(function(e){ var ty=+e.getAttribute('y')-4; if(ty>y-6&&ty<y+h+6) e.setAttribute('opacity','.25'); });
+    if(pill) svg.insertBefore(g, pill.parentNode===svg?pill:null); else svg.appendChild(g);
+    if(pill&&pill.parentNode!==svg) pill.parentNode.insertBefore(g,pill); }
+  if(R) put(num(R[1]),num(R[2]),'저항 '+R[1],'#b23a2e','#fdecea');
+  if(S) put(num(S[1]),num(S[2]),'지지 '+S[1],'#1f7a3f','#e7f5ea');
+}
 function mmtTidy(){ var main=document.getElementById('main'); if(!main||!main.querySelector('.hd'))return; var w=main.querySelector('.mmt'); if(!w||w.dataset.tk!==mmTk()) mmtDraw(); }
 
 function tidy(){
-  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){}
+  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){} try{mmtAxisTags()}catch(e){console.log(e)}
   // 차트 안에서 선과 겹치던 글자 빼기(장기 추세·단기 상단·하단) — 같은 내용은 위 4칸에
   main.querySelectorAll('.ch svg text').forEach(function(t){ if(/^(장기 추세|단기 상단|단기 하단)/.test(t.textContent))t.remove(); });
   var gl=main.querySelector('p.gl'), ch=main.querySelector('.ch');
