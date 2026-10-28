@@ -26,7 +26,7 @@ html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
   });
 })();
 </script>
-<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610290322">(function(){var me="202610290322";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>차트 길잡이</title>
+<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610290324">(function(){var me="202610290324";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>차트 길잡이</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 /* layout: 왼쪽 종목 목록(찾기·분야) + 오른쪽 큰 추세 그래프, 휴대폰은 그래프 먼저 */
@@ -170,7 +170,7 @@ const MYLINES = {};
   const bySlug = new Map(P.map((r) => [slug(r.ticker), r.ticker]));
   document.getElementById('asof').textContent = DATA.label || ('대부분 ' + fmtDate(DATA.asof) + ' 종가 기준');
   // 분야 칩
-  const rank = (c) => (/지수|ETF/.test(c) ? 0 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : c === '빅테크' ? 1 : 2);
+  const rank = (c) => (/지수|ETF/.test(c) ? 0 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : c === '빅테크' ? 1 : 2);
   const cats = []; P.forEach((r) => { if (!cats.includes(r.category)) cats.push(r.category); });
   const cats0 = cats.slice(); cats.sort((a, b) => rank(a) - rank(b) || cats0.indexOf(a) - cats0.indexOf(b));
   const catBox = document.getElementById('cats');
@@ -460,7 +460,7 @@ const MYLINES = {};
       let rel = '', relc = 'var(--color-fg-muted)';
       if (chan && best.d >= chan.from) { const lo = chan.lo(best), d = (best.v / lo - 1) * 100; rel = '단기 하단 ' + fmtShort(lo, r.currency) + ' 대비 ' + (d >= 0 ? '+' : '−') + Math.abs(d).toFixed(1) + '%'; relc = Math.abs(d) <= 3 ? 'var(--color-ok)' : 'var(--color-fg-muted)'; }
       else if (ltMid) { const md = ltMid(best), d = (best.v / md - 1) * 100; rel = '장기 추세선 대비 ' + (d >= 0 ? '+' : '−') + Math.abs(d).toFixed(1) + '%'; }
-      t3.text(rel).attr('fill', relc); try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {}
+      t3.text(rel).attr('fill', relc); try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {}
       const bw = Math.max(t2.text().length * 10.5, t1.text().length * 6.6, rel.length * 7.6) + 20, bh = rel ? 62 : 46;
       const left = X(best) > (W - m.r) / 2; let bx = left ? X(best) - 10 - bw : X(best) + 10; bx = Math.max(m.l, Math.min(W - m.r - bw, bx));
       const by = Math.max(m.t - 6, Math.min(H - m.b - bh, Y(best) - bh - 12 < m.t - 6 ? Y(best) + 12 : Y(best) - bh - 12));
@@ -954,9 +954,14 @@ function mmtChart(box, pts, base, cur, intra){
   var LAND=document.documentElement.classList.contains('mm-land')||document.documentElement.classList.contains('mm-full'), W=Math.max(260,box.clientWidth||330), H=LAND?Math.max(150,(box.clientHeight||innerHeight-120)-22):Math.round(Math.min(380,Math.max(260,W*0.78))), m={l:4,r:44,t:40,b:30};
   var t0=pts[0][0], t1=pts[pts.length-1][0]; if(intra){ t0=Math.min(t0,intra.x0); t1=Math.max(t1,intra.x1); }
   var vs=pts.map(function(a){return a[1]}); if(base!=null) vs.push(base);
-  var RG=null; if(window.__mmT&&window.__mmT.tr&&pts.length>5){ var n_=pts.length,mx_=0,my_=0; pts.forEach(function(a){mx_+=a[0];my_+=a[1]}); mx_/=n_; my_/=n_; var sxy_=0,sxx_=0; pts.forEach(function(a){sxy_+=(a[0]-mx_)*(a[1]-my_); sxx_+=(a[0]-mx_)*(a[0]-mx_)});
-    var b_=sxx_?sxy_/sxx_:0, f_=function(t){return my_+b_*(t-mx_)}, ra=0, rb=0; pts.forEach(function(p){ var d=p[1]-f_(p[0]); if(d>ra)ra=d; if(d<rb)rb=d; });
-    RG={f:f_,b:b_,rmax:ra,rmin:rb,ta:pts[0][0],tb:pts[n_-1][0]}; }
+  // 추세(사용자 2026-10-29): 기간 안 가장 최근의 큰 꼭짓점(최고점·최저점)부터 지금까지의 흐름만 — 하락이면 고점들을 잇는 선 + 같은 기울기 아래 선, 상승이면 저점들을 잇는 선 + 위 선
+  var RG=null; if(window.__mmT&&window.__mmT.tr&&pts.length>8){ var N=pts.length, iX=0, iN=0; pts.forEach(function(p,k){ if(p[1]>pts[iX][1])iX=k; if(p[1]<pts[iN][1])iN=k; });
+    var minLeg=Math.max(5,Math.round(N*0.15)), cand=[[iX,-1],[iN,1]].filter(function(c){return N-1-c[0]>=minLeg}).sort(function(a,b){return b[0]-a[0]});
+    if(cand.length){ var a0=cand[0][0], dir=cand[0][1], A=pts[a0], best=null;
+      for(var k=a0+1;k<N;k++){ var sl=(pts[k][1]-A[1])/(pts[k][0]-A[0]); if(best===null||(dir<0?sl>best:sl<best)) best=sl; } // 하락: 모든 점 아래로 두는 가장 완만한 선 / 상승: 모든 점 위로 두는 가장 완만한 선
+      var main_=function(t){return A[1]+best*(t-A[0])}, off=0; for(var k=a0;k<N;k++){ var d=pts[k][1]-main_(pts[k][0]); if(dir<0? d<off : d>off) off=d; }
+      var par=function(t){return main_(t)+off};
+      RG={dir:dir, ta:A[0], tb:pts[N-1][0], te:t1, up:dir<0?main_:par, dn:dir<0?par:main_, anchor:A}; } }
   var lo=Math.min.apply(0,vs), hi=Math.max.apply(0,vs), pad=(hi-lo)*0.08||hi*0.01; lo-=pad; hi+=pad;
   var sx=function(t){return m.l+(t-t0)/((t1-t0)||1)*(W-m.l-m.r)}, sy=function(v){return m.t+(hi-v)/(hi-lo)*(H-m.t-m.b)};
   var last=pts[pts.length-1], up=base==null||last[1]>=base, col=up?'#e0423a':'#3a6fe0';
@@ -969,22 +974,25 @@ function mmtChart(box, pts, base, cur, intra){
      +'<text x="'+sx(intra.rs)+'" y="'+(H-8)+'" font-size="10.5" fill="#9a978f" text-anchor="middle">'+mmtKst(intra.rs)+' 개장</text><text x="'+sx(intra.re)+'" y="'+(H-8)+'" font-size="10.5" fill="#9a978f" text-anchor="middle">'+mmtKst(intra.re)+' 마감</text>'; }
   // 눈금(사용자 2026-10-29): 오른쪽 가격 3~4개, 아래 날짜 3~4개 — 옅게
   (function(){ var span=hi-lo, raw=span/7, p=Math.pow(10,Math.floor(Math.log10(raw))), st=[1,2,2.5,5,10].map(function(k){return k*p}).filter(function(k){return k>=raw*0.75})[0]||raw;
-    var CY=RG?[sy(RG.f(RG.tb)+RG.rmax),sy(RG.f(RG.tb)+RG.rmin)].map(function(y){return (y<m.t||y>H-m.b)?-99:y}):[];
+    var CY=RG?[sy(RG.up(RG.tb)),sy(RG.dn(RG.tb))].map(function(y){return (y<m.t||y>H-m.b)?-99:y}):[];
     for(var v=Math.ceil(lo/st)*st; v<=hi; v+=st){ var y=sy(v); if(y<m.t+6||y>H-m.b-4) continue; if(CY.some(function(c){return Math.abs(c-y)<13})){ s+='<line x1="'+m.l+'" x2="'+(W-m.r+4)+'" y1="'+y+'" y2="'+y+'" stroke="#ece9e2" stroke-width="1"/>'; continue; }
       s+='<line x1="'+m.l+'" x2="'+(W-m.r+4)+'" y1="'+y+'" y2="'+y+'" stroke="#ece9e2" stroke-width="1"/><text x="'+(W-2)+'" y="'+(y+4)+'" font-size="10.5" fill="#a29f97" text-anchor="end">'+mmtTick(v,cur,st)+'</text>'; }
     if(!intra){ var sp=(t1-t0)/86400; for(var k=0;k<4;k++){ var t=t0+(t1-t0)*(k+0.5)/4, d=new Date(t*1000+9*3600000), lb=sp<=100?(d.getUTCMonth()+1)+'/'+d.getUTCDate():sp<=400?(d.getUTCFullYear()%100)+'.'+(d.getUTCMonth()+1):(d.getUTCFullYear())+'';
       s+='<text x="'+sx(t)+'" y="'+(H-8)+'" font-size="10.5" fill="#a29f97" text-anchor="middle">'+lb+'</text>'; } }
     else { [intra.rs+(intra.re-intra.rs)/3, intra.rs+(intra.re-intra.rs)*2/3].forEach(function(t){ s+='<text x="'+sx(t)+'" y="'+(H-8)+'" font-size="10.5" fill="#c2bfb8" text-anchor="middle">'+mmtKst(t)+'</text>'; }); }
-    if(RG){ // 추세 채널: 가운데 점선 + 고점 쪽 위 선 + 저점 쪽 아래 선(같은 기울기)
-      var xa=sx(RG.ta), xb=sx(RG.tb), ya=RG.f(RG.ta), yb=RG.f(RG.tb), ch=(yb/ya-1)*100;
-      s+='<clipPath id="mmclip"><rect x="'+m.l+'" y="'+m.t+'" width="'+(W-m.l-m.r)+'" height="'+(H-m.t-m.b)+'"/></clipPath><g clip-path="url(#mmclip)">';
-      s+='<path d="M'+xa+','+sy(ya+RG.rmax)+'L'+xb+','+sy(yb+RG.rmax)+'L'+xb+','+sy(yb+RG.rmin)+'L'+xa+','+sy(ya+RG.rmin)+'Z" fill="#8a877f" opacity=".06"/>'
-       +'<line x1="'+xa+'" x2="'+xb+'" y1="'+sy(ya+RG.rmax)+'" y2="'+sy(yb+RG.rmax)+'" stroke="#c4453a" stroke-width="1.2" opacity=".55"/>'
-       +'<line x1="'+xa+'" x2="'+xb+'" y1="'+sy(ya+RG.rmin)+'" y2="'+sy(yb+RG.rmin)+'" stroke="#2f8a4c" stroke-width="1.2" opacity=".55"/>'
-       +'<line x1="'+xa+'" x2="'+xb+'" y1="'+sy(ya)+'" y2="'+sy(yb)+'" stroke="#6b675f" stroke-width="1.3" stroke-dasharray="5 4" opacity=".55"/>'+'</g>'
-       +(CY[0]<0?'':'<text x="'+(W-2)+'" y="'+(CY[0]+4)+'" font-size="10" font-weight="700" fill="#c4453a" text-anchor="end">'+mmtTick(yb+RG.rmax,cur,(hi-lo)/40)+'</text>')
-       +(CY[1]<0?'':'<text x="'+(W-2)+'" y="'+(CY[1]+4)+'" font-size="10" font-weight="700" fill="#2f8a4c" text-anchor="end">'+mmtTick(yb+RG.rmin,cur,(hi-lo)/40)+'</text>')
-       +'<text x="'+(m.l+2)+'" y="'+(m.t-20)+'" font-size="11" font-weight="700" fill="#6b675f">추세 '+(RG.b>=0?'↗ ':'↘ ')+(cur==='%'?((yb-ya>=0?'+':'−')+Math.round(Math.abs(yb-ya)*100)+'bp'):((ch>=0?'+':'−')+Math.abs(ch).toFixed(1)+'%'))+'  <tspan fill="#c4453a">위</tspan>·<tspan fill="#2f8a4c">아래</tspan> 선은 오른쪽 숫자</text>'; }
+    if(RG){ // 추세 채널: 꼭짓점부터 지금까지 실선, 오른쪽 끝까지 점선 연장
+      var xa=sx(RG.ta), xb=sx(RG.tb), xe=W-m.r, Ua=RG.up(RG.ta), Ub=RG.up(RG.tb), Da=RG.dn(RG.ta), Db=RG.dn(RG.tb), ch=(((Ub+Db)/2)/((Ua+Da)/2)-1)*100;
+      var Ue=RG.up(RG.tb+(RG.tb-RG.ta)*0.12), De=RG.dn(RG.tb+(RG.tb-RG.ta)*0.12), xE=sx(RG.tb+(RG.tb-RG.ta)*0.12);
+      s+='<clipPath id="mmclip"><rect x="'+m.l+'" y="'+m.t+'" width="'+(W-m.l-m.r)+'" height="'+(H-m.t-m.b)+'"/></clipPath><g clip-path="url(#mmclip)">'
+       +'<path d="M'+xa+','+sy(Ua)+'L'+xb+','+sy(Ub)+'L'+xb+','+sy(Db)+'L'+xa+','+sy(Da)+'Z" fill="'+(RG.dir<0?'#3a6fe0':'#e0423a')+'" opacity=".06"/>'
+       +'<line x1="'+xa+'" x2="'+xb+'" y1="'+sy(Ua)+'" y2="'+sy(Ub)+'" stroke="#c4453a" stroke-width="1.4" opacity=".7"/>'
+       +'<line x1="'+xa+'" x2="'+xb+'" y1="'+sy(Da)+'" y2="'+sy(Db)+'" stroke="#2f8a4c" stroke-width="1.4" opacity=".7"/>'
+       +'<line x1="'+xb+'" x2="'+xE+'" y1="'+sy(Ub)+'" y2="'+sy(Ue)+'" stroke="#c4453a" stroke-width="1.2" stroke-dasharray="3 3" opacity=".6"/>'
+       +'<line x1="'+xb+'" x2="'+xE+'" y1="'+sy(Db)+'" y2="'+sy(De)+'" stroke="#2f8a4c" stroke-width="1.2" stroke-dasharray="3 3" opacity=".6"/>'
+       +'<circle cx="'+xa+'" cy="'+sy(RG.anchor[1])+'" r="3" fill="none" stroke="#6b675f" stroke-width="1.2"/></g>'
+       +(CY[0]<0?'':'<text x="'+(W-2)+'" y="'+(CY[0]+4)+'" font-size="10" font-weight="700" fill="#c4453a" text-anchor="end">'+mmtTick(Ub,cur,(hi-lo)/40)+'</text>')
+       +(CY[1]<0?'':'<text x="'+(W-2)+'" y="'+(CY[1]+4)+'" font-size="10" font-weight="700" fill="#2f8a4c" text-anchor="end">'+mmtTick(Db,cur,(hi-lo)/40)+'</text>')
+       +'<text x="'+(m.l+2)+'" y="'+(m.t-20)+'" font-size="11" font-weight="700" fill="#6b675f">'+(RG.dir<0?'하락 추세 ↘':'상승 추세 ↗')+' <tspan font-weight="500">'+mmtKst(RG.ta,true).replace(/^\d+\./,'').replace('.','/')+' '+(RG.dir<0?'고점':'저점')+'부터 · </tspan><tspan fill="#c4453a">위</tspan>·<tspan fill="#2f8a4c">아래</tspan><tspan font-weight="500"> 값은 오른쪽</tspan></text>'; }
   })();
   if(base!=null) s+='<line x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+sy(base)+'" y2="'+sy(base)+'" stroke="#c9c6bf" stroke-dasharray="2 4" stroke-width="1"/>';
   s+='<path d="'+path+'" fill="none" stroke="'+col+'" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>'+lab(iMax,true)+lab(iMin,false)
