@@ -104,7 +104,16 @@ function tidy(){
 .mmt-tools{position:absolute;top:0;right:0;z-index:3;display:flex;gap:5px}
 .mmt-tools .mmt-tg{height:28px;padding:0 9px;font-size:12.5px;background:rgba(255,255,255,.92)}
 .mmt-tools .mmt-fs{padding:0 7px}.mmt-tools .mmt-tg.on{background:#141210!important;color:#fff!important;border-color:#141210!important}.mmt-tools .mmt-drw.on{background:#9a6200!important;border-color:#9a6200!important}.mmt-box.drawing svg{cursor:crosshair}
-#main.mmt-detail .mmt-drw,#main.mmt-detail .mmt-clr{display:none!important}.mmt-x{display:none!important}
+#main.mmt-detail .mmt-drw,#main.mmt-detail .mmt-clr{display:none!important}
+.mmt-pen{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:2px 0 6px;padding:6px;border-radius:12px;background:#faf6ee;border:1px solid #efe5d0}
+.mmt-pen button{font:inherit;font-size:12px;font-weight:700;height:27px;padding:0 7px;border-radius:999px;border:1px solid #e3dfd6;background:#fff;color:#6b675f}
+.mmt-pen button.on{background:#141210;color:#fff;border-color:#141210}
+.mmt-pen i{flex:none;width:1px;height:18px;background:#e3dfd6;margin:0 2px}
+.mmt-pen .pc{width:19px;height:19px;padding:0;border-radius:50%;background:var(--c)!important;border:2px solid #fff;box-shadow:0 0 0 1px #d8d3c8}
+.mmt-pen .pc.on{box-shadow:0 0 0 2px var(--c)}
+.mmt-pen .mmt-clr{margin-left:auto}
+.mmt-pen .mmt-hint{flex:1 0 100%;margin:0;font-size:11.5px;color:#9a6200;font-weight:600}
+#main.mmt-detail .mmt-pen{display:none!important}html.mm-full .mmt-pen,html.mm-land .mmt-pen{display:none!important}.mmt-x{display:none!important}
 #main.mmt-detail .ch{padding-top:34px}
 #main .rg .zm{display:none!important}
 #main .rg{background:#f3f1ec;padding:3px!important;border-radius:12px;gap:4px!important;overflow:hidden!important}
@@ -132,7 +141,7 @@ html.mm-land .mmt-per{margin:4px 0 0}html.mm-land .mmt-per button{padding:5px 0}
 #main.mmt-detail .mmt-trd{display:none}
 
 #main.mmt-on:not(.mmt-detail) .rg,#main.mmt-on:not(.mmt-detail) .ch,#main.mmt-on:not(.mmt-detail) .mm-lv,#main.mmt-on:not(.mmt-detail) details.mm-fold,#main.mmt-on:not(.mmt-detail) p.nt{display:none!important}
-#main.mmt-detail .mmt-box,#main.mmt-detail .mmt-chg,#main.mmt-detail .mmt-per,#main.mmt-detail .mmt-top{display:none!important}#main.mmt-detail .mmt-trd{display:none}
+#main.mmt-detail .mmt-box{display:none!important}#main.mmt-on .rg{display:none!important}#main.mmt-detail .mmt-trd{display:none}
 #main .rg{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:6px!important;scrollbar-width:none}#main .rg::-webkit-scrollbar{display:none}#main .rg>*{flex:none!important}
 /* 토스식 1일 차트 */
 #main.mm-1d-on .mm-lv{display:none!important}
@@ -295,16 +304,29 @@ function mmtChart(box, pts, base, cur, intra){
     tip.textContent=(intra?mmtKst(b[0]):mmtKst(b[0],true))+'  '+mmtFmt(b[1],cur)+(base?'  ('+((b[1]/base-1)*100>=0?'+':'−')+Math.abs((b[1]/base-1)*100).toFixed(2)+'%)':''); }
   // 내 선 그리기(사용자 2026-10-29): '✎ 선'을 켜고 차트 위를 끌면 직선, 종목별로 이 기기에 저장
   var NS='http://www.w3.org/2000/svg', tk=mmTk(), inv=function(e){ var r=el.getBoundingClientRect(), x=(e.clientX-r.left)/r.width*W, y=(e.clientY-r.top)/r.height*H; return [t0+(x-m.l)/(W-m.l-m.r)*(t1-t0), hi-(y-m.t)/(H-m.t-m.b)*(hi-lo)]; };
-  function seg(a,b,tmp){ var g=document.createElementNS(NS,'g'); g.setAttribute('class',tmp?'ml tmp':'ml');
-    var x1=sx(a[0]),y1=sy(a[1]),x2=sx(b[0]),y2=sy(b[1]); var L=document.createElementNS(NS,'line'); L.setAttribute('x1',x1);L.setAttribute('y1',y1);L.setAttribute('x2',x2);L.setAttribute('y2',y2);L.setAttribute('stroke','#9a6200');L.setAttribute('stroke-width','1.8');L.setAttribute('stroke-linecap','round'); g.appendChild(L);
-    if(!tmp&&Math.abs(x2-x1)>4){ var k=(y2-y1)/(x2-x1), xe=W-m.r, ye=y2+k*(xe-x2); var E=document.createElementNS(NS,'line'); E.setAttribute('x1',x2);E.setAttribute('y1',y2);E.setAttribute('x2',xe);E.setAttribute('y2',ye);E.setAttribute('stroke','#9a6200');E.setAttribute('stroke-width','1.2');E.setAttribute('stroke-dasharray','4 4');E.setAttribute('opacity','.6'); g.appendChild(E); }
-    [[x1,y1],[x2,y2]].forEach(function(p){ var c=document.createElementNS(NS,'circle'); c.setAttribute('cx',p[0]);c.setAttribute('cy',p[1]);c.setAttribute('r','2.6');c.setAttribute('fill','#9a6200'); g.appendChild(c); });
+  // 선 종류: tr 추세선(두 점) · h 수평선(한 가격) · par 평행 채널(선 긋고 한 번 더 누른 곳에 평행선) / 색 4가지
+  function ln(g,x1,y1,x2,y2,c,w,da,op){ var e=document.createElementNS(NS,'line'); e.setAttribute('x1',x1);e.setAttribute('y1',y1);e.setAttribute('x2',x2);e.setAttribute('y2',y2);e.setAttribute('stroke',c);e.setAttribute('stroke-width',w||1.8);e.setAttribute('stroke-linecap','round'); if(da)e.setAttribute('stroke-dasharray',da); if(op)e.setAttribute('opacity',op); g.appendChild(e); }
+  function dot(g,x,y,c){ var e=document.createElementNS(NS,'circle'); e.setAttribute('cx',x);e.setAttribute('cy',y);e.setAttribute('r','2.6');e.setAttribute('fill',c); g.appendChild(e); }
+  function drawL(l,tmp){ var g=document.createElementNS(NS,'g'); g.setAttribute('class',tmp?'ml tmp':'ml'); var c=l.c||'#9a6200', xe=W-m.r;
+    if(l.k==='h'){ var y=sy(l.a[1]); ln(g,m.l,y,xe,y,c,1.5,'6 4'); var tx=document.createElementNS(NS,'text'); tx.setAttribute('x',W-2);tx.setAttribute('y',y+4);tx.setAttribute('font-size','10');tx.setAttribute('font-weight','800');tx.setAttribute('fill',c);tx.setAttribute('text-anchor','end'); tx.textContent=mmtTick(l.a[1],cur,(hi-lo)/40); g.appendChild(tx); }
+    else { var x1=sx(l.a[0]),y1=sy(l.a[1]),x2=sx(l.b[0]),y2=sy(l.b[1]); var offs=[0]; if(l.k==='par'&&l.off!=null) offs.push(l.off);
+      offs.forEach(function(o,ix){ var Y1=sy(l.a[1]+o), Y2=sy(l.b[1]+o); ln(g,x1,Y1,x2,Y2,c,ix?1.5:1.8,null,ix?'.85':null);
+        if(!tmp&&Math.abs(x2-x1)>4){ var k=(Y2-Y1)/(x2-x1); ln(g,x2,Y2,xe,Y2+k*(xe-x2),c,1.2,'4 4','.6'); } });
+      if(l.k==='par'&&l.off!=null){ var p=document.createElementNS(NS,'path'); p.setAttribute('d','M'+x1+','+y1+'L'+x2+','+y2+'L'+x2+','+sy(l.b[1]+l.off)+'L'+x1+','+sy(l.a[1]+l.off)+'Z'); p.setAttribute('fill',c); p.setAttribute('opacity','.07'); g.insertBefore(p,g.firstChild); }
+      dot(g,x1,y1,c); dot(g,x2,y2,c); }
     el.insertBefore(g, el.querySelector('.cx')); return g; }
-  mmLines(tk).forEach(function(l){ if(l.b[0]>=t0-86400*3) seg(l.a,l.b); });
-  var dr=null;
-  el.addEventListener('pointerdown',function(e){ if(!(window.__mmT&&window.__mmT.draw))return; e.preventDefault(); try{el.setPointerCapture(e.pointerId)}catch(x){} var p=inv(e); dr={a:p,b:p,g:seg(p,p,true)}; },true);
-  el.addEventListener('pointermove',function(e){ if(!dr)return; e.stopImmediatePropagation(); dr.b=inv(e); dr.g.remove(); dr.g=seg(dr.a,dr.b,true); },true);
-  el.addEventListener('pointerup',function(e){ if(!dr)return; dr.g.remove(); var dx=Math.abs(sx(dr.b[0])-sx(dr.a[0])), dy=Math.abs(sy(dr.b[1])-sy(dr.a[1])); if(dx+dy>14){ var A=dr.a,B=dr.b; if(B[0]<A[0]){var q=A;A=B;B=q;} var L=mmLines(tk); L.push({a:A,b:B}); mmLines(tk,L); seg(A,B); mmToolsSync(); } dr=null; },true);
+  var lineAt=function(l,t){ return l.a[1]+(l.b[1]-l.a[1])*(t-l.a[0])/((l.b[0]-l.a[0])||1); };
+  mmLines(tk).forEach(function(l){ if(l.k==='h'||l.b[0]>=t0-86400*3) drawL(l); });
+  var dr=null, P0=window.__mmPend&&window.__mmPend.tk===tk?window.__mmPend:null;
+  el.addEventListener('pointerdown',function(e){ var T=window.__mmT||{}; if(!T.draw)return; e.preventDefault(); try{el.setPointerCapture(e.pointerId)}catch(x){} var p=inv(e), c=T.pc||'#9a6200', k=T.pk||'tr';
+    if(window.__mmPend&&window.__mmPend.tk===tk){ var q=window.__mmPend; q.l.off=p[1]-lineAt(q.l,p[0]); var Ls=mmLines(tk); Ls.push(q.l); mmLines(tk,Ls); window.__mmPend=null; mmtDraw(); mmToolsSync(); return; }
+    dr={l:{k:k,a:p,b:p,c:c}}; dr.g=drawL(dr.l,true); },true);
+  el.addEventListener('pointermove',function(e){ if(!dr)return; e.stopImmediatePropagation(); var p=inv(e); if(dr.l.k==='h') dr.l.a=p; else dr.l.b=p; dr.g.remove(); dr.g=drawL(dr.l,true); },true);
+  el.addEventListener('pointerup',function(e){ if(!dr)return; var l=dr.l; dr.g.remove(); dr=null;
+    if(l.k==='h'){ var Ls=mmLines(tk); Ls.push({k:'h',a:l.a,c:l.c}); mmLines(tk,Ls); drawL(Ls[Ls.length-1]); mmToolsSync(); return; }
+    var dx=Math.abs(sx(l.b[0])-sx(l.a[0])), dy=Math.abs(sy(l.b[1])-sy(l.a[1])); if(dx+dy<=14) return; if(l.b[0]<l.a[0]){ var q=l.a; l.a=l.b; l.b=q; }
+    if(l.k==='par'){ window.__mmPend={tk:tk,l:l}; drawL(l,true); mmToolsSync(); return; }
+    var Ls=mmLines(tk); Ls.push(l); mmLines(tk,Ls); drawL(l); mmToolsSync(); },true);
   el.addEventListener('pointermove',function(e){ if(!(window.__mmT&&window.__mmT.draw)) mv(e); }); el.addEventListener('pointerdown',function(e){ if(!(window.__mmT&&window.__mmT.draw)) mv(e); });
   el.addEventListener('pointerleave',function(){ el.querySelector('.cx').setAttribute('opacity','0'); el.querySelector('.cd').setAttribute('opacity','0'); });
   return {up:up, last:last};
@@ -315,15 +337,17 @@ function mmLong(cb){ if(__mmL) return cb(__mmL); if(__mmLq){ __mmLq.push(cb); re
   fetch('live/long.json?v=2-'+v).then(function(x){return x.ok?x.json():null}).catch(function(){return null}).then(function(d){ __mmL=d||{d:{}}; var q=__mmLq; __mmLq=null; q.forEach(function(f){ try{f(__mmL)}catch(e){} }); }); }
 function mmtDraw(){
   var main=document.getElementById('main'); if(!main)return; var T=window.__mmT, r=mmtRow(); if(!r)return;
-  var wrap=main.querySelector('.mmt'); if(!wrap){ wrap=document.createElement('div'); wrap.className='mmt'; wrap.innerHTML='<div class="mmt-ttl"></div><div class="mmt-top"><p class="mmt-chg"></p></div><div class="mmt-tools"><button type="button" class="mmt-tg mmt-trd">추세</button><button type="button" class="mmt-tg mmt-drw">✎ 선</button><button type="button" class="mmt-tg mmt-clr" style="display:none">지우기</button><label class="mmt-det mmt-tg"><input type="checkbox">자세히</label><button type="button" class="mmt-tg mmt-fs" aria-label="전체 화면"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button><button type="button" class="mmt-tg mmt-x" aria-label="닫기">✕</button></div><div class="mmt-stage"><div class="mmt-box"></div></div><div class="mmt-per"></div>';
+  var wrap=main.querySelector('.mmt'); if(!wrap){ wrap=document.createElement('div'); wrap.className='mmt'; wrap.innerHTML='<div class="mmt-ttl"></div><div class="mmt-top"><p class="mmt-chg"></p></div><div class="mmt-tools"><button type="button" class="mmt-tg mmt-trd">추세</button><button type="button" class="mmt-tg mmt-drw">✎ 선</button><label class="mmt-det mmt-tg"><input type="checkbox">자세히</label><button type="button" class="mmt-tg mmt-fs" aria-label="전체 화면"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button><button type="button" class="mmt-tg mmt-x" aria-label="닫기">✕</button></div><div class="mmt-pen"><button type="button" data-k="tr" class="on">／추세</button><button type="button" data-k="h">―수평</button><button type="button" data-k="par">▱평행</button><i></i><button type="button" class="pc on" data-c="#9a6200" style="--c:#9a6200"></button><button type="button" class="pc" data-c="#c4453a" style="--c:#c4453a"></button><button type="button" class="pc" data-c="#2f6fd6" style="--c:#2f6fd6"></button><button type="button" class="pc" data-c="#141210" style="--c:#141210"></button><button type="button" class="mmt-clr">지우기</button><p class="mmt-hint"></p></div><div class="mmt-stage"><div class="mmt-box"></div></div><div class="mmt-per"></div>';
     var hd=main.querySelector('.hd'); hd.after(wrap);
-    var pr=wrap.querySelector('.mmt-per'); MMT_PER.forEach(function(p){ var b=document.createElement('button'); b.type='button'; b.textContent=p[1]; b.dataset.p=p[0]; b.addEventListener('click',function(){ T.per=p[0]; mmtDraw(); }); pr.appendChild(b); });
+    var pr=wrap.querySelector('.mmt-per'); MMT_PER.forEach(function(p){ var b=document.createElement('button'); b.type='button'; b.textContent=p[1]; b.dataset.p=p[0]; b.addEventListener('click',function(){ T.per=p[0]; mmtDraw(); mmSetRange(); }); pr.appendChild(b); });
     wrap.querySelector('.mmt-trd').addEventListener('click',function(){ T.tr=!T.tr; mmtDraw(); });
     wrap.querySelector('.mmt-drw').addEventListener('click',function(){ T.draw=!T.draw; mmToolsSync(); var b=main.querySelector('.mmt-box'); if(b) b.classList.toggle('drawing',T.draw); });
-    wrap.querySelector('.mmt-clr').addEventListener('click',function(){ mmLines(mmTk(),[]); mmtDraw(); mmToolsSync(); });
+    wrap.querySelector('.mmt-clr').addEventListener('click',function(){ var Ls=mmLines(mmTk()); Ls.pop(); mmLines(mmTk(),Ls); window.__mmPend=null; mmtDraw(); mmToolsSync(); });
+    wrap.querySelectorAll('.mmt-pen [data-k]').forEach(function(b){ b.addEventListener('click',function(){ T.pk=b.dataset.k; window.__mmPend=null; mmToolsSync(); }); });
+    wrap.querySelectorAll('.mmt-pen .pc').forEach(function(b){ b.addEventListener('click',function(){ T.pc=b.dataset.c; mmToolsSync(); }); });
     wrap.querySelector('.mmt-fs').addEventListener('click',function(){ if(T.det){ var z=main.querySelector('.rg .zm'); if(z) z.click(); return; } mmFull(true); });
     wrap.querySelector('.mmt-x').addEventListener('click',function(){ mmFull(false); });
-    var cb=wrap.querySelector('input'); cb.addEventListener('change',function(){ T.det=cb.checked; var dl=main.querySelector('.mmt-det'); if(dl) dl.classList.toggle('on',T.det); main.classList.toggle('mmt-detail',T.det); mmTools(); setTimeout(function(){ window.__mmForce=1; window.dispatchEvent(new Event('resize')); },30); }); }
+    var cb=wrap.querySelector('input'); cb.addEventListener('change',function(){ T.det=cb.checked; var dl=main.querySelector('.mmt-det'); if(dl) dl.classList.toggle('on',T.det); main.classList.toggle('mmt-detail',T.det); mmTools(); mmPerPlace(); mmSetRange(); setTimeout(function(){ window.__mmForce=1; window.dispatchEvent(new Event('resize')); },30); }); }
   mmTools(); var TL=main.querySelector('.mmt-tools'); mmToolsSync();
   TL.querySelector('input').checked=T.det; main.classList.toggle('mmt-detail',T.det); main.classList.add('mmt-on');
   wrap.dataset.tk=r.ticker;
@@ -428,13 +452,24 @@ function mmDtip(d,p,rel,rc){ var main=document.getElementById('main'), ch=main&&
   if(!el){ el=document.createElement('p'); el.className='mm-dtip'; ch.parentNode.insertBefore(el,ch); }
   el.innerHTML='<span></span> <b></b> <em></em>'; el.children[0].textContent=d; el.children[1].textContent=p; el.children[2].textContent=rel||''; el.children[2].style.color=rc&&rc.indexOf('ok')>=0?'#1f7a3f':''; }
 function mmLines(tk,v){ var k='mm-lines'; try{ var all=JSON.parse(localStorage.getItem(k)||'{}'); if(v===undefined) return all[tk]||[]; if(v&&v.length) all[tk]=v; else delete all[tk]; localStorage.setItem(k,JSON.stringify(all)); }catch(e){ if(v===undefined) return (window.__mmLn=window.__mmLn||{})[tk]||[]; (window.__mmLn=window.__mmLn||{})[tk]=v; } return v; }
-function mmToolsSync(){ var t=document.querySelector('#main .mmt-tools'); if(!t)return; var T=window.__mmT||{}; var d=t.querySelector('.mmt-drw'), c=t.querySelector('.mmt-clr'); if(d) d.classList.toggle('on',!!T.draw); if(c) c.style.display=(T.draw&&mmLines(mmTk()).length)?'':'none';
+function mmToolsSync(){ var t=document.querySelector('#main .mmt-tools'); if(!t)return; var T=window.__mmT||{}; var pen=document.querySelector('#main .mmt-pen'); if(pen){ pen.style.display=T.draw&&!document.querySelector('#main.mmt-detail')?'':'none'; var pk=T.pk||'tr', pc=T.pc||'#9a6200';
+    pen.querySelectorAll('[data-k]').forEach(function(b){ b.classList.toggle('on',b.dataset.k===pk); }); pen.querySelectorAll('.pc').forEach(function(b){ b.classList.toggle('on',b.dataset.c===pc); });
+    var n=mmLines(mmTk()).length, cl=pen.querySelector('.mmt-clr'); cl.style.display=n?'':'none'; cl.textContent='되돌리기';
+    pen.querySelector('.mmt-hint').textContent=window.__mmPend?'평행선 놓을 곳을 한 번 누르세요':pk==='h'?'원하는 가격 높이를 누르거나 끌어 놓으세요':pk==='par'?'먼저 추세선을 긋고, 평행선 자리를 누르세요':'두 점을 잇듯 끌어서 그으세요'; } var d=t.querySelector('.mmt-drw'), c=t.querySelector('.mmt-clr'); if(d) d.classList.toggle('on',!!T.draw); if(c) 
   var tr=t.querySelector('.mmt-trd'); if(tr) tr.classList.toggle('on',!!T.tr); var de=t.querySelector('.mmt-det'); if(de) de.classList.toggle('on',!!T.det); var ch=document.querySelector('#main .mmt-chg'); }
+var MM_DR={'1d':'1m','1w':'1m','1m':'1m','3m':'3m','1y':'12m','5y':'5y','10y':'10y'};
+function mmMergeLong(Lg){ if(!Lg||!Lg.d||window.__mmMerged)return; window.__mmMerged=1; try{ Object.keys(Lg.d).forEach(function(t){ var H=DATA.H[t]||(DATA.H[t]=[]); var first=H.length?H[0][0]:'9999'; var add=Lg.d[t].filter(function(a){return a[0]<first}).map(function(a){return [a[0],a[1],0]}); if(add.length) DATA.H[t]=add.concat(H); }); }catch(e){} }
+function mmSetRange(){ var T=window.__mmT||{}; if(!T.det)return; var k=MM_DR[T.per]||'3m';
+  var go=function(){ var b=document.querySelector('#main .rg [data-k="'+k+'"]'); if(b&&b.getAttribute('aria-pressed')!=='true') b.click(); };
+  if(k==='5y'||k==='10y'){ mmLong(function(Lg){ var was=window.__mmMerged; mmMergeLong(Lg); go(); if(!was){ var b=document.querySelector('#main .rg [data-k="'+k+'"]'); if(b) b.click(); } }); } else go(); }
+// 기간 줄은 두 모드 모두 차트 아래 같은 자리
+function mmPerPlace(){ var main=document.getElementById('main'), per=main&&main.querySelector('.mmt-per'); if(!per)return; var det=main.classList.contains('mmt-detail');
+  var after=det?(main.querySelector('.mm-dtip')&&false||main.querySelector('.ch')):main.querySelector('.mmt-stage'); if(after&&per.previousElementSibling!==after) after.after(per); }
 function mmtTidy(){ var main=document.getElementById('main'); if(!main||!main.querySelector('.hd'))return; var w=main.querySelector('.mmt'); if(!w||w.dataset.tk!==mmTk()) mmtDraw(); }
 
 function tidy(){
   try{ var RN={'1개월':'1달','3개월':'3달','6개월':'6달','12개월':'1년'}; document.querySelectorAll('#main .rg .pb-chip').forEach(function(b){ var k=b.textContent.trim(); if(RN[k]) b.textContent=RN[k]; }); }catch(e){}
-  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){} try{mmTools()}catch(e){} try{mmtAxisTags()}catch(e){console.log(e)}
+  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){} try{mmTools()}catch(e){} try{mmPerPlace()}catch(e){} try{mmtAxisTags()}catch(e){console.log(e)}
   // 차트 안에서 선과 겹치던 글자 빼기(장기 추세·단기 상단·하단) — 같은 내용은 위 4칸에
   main.querySelectorAll('.ch svg text').forEach(function(t){ if(/^(장기 추세|단기 상단|단기 하단)/.test(t.textContent))t.remove(); });
   var gl=main.querySelector('p.gl'), ch=main.querySelector('.ch');
@@ -470,7 +505,7 @@ def run(root):
     p = os.path.join(root, 'p-trend.html')
     if os.path.exists(p):  # 종목 차트: 휴대폰에서 차트를 크게(사용자 2026-10-29)
         s = open(p, encoding='utf-8').read(); o = s
-        s = s.replace('Math.round(Math.min(300, Math.max(200, W * 0.42)))', 'Math.round(Math.min(440, Math.max(300, W * 0.95)))')
+        s = s.replace('Math.round(Math.min(300, Math.max(200, W * 0.42)))', 'Math.round(Math.min(380, Math.max(260, W * 0.78)))')
         # 금리(%) 표시: 소수 둘째 자리, 'USD' 대신 '%'(사용자 2026-10-29 채권·유가 층위)
         s = s.replace("const fmtShort = (x, cur) => { if (x == null) return ''; const d = cur === 'USD'", "const fmtShort = (x, cur) => { if (x == null) return ''; const d = cur === '%' ? 2 : cur === 'USD'")
         s = s.replace("+ ' ' + r.currency", "+ (r.currency === '%' ? '%' : ' ' + r.currency)")
@@ -481,6 +516,10 @@ def run(root):
         # 자세한 차트: 손가락 따라다니며 깜빡이던 말풍선 상자 없애고, 차트 위 고정 한 줄(mmDtip)에 표시(사용자 2026-10-29)
         s = s.replace("const tip = hv.append('g');", "const tip = hv.append('g').style('display', 'none');", 1)
         s = s.replace("t3.text(rel).attr('fill', relc);", "t3.text(rel).attr('fill', relc); try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {}", 1)
+        # 자세한 차트도 5년·10년, 버튼에 기간 표시(data-k) — 기간 고르기는 아래 공통 줄에서(사용자 2026-10-29)
+        s = s.replace("[['1m', '1개월'], ['3m', '3개월'], ['6m', '6개월'], ['12m', '12개월']].forEach(([k, l]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'pb-chip'; b.textContent = l;", "[['1m', '1개월'], ['3m', '3개월'], ['6m', '6개월'], ['12m', '12개월'], ['5y', '5년'], ['10y', '10년']].forEach(([k, l]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'pb-chip'; b.textContent = l; b.dataset.k = k;", 1)
+        s = s.replace("const cutDays = { '1m': 31, '3m': 92, '6m': 184, '12m': 370 }[openRange];", "const cutDays = { '1m': 31, '3m': 92, '6m': 184, '12m': 370, '5y': 1830, '10y': 3660 }[openRange] || 370;", 1)
+        s = s.replace(".text(openRange === '12m' || openRange === '6m' ? String(t.getUTCFullYear()).slice(2)", ".text(openRange === '5y' || openRange === '10y' ? String(t.getUTCFullYear()) : openRange === '12m' || openRange === '6m' ? String(t.getUTCFullYear()).slice(2)", 1)
         s = re.sub(r'const MYLINES = \{.*?\};\n', 'const MYLINES = {};\n', s, count=1)  # 내 관점 관문선은 사이트에서 생략(사용자 2026-10-29)
         if s != o: open(p, 'w', encoding='utf-8').write(s); done.append('trend-height')
     for f, cfg in PAGES.items():
