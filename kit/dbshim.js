@@ -1,0 +1,3 @@
+/* 통합본: 원래 페이지 DB(notes)를 d/notes.json 파일로 대신 읽습니다 */
+(function(){var fake={collection:function(name){return{onSnapshot:function(cb,err){fetch('d/'+name+'.json'+(window.__SYNC__?'?v='+window.__SYNC__:'')).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(a){a=Array.isArray(a)?a:[];cb({size:a.length,docs:a.map(function(v){return{id:v.id,data:function(){return v}}})})}).catch(function(e){if(err)err({code:String(e)})});return function(){}},get:function(){return fetch('d/'+name+'.json').then(function(r){return r.json()}).then(function(a){return{size:a.length,docs:a.map(function(v){return{id:v.id,data:function(){return v}}})}})}}}};
+window.__fakeDB={use:function(n){return Promise.resolve(n==='db'?fake:null)}};})();

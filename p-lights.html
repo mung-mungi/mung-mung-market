@@ -1,0 +1,276 @@
+<!doctype html><html lang="ko"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>시장 경고등</title><style>:root{color-scheme:light;
+--color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
+--font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
+--cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
+--cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:12px;--cds-gap-lg:20px;--cds-gap-xl:28px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:18px;--cds-pad-xl:24px;--cds-radius:12px;
+--cds-chart-grid:rgba(11,11,11,.07);--cds-chart-axis:rgba(11,11,11,.25);--cds-chart-muted:rgba(111,109,104,.45);--cds-chart-reference:rgba(11,11,11,.4);--cds-chart-status-critical:#b23434;
+--cds-surface-popover:#ffffff;--cds-border:rgba(11,11,11,.12);--cds-shadow-popover:0 6px 24px -8px rgba(0,0,0,.25);--cds-text-secondary:#6f6d68;--cds-dur-slow:.3s;--cds-ease-out:cubic-bezier(.2,.8,.2,1);
+--dc1:#2f5bb8;--dc2:#b07a12;--dc3:#1d7a4a;--dc4:#b53a3a;--dc5:#7246b0;--dc6:#1b7880;--dc7:#b35c2a;--dc8:#6b5b95}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}}
+:root[data-theme="dark"]{color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}
+*{box-sizing:border-box}
+html,body.ibody{margin:0;background:var(--color-bg);color:var(--color-fg)}
+body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+#dash-root{padding:20px max(16px,env(safe-area-inset-left,0px)) 48px max(16px,env(safe-area-inset-right,0px))}
+#dash-root b,#dash-root strong{font-weight:700}
+.dash-skeleton{color:transparent!important;background:linear-gradient(90deg,color-mix(in srgb,var(--color-fg-muted) 14%,transparent),color-mix(in srgb,var(--color-fg-muted) 24%,transparent),color-mix(in srgb,var(--color-fg-muted) 14%,transparent));background-size:200% 100%;border-radius:6px;animation:skl 1.4s linear infinite}
+@keyframes skl{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.dash-skeleton{animation:none}}
+.ib{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;padding:9px max(12px,env(safe-area-inset-left,0px));background:var(--ib-bg,#f9f9f7);border-bottom:1px solid var(--ib-line,rgba(11,11,11,.1));font:600 14px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+.ib::-webkit-scrollbar{display:none}
+.ib a{flex:none;text-decoration:none;color:var(--ib-mu,#6f6d68);padding:6px 12px;border-radius:999px;border:1px solid var(--ib-line,rgba(11,11,11,.1));background:var(--ib-pn,#fff);white-space:nowrap}
+.ib a.home{color:var(--ib-fg,#0b0b0b);font-weight:800}
+.ib a.home{position:sticky;left:0;z-index:3;box-shadow:-8px 0 0 5px var(--ib-bg,#f9f9f7),-22px 0 0 5px var(--ib-bg,#f9f9f7),9px 0 10px -8px rgba(0,0,0,.3)}
+.ib a[aria-current]{background:var(--ib-fg,#0b0b0b);color:var(--ib-bg,#f9f9f7);border-color:var(--ib-fg,#0b0b0b)}
+.ib .tg{flex:none;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--ib-fa,#9a978f);padding-left:8px;border-left:1px solid var(--ib-line,rgba(11,11,11,.1));margin-left:2px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}}
+:root[data-theme="dark"]{--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script><script>window.__PAGE__={"page": "lights", "ds": ["lights_log", "thresholds", "qqq_px", "oil"], "params": {}};window.__SYNC__="202610280842";</script><script src="shim.js"></script></head><body class="ibody"><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html" aria-current="page">경고등</a><a href="p-brief.html">데일리 시황</a><a href="p-earn.html">실적 결과</a><a href="p-prices.html">시세 보드</a><a href="p-targets.html">목표주가</a><a href="p-opt.html">옵션 온도계</a><a href="p-bond.html">채권·금리</a><a href="p-cal.html">실적 캘린더</a><a href="p-econ.html">경제지표</a><span class="tg">흐름</span><a href="p-trend.html">차트 길잡이</a><a href="p-short.html">공매도</a><a href="p-fx.html">환율</a><a href="p-capex.html">설비투자</a><a href="p-policy.html">정책·지정학</a><a href="p-tech.html">테크 행사</a><span class="tg">점검</span><a href="p-supply.html">한국·대만</a><a href="p-neo.html">네오클라우드</a><a href="p-qtr.html">분기 실적</a><a href="p-insider.html">내부자·기관</a></nav><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script><div id="dash-root" data-dash-state="loading"><style>
+.lw{max-width:1080px;margin-inline:auto;display:flex;flex-direction:column;gap:var(--cds-gap-lg);font-family:var(--font-anthropic-sans);font-size:16px;line-height:1.6;word-break:keep-all}
+.lw-mast{display:flex;flex-direction:column;gap:10px;padding:6px 0 4px}
+.lw-eb{margin:0;display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;letter-spacing:.12em;color:var(--color-fg-muted)}
+.lw-eb i{width:7px;height:7px;border-radius:50%;background:var(--color-bad);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-bad) 22%,transparent)}
+.lw-h1{font-family:var(--font-anthropic-serif);font-size:clamp(30px,7.4vw,42px);line-height:1.15;letter-spacing:-.02em;font-weight:400;margin:0;padding-bottom:12px;border-bottom:1px solid var(--color-border-line);position:relative}
+.lw-h1::after{content:"";position:absolute;left:0;bottom:-1px;width:56px;height:3px;border-radius:2px;background:var(--color-warn)}
+.lw-h1 .m{font-weight:600}.lw-h1 .s{color:var(--color-fg-muted);font-size:.62em}
+.lw-take .tk1,.lw-take .tk2{display:block}.lw-take .tk2{font-weight:600}.trb{display:inline-block;font-family:var(--font-anthropic-sans);font-size:15px;font-weight:800;padding:2px 10px;border-radius:999px;color:#fff;vertical-align:2px}.trb.t-dn{background:var(--color-ok)}.trb.t-up{background:var(--color-bad)}.trb.t-eq{background:var(--color-fg-muted)}
+.lw-take{margin:6px 0 0;font-family:var(--font-anthropic-serif);font-size:clamp(19.5px,4.9vw,23px);line-height:1.5}
+.lw-take b{display:table;margin-bottom:8px;font-family:var(--font-anthropic-sans);font-size:13.5px;font-weight:700;color:var(--color-warn);padding:3px 10px;border-radius:999px;border:1px solid color-mix(in srgb,var(--color-warn) 55%,transparent);background:color-mix(in srgb,var(--color-warn) 10%,transparent)}
+.lw-chg{margin:2px 0 0;color:var(--color-fg);font-size:16.5px;font-weight:700;line-height:1.55;padding:10px 12px;border-radius:10px;border:1px solid var(--color-border-line);background:var(--color-panel)}.lw-chg.c-up{border-left:5px solid var(--color-bad)}.lw-chg.c-dn{border-left:5px solid var(--color-ok)}.lw-chg.c-eq{border-left:5px solid var(--color-fg-muted)}
+.lw-note{margin:0;font-size:14.5px;color:var(--color-fg-muted)}
+.lw-one{margin:0;font-size:15.5px;font-weight:600;line-height:1.6;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--color-warn) 8%,var(--color-panel))}
+.lw-card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg);display:flex;flex-direction:column;gap:10px;min-width:0}
+.lw-card h2{margin:0;font-size:clamp(19px,4.8vw,21px);font-weight:700;border-left:4px solid var(--color-warn);padding-left:10px}
+.lw-big{border-left:6px solid var(--lc,var(--color-border-line))}
+.lw-big .n{font-family:var(--font-anthropic-serif);font-size:44px;line-height:1}
+.lw-big .row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.lw-big .st{font-size:22px;font-weight:800;color:var(--lc)}
+.trend{display:flex;align-items:flex-end;gap:3px;min-height:40px}.trend i{display:inline-block;width:10px;border-radius:2px}.trend .tl{white-space:nowrap;font-size:13.5px;font-weight:700;color:var(--color-fg-muted);align-self:center;margin:0 4px}
+.lw-big .chg{font-size:14.5px;color:var(--color-fg-muted)}
+.dots{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.dots .grp{display:flex;gap:5px;align-items:center;padding:4px 8px;border:1px solid var(--color-border-line);border-radius:999px;font-size:12.5px;color:var(--color-fg-muted)}
+.dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--color-border-line);display:inline-block}
+.dot.on{background:var(--color-bad);border-color:var(--color-bad);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-bad) 22%,transparent)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.steps span{text-align:center;font-size:13.5px;padding:5px 2px;border-radius:6px;background:color-mix(in srgb,var(--sc) 12%,transparent);color:var(--color-fg-muted);line-height:1.3}
+.steps span small{display:block;font-size:11px}.steps span.cur{background:var(--sc);color:#fff;font-weight:700}
+.areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:var(--cds-gap-md)}
+.area{border:1px solid var(--color-border-line);border-left:5px solid var(--ac,var(--color-border-line));border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.area .hd{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.area .hd b{font-size:17px}.area .hd .cnt{font-weight:800;color:var(--ac)}
+.area ul{margin:0;padding:0;list-style:none;display:grid;gap:3px;font-size:14.5px;font-variant-numeric:tabular-nums}
+.area li::before{content:"○ ";color:var(--color-fg-muted)}.area li.on{font-weight:700}.area li.on::before{content:"● ";color:var(--color-bad)}
+.area a{font-size:13.5px;font-weight:700;color:inherit}
+.ch{position:relative;min-height:240px}.ch svg{display:block}
+.lg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13.5px;color:var(--color-fg-muted)}.lg i{display:inline-block;width:12px;height:10px;margin-right:6px;vertical-align:middle;border-radius:2px}
+.tbl{display:grid;gap:0}.tbl .r{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.7fr) repeat(3,minmax(0,1fr));gap:8px;padding:7px 0;border-bottom:1px solid var(--color-border-line);font-size:14.5px;font-variant-numeric:tabular-nums}
+.tbl .r span{white-space:pre-line}.tbl .r.h{font-size:13px;color:var(--color-fg-muted);font-weight:700}.up{color:var(--color-ok)}.dn{color:var(--color-bad)}
+.th{display:grid;gap:8px}.th .t{border:1px solid var(--color-border-line);border-radius:10px;padding:8px 10px}
+.th .t b{font-size:15px}.th .t .k{font-size:12.5px;color:var(--color-fg-muted)}.th .t p{margin:3px 0 0;font-size:14px}.th .t .hs{font-size:13px;color:var(--color-fg-muted)}
+details summary{cursor:pointer;font-weight:700}
+details p{margin:6px 0;font-size:14.5px}
+.tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);border-radius:8px;box-shadow:var(--cds-shadow-popover);padding:4px 8px;font-size:13px;white-space:nowrap}
+.lw-view{margin:12px 0 0;border-radius:12px;background:#37302a;color:#f3efe8;padding:14px 16px}
+.lw-view .vk{font-size:13px;font-weight:800;letter-spacing:.04em;color:#a9d8b8;margin:0 0 6px}
+.lw-view h3{margin:0 0 8px;font-size:clamp(18px,4.6vw,20px);font-weight:800;color:#fff;line-height:1.4}
+.lw-view .path{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;margin:0 0 10px;font-size:14.5px;font-weight:700}
+.lw-view .path span{background:rgba(255,255,255,.12);padding:3px 9px;border-radius:999px}.lw-view .path span.k{background:#e07b16;color:#fff}.lw-view .path i{font-style:normal;color:#a9d8b8}
+.lw-view ul{margin:0;padding:0;list-style:none;display:grid;gap:7px;font-size:15.5px;line-height:1.6}
+.lw-view li b{color:#fff}.lw-view li::before{content:"▸ ";color:#a9d8b8}
+.lw-view .vd{margin:10px 0 0;font-size:12.5px;color:#cfc6ba}
+</style>
+<div class="lw">
+  <header class="lw-mast">
+    <p class="lw-eb"><i aria-hidden="true"></i>시장 경고등 · 매일 갱신</p>
+    <h1 class="lw-h1"><span class="m">시장</span> <span class="s">경고등</span></h1>
+    <p class="lw-chg" id="today-chg" data-source="lights_log thresholds">—</p>
+    <p class="lw-take"><b id="asof" data-source="lights_log">—</b><span id="take" data-source="lights_log thresholds">—</span></p>
+    <p class="lw-note">채권·신용·옵션 쪽 경고등을 한 화면에 모았습니다. 불이 몇 개 켜졌는지로 지금 시장 분위기가 몇 단계인지 봅니다. 기준은 시장 상황에 맞춰 바꾸고, 바꾼 날과 이유를 아래 기준표에 남깁니다. 매수·매도 권유가 아닙니다.</p>
+  </header>
+
+
+  <section class="lw-view" id="view">
+    <p class="vk">지금 경고등을 보는 관점 · MY READ</p>
+    <h3>지금은 금리 불 하나가 제일 무겁습니다</h3>
+    <div class="path"><span>유가↑</span><i>→</i><span>물가 걱정</span><i>→</i><span class="k">10년물 5%</span><i>→</i><span>성장주·중소형주 부담</span></div>
+    <ul>
+      <li><b>10년물 5% = 핵심 불(2개 몫)</b> → 혼자 켜져도 경계</li>
+      <li><b>금리 급등·입찰 부진이 붙으면</b> 긴장, <b>하이일드·VIX까지 번지면</b> 위험</li>
+      <li><b>5% 아래로 내려오면</b> 주의로 · 중소형 AI 숨통</li>
+    </ul>
+    <p class="vd">관점 10/28 · 매수·매도 권유가 아닙니다.</p>
+  </section>
+
+  <section class="lw-card lw-big" id="big" data-source="lights_log thresholds">
+    <div class="trend" id="big-trend" data-source="lights_log"></div>
+    <div class="row"><span class="n" id="big-n">—</span><span class="st" id="big-st"></span><span class="chg" id="big-chg"></span></div>
+    <div class="dots" id="big-dots"></div>
+    <div class="steps" id="big-steps"></div>
+  </section>
+
+  <section class="lw-card" id="area-card">
+    <h2>영역별 경고등</h2>
+    <div class="areas" id="areas" data-source="lights_log thresholds"></div>
+  </section>
+
+  <section class="lw-card" id="hist-card">
+    <h2>1년 기록 · 켜진 불 개수와 나스닥100</h2>
+    <p class="lw-note" id="hist-one" data-source="lights_log qqq_px">—</p>
+    <div class="lg"><span><i style="background:var(--color-bad);opacity:.55"></i>켜진 불 개수(왼쪽)</span><span><i id="lg-q"></i>나스닥100 ETF(QQQ, 오른쪽)</span></div>
+    <div class="ch" id="hist" data-source="lights_log qqq_px"></div>
+  </section>
+
+  <section class="lw-card" id="score-card">
+    <h2>성적표 · 불이 몇 개일 때 그 뒤 1달 나스닥100은?</h2>
+    <div class="tbl" id="score" data-source="lights_log qqq_px"></div>
+    <details open><summary>왜 불이 많이 켜진 날 뒤가 오히려 좋았을까</summary>
+      <p>경고등 대부분(VIX·기간구조·풋콜)은 시장이 빠지기 시작해야 올라가는 '뒤따라오는' 지표입니다. 그래서 불이 여러 개 켜질 즈음이면 하락의 상당 부분이 이미 지나간 뒤인 경우가 많습니다.</p>
+      <p>반대로 큰 하락은 모두가 안심하고 하락 보험을 덜 사는 조용한 고점에서 시작되기 쉽습니다. 불 0개인 날에도 그 뒤 1달 안에 크게 빠진 사례가 있는 이유입니다.</p>
+      <p>그래서 경고등은 '지금 시장이 얼마나 무서워하나'를 재는 온도계로 쓰고, 하락을 미리 맞히는 신호로 쓰지 않습니다. 지난 1년은 빠질 때마다 다시 사는 상승장이었다는 점도 감안해야 합니다.</p>
+    </details>
+    <p class="lw-note">QQQ 종가 기준, 그날부터 21거래일 뒤 등락. 최대 하락 = 그 뒤 21거래일 안 가장 낮은 종가가 그날보다 얼마나 낮았는지(평균, 괄호는 가장 깊었던 경우). 같은 기간 시장 상황이 모두 달라 참고용이며 사례가 적은 칸은 특히 조심해서 봅니다.</p>
+  </section>
+
+  <section class="lw-card" id="chg-card">
+    <h2>불이 바뀐 날 · 켜질 때와 꺼질 때, 그 뒤 1달</h2>
+    <div class="tbl" id="chg" data-source="lights_log qqq_px"></div>
+    <p class="lw-one" id="chg-one" data-source="lights_log qqq_px">—</p>
+  </section>
+
+  <section class="lw-card" id="amp-card">
+    <h2>원인과 증폭 · 유가 충격에 다른 불이 겹치면</h2>
+    <div class="tbl" id="amp" data-source="lights_log qqq_px"></div>
+    <p class="lw-one" id="amp-one" data-source="lights_log qqq_px">—</p>
+  </section>
+
+  <section class="lw-card" id="th-card">
+    <h2>경고등 기준표 · 왜 이 기준인지, 언제 바꿨는지</h2>
+    <div class="th" id="th" data-source="thresholds"></div>
+  </section>
+
+  <section class="lw-card">
+    <h2>읽는 법</h2>
+    <details><summary>단계는 이렇게 나눴습니다</summary>
+      <p>불 0개 = 평온(초록), 1개 몫 = 주의(노랑), 2개 몫 또는 서로 다른 영역 2곳 = 경계(주황), 3~4개 몫 = 긴장(진한 주황, 같은 영역 안이어도), 5개 몫 이상 또는 영역 3곳 이상 = 위험(빨강)입니다.</p><p>불마다 무게가 있습니다. 보통은 1개 몫이고, 그 국면에서 특히 무거운 불(핵심 불)은 2개 몫으로 셉니다. 지금은 유가발 물가 걱정 국면이라 '10년물 5%'가 핵심 불입니다. 국면이 바뀌면 무게를 되돌리고 기준표 이력에 남깁니다.</p><p>개수와 함께 '몇 개 영역(금리·신용·옵션·유가)으로 퍼졌나'를 봅니다. 불 1개는 1년 중 75일이나 있을 만큼 흔해서 주의로 두고, 다른 영역으로 번질 때 단계를 올립니다.</p>
+      <p>불 하나만 보면 헛경보가 잦아서, 서로 다른 시장(채권·신용·옵션)에서 동시에 불이 켜질 때를 더 무겁게 봅니다.</p>
+      <p>기준은 고정이 아닙니다. 금리 수준이 바뀌면(예: 10년물 5%가 일상이 되면) 기준선도 옮기고, 그 이유를 기준표에 남깁니다.</p>
+    </details>
+  </section>
+</div>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const STAGES=['평온','주의','경계','긴장','위험'],SC=['var(--color-ok)','#c99a06','#e07b16','#c8501c','var(--color-bad)'],EMO=['🟢','🟡','🟠','🟠','🔴'];
+const stg=(n,a)=>n<=0?0:(n>=5||a>=3)?4:n>=3?3:(n>=2||a>=2)?2:1;
+const stageOf=n=>stg(n,1);
+const AREAS=[['유가','p-policy.html','p-policy.html'],['채권·금리','p-bond.html','p-bond.html'],['신용','p-bond.html','p-bond.html'],['옵션·공포','p-opt.html','p-opt.html']];
+dash.calc('daily',{inputs:['lights_log'],title:'날짜별 켜진 불 개수',description:'날짜마다 켜진 경고등 수(on=1)를 더한 값과 자료가 있는 경고등 수.',
+  fn:(lights_log)=>{const o={};lights_log.forEach(r=>{const d=String(r.date).slice(0,10);o[d]=o[d]||{date:d,on:0,n:0,s:0,A:{}};if(r.on!=null&&r.on!==''){o[d].n++;if(Number(r.on)===1){o[d].on++;o[d].s+=Number(r.w||1);o[d].A[r.board]=1}}});return Object.values(o).map(x=>({date:x.date,on:x.on,n:x.n,s:x.s,a:Object.keys(x.A).length,st:stg(x.s,Object.keys(x.A).length)})).sort((a,b)=>a.date<b.date?-1:1)}});
+
+function res0(){const Q=dash.data('qqq_px'),D=dash.data('daily');if(Q.status!=='ok'||D.status!=='ok')return null;const q=Q.data.map(r=>({d:String(r.date).slice(0,10),c:Number(r.close)})).sort((a,b)=>a.d<b.d?-1:1);const qi={};q.forEach((r,i)=>qi[r.d]=i);const ds=D.data;const rets=[];for(let k=1;k<ds.length;k++)if(ds[k].on<ds[k-1].on){const i=qi[ds[k].date];if(i!=null&&q[i+21])rets.push(q[i+21].c/q[i].c-1)}return rets.length?Math.round(rets.filter(v=>v>0).length/rets.length*100):null}
+function f2(v,d=2){return v==null||isNaN(v)?'—':Number(v).toFixed(d)}
+function draw(){
+  const L=dash.data('lights_log'),T=dash.data('thresholds'),D=dash.data('daily'),Q=dash.data('qqq_px');
+  if(L.status!=='ok'||T.status!=='ok'||D.status!=='ok'){$('take').textContent=L.status==='error'||T.status==='error'?'불러오지 못했습니다':'불러오는 중';return}
+  const TH={};T.data.forEach(t=>TH[t.id]=t);
+  const days=D.data;const last=days[days.length-1];const lastD=last.date;
+  const cur=L.data.filter(r=>String(r.date).slice(0,10)===lastD);
+  const on=cur.filter(r=>Number(r.on)===1).length,tot=cur.length,st=last.st;
+  const prev1=days[days.length-2],prev5=days[Math.max(0,days.length-6)];
+  $('asof').textContent=lastD+' 기준 · 뉴욕 마감';
+  const w1=days.slice(-5),w2=days.slice(-15,-5),m1=d3.mean(w1,r=>r.on),m2=w2.length?d3.mean(w2,r=>r.on):m1,dm=m1-m2;
+  const tr=dm>=0.4?'늘어나는 중':dm<=-0.4?'줄어드는 중':'제자리';
+  const trTxt='추세: 최근 1주 평균 '+m1.toFixed(1)+'개, 그 전 2주 평균 '+m2.toFixed(1)+'개 → 불이 '+tr+'입니다.';
+  {const tk=$('take');tk.textContent='';const ar=tr==='줄어드는 중'?'↘':tr==='늘어나는 중'?'↗':'→';const cl=tr==='줄어드는 중'?'t-dn':tr==='늘어나는 중'?'t-up':'t-eq';
+   const l1=document.createElement('span');l1.className='tk1';const bd=document.createElement('span');bd.className='trb '+cl;bd.textContent=ar+' 불 '+tr;l1.appendChild(bd);l1.appendChild(document.createTextNode(' '+m2.toFixed(1)+'개 → '+m1.toFixed(1)+'개'));
+   const l2=document.createElement('span');l2.className='tk2';l2.textContent='지금 '+on+' / '+tot+' 켜짐'+(last.s!==on?'(무게 '+last.s+')':'')+' · '+STAGES[st]+' 단계';tk.append(l1,l2)}
+  {const sp=$('big-trend');if(sp){sp.textContent='';const lab=document.createElement('span');lab.className='tl';lab.textContent='최근 15거래일 ';sp.appendChild(lab);days.slice(-15).forEach(r=>{const b=document.createElement('i');b.style.height=(6+r.on*7)+'px';b.style.background=SC[r.st];b.title=r.date+' 불 '+r.on+'개';sp.appendChild(b)});const t=document.createElement('span');t.className='tl';t.textContent=' '+tr;sp.appendChild(t)}}
+  {const pd=prev1?prev1.date:null,pr=pd?L.data.filter(r=>String(r.date).slice(0,10)===pd):[];const pm={};pr.forEach(r=>pm[r.id]=Number(r.on)===1);
+   const nOn=cur.filter(r=>Number(r.on)===1&&!pm[r.id]).map(r=>(TH[r.id]||{}).name||r.id),nOff=cur.filter(r=>Number(r.on)!==1&&pm[r.id]).map(r=>(TH[r.id]||{}).name||r.id);
+   const p1=prev1?prev1.on:on,ps=prev1?prev1.st:st;const el=$('today-chg');
+   const stTxt=ps===st?STAGES[st]+' 단계 유지':STAGES[ps]+' → '+STAGES[st];
+   const why={oil:'물가·금리 걱정을 함께 키우는 쪽입니다.',inv:'경기침체 경고 쪽입니다.',y10:'성장주 밸류에이션 부담이 커지는 쪽입니다.',jump:'금리가 빠르게 뛰어 변동성이 커지는 쪽입니다.',y30:'장기 금리 부담이 커지는 쪽입니다.',hy:'약한 회사의 돈줄이 조여지는 쪽입니다.',auc:'금리를 밀어 올리는 쪽입니다.',vix:'시장이 큰 출렁임을 예상하는 쪽입니다.',term:'당장 다음 한 달을 더 무서워하는 쪽입니다.',pc:'하락 보험을 많이 사는 경계심 높은 쪽입니다.'};
+   const onR=cur.filter(r=>Number(r.on)===1),oilR=cur.find(r=>r.id==='oil'),oilV=oilR&&oilR.val!=null?Number(oilR.val):null;
+   const ctxOf=r=>{if(r.id==='y10')return (oilV!=null&&oilV>=5?'유가 상승(1달 '+(oilV>0?'+':'')+oilV.toFixed(1)+'%)이 물가 걱정으로 번지며 ':'')+'10년물 금리가 5%를 넘은 것이 경고입니다';if(r.id==='y30')return (oilV!=null&&oilV>=5?'유가 상승이 물가 걱정으로 번지며 ':'')+'30년물 금리가 5.5%를 넘은 것이 경고입니다';return ((TH[r.id]||{}).name||r.id)+' — '+(why[r.id]||'').replace(/ 쪽입니다\.$/,' 신호입니다').replace(/\.$/,'')};
+   let ctx='';if(on===0)ctx='켜진 불이 없습니다.';else if(on===1)ctx='불은 1개뿐이지만, '+ctxOf(onR[0])+'.'+(Number(onR[0].w||1)>=2?' 지금 국면에서는 이 불을 2개 몫으로 봐서 '+STAGES[st]+' 단계입니다.':'')+' 다음으로 '+(onR[0].board==='옵션·공포'?'금리·하이일드':'입찰 부진·하이일드·VIX')+'로 번지는지 봅니다.';else ctx=onR.map(r=>(TH[r.id]||{}).name||r.id).join(', ')+' 켜짐'+(last.a>=2?' — 서로 다른 영역 '+last.a+'곳으로 퍼졌습니다.':' — 아직 한 영역 안입니다.');
+   el.className='lw-chg';el.style.borderLeft='5px solid '+SC[st];
+   const head=EMO[st]+' '+STAGES[st]+' 단계'+(ps!==st?'('+STAGES[ps]+'에서 '+(st>ps?'올라감':'내려옴')+')':'')+' · ';
+   if(on>p1)el.textContent=head+'불 '+p1+'→'+on+'개 — 새로 켜짐: '+nOn.join(', ')+'. '+ctx;
+   else if(on<p1){const off=res0();el.textContent=head+'불 '+p1+'→'+on+'개 — 꺼짐: '+nOff.join(', ')+'. '+(on?ctx:'')+(off?' 지난 1년 불이 줄어든 날 뒤 1달은 오른 비율 '+off+'%였습니다.':'')}
+   else el.textContent=head+'불 '+on+'개 그대로 — '+ctx;
+   el.insertAdjacentText('beforeend',' ('+(pd?pd.slice(5).replace('-','/'):'')+' → '+lastD.slice(5).replace('-','/')+')');}
+  const big=$('big');big.style.setProperty('--lc',SC[st]);$('big-n').textContent=on+' / '+tot;$('big-st').textContent='→ '+STAGES[st]+' 단계'+(last.s!==on?' (무게 '+last.s+')':'');
+  $('big-chg').textContent=prev1?'전날 '+prev1.on+'개 · 1주일 전 '+prev5.on+'개':'';
+  const dots=$('big-dots');dots.textContent='';
+  AREAS.forEach(([a])=>{const g=document.createElement('span');g.className='grp';g.appendChild(document.createTextNode(a+' '));cur.filter(r=>r.board===a).forEach(r=>{const i=document.createElement('i');i.className='dot'+(Number(r.on)===1?' on':'');i.title=(TH[r.id]||{}).name||r.id;g.appendChild(i)});dots.appendChild(g)});
+  const ss=$('big-steps');ss.textContent='';STAGES.forEach((n,i)=>{const s=document.createElement('span');s.style.setProperty('--sc',SC[i]);s.textContent=n;const sm=document.createElement('small');sm.textContent=['불 0','1개 몫','2개 몫 · 2영역','3~4개 몫','5개 몫+ · 3영역'][i];s.appendChild(sm);if(i===st)s.className='cur';ss.appendChild(s)});
+  // 영역
+  const ar=$('areas');ar.textContent='';const inInteg=!!window.__PAGE__;
+  AREAS.forEach(([a,url,pg])=>{const rs=cur.filter(r=>r.board===a);if(!rs.length)return;const n=rs.filter(r=>Number(r.on)===1).length;
+    const box=document.createElement('div');box.className='area';box.style.setProperty('--ac',SC[n<=0?0:n===1?1:n===2?2:4]);
+    const hd=document.createElement('div');hd.className='hd';const b=document.createElement('b');b.textContent=a;const c=document.createElement('span');c.className='cnt';c.textContent=n+' / '+rs.length+' 켜짐';hd.append(b,c);box.appendChild(hd);
+    const ul=document.createElement('ul');rs.forEach(r=>{const t=TH[r.id]||{};const li=document.createElement('li');if(Number(r.on)===1)li.className='on';
+      li.textContent=(t.name||r.id)+' — 지금 '+(r.val==null?'자료 없음':(t.unit==='번'?String(Math.round(r.val)):f2(r.val))+(t.unit||''))+' (기준 '+(t.op==='<'?'< ':'≥ ')+t.value+(t.unit||'')+')';ul.appendChild(li)});box.appendChild(ul);
+    const lk=document.createElement('a');lk.href=inInteg?pg:url;if(!inInteg){lk.target='_blank';lk.rel='noopener'}lk.textContent='자세히 보기 →';box.appendChild(lk);ar.appendChild(box)});
+  // 기준표
+  const th=$('th');th.textContent='';T.data.forEach(t=>{const d=document.createElement('div');d.className='t';const k=document.createElement('div');k.className='k';k.textContent=t.board+' · 기준 정한 날 '+t.since;const b=document.createElement('b');b.textContent=(Number(t.weight||1)>=2?'★핵심 불('+t.weight+'개 몫) · ':'')+t.name+' — '+t.rule;const p=document.createElement('p');p.textContent=t.why+(t.weight_why?' '+t.weight_why:'');d.append(k,b,p);
+    let h=t.history;if(typeof h==='string'){try{h=JSON.parse(h)}catch(e){h=[]}}if(Array.isArray(h)&&h.length){const hs=document.createElement('div');hs.className='hs';hs.textContent='바뀐 이력: '+h.map(x=>x.date+' '+(x.change||(x.from+'→'+x.to))+(x.why?' ('+x.why+')':'')).join(' / ');d.appendChild(hs)}th.appendChild(d)});
+  L0=L.data;drawHist(days,Q);
+}
+let L0=[];
+function drawHist(days,Q){
+  const box=$('hist');box.textContent='';const one=$('hist-one');
+  const q=Q.status==='ok'?Q.data.map(r=>({d:String(r.date).slice(0,10),c:Number(r.close)})).filter(r=>!isNaN(r.c)).sort((a,b)=>a.d<b.d?-1:1):[];
+  const W=Math.max(300,box.clientWidth),H=240,m={l:34,r:48,t:12,b:26};
+  const x=d3.scaleUtc(d3.extent(days,r=>new Date(r.date)),[m.l,W-m.r]);
+  const y=d3.scaleLinear([0,Math.max(5,d3.max(days,r=>r.on))],[H-m.b,m.t]);
+  const svg=d3.select(box).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  y.ticks(5).forEach(v=>{svg.append('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y(v)).attr('y2',y(v)).attr('stroke','var(--cds-chart-grid)');svg.append('text').attr('x',m.l-6).attr('y',y(v)+4).attr('text-anchor','end').attr('font-size',12).attr('fill','var(--color-fg-muted)').text(v)});
+  const bw=Math.max(1,(W-m.l-m.r)/days.length);
+  svg.append('g').selectAll('rect').data(days).join('rect').attr('x',r=>x(new Date(r.date))-bw/2).attr('width',bw).attr('y',r=>y(r.on)).attr('height',r=>y(0)-y(r.on)).attr('fill',r=>SC[r.st]).attr('opacity',.6);
+  if(q.length){const qq=q.filter(r=>r.d>=days[0].date);const yq=d3.scaleLinear(d3.extent(qq,r=>r.c),[H-m.b,m.t]).nice();$('lg-q').style.background=dash.colors[0];
+    svg.append('path').datum(qq).attr('fill','none').attr('stroke',dash.colors[0]).attr('stroke-width',2).attr('d',d3.line().x(r=>x(new Date(r.d))).y(r=>yq(r.c)));
+    yq.ticks(4).forEach(v=>svg.append('text').attr('x',W-m.r+5).attr('y',yq(v)+4).attr('font-size',11.5).attr('fill',dash.colors[0]).text(v))}
+  x.ticks(Math.max(3,Math.floor(W/90))).forEach(d=>svg.append('text').attr('x',x(d)).attr('y',H-7).attr('text-anchor','middle').attr('font-size',12).attr('fill','var(--color-fg-muted)').text(d3.utcFormat('%y.%-m')(d)));
+  const tip=document.createElement('div');tip.className='tip';tip.hidden=true;box.appendChild(tip);const bis=d3.bisector(r=>r.date).center;
+  svg.append('rect').attr('x',m.l).attr('y',m.t).attr('width',W-m.l-m.r).attr('height',H-m.t-m.b).attr('fill','transparent').on('mousemove',ev=>{const [mx]=d3.pointer(ev);const k=d3.utcFormat('%Y-%m-%d')(x.invert(mx));const r=days[bis(days,k)];if(!r)return;tip.hidden=false;tip.textContent=r.date+' · 불 '+r.on+'개 ('+STAGES[r.st]+')';tip.style.left=Math.min(W-160,mx)+'px';tip.style.top='4px'}).on('mouseleave',()=>tip.hidden=true);
+  const mx=d3.max(days,r=>r.on),dm=days.filter(r=>r.on===mx);
+  {let ex='';if(q.length){const qi2={};q.forEach((r,i)=>qi2[r.d]=i);const d0=dm[0],i=qi2[d0.date];if(i!=null){const w=q.slice(i+1,i+22),lo=w.length?d3.min(w,x=>x.c):null;const pre=q.slice(Math.max(0,i-21),i+1),hi=d3.max(pre,x=>x.c);ex=' 그날 QQQ는 직전 1달 고점보다 '+((q[i].c/hi-1)*100).toFixed(1)+'% 아래였고'+(lo!=null?', 그 뒤 1달 안 최저는 '+((lo/q[i].c-1)*100).toFixed(1)+'%였습니다.':'.')}}
+  one.textContent='최근 1년 가장 많이 켜진 날은 '+mx+'개('+dm.map(r=>r.date.slice(2).replace(/-/g,'.')).slice(0,3).join(', ')+(dm.length>3?' 등':'')+')입니다.'+ex+' 불 0개였던 날은 '+days.filter(r=>r.on===0).length+'일입니다.'}
+  // 성적표
+  const sc=$('score');sc.textContent='';if(!q.length)return;const qi={};q.forEach((r,i)=>qi[r.d]=i);
+  const B=[['평온 · 0개',r=>r.st===0],['주의 · 1개',r=>r.st===1],['경계 · 2개/2영역',r=>r.st===2],['긴장 · 3~4개',r=>r.st===3],['위험 · 5개+/3영역',r=>r.st===4]];
+  const hd=document.createElement('div');hd.className='r h';['켜진 불','날수','1달 뒤','오른 비율','1달 안 최대 하락'].forEach(t=>{const s=document.createElement('span');s.textContent=t;hd.appendChild(s)});sc.appendChild(hd);
+
+
+  {const ab=$('amp');ab.textContent='';const on={};L0.forEach(r=>{const d=String(r.date).slice(0,10);on[d]=on[d]||{oil:0,other:0};if(Number(r.on)===1){if(r.id==='oil')on[d].oil=1;else on[d].other++}});
+   const G=[['유가 평온 · 다른 불 0~1개',o=>!o.oil&&o.other<=1],['유가 평온 · 다른 불 2개 이상',o=>!o.oil&&o.other>=2],['유가 급등 · 다른 불 0~1개',o=>o.oil&&o.other<=1],['유가 급등 · 다른 불 2개 이상',o=>o.oil&&o.other>=2]];
+   const hd=document.createElement('div');hd.className='r h';['조합','날수','그날 고점 대비','최악','1달 뒤'].forEach(t=>{const s=document.createElement('span');s.textContent=t;hd.appendChild(s)});ab.appendChild(hd);const out={};
+   G.forEach(([lab,fn])=>{const ds=Object.keys(on).filter(d=>fn(on[d]));const dd=[],fw=[];ds.forEach(d=>{const i=qi[d];if(i==null||i<21)return;dd.push((q[i].c/d3.max(q.slice(i-21,i+1),x=>x.c)-1)*100);if(q[i+21])fw.push((q[i+21].c/q[i].c-1)*100)});
+     const m=d3.mean(dd),w=d3.min(dd),f=d3.mean(fw);out[lab]=m;const row=document.createElement('div');row.className='r';
+     [lab,String(dd.length),m==null?'—':m.toFixed(1)+'%',w==null?'—':w.toFixed(1)+'%',f==null?'—':(f>=0?'+':'')+f.toFixed(1)+'%'].forEach((t,k)=>{const s=document.createElement('span');s.textContent=t;if((k===2||k===3)&&t!=='—')s.className='dn';if(k===4&&f!=null)s.className=f>=0?'up':'dn';row.appendChild(s)});ab.appendChild(row)});
+   const a1=out['유가 급등 · 다른 불 2개 이상'],a0=out['유가 급등 · 다른 불 0~1개'],b0=out['유가 평온 · 다른 불 0~1개'];
+   $('amp-one').textContent=(a1!=null&&a0!=null&&b0!=null)?'유가가 혼자 뛸 때는 그날 나스닥100이 1달 고점보다 평균 '+a0.toFixed(1)+'% 아래였지만, 다른 불이 2개 이상 같이 켜지면 '+a1.toFixed(1)+'%로 더 깊었습니다(평소 '+b0.toFixed(1)+'%). 유가 같은 사건이 불씨라면, 채권·옵션 경고등은 그 충격을 키우는 증폭기 역할을 합니다. 1년치라 참고용입니다.':''}
+  // 불 변화별
+  {const cb=$('chg');cb.textContent='';const G=[['불 0개가 이어진 날',(a,b)=>a===0&&b===0],['첫 불이 켜진 날(0→1개 이상)',(a,b)=>a===0&&b>0],['불이 더 늘어난 날',(a,b)=>a>0&&b>a],['불이 줄어든 날',(a,b)=>b<a]];
+   const hd=document.createElement('div');hd.className='r h';['바뀐 모습','날수','1달 뒤','오른 비율','1달 안 최대 하락'].forEach(t=>{const s=document.createElement('span');s.textContent=t;hd.appendChild(s)});cb.appendChild(hd);const res={};
+   G.forEach(([lab,fn])=>{const ds=[];for(let k=1;k<days.length;k++)if(fn(days[k-1].on,days[k].on))ds.push(days[k]);
+     const rets=[],dds=[];ds.forEach(r=>{const i=qi[r.date];if(i==null||!q[i+21])return;rets.push((q[i+21].c/q[i].c-1)*100);dds.push((d3.min(q.slice(i+1,i+22),x=>x.c)/q[i].c-1)*100)});
+     const a=d3.mean(rets),up=rets.length?rets.filter(v=>v>0).length/rets.length*100:null,dd=d3.mean(dds);res[lab]={a,up,n:ds.length};
+     const row=document.createElement('div');row.className='r';[lab,String(ds.length),a==null?'—':(a>=0?'+':'')+a.toFixed(1)+'%',up==null?'—':Math.round(up)+'%',dd==null?'—':dd.toFixed(1)+'%'].forEach((t,k)=>{const s=document.createElement('span');s.textContent=t;if(k===2&&a!=null)s.className=a>=0?'up':'dn';if(k===4&&dd!=null)s.className='dn';row.appendChild(s)});cb.appendChild(row)});
+   const P=(k)=>res[k]&&res[k].a!=null?res[k]:null,f1=v=>(v>=0?'+':'')+v.toFixed(1)+'%';
+   const off=P('불이 줄어든 날'),more=P('불이 더 늘어난 날'),calm=P('불 0개가 이어진 날');const one=$('chg-one');one.textContent='';
+   const lines=[];
+   if(off)lines.push('불이 꺼진(줄어든) 날 뒤 1달은 오른 비율이 '+Math.round(off.up)+'%(평균 '+f1(off.a)+')입니다. 공포가 풀리면서 반등이 이어지는 구간이라, 불이 꺼지기 시작할 때를 회복 신호로 봅니다.');
+   if(more)lines.push('불이 더 늘어난 날 뒤 평균은 '+f1(more.a)+'(오른 비율 '+Math.round(more.up)+'%)였습니다. 그날은 이미 많이 빠진 뒤라 반등까지 같이 잡힌 경우가 많아, 불이 늘어난 것만 보고 결론 내리기보다 꺼지기 시작하는지를 함께 봅니다.');
+   if(calm)lines.push('불 0개가 이어진 날 뒤는 '+f1(calm.a)+'(오른 비율 '+Math.round(calm.up)+'%)로 가장 약했습니다. 너무 조용할 때가 오히려 조심할 때입니다.');
+   lines.push('지난 1년 상승장 기록이라 사례가 적고, 하락장이 길게 이어지는 해에는 달라질 수 있습니다.');
+   lines.forEach((t,k)=>{const p=document.createElement('span');p.style.display='block';p.style.marginTop=k?'6px':'0';p.textContent=t;one.appendChild(p)})}
+  B.forEach(([lab,fn])=>{const ds=days.filter(fn);const rets=ds.map(r=>{const i=qi[r.date];return i!=null&&q[i+21]?(q[i+21].c/q[i].c-1)*100:null}).filter(v=>v!=null);
+    const dds=ds.map(r=>{const i=qi[r.date];if(i==null||!q[i+1])return null;const w=q.slice(i+1,i+22);return (d3.min(w,x=>x.c)/q[i].c-1)*100}).filter(v=>v!=null);const dd=d3.mean(dds),worst=d3.min(dds);
+    const row=document.createElement('div');row.className='r';const a=d3.mean(rets),up=rets.length?rets.filter(v=>v>0).length/rets.length*100:null;
+    [lab,String(ds.length),a==null?'—':(a>=0?'+':'')+a.toFixed(1)+'%',up==null?'—':Math.round(up)+'%',dd==null?'—':dd.toFixed(1)+'%\n최악 '+worst.toFixed(1)+'%'].forEach((t,k)=>{const s=document.createElement('span');s.textContent=t;if(k===2&&a!=null)s.className=a>=0?'up':'dn';if(k===4&&dd!=null)s.className='dn';row.appendChild(s)});sc.appendChild(row)});
+}
+dash.onData(draw);
+})();
+</script>
+</div></body></html>

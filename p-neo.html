@@ -1,0 +1,681 @@
+<!doctype html><html lang="ko"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>네오클라우드 신용 점검</title><style>:root{color-scheme:light;
+--color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
+--font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
+--cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
+--cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:12px;--cds-gap-lg:20px;--cds-gap-xl:28px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:18px;--cds-pad-xl:24px;--cds-radius:12px;
+--cds-chart-grid:rgba(11,11,11,.07);--cds-chart-axis:rgba(11,11,11,.25);--cds-chart-muted:rgba(111,109,104,.45);--cds-chart-reference:rgba(11,11,11,.4);--cds-chart-status-critical:#b23434;
+--cds-surface-popover:#ffffff;--cds-border:rgba(11,11,11,.12);--cds-shadow-popover:0 6px 24px -8px rgba(0,0,0,.25);--cds-text-secondary:#6f6d68;--cds-dur-slow:.3s;--cds-ease-out:cubic-bezier(.2,.8,.2,1);
+--dc1:#2f5bb8;--dc2:#b07a12;--dc3:#1d7a4a;--dc4:#b53a3a;--dc5:#7246b0;--dc6:#1b7880;--dc7:#b35c2a;--dc8:#6b5b95}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}}
+:root[data-theme="dark"]{color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}
+*{box-sizing:border-box}
+html,body.ibody{margin:0;background:var(--color-bg);color:var(--color-fg)}
+body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+#dash-root{padding:20px max(16px,env(safe-area-inset-left,0px)) 48px max(16px,env(safe-area-inset-right,0px))}
+#dash-root b,#dash-root strong{font-weight:700}
+.dash-skeleton{color:transparent!important;background:linear-gradient(90deg,color-mix(in srgb,var(--color-fg-muted) 14%,transparent),color-mix(in srgb,var(--color-fg-muted) 24%,transparent),color-mix(in srgb,var(--color-fg-muted) 14%,transparent));background-size:200% 100%;border-radius:6px;animation:skl 1.4s linear infinite}
+@keyframes skl{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.dash-skeleton{animation:none}}
+.ib{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;padding:9px max(12px,env(safe-area-inset-left,0px));background:var(--ib-bg,#f9f9f7);border-bottom:1px solid var(--ib-line,rgba(11,11,11,.1));font:600 14px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+.ib::-webkit-scrollbar{display:none}
+.ib a{flex:none;text-decoration:none;color:var(--ib-mu,#6f6d68);padding:6px 12px;border-radius:999px;border:1px solid var(--ib-line,rgba(11,11,11,.1));background:var(--ib-pn,#fff);white-space:nowrap}
+.ib a.home{color:var(--ib-fg,#0b0b0b);font-weight:800}
+.ib a.home{position:sticky;left:0;z-index:3;box-shadow:-8px 0 0 5px var(--ib-bg,#f9f9f7),-22px 0 0 5px var(--ib-bg,#f9f9f7),9px 0 10px -8px rgba(0,0,0,.3)}
+.ib a[aria-current]{background:var(--ib-fg,#0b0b0b);color:var(--ib-bg,#f9f9f7);border-color:var(--ib-fg,#0b0b0b)}
+.ib .tg{flex:none;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--ib-fa,#9a978f);padding-left:8px;border-left:1px solid var(--ib-line,rgba(11,11,11,.1));margin-left:2px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}}
+:root[data-theme="dark"]{--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script><script>window.__PAGE__={"page": "neo", "ds": ["nc_debt", "nc_backlog", "nc_prepay", "nc_rates", "nc_rev_gw", "nc_deals", "nc_campus", "nc_campus_sum"], "params": {}};window.__SYNC__="202610280842";</script><script src="shim.js"></script></head><body class="ibody"><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html">경고등</a><a href="p-brief.html">데일리 시황</a><a href="p-earn.html">실적 결과</a><a href="p-prices.html">시세 보드</a><a href="p-targets.html">목표주가</a><a href="p-opt.html">옵션 온도계</a><a href="p-bond.html">채권·금리</a><a href="p-cal.html">실적 캘린더</a><a href="p-econ.html">경제지표</a><span class="tg">흐름</span><a href="p-trend.html">차트 길잡이</a><a href="p-short.html">공매도</a><a href="p-fx.html">환율</a><a href="p-capex.html">설비투자</a><a href="p-policy.html">정책·지정학</a><a href="p-tech.html">테크 행사</a><span class="tg">점검</span><a href="p-supply.html">한국·대만</a><a href="p-neo.html" aria-current="page">네오클라우드</a><a href="p-qtr.html">분기 실적</a><a href="p-insider.html">내부자·기관</a></nav><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script><div id="dash-root" data-dash-state="loading"><style>
+.nc-wrap,.nc-tip{--cds-font-size-caption:14.5px;--cds-font-size-body:17px;--cds-font-size-heading:19.5px;--cds-font-size-title:30.5px}
+.nc-wrap{font-family:var(--font-anthropic-sans);display:flex;flex-direction:column;gap:var(--cds-gap-lg);max-width:1100px;margin-inline:auto;word-break:keep-all;color:var(--color-fg)}
+.nc-mast{display:flex;flex-direction:column;gap:10px;padding:6px 0 4px}
+.nc-eyebrow{margin:0;display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;letter-spacing:.12em;color:var(--color-fg-muted)}
+.nc-eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--color-warn);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-warn) 22%,transparent)}
+.nc-h1{font-family:var(--font-anthropic-serif);font-size:clamp(30px,7.4vw,42px);line-height:1.15;letter-spacing:-.02em;font-weight:400;margin:0;padding-bottom:12px;border-bottom:1px solid var(--color-border-line);position:relative}
+.nc-h1::after{content:"";position:absolute;left:0;bottom:-1px;width:56px;height:3px;border-radius:2px;background:var(--color-warn)}
+.nc-h1 .m{font-weight:600}
+.nc-h1 .s{color:var(--color-fg-muted);font-size:.62em;white-space:nowrap}
+.nc-take{margin:6px 0 0;font-family:var(--font-anthropic-serif);font-size:clamp(19.5px,4.9vw,23px);line-height:1.55;letter-spacing:-.01em;text-wrap:pretty}
+.nc-chipd{display:table;margin-bottom:8px;font-family:var(--font-anthropic-sans);font-size:13.5px;font-weight:700;color:var(--color-warn);padding:3px 10px;border-radius:999px;border:1px solid color-mix(in srgb,var(--color-warn) 55%,transparent);background:color-mix(in srgb,var(--color-warn) 10%,transparent)}
+.nc-take .hl{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--color-warn) 42%,transparent) 58%);font-weight:500;padding:0 1px}
+.nc-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,9rem),1fr));gap:var(--cds-gap-sm)}
+.nc-tile{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-md);display:flex;flex-direction:column;gap:var(--cds-gap-xs)}
+.nc-tile .k{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.nc-tile .v{font-family:var(--font-anthropic-serif);font-size:var(--cds-font-size-title);font-variant-numeric:tabular-nums;min-height:1.2em;font-weight:400}
+.nc-tile .s{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.45}
+.nc-card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg);display:flex;flex-direction:column;gap:var(--cds-gap-sm);min-width:0}
+.nc-card h2{font-size:var(--cds-font-size-heading);margin:0 0 2px;font-weight:700;letter-spacing:-.01em;line-height:1.3;border-left:4px solid var(--color-warn);padding-left:10px}
+.nc-sub{margin:0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.6}
+.nc-sub b{color:var(--color-fg)}
+.nc-legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.nc-legend span{display:inline-flex;align-items:center;gap:6px}
+.nc-legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.nc-rows{display:flex;flex-direction:column;gap:14px;min-height:6rem}
+.nc-row{display:flex;flex-direction:column;gap:5px}
+.nc-row .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.nc-row .nm{font-size:16.5px;font-weight:700}
+.nc-row .nm small{font-size:12.5px;font-weight:500;color:var(--color-fg-muted);margin-left:6px}
+.nc-row .val{font-family:var(--font-anthropic-serif);font-size:20px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nc-bar{display:flex;height:16px;border-radius:5px;overflow:hidden;background:color-mix(in srgb,var(--color-fg-muted) 12%,transparent)}
+.nc-bar b{display:block;height:100%}
+.nc-bar b.st{background-image:repeating-linear-gradient(45deg,transparent 0 4px,color-mix(in srgb,var(--color-bg) 45%,transparent) 4px 7px)}
+.nc-row .det{font-size:13.5px;color:var(--color-fg-muted);line-height:1.5}
+.nc-row .det b{color:var(--color-fg);font-weight:600}
+.nc-pair{display:grid;grid-template-columns:3.2rem 1fr auto;align-items:center;gap:8px;font-size:13.5px;color:var(--color-fg-muted)}
+.nc-pair .nc-bar{height:12px}
+.nc-pair span:last-child{font-variant-numeric:tabular-nums;color:var(--color-fg);font-weight:600;min-width:4.5rem;text-align:right}
+.nc-x{display:inline-block;font-size:13px;font-weight:700;padding:2px 9px;border-radius:999px;border:1px solid color-mix(in srgb,var(--color-ok) 50%,transparent);color:var(--color-ok);background:color-mix(in srgb,var(--color-ok) 9%,transparent);white-space:nowrap}
+.nc-tags{display:flex;flex-direction:column;gap:3px;font-size:13.5px;line-height:1.5}
+.nc-tags div{display:flex;gap:6px}
+.nc-tags em{font-style:normal;font-weight:700;color:var(--color-fg-muted);flex:none;min-width:3.4rem}
+.nc-grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:var(--cds-gap-md)}
+.nc-gw{display:flex;flex-direction:column;gap:12px;min-height:8rem}
+.nc-gw .g{display:flex;flex-direction:column;gap:4px}
+.nc-gw .g .nm{font-size:15.5px;font-weight:700}
+.nc-gw .g .nm small{font-weight:500;font-size:12.5px;color:var(--color-fg-muted);margin-left:6px}
+.nc-tbox{overflow:auto;max-height:70vh;border:1px solid var(--color-border-line);border-radius:var(--cds-radius);background:var(--color-bg)}
+.nc-table{border-collapse:separate;border-spacing:0;width:100%;font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums}
+.nc-table th{position:sticky;top:0;background:var(--color-panel);text-align:left;font-weight:600;color:var(--color-fg-muted);border-bottom:1px solid var(--color-border-line);padding:8px 10px;white-space:nowrap}
+.nc-table td{padding:8px 10px;border-bottom:1px solid var(--color-border-line);vertical-align:top}
+.nc-table td.n,.nc-table th.n{text-align:right;white-space:nowrap}
+.nc-table td.w{min-width:14rem;color:var(--color-fg-muted)}
+.nc-vs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:var(--cds-gap-md)}
+.nc-vs .side{border-radius:var(--cds-radius);padding:var(--cds-pad-md) var(--cds-pad-lg);border:1px solid var(--color-border-line)}
+.nc-vs .ok{background:color-mix(in srgb,var(--color-ok) 7%,var(--color-panel));border-color:color-mix(in srgb,var(--color-ok) 35%,var(--color-border-line))}
+.nc-vs .bad{background:color-mix(in srgb,var(--color-bad) 6%,var(--color-panel));border-color:color-mix(in srgb,var(--color-bad) 30%,var(--color-border-line))}
+.nc-vs h3{margin:0 0 8px;font-size:17.5px;font-weight:700}
+.nc-vs .ok h3{color:var(--color-ok)}.nc-vs .bad h3{color:var(--color-bad)}
+.nc-vs ul{margin:0;padding-left:1.1em}
+.nc-vs li{font-size:var(--cds-font-size-body);line-height:1.65;margin:0 0 8px}
+.nc-wrap .nc-vs b,.nc-wrap .nc-read b{font-weight:700}
+.nc-read ul{padding-left:1.1em;margin:0}
+.nc-read li{font-size:var(--cds-font-size-body);line-height:1.65;margin:0 0 8px;max-width:72ch}
+.nc-src ul{padding-left:1.1em;margin:0;font-size:var(--cds-font-size-caption);line-height:1.7;color:var(--color-fg-muted)}
+.nc-num{font-variant-numeric:tabular-nums;font-weight:700}
+[data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
+[data-dash-source-state=empty]{color:transparent}
+.nc-fail{display:flex;align-items:center;justify-content:center;gap:6px;min-height:6rem;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.nc-fail i{width:.375rem;height:.375rem;border-radius:50%;background:var(--color-bad)}
+
+.cp-sum{font-size:16px;line-height:1.6;margin:0}
+.cp-co{border:1px solid var(--color-border-line);border-radius:10px;padding:10px 12px;cursor:pointer;background:var(--color-bg)}
+.cp-co.open{box-shadow:0 0 0 2px color-mix(in srgb,var(--color-fg) 15%,transparent)}
+.cp-co .h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.cp-co .h b{font-size:17px}.cp-co .h span{font-size:14px;font-variant-numeric:tabular-nums;color:var(--color-fg-muted)}.cp-co .h span em{font-style:normal;font-weight:800;color:var(--color-ok)}
+.cp-bar{position:relative;height:12px;border-radius:6px;background:color-mix(in srgb,var(--color-fg) 9%,transparent);margin:6px 0 4px;overflow:hidden}
+.cp-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:var(--color-ok)}.cp-bar i.u{background:color-mix(in srgb,var(--color-ok) 30%,transparent)}
+.cp-co .ln{font-size:14.5px;line-height:1.55;margin:2px 0 0}.cp-co .mo{font-size:12.5px;font-weight:700;color:var(--color-fg-muted);margin-top:4px}
+.cp-sites{display:grid;gap:8px;margin-top:10px;cursor:default}
+.cp-site{border-left:4px solid var(--sc,var(--color-fg-muted));padding:6px 10px;border-radius:6px;background:var(--color-panel)}
+.cp-site .t{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font-weight:700;font-size:15.5px}
+.cp-site .st{font-size:12.5px;font-weight:800;color:#fff;background:var(--sc);padding:1px 8px;border-radius:999px}
+.cp-site .mw{font-size:14px;font-variant-numeric:tabular-nums;margin:3px 0}.cp-site p{margin:2px 0;font-size:14.5px;line-height:1.55}
+.cp-site .nx{color:var(--color-fg)}.cp-site .sm{font-size:12.5px;color:var(--color-fg-muted)}.cp-site .old{color:var(--color-warn);font-weight:700}
+.cp-legend{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--color-fg-muted)}.cp-legend i{display:inline-block;width:12px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.cp-edu{border-radius:12px;background:#fff7ec;border-left:5px solid #b03d20;padding:12px 14px}
+.cp-edu .k{font-size:13px;font-weight:800;color:#b03d20;margin:0 0 6px}
+.cp-edu .f{display:grid;gap:6px;margin:0 0 8px}
+.cp-edu .f div{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;font-size:15.5px;line-height:1.5}
+.cp-edu .f b{font-size:clamp(19px,5vw,22px);font-weight:900;font-variant-numeric:tabular-nums;color:var(--color-fg)}
+.cp-edu .f small{font-size:13px;color:var(--color-fg-muted)}
+.cp-edu .cmp{margin:8px 0 0;padding:10px 12px;border-radius:10px;background:#37302a;color:#f3efe8;font-size:15.5px;line-height:1.6}.cp-edu .cmp b{color:#ffd28a}
+.cp-edu .bars{display:grid;gap:5px;margin:8px 0 0}.cp-edu .bars div{display:grid;grid-template-columns:7.5em 1fr;align-items:center;gap:8px;font-size:13.5px}
+.cp-edu .bars i{display:block;height:14px;border-radius:4px;background:#b03d20}.cp-edu .bars i.g{background:#3e556a}
+.cp-edu .nt{margin:8px 0 0;font-size:12.5px;color:var(--color-fg-muted);line-height:1.5}
+.cp-co .won{font-size:13.5px;color:#b03d20;font-weight:700;margin:2px 0 0}
+.cp-map{position:relative;border:1px solid var(--color-border-line);border-radius:12px;background:#f6f4ee;overflow:hidden}
+.cp-map svg{display:block;width:100%;height:auto}
+.cp-map .nat{fill:#fff;stroke:#bdb6a8;stroke-width:1.2;vector-effect:non-scaling-stroke}.cp-map .sts{fill:none;stroke:#ddd7cb;stroke-width:1;vector-effect:non-scaling-stroke}
+.cp-map circle.pt{stroke:#fff;stroke-width:1.5;vector-effect:non-scaling-stroke;opacity:.9}.cp-map circle.pt.on{stroke:#16181a;stroke-width:3;opacity:1}
+.cp-map .lbl{font-weight:800;fill:#16181a;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+.cp-reset{position:absolute;top:8px;right:8px;font-size:13px;font-weight:700;padding:5px 10px;border-radius:999px;border:1px solid var(--color-border-line);background:#fff;cursor:pointer;color:#16181a}
+.cp-mleg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px;color:var(--color-fg-muted);padding:4px 10px 8px}.cp-mleg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:-1px}
+.cp-info{border:1px solid var(--color-border-line);border-left:5px solid var(--ic,var(--color-fg-muted));border-radius:12px;background:var(--color-panel);padding:12px 14px;font-size:15px;line-height:1.55}
+.cp-info h4{margin:0 0 2px;font-size:18px;font-weight:800}.cp-info .co{font-size:13.5px;color:var(--color-fg-muted);margin:0 0 8px}
+.cp-info .st{display:inline-block;font-size:12.5px;font-weight:800;color:#fff;padding:1px 8px;border-radius:999px;background:var(--ic);margin-left:6px;vertical-align:2px}
+.cp-info .nums{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 8px}
+.cp-info .nums div{background:var(--color-bg);border-radius:8px;padding:7px 9px}.cp-info .nums small{display:block;font-size:12px;color:var(--color-fg-muted)}
+.cp-info .nums b{font-size:clamp(17px,4.6vw,20px);font-weight:900;font-variant-numeric:tabular-nums}.cp-info .nums em{font-style:normal;font-size:12px;color:var(--color-fg-muted)}
+.cp-info p{margin:3px 0}.cp-info .src{font-size:12.5px;color:var(--color-fg-muted)}
+.cp-btns{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.cp-btns button{text-align:left;font:inherit;font-size:13px;line-height:1.35;padding:7px 9px;border-radius:10px;border:1px solid var(--color-border-line);background:var(--color-panel);cursor:pointer;color:var(--color-fg-muted)}
+.cp-btns button b{display:block;font-size:14.5px;color:var(--color-fg)}.cp-btns button i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:0}
+.cp-btns button.on{border-color:#16181a;box-shadow:0 0 0 2px rgba(22,24,26,.15)}
+.cp-btns .gh{grid-column:1/-1;font-size:12.5px;font-weight:800;color:var(--color-fg-muted);margin:6px 0 0}
+.cp-chips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 4px;scrollbar-width:none}.cp-chips::-webkit-scrollbar{display:none}
+.cp-chips button{flex:0 0 auto;font:inherit;font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;border:1px solid var(--color-border-line);background:var(--color-panel);color:var(--color-fg);cursor:pointer;white-space:nowrap}
+.cp-chips button.w{border-color:#b03d20;color:#b03d20}.cp-chips button.on{background:#16181a;color:#fff;border-color:#16181a}
+.cp-chips .sep{flex:0 0 auto;align-self:center;font-size:12px;color:var(--color-fg-muted);padding:0 2px}
+.cp-ov{position:absolute;left:8px;top:8px;max-width:calc(100% - 16px);background:rgba(255,255,255,.95);border:1px solid var(--color-border-line);border-left:4px solid var(--ic,#888);border-radius:10px;padding:6px 10px;font-size:13px;line-height:1.5;color:#16181a;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.cp-ov b{font-size:15px}.cp-ov .st{display:inline-block;margin-left:6px;font-size:11.5px;font-weight:800;color:#fff;background:var(--ic);padding:0 7px;border-radius:999px;vertical-align:1px}.cp-ov .plc{font-size:12.5px;font-weight:700;color:#3e556a}.cp-ov em{font-style:normal;font-weight:800;color:#b03d20}
+.cp-map circle.ring{fill:none;stroke:#16181a;stroke-width:2;vector-effect:non-scaling-stroke;animation:cpPulse 1.2s ease-out infinite}
+@keyframes cpPulse{0%{opacity:.9}100%{opacity:0}}
+#cp-panel .ph{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:2px 0 0}#cp-panel .ph b{font-size:17px}#cp-panel .ph span{font-size:13.5px;color:var(--color-fg-muted);font-variant-numeric:tabular-nums}
+#cp-panel .won{font-size:13.5px;color:#b03d20;font-weight:700;margin:2px 0 8px}#cp-panel .hint{font-size:14px;color:var(--color-fg-muted);margin:4px 0 0}
+#cp-panel .cp-btns button{touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.cp-edu summary{list-style:none;cursor:pointer;font-size:15.5px;line-height:1.55}.cp-edu summary::-webkit-details-marker{display:none}.cp-edu summary b{color:#b03d20}.cp-edu summary .mo{display:block;font-size:12.5px;font-weight:700;color:var(--color-fg-muted)}
+.cp-edu[open] summary .mo{display:none}
+.cp-eta{border:1px solid var(--color-border-line);border-radius:12px;background:var(--color-panel);padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.cp-eta h3{margin:0;font-size:clamp(19px,4.8vw,21px);line-height:1.35}
+.cp-eta .lead{margin:0;font-size:15.5px;line-height:1.6}
+.cp-eta .ph{margin:0;font-size:14px;line-height:1.55;color:var(--color-fg-muted);background:var(--color-bg);border-radius:8px;padding:8px 10px}
+.cp-eta .bk{display:grid;gap:6px}
+.cp-eta .bk>.bh{display:flex;align-items:baseline;gap:8px;font-weight:800;font-size:16px;margin-top:4px}
+.cp-eta .bk>.bh small{font-size:13px;font-weight:700;color:var(--color-fg-muted)}
+.cp-eta .bk>.bh i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--bc)}
+.cp-eta .it{display:grid;grid-template-columns:1fr auto;gap:2px 10px;border-left:4px solid var(--sc);border-radius:6px;background:var(--color-bg);padding:6px 10px}
+.cp-eta .it b{font-size:15px}.cp-eta .it .mw{font-size:13.5px;font-variant-numeric:tabular-nums;color:var(--color-fg-muted);text-align:right}
+.cp-eta .it .w{grid-column:1/-1;font-size:14px;line-height:1.5}
+.cp-eta .it.star b::before{content:'★ ';color:#b03d20}
+.cp-eta .more{font:inherit;font-size:13.5px;font-weight:700;padding:4px 10px;border-radius:999px;border:1px solid var(--color-border-line);background:var(--color-panel);cursor:pointer;justify-self:start;color:var(--color-fg)}
+.cp-map circle.shr{fill:none;stroke:#16181a;stroke-width:1.5;stroke-dasharray:3 3;vector-effect:non-scaling-stroke}.cp-ov .shl{font-weight:700;color:#3e556a}
+#cp-map [hidden],#campus [hidden]{display:none!important}.cp-polbtn{position:absolute;right:8px;top:8px;font:inherit;font-size:12.5px;font-weight:800;padding:5px 10px;border-radius:999px;border:1px solid #3e556a;background:#fff;color:#3e556a;cursor:pointer;z-index:2}.cp-polbtn.on{background:#3e556a;color:#fff}
+.cp-ov{max-width:calc(100% - 130px)}@media (max-width:520px){.cp-ov{font-size:11.5px;padding:4px 8px;max-width:58%}.cp-ov b{font-size:13px}.cp-polbtn{font-size:11.5px;padding:4px 8px}}
+.cp-polbox{border:1px solid var(--color-border-line);border-left:5px solid #3e556a;border-radius:12px;background:var(--color-panel);padding:12px 14px;font-size:14.5px;line-height:1.6}
+.cp-polbox p{margin:0 0 6px}.cp-polbox .pt b{color:#16181a;font-size:16px}.cp-polbox ul{margin:0 0 6px;padding:0;list-style:none;display:grid;gap:4px}.cp-polbox li::before{content:"▪ ";color:#3e556a}
+.cp-polbox .after{background:color-mix(in srgb,#3e556a 8%,transparent);border-radius:8px;padding:8px 10px}.cp-polbox .gh2{margin:6px 0 2px;font-size:13px;font-weight:800;color:#3e556a}.cp-polbox .src{font-size:12px;color:var(--color-fg-muted);margin:0}
+.cp-polbox h4{margin:0 0 6px;font-size:17px;font-weight:800}.cp-polbox .lead{font-size:15.5px;padding:8px 10px;border-radius:8px;background:#fff7ec;border-left:4px solid #b03d20}.cp-polbox .lead b{color:#b03d20}
+.cp-polbox .chain{display:grid;gap:6px;margin:0 0 8px}.cp-polbox .chain div{padding:7px 10px;border-radius:8px;background:color-mix(in srgb,#3e556a 7%,transparent);font-size:14px;line-height:1.5}.cp-polbox .chain b{color:#3e556a}
+.cp-polbox .real{margin:0 0 8px}.cp-polbox .geo{font-size:14px}.cp-polbox details.states{margin:0 0 8px}.cp-polbox details.states summary{cursor:pointer;font-size:13.5px;font-weight:800;color:#3e556a}
+.cp-polbox .polclose{display:block;width:100%;margin:8px 0 0;font:inherit;font-size:13.5px;font-weight:800;padding:8px;border-radius:10px;border:1px solid #3e556a;background:#fff;color:#3e556a;cursor:pointer}
+</style>
+
+<div class="nc-wrap">
+  <header id="top" class="nc-mast">
+    <p class="nc-eyebrow"><i aria-hidden="true"></i>AI 밸류체인 · 네오클라우드 신용</p>
+    <h1 class="nc-h1"><span class="m">네오클라우드</span> <span class="s">캠퍼스·신용 점검</span></h1>
+    <div class="nc-take">
+      <span class="nc-chipd">2026년 10월 · 공시·보도 정리 차트 기준</span>
+      <span id="take-line" class="dash-skeleton">7대 GPU 임대 회사 빚 <span class="hl" data-source="nc_sum" data-field="debt_total" data-row="0">—</span> 가운데 코어위브가 <span data-source="nc_sum" data-field="crwv_share" data-row="0">—</span>를 짊어졌습니다. 하지만 상장 3곳(코어위브·네비우스·아이렌)의 계약 잔고는 빚의 <span class="hl" data-source="nc_sum" data-field="listed_cover_min" data-row="0">—</span>~<span data-source="nc_sum" data-field="listed_cover_max" data-row="0">—</span>배이고, 잔고의 상당 부분은 빅테크·엔비디아가 상대방입니다.</span>
+    </div>
+  </header>
+
+  <section class="nc-tiles" id="tiles" data-fetchpriority="high">
+    <div class="nc-tile"><span class="k">7대 네오클라우드 빚</span><span class="v dash-skeleton" id="t-debt" data-source="nc_sum" data-field="debt_total" data-row="0">—</span><span class="s">코어위브 몫 <span data-source="nc_sum" data-field="crwv_share" data-row="0">—</span></span></div>
+    <div class="nc-tile"><span class="k">코어위브 계약 ÷ 빚</span><span class="v dash-skeleton" id="t-c1" data-source="nc_cover" data-field="cover" data-where="company=%EC%BD%94%EC%96%B4%EC%9C%84%EB%B8%8C">—</span><span class="s">계약 잔고가 빚을 덮는 배수</span></div>
+    <div class="nc-tile"><span class="k">네비우스 계약 ÷ 빚</span><span class="v dash-skeleton" id="t-c2" data-source="nc_cover" data-field="cover" data-where="company=%EB%84%A4%EB%B9%84%EC%9A%B0%EC%8A%A4">—</span><span class="s">선지급 비중 약 절반 이상</span></div>
+    <div class="nc-tile"><span class="k">대출 금리 격차</span><span class="v dash-skeleton" id="t-rate" data-source="nc_rates">—</span><span class="s">빅테크 고객 있음 vs 없음</span></div>
+    <div class="nc-tile"><span class="k">2026년 새 계약 중 앤트로픽</span><span class="v dash-skeleton" id="t-anth" data-source="nc_sum" data-field="anth_share" data-row="0">—</span><span class="s">값이 공개된 네오클라우드 계약 <span data-source="nc_sum" data-field="deals_total" data-row="0">—</span> 기준</span></div>
+  </section>
+
+
+  <section class="nc-card" id="campus" data-source="nc_campus nc_campus_sum">
+    <h2>캠퍼스 진행 상황 · 지은 것 vs 짓는 것</h2>
+    
+    <details class="cp-edu" id="cp-edu">
+      <summary><span class="k" style="display:block;font-size:13px;font-weight:800;color:#b03d20">먼저 감 잡기 · 1GW는 얼마짜리인가</span>1GW 캠퍼스 ≈ GPU 약 50만 개 ≈ <b>66~80조 원</b> · 한국 1년 예산의 <b>약 10%</b><span class="mo">눌러서 계산 근거 보기 ▾</span></summary>
+      <div class="f">
+        <div><span>1GW 캠퍼스 =</span><b>GPU 약 50만 개</b><small>(최신 랙 1개 = GPU 72개·약 120kW, 냉각 등 빼고 칩에 가는 전력 기준 어림)</small></div>
+        <div><span>엔비디아 장비 값 =</span><b>약 400억 달러+</b><span>≈ <b>53조 원</b></span></div>
+        <div><span>건물·전력·냉각까지 전체 =</span><b>500~600억 달러</b><span>≈ <b>66~80조 원</b></span></div>
+      </div>
+      <div class="cmp">한국 정부의 2026년 1년 예산이 <b>727.9조 원</b>입니다.<br>1GW 캠퍼스 하나가 나라 1년 예산의 <b>약 10%</b>, 10GW면 <b>한국 1년 예산과 맞먹는 돈</b>입니다.<br>이 페이지 10개사가 계획한 캠퍼스를 다 합치면 <b id="cp-edu-tot">—</b>입니다.</div>
+      <div class="bars" id="cp-edu-bars"></div>
+      <p class="nt">기준: 젠슨 황 "1GW 시설에 500~600억 달러", "엔비디아가 1GW당 파는 장비는 400억 달러 넘게"(2026년 10월 BG2 팟캐스트) · 환율 1달러 = 1,325원(10/26) · 2026년 예산은 2025년 12월 2일 국회 통과 총지출. GPU 수와 금액은 어림값이라 칩 세대·설계에 따라 달라집니다.</p>
+    </details>
+    <p class="cp-sum" id="cp-sum">—</p>
+    <div class="cp-chips" id="cp-chips"></div>
+    <div class="cp-map" id="cp-map"><div id="cp-svg"></div><div class="cp-ov" id="cp-ov" hidden></div><button type="button" class="cp-polbtn" id="cp-pol">🗳 민주·공화 지역</button>
+      <div class="cp-mleg"><span><i style="background:#1a7a45"></i>가동 중</span><span><i style="background:#2f8f6a"></i>일부 가동</span><span><i style="background:#e07b16"></i>건설 중</span><span><i style="background:#8a877f"></i>계획</span><span><i style="background:transparent;border:1.5px dashed #16181a;width:9px;height:9px"></i>⇄ 짓는 곳·쓰는 곳이 다른 캠퍼스</span><span>누르고 있으면 확대</span></div><div class="cp-mleg" id="cp-pleg" hidden><span><i style="background:#cfe0f5;border-radius:2px"></i>2024 대선 민주 승리 주</span><span><i style="background:#f6d3cf;border-radius:2px"></i>공화 승리 주</span><span><i style="background:transparent;border:1.5px solid #16181a;border-radius:2px"></i>데이터센터 규제·쟁점 주</span></div></div>
+    <div class="cp-polbox" id="cp-polbox" hidden></div>
+    <div id="cp-panel"></div>
+    <div class="cp-eta" id="cp-eta"></div>
+    
+    <div id="cp-list" style="display:none"></div>
+    <p class="sm" style="font-size:13px;color:var(--color-fg-muted);margin:4px 0 0">MW는 회사가 밝힌 기준(IT 전력 또는 전체 전력)이 섞여 있습니다. 레이크 매리너·바버 레이크·리버 벤드·비컨 포인트처럼 땅 주인과 운영사가 다른 캠퍼스는 두 회사에 모두 나오므로 합치면 겹칩니다. 3분기 실적(11월 초~중순) 뒤 다시 갱신합니다.</p>
+  </section>
+
+  <section class="nc-card" id="cover">
+    <h2>계약이 빚을 몇 배 덮나</h2>
+    <p class="nc-sub">회사마다 <b>계약 잔고(이미 서명한 앞으로 받을 돈)</b>와 <b>빚</b>을 같은 축에 놓았습니다. 배수가 클수록 이미 받기로 한 돈으로 빚을 갚을 여유가 큽니다. 계약 잔고는 여러 해에 걸쳐 들어오는 매출이라 그대로 현금은 아니며, 운영비·이자를 빼기 전 금액입니다. 엔스케일·람다는 비상장입니다.</p>
+    <div class="nc-rows" id="cover-rows" data-source="nc_cover"></div>
+  </section>
+
+  <section class="nc-card" id="mix">
+    <h2>누가 돈을 내나 — 계약 잔고의 상대방</h2>
+    <p class="nc-sub">막대는 계약 잔고를 상대방별로 나눈 것입니다. 빅테크(마이크로소프트·메타·아마존)는 신용등급이 높은 고객이고, 엔비디아는 지분을 가진 채 고객이자 보증인이기도 합니다. AI 연구소(오픈AI·앤트로픽)는 등급이 없는 고객입니다. 아래에 지분 관계와 보증·선지급을 붙였습니다.</p>
+    <div class="nc-legend" id="mix-legend" data-source="nc_backlog"></div>
+    <div class="nc-rows" id="mix-rows" data-source="nc_backlog nc_mix"></div>
+    <p class="nc-sub">주의: 같은 메가와트가 겹쳐 잡힙니다. 헛8이 비컨포인트를 엔비디아에 빌려주고, 람다가 그 GPU를 돌리며, 앤트로픽이 그 연산을 삽니다. 그래서 회사별 잔고를 더하면 안 됩니다. 코어위브의 '기타'에는 마이크로소프트가 들어 있어 빅테크 비중이 실제보다 낮게 보입니다.</p>
+  </section>
+
+  <section class="nc-card" id="debt">
+    <h2>빚은 어떤 종류인가</h2>
+    <p class="nc-sub">빚 종류마다 무게가 다릅니다. <b>GPU 담보대출</b>은 고객 계약을 담보로 묶어 계약 기간 안에 갚도록 짜여 있고, <b>전환사채</b>는 금리가 낮은 대신 주식으로 바뀔 수 있어(희석) 부도 위험보다 주주 몫 희석이 쟁점입니다. 빗금은 약정만 하고 GPU가 들어올 때마다 꺼내 쓰는 한도라 전부 쓴 돈은 아닙니다.</p>
+    <div class="nc-legend" id="debt-legend" data-source="nc_debt"></div>
+    <div class="nc-rows" id="debt-rows" data-source="nc_debt"></div>
+  </section>
+
+  <div class="nc-grid2">
+    <section class="nc-card" id="prepay">
+      <h2>GPU 값을 고객이 먼저 내나</h2>
+      <p class="nc-sub">새 GPU 값 가운데 고객이 미리 낸 비중입니다. 선지급이 많을수록 빌릴 돈이 줄어듭니다. 대형 고객이 없는 소형 GPU 클라우드는 선지급이 거의 없습니다.</p>
+      <div class="nc-rows" id="prepay-rows" data-source="nc_prepay"></div>
+    </section>
+    <section class="nc-card" id="rates">
+      <h2>대출 금리는 고객이 정한다</h2>
+      <p class="nc-sub">같은 GPU 담보라도 빅테크 계약이 붙으면 금리가 절반 이하로 내려갑니다. 대출 기관이 GPU 자체보다 <b>고객의 신용</b>을 담보로 보고 있다는 뜻입니다.</p>
+      <div class="nc-rows" id="rate-rows" data-source="nc_rates"></div>
+    </section>
+  </div>
+
+  <section class="nc-card" id="gw">
+    <h2>와트당 매출 — 실제로 번 돈 vs 부르는 값</h2>
+    <p class="nc-sub">1년에 전력 1와트당 매출(달러, = 10억 달러/기가와트)입니다. 진한 막대는 실제 매출을 가동 용량으로 나눈 값, 나머지는 단기·장기 계약에서 부르는 임대료입니다. 코어위브의 실현값은 빅테크 클라우드보다 낮고 오라클과 비슷합니다. 장기 계약을 낮은 값에 묶어 둔 대신 매출이 확정돼 있다는 뜻이고, 단기 호가와 장기 계약 값의 차이가 클수록 지금 수요가 장기 값보다 비싸게 거래된다는 신호입니다.</p>
+    <div class="nc-legend" id="gw-legend" data-source="nc_rev_gw"></div>
+    <div class="nc-gw" id="gw-rows" data-source="nc_rev_gw"></div>
+  </section>
+
+  <section class="nc-card" id="deals">
+    <h2>2026년 새 계약 — 누가 빌렸나</h2>
+    <p class="nc-sub">값이 공개된 네오클라우드 계약(1월 1일~10월 18일 서명)입니다. 앤트로픽이 가장 큰 손이고, 메타가 그다음입니다. 앤트로픽은 네오클라우드 밖에서도 AWS·스페이스X 멤피스·테라울프와 계약했습니다.</p>
+    <div class="nc-legend" id="cust-legend" data-source="nc_cust"></div>
+    <div class="nc-bar" id="cust-bar" data-source="nc_cust" style="height:22px"></div>
+    <div class="nc-tbox">
+      <table class="nc-table" id="deal-tbl" data-source="nc_deals" data-row-key="neocloud,customer">
+        <thead><tr>
+          <th data-field="neocloud">네오클라우드</th>
+          <th data-field="customer">고객</th>
+          <th class="n" data-field="value_bn">계약(억 달러)</th>
+          <th data-field="signed">서명</th>
+          <th data-field="specifics">내용</th>
+        </tr></thead>
+        <tbody id="deal-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="nc-card" id="view">
+    <h2>시장이 과하게 걱정하는 부분 vs 그래도 남는 위험</h2>
+    <p class="nc-sub">위 자료로 '네오클라우드는 빚더미'라는 이야기를 나눠 보면 이렇습니다. 매수·매도 권유가 아닙니다.</p>
+    <div class="nc-vs">
+      <div class="side ok">
+        <h3>과하게 보는 부분</h3>
+        <ul>
+          <li><b>빚만 보고 계약은 안 본다</b> — 상장 3곳은 이미 서명한 계약이 빚의 두 배를 넘습니다. 빚이 많아 보이는 건 계약이 그만큼 커서이기도 합니다.</li>
+          <li><b>상대방이 빅테크·엔비디아다</b> — 마이크로소프트·메타·아마존은 최상위 신용이고, 엔비디아는 지분을 가진 채 남는 용량을 사 주거나 임대료를 보증합니다. 구글도 채굴업체 출신 캠퍼스의 임대료를 보증합니다.</li>
+          <li><b>고객이 GPU 값을 먼저 낸다</b> — 네비우스·아이렌은 새 GPU 값의 절반가량을 고객 선지급으로 대고 있어, 빚으로 GPU를 산다는 그림과 다릅니다.</li>
+          <li><b>금리가 말해 준다</b> — 대출 기관은 빅테크 계약이 붙은 대출에 소형 업체의 절반 이하 금리를 받습니다. 시장이 신용을 그렇게 매기고 있다는 뜻입니다.</li>
+          <li><b>정치 반발은 '금지'보다 '비용 분담'으로 모인다</b> — 실제로 나온 조치는 송전 비용 부담·대형 사용자 별도 요금제·세금 혜택 축소가 대부분입니다. 이미 계약과 전력 승인이 끝난 캠퍼스를 멈추는 법은 거의 없습니다. 선거철 헤드라인만큼 실제 타격이 크지는 않을 수 있습니다.</li>
+          <li><b>전환사채는 부도보다 희석 문제</b> — 네비우스·아이렌 빚의 대부분은 낮은 금리의 전환사채라, 갚지 못할 위험보다 주식 수가 늘어나는 문제에 가깝습니다.</li>
+        </ul>
+      </div>
+      <div class="side bad">
+        <h3>그래도 남는 위험</h3>
+        <ul>
+          <li><b>코어위브 쏠림</b> — 7곳 빚의 절반이 한 회사에 있고, 회사채·공급사 대출까지 종류가 가장 다양합니다. 코어위브 실적과 차환이 업계 전체 분위기를 좌우합니다.</li>
+          <li><b>AI 연구소는 등급이 없다</b> — 엔스케일·람다·테라울프 잔고의 큰 몫이 앤트로픽·오픈AI입니다. 두 회사의 자금 조달이 막히면 계약 이행이 흔들릴 수 있습니다.</li>
+          <li><b>같은 돈이 여러 번 잡힌다</b> — 엔비디아는 투자자·고객·보증인을 겸하고, 같은 메가와트가 임대→운영→판매로 겹쳐 잡힙니다. 순환 구조라는 비판이 나오는 지점입니다.</li>
+          <li><b>장기 계약 값이 낮다</b> — 코어위브의 실현 와트당 매출은 빅테크 클라우드보다 낮습니다. 금리·전력비가 오르면 남는 이익이 얇아질 수 있습니다.</li>
+          <li><b>선거철 불확실성</b> — 공화당 후보들까지 민주당 공세에 맞춰 수위를 올리면서, 텍사스 신규 프로젝트 동결 같은 실제 조치도 나왔습니다. 결과가 나올 때까지는 새 캠퍼스 인허가 지연과 전력 비용 상승 가능성이 주가 할인 요인으로 남습니다. 선거(11월 3일) 뒤 텍사스 동결이 풀리는지가 첫 확인 지점입니다.</li>
+          <li><b>소형 업체는 다른 세상</b> — 대형 고객 없는 GPU 클라우드는 선지급 없이 두 자릿수 금리로 빌립니다. 문제가 생긴다면 이쪽이 먼저입니다.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="nc-card nc-read" id="howto">
+    <h2>읽는 법</h2>
+    <ul>
+      <li><b>계약 잔고</b>는 회사마다 기준이 다릅니다(잔여 계약, S-1 총계약가치, 임대 총계약가치). 같은 회사 안에서 빚과 견주는 데 쓰고, 회사끼리 금액을 더하지 않습니다.</li>
+      <li><b>계약 ÷ 빚 배수</b>는 이 페이지가 계산한 값입니다. 계약 잔고는 여러 해에 나눠 들어오는 매출이고 비용을 빼기 전이라, 1배를 넘는다고 빚을 다 갚는다는 뜻은 아닙니다. 다만 배수가 클수록 매출 확정성이 높습니다.</li>
+      <li><b>보증·선지급</b>은 빚이 흔들릴 때 누가 받쳐 주는지입니다. 엔비디아의 미사용 용량 매입, 구글의 임대료 보증, 마이크로소프트의 선지급이 대표적입니다.</li>
+      <li>숫자는 2026년 6~9월 공시와 보도를 정리한 차트에서 옮겼습니다. 새 공시가 나오면 바뀝니다.</li>
+    </ul>
+  </section>
+
+  <section class="nc-card nc-src" id="sources">
+    <h2>출처</h2>
+    <ul>
+      <li>빚 구조: 코어위브·네비우스·아이렌 공시(2026년 6월 30일 기준과 이후 발행분), 엔스케일 S-1과 9월 자금 조달, 람다·크루소·플루이드스택 대출 발표, 로이터·블룸버그·DCD 보도를 정리한 차트</li>
+      <li>계약 잔고·지분·보증: 코어위브·네비우스·아이렌·헛8·테라울프·사이퍼 공시와 발표, 엔스케일 S-1(인베스팅닷컴 경유), 람다 투자자 서한(WSJ 경유), 엔비디아 지분(13G·WSJ), 비컨포인트 임차인(FT) — 9월 30일 기준을 정리한 차트</li>
+      <li>선지급·금리: 네비우스 2026년 2분기 보고서(선수수익 6월 30일 59.8억 달러), 아이렌 2026 회계연도 4분기 실적 발표(8월 27일), 코어위브 2분기 10-Q(선수수익 97억 달러), 2026년 GPU 대출 가이드(AltStreet·AM Compute)</li>
+      <li>와트당 매출: ZeroHedge 정리 차트 / 2026년 계약: 회사 발표·공시와 블룸버그·CNBC·로이터 보도(엔스케일·람다·볼타는 블룸버그 보도)</li>
+      <li>이 페이지의 자료 파일은 대시보드를 열 수 있는 사람 누구나 내려받을 수 있습니다.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+(function(){
+  const n = (x) => (x === null || x === undefined || x === '' ? null : Number(x));
+  dash.calc('nc_cover', {
+    inputs: ['nc_debt', 'nc_backlog', 'nc_prepay'],
+    title: '계약 잔고 ÷ 빚',
+    description: '빚과 계약 잔고가 둘 다 있는 회사마다 잔고를 빚으로 나눈 배수와 잔고 중 빅테크·엔비디아·AI 연구소 비중을 계산합니다.',
+    fn: (nc_debt, nc_backlog, nc_prepay) => {
+      const b = new Map(nc_backlog.map((r) => [r.company, r]));
+      const p = new Map(nc_prepay.map((r) => [r.company, r]));
+      return nc_debt.filter((d) => b.has(d.company)).map((d) => {
+        const k = b.get(d.company), debt = Number(d.total_bn), bl = Number(k.total_bn);
+        return {
+          company: d.company, ticker: d.ticker, debt_bn: debt, backlog_bn: bl, basis: k.basis,
+          cover: bl / debt,
+          strong_share: (Number(k.bigtech) + Number(k.nvidia)) / bl * 100,
+          lab_share: Number(k.ai_labs) / bl * 100,
+          prepay: p.has(d.company) ? p.get(d.company).label : null,
+        };
+      }).sort((a, z) => z.debt_bn - a.debt_bn);
+    },
+  });
+  dash.calc('nc_mix', {
+    inputs: ['nc_backlog'],
+    title: '계약 잔고 상대방 비중',
+    description: '회사별 계약 잔고에서 빅테크·AI 연구소·엔비디아·기타가 차지하는 비중(%)입니다.',
+    fn: (nc_backlog) => nc_backlog.map((r) => {
+      const t = Number(r.total_bn);
+      return { company: r.company, bigtech_pct: r.bigtech / t * 100, ai_labs_pct: r.ai_labs / t * 100, nvidia_pct: r.nvidia / t * 100, other_pct: r.other / t * 100 };
+    }),
+  });
+  dash.calc('nc_cust', {
+    inputs: ['nc_deals'],
+    title: '2026년 계약 고객별 합계',
+    description: '2026년 값이 공개된 네오클라우드 계약을 고객별로 더하고 전체 대비 비중을 냅니다(제인스트리트·엔비디아는 기타).',
+    fn: (nc_deals) => {
+      const big = ['앤트로픽', '메타', '오픈AI'];
+      const sum = {};
+      nc_deals.forEach((d) => { const k = big.includes(d.customer) ? d.customer : '기타'; sum[k] = (sum[k] || 0) + Number(d.value_bn); });
+      const tot = Object.values(sum).reduce((a, x) => a + x, 0);
+      return [...big, '기타'].filter((k) => sum[k]).map((k) => ({ customer: k, value_bn: sum[k], share: sum[k] / tot * 100 }));
+    },
+  });
+  dash.calc('nc_sum', {
+    inputs: ['nc_debt', 'nc_cover', 'nc_cust'],
+    title: '네오클라우드 요약 숫자',
+    description: '7곳 빚 합계와 코어위브 비중, 상장 3곳(코어위브·네비우스·아이렌) 계약÷빚 배수의 최소·최대, 2026년 계약 합계와 앤트로픽 비중입니다.',
+    fn: (nc_debt, nc_cover, nc_cust) => {
+      const tot = nc_debt.reduce((a, d) => a + Number(d.total_bn), 0);
+      const crwv = nc_debt.find((d) => d.ticker === 'CRWV');
+      const listed = nc_cover.filter((r) => ['CRWV', 'NBIS', 'IREN'].includes(r.ticker)).map((r) => r.cover);
+      const dt = nc_cust.reduce((a, c) => a + c.value_bn, 0);
+      const an = nc_cust.find((c) => c.customer === '앤트로픽');
+      return [{ debt_total: tot, crwv_share: crwv ? crwv.total_bn / tot * 100 : null, listed_cover_min: Math.min(...listed), listed_cover_max: Math.max(...listed), deals_total: dt, anth_share: an ? an.share : null }];
+    },
+  });
+
+  const C = dash.colors;
+  const MUTED = 'color-mix(in srgb, var(--color-fg-muted) 45%, transparent)';
+  const fP = (x, d = 0) => (x == null ? '—' : x.toFixed(d) + '%');
+  const fX = (x) => (x == null ? '—' : x.toFixed(1) + '배');
+  const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+  const fail = (box) => { box.replaceChildren(); const d = el('div', 'nc-fail'); d.append(el('i'), document.createTextNode('Failed to load')); box.appendChild(d); };
+  const legend = (box, items) => { box.replaceChildren(...items.map(([c, t, st]) => { const s = el('span'); const i = el('i'); i.style.background = c; if (st) i.className = 'st'; s.append(i, document.createTextNode(t)); return s; })); };
+  const seg = (bar, parts, scale) => { bar.replaceChildren(); parts.forEach(([v, c, st]) => { if (!v) return; const b = el('b', st ? 'st' : null); b.style.width = (v / scale * 100) + '%'; b.style.background = c; bar.appendChild(b); }); };
+  const fmtWon = (bn) => (bn == null ? '—' : Math.round(bn * 10).toLocaleString('en-US') + '억 달러');
+
+  function draw() {
+    const D = dash.data('nc_debt'), K = dash.data('nc_backlog'), P = dash.data('nc_prepay'), R = dash.data('nc_rates'), G = dash.data('nc_rev_gw'), Q = dash.data('nc_deals');
+    const CV = dash.data('nc_cover'), MX = dash.data('nc_mix'), CU = dash.data('nc_cust'), S = dash.data('nc_sum');
+    const s = S.status === 'ok' && S.data[0] ? S.data[0] : null;
+
+    // header + tiles
+    document.getElementById('take-line').classList.toggle('dash-skeleton', !s);
+    document.querySelectorAll('[data-source=nc_sum][data-field]').forEach((e) => {
+      const f = e.dataset.field, v = s ? s[f] : null;
+      e.textContent = !s ? '—' : f === 'debt_total' || f === 'deals_total' ? fmtWon(v) : f.endsWith('_share') ? fP(v) : v == null ? '—' : v.toFixed(1);
+      e.classList.remove('dash-skeleton');
+    });
+    const cv = CV.status === 'ok' ? CV.data : [];
+    [['t-c1', '코어위브'], ['t-c2', '네비우스']].forEach(([id, c]) => { const e = document.getElementById(id); const r = cv.find((x) => x.company === c); e.textContent = r ? fX(r.cover) : '—'; e.classList.toggle('dash-skeleton', !r && CV.status !== 'error'); });
+    const tr = document.getElementById('t-rate');
+    if (R.status === 'ok') { const lo = R.data[0], hi = R.data[R.data.length - 1]; tr.textContent = `${n(lo.rate_low)}% vs ${n(hi.rate_low)}~${n(hi.rate_high)}%`; tr.classList.remove('dash-skeleton'); } else tr.textContent = '—';
+
+    // cover rows
+    const cb = document.getElementById('cover-rows');
+    if (CV.status === 'ok') {
+      cb.replaceChildren();
+      const mx = Math.max(...cv.map((r) => r.backlog_bn));
+      cv.forEach((r) => {
+        const row = el('div', 'nc-row'); row.dataset.key = r.company;
+        const top = el('div', 'top'); const nm = el('span', 'nm', r.company); nm.appendChild(el('small', null, r.ticker + ' · ' + r.basis));
+        const x = el('span', 'nc-x', '계약이 빚의 ' + fX(r.cover)); top.append(nm, x);
+        const p1 = el('div', 'nc-pair'); const b1 = el('div', 'nc-bar'); seg(b1, [[r.backlog_bn, C[0]]], mx); p1.append(el('span', null, '계약'), b1, el('span', null, fmtWon(r.backlog_bn)));
+        const p2 = el('div', 'nc-pair'); const b2 = el('div', 'nc-bar'); seg(b2, [[r.debt_bn, 'var(--color-bad)']], mx); p2.append(el('span', null, '빚'), b2, el('span', null, fmtWon(r.debt_bn)));
+        const det = el('div', 'det');
+        det.append(document.createTextNode('빅테크·엔비디아 '), el('b', null, fP(r.strong_share)), document.createTextNode(' · AI 연구소 '), el('b', null, fP(r.lab_share)));
+        if (r.prepay) { det.append(document.createTextNode(' · ' + r.prepay)); }
+        row.append(top, p1, p2, det); cb.appendChild(row);
+      });
+    } else if (CV.status === 'error' || D.status === 'error' || K.status === 'error') fail(cb); else cb.replaceChildren();
+
+    // mix rows
+    const mixCols = [['bigtech', C[0], '빅테크'], ['ai_labs', C[1], 'AI 연구소'], ['nvidia', C[2], '엔비디아'], ['other', MUTED, '기타·미공개']];
+    legend(document.getElementById('mix-legend'), mixCols.map(([, c, t]) => [c, t]));
+    const mb = document.getElementById('mix-rows');
+    if (K.status === 'ok') {
+      mb.replaceChildren();
+      const mx = Math.max(...K.data.map((r) => n(r.total_bn)));
+      const pct = new Map((MX.status === 'ok' ? MX.data : []).map((r) => [r.company, r]));
+      let grp = null;
+      K.data.forEach((r) => {
+        if (r.group !== grp) { grp = r.group; mb.appendChild(el('div', 'nc-sub', grp)); }
+        const row = el('div', 'nc-row'); row.dataset.key = r.company;
+        const top = el('div', 'top'); const nm = el('span', 'nm', r.company); nm.appendChild(el('small', null, r.basis));
+        top.append(nm, el('span', 'val', fmtWon(n(r.total_bn))));
+        const bar = el('div', 'nc-bar'); seg(bar, mixCols.map(([k, c]) => [n(r[k]), c]), mx);
+        const pr = pct.get(r.company);
+        const det = el('div', 'det', r.detail + ' (10억 달러)');
+        if (pr) { det.append(document.createTextNode(' — 빅테크 '), el('b', null, fP(pr.bigtech_pct)), document.createTextNode(' · 엔비디아 '), el('b', null, fP(pr.nvidia_pct)), document.createTextNode(' · AI 연구소 '), el('b', null, fP(pr.ai_labs_pct))); }
+        const tags = el('div', 'nc-tags');
+        [['지분', r.equity], ['받침', r.backstop]].forEach(([k, v]) => { const d = el('div'); d.append(el('em', null, k), el('span', null, v)); tags.appendChild(d); });
+        row.append(top, bar, det, tags); mb.appendChild(row);
+      });
+    } else if (K.status === 'error') fail(mb); else mb.replaceChildren();
+
+    // debt rows
+    const debtCols = [['gpu_backed', C[0], 'GPU 담보대출'], ['bonds', C[3], '회사채'], ['convertible', C[1], '전환사채'], ['supplier', C[4], '공급사 대출'], ['credit_other', MUTED, '신용한도·기타']];
+    legend(document.getElementById('debt-legend'), debtCols.map(([, c, t]) => [c, t]).concat([[MUTED, '빗금 = 약정 후 필요할 때 인출', true]]));
+    const db = document.getElementById('debt-rows');
+    if (D.status === 'ok') {
+      db.replaceChildren();
+      const mx = Math.max(...D.data.map((r) => n(r.total_bn)));
+      D.data.forEach((r) => {
+        const row = el('div', 'nc-row'); row.dataset.key = r.company;
+        const top = el('div', 'top'); const nm = el('span', 'nm', r.company); nm.appendChild(el('small', null, r.ticker));
+        top.append(nm, el('span', 'val', fmtWon(n(r.total_bn))));
+        const bar = el('div', 'nc-bar');
+        seg(bar, debtCols.map(([k, c]) => [n(r[k]), c, r.partly_undrawn && k === 'gpu_backed']), mx);
+        const parts = debtCols.filter(([k]) => n(r[k])).map(([k, , t]) => t + ' ' + fmtWon(n(r[k])));
+        const det = el('div', 'det', parts.join(' · '));
+        const cu = el('div', 'det'); cu.append(el('b', null, '주요 고객 '), document.createTextNode(r.customers));
+        row.append(top, bar, det, cu); db.appendChild(row);
+      });
+    } else if (D.status === 'error') fail(db); else db.replaceChildren();
+
+    // prepay
+    const pb = document.getElementById('prepay-rows');
+    if (P.status === 'ok') {
+      pb.replaceChildren();
+      P.data.forEach((r) => {
+        const row = el('div', 'nc-row'); row.dataset.key = r.company;
+        const top = el('div', 'top'); top.append(el('span', 'nm', r.company), el('span', 'val', r.low == null ? '비중 미공개' : r.high > 0 ? `${r.low}~${r.high}%` : '거의 0%'));
+        const bar = el('div', 'nc-bar');
+        if (r.low != null) seg(bar, [[n(r.low), 'var(--color-ok)'], [n(r.high) - n(r.low), 'color-mix(in srgb, var(--color-ok) 40%, transparent)']], 100);
+        row.append(top, bar, el('div', 'det', r.detail), el('div', 'det', '선지급 고객: ' + r.prepayers)); pb.appendChild(row);
+      });
+    } else if (P.status === 'error') fail(pb); else pb.replaceChildren();
+
+    // rates
+    const rb = document.getElementById('rate-rows');
+    if (R.status === 'ok') {
+      rb.replaceChildren();
+      const mx = Math.max(...R.data.map((r) => n(r.rate_high)));
+      R.data.forEach((r, i) => {
+        const row = el('div', 'nc-row'); row.dataset.key = r.tier;
+        const top = el('div', 'top'); top.append(el('span', 'nm', r.tier), el('span', 'val', r.rate_low === r.rate_high ? `약 ${r.rate_low}%` : `${r.rate_low}~${r.rate_high}%`));
+        const bar = el('div', 'nc-bar'); seg(bar, [[n(r.rate_low), i ? 'var(--color-bad)' : 'var(--color-ok)'], [n(r.rate_high) - n(r.rate_low), 'color-mix(in srgb, var(--color-bad) 40%, transparent)']], mx * 1.1);
+        row.append(top, bar, el('div', 'det', r.desc)); rb.appendChild(row);
+      });
+    } else if (R.status === 'error') fail(rb); else rb.replaceChildren();
+
+    // $/W
+    const gwCols = [['realized', C[0], '실제 매출 ÷ 가동 용량'], ['quoted_short', 'var(--color-bad)', '단기 계약 호가'], ['quoted_long', C[4], '장기 계약 호가']];
+    legend(document.getElementById('gw-legend'), gwCols.map(([, c, t]) => [c, t]));
+    const gb = document.getElementById('gw-rows');
+    if (G.status === 'ok') {
+      gb.replaceChildren();
+      const mx = Math.max(...G.data.flatMap((r) => gwCols.map(([k]) => n(r[k]) || 0)));
+      G.data.forEach((r) => {
+        const g = el('div', 'g'); g.dataset.key = r.provider;
+        const nm = el('span', 'nm', r.provider); nm.appendChild(el('small', null, r.kind)); g.appendChild(nm);
+        gwCols.forEach(([k, c, t]) => {
+          const v = n(r[k]); if (v == null) return;
+          const p = el('div', 'nc-pair'); const b = el('div', 'nc-bar'); seg(b, [[v, c]], mx);
+          p.append(el('span', null, t.slice(0, 2)), b, el('span', null, v.toFixed(2) + '달러')); g.appendChild(p);
+        });
+        gb.appendChild(g);
+      });
+    } else if (G.status === 'error') fail(gb); else gb.replaceChildren();
+
+    // deals
+    const custCols = { '앤트로픽': C[1], '메타': C[0], '오픈AI': C[5], '기타': MUTED };
+    const cl = document.getElementById('cust-legend'), cbar = document.getElementById('cust-bar');
+    if (CU.status === 'ok') {
+      legend(cl, CU.data.map((r) => [custCols[r.customer], `${r.customer} ${fmtWon(r.value_bn)} (${fP(r.share)})`]));
+      seg(cbar, CU.data.map((r) => [r.value_bn, custCols[r.customer]]), CU.data.reduce((a, r) => a + r.value_bn, 0));
+    } else { cl.replaceChildren(); cbar.replaceChildren(); }
+    const body = document.getElementById('deal-body'); body.replaceChildren();
+    if (Q.status === 'ok') {
+      Q.data.slice().sort((a, b) => n(b.value_bn) - n(a.value_bn)).forEach((r) => {
+        const tr = document.createElement('tr'); tr.dataset.key = encodeURIComponent(r.neocloud) + ',' + encodeURIComponent(r.customer);
+        [[r.neocloud, ''], [r.customer, ''], [Math.round(n(r.value_bn) * 10).toLocaleString('en-US'), 'n'], [r.signed.replace('-', '.'), ''], [r.specifics, 'w']].forEach(([t, c]) => { const td = el('td', c || null, t); tr.appendChild(td); });
+        body.appendChild(tr);
+      });
+    } else if (Q.status === 'error') { const tr = document.createElement('tr'); const td = el('td'); td.colSpan = 5; fail(td); tr.appendChild(td); body.appendChild(tr); }
+  }
+  dash.onData(draw);
+})();
+</script>
+<script>
+(function(){
+const STC={'가동 중':'var(--color-ok)','일부 가동':'#2f8f6a','건설 중':'#e07b16','착공 전·계획':'var(--color-fg-muted)'};
+const ORD=['코어위브','네비우스','아이렌','크루소','플루이드스택','엔스케일','테라울프','헛8','사이퍼','람다'];
+const nf=v=>v==null||isNaN(v)?'—':Number(v).toLocaleString('ko-KR');
+const today=new Date('2026-10-28');const old=d=>d&&(today-new Date(d))/864e5>90;
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function drawCP(){const C=dash.data('nc_campus'),S=dash.data('nc_campus_sum');const list=document.getElementById('cp-list');if(!list)return;
+ if(C.status!=='ok'||S.status!=='ok'){list.textContent=C.status==='error'?'불러오지 못했습니다':'불러오는 중';return}
+ list.textContent='';const sum=S.data,rows=C.data;const mx=Math.max(...sum.map(r=>Number(r.total_planned_mw)||0));
+ const cos=sum.slice().sort((a,b)=>(ORD.indexOf(a.company)+99)%99-(ORD.indexOf(b.company)+99)%99);
+ const by=s=>rows.filter(r=>r.company===s);
+ const cnt={};rows.forEach(r=>cnt[r.stage]=(cnt[r.stage]||0)+1);
+ const on=sum.reduce((x,r)=>x+(Number(r.total_online_mw)||0),0);
+ const W=1325,BUD=727.9,lo=500,hi=600,jo=mw=>[mw/1000*lo*1e8*W/1e12,mw/1000*hi*1e8*W/1e12];
+ {const totMW=sum.reduce((x,r)=>x+(Number(r.total_planned_mw)||0),0);const [a1,a2]=jo(totMW);const t=document.getElementById('cp-edu-tot');if(t)t.textContent='약 '+(totMW/1000).toFixed(0)+'GW, 약 '+Math.round(a1/100)*100+'~'+Math.round(a2/100)*100+'조 원(한국 1년 예산의 '+(a1/BUD).toFixed(1)+'~'+(a2/BUD).toFixed(1)+'배, 겹치는 캠퍼스 포함)';
+  const bx=document.getElementById('cp-edu-bars');if(bx){bx.textContent='';const items=[['한국 1년 예산',BUD,'g'],['1GW 캠퍼스',(lo+hi)/2*1e8*W/1e12,''],['10개사 계획 합계',(a1+a2)/2,'']];const m=Math.max(...items.map(x=>x[1]));items.forEach(([l,v,c])=>{const d=document.createElement('div');const sp=document.createElement('span');sp.textContent=l+' '+Math.round(v).toLocaleString('ko-KR')+'조';const i=document.createElement('i');if(c)i.className=c;i.style.width=(v/m*100)+'%';d.append(sp,i);bx.appendChild(d)})}}
+ const se=document.getElementById('cp-sum');se.textContent='';se.append('10개사 캠퍼스 '+rows.length+'곳 중 ',Object.assign(el('b',null,(cnt['가동 중']||0)+(cnt['일부 가동']||0)+'곳'),{}),'이 전기가 들어와 돌고 있고, ',el('b',null,(cnt['건설 중']||0)+'곳'),'이 건설 중, ',el('b',null,(cnt['착공 전·계획']||0)+'곳'),'은 아직 계획 단계입니다. 대부분 계획 용량의 절반도 켜지 않은 상태라, 앞으로 1~2년은 "약속한 날짜에 전기를 켜는지"가 빚 상환만큼 중요합니다.');
+
+ // 지도 + 회사 칩 + 캠퍼스 버튼
+ {const PATHS={"nation": "M647.9,492.4L647.9,492.4L647.9,492.4ZM780.1,466.0L787.0,486.2L794.9,499.6L806.0,513.6L806.6,521.8L820.0,544.3L822.8,554.1L823.8,574.5L819.7,586.0L806.9,589.7L800.6,577.8L791.9,575.3L785.4,563.2L777.5,556.8L766.4,542.8L771.1,533.2L761.8,533.4L763.5,517.1L758.8,505.0L746.0,498.3L740.3,490.6L727.4,487.4L713.6,500.7L707.4,499.8L705.7,493.6L695.8,488.3L680.6,485.8L663.7,490.0L655.9,487.8L646.4,489.4L636.1,489.7L624.7,495.4L619.2,498.9L627.3,507.1L626.2,513.3L632.4,513.8L634.1,521.7L619.7,515.3L612.5,521.1L608.1,515.4L600.9,522.7L590.3,517.4L584.2,507.8L578.8,505.8L570.5,513.0L553.5,508.2L540.6,510.3L522.4,517.4L523.6,509.1L518.3,510.5L519.9,519.4L510.3,529.5L491.9,539.1L480.2,548.3L477.4,546.5L469.3,564.2L467.8,575.8L471.4,591.7L474.4,595.1L451.7,592.0L434.3,583.6L427.9,569.9L427.6,559.4L412.0,540.7L405.1,521.7L390.3,505.7L366.4,505.4L356.7,521.5L337.1,510.9L329.9,503.6L328.1,491.9L322.9,479.9L315.7,475.3L296.2,452.0L264.2,448.2L262.9,458.3L246.8,456.2L208.1,450.4L142.3,411.7L145.0,407.0L99.4,401.6L96.5,382.2L81.6,362.4L69.7,356.7L65.0,349.2L48.8,344.2L46.4,340.4L49.7,328.1L41.5,313.2L34.8,296.1L39.6,285.9L31.4,274.2L33.2,260.8L38.4,270.1L35.8,257.2L29.3,254.5L27.0,243.0L20.1,228.9L24.0,209.1L18.4,197.1L31.2,172.8L32.5,159.9L32.8,139.9L45.3,120.6L57.1,92.4L64.9,70.5L70.9,70.2L64.1,65.1L66.9,51.0L66.4,23.4L69.7,20.1L76.9,27.1L90.1,33.0L96.5,39.0L92.4,52.3L96.1,51.9L101.7,37.5L102.3,20.9L100.0,14.3L140.0,25.3L183.5,35.9L198.0,39.0L265.4,51.8L302.7,57.4L340.3,62.1L376.8,65.6L444.8,69.8L479.4,70.6L510.7,70.7L510.7,62.1L515.6,64.1L520.1,77.3L540.3,78.2L563.3,87.3L565.8,90.7L576.6,85.7L596.1,90.7L581.9,97.5L558.9,119.3L560.2,121.1L576.1,115.0L585.3,123.0L600.5,115.7L618.5,100.5L624.3,99.6L615.4,111.7L628.2,114.3L633.0,120.8L643.6,121.3L651.8,115.2L669.9,111.0L669.7,117.6L683.4,114.8L684.4,121.4L694.0,127.5L674.2,130.9L662.8,127.2L637.8,139.6L632.4,153.0L628.0,166.1L641.6,147.6L635.4,165.1L635.3,173.6L630.8,195.3L634.1,212.3L640.3,229.8L651.9,227.5L658.6,215.5L658.8,198.0L652.3,184.2L651.8,174.8L654.9,159.7L663.5,147.8L674.1,141.9L670.4,138.3L675.3,132.7L696.7,139.9L701.2,146.9L702.3,162.4L694.1,177.1L698.9,180.1L704.6,170.6L709.8,167.6L715.2,172.4L721.5,191.1L720.9,199.8L716.2,199.3L708.2,221.7L725.5,227.4L737.5,223.2L748.4,213.0L756.1,208.9L767.5,200.2L780.3,186.0L774.8,175.9L783.7,171.7L799.7,171.9L809.0,169.2L819.3,161.0L814.9,146.4L820.4,141.2L832.2,124.3L857.5,117.8L886.1,110.5L890.8,102.3L900.0,86.1L899.0,67.4L905.9,47.6L912.4,52.2L922.6,45.8L929.7,49.7L938.7,79.8L944.5,79.8L946.1,86.9L951.9,88.0L957.0,94.7L950.2,105.5L935.7,117.5L931.0,110.0L930.1,122.8L918.0,130.9L912.7,138.3L910.1,150.1L909.4,154.7L914.3,158.4L909.4,165.7L921.7,177.7L930.9,176.7L920.0,183.3L917.8,179.3L912.7,186.3L910.5,182.7L909.8,182.1L907.6,190.7L901.7,193.4L884.7,198.3L874.0,208.3L899.5,201.7L885.7,212.9L871.6,219.2L869.1,216.3L868.9,217.1L866.5,221.4L871.4,222.4L873.1,237.2L865.3,257.1L849.3,246.3L849.1,245.8L849.7,244.3L854.7,258.0L861.2,262.6L863.7,270.2L862.5,280.4L858.3,288.2L856.5,301.3L852.6,300.6L855.4,283.8L851.6,285.2L846.3,271.3L839.0,266.2L841.5,251.7L836.7,254.0L836.2,268.7L843.7,284.1L834.6,281.5L827.0,273.7L824.5,278.6L845.9,287.3L849.1,305.4L846.3,310.4L854.8,308.3L858.8,315.9L859.3,322.9L847.3,332.7L863.2,329.3L865.6,334.5L859.7,344.3L843.0,343.4L854.2,347.0L850.4,355.8L859.1,353.5L855.6,361.1L843.8,364.5L834.4,376.6L833.4,384.0L822.7,386.1L816.3,392.2L813.5,403.5L800.6,418.9L792.1,423.7L786.1,434.5L782.5,442.3ZM104.1,551.6L104.1,551.6L104.1,551.6ZM99.1,569.8L99.1,569.8L99.1,569.8ZM95.0,582.0L95.0,582.0L95.0,582.0ZM93.3,575.4L98.9,570.6L104.5,573.3L95.3,579.5ZM93.1,582.8L93.1,582.8L93.1,582.8ZM88.8,587.6L88.8,587.6L88.8,587.6ZM71.7,593.6L71.7,593.6L71.7,593.6ZM71.0,591.6L71.0,591.6L71.0,591.6ZM68.1,593.4L68.1,593.4L68.1,593.4ZM65.7,590.1L65.7,590.1L65.7,590.1ZM67.5,564.1L67.5,564.1L67.5,564.1ZM60.8,591.2L60.8,591.2L60.8,591.2ZM58.2,592.3L58.2,592.3L58.2,592.3ZM66.1,523.9L66.1,523.9L66.1,523.9ZM55.9,595.9L55.9,595.9L55.9,595.9ZM44.6,596.9L44.6,596.9L44.6,596.9ZM42.6,595.4L42.6,595.4L42.6,595.4ZM40.6,595.9L40.6,595.9L40.6,595.9ZM44.1,547.4L44.1,547.4L44.1,547.4ZM31.2,600.7L31.2,600.7L31.2,600.7ZM50.7,504.5L65.6,499.7L65.2,503.9L74.2,503.6L73.2,497.5L66.5,495.5L59.3,484.4L67.1,481.3L75.2,471.3L89.3,465.0L122.5,473.6L132.8,474.4L147.2,547.0L154.5,547.2L163.6,554.7L169.4,545.8L180.7,553.8L192.6,565.1L200.0,566.5L201.4,577.9L192.7,573.6L188.2,565.3L183.2,563.4L171.3,551.1L167.9,559.3L150.9,551.2L135.3,551.6L119.2,547.1L121.0,552.8L104.8,560.2L106.3,546.2L99.5,563.5L76.6,585.8L46.7,594.8L66.4,584.5L80.9,573.4L83.9,563.1L75.7,566.2L71.0,560.6L64.7,564.1L63.8,551.0L58.3,553.3L52.6,546.6L51.0,538.2L60.6,525.7L64.3,527.8L73.0,523.1L72.5,513.9L67.6,516.5L55.2,514.1ZM24.8,603.0L24.8,603.0L24.8,603.0ZM28.4,573.2L28.4,573.2L28.4,573.2ZM20.4,602.1L20.4,602.1L20.4,602.1ZM26.8,568.3L26.8,568.3L26.8,568.3ZM16.0,603.0L16.0,603.0L16.0,603.0ZM34.4,517.7L44.8,522.4L40.8,524.4ZM7.0,603.0L7.0,603.0L7.0,603.0ZM23.4,539.8L23.4,539.8L23.4,539.8ZM-0.0,602.2L-0.0,602.2L-0.0,602.2ZM-6.2,601.1L-6.2,601.1L-6.2,601.1ZM-10.1,599.3L-10.1,599.3L-10.1,599.3ZM-10.9,601.2L-10.9,601.2L-10.9,601.2ZM-15.0,601.4L-15.0,601.4L-15.0,601.4ZM-18.1,599.6L-18.1,599.6L-18.1,599.6ZM-20.0,597.4L-20.0,597.4L-20.0,597.4ZM-30.2,592.5L-30.2,592.5L-30.2,592.5ZM-35.1,593.3L-35.1,593.3L-35.1,593.3ZM-40.7,588.5L-40.7,588.5L-40.7,588.5ZM-55.8,576.5L-55.8,576.5L-55.8,576.5ZM-57.6,570.8L-57.6,570.8L-57.6,570.8ZM197.3,577.4L197.3,577.4L197.3,577.4ZM196.4,577.0L196.4,577.0L196.4,577.0ZM194.6,574.8L194.6,574.8L194.6,574.8ZM187.5,570.0L187.5,570.0L187.5,570.0ZM187.0,569.1L187.0,569.1L187.0,569.1ZM186.2,576.9L186.2,576.9L186.2,576.9ZM184.9,573.0L186.7,569.5L195.6,580.1ZM182.6,574.2L182.6,574.2L182.6,574.2ZM180.3,567.1L180.3,567.1L180.3,567.1ZM174.5,555.9L181.3,562.5L179.5,565.8ZM173.8,564.7L177.2,563.4L180.8,572.6ZM173.4,565.8L173.4,565.8L173.4,565.8ZM169.1,561.4L169.1,561.4L169.1,561.4ZM120.8,555.0L120.8,555.0L120.8,555.0ZM120.3,551.4L120.3,551.4L120.3,551.4ZM814.5,594.4L814.5,594.4L814.5,594.4ZM812.7,595.9L812.7,595.9L812.7,595.9ZM807.4,599.0L807.4,599.0L807.4,599.0ZM793.7,604.2L800.4,597.6L805.0,600.1ZM789.5,605.4L789.5,605.4L789.5,605.4ZM786.4,605.4L786.4,605.4L786.4,605.4ZM777.4,558.3L777.4,558.3L777.4,558.3ZM770.2,606.1L770.2,606.1L770.2,606.1ZM720.4,495.2L720.4,495.2L720.4,495.2ZM939.7,114.8L939.7,114.8L939.7,114.8ZM937.9,116.1L937.9,116.1L937.9,116.1ZM936.3,112.2L936.3,112.2L936.3,112.2ZM932.1,116.0L932.1,116.0L932.1,116.0ZM933.5,124.7L933.5,124.7L933.5,124.7ZM931.3,119.2L931.3,119.2L931.3,119.2ZM930.1,116.2L930.1,116.2L930.1,116.2ZM927.6,186.7L927.6,186.7L927.6,186.7ZM918.3,188.3L918.3,188.3L918.3,188.3ZM864.2,329.1L864.2,329.1L864.2,329.1ZM863.3,349.6L863.3,349.6L863.3,349.6ZM77.1,374.3L77.1,374.3L77.1,374.3ZM74.7,384.2L74.7,384.2L74.7,384.2ZM65.1,358.3L65.1,358.3L65.1,358.3ZM58.2,374.3L58.2,374.3L58.2,374.3ZM56.6,355.0L56.6,355.0L56.6,355.0ZM50.2,355.1L50.2,355.1L50.2,355.1ZM46.8,353.4L46.8,353.4L46.8,353.4ZM305.4,584.4L309.7,572.5L322.2,578.2L332.0,589.1L317.3,598.1L309.2,600.4ZM291.6,557.9L293.9,555.3L306.4,560.7L298.5,565.6ZM291.5,566.6L291.5,566.6L291.5,566.6ZM283.8,558.2L283.8,558.2L283.8,558.2ZM278.6,553.8L279.6,551.1L291.4,552.5ZM258.0,543.0L264.6,540.0L271.3,549.3L261.5,549.2ZM226.0,532.6L235.4,528.5L235.7,534.2ZM216.3,536.5L216.3,536.5L216.3,536.5ZM848.9,285.1L849.8,284.9L848.9,285.1ZM847.2,281.4L847.2,281.4L847.2,281.4ZM677.0,130.8L677.0,130.8L677.0,130.8ZM663.4,133.1L663.4,133.1L663.4,133.1ZM662.3,138.5L662.3,138.5L662.3,138.5ZM660.8,135.5L660.8,135.5L660.8,135.5ZM658.7,142.4L658.7,142.4L658.7,142.4ZM656.5,149.6L656.5,149.6L656.5,149.6ZM655.4,152.7L655.4,152.7L655.4,152.7ZM645.5,139.8L645.5,139.8L645.5,139.8ZM601.3,92.3L601.3,92.3L601.3,92.3ZM644.4,493.1L644.4,493.1L644.4,493.1ZM639.3,492.8L639.3,492.8L639.3,492.8ZM635.1,493.8L635.1,493.8L635.1,493.8ZM631.7,493.5L631.7,493.5L631.7,493.5ZM899.2,195.6L899.2,195.6L899.2,195.6ZM896.7,198.0L896.7,198.0L896.7,198.0ZM815.5,153.8L815.5,153.8L815.5,153.8ZM814.1,153.7L814.1,153.7L814.1,153.7ZM720.6,223.0L720.6,223.0L720.6,223.0ZM718.6,222.2L718.6,222.2L718.6,222.2ZM93.2,50.8L93.2,50.8L93.2,50.8ZM98.7,24.5L98.7,24.5L98.7,24.5ZM98.8,20.3L98.8,20.3L98.8,20.3ZM97.6,23.4L97.6,23.4L97.6,23.4ZM95.0,31.0L95.0,31.0L95.0,31.0ZM95.5,17.9L95.5,17.9L95.5,17.9ZM93.6,19.5L93.6,19.5L93.6,19.5ZM95.2,12.9L95.2,12.9L95.2,12.9ZM91.0,21.2L98.1,21.7L95.6,26.6ZM91.1,19.0L91.1,19.0L91.1,19.0ZM641.9,146.2L641.9,146.2L641.9,146.2ZM635.6,150.3L635.6,150.3L635.6,150.3ZM584.0,113.2L584.0,113.2L584.0,113.2ZM583.2,116.1L583.2,116.1L583.2,116.1ZM581.2,115.1L581.2,115.1L581.2,115.1ZM579.6,117.2L579.6,117.2L579.6,117.2ZM579.7,114.3L579.7,114.3L579.7,114.3ZM579.1,113.0L579.1,113.0L579.1,113.0ZM579.2,118.4L579.2,118.4L579.2,118.4ZM576.0,114.0L576.0,114.0L576.0,114.0ZM637.5,497.3L637.5,497.3L637.5,497.3ZM628.5,497.9L628.5,497.9L628.5,497.9ZM623.7,510.1L623.7,510.1L623.7,510.1ZM609.5,520.7L609.5,520.7L609.5,520.7ZM605.9,521.2L605.9,521.2L605.9,521.2ZM602.1,522.3L602.1,522.3L602.1,522.3ZM576.5,511.4L576.5,511.4L576.5,511.4ZM908.4,188.4L908.4,188.4L908.4,188.4ZM906.7,195.9L906.7,195.9L906.7,195.9Z", "states": "M646.4,489.4L642.1,455.0L643.6,386.1L641.6,383.9L689.2,379.6L702.4,427.0L709.5,439.9L705.9,450.0L710.7,468.7L660.7,473.9L666.2,486.4L663.7,490.0M145.0,407.0L148.8,406.9L148.0,391.6L152.3,389.0L153.8,380.4L162.7,373.6L156.8,356.1L159.9,331.0L172.6,331.4L176.0,313.3L239.3,324.2L264.6,327.9L246.8,456.2M710.7,468.7L714.2,474.9L765.7,471.4L769.6,475.6L768.7,466.0L780.1,466.0M689.2,379.6L712.7,376.8L734.8,373.6L731.6,381.5L741.0,385.3L748.3,396.1L771.2,414.4L773.9,422.7L786.1,434.5M651.9,227.5L685.6,223.9L685.8,225.3L692.5,284.2L693.5,291.5L682.5,295.0L674.1,312.8L668.6,308.8L655.3,318.6L646.7,315.0L639.3,319.7L637.9,317.4L646.5,298.4L640.3,229.8M393.8,271.8L464.7,274.8L509.9,275.2L516.4,277.6L513.5,285.7L522.3,295.2L522.8,343.8L489.0,343.9L432.5,342.7L389.6,340.6M910.1,150.1L904.5,145.1L890.8,102.3M909.8,182.1L905.4,176.0L898.7,178.0L871.1,183.9L870.9,167.6L884.0,164.8L902.9,160.6L909.4,154.7M912.7,186.3L910.5,182.7M560.2,121.1L555.9,122.2L556.4,135.6L547.5,147.2L551.2,149.8L549.3,165.9L572.2,182.1L576.3,193.2L549.2,194.4L490.5,195.2L490.7,154.3L484.4,147.3L489.1,139.8L485.5,123.3L484.9,102.4L480.5,89.3L479.4,70.6M849.7,244.3L850.7,241.4L860.6,230.8L849.9,220.7L849.6,213.8L854.9,204.0L870.0,208.9L869.1,216.3M868.9,217.1L866.5,221.4M849.3,246.3L849.1,245.8M712.7,376.8L712.6,371.3L721.0,362.5L726.2,361.7L737.7,350.1L750.7,345.5L755.5,333.9L780.3,331.0L812.0,325.5L858.8,315.9M822.7,386.1L798.1,368.4L777.6,371.4L771.9,364.7L749.4,367.0L734.8,373.6M489.1,139.8L459.8,139.3L412.4,137.2L371.0,134.3L376.8,65.6M522.8,343.8L522.9,355.2L526.7,380.5L526.4,420.7L512.4,413.4L499.2,415.2L491.5,419.7L481.1,413.7L476.0,418.5L466.5,412.6L453.9,408.5L451.6,410.6L423.9,398.2L425.7,353.9L371.6,350.7L372.4,339.3M767.5,200.2L768.5,206.3L840.8,192.1L849.6,202.3L854.9,204.0M850.7,241.4L844.8,244.5L782.2,256.8L764.5,259.8L761.1,239.1L756.1,208.9M490.5,195.2L487.5,211.9L490.6,218.2L476.4,209.5L465.7,211.5L456.7,206.1L403.7,203.9L365.2,201.0L369.0,155.7L371.0,134.3M526.4,420.7L534.7,422.5L535.0,434.6L535.4,457.9L545.4,476.2L542.3,490.2L543.0,502.0L540.6,510.3M296.2,452.0L295.1,446.9L362.8,453.2L370.9,350.7L371.6,350.7M365.2,201.0L361.4,246.5M277.0,237.1L333.1,243.9L361.4,246.5L395.3,249.0L393.8,271.8L389.6,340.6L372.4,339.3L315.2,334.3L264.6,327.9L277.0,237.1L243.5,232.2L247.1,209.5L256.0,153.8L257.8,142.0L298.3,147.9L339.2,152.9L369.0,155.7M898.7,178.0L901.7,193.4M874.0,208.3L871.1,183.9M509.9,275.2L502.0,261.8L544.8,261.2L570.9,259.5L576.4,264.7L578.0,279.5L589.7,289.8L591.3,297.2L600.9,298.4L597.6,313.2L614.0,326.3L613.7,333.4L621.1,339.9L616.8,351.3L615.6,351.4L614.6,351.5L611.9,363.1L600.2,363.9L605.1,357.3L603.6,352.2L549.9,354.6L522.9,355.2M782.2,256.8L784.1,268.5L794.3,257.4L800.3,258.2L804.5,253.3L813.9,260.3L812.8,264.9L802.5,259.1L802.8,266.0L796.5,276.6L794.0,275.0L790.3,285.9L783.7,282.8L776.5,309.2L761.2,318.0L749.9,318.6L747.1,313.2L740.9,311.0L733.7,301.6L733.2,294.7L737.8,293.4L741.4,279.5L757.8,263.4L761.1,239.1M576.4,264.7L583.6,247.8L581.5,240.7L593.2,236.0L595.5,223.8L587.0,215.3L634.1,212.3M639.3,319.7L639.0,327.2L632.2,329.8L631.5,337.1L624.3,334.0L621.1,339.9M611.9,363.1L612.6,367.2L604.6,377.6L602.8,386.7L598.4,393.0L591.7,415.1L587.5,420.3L589.3,433.0L535.0,434.6M32.5,159.9L100.4,179.1L83.2,245.5L156.8,356.1M863.7,270.2L852.5,272.5L844.8,244.5M576.3,193.2L579.9,210.5L587.0,215.3M502.0,261.8L496.8,233.9L490.6,218.2M692.5,284.2L698.5,283.2L703.8,289.8L720.6,292.4L726.9,287.9L733.2,294.7M747.1,313.2L735.1,324.6L728.9,334.2L719.7,338.7L704.2,340.7L644.7,346.0L641.4,349.5L616.8,351.3M615.6,351.4L614.6,351.5M849.8,284.9L848.9,285.1M862.5,280.4L855.4,283.8M827.0,273.7L827.9,269.9M825.8,266.9L827.9,269.9L825.8,266.9L813.9,260.3M708.2,221.7L685.8,225.3M632.4,153.0L627.3,147.0L628.2,140.2L622.6,135.0L590.2,127.9L585.3,123.0M602.8,386.7L641.6,383.9M624.7,495.4L617.6,484.9L619.0,477.0L582.5,479.1L584.3,466.9L595.3,448.2L590.9,444.9L589.3,433.0M256.0,153.8L236.6,148.4L224.8,149.1L224.0,141.5L219.3,138.5L214.5,118.2L205.1,119.7L213.4,96.2L208.8,95.5L200.8,79.7L195.2,74.2L193.2,61.5L198.0,39.0M884.0,164.8L880.5,145.7L881.8,127.9L887.9,122.0L886.1,110.5M857.5,117.8L862.0,133.9L863.6,148.5L867.0,150.2L870.9,167.6M70.9,70.2L80.1,79.9L78.9,86.8L86.1,91.4L98.1,90.6L102.8,94.6L138.7,94.7L170.5,102.3L175.6,112.3L157.4,136.6L161.6,143.2L157.9,150.4L148.8,190.7L100.4,179.1M719.7,338.7L755.5,333.9M176.0,313.3L197.7,201.0L247.1,209.5M183.5,35.9L170.7,92.4L170.5,102.3M197.7,201.0L148.8,190.7"};const SC2={'가동 중':'#1a7a45','일부 가동':'#2f8f6a','건설 중':'#e07b16','착공 전·계획':'#8a877f'};const RK={'가동 중':0,'일부 가동':1,'건설 중':2,'착공 전·계획':3};
+  const WATCH=['오라클','코어위브','네비우스','아이렌'];
+  const ST=/^(텍사스|뉴욕|루이지애나|펜실베이니아|미주리|캘리포니아|노스다코타|조지아|뉴저지|웨스트버지니아|켄터키|메릴랜드|와이오밍) /;
+  const host=document.getElementById('cp-svg');host.textContent='';const proj=(d3.geoAlbersUsa?d3.geoAlbersUsa().scale(1300).translate([487.5,305]):null);
+  const svg=d3.select(host).append('svg').attr('viewBox','0 0 975 610').attr('role','img').attr('aria-label','미국 네오클라우드 캠퍼스 지도');
+  svg.append('path').attr('class','nat').attr('d',PATHS.nation);svg.append('path').attr('class','sts').attr('d',PATHS.states);const gp=svg.append('g'),gl=svg.append('g');
+  const S={};rows.forEach(r=>{const base=r.site.split(' (')[0];const k=base+'|'+r.lat+'|'+r.lon;(S[k]=S[k]||{base,rs:[],lat:r.lat,lon:r.lon,country:r.country}).rs.push(r)});
+  const sites=Object.values(S).map(x=>{const mw=d3.max(x.rs,r=>+r.planned_mw||0)||0;const ons=x.rs.filter(r=>r.online_mw!=null).map(r=>+r.online_mw);const on=ons.length?d3.max(ons):null;const best=x.rs.slice().sort((a,b)=>RK[a.stage]-RK[b.stage])[0];return Object.assign(x,{mw,on,st:best.stage,p:(x.rs[0].px!=null?[x.rs[0].px,x.rs[0].py]:(proj&&x.lat!=null?proj([x.lon,x.lat]):null))})}).sort((a,b)=>b.mw-a.mw);
+  const rad=d3.scaleSqrt().domain([0,d3.max(sites,x=>x.mw)||1]).range([6,24]);
+  sites.forEach(x=>{x.shared=new Set(x.rs.map(r=>r.company)).size>1});sites.filter(x=>x.p&&x.shared).forEach(x=>{x.sh=gp.append('circle').attr('class','shr').attr('data-r',rad(x.mw)+5).attr('cx',x.p[0]).attr('cy',x.p[1]).attr('r',rad(x.mw)+5)});sites.filter(x=>x.p).forEach(x=>{x.c=gp.append('circle').attr('class','pt').attr('data-r',rad(x.mw)).attr('cx',x.p[0]).attr('cy',x.p[1]).attr('r',rad(x.mw)).attr('fill',SC2[x.st]).style('cursor','pointer');bindPress(x.c.node(),x)});
+  let VB=[0,0,975,610];const FULL=[0,0,975,610];
+  let raf=0;const setVB=(t,dur)=>{cancelAnimationFrame(raf);const from=VB.slice();VB=t;const k=t[2]/975,rf=Math.max(.35,Math.sqrt(k));const cs=[...gp.node().querySelectorAll('circle')].map(c=>[c,+c.getAttribute('r'),+c.dataset.r*rf]);const t0=performance.now();const sv=svg.node();
+   const step=now=>{let q=Math.min(1,(now-t0)/Math.max(1,dur));q=q<.5?2*q*q:1-Math.pow(-2*q+2,2)/2;sv.setAttribute('viewBox',from.map((v,i)=>v+(t[i]-v)*q).join(' '));cs.forEach(([c,a,b])=>c.setAttribute('r',a+(b-a)*q));if(q<1)raf=requestAnimationFrame(step)};raf=requestAnimationFrame(step)};
+  const fit=pts=>{if(!pts.length)return FULL;const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]);let x0=d3.min(xs),x1=d3.max(xs),y0=d3.min(ys),y1=d3.max(ys);let w=Math.max(260,(x1-x0)*1.5+80),h=w*610/975;if((y1-y0)*1.4+60>h){h=(y1-y0)*1.4+60;w=h*975/610}w=Math.min(975,w);h=Math.min(610,h);const cx=(x0+x1)/2,cy=(y0+y1)/2;return [Math.max(0,Math.min(975-w,cx-w/2)),Math.max(0,Math.min(610-h,cy-h/2)),w,h]};
+  const panel=document.getElementById('cp-panel'),chips=document.getElementById('cp-chips'),reset=document.getElementById('cp-reset');
+  const gw=mw=>mw>=1000?(Math.round(mw/10)/100)+'GW':nf(mw)+'MW';
+  let curCo=null;
+  const ov=document.getElementById('cp-ov');let tOut=null,tDown=0;
+  function mark(x){gp.selectAll('circle').classed('on',false);gl.selectAll('*').remove();if(!x.p)return;x.c.classed('on',true).raise();
+   gl.append('circle').attr('class','ring').attr('cx',x.p[0]).attr('cy',x.p[1]).attr('r',rad(x.mw)+6);}
+  function caption(x){const ww=jo(x.mw);ov.hidden=false;ov.style.setProperty('--ic',SC2[x.st]);ov.textContent='';
+   const t=el('b',null,x.base.replace(ST,''));const pm=x.base.match(ST);const plc=el('span','plc','📍 '+(pm?'미국 '+pm[1]+'주':(x.country||''))+(x.rs.some(r=>r.geo_approx)?' (정확한 부지 비공개)':''));const s1=el('span','st',x.st);
+   ov.append(t,s1,el('br'),plc,el('br'),(x.mw?gw(x.mw)+' 계획':'계획 미공개')+' · '+(x.on==null?'가동 미공개':gw(x.on)+' 가동')+(x.shared?'':' · '+x.rs[0].company));if(x.shared){ov.append(el('br'));ov.append(el('span','shl','⇄ 함께 쓰는 캠퍼스 · '+x.rs.map(r=>r.company+(r.role?'('+r.role+')':'')).join(' + ')))}
+   if(x.mw){ov.append(el('br'));const m=el('em',null,'시설비 약 '+Math.round(ww[0])+'~'+Math.round(ww[1])+'조 원');ov.append(m)}
+   if(!x.p){ov.append(el('br'),x.country+'(미국 밖)')}}
+  function zoomIn(x){if(!x.p)return;clearTimeout(tOut);const w=300,h=w*610/975;setVB([Math.max(0,Math.min(975-w,x.p[0]-w/2)),Math.max(0,Math.min(610-h,x.p[1]-h/2)),w,h],600)}
+  function zoomOut(){clearTimeout(tOut);const wait=Math.max(0,1400-(Date.now()-tDown));tOut=setTimeout(()=>setVB(FULL,700),wait)}
+  function choose(x,btn){panel.querySelectorAll('button.cs').forEach(b=>b.classList.toggle('on',b===btn));mark(x);caption(x)}
+  function bindPress(el2,x){el2.addEventListener('pointerdown',()=>{tDown=Date.now();choose(x,el2.tagName==='BUTTON'?el2:null);zoomIn(x)});['pointerup','pointerleave','pointercancel'].forEach(ev=>el2.addEventListener(ev,()=>{if(VB!==FULL)zoomOut()}));el2.addEventListener('keydown',e=>{if(e.key==='Enter'){tDown=Date.now();choose(x,el2);zoomIn(x);zoomOut()}})}
+  function pickCo(co,keepInfo){curCo=co;chips.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.co===(co||'')));ov.hidden=true;gl.selectAll('*').remove();gp.selectAll('circle').classed('on',false);
+   const mine=co?sites.filter(x=>x.rs.some(r=>r.company===co)):sites;
+   sites.forEach(x=>{const o=co?(mine.includes(x)?1:.38):null;if(x.c)x.c.style('opacity',o);if(x.sh)x.sh.style('opacity',o)});
+   setVB(FULL,500);
+   panel.textContent='';
+   if(!co){panel.append(el('p','hint','회사를 고르면 그 회사 캠퍼스만 진하게 남습니다. ★는 우리가 추적하는 종목입니다.'));return}
+   const sm=sum.find(r=>r.company===co)||{};const pl=+sm.total_planned_mw||0,ol=+sm.total_online_mw||0;const ww=jo(pl);
+   const hd=el('div','ph');hd.append(el('b',null,(WATCH.includes(co)?'★ ':'')+co),el('span',null,(sm.total_online_mw!=null?'가동 '+gw(ol):'가동 미공개')+' / 계획 '+gw(pl)));
+   const bar=el('div','cp-bar');const u=el('i','u');u.style.width='100%';const g=el('i');g.style.width=(pl?Math.min(100,ol/pl*100):0)+'%';bar.append(u,g);
+   const won=el('p','won',pl?'계획을 다 지으면 시설비 약 '+Math.round(ww[0])+'~'+Math.round(ww[1])+'조 원 · 한국 1년 예산의 '+(ww[0]/BUD*100).toFixed(0)+'~'+(ww[1]/BUD*100).toFixed(0)+'%':'');
+   const ln=el('p','ln',sm.line||'');ln.hidden=true;const grid=el('div','cp-btns');
+   mine.forEach(x=>{const b=el('button','cs');b.type='button';b.dataset.k=x.base;const t=el('b');const i=el('i');i.style.background=SC2[x.st];t.append(i,(x.mw?gw(x.mw)+' · ':'')+x.base.replace(ST,''));b.append(t,x.st+(x.shared?' · ⇄ '+x.rs.filter(r=>r.company!==co).map(r=>r.company).join('·'):''));bindPress(b,x);grid.appendChild(b)});
+   panel.append(hd,bar,won,ln,grid)}
+  chips.textContent='';const cos=[...new Set(rows.map(r=>r.company))];const order=['전체'].concat(WATCH.filter(c=>cos.includes(c)),cos.filter(c=>!WATCH.includes(c)).sort((a,b)=>((sum.find(r=>r.company===b)||{}).total_planned_mw||0)-((sum.find(r=>r.company===a)||{}).total_planned_mw||0)));
+  order.forEach((c,i)=>{if(i===1+WATCH.length)chips.appendChild(el('span','sep','그 외'));const b=el('button',WATCH.includes(c)?'w':'',c==='전체'?'전체 '+sites.length+'곳':(WATCH.includes(c)?'★ ':'')+c);b.type='button';b.dataset.co=c==='전체'?'':c;b.onclick=()=>pickCo(c==='전체'?null:c);chips.appendChild(b)});
+  
+  pickCo(WATCH.find(c=>cos.includes(c))||null);
+  // 정당 지도 토글
+  {const STP={"10":"M849.1,245.8L849.3,246.3L849.1,245.8ZM844.8,244.5L850.7,241.4L849.7,244.3L854.7,258.0L861.2,262.6L863.7,270.2L852.5,272.5Z","11":"M825.8,266.9L827.9,269.9L825.8,266.9Z","12":"M814.5,594.4L814.5,594.4L814.5,594.4ZM812.7,595.9L812.7,595.9L812.7,595.9ZM807.4,599.0L807.4,599.0L807.4,599.0ZM793.7,604.2L800.4,597.6L805.0,600.1ZM789.5,605.4L789.5,605.4L789.5,605.4ZM786.4,605.4L786.4,605.4L786.4,605.4ZM777.4,558.3L777.4,558.3L777.4,558.3ZM770.2,606.1L770.2,606.1L770.2,606.1ZM720.4,495.2L720.4,495.2L720.4,495.2ZM710.7,468.7L714.2,474.9L765.7,471.4L769.6,475.6L768.7,466.0L780.1,466.0L787.0,486.2L794.9,499.6L806.0,513.6L806.6,521.8L820.0,544.3L822.8,554.1L823.8,574.5L819.7,586.0L806.9,589.7L800.6,577.8L791.9,575.3L785.4,563.2L777.5,556.8L766.4,542.8L771.1,533.2L761.8,533.4L763.5,517.1L758.8,505.0L746.0,498.3L740.3,490.6L727.4,487.4L713.6,500.7L707.4,499.8L705.7,493.6L695.8,488.3L680.6,485.8L663.7,490.0L666.2,486.4L660.7,473.9Z","13":"M689.2,379.6L712.7,376.8L734.8,373.6L731.6,381.5L741.0,385.3L748.3,396.1L771.2,414.4L773.9,422.7L786.1,434.5L782.5,442.3L780.1,466.0L768.7,466.0L769.6,475.6L765.7,471.4L714.2,474.9L710.7,468.7L705.9,450.0L709.5,439.9L702.4,427.0Z","15":"M305.4,584.4L309.7,572.5L322.2,578.2L332.0,589.1L317.3,598.1L309.2,600.4ZM291.6,557.9L293.9,555.3L306.4,560.7L298.5,565.6ZM291.5,566.6L291.5,566.6L291.5,566.6ZM283.8,558.2L283.8,558.2L283.8,558.2ZM278.6,553.8L279.6,551.1L291.4,552.5ZM258.0,543.0L264.6,540.0L271.3,549.3L261.5,549.2ZM226.0,532.6L235.4,528.5L235.7,534.2ZM216.3,536.5L216.3,536.5L216.3,536.5Z","16":"M170.5,102.3L170.7,92.4L183.5,35.9L198.0,39.0L193.2,61.5L195.2,74.2L200.8,79.7L208.8,95.5L213.4,96.2L205.1,119.7L214.5,118.2L219.3,138.5L224.0,141.5L224.8,149.1L236.6,148.4L256.0,153.8L247.1,209.5L197.7,201.0L148.8,190.7L157.9,150.4L161.6,143.2L157.4,136.6L175.6,112.3Z","17":"M576.4,264.7L583.6,247.8L581.5,240.7L593.2,236.0L595.5,223.8L587.0,215.3L634.1,212.3L640.3,229.8L646.5,298.4L637.9,317.4L639.3,319.7L639.0,327.2L632.2,329.8L631.5,337.1L624.3,334.0L621.1,339.9L613.7,333.4L614.0,326.3L597.6,313.2L600.9,298.4L591.3,297.2L589.7,289.8L578.0,279.5Z","18":"M640.3,229.8L651.9,227.5L685.6,223.9L685.8,225.3L692.5,284.2L693.5,291.5L682.5,295.0L674.1,312.8L668.6,308.8L655.3,318.6L646.7,315.0L639.3,319.7L637.9,317.4L646.5,298.4Z","19":"M490.5,195.2L549.2,194.4L576.3,193.2L579.9,210.5L587.0,215.3L595.5,223.8L593.2,236.0L581.5,240.7L583.6,247.8L576.4,264.7L570.9,259.5L544.8,261.2L502.0,261.8L496.8,233.9L490.6,218.2L487.5,211.9Z","20":"M393.8,271.8L464.7,274.8L509.9,275.2L516.4,277.6L513.5,285.7L522.3,295.2L522.8,343.8L489.0,343.9L432.5,342.7L389.6,340.6Z","21":"M621.1,339.9L624.3,334.0L631.5,337.1L632.2,329.8L639.0,327.2L639.3,319.7L646.7,315.0L655.3,318.6L668.6,308.8L674.1,312.8L682.5,295.0L693.5,291.5L692.5,284.2L698.5,283.2L703.8,289.8L720.6,292.4L726.9,287.9L733.2,294.7L733.7,301.6L740.9,311.0L747.1,313.2L735.1,324.6L728.9,334.2L719.7,338.7L704.2,340.7L644.7,346.0L641.4,349.5L616.8,351.3ZM615.6,351.4L614.6,351.5L615.6,351.4Z","22":"M637.5,497.3L637.5,497.3L637.5,497.3ZM628.5,497.9L628.5,497.9L628.5,497.9ZM623.7,510.1L623.7,510.1L623.7,510.1ZM609.5,520.7L609.5,520.7L609.5,520.7ZM605.9,521.2L605.9,521.2L605.9,521.2ZM602.1,522.3L602.1,522.3L602.1,522.3ZM576.5,511.4L576.5,511.4L576.5,511.4ZM535.0,434.6L589.3,433.0L590.9,444.9L595.3,448.2L584.3,466.9L582.5,479.1L619.0,477.0L617.6,484.9L624.7,495.4L619.2,498.9L627.3,507.1L626.2,513.3L632.4,513.8L634.1,521.7L619.7,515.3L612.5,521.1L608.1,515.4L600.9,522.7L590.3,517.4L584.2,507.8L578.8,505.8L570.5,513.0L553.5,508.2L540.6,510.3L543.0,502.0L542.3,490.2L545.4,476.2L535.4,457.9Z","23":"M939.7,114.8L939.7,114.8L939.7,114.8ZM937.9,116.1L937.9,116.1L937.9,116.1ZM936.3,112.2L936.3,112.2L936.3,112.2ZM932.1,116.0L932.1,116.0L932.1,116.0ZM933.5,124.7L933.5,124.7L933.5,124.7ZM931.3,119.2L931.3,119.2L931.3,119.2ZM930.1,116.2L930.1,116.2L930.1,116.2ZM910.1,150.1L904.5,145.1L890.8,102.3L900.0,86.1L899.0,67.4L905.9,47.6L912.4,52.2L922.6,45.8L929.7,49.7L938.7,79.8L944.5,79.8L946.1,86.9L951.9,88.0L957.0,94.7L950.2,105.5L935.7,117.5L931.0,110.0L930.1,122.8L918.0,130.9L912.7,138.3Z","24":"M849.8,284.9L848.9,285.1L849.8,284.9ZM847.2,281.4L847.2,281.4L847.2,281.4ZM782.2,256.8L844.8,244.5L852.5,272.5L863.7,270.2L862.5,280.4L855.4,283.8L851.6,285.2L846.3,271.3L839.0,266.2L841.5,251.7L836.7,254.0L836.2,268.7L843.7,284.1L834.6,281.5L827.0,273.7L827.9,269.9L825.8,266.9L813.9,260.3L804.5,253.3L800.3,258.2L794.3,257.4L784.1,268.5Z","25":"M927.6,186.7L927.6,186.7L927.6,186.7ZM918.3,188.3L918.3,188.3L918.3,188.3ZM870.9,167.6L884.0,164.8L902.9,160.6L909.4,154.7L914.3,158.4L909.4,165.7L921.7,177.7L930.9,176.7L920.0,183.3L917.8,179.3L912.7,186.3L910.5,182.7L909.8,182.1L905.4,176.0L898.7,178.0L871.1,183.9Z","26":"M677.0,130.8L677.0,130.8L677.0,130.8ZM663.4,133.1L663.4,133.1L663.4,133.1ZM662.3,138.5L662.3,138.5L662.3,138.5ZM660.8,135.5L660.8,135.5L660.8,135.5ZM658.7,142.4L658.7,142.4L658.7,142.4ZM656.5,149.6L656.5,149.6L656.5,149.6ZM655.4,152.7L655.4,152.7L655.4,152.7ZM645.5,139.8L645.5,139.8L645.5,139.8ZM651.9,227.5L658.6,215.5L658.8,198.0L652.3,184.2L651.8,174.8L654.9,159.7L663.5,147.8L674.1,141.9L670.4,138.3L675.3,132.7L696.7,139.9L701.2,146.9L702.3,162.4L694.1,177.1L698.9,180.1L704.6,170.6L709.8,167.6L715.2,172.4L721.5,191.1L720.9,199.8L716.2,199.3L708.2,221.7L685.8,225.3L685.6,223.9ZM601.3,92.3L601.3,92.3L601.3,92.3ZM585.3,123.0L600.5,115.7L618.5,100.5L624.3,99.6L615.4,111.7L628.2,114.3L633.0,120.8L643.6,121.3L651.8,115.2L669.9,111.0L669.7,117.6L683.4,114.8L684.4,121.4L694.0,127.5L674.2,130.9L662.8,127.2L637.8,139.6L632.4,153.0L627.3,147.0L628.2,140.2L622.6,135.0L590.2,127.9Z","27":"M479.4,70.6L510.7,70.7L510.7,62.1L515.6,64.1L520.1,77.3L540.3,78.2L563.3,87.3L565.8,90.7L576.6,85.7L596.1,90.7L581.9,97.5L558.9,119.3L560.2,121.1L555.9,122.2L556.4,135.6L547.5,147.2L551.2,149.8L549.3,165.9L572.2,182.1L576.3,193.2L549.2,194.4L490.5,195.2L490.7,154.3L484.4,147.3L489.1,139.8L485.5,123.3L484.9,102.4L480.5,89.3Z","28":"M644.4,493.1L644.4,493.1L644.4,493.1ZM639.3,492.8L639.3,492.8L639.3,492.8ZM635.1,493.8L635.1,493.8L635.1,493.8ZM631.7,493.5L631.7,493.5L631.7,493.5ZM589.3,433.0L587.5,420.3L591.7,415.1L598.4,393.0L602.8,386.7L641.6,383.9L643.6,386.1L642.1,455.0L646.4,489.4L636.1,489.7L624.7,495.4L617.6,484.9L619.0,477.0L582.5,479.1L584.3,466.9L595.3,448.2L590.9,444.9Z","29":"M502.0,261.8L544.8,261.2L570.9,259.5L576.4,264.7L578.0,279.5L589.7,289.8L591.3,297.2L600.9,298.4L597.6,313.2L614.0,326.3L613.7,333.4L621.1,339.9L616.8,351.3L615.6,351.4L614.6,351.5L611.9,363.1L600.2,363.9L605.1,357.3L603.6,352.2L549.9,354.6L522.9,355.2L522.8,343.8L522.3,295.2L513.5,285.7L516.4,277.6L509.9,275.2Z","30":"M198.0,39.0L265.4,51.8L302.7,57.4L340.3,62.1L376.8,65.6L371.0,134.3L369.0,155.7L339.2,152.9L298.3,147.9L257.8,142.0L256.0,153.8L236.6,148.4L224.8,149.1L224.0,141.5L219.3,138.5L214.5,118.2L205.1,119.7L213.4,96.2L208.8,95.5L200.8,79.7L195.2,74.2L193.2,61.5Z","31":"M365.2,201.0L403.7,203.9L456.7,206.1L465.7,211.5L476.4,209.5L490.6,218.2L496.8,233.9L502.0,261.8L509.9,275.2L464.7,274.8L393.8,271.8L395.3,249.0L361.4,246.5Z","32":"M100.4,179.1L148.8,190.7L197.7,201.0L176.0,313.3L172.6,331.4L159.9,331.0L156.8,356.1L83.2,245.5Z","33":"M886.1,110.5L890.8,102.3L904.5,145.1L910.1,150.1L909.4,154.7L902.9,160.6L884.0,164.8L880.5,145.7L881.8,127.9L887.9,122.0Z","34":"M849.1,245.8L849.7,244.3L850.7,241.4L860.6,230.8L849.9,220.7L849.6,213.8L854.9,204.0L870.0,208.9L869.1,216.3L868.9,217.1L866.5,221.4L871.4,222.4L873.1,237.2L865.3,257.1L849.3,246.3Z","35":"M264.6,327.9L315.2,334.3L372.4,339.3L371.6,350.7L370.9,350.7L362.8,453.2L295.1,446.9L296.2,452.0L264.2,448.2L262.9,458.3L246.8,456.2Z","36":"M899.2,195.6L899.2,195.6L899.2,195.6ZM896.7,198.0L896.7,198.0L896.7,198.0ZM868.9,217.1L866.5,221.4L868.9,217.1ZM815.5,153.8L815.5,153.8L815.5,153.8ZM814.1,153.7L814.1,153.7L814.1,153.7ZM767.5,200.2L780.3,186.0L774.8,175.9L783.7,171.7L799.7,171.9L809.0,169.2L819.3,161.0L814.9,146.4L820.4,141.2L832.2,124.3L857.5,117.8L862.0,133.9L863.6,148.5L867.0,150.2L870.9,167.6L871.1,183.9L874.0,208.3L899.5,201.7L885.7,212.9L871.6,219.2L869.1,216.3L870.0,208.9L854.9,204.0L849.6,202.3L840.8,192.1L768.5,206.3Z","37":"M864.2,329.1L864.2,329.1L864.2,329.1ZM863.3,349.6L863.3,349.6L863.3,349.6ZM755.5,333.9L780.3,331.0L812.0,325.5L858.8,315.9L859.3,322.9L847.3,332.7L863.2,329.3L865.6,334.5L859.7,344.3L843.0,343.4L854.2,347.0L850.4,355.8L859.1,353.5L855.6,361.1L843.8,364.5L834.4,376.6L833.4,384.0L822.7,386.1L798.1,368.4L777.6,371.4L771.9,364.7L749.4,367.0L734.8,373.6L712.7,376.8L712.6,371.3L721.0,362.5L726.2,361.7L737.7,350.1L750.7,345.5Z","38":"M376.8,65.6L444.8,69.8L479.4,70.6L480.5,89.3L484.9,102.4L485.5,123.3L489.1,139.8L459.8,139.3L412.4,137.2L371.0,134.3Z","39":"M720.6,223.0L720.6,223.0L720.6,223.0ZM718.6,222.2L718.6,222.2L718.6,222.2ZM685.8,225.3L708.2,221.7L725.5,227.4L737.5,223.2L748.4,213.0L756.1,208.9L761.1,239.1L757.8,263.4L741.4,279.5L737.8,293.4L733.2,294.7L726.9,287.9L720.6,292.4L703.8,289.8L698.5,283.2L692.5,284.2Z","40":"M372.4,339.3L389.6,340.6L432.5,342.7L489.0,343.9L522.8,343.8L522.9,355.2L526.7,380.5L526.4,420.7L512.4,413.4L499.2,415.2L491.5,419.7L481.1,413.7L476.0,418.5L466.5,412.6L453.9,408.5L451.6,410.6L423.9,398.2L425.7,353.9L371.6,350.7Z","41":"M70.9,70.2L80.1,79.9L78.9,86.8L86.1,91.4L98.1,90.6L102.8,94.6L138.7,94.7L170.5,102.3L175.6,112.3L157.4,136.6L161.6,143.2L157.9,150.4L148.8,190.7L100.4,179.1L32.5,159.9L32.8,139.9L45.3,120.6L57.1,92.4L64.9,70.5Z","42":"M756.1,208.9L767.5,200.2L768.5,206.3L840.8,192.1L849.6,202.3L854.9,204.0L849.6,213.8L849.9,220.7L860.6,230.8L850.7,241.4L844.8,244.5L782.2,256.8L764.5,259.8L761.1,239.1Z","44":"M910.5,182.7L912.7,186.3L910.5,182.7ZM908.4,188.4L908.4,188.4L908.4,188.4ZM906.7,195.9L906.7,195.9L906.7,195.9ZM901.7,193.4L898.7,178.0L905.4,176.0L909.8,182.1L907.6,190.7Z","45":"M734.8,373.6L749.4,367.0L771.9,364.7L777.6,371.4L798.1,368.4L822.7,386.1L816.3,392.2L813.5,403.5L800.6,418.9L792.1,423.7L786.1,434.5L773.9,422.7L771.2,414.4L748.3,396.1L741.0,385.3L731.6,381.5Z","46":"M369.0,155.7L371.0,134.3L412.4,137.2L459.8,139.3L489.1,139.8L484.4,147.3L490.7,154.3L490.5,195.2L487.5,211.9L490.6,218.2L476.4,209.5L465.7,211.5L456.7,206.1L403.7,203.9L365.2,201.0Z","47":"M611.9,363.1L614.6,351.5L615.6,351.4L616.8,351.3L641.4,349.5L644.7,346.0L704.2,340.7L719.7,338.7L755.5,333.9L750.7,345.5L737.7,350.1L726.2,361.7L721.0,362.5L712.6,371.3L712.7,376.8L689.2,379.6L641.6,383.9L602.8,386.7L604.6,377.6L612.6,367.2Z","48":"M371.6,350.7L425.7,353.9L423.9,398.2L451.6,410.6L453.9,408.5L466.5,412.6L476.0,418.5L481.1,413.7L491.5,419.7L499.2,415.2L512.4,413.4L526.4,420.7L534.7,422.5L535.0,434.6L535.4,457.9L545.4,476.2L542.3,490.2L543.0,502.0L540.6,510.3L522.4,517.4L523.6,509.1L518.3,510.5L519.9,519.4L510.3,529.5L491.9,539.1L480.2,548.3L477.4,546.5L469.3,564.2L467.8,575.8L471.4,591.7L474.4,595.1L451.7,592.0L434.3,583.6L427.9,569.9L427.6,559.4L412.0,540.7L405.1,521.7L390.3,505.7L366.4,505.4L356.7,521.5L337.1,510.9L329.9,503.6L328.1,491.9L322.9,479.9L315.7,475.3L296.2,452.0L295.1,446.9L362.8,453.2L370.9,350.7Z","49":"M197.7,201.0L247.1,209.5L243.5,232.2L277.0,237.1L264.6,327.9L239.3,324.2L176.0,313.3Z","50":"M857.5,117.8L886.1,110.5L887.9,122.0L881.8,127.9L880.5,145.7L884.0,164.8L870.9,167.6L867.0,150.2L863.6,148.5L862.0,133.9Z","51":"M855.4,283.8L862.5,280.4L858.3,288.2L856.5,301.3L852.6,300.6ZM849.8,284.9L848.9,285.1L849.8,284.9ZM747.1,313.2L749.9,318.6L761.2,318.0L776.5,309.2L783.7,282.8L790.3,285.9L794.0,275.0L796.5,276.6L802.8,266.0L802.5,259.1L812.8,264.9L813.9,260.3L825.8,266.9L827.9,269.9L827.0,273.7L824.5,278.6L845.9,287.3L849.1,305.4L846.3,310.4L854.8,308.3L858.8,315.9L812.0,325.5L780.3,331.0L755.5,333.9L719.7,338.7L728.9,334.2L735.1,324.6Z","53":"M93.2,50.8L93.2,50.8L93.2,50.8ZM98.7,24.5L98.7,24.5L98.7,24.5ZM98.8,20.3L98.8,20.3L98.8,20.3ZM97.6,23.4L97.6,23.4L97.6,23.4ZM95.0,31.0L95.0,31.0L95.0,31.0ZM95.5,17.9L95.5,17.9L95.5,17.9ZM93.6,19.5L93.6,19.5L93.6,19.5ZM95.2,12.9L95.2,12.9L95.2,12.9ZM91.0,21.2L98.1,21.7L95.6,26.6ZM91.1,19.0L91.1,19.0L91.1,19.0ZM183.5,35.9L170.7,92.4L170.5,102.3L138.7,94.7L102.8,94.6L98.1,90.6L86.1,91.4L78.9,86.8L80.1,79.9L70.9,70.2L64.1,65.1L66.9,51.0L66.4,23.4L69.7,20.1L76.9,27.1L90.1,33.0L96.5,39.0L92.4,52.3L96.1,51.9L101.7,37.5L102.3,20.9L100.0,14.3L140.0,25.3Z","54":"M733.2,294.7L737.8,293.4L741.4,279.5L757.8,263.4L761.1,239.1L764.5,259.8L782.2,256.8L784.1,268.5L794.3,257.4L800.3,258.2L804.5,253.3L813.9,260.3L812.8,264.9L802.5,259.1L802.8,266.0L796.5,276.6L794.0,275.0L790.3,285.9L783.7,282.8L776.5,309.2L761.2,318.0L749.9,318.6L747.1,313.2L740.9,311.0L733.7,301.6Z","55":"M641.9,146.2L641.9,146.2L641.9,146.2ZM635.6,150.3L635.6,150.3L635.6,150.3ZM584.0,113.2L584.0,113.2L584.0,113.2ZM583.2,116.1L583.2,116.1L583.2,116.1ZM581.2,115.1L581.2,115.1L581.2,115.1ZM579.6,117.2L579.6,117.2L579.6,117.2ZM579.7,114.3L579.7,114.3L579.7,114.3ZM579.1,113.0L579.1,113.0L579.1,113.0ZM579.2,118.4L579.2,118.4L579.2,118.4ZM576.0,114.0L576.0,114.0L576.0,114.0ZM560.2,121.1L576.1,115.0L585.3,123.0L590.2,127.9L622.6,135.0L628.2,140.2L627.3,147.0L632.4,153.0L628.0,166.1L641.6,147.6L635.4,165.1L635.3,173.6L630.8,195.3L634.1,212.3L587.0,215.3L579.9,210.5L576.3,193.2L572.2,182.1L549.3,165.9L551.2,149.8L547.5,147.2L556.4,135.6L555.9,122.2Z","56":"M369.0,155.7L365.2,201.0L361.4,246.5L333.1,243.9L277.0,237.1L243.5,232.2L247.1,209.5L256.0,153.8L257.8,142.0L298.3,147.9L339.2,152.9Z","01":"M647.9,492.4L647.9,492.4L647.9,492.4ZM641.6,383.9L689.2,379.6L702.4,427.0L709.5,439.9L705.9,450.0L710.7,468.7L660.7,473.9L666.2,486.4L663.7,490.0L655.9,487.8L646.4,489.4L642.1,455.0L643.6,386.1Z","02":"M104.1,551.6L104.1,551.6L104.1,551.6ZM99.1,569.8L99.1,569.8L99.1,569.8ZM95.0,582.0L95.0,582.0L95.0,582.0ZM93.3,575.4L98.9,570.6L104.5,573.3L95.3,579.5ZM93.1,582.8L93.1,582.8L93.1,582.8ZM88.8,587.6L88.8,587.6L88.8,587.6ZM71.7,593.6L71.7,593.6L71.7,593.6ZM71.0,591.6L71.0,591.6L71.0,591.6ZM68.1,593.4L68.1,593.4L68.1,593.4ZM65.7,590.1L65.7,590.1L65.7,590.1ZM67.5,564.1L67.5,564.1L67.5,564.1ZM60.8,591.2L60.8,591.2L60.8,591.2ZM58.2,592.3L58.2,592.3L58.2,592.3ZM66.1,523.9L66.1,523.9L66.1,523.9ZM55.9,595.9L55.9,595.9L55.9,595.9ZM44.6,596.9L44.6,596.9L44.6,596.9ZM42.6,595.4L42.6,595.4L42.6,595.4ZM40.6,595.9L40.6,595.9L40.6,595.9ZM44.1,547.4L44.1,547.4L44.1,547.4ZM31.2,600.7L31.2,600.7L31.2,600.7ZM50.7,504.5L65.6,499.7L65.2,503.9L74.2,503.6L73.2,497.5L66.5,495.5L59.3,484.4L67.1,481.3L75.2,471.3L89.3,465.0L122.5,473.6L132.8,474.4L147.2,547.0L154.5,547.2L163.6,554.7L169.4,545.8L180.7,553.8L192.6,565.1L200.0,566.5L201.4,577.9L192.7,573.6L188.2,565.3L183.2,563.4L171.3,551.1L167.9,559.3L150.9,551.2L135.3,551.6L119.2,547.1L121.0,552.8L104.8,560.2L106.3,546.2L99.5,563.5L76.6,585.8L46.7,594.8L66.4,584.5L80.9,573.4L83.9,563.1L75.7,566.2L71.0,560.6L64.7,564.1L63.8,551.0L58.3,553.3L52.6,546.6L51.0,538.2L60.6,525.7L64.3,527.8L73.0,523.1L72.5,513.9L67.6,516.5L55.2,514.1ZM24.8,603.0L24.8,603.0L24.8,603.0ZM28.4,573.2L28.4,573.2L28.4,573.2ZM20.4,602.1L20.4,602.1L20.4,602.1ZM26.8,568.3L26.8,568.3L26.8,568.3ZM16.0,603.0L16.0,603.0L16.0,603.0ZM34.4,517.7L44.8,522.4L40.8,524.4ZM7.0,603.0L7.0,603.0L7.0,603.0ZM23.4,539.8L23.4,539.8L23.4,539.8ZM-0.0,602.2L-0.0,602.2L-0.0,602.2ZM-6.2,601.1L-6.2,601.1L-6.2,601.1ZM-10.1,599.3L-10.1,599.3L-10.1,599.3ZM-10.9,601.2L-10.9,601.2L-10.9,601.2ZM-15.0,601.4L-15.0,601.4L-15.0,601.4ZM-18.1,599.6L-18.1,599.6L-18.1,599.6ZM-20.0,597.4L-20.0,597.4L-20.0,597.4ZM-30.2,592.5L-30.2,592.5L-30.2,592.5ZM-35.1,593.3L-35.1,593.3L-35.1,593.3ZM-40.7,588.5L-40.7,588.5L-40.7,588.5ZM-55.8,576.5L-55.8,576.5L-55.8,576.5ZM-57.6,570.8L-57.6,570.8L-57.6,570.8ZM197.3,577.4L197.3,577.4L197.3,577.4ZM196.4,577.0L196.4,577.0L196.4,577.0ZM194.6,574.8L194.6,574.8L194.6,574.8ZM187.5,570.0L187.5,570.0L187.5,570.0ZM187.0,569.1L187.0,569.1L187.0,569.1ZM186.2,576.9L186.2,576.9L186.2,576.9ZM184.9,573.0L186.7,569.5L195.6,580.1ZM182.6,574.2L182.6,574.2L182.6,574.2ZM180.3,567.1L180.3,567.1L180.3,567.1ZM174.5,555.9L181.3,562.5L179.5,565.8ZM173.8,564.7L177.2,563.4L180.8,572.6ZM173.4,565.8L173.4,565.8L173.4,565.8ZM169.1,561.4L169.1,561.4L169.1,561.4ZM120.8,555.0L120.8,555.0L120.8,555.0ZM120.3,551.4L120.3,551.4L120.3,551.4Z","04":"M145.0,407.0L148.8,406.9L148.0,391.6L152.3,389.0L153.8,380.4L162.7,373.6L156.8,356.1L159.9,331.0L172.6,331.4L176.0,313.3L239.3,324.2L264.6,327.9L246.8,456.2L208.1,450.4L142.3,411.7Z","08":"M277.0,237.1L333.1,243.9L361.4,246.5L395.3,249.0L393.8,271.8L389.6,340.6L372.4,339.3L315.2,334.3L264.6,327.9Z","09":"M871.1,183.9L898.7,178.0L901.7,193.4L884.7,198.3L874.0,208.3Z","05":"M522.9,355.2L549.9,354.6L603.6,352.2L605.1,357.3L600.2,363.9L611.9,363.1L612.6,367.2L604.6,377.6L602.8,386.7L598.4,393.0L591.7,415.1L587.5,420.3L589.3,433.0L535.0,434.6L534.7,422.5L526.4,420.7L526.7,380.5Z","06":"M77.1,374.3L77.1,374.3L77.1,374.3ZM74.7,384.2L74.7,384.2L74.7,384.2ZM65.1,358.3L65.1,358.3L65.1,358.3ZM58.2,374.3L58.2,374.3L58.2,374.3ZM56.6,355.0L56.6,355.0L56.6,355.0ZM50.2,355.1L50.2,355.1L50.2,355.1ZM46.8,353.4L46.8,353.4L46.8,353.4ZM32.5,159.9L100.4,179.1L83.2,245.5L156.8,356.1L162.7,373.6L153.8,380.4L152.3,389.0L148.0,391.6L148.8,406.9L145.0,407.0L99.4,401.6L96.5,382.2L81.6,362.4L69.7,356.7L65.0,349.2L48.8,344.2L46.4,340.4L49.7,328.1L41.5,313.2L34.8,296.1L39.6,285.9L31.4,274.2L33.2,260.8L38.4,270.1L35.8,257.2L29.3,254.5L27.0,243.0L20.1,228.9L24.0,209.1L18.4,197.1L31.2,172.8Z"};const DEM=['06','41','53','35','08','27','17','51','24','10','34','36','09','44','25','50','33','23','15','11'];
+   const NM={'48':'텍사스','36':'뉴욕','22':'루이지애나','42':'펜실베이니아','29':'미주리','06':'캘리포니아','38':'노스다코타','13':'조지아','34':'뉴저지','54':'웨스트버지니아','21':'켄터키','24':'메릴랜드','56':'와이오밍','35':'뉴멕시코','55':'위스콘신','26':'미시간','39':'오하이오','51':'버지니아'};
+   const KO2ID={};Object.entries(NM).forEach(([k,v])=>KO2ID[v]=k);
+   const NOTE={'36':['뉴욕(민주)','주 전체 대형 데이터센터 신규 건설 1년 중단(모라토리엄) — 미국 첫 사례'],'48':['텍사스(공화)','주지사가 전력·물 영향 검토 동안 신규 프로젝트를 멈춰 세움 — 한때 "AI 허브"를 내세우던 곳'],'42':['펜실베이니아(2024 공화 승리 경합주)','개발사가 송전·인프라 비용을 직접 부담, 물 사용·주민 협의 기준 강화'],'51':['버지니아(민주)','데이터센터 장비 세금 감면(16억 달러) 폐지 법안이 주 상원 통과'],'39':['오하이오(공화)','상원 선거 핵심 쟁점 — 민주 후보가 "전기료는 데이터센터가 내게" 공세'],'55':['위스콘신(2024 공화 승리 경합주)','공화 주지사 후보도 세금 혜택 폐지·규제 강화로 돌아섬']};
+   const gS=svg.insert('g','.sts').attr('class','pol').style('display','none');
+   Object.entries(STP).forEach(([id,d])=>gS.append('path').attr('d',d).attr('data-id',id).attr('fill',DEM.includes(id)?'#cfe0f5':'#f6d3cf').attr('stroke',NOTE[id]?'#16181a':'none').attr('stroke-width',NOTE[id]?1.6:0).style('vector-effect','non-scaling-stroke'));
+   const btn=document.getElementById('cp-pol'),box=document.getElementById('cp-polbox');let on=false;
+   const stOf=x=>{const m=x.base.match(/^(\S+)/);return m?KO2ID[m[1]]:null};
+   function fill(){let r=0,b=0,rn=0,bn=0;sites.forEach(x=>{const id=stOf(x);if(!id||!x.p)return;if(DEM.includes(id)){b+=x.mw;bn++}else{r+=x.mw;rn++}});
+    box.textContent='';const P=(c,...xs)=>{const p=el('p',c);xs.forEach(x=>p.append(x));return p};const B=t=>el('b',null,t);
+    const h=el('h4',null,'네오클라우드 할인의 한 축, 정치 불확실성 · 11월 3일이 첫 고비');
+    const lead=P('lead','네오클라우드 주가가 실적·계약보다 싸게 거래되는 이유 중 큰 하나는 ',B('선거철 정치 불확실성'),'입니다. 중간선거(11월 3일)가 끝나면 이 부분은 일부 걷힐 수 있습니다.');
+    const ch=el('div','chain');[['① 민주당 공세','"전기료 폭탄" — 데이터센터를 동네 위험 시설처럼 그리는 프레임이 먹히고 있습니다'],['② 공화당 맞대응','표 때문에 수위를 맞춥니다 — 텍사스 신규 동결, 위스콘신 세금 혜택 폐지 공약'],['③ 시장의 해석','누가 이기든 규제·비용이 세질 수 있다 → 불확실성'],['④ 결과','새 캠퍼스 인허가·전력비 걱정이 네오클라우드 할인으로']].forEach(([k,v])=>{const d=el('div');d.append(B(k),el('br'),v);ch.appendChild(d)});
+    const real=el('div','real');real.append(B('그런데 실상은'));const ru=el('ul');[
+      ['여론과 원인은 다릅니다','텍사스 유권자 65%가 동네 데이터센터에 반대하지만, 전기료 상승의 가장 큰 원인으로 꼽은 사람은 4%뿐입니다.'],
+      ['실제 조치는 \"금지\"보다 \"비용 분담\"','송전 비용 부담·대형 사용자 별도 요금제·세금 혜택 축소가 대부분이고, 계약이 끝난 캠퍼스를 멈추는 법은 거의 없습니다.'],
+      ['망을 덜 쓰는 캠퍼스가 늘어납니다','블룸에너지 연료전지·현장 가스 발전·자체 변전소처럼 독자 전력으로 가는 곳은 주민 전기료와 연결이 약합니다.'],
+      ['다만 동부 전력망은 진짜 오릅니다','오하이오 등 13개 주 전력망(PJM)은 데이터센터 수요로 1년 새 용량 비용이 93억 달러(174%) 늘었습니다. 공세가 먹히는 지역입니다.']].forEach(([k,v])=>{const li=el('li');li.append(B(k+' — '),v);ru.appendChild(li)});real.appendChild(ru);
+    const geo=P('geo','캠퍼스 계획 용량의 ',B(Math.round(r/(r+b)*100)+'%'),'('+rn+'곳)가 2024 대선 공화 우세 주, '+Math.round(b/(r+b)*100)+'%('+bn+'곳)가 민주 우세 주에 있습니다.',el('br'),'1위 텍사스(약 57%)는 이번에 접전입니다.',el('br'),'▪ 상원: 탈라리코(민주) 50% vs 팩스턴(공화) 47%(텍사스대)',el('br'),'▪ 주지사: 애벗(공화) 48% vs 이노호사(민주) 44%(UMass Lowell)',el('br'),'오하이오 상원도 브라운(민주) 49% vs 허스티드(공화) 43%(CNN)입니다.');
+    const ul=el('details','states');ul.appendChild(el('summary',null,'주별로 막힌 곳 보기 ▾'));[['민주 우세 주에서 막힌 곳',['36','51']],['공화 우세 주에서도 막힌 곳',['48','42','55','39']]].forEach(([hh,ids])=>{ul.appendChild(el('p','gh2',hh));const u=el('ul');ids.forEach(id=>{const [a2,c]=NOTE[id];const li=el('li');li.append(B(a2+' '),c);u.appendChild(li)});ul.appendChild(u)});
+    const t3=el('div','after');t3.append(B('11월 3일 뒤 확인할 세 가지'),el('br'),'① 텍사스가 신규 프로젝트 동결을 푸는지 — 풀리면 할인의 상당 부분이 걷힐 수 있습니다',el('br'),'② 빅테크 7곳의 \"전기료 보호 서약\"이 실제 요금 설계로 이어지는지',el('br'),'③ 금지 대신 \"비용 분담\"으로 정리되는지(대형 사용자 별도 요금제 확산)');
+    const src=el('p','src','출처: 2024 대선 주별 결과 · Tribune(AFP) 8/30 · TNND 8/14 · Brookings · S&P Global 10/1 · 텍사스대 텍사스정치프로젝트 10/14 · UMass Lowell 10/9 · CNN 10/8 · 매수·매도 권유가 아닙니다.');
+    box.append(h,lead,ch,real,geo,ul,t3,src)}
+   const setOn=v=>{on=v;btn.classList.toggle('on',on);btn.textContent=on?'정당 지도 끄기':'🗳 민주·공화 지역';gS.style('display',on?null:'none');box.hidden=!on;document.getElementById('cp-pleg').hidden=!on;if(on){fill();const cl=el('button','polclose','정치 이야기 접기 ▲');cl.type='button';cl.onclick=()=>{setOn(false);document.getElementById('cp-map').scrollIntoView({block:'start',behavior:'smooth'})};box.appendChild(cl)}};
+   btn.onclick=()=>setOn(!on);
+   // 정치 상자를 다 읽고 아래로 지나가면 자연스럽게 접기(보던 자리 유지)
+   if('IntersectionObserver' in window&&!box.__io){box.__io=new IntersectionObserver(es=>{es.forEach(e=>{if(!on||e.isIntersecting)return;const r=e.boundingClientRect;if(r.bottom<0){const an=document.getElementById('cp-panel');const t0=an.getBoundingClientRect().top;setOn(false);const t1=an.getBoundingClientRect().top;if(Math.abs(t1-t0)>1)window.scrollBy(0,t1-t0)}})},{threshold:0});box.__io.observe(box)}}
+  window.__cpHi=()=>{};}
+
+ // 완공·인도 예정 (2026-10-28 추가)
+ {const box=document.getElementById('cp-eta');const B=[['H2-26','2026년 하반기','올해 안','#1a7a45'],['H1-27','2027년 상반기','6개월~1년','#2f8f6a'],['H2-27','2027년 하반기','1년 뒤','#e07b16'],['28','2028년 이후','먼 계획','#8a877f'],['late','지연·보류','목표가 밀렸거나 멈춤','#b23434'],['na','날짜 미공개','회사가 시점을 안 밝힘','#8a877f']];
+  const STAR=['코어위브','네비우스','아이렌'];
+  const render=()=>{box.textContent='';const co=window.__etaCo||null;const rs=rows.filter(r=>r.eta&&(!co||r.company===co));
+   box.append(el('h3',null,'언제 전기가 켜지나 · 완공·인도 예정'+(co?' · '+co:'')));
+   const n1=rs.filter(r=>r.eta_bucket==='H2-26').length,n2=rs.filter(r=>r.eta_bucket==='H1-27').length,nl=rs.filter(r=>r.eta_bucket==='late').length;
+   const ld=el('p','lead');ld.append('올해 안 인도 예정 ',el('b',null,n1+'곳'),', 내년 상반기 ',el('b',null,n2+'곳'),nl?', 목표가 밀렸거나 멈춘 곳 ':'',nl?el('b',null,nl+'곳'):'','입니다. 약속한 날짜에 전기를 켜는지가 앞으로 1~2년 실적과 빚 상환의 기준이 됩니다.');box.append(ld);
+   box.append(el('p','ph','데이터센터는 한 번에 다 짓고 여는 곳이 아닙니다. 건물(동)·데이터홀 단위로 완공되는 대로 순차 인도되고, 고객(입주사)은 그때마다 서버를 들여와 바로 매출이 잡히기 시작합니다. 그래서 아래 날짜는 "다음 단계 첫 인도" 기준이고, 같은 캠퍼스에 날짜가 여러 개 붙어 있습니다.'));
+   B.forEach(([k,lab,sub,bc])=>{const it=rs.filter(r=>r.eta_bucket===k).sort((a,b)=>(STAR.includes(b.company)-STAR.includes(a.company))||((+b.planned_mw||0)-(+a.planned_mw||0)));if(!it.length)return;
+    const bk=el('div','bk');const bh=el('div','bh');bh.style.setProperty('--bc',bc);bh.append(el('i'),lab+' · '+it.length+'곳 ',el('small',null,sub));bk.append(bh);
+    const lim=(k==='na'||k==='28')&&!co?3:99;
+    it.forEach((r,i)=>{const d=el('div','it'+(STAR.includes(r.company)?' star':''));d.style.setProperty('--sc',STC[r.stage]||'var(--color-fg-muted)');if(i>=lim)d.hidden=true;
+     d.append(el('b',null,r.company+' · '+r.site.split(' (')[0]),el('span','mw',(r.planned_mw?nf(r.planned_mw)+'MW':'규모 미공개')+' · '+r.stage),el('span','w',r.eta));bk.append(d)});
+    if(it.length>lim){const mb=el('button','more','나머지 '+(it.length-lim)+'곳 더 보기 ▾');mb.type='button';mb.onclick=()=>{bk.querySelectorAll('.it[hidden]').forEach(x=>x.hidden=false);mb.remove()};bk.append(mb)}
+    box.append(bk)});
+   box.append(el('p','sm','기준 2026년 10월 · 회사 실적 자료·공시·보도의 "다음 일정"을 정리했습니다. 위 회사 칩을 누르면 그 회사만 남습니다.'));};
+  window.__etaRender=render;{const on=document.querySelector('#cp-chips button.on');window.__etaCo=on&&on.dataset.co?on.dataset.co:null}render();
+  const ch=document.getElementById('cp-chips');if(ch&&!ch.__eta){ch.__eta=1;ch.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;window.__etaCo=b.dataset.co||null;render()})}}
+ cos.forEach(c=>{const box=el('div','cp-co');const h=el('div','h');h.append(el('b',null,c.company));const sp=el('span');const pl=Number(c.total_planned_mw)||0,ol=Number(c.total_online_mw)||0;
+  if(c.total_online_mw!=null){const em=el('em',null,nf(ol)+'MW');sp.append('가동 ',em,' / 계획 '+nf(pl)+'MW')}else sp.textContent='가동 미공개 / 계획 '+nf(pl)+'MW';h.append(sp);
+  const bar=el('div','cp-bar');const u=el('i','u');u.style.width=(pl/mx*100)+'%';const g=el('i');g.style.width=(ol/mx*100)+'%';bar.append(u,g);
+  const ln=el('p','ln',c.line);const [w1,w2]=jo(pl);const won=el('p','won',pl?'계획을 다 지으면 시설비 약 '+Math.round(w1)+'~'+Math.round(w2)+'조 원 · 한국 1년 예산의 '+(w1/BUD*100).toFixed(0)+'~'+(w2/BUD*100).toFixed(0)+'%':'');const mo=el('div','mo','캠퍼스 '+by(c.company).length+'곳 · 눌러서 자세히 ▾'+(old(c.updated)?' · ⏳ 최근 공시 '+c.updated:''));
+  box.append(h,bar,won,ln,mo);list.appendChild(box);
+  box.onclick=e=>{if(e.target.closest('a')||e.target.closest('.cp-sites'))return;const ex=box.querySelector('.cp-sites');if(ex){ex.remove();box.classList.remove('open');if(window.__cpHi)window.__cpHi(null);mo.textContent=mo.textContent.replace('▴','▾');return}
+   const wrap=el('div','cp-sites');by(c.company).forEach(r=>{const d=el('div','cp-site');d.style.setProperty('--sc',STC[r.stage]||'var(--color-fg-muted)');
+    const t=el('div','t');t.append(el('span',null,r.site),el('span','st',r.stage));
+    const mw=el('div','mw','가동 '+(r.online_mw==null?'미공개':nf(r.online_mw)+'MW')+' / 계획 '+(r.planned_mw==null?'미공개':nf(r.planned_mw)+'MW')+(r.mw_basis&&r.mw_basis!=='불명'?' ('+r.mw_basis+')':'')+(r.tenant?' · 고객 '+r.tenant:'')+(r.planned_mw?' · 시설비 약 '+Math.round(jo(r.planned_mw)[0])+'~'+Math.round(jo(r.planned_mw)[1])+'조 원':''));
+    const nt=el('p',null,r.note);const nx=el('p','nx');nx.append(el('b',null,'다음 → '),r.next||'—');
+    const sm=el('p','sm');sm.append((old(r.updated)?'':'')+'기준 '+r.updated+' · ');if(old(r.updated))sm.append(el('span','old','⏳ 3개월 넘은 정보 · '));if(r.source){const a=el('a',null,'출처');a.href=r.source;a.target='_blank';a.rel='noopener';sm.append(a)}
+    d.append(t,mw,nt,nx,sm);wrap.appendChild(d)});
+   box.appendChild(wrap);box.classList.add('open');if(window.__cpHi)window.__cpHi(c.company);mo.textContent=mo.textContent.replace('▾','▴')};
+ });
+}
+dash.onData(drawCP);
+})();
+</script>
+</div></body></html>

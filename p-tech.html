@@ -1,0 +1,310 @@
+<!doctype html><html lang="ko"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>AI·테크 행사 타임라인</title><style>:root{color-scheme:light;
+--color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
+--font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
+--cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
+--cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:12px;--cds-gap-lg:20px;--cds-gap-xl:28px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:18px;--cds-pad-xl:24px;--cds-radius:12px;
+--cds-chart-grid:rgba(11,11,11,.07);--cds-chart-axis:rgba(11,11,11,.25);--cds-chart-muted:rgba(111,109,104,.45);--cds-chart-reference:rgba(11,11,11,.4);--cds-chart-status-critical:#b23434;
+--cds-surface-popover:#ffffff;--cds-border:rgba(11,11,11,.12);--cds-shadow-popover:0 6px 24px -8px rgba(0,0,0,.25);--cds-text-secondary:#6f6d68;--cds-dur-slow:.3s;--cds-ease-out:cubic-bezier(.2,.8,.2,1);
+--dc1:#2f5bb8;--dc2:#b07a12;--dc3:#1d7a4a;--dc4:#b53a3a;--dc5:#7246b0;--dc6:#1b7880;--dc7:#b35c2a;--dc8:#6b5b95}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}}
+:root[data-theme="dark"]{color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}
+*{box-sizing:border-box}
+html,body.ibody{margin:0;background:var(--color-bg);color:var(--color-fg)}
+body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+#dash-root{padding:20px max(16px,env(safe-area-inset-left,0px)) 48px max(16px,env(safe-area-inset-right,0px))}
+#dash-root b,#dash-root strong{font-weight:700}
+.dash-skeleton{color:transparent!important;background:linear-gradient(90deg,color-mix(in srgb,var(--color-fg-muted) 14%,transparent),color-mix(in srgb,var(--color-fg-muted) 24%,transparent),color-mix(in srgb,var(--color-fg-muted) 14%,transparent));background-size:200% 100%;border-radius:6px;animation:skl 1.4s linear infinite}
+@keyframes skl{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.dash-skeleton{animation:none}}
+.ib{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;padding:9px max(12px,env(safe-area-inset-left,0px));background:var(--ib-bg,#f9f9f7);border-bottom:1px solid var(--ib-line,rgba(11,11,11,.1));font:600 14px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+.ib::-webkit-scrollbar{display:none}
+.ib a{flex:none;text-decoration:none;color:var(--ib-mu,#6f6d68);padding:6px 12px;border-radius:999px;border:1px solid var(--ib-line,rgba(11,11,11,.1));background:var(--ib-pn,#fff);white-space:nowrap}
+.ib a.home{color:var(--ib-fg,#0b0b0b);font-weight:800}
+.ib a.home{position:sticky;left:0;z-index:3;box-shadow:-8px 0 0 5px var(--ib-bg,#f9f9f7),-22px 0 0 5px var(--ib-bg,#f9f9f7),9px 0 10px -8px rgba(0,0,0,.3)}
+.ib a[aria-current]{background:var(--ib-fg,#0b0b0b);color:var(--ib-bg,#f9f9f7);border-color:var(--ib-fg,#0b0b0b)}
+.ib .tg{flex:none;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--ib-fa,#9a978f);padding-left:8px;border-left:1px solid var(--ib-line,rgba(11,11,11,.1));margin-left:2px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}}
+:root[data-theme="dark"]{--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script><script>window.__PAGE__={"page": "tech", "ds": ["events", "meta"], "params": {}};window.__SYNC__="202610280842";</script><script src="shim.js"></script></head><body class="ibody"><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html">경고등</a><a href="p-brief.html">데일리 시황</a><a href="p-earn.html">실적 결과</a><a href="p-prices.html">시세 보드</a><a href="p-targets.html">목표주가</a><a href="p-opt.html">옵션 온도계</a><a href="p-bond.html">채권·금리</a><a href="p-cal.html">실적 캘린더</a><a href="p-econ.html">경제지표</a><span class="tg">흐름</span><a href="p-trend.html">차트 길잡이</a><a href="p-short.html">공매도</a><a href="p-fx.html">환율</a><a href="p-capex.html">설비투자</a><a href="p-policy.html">정책·지정학</a><a href="p-tech.html" aria-current="page">테크 행사</a><span class="tg">점검</span><a href="p-supply.html">한국·대만</a><a href="p-neo.html">네오클라우드</a><a href="p-qtr.html">분기 실적</a><a href="p-insider.html">내부자·기관</a></nav><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script><div id="dash-root" data-dash-state="loading"><style>
+.pg-wrap,.pg-tip{--cds-font-size-caption:14.5px;--cds-font-size-body:17px;--cds-font-size-heading:19.5px;--cds-font-size-title:30.5px}
+.pg-wrap{font-family:var(--font-anthropic-sans);display:flex;flex-direction:column;gap:var(--cds-gap-lg);max-width:1100px;margin-inline:auto;word-break:keep-all;position:relative}
+.pg-note{margin:0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.55}
+.pg-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,8.5rem),1fr));gap:var(--cds-gap-sm)}
+.pg-tile{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-md);display:flex;flex-direction:column;gap:var(--cds-gap-xs);min-width:0}
+.pg-tile .k{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.pg-tile .v{font-family:var(--font-anthropic-serif);font-size:var(--cds-font-size-title);font-variant-numeric:tabular-nums;min-height:1.2em;line-height:1.15}
+.pg-tile .v .u{font-family:var(--font-anthropic-sans);font-size:var(--cds-font-size-body);margin-left:3px;color:var(--color-fg-muted)}
+.pg-tile .v.sm{font-size:19px;font-family:var(--font-anthropic-sans);font-weight:600;line-height:1.35}
+.pg-tile .s{font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums;line-height:1.45}
+.pg-tile.hot{border-color:color-mix(in srgb,var(--color-warn) 60%,var(--color-border-line))}
+.pg-card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg);display:flex;flex-direction:column;gap:var(--cds-gap-sm);min-width:0}
+.pg-card h3{margin:0;font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium)}
+.pg-card .sub{margin:0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.5}
+.pg-sec{display:flex;flex-direction:column;gap:var(--cds-gap-sm);scroll-margin-top:56px}
+.pg-sec>.k{font-size:var(--cds-font-size-heading);color:var(--color-fg);display:block;margin:0 0 4px;font-weight:700;letter-spacing:-.01em;line-height:1.3;border-left:4px solid var(--color-warn);padding-left:10px}
+.pg-hlt{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--color-warn) 42%,transparent) 58%);color:var(--color-fg);font-weight:500;padding:0 1px}
+.pg-chart{position:relative;width:100%;min-height:240px}
+.pg-tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);border-radius:var(--cds-radius);box-shadow:var(--cds-shadow-popover);padding:var(--cds-pad-xs) var(--cds-pad-sm);font-size:var(--cds-font-size-caption);white-space:nowrap;z-index:5;display:none;font-variant-numeric:tabular-nums}
+.pg-tip div+div{margin-top:2px}
+.pg-legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:var(--cds-font-size-caption)}
+.pg-legend span{display:inline-flex;align-items:center;gap:6px}
+.pg-legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.pg-ctrl{display:flex;flex-wrap:wrap;gap:var(--cds-gap-sm);align-items:center}
+.pg-chip{font:inherit;font-size:var(--cds-font-size-caption);padding:5px 12px;border-radius:999px;border:1px solid var(--color-border-line);background:var(--color-panel);color:var(--color-fg);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.pg-chip i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.pg-chip[aria-pressed=true]{background:var(--color-fg);color:var(--color-bg);border-color:var(--color-fg)}
+/* 머리말 */
+.pg-mast{display:flex;flex-direction:column;gap:10px;padding:6px 0 4px;word-break:keep-all}
+.pg-eyebrow{margin:0;display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;letter-spacing:.12em;color:var(--color-fg-muted)}
+.pg-eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--color-bad);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-bad) 22%,transparent)}
+.pg-h1{font-family:var(--font-anthropic-serif);font-size:clamp(30px,7.4vw,42px);line-height:1.15;letter-spacing:-.02em;font-weight:400;margin:0;padding-bottom:12px;border-bottom:1px solid var(--color-border-line);position:relative}
+.pg-h1::after{content:"";position:absolute;left:0;bottom:-1px;width:56px;height:3px;border-radius:2px;background:var(--color-warn)}
+.pg-h1 .m{font-weight:600}
+.pg-h1 .s{color:var(--color-fg-muted);font-size:.62em;letter-spacing:-.01em;white-space:nowrap}
+.pg-take{margin:6px 0 0;font-family:var(--font-anthropic-serif);font-size:clamp(19.5px,4.9vw,23px);line-height:1.5;letter-spacing:-.01em;color:var(--color-fg);text-wrap:pretty}
+.pg-take b{display:table;margin-bottom:8px;font-family:var(--font-anthropic-sans);font-size:13.5px;font-weight:700;letter-spacing:.02em;font-variant-numeric:tabular-nums;color:var(--color-warn);padding:3px 10px;border-radius:999px;border:1px solid color-mix(in srgb,var(--color-warn) 55%,transparent);background:color-mix(in srgb,var(--color-warn) 10%,transparent)}
+/* 다가오는 일정 */
+.pg-up{display:flex;flex-direction:column}
+.pg-upi{display:grid;grid-template-columns:4.2em minmax(0,1fr);gap:2px 12px;align-items:baseline;padding:10px 4px;border-top:1px solid var(--color-border-line)}
+.pg-upi:first-child{border-top:0}
+.pg-upi .dd{font-family:var(--font-anthropic-serif);font-size:var(--cds-font-size-heading);font-variant-numeric:tabular-nums;color:var(--color-warn);white-space:nowrap}
+.pg-upi .dd.today{color:var(--color-bad)}
+.pg-upi .dt{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);font-variant-numeric:tabular-nums;grid-column:1}
+.pg-upi .tt{font-size:var(--cds-font-size-body);font-weight:600;line-height:1.45;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.pg-upi .tt i{width:9px;height:9px;border-radius:50%;display:inline-block;flex:none;position:relative;top:-1px}
+.pg-upi .sm{grid-column:2;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.5}
+/* 타임라인 */
+.pg-tl{display:flex;flex-direction:column;gap:var(--cds-gap-md)}
+.pg-mon{display:flex;flex-direction:column;gap:2px}
+.pg-mon>.mh{display:flex;align-items:baseline;gap:10px;margin:4px 0 8px}
+.pg-mon>.mh b{font-family:var(--font-anthropic-serif);font-size:var(--cds-font-size-heading);font-weight:400}
+.pg-mon>.mh span{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.pg-ev{display:grid;grid-template-columns:3.6em 22px minmax(0,1fr);column-gap:8px;position:relative;padding:0 0 18px}
+.pg-ev .d{font-variant-numeric:tabular-nums;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);padding-top:3px;white-space:nowrap}
+.pg-ev .d small{display:block;font-size:12.5px}
+.pg-ev .ln{position:relative}
+.pg-ev .ln::before{content:"";position:absolute;left:10px;top:0;bottom:-18px;width:2px;background:var(--color-border-line)}
+.pg-ev:last-child .ln::before{bottom:0}
+.pg-ev .ln i{position:absolute;left:5px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid var(--color-panel);box-shadow:0 0 0 1px var(--color-border-line)}
+.pg-ev.todo .ln i{background:var(--color-panel)!important;border-width:3px;box-shadow:0 0 0 2px var(--dot)}
+.pg-ev .bd{min-width:0;display:flex;flex-direction:column;gap:4px}
+.pg-ev .t{font-size:var(--cds-font-size-body);font-weight:600;line-height:1.45;margin:0}
+.pg-ev .m{font-size:15px;line-height:1.6;color:var(--color-fg);margin:0}
+.pg-ev .x{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);align-items:center}
+.pg-ev .x a{color:var(--color-fg-muted)}
+.pg-badge{font-size:12.5px;padding:1px 7px;border-radius:6px;border:1px solid var(--color-border-line);color:var(--color-fg-muted);white-space:nowrap}
+.pg-badge.done{border-color:var(--color-ok);color:var(--color-ok)}
+.pg-badge.live{border-color:var(--color-warn);color:var(--color-warn)}
+.pg-badge.wait{border-style:dashed}
+.pg-cat{font-size:12.5px;padding:1px 8px;border-radius:999px;color:var(--color-bg);font-weight:600;white-space:nowrap}
+.pg-nq{font-variant-numeric:tabular-nums;font-weight:600}
+.pg-read ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:10px;font-size:var(--cds-font-size-body);line-height:1.6}
+.pg-read li b{font-weight:700}
+.pg-src a{display:block;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);word-break:break-all;line-height:1.7}
+.pg-src details summary{cursor:pointer;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.up{color:var(--color-ok)} .dn{color:var(--color-bad)} .mu{color:var(--color-fg-muted)} .wn{color:var(--color-warn)}
+.pg-fail{display:flex;align-items:center;justify-content:center;gap:8px;min-height:120px;color:var(--color-fg-muted);font-size:var(--cds-font-size-caption)}
+.pg-fail::before{content:"";width:.375rem;height:.375rem;border-radius:50%;background:var(--color-bad)}
+.pg-empty{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);padding:8px 0}
+[data-dash-source-state=empty]{color:transparent}
+[data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
+.pg-div{margin:14px 0 6px;font-size:13px;font-weight:800;letter-spacing:.06em;color:var(--color-fg-muted);border-bottom:1px solid var(--color-border-line);padding-bottom:4px}.pg-div:first-child{margin-top:0}
+.pg-xlink{display:inline-block;margin:0 0 10px;padding:8px 12px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;color:inherit;border:1px solid var(--color-border-line)}
+.pg-more{margin:6px 0 4px;border:1px solid var(--color-border-line);border-radius:10px;padding:6px 10px}.pg-more summary{cursor:pointer;font-weight:700;font-size:14px}.pg-more .who{margin:6px 0 2px;font-size:13.5px;color:var(--color-fg-muted)}.pg-more .h{margin:8px 0 2px;font-weight:800;font-size:13.5px}.pg-more ul{margin:2px 0 4px;padding-left:18px}.pg-more li{font-size:14px;line-height:1.55;margin:2px 0}.pg-more .q{margin:4px 0;font-size:14px;line-height:1.55;border-left:3px solid var(--color-warn);padding-left:8px}
+</style>
+
+<div class="pg-wrap" id="wrap">
+  <header id="top" class="pg-mast">
+    <p class="pg-eyebrow"><i aria-hidden="true"></i>AI·테크 행사 · 행사마다 갱신</p>
+    <h1 class="pg-h1"><span class="m">AI·테크 행사</span> <span class="s">타임라인</span></h1>
+    <p class="pg-take" id="take"><span class="dash-skeleton">불러오는 중</span></p>
+  </header>
+
+  <section class="pg-tiles" id="tiles">
+    <div class="pg-tile"><span class="k">이번 주 행사·거래</span><span class="v dash-skeleton"><span id="t-week" data-source="stats" data-field="week_count" data-row="0">—</span><span class="u">건</span></span><span class="s mu" id="t-weeks">—</span></div>
+    <div class="pg-tile"><span class="k">남은 예정 일정</span><span class="v dash-skeleton"><span id="t-up" data-source="stats" data-field="upcoming_count" data-row="0">—</span><span class="u">건</span></span><span class="s mu" id="t-ups">—</span></div>
+    <div class="pg-tile hot"><span class="k">다음 일정</span><span class="v sm dash-skeleton" id="t-next" data-source="stats" data-field="next_title" data-row="0">—</span><span class="s wn"><span id="t-nextd" data-source="stats" data-field="next_date" data-row="0">—</span> · <span id="t-nexts" data-source="stats" data-field="next_dday" data-row="0">—</span></span></div>
+    <div class="pg-tile"><span class="k">지금 진행 중인 행사</span><span class="v dash-skeleton" id="t-top" data-source="stats" data-field="top_pct" data-row="0">—</span><span class="s"><span id="t-topd" data-source="stats" data-field="top_date" data-row="0" class="mu">—</span> <span id="t-tops" data-source="stats" data-field="top_title" data-row="0">—</span></span></div>
+  </section>
+
+  <section class="pg-sec" id="up-sec">
+    <span class="k">다가오는 일정 (30일)</span>
+    <p class="pg-note">기준일부터 30일 안에 잡힌 AI·테크 행사 일정입니다. D-숫자는 기준일(뉴욕 날짜)에서 남은 날수입니다. 색 점은 분류를 뜻합니다.</p>
+    <div class="pg-card"><div class="pg-up" id="up" data-source="events"></div></div>
+  </section>
+
+  <section class="pg-sec" id="chart-sec">
+    <span class="k">월별 행사·거래 수 · 분류별</span>
+    <p class="pg-note">올해 7월부터 내년 6월까지 달마다 행사·거래가 몇 건인지 분류별로 쌓은 막대입니다. 행사가 몰린 달(보통 3월 GTC, 6월 컴퓨텍스, 9~11월 빅테크 행사)이 한눈에 보입니다. 막대에 손가락을 대면 분류별 건수를 봅니다.</p>
+    <div class="pg-card">
+      <div class="pg-legend" id="legend"></div>
+      <div class="pg-chart" id="chart" data-source="by_month"></div>
+    </div>
+  </section>
+
+  <section class="pg-sec" id="tl-sec">
+    <a class="pg-xlink" href="p-policy.html" rel="noopener">관세·수출통제·이란 전쟁·연준 같은 정책 사건은 → 정책·지정학 타임라인</a>
+    <span class="k">타임라인</span>
+    <p class="pg-note" id="tl-note">기본은 최근에 일어난 일이 맨 위이고, 그 아래에 앞으로 예정된 일정이 가까운 날부터 이어집니다. 버튼으로 처음부터 날짜순(오래된 순)으로 바꿀 수 있습니다. 꽉 찬 점은 일어난 일, 테두리만 있는 점은 예정입니다. % 숫자는 그 행사·거래와 가장 관련 깊은 종목의 그날 등락이고, 자료를 못 찾은 날은 '반응 자료 없음'으로 적었습니다.</p>
+    <div class="pg-ctrl" id="catf"></div>
+    <div class="pg-ctrl" id="stf">
+      <button class="pg-chip" data-s="" aria-pressed="true">전체</button>
+      <button class="pg-chip" data-s="발생" aria-pressed="false">발생</button>
+      <button class="pg-chip" data-s="진행중" aria-pressed="false">진행중</button>
+      <button class="pg-chip" data-s="예정" aria-pressed="false">예정</button>
+    </div>
+    <div class="pg-ctrl"><button class="pg-chip" id="ordbtn" type="button" aria-pressed="false">↓ 최신이 위 · 눌러서 오래된 순</button></div>
+    <div class="pg-card"><div class="pg-tl" id="tl" data-source="events"></div></div>
+  </section>
+
+  <section class="pg-sec pg-read" id="read-sec">
+    <span class="k">읽는 법</span>
+    <ul>
+      <li><b>분류 여섯 가지</b>를 봅니다. 칩·하드웨어 행사(엔비디아 GTC·AMD)는 다음 제품과 로드맵을, 대형 거래·상장은 AI 투자 돈줄과 공급 계약을, 클라우드·빅테크 행사는 설비투자와 수요를, AI 모델 공개는 연산 수요를, 반도체 공급망(TSMC·메모리)은 공급 여력을, 업계 컨퍼런스는 기술 방향을 보여 줍니다.</li>
+      <li><b>종목 %</b>는 그 행사와 가장 관련 깊은 종목의 그날 등락입니다. 같은 날 다른 뉴스가 겹칠 수 있어 그 행사 하나 때문이라고 단정할 수 없습니다.</li>
+      <li>행사 날 주가는 <b>기대가 미리 반영돼 발표 당일 오히려 빠지는 경우</b>가 많습니다. 발표 내용과 주가 반응을 함께 보면 시장이 무엇을 이미 알고 있었는지 가늠할 수 있습니다.</li>
+      <li><b>예정 일정</b>은 바뀔 수 있습니다. 공식 날짜가 나온 행사만 넣었습니다.</li>
+      <li>이 페이지는 사실 정리이며 <b>매수·매도 권유가 아닙니다</b>.</li>
+    </ul>
+  </section>
+
+  <section class="pg-sec pg-src" id="src-sec">
+    <span class="k">출처</span>
+    <p class="pg-note">각 행사·거래의 요약은 아래 기사·공식 자료 한 건씩에서 가져왔고, 숫자는 그 자료에 적힌 값만 썼습니다. 타임라인의 각 항목에도 같은 링크가 붙어 있습니다.</p>
+    <details><summary>출처 목록 펼치기</summary><div id="srcs" data-source="events"></div></details>
+  </section>
+</div>
+<div class="pg-tip" id="tip"></div>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const CATS=['칩·하드웨어 행사','대형 거래·상장','클라우드·빅테크','AI 모델 공개','반도체 공급망','업계 컨퍼런스']; /* AI 인프라 주가에 영향이 큰 순서(왼쪽부터) */
+const catColor=c=>dash.colors[Math.max(0,CATS.indexOf(c))%dash.colors.length];
+const WD=['일','월','화','수','목','금','토'];
+const toDate=s=>{const [y,m,d]=String(s).slice(0,10).split('-').map(Number);return new Date(Date.UTC(y,m-1,d))};
+const dayDiff=(a,b)=>Math.round((toDate(a)-toDate(b))/86400000);
+const fmtD=s=>{const d=toDate(s);return (d.getUTCMonth()+1)+'.'+String(d.getUTCDate()).padStart(2,'0')+' ('+WD[d.getUTCDay()]+')'};
+const fmtMon=m=>{const [y,mo]=m.split('-').map(Number);return y+'년 '+mo+'월'};
+const sg=v=>v==null?'':(v>0?'+':'')+Number(v).toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';
+const cl=v=>v>0?'up':v<0?'dn':'mu';
+const st={cat:'',status:'',order:'desc'};
+
+// 계산: 타일 숫자(기준일 = meta.as_of)
+dash.calc('stats',{inputs:['events','meta'],title:'타일 요약 숫자',description:'기준일 기준 최근 7일 행사·거래 수, 기준일 이후 예정 일정 수, 다음 일정과 D-day, 지금 진행 중인 행사 수와 첫 행사.',
+  fn:(events,meta)=>{
+    const m=meta[0]||{};const asOf=String(m.as_of||'').slice(0,10);
+    const day=s=>Date.UTC(+s.slice(0,4),+s.slice(5,7)-1,+s.slice(8,10));
+    const diff=(a,b)=>Math.round((day(a)-day(b))/86400000);
+    const past=events.filter(e=>e.status!=='예정'&&diff(asOf,e.date)>=0&&diff(asOf,e.date)<7);
+    const up=events.filter(e=>e.status==='예정'&&diff(e.date,asOf)>=0).sort((a,b)=>a.date.localeCompare(b.date));
+    const recent=events.filter(e=>e.nasdaq_pct!=null&&diff(asOf,e.date)>=0&&diff(asOf,e.date)<=30).sort((a,b)=>Math.abs(Number(b.nasdaq_pct))-Math.abs(Number(a.nasdaq_pct)));
+    const lv=events.filter(e=>e.status==='진행중');const top=lv[0]||null;const nx=up[0]||null;
+    return [{as_of:asOf,week_count:past.length,upcoming_count:up.length,
+      next_title:nx?nx.title:null,next_date:nx?nx.date:null,next_dday:nx?diff(nx.date,asOf):null,next_category:nx?nx.category:null,
+      top_title:top?top.title:null,top_date:top?top.date:null,top_pct:lv.length}];
+  }});
+// 계산: 월별·분류별 건수
+dash.calc('by_month',{inputs:['events'],title:'월별 분류별 행사 수',description:'행사·거래를 날짜의 연-월과 분류로 묶어 센 건수.',
+  fn:(events)=>{const o={};events.forEach(e=>{const k=e.date.slice(0,7)+'|'+e.category;o[k]=(o[k]||0)+1});
+    return Object.keys(o).sort().map(k=>{const [month,category]=k.split('|');return {month,category,n:o[k]}})}});
+
+const tip=$('tip');
+function showTip(e,lines){tip.textContent='';lines.forEach((l,i)=>{const d=document.createElement('div');if(Array.isArray(l)){const sw=document.createElement('i');sw.style.cssText='display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:'+l[0];d.appendChild(sw);d.appendChild(document.createTextNode(l[1]))}else{d.textContent=l;if(i===0)d.style.color='var(--cds-text-secondary)'}tip.appendChild(d)});
+  tip.style.display='block';const root=$('wrap').getBoundingClientRect();let x=e.clientX-root.left+12,y=e.clientY-root.top+12;const w=tip.offsetWidth;if(x+w>root.width)x=Math.max(0,x-w-24);tip.style.left=x+'px';tip.style.top=y+'px'}
+function hideTip(){tip.style.display='none'}
+
+// 분류 칩
+(function(){const box=$('catf');const mk=(label,val,color)=>{const b=document.createElement('button');b.className='pg-chip';b.dataset.c=val;b.setAttribute('aria-pressed',val===''?'true':'false');if(color){const i=document.createElement('i');i.style.background=color;b.appendChild(i)}b.appendChild(document.createTextNode(label));b.onclick=()=>{st.cat=val;box.querySelectorAll('.pg-chip').forEach(x=>x.setAttribute('aria-pressed',x===b));drawTimeline()};box.appendChild(b)};
+  mk('전체','',null);CATS.forEach(c=>mk(c,c,catColor(c)))})();
+$('ordbtn').onclick=()=>{st.order=st.order==='desc'?'asc':'desc';$('ordbtn').textContent=st.order==='desc'?'↓ 최신이 위 · 눌러서 오래된 순':'↑ 오래된 순 · 눌러서 최신이 위';drawTimeline()};
+$('stf').querySelectorAll('.pg-chip').forEach(b=>b.onclick=()=>{st.status=b.dataset.s;$('stf').querySelectorAll('.pg-chip').forEach(x=>x.setAttribute('aria-pressed',x===b));drawTimeline()});
+
+let EV=[],META=null,STATS=null;
+const skel=(el,on)=>el.classList.toggle('dash-skeleton',!!on);
+
+function draw(){
+  const de=dash.data('events'),dm=dash.data('meta'),ds=dash.data('stats');
+  EV=de.status==='ok'?de.data.slice().map(r=>Object.assign({},r,{nasdaq_pct:r.nasdaq_pct==null||r.nasdaq_pct===''?null:Number(r.nasdaq_pct)})).sort((a,b)=>a.date.localeCompare(b.date)||String(a.id).localeCompare(String(b.id))):[];
+  META=dm.status==='ok'&&dm.data[0]?dm.data[0]:null;
+  STATS=ds.status==='ok'&&ds.data&&ds.data[0]?ds.data[0]:null;
+  drawMast();drawTiles();drawUpcoming();drawChart();drawTimeline();drawSources();
+}
+function drawMast(){const tk=$('take');tk.textContent='';if(!META){const s=document.createElement('span');s.className=dash.data('meta').status==='error'?'':'dash-skeleton';s.textContent=dash.data('meta').status==='error'?'불러오지 못했습니다':'불러오는 중';tk.appendChild(s);return}
+  const b=document.createElement('b');b.textContent=META.as_of_label||fmtD(META.as_of);b.setAttribute('data-source','meta');b.setAttribute('data-field','as_of_label');b.setAttribute('data-row','0');tk.appendChild(b);const h=document.createElement('span');h.textContent=META.headline||'';h.setAttribute('data-source','meta');h.setAttribute('data-field','headline');h.setAttribute('data-row','0');tk.appendChild(h)}
+function drawTiles(){
+  const ok=!!STATS;document.querySelectorAll('#tiles .v').forEach(el=>skel(el,!ok));
+  const asOfL=STATS?fmtD(STATS.as_of):'';
+  $('t-week').textContent=ok?String(STATS.week_count):'—';$('t-weeks').textContent=ok?asOfL+' 기준 최근 7일':'—';
+  $('t-up').textContent=ok?String(STATS.upcoming_count):'—';$('t-ups').textContent=ok?'기준일 이후 ~ 내년 6월':'—';
+  $('t-next').textContent=ok&&STATS.next_title?STATS.next_title:'—';
+  $('t-nextd').textContent=ok&&STATS.next_date?fmtD(STATS.next_date):'—';
+  $('t-nexts').textContent=ok&&STATS.next_dday!=null?(STATS.next_dday===0?'D-day':'D-'+STATS.next_dday):'—';
+  const tp=$('t-top');tp.className='v';tp.textContent=ok?STATS.top_pct+'건':'—';
+  $('t-topd').textContent=ok&&STATS.top_date?fmtD(STATS.top_date):'';
+  $('t-tops').textContent=ok&&STATS.top_title?STATS.top_title:(ok?'지금 열리고 있는 행사가 없습니다':'—')}
+function badge(s){const b=document.createElement('span');b.className='pg-badge '+(s==='발생'?'done':s==='진행중'?'live':'wait');b.textContent=s;return b}
+function drawUpcoming(){const box=$('up');box.textContent='';const stt=dash.data('events').status;
+  if(stt==='error'){box.innerHTML='<div class="pg-fail">불러오지 못했습니다</div>';return}
+  if(!EV.length||!META){box.innerHTML='<div class="pg-fail" style="opacity:.6">불러오는 중</div>';return}
+  const asOf=META.as_of;const list=EV.filter(e=>e.status==='예정'&&dayDiff(e.date,asOf)>=0&&dayDiff(e.date,asOf)<=30);
+  if(!list.length){const p=document.createElement('p');p.className='pg-empty';p.textContent='30일 안에 잡힌 일정이 없습니다.';box.appendChild(p);return}
+  list.forEach(e=>{const row=document.createElement('div');row.className='pg-upi';const dd=document.createElement('span');const n=dayDiff(e.date,asOf);dd.className='dd'+(n===0?' today':'');dd.textContent=n===0?'D-day':'D-'+n;row.appendChild(dd);
+    const tt=document.createElement('span');tt.className='tt';const dot=document.createElement('i');dot.style.background=catColor(e.category);tt.appendChild(dot);tt.appendChild(document.createTextNode(e.title));row.appendChild(tt);
+    const dt=document.createElement('span');dt.className='dt';dt.textContent=fmtD(e.date);row.appendChild(dt);
+    const sm=document.createElement('span');sm.className='sm';sm.textContent=e.category+' · '+(e.summary||'');row.appendChild(sm);box.appendChild(row)})}
+function drawChart(){const box=$('chart');box.textContent='';const lg=$('legend');lg.textContent='';const d=dash.data('by_month');
+  if(d.status==='error'){box.innerHTML='<div class="pg-fail">불러오지 못했습니다</div>';return}
+  const rows=d.status==='ok'?d.data:[];if(!rows.length){box.classList.add('dash-skeleton');return}box.classList.remove('dash-skeleton');
+  CATS.forEach(c=>{const s=document.createElement('span');const i=document.createElement('i');i.style.background=catColor(c);s.appendChild(i);s.appendChild(document.createTextNode(c));lg.appendChild(s)});
+  const months=[...new Set(rows.map(r=>r.month))].sort();
+  const byM=months.map(m=>{const o={month:m,total:0};CATS.forEach(c=>{o[c]=0});rows.filter(r=>r.month===m).forEach(r=>{o[r.category]=(o[r.category]||0)+Number(r.n);o.total+=Number(r.n)});return o});
+  const W=Math.max(300,box.clientWidth),H=240,mg={l:34,r:8,t:16,b:30};
+  const x=d3.scaleBand().domain(months).range([mg.l,W-mg.r]).padding(.3);
+  const ymax=d3.max(byM,o=>o.total)||1;const y=d3.scaleLinear().domain([0,ymax]).nice().range([H-mg.b,mg.t]);
+  const svg=d3.select(box).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  const ticks=y.ticks(Math.min(5,ymax));
+  svg.append('g').selectAll('line').data(ticks).join('line').attr('x1',mg.l).attr('x2',W-mg.r).attr('y1',t=>y(t)).attr('y2',t=>y(t)).attr('stroke','var(--cds-chart-grid)');
+  const tl=svg.append('g').selectAll('text').data(ticks).join('text').attr('x',mg.l-6).attr('y',t=>y(t)+4).attr('text-anchor','end').attr('font-size',13).attr('fill','var(--color-fg-muted)').text(t=>t);
+  let tw=0;tl.each(function(){tw=Math.max(tw,this.getComputedTextLength())});if(tw+12>mg.l){mg.l=tw+12;x.range([mg.l,W-mg.r]);tl.attr('x',mg.l-6)}
+  svg.append('g').selectAll('text').data(months).join('text').attr('x',m=>x(m)+x.bandwidth()/2).attr('y',H-10).attr('text-anchor','middle').attr('font-size',13).attr('fill','var(--color-fg-muted)').text(m=>(+m.slice(5,7))+'월');
+  const stack=d3.stack().keys(CATS)(byM);
+  const bw=Math.min(32,x.bandwidth());
+  stack.forEach((ser,i)=>{svg.append('g').selectAll('rect').data(ser).join('rect').attr('x',s=>x(s.data.month)+(x.bandwidth()-bw)/2).attr('width',bw).attr('y',s=>y(s[1])).attr('height',s=>Math.max(0,y(s[0])-y(s[1]))).attr('fill',catColor(CATS[i])).attr('stroke','var(--color-panel)').attr('stroke-width',1)});
+  svg.append('g').selectAll('text').data(byM).join('text').attr('x',o=>x(o.month)+x.bandwidth()/2).attr('y',o=>y(o.total)-5).attr('text-anchor','middle').attr('font-size',13).attr('fill','var(--color-fg)').text(o=>o.total);
+  svg.append('g').selectAll('rect').data(byM).join('rect').attr('x',o=>x(o.month)).attr('y',mg.t).attr('width',x.bandwidth()).attr('height',H-mg.b-mg.t).attr('fill','transparent')
+    .on('mousemove',(ev,o)=>showTip(ev,[fmtMon(o.month)+' · 총 '+o.total+'건'].concat(CATS.filter(c=>o[c]>0).map(c=>[catColor(c),c+' '+o[c]+'건'])))).on('mouseleave',hideTip)}
+function drawTimeline(){const box=$('tl');box.textContent='';const stt=dash.data('events').status;
+  if(stt==='error'){box.innerHTML='<div class="pg-fail">불러오지 못했습니다</div>';return}
+  if(!EV.length){box.innerHTML='<div class="pg-fail" style="opacity:.6">불러오는 중</div>';return}
+  const list=EV.filter(e=>(!st.cat||e.category===st.cat)&&(!st.status||e.status===st.status));
+  if(!list.length){const p=document.createElement('p');p.className='pg-empty';p.textContent='이 조건에 맞는 행사가 없습니다.';box.appendChild(p);return}
+  const ao=META&&META.as_of?String(META.as_of).slice(0,10):'9999';
+  const render=(L)=>{const months=[...new Set(L.map(e=>e.date.slice(0,7)))];
+  months.forEach(m=>{const sec=document.createElement('div');sec.className='pg-mon';const mh=document.createElement('div');mh.className='mh';const b=document.createElement('b');b.textContent=fmtMon(m);mh.appendChild(b);const items=L.filter(e=>e.date.slice(0,7)===m);const sp=document.createElement('span');sp.textContent=items.length+'건';mh.appendChild(sp);sec.appendChild(mh);
+    items.forEach(e=>{const row=document.createElement('article');row.className='pg-ev'+(e.status==='예정'?' todo':'');row.style.setProperty('--dot',catColor(e.category));
+      const d=document.createElement('div');d.className='d';d.textContent=e.date.slice(5).replace('-','.');const sm=document.createElement('small');sm.textContent=WD[toDate(e.date).getUTCDay()];d.appendChild(sm);row.appendChild(d);
+      const ln=document.createElement('div');ln.className='ln';const dot=document.createElement('i');dot.style.background=catColor(e.category);ln.appendChild(dot);row.appendChild(ln);
+      const bd=document.createElement('div');bd.className='bd';
+      const x0=document.createElement('div');x0.className='x';const cat=document.createElement('span');cat.className='pg-cat';cat.style.background=catColor(e.category);cat.textContent=e.category;x0.appendChild(cat);x0.appendChild(badge(e.status));bd.appendChild(x0);
+      const t=document.createElement('p');t.className='t';t.textContent=e.title;bd.appendChild(t);
+      const mm=document.createElement('p');mm.className='m';mm.textContent=e.summary||'';bd.appendChild(mm);
+      {const arr=v=>{if(Array.isArray(v))return v;if(typeof v==='string'&&v.trim().startsWith('[')){try{return JSON.parse(v)}catch(_){}}return v?[String(v)]:[]};
+       const pts=arr(e.points),rms=arr(e.remarks);
+       if(pts.length||rms.length||e.speaker){const dt=document.createElement('details');dt.className='pg-more';const sm=document.createElement('summary');sm.textContent='자세히 · 발표 내용과 주요 발언';dt.appendChild(sm);
+         if(e.speaker){const sp=document.createElement('p');sp.className='who';sp.textContent='발표자 · '+e.speaker;dt.appendChild(sp)}
+         if(pts.length){const h=document.createElement('p');h.className='h';h.textContent='무엇을 발표했나';dt.appendChild(h);const ul=document.createElement('ul');pts.forEach(t=>{const li=document.createElement('li');li.textContent=t;ul.appendChild(li)});dt.appendChild(ul)}
+         if(rms.length){const h=document.createElement('p');h.className='h';h.textContent='주요 발언 (요지)';dt.appendChild(h);rms.forEach(t=>{const q=document.createElement('p');q.className='q';q.textContent=t;dt.appendChild(q)})}
+         bd.appendChild(dt)}}
+      const x=document.createElement('div');x.className='x';
+      if(e.status!=='예정'){const nq=document.createElement('span');if(e.nasdaq_pct!=null){nq.className='pg-nq '+cl(e.nasdaq_pct);nq.textContent=(e.stock?e.stock+' ':'')+sg(e.nasdaq_pct)}else{nq.textContent='관련 종목 반응 자료 없음'}x.appendChild(nq);
+        if(e.mkt_note&&e.mkt_note!=='자료 없음'){const mn=document.createElement('span');mn.textContent=e.mkt_note;x.appendChild(mn)}}
+      if(e.source_url){const a=document.createElement('a');a.href=e.source_url;a.target='_blank';a.rel='noopener';a.textContent='출처 · '+(e.media||'원문');x.appendChild(a)}
+      bd.appendChild(x);row.appendChild(bd);sec.appendChild(row)});box.appendChild(sec)})};
+  const div=t=>{const h=document.createElement('div');h.className='pg-div';h.textContent=t;box.appendChild(h)};
+  if(st.order==='desc'){const past=list.filter(e=>e.date<=ao).reverse(),fut=list.filter(e=>e.date>ao);if(past.length){div('지난 일 · 최신이 위');render(past)}if(fut.length){div('앞으로 예정 · 가까운 날이 위');render(fut)}}else render(list)}
+function drawSources(){const box=$('srcs');box.textContent='';EV.forEach(e=>{if(!e.source_url)return;const a=document.createElement('a');a.href=e.source_url;a.target='_blank';a.rel='noopener';a.textContent=e.date+' · '+(e.media||'')+' · '+e.title;box.appendChild(a)})}
+dash.onData(draw);
+})();
+</script>
+</div></body></html>

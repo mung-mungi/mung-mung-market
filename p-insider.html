@@ -1,0 +1,588 @@
+<!doctype html><html lang="ko"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>내부자·기관 보유 변화</title><style>:root{color-scheme:light;
+--color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
+--font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
+--cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
+--cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:12px;--cds-gap-lg:20px;--cds-gap-xl:28px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:18px;--cds-pad-xl:24px;--cds-radius:12px;
+--cds-chart-grid:rgba(11,11,11,.07);--cds-chart-axis:rgba(11,11,11,.25);--cds-chart-muted:rgba(111,109,104,.45);--cds-chart-reference:rgba(11,11,11,.4);--cds-chart-status-critical:#b23434;
+--cds-surface-popover:#ffffff;--cds-border:rgba(11,11,11,.12);--cds-shadow-popover:0 6px 24px -8px rgba(0,0,0,.25);--cds-text-secondary:#6f6d68;--cds-dur-slow:.3s;--cds-ease-out:cubic-bezier(.2,.8,.2,1);
+--dc1:#2f5bb8;--dc2:#b07a12;--dc3:#1d7a4a;--dc4:#b53a3a;--dc5:#7246b0;--dc6:#1b7880;--dc7:#b35c2a;--dc8:#6b5b95}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}}
+:root[data-theme="dark"]{color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}
+*{box-sizing:border-box}
+html,body.ibody{margin:0;background:var(--color-bg);color:var(--color-fg)}
+body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+#dash-root{padding:20px max(16px,env(safe-area-inset-left,0px)) 48px max(16px,env(safe-area-inset-right,0px))}
+#dash-root b,#dash-root strong{font-weight:700}
+.dash-skeleton{color:transparent!important;background:linear-gradient(90deg,color-mix(in srgb,var(--color-fg-muted) 14%,transparent),color-mix(in srgb,var(--color-fg-muted) 24%,transparent),color-mix(in srgb,var(--color-fg-muted) 14%,transparent));background-size:200% 100%;border-radius:6px;animation:skl 1.4s linear infinite}
+@keyframes skl{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.dash-skeleton{animation:none}}
+.ib{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;padding:9px max(12px,env(safe-area-inset-left,0px));background:var(--ib-bg,#f9f9f7);border-bottom:1px solid var(--ib-line,rgba(11,11,11,.1));font:600 14px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+.ib::-webkit-scrollbar{display:none}
+.ib a{flex:none;text-decoration:none;color:var(--ib-mu,#6f6d68);padding:6px 12px;border-radius:999px;border:1px solid var(--ib-line,rgba(11,11,11,.1));background:var(--ib-pn,#fff);white-space:nowrap}
+.ib a.home{color:var(--ib-fg,#0b0b0b);font-weight:800}
+.ib a.home{position:sticky;left:0;z-index:3;box-shadow:-8px 0 0 5px var(--ib-bg,#f9f9f7),-22px 0 0 5px var(--ib-bg,#f9f9f7),9px 0 10px -8px rgba(0,0,0,.3)}
+.ib a[aria-current]{background:var(--ib-fg,#0b0b0b);color:var(--ib-bg,#f9f9f7);border-color:var(--ib-fg,#0b0b0b)}
+.ib .tg{flex:none;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--ib-fa,#9a978f);padding-left:8px;border-left:1px solid var(--ib-line,rgba(11,11,11,.1));margin-left:2px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}}
+:root[data-theme="dark"]{--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script><script>window.__PAGE__={"page": "insider", "ds": ["insider_tx", "inst_13f", "coverage", "meta"], "params": {"ticker": null}};window.__SYNC__="202610280842";</script><script src="shim.js"></script></head><body class="ibody"><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html">경고등</a><a href="p-brief.html">데일리 시황</a><a href="p-earn.html">실적 결과</a><a href="p-prices.html">시세 보드</a><a href="p-targets.html">목표주가</a><a href="p-opt.html">옵션 온도계</a><a href="p-bond.html">채권·금리</a><a href="p-cal.html">실적 캘린더</a><a href="p-econ.html">경제지표</a><span class="tg">흐름</span><a href="p-trend.html">차트 길잡이</a><a href="p-short.html">공매도</a><a href="p-fx.html">환율</a><a href="p-capex.html">설비투자</a><a href="p-policy.html">정책·지정학</a><a href="p-tech.html">테크 행사</a><span class="tg">점검</span><a href="p-supply.html">한국·대만</a><a href="p-neo.html">네오클라우드</a><a href="p-qtr.html">분기 실적</a><a href="p-insider.html" aria-current="page">내부자·기관</a></nav><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script><div id="dash-root" data-dash-state="loading"><style>
+.in-wrap,.in-tip{--cds-font-size-caption:14.5px;--cds-font-size-body:17px;--cds-font-size-heading:19.5px;--cds-font-size-title:30.5px}
+.in-wrap{font-family:var(--font-anthropic-sans);display:flex;flex-direction:column;gap:var(--cds-gap-lg);max-width:1100px;margin-inline:auto;word-break:keep-all;font-size:var(--cds-font-size-body)}
+.in-mast{display:flex;flex-direction:column;gap:10px;padding:6px 0 4px;word-break:keep-all}
+.in-eyebrow{margin:0;display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;letter-spacing:.12em;color:var(--color-fg-muted)}
+.in-eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--color-bad);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-bad) 22%,transparent)}
+.in-mast .in-h1{font-family:var(--font-anthropic-serif);font-size:clamp(30px,7.4vw,42px);line-height:1.15;letter-spacing:-.02em;font-weight:400;margin:0;padding-bottom:12px;border-bottom:1px solid var(--color-border-line);position:relative}
+.in-mast .in-h1::after{content:"";position:absolute;left:0;bottom:-1px;width:56px;height:3px;border-radius:2px;background:var(--color-warn)}
+.in-mast .in-h1 .m{font-weight:600}
+.in-mast .in-h1 .s{color:var(--color-fg-muted);font-size:.62em;letter-spacing:-.01em;white-space:nowrap}
+.in-mast .in-take{margin:6px 0 0;font-family:var(--font-anthropic-serif);font-size:clamp(19.5px,4.9vw,23px);line-height:1.5;letter-spacing:-.01em;color:var(--color-fg);text-wrap:pretty}
+.in-mast .in-take b{display:table;margin-bottom:8px;font-family:var(--font-anthropic-sans);font-size:13.5px;font-weight:700;letter-spacing:.02em;font-variant-numeric:tabular-nums;color:var(--color-warn);padding:3px 10px;border-radius:999px;border:1px solid color-mix(in srgb,var(--color-warn) 55%,transparent);background:color-mix(in srgb,var(--color-warn) 10%,transparent)}
+.in-hlt{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--color-warn) 42%,transparent) 58%);color:var(--color-fg);font-weight:500;padding:0 1px}
+.in-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,8.5rem),1fr));gap:var(--cds-gap-sm)}
+.in-tile{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-md);display:flex;flex-direction:column;gap:var(--cds-gap-xs)}
+.in-tile .k{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.in-tile .v{font-family:var(--font-anthropic-serif);font-size:var(--cds-font-size-title);font-variant-numeric:tabular-nums;min-height:1.2em;line-height:1.2}
+.in-tile .s{font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums;color:var(--color-fg-muted)}
+.in-card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg);display:flex;flex-direction:column;gap:var(--cds-gap-sm);min-width:0}
+.in-card h3{margin:0;font-size:var(--cds-font-size-heading);font-weight:700;letter-spacing:-.01em;line-height:1.3;border-left:4px solid var(--color-warn);padding-left:10px}
+.in-card .sub{margin:0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.in-card .how{margin:4px 0 0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);border-top:1px dashed var(--color-border-line);padding-top:8px}
+.in-chart{position:relative;width:100%;min-height:200px}
+.in-chart svg{display:block;width:100%;height:auto}
+.in-tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);border-radius:var(--cds-radius);box-shadow:var(--cds-shadow-popover);padding:var(--cds-pad-xs) var(--cds-pad-sm);font-size:var(--cds-font-size-caption);white-space:nowrap;z-index:5;display:none;color:var(--color-fg)}
+.in-tip .t{color:var(--cds-text-secondary);display:block;margin-bottom:2px}
+.in-ctrl{display:flex;flex-wrap:wrap;gap:var(--cds-gap-sm);align-items:center}
+.in-sel{font:inherit;font-size:var(--cds-font-size-caption);padding:6px 10px;border-radius:var(--cds-radius);border:1px solid var(--color-border-line);background:var(--color-bg);color:var(--color-fg);max-width:100%}
+.in-chip{font:inherit;font-size:var(--cds-font-size-caption);padding:5px 12px;border-radius:999px;border:1px solid var(--color-border-line);background:var(--color-panel);color:var(--color-fg);cursor:pointer}
+.in-cnt{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);margin-left:auto}
+.in-tblbox{overflow-x:auto;max-height:620px;overflow-y:auto;border:1px solid var(--color-border-line);border-radius:var(--cds-radius)}
+.in-tbl{width:100%;border-collapse:collapse;font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums}
+.in-tbl th{position:sticky;top:0;background:var(--color-panel);text-align:left;font-weight:600;padding:8px 10px;border-bottom:1px solid var(--color-border-line);white-space:nowrap;z-index:1}
+.in-tbl th button{font:inherit;font-weight:inherit;background:none;border:0;padding:0;color:inherit;cursor:pointer;display:inline-flex;gap:4px;align-items:center}
+.in-tbl th[aria-sort=ascending] button::after{content:"▲";font-size:10px}
+.in-tbl th[aria-sort=descending] button::after{content:"▼";font-size:10px}
+.in-tbl td{padding:7px 10px;border-bottom:1px solid var(--color-border-line);vertical-align:top;white-space:nowrap}
+.in-tbl td.w{white-space:normal;min-width:12rem}
+.in-tbl td.n,.in-tbl th.n{text-align:right}
+.in-tbl td.up{color:var(--color-ok)}.in-tbl td.dn{color:var(--color-bad)}
+.in-tbl .buy{color:var(--color-ok);font-weight:700}
+.in-tbl .sell{color:var(--color-bad);font-weight:700}
+.in-tbl .mu{color:var(--color-fg-muted)}
+.in-tbl tr.none td{color:var(--color-fg-muted)}
+.in-sec ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:10px;font-size:var(--cds-font-size-body);line-height:1.6}
+.in-sec li b{font-weight:600}
+.in-src{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.in-src ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:4px;font-size:inherit}
+.in-src a{color:inherit;word-break:break-all}
+.in-foot{margin-top:8px;font-size:12.5px;opacity:.8}
+.in-wrap [data-dash-source-state=empty]{color:transparent}
+.in-wrap [data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
+.in-chip[aria-pressed=true]{background:color-mix(in srgb,var(--color-warn) 14%,var(--color-panel));border-color:color-mix(in srgb,var(--color-warn) 55%,transparent);font-weight:700}
+.in-read-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:var(--cds-gap-md)}
+.in-read-col{display:flex;flex-direction:column;gap:6px;min-width:0}
+.in-read-h{margin:0;font-weight:700;font-size:var(--cds-font-size-body)}
+.in-read ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:8px;font-size:var(--cds-font-size-caption);line-height:1.6}
+.in-read li b{font-weight:600}
+.in-read .ex{color:var(--color-fg-muted)}
+.in-wrap .ok-c{color:var(--color-ok)}.in-wrap .bad-c{color:var(--color-bad)}
+</style>
+
+<div class="in-wrap">
+  <header id="top" class="in-mast">
+    <p class="in-eyebrow"><i aria-hidden="true"></i>수급 · 공시마다 갱신</p>
+    <h1 class="in-h1"><span class="m">내부자·기관</span> <span class="s">보유 변화</span></h1>
+    <p class="in-take" id="take"><b id="take-chip" data-source="meta" data-field="as_of">—</b><span id="take-text">—</span></p>
+  </header>
+
+  <section class="in-tiles" id="tiles">
+    <div class="in-tile"><span class="k">60일 내부자 매도 합계</span><span class="v bad-c dash-skeleton" id="t-sell" data-source="totals" data-field="sell_total">—</span><span class="s" id="t-sell-n">—</span></div>
+    <div class="in-tile"><span class="k">60일 내부자 매수 합계</span><span class="v ok-c dash-skeleton" id="t-buy" data-source="totals" data-field="buy_total">—</span><span class="s" id="t-buy-n">—</span></div>
+    <div class="in-tile"><span class="k">최대 순매도 기업</span><span class="v dash-skeleton" id="t-top" data-source="totals" data-field="top_seller_company">—</span><span class="s" id="t-top-v">—</span></div>
+    <div class="in-tile"><span class="k">클러스터 매수(3인 이상 동시 매수)</span><span class="v dash-skeleton" id="t-cluster" data-source="totals" data-field="cluster_count">—</span><span class="s">곳 · 거래 있는 기업 <span id="t-cos" data-source="totals" data-field="companies_with_tx">—</span>곳</span></div>
+    <div class="in-tile"><span class="k">다음 13F 마감(3분기분)</span><span class="v dash-skeleton" id="t-13f" data-source="meta" data-field="q3_13f_deadline">—</span><span class="s">기준일 <span id="t-13f-p" data-source="meta" data-field="q3_13f_period_end">—</span> 보유분</span></div>
+  </section>
+
+  <section class="in-card in-read" id="read-card">
+    <h3>내부자는 매도, 기관은 매수? 이렇게 읽습니다</h3>
+    <div class="in-read-grid">
+      <div class="in-read-col">
+        <p class="in-read-h bad-c">내부자는 매도가 많은 게 보통입니다</p>
+        <ul>
+          <li><b>월급이 주식입니다.</b> 임원은 보수의 상당 부분을 자사주로 받습니다. 세금을 내고 재산을 나누려면 꾸준히 팔 수밖에 없어서 매도 금액이 매수보다 훨씬 큽니다.</li>
+          <li><b>미리 정한 계획 매도가 많습니다(10b5-1).</b> 몇 달 전에 날짜·수량을 정해 두고 자동으로 파는 방식입니다. 회사 전망을 나쁘게 봐서 파는 것과 다릅니다.</li>
+          <li><b>그래서 신호는 '드문 매수'입니다.</b> 임원이 자기 돈으로 사는 일은 드물어 더 눈여겨봅니다. 3명 이상이 비슷한 시기에 사면 '클러스터 매수'라고 부릅니다.</li>
+        </ul>
+      </div>
+      <div class="in-read-col">
+        <p class="in-read-h ok-c">기관 숫자는 '+'가 흔합니다</p>
+        <ul>
+          <li><b>시점이 다릅니다.</b> 내부자 숫자는 <span data-source="meta" data-field="window_start" class="rd-ws">—</span> ~ <span data-source="meta" data-field="window_end" class="rd-we">—</span> 거래이고, 기관 숫자는 <b id="rd-q" data-source="inst_13f" data-field="quarter" data-row="0">—</b> 분기 말 보유분입니다. 같은 기간의 반대 움직임이 아닙니다.</li>
+          <li><b>규모가 다릅니다.</b> 내부자는 회사당 몇 명, 기관은 수천 곳입니다. 내부자가 큰 금액을 팔아도 기관 전체 지분율에는 거의 티가 나지 않습니다.</li>
+          <li><b>보유기관 수는 대체로 늘어납니다.</b> 13F를 내는 기관 수 자체가 해마다 늘어 인기 종목은 '+'가 흔합니다. 그래서 줄어든 종목이 더 눈에 띄는 신호입니다. <span id="rd-dn"></span></li>
+          <li><b>지분율 100% 초과는 오류가 아닙니다.</b> 공매도용으로 빌려준 주식을 빌려준 기관과 산 기관이 둘 다 보유로 신고해 겹쳐 세지기 때문입니다. 공매도가 많은 종목에서 자주 보입니다. <span id="rd-over"></span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="how">요약: 내부자 표에서는 매수를, 기관 표에서는 감소를 찾아보면 됩니다. 이 페이지는 매수·매도 권유가 아니라 공시를 모은 자료입니다.</p>
+  </section>
+
+  <section class="in-card" id="chart-card">
+    <h3>기업별 내부자 순매수·순매도 (최근 60일)</h3>
+    <p class="sub">왼쪽 빨강 = 순매도, 오른쪽 초록 = 순매수. 가로축은 압축 눈금(심볼로그)이라 작은 금액도 보입니다. 막대에 손가락을 올리면 매수·매도 금액과 건수가 보입니다.</p>
+    <div class="in-chart" id="netchart" data-source="co_net"><div class="in-tip" id="nettip"></div></div>
+    <p class="how">읽는 법: 막대가 길수록 임원·이사·10% 주주가 공개시장에서 판(또는 산) 금액이 큽니다. 다만 대형 기술주는 사전에 정한 매도 계획(10b5-1)으로 꾸준히 파는 경우가 많아, 금액만으로 비관 신호로 읽지 않습니다. 거래가 없는 기업은 막대가 없습니다.</p>
+  </section>
+
+  <section class="in-card" id="tx-card">
+    <h3>내부자 거래 내역 (Form 4)</h3>
+    <p class="sub">공개시장 매수·매도만 담았습니다(옵션 행사·세금 원천징수·증여·보상 지급 제외). 열 제목을 누르면 정렬됩니다. 금액은 달러입니다.</p>
+    <div class="in-ctrl">
+      <label class="in-src" for="tx-sel">기업</label>
+      <select class="in-sel" id="tx-sel"><option value="">전체 기업</option></select>
+      <button class="in-chip" id="tx-reset" type="button">초기화</button>
+      <span class="in-cnt" id="tx-cnt">—</span>
+    </div>
+    <div class="in-tblbox">
+      <table class="in-tbl" id="tx-tbl" data-source="insider_tx" data-row-key="id">
+        <thead><tr>
+          <th data-field="trade_date" data-k="trade_date"><button type="button">거래일</button></th>
+          <th data-field="company" data-k="company"><button type="button">기업</button></th>
+          <th data-field="insider" data-k="insider"><button type="button">내부자</button></th>
+          <th data-field="title" data-k="title"><button type="button">직책</button></th>
+          <th data-field="side" data-k="side"><button type="button">구분</button></th>
+          <th class="n" data-field="shares" data-k="shares"><button type="button">주식 수</button></th>
+          <th class="n" data-field="price_usd" data-k="price_usd"><button type="button">단가(달러)</button></th>
+          <th class="n" data-field="value_usd" data-k="value_usd"><button type="button">금액(달러)</button></th>
+          <th data-field="filed_date" data-k="filed_date"><button type="button">공시일</button></th>
+        </tr></thead>
+        <tbody id="tx-body"></tbody>
+      </table>
+    </div>
+    <p class="how">읽는 법: '구분'이 매도라도 10b5-1 계획 매도(미리 정한 날짜·수량)일 수 있습니다. 출처 표에는 계획 여부 표시가 없어 이 표에서는 구분하지 않습니다. 매달 같은 날 비슷한 수량이 반복되면 계획 매도일 가능성이 큽니다. 공시일은 거래 뒤 2영업일 안입니다.</p>
+  </section>
+
+  <section class="in-card" id="cov-card">
+    <h3>종목별 집계 상태</h3>
+    <p class="sub">29개 미국 AI 밸류체인 종목. '해당 없음'은 외국 발행사라 Form 4 의무가 없는 경우입니다.</p>
+    <div class="in-tblbox">
+      <table class="in-tbl" id="cov-tbl" data-source="coverage" data-row-key="ticker">
+        <thead><tr>
+          <th data-field="company">기업</th>
+          <th data-field="category">분류</th>
+          <th data-field="status">상태</th>
+          <th class="n" data-field="rows_in_window">건수</th>
+          <th data-field="note">비고</th>
+        </tr></thead>
+        <tbody id="cov-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="in-card" id="f13-card">
+    <h3>기관 보유(13F) 요약</h3>
+    <p class="sub">분기마다 기관이 제출하는 보유 보고서(13F) 기준 <b id="f13-q">—</b> 보유분입니다. 보유기관 수가 늘면 그 종목을 새로 담는 기관이 많아졌다는 뜻이고, 지분율 변화는 전체 주식 가운데 기관이 가진 비중이 전분기보다 몇 %p 바뀌었는지입니다. 전분기 대비는 같은 출처에서 두 분기를 모두 확인한 종목만 채웠습니다. 다음 분기분은 13F 마감일 다음 날 자동으로 바꿉니다.</p>
+    <div class="in-ctrl" role="group" aria-label="13F 차트 지표">
+      <button class="in-chip" type="button" id="f13-m-pp" aria-pressed="true">지분율 변화(%p)</button>
+      <button class="in-chip" type="button" id="f13-m-h" aria-pressed="false">보유기관 수 증감</button>
+    </div>
+    <div class="in-chart" id="f13chart" data-source="inst_13f"><div class="in-tip" id="f13tip"></div></div>
+    <p class="how" id="f13-how">읽는 법: 왼쪽 빨강 = 전분기보다 줄어듦, 오른쪽 초록 = 늘어남. 가로축은 첫 번째 차트처럼 압축 눈금이라 작은 변화도 보입니다. 전분기와 비교할 수 있는 종목만 그렸고, 나머지는 아래 표에서 '—'로 보입니다.</p>
+    <div class="in-tblbox">
+      <table class="in-tbl" id="f13-tbl" data-source="inst_13f" data-row-key="ticker">
+        <thead><tr>
+          <th data-field="company">기업</th>
+          <th class="n" data-field="holders">보유기관 수</th>
+          <th class="n" data-field="holders_change_qoq">전분기 대비</th>
+          <th class="n" data-field="inst_own_pct">기관 지분율</th>
+          <th class="n" data-field="own_pct_chg_pp">지분율 변화</th>
+          <th data-field="note">비고</th>
+        </tr></thead>
+        <tbody id="f13-body"></tbody>
+      </table>
+    </div>
+    <p class="how">읽는 법: 13F는 분기 말 보유분을 45일 뒤에 공개합니다. 지금 보이는 숫자는 석 달 전 포지션이라 '지금 사고 있다'가 아니라 '그때 들고 있었다'로 읽습니다.</p>
+  </section>
+
+  <section class="in-card in-sec" id="howto">
+    <h3>읽는 법</h3>
+    <ul>
+      <li><b>Form 4</b>는 임원·이사·10% 이상 주주가 자사주를 사고팔면 2영업일 안에 SEC에 내는 보고서입니다. 이 페이지는 그중 공개시장 매수·매도만 셉니다.</li>
+      <li><b>10b5-1 계획 매도는 비관 신호가 아닙니다.</b> 임원은 미리 정한 일정표대로 파는 경우가 많습니다(분산·세금·유동성 목적). 매달 같은 날 같은 수량이면 계획 매도로 봅니다. 반대로 <b>임원이 자기 돈으로 사는 매수</b>는 드물어서 더 눈여겨봅니다. 3명 이상이 비슷한 시기에 사면 '클러스터 매수'라고 부릅니다.</li>
+      <li><b>13F는 늦게 옵니다.</b> 분기 말 기준 보유분을 45일 뒤에 공개하므로 이미 바뀐 포지션일 수 있습니다. 2분기분은 8월 14일, 3분기분은 11월 16일(11월 14일이 토요일이라 다음 영업일)이 마감입니다.</li>
+      <li>이 페이지는 매수·매도 권유가 아니라 공시를 한눈에 모은 자료입니다. 큰 매도가 보이면 '계획 매도인지, 지분의 몇 %인지, 실적 발표 직전인지'를 확인하는 데 쓰면 됩니다.</li>
+    </ul>
+  </section>
+
+  <section class="in-card in-src" id="sources">
+    <h3>출처</h3>
+    <ul id="src-list" data-source="coverage"></ul>
+    <p class="in-foot">원자료는 SEC EDGAR Form 4·13F-HR입니다. 거래 집계 기간 <span data-source="meta" data-field="window_start">—</span> ~ <span data-source="meta" data-field="window_end">—</span>(거래일 기준). 슈퍼마이크로는 창업자 부부의 중복 신고를 한 건으로, 델은 실버레이크 계열 펀드별로 두었습니다. 출처 사이트의 목록이 나뉘어 일부 거래가 빠졌을 수 있습니다.</p>
+  </section>
+</div>
+
+<script>
+(function () {
+  const sideOf = (r) => String(r.side);
+  const num = (x) => Number(x);
+
+  dash.calc('co_net', {
+    inputs: ['insider_tx', 'coverage'],
+    title: '기업별 내부자 순매수(60일)',
+    description: '공개시장 매수 금액에서 매도 금액을 뺀 값과 건수, 매수한 내부자 수(3명 이상이면 클러스터 매수)를 기업별로 셉니다.',
+    fn: (insider_tx, coverage) => {
+      const by = {};
+      insider_tx.forEach((r) => {
+        const k = String(r.ticker);
+        const a = by[k] || (by[k] = { ticker: k, company: String(r.company), buy_value: 0, sell_value: 0, n_buy: 0, n_sell: 0, buyers: {} });
+        const v = Number(r.value_usd) || 0;
+        if (String(r.side) === '매수') { a.buy_value += v; a.n_buy += 1; a.buyers[String(r.insider)] = 1; }
+        else { a.sell_value += v; a.n_sell += 1; }
+      });
+      return coverage.map((c) => by[String(c.ticker)]).filter(Boolean).map((a) => ({
+        ticker: a.ticker, company: a.company,
+        buy_value: a.buy_value, sell_value: a.sell_value, net_value: a.buy_value - a.sell_value,
+        n_buy: a.n_buy, n_sell: a.n_sell, n_buyers: Object.keys(a.buyers).length,
+        cluster: Object.keys(a.buyers).length >= 3
+      })).sort((p, q) => p.net_value - q.net_value);
+    }
+  });
+
+  dash.calc('totals', {
+    inputs: ['co_net', 'insider_tx'],
+    title: '60일 내부자 매매 합계',
+    description: '기업별 집계를 더한 매수·매도 합계, 건수, 클러스터 매수 기업 수, 순매도가 가장 큰 기업과 가장 큰 단일 매도입니다.',
+    fn: (co_net, insider_tx) => {
+      const t = { buy_total: 0, sell_total: 0, n_buy: 0, n_sell: 0, cluster_count: 0, companies_with_tx: co_net.length,
+        top_seller_company: null, top_seller_ticker: null, top_seller_value: null,
+        biggest_company: null, biggest_insider: null, biggest_value: null, biggest_date: null, latest_trade_date: null };
+      co_net.forEach((a) => { t.buy_total += a.buy_value; t.sell_total += a.sell_value; t.n_buy += a.n_buy; t.n_sell += a.n_sell; if (a.cluster) t.cluster_count += 1; });
+      t.net_total = t.buy_total - t.sell_total;
+      const worst = co_net.slice().sort((p, q) => p.net_value - q.net_value)[0];
+      if (worst && worst.net_value < 0) { t.top_seller_company = worst.company; t.top_seller_ticker = worst.ticker; t.top_seller_value = -worst.net_value; }
+      let big = null, latest = null;
+      insider_tx.forEach((r) => {
+        if (String(r.side) === '매도' && (!big || Number(r.value_usd) > Number(big.value_usd))) big = r;
+        if (!latest || String(r.trade_date) > latest) latest = String(r.trade_date);
+      });
+      if (big) { t.biggest_company = String(big.company); t.biggest_insider = String(big.insider); t.biggest_value = Number(big.value_usd); t.biggest_date = String(big.trade_date); }
+      t.latest_trade_date = latest;
+      return [t];
+    }
+  });
+
+  const fmtUSD = (v) => {
+    v = Number(v); if (!isFinite(v)) return '—';
+    const a = Math.abs(v), s = v < 0 ? '-' : '';
+    if (a >= 1e8) return s + (a / 1e8).toFixed(a >= 1e9 ? 0 : 1) + '억달러';
+    if (a >= 1e4) return s + Math.round(a / 1e4).toLocaleString('en') + '만달러';
+    return s + Math.round(a).toLocaleString('en') + '달러';
+  };
+  const fmtInt = (v) => Number(v).toLocaleString('en');
+  const fmtPx = (v) => '$' + Number(v).toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmtDateK = (d) => { const s = String(d || ''); return s.length >= 10 ? Number(s.slice(5, 7)) + '월 ' + Number(s.slice(8, 10)) + '일' : '—'; };
+  const setT = (id, t) => { const el = document.getElementById(id); if (el) { el.textContent = t; el.classList.remove('dash-skeleton'); } };
+  const $ = (id) => document.getElementById(id);
+
+  // ---- filter + sort state
+  const sel = $('tx-sel');
+  sel.addEventListener('change', () => dash.setParams({ ticker: sel.value || null }));
+  $('tx-reset').addEventListener('click', () => { dash.resetParams(); sort = { k: 'trade_date', dir: 'desc' }; dash.setParams({ ticker: null }); });
+  let sort = { k: 'trade_date', dir: 'desc' };
+  document.querySelectorAll('#tx-tbl th button').forEach((b) => {
+    b.addEventListener('click', () => {
+      const k = b.parentElement.dataset.k;
+      if (sort.k === k) sort.dir = sort.dir === 'asc' ? 'desc' : 'asc';
+      else sort = { k, dir: (k === 'shares' || k === 'price_usd' || k === 'value_usd' || k.endsWith('date')) ? 'desc' : 'asc' };
+      draw();
+    });
+  });
+
+  const tip = $('nettip');
+  let firstDraw = true;
+
+  function drawChart(rows) {
+    const box = $('netchart');
+    box.querySelectorAll('svg').forEach((s) => s.remove());
+    box.classList.remove('dash-skeleton');
+    if (!rows.length) { box.style.minHeight = '200px'; return; }
+    const W = Math.max(320, box.clientWidth || 360);
+    const rowH = 26, mTop = 26, mBot = 8;
+    const data = rows.filter((r) => r.net_value !== 0);
+    const H = mTop + mBot + data.length * rowH;
+    box.style.minHeight = H + 'px';
+    const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').attr('height', H);
+    // measure label width
+    const probe = svg.append('g').attr('font-size', 13).attr('font-family', 'var(--font-anthropic-sans)');
+    let labW = 0;
+    data.forEach((d) => { const t = probe.append('text').text(d.company); labW = Math.max(labW, t.node().getComputedTextLength()); });
+    probe.remove();
+    const mL = Math.min(Math.ceil(labW) + 10, Math.floor(W * 0.4)), mR = 56;
+    const maxAbs = d3.max(data, (d) => Math.abs(d.net_value)) || 1;
+    const x = d3.scaleSymlog().constant(2e6).domain([-maxAbs, maxAbs * 0.25]).range([mL, W - mR]);
+    const y = d3.scaleBand().domain(data.map((d) => d.ticker)).range([mTop, H - mBot]).paddingInner(0.3);
+    const ticks = [-1e9, -1e8, -1e7, -1e6, 0, 1e6, 1e7].filter((t) => t >= x.domain()[0] && t <= x.domain()[1]);
+    const tl = (t) => t === 0 ? '0' : (t < 0 ? '-' : '+') + (Math.abs(t) >= 1e8 ? (Math.abs(t) / 1e8) + '억' : (Math.abs(t) / 1e4) + '만');
+    const g = svg.append('g');
+    g.selectAll('line.grid').data(ticks).join('line').attr('class', 'grid')
+      .attr('x1', (t) => x(t)).attr('x2', (t) => x(t)).attr('y1', mTop - 4).attr('y2', H - mBot)
+      .attr('stroke', (t) => t === 0 ? 'var(--cds-chart-axis)' : 'var(--cds-chart-grid)').attr('stroke-width', 1);
+    g.selectAll('text.tk').data(ticks).join('text').attr('class', 'tk')
+      .attr('x', (t) => x(t)).attr('y', mTop - 9).attr('text-anchor', 'middle').attr('font-size', 11.5)
+      .attr('fill', 'var(--color-fg-muted)').text(tl);
+    const bar = svg.append('g');
+    bar.selectAll('rect').data(data).join('rect')
+      .attr('x', (d) => Math.min(x(0), x(d.net_value))).attr('width', (d) => Math.max(2, Math.abs(x(d.net_value) - x(0))))
+      .attr('y', (d) => y(d.ticker)).attr('height', y.bandwidth()).attr('rx', 3)
+      .attr('fill', (d) => d.net_value > 0 ? 'var(--color-ok)' : 'var(--color-bad)').attr('opacity', .85);
+    svg.append('g').selectAll('text.lab').data(data).join('text').attr('class', 'lab')
+      .attr('x', mL - 8).attr('y', (d) => y(d.ticker) + y.bandwidth() / 2).attr('dy', '.35em').attr('text-anchor', 'end')
+      .attr('font-size', 13).attr('fill', 'var(--color-fg)').text((d) => d.company);
+    svg.append('g').selectAll('text.val').data(data).join('text').attr('class', 'val')
+      .attr('x', (d) => d.net_value > 0 ? x(d.net_value) + 5 : x(0) + 5).attr('y', (d) => y(d.ticker) + y.bandwidth() / 2).attr('dy', '.35em')
+      .attr('font-size', 11.5).attr('fill', 'var(--color-fg-muted)').text((d) => fmtUSD(d.net_value) + (d.cluster ? ' ★' : ''));
+    // hover
+    svg.append('g').selectAll('rect.hit').data(data).join('rect').attr('class', 'hit')
+      .attr('x', 0).attr('width', W).attr('y', (d) => y(d.ticker) - 3).attr('height', y.bandwidth() + 6).attr('fill', 'transparent')
+      .on('pointerenter pointermove', (ev, d) => {
+        tip.textContent = '';
+        const t = document.createElement('span'); t.className = 't'; t.textContent = d.company + ' · 60일'; tip.appendChild(t);
+        const l1 = document.createElement('div'); l1.textContent = '매도 ' + fmtUSD(d.sell_value) + ' (' + d.n_sell + '건)'; tip.appendChild(l1);
+        const l2 = document.createElement('div'); l2.textContent = '매수 ' + fmtUSD(d.buy_value) + ' (' + d.n_buy + '건, 매수자 ' + d.n_buyers + '명)'; tip.appendChild(l2);
+        const l3 = document.createElement('div'); l3.textContent = '순 ' + fmtUSD(d.net_value); tip.appendChild(l3);
+        tip.style.display = 'block';
+        const bw = box.clientWidth, tw = tip.offsetWidth;
+        const px = Math.min(Math.max(8, ev.offsetX + 12), bw - tw - 8);
+        tip.style.left = px + 'px';
+        tip.style.top = (y(d.ticker) * (box.clientWidth / W) - 8 - tip.offsetHeight) + 'px';
+        if (parseFloat(tip.style.top) < 0) tip.style.top = (y(d.ticker) * (box.clientWidth / W) + y.bandwidth() + 8) + 'px';
+      })
+      .on('pointerleave', () => { tip.style.display = 'none'; });
+  }
+
+  function drawTxTable(rows) {
+    const tb = $('tx-body');
+    tb.textContent = '';
+    const tk = dash.params().ticker || '';
+    let list = rows.filter((r) => !tk || String(r.ticker) === tk);
+    const k = sort.k, dir = sort.dir === 'asc' ? 1 : -1;
+    list.sort((a, b) => {
+      const va = a[k], vb = b[k];
+      if (typeof va === 'number' || typeof vb === 'number') return (Number(va) - Number(vb)) * dir;
+      return String(va).localeCompare(String(vb), 'ko') * dir;
+    });
+    document.querySelectorAll('#tx-tbl th').forEach((th) => th.setAttribute('aria-sort', th.dataset.k === k ? (dir > 0 ? 'ascending' : 'descending') : 'none'));
+    list.forEach((r) => {
+      const tr = document.createElement('tr'); tr.dataset.key = String(r.id);
+      const cells = [
+        [String(r.trade_date), ''], [String(r.company), ''], [String(r.insider), 'w'], [String(r.title), 'w'],
+        [String(r.side), String(r.side) === '매수' ? 'buy' : 'sell'],
+        [fmtInt(r.shares), 'n'], [fmtPx(r.price_usd), 'n'], [fmtInt(r.value_usd), 'n'], [String(r.filed_date), 'mu']
+      ];
+      cells.forEach(([t, c]) => { const td = document.createElement('td'); if (c) td.className = c; td.textContent = t; tr.appendChild(td); });
+      tb.appendChild(tr);
+    });
+    $('tx-cnt').textContent = list.length + '건' + (tk ? ' (선택 기업)' : '');
+    if (sel.value !== tk) sel.value = tk;
+  }
+
+  function fillSelect(cov) {
+    const cur = sel.value;
+    while (sel.options.length > 1) sel.remove(1);
+    cov.filter((c) => Number(c.rows_in_window) > 0).forEach((c) => {
+      const o = document.createElement('option'); o.value = String(c.ticker); o.textContent = String(c.company) + ' (' + c.rows_in_window + ')'; sel.appendChild(o);
+    });
+    sel.value = dash.params().ticker || cur || '';
+  }
+
+  function drawCov(cov) {
+    const tb = $('cov-body'); tb.textContent = '';
+    cov.forEach((c) => {
+      const tr = document.createElement('tr'); tr.dataset.key = String(c.ticker);
+      if (String(c.status) !== '집계') tr.className = 'none';
+      [[String(c.company), ''], [String(c.category), 'mu'], [String(c.status), ''], [String(c.rows_in_window), 'n'], [String(c.note || ''), 'w mu']]
+        .forEach(([t, cls]) => { const td = document.createElement('td'); if (cls) td.className = cls; td.textContent = t; tr.appendChild(td); });
+      tb.appendChild(tr);
+    });
+  }
+
+  function draw13f(rows) {
+    const tb = $('f13-body'); tb.textContent = '';
+    rows.forEach((c) => {
+      const tr = document.createElement('tr'); tr.dataset.key = String(c.ticker);
+      const nn = (x) => (x == null || x === '' ? null : Number(x));
+      const sg = (x) => (x > 0 ? '+' : x < 0 ? '−' : '');
+      const hv = nn(c.holders), cv = nn(c.holders_change_qoq), ov = nn(c.inst_own_pct), sv = nn(c.own_pct_chg_pp);
+      const h = hv == null ? '—' : fmtInt(hv);
+      const ch = cv == null ? '—' : sg(cv) + fmtInt(Math.abs(cv));
+      const ow = ov == null ? '—' : ov.toFixed(1) + '%';
+      const sh = sv == null ? '—' : sg(sv) + Math.abs(sv).toFixed(1) + '%p';
+      const tone = (x) => (x == null ? 'n mu' : x > 0 ? 'n up' : x < 0 ? 'n dn' : 'n');
+      [[String(c.company), ''], [h, 'n'], [ch, tone(cv)], [ow, 'n mu'], [sh, tone(sv)], [String(c.note || ''), 'w mu']]
+        .forEach(([t, cls]) => { const td = document.createElement('td'); if (cls) td.className = cls; td.textContent = t; tr.appendChild(td); });
+      tb.appendChild(tr);
+    });
+  }
+
+  let f13Metric = 'pp';
+  const f13tip = $('f13tip');
+  function drawF13Chart(rows) {
+    const box = $('f13chart');
+    box.querySelectorAll('svg').forEach((s) => s.remove());
+    box.classList.remove('dash-skeleton');
+    const key = f13Metric === 'pp' ? 'own_pct_chg_pp' : 'holders_change_qoq';
+    const fmtV = (v) => (v > 0 ? '+' : v < 0 ? '−' : '') + (f13Metric === 'pp' ? Math.abs(v).toFixed(1) + '%p' : fmtInt(Math.abs(v)) + '곳');
+    const data = rows.filter((r) => r[key] != null && r[key] !== '').map((r) => ({ r, v: Number(r[key]) }))
+      .sort((a, b) => b.v - a.v);
+    if (!data.length) { box.style.minHeight = '120px'; return; }
+    const W = Math.max(320, box.clientWidth || 360);
+    const rowH = 26, mTop = 26, mBot = 8;
+    const H = mTop + mBot + data.length * rowH;
+    box.style.minHeight = H + 'px';
+    const svg = d3.select(box).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').attr('height', H);
+    const probe = svg.append('g').attr('font-size', 13);
+    let labW = 0;
+    data.forEach((d) => { const t = probe.append('text').text(String(d.r.company)); labW = Math.max(labW, t.node().getComputedTextLength()); });
+    probe.remove();
+    const mL = Math.min(Math.ceil(labW) + 10, Math.floor(W * 0.4)), mR = 64;
+    const maxAbs = d3.max(data, (d) => Math.abs(d.v)) || 1;
+    const minV = d3.min(data, (d) => d.v);
+    const c = f13Metric === 'pp' ? 1 : 50;
+    const lo = Math.min(-maxAbs * 0.2, minV * 1.1);
+    const x = d3.scaleSymlog().constant(c).domain([lo, maxAbs]).range([mL, W - mR]);
+    const y = d3.scaleBand().domain(data.map((d) => String(d.r.ticker))).range([mTop, H - mBot]).paddingInner(0.3);
+    const cand = f13Metric === 'pp' ? [-10, -5, -1, 0, 1, 5, 10, 30] : [-1000, -100, 0, 100, 1000];
+    const ticks = cand.filter((t) => t >= lo && t <= maxAbs);
+    const tl = (t) => t === 0 ? '0' : (t > 0 ? '+' : '−') + Math.abs(t) + (f13Metric === 'pp' ? '' : '');
+    svg.append('g').selectAll('line').data(ticks).join('line')
+      .attr('x1', (t) => x(t)).attr('x2', (t) => x(t)).attr('y1', mTop - 4).attr('y2', H - mBot)
+      .attr('stroke', (t) => t === 0 ? 'var(--cds-chart-axis)' : 'var(--cds-chart-grid)').attr('stroke-width', 1);
+    svg.append('g').selectAll('text').data(ticks).join('text')
+      .attr('x', (t) => x(t)).attr('y', mTop - 9).attr('text-anchor', 'middle').attr('font-size', 11.5)
+      .attr('fill', 'var(--color-fg-muted)').text(tl);
+    svg.append('g').selectAll('rect').data(data).join('rect')
+      .attr('x', (d) => Math.min(x(0), x(d.v))).attr('width', (d) => Math.max(2, Math.abs(x(d.v) - x(0))))
+      .attr('y', (d) => y(String(d.r.ticker))).attr('height', y.bandwidth()).attr('rx', 3)
+      .attr('fill', (d) => d.v >= 0 ? 'var(--color-ok)' : 'var(--color-bad)').attr('opacity', .85);
+    svg.append('g').selectAll('text').data(data).join('text')
+      .attr('x', mL - 8).attr('y', (d) => y(String(d.r.ticker)) + y.bandwidth() / 2).attr('dy', '.35em').attr('text-anchor', 'end')
+      .attr('font-size', 13).attr('fill', 'var(--color-fg)').text((d) => String(d.r.company));
+    svg.append('g').selectAll('text').data(data).join('text')
+      .attr('x', (d) => d.v >= 0 ? x(d.v) + 5 : x(0) + 5).attr('y', (d) => y(String(d.r.ticker)) + y.bandwidth() / 2).attr('dy', '.35em')
+      .attr('font-size', 11.5).attr('fill', 'var(--color-fg-muted)').text((d) => fmtV(d.v));
+    svg.append('g').selectAll('rect').data(data).join('rect')
+      .attr('x', 0).attr('width', W).attr('y', (d) => y(String(d.r.ticker)) - 3).attr('height', y.bandwidth() + 6).attr('fill', 'transparent')
+      .on('pointerenter pointermove', (ev, d) => {
+        const r = d.r; f13tip.textContent = '';
+        const t = document.createElement('span'); t.className = 't'; t.textContent = String(r.company) + ' · ' + String(r.quarter || ''); f13tip.appendChild(t);
+        const nn = (v) => (v == null || v === '' ? null : Number(v));
+        const lines = [
+          '보유기관 ' + (nn(r.holders) == null ? '—' : fmtInt(nn(r.holders)) + '곳') + (nn(r.holders_change_qoq) == null ? '' : ' (' + (nn(r.holders_change_qoq) >= 0 ? '+' : '−') + fmtInt(Math.abs(nn(r.holders_change_qoq))) + ')'),
+          '기관 지분율 ' + (nn(r.inst_own_pct) == null ? '—' : nn(r.inst_own_pct).toFixed(1) + '%') + (nn(r.own_pct_chg_pp) == null ? '' : ' (' + (nn(r.own_pct_chg_pp) >= 0 ? '+' : '−') + Math.abs(nn(r.own_pct_chg_pp)).toFixed(1) + '%p)')
+        ];
+        lines.forEach((s) => { const l = document.createElement('div'); l.textContent = s; f13tip.appendChild(l); });
+        f13tip.style.display = 'block';
+        const bw = box.clientWidth, tw = f13tip.offsetWidth;
+        f13tip.style.left = Math.min(Math.max(8, ev.offsetX + 12), bw - tw - 8) + 'px';
+        const k = box.clientWidth / W, yy = y(String(r.ticker)) * k;
+        let top = yy - 8 - f13tip.offsetHeight; if (top < 0) top = yy + y.bandwidth() * k + 8;
+        f13tip.style.top = top + 'px';
+      })
+      .on('pointerleave', () => { f13tip.style.display = 'none'; });
+  }
+  [['f13-m-pp', 'pp'], ['f13-m-h', 'h']].forEach(([id, m]) => {
+    $(id).addEventListener('click', () => {
+      f13Metric = m;
+      $('f13-m-pp').setAttribute('aria-pressed', String(m === 'pp'));
+      $('f13-m-h').setAttribute('aria-pressed', String(m === 'h'));
+      const f = dash.data('inst_13f'); drawF13Chart(f.status === 'ok' ? f.data : []);
+    });
+  });
+
+  function drawSources(cov) {
+    const ul = $('src-list'); ul.textContent = '';
+    const seen = {};
+    cov.forEach((c) => {
+      const u = String(c.source || ''); if (!u || seen[u]) return; seen[u] = 1;
+      const li = document.createElement('li');
+      const a = document.createElement('a'); a.href = u; a.target = '_blank'; a.rel = 'noopener';
+      const host = u.replace(/^https?:\/\//, '').split('/')[0];
+      a.textContent = String(c.company) + ' — ' + host + (u.indexOf('secform4') >= 0 ? ' (Form 4 원문 정리)' : u.indexOf('openinsider') >= 0 ? ' (Form 4 요약)' : ' (SEC EDGAR)');
+      li.appendChild(a); ul.appendChild(li);
+    });
+  }
+
+  function draw() {
+    const tx = dash.data('insider_tx'), cov = dash.data('coverage'), f13 = dash.data('inst_13f'), meta = dash.data('meta');
+    const net = dash.data('co_net'), tot = dash.data('totals');
+    const m = meta.status === 'ok' && meta.data && meta.data[0] ? meta.data[0] : null;
+    const t = tot.status === 'ok' && tot.data && tot.data[0] ? tot.data[0] : null;
+
+    // masthead
+    if (m) { setT('take-chip', fmtDateK(m.as_of) + ' 기준 · 최근 ' + m.window_days + '일'); setT('t-13f', fmtDateK(m.q3_13f_deadline)); setT('t-13f-p', String(m.q3_13f_period_end)); document.querySelectorAll('[data-source=meta][data-field=window_start]').forEach((e) => { e.textContent = String(m.window_start); }); document.querySelectorAll('[data-source=meta][data-field=window_end]').forEach((e) => { e.textContent = String(m.window_end); }); }
+    else { setT('take-chip', '—'); setT('t-13f', '—'); setT('t-13f-p', '—'); }
+
+    if (t) {
+      const tt = $('take-text'); tt.textContent = '';
+      const seg = (s, cls) => { const sp = document.createElement('span'); if (cls) sp.className = cls; sp.textContent = s; tt.appendChild(sp); };
+      seg('최근 60일 내부자 '); seg('매도 ' + fmtUSD(t.sell_total), 'in-hlt'); seg(' 대 매수 ' + fmtUSD(t.buy_total) + '. ');
+      if (t.top_seller_company) { seg('순매도는 '); seg(t.top_seller_company, 'in-hlt'); seg('이(가) 가장 크고, '); }
+      seg('3인 이상 동시 매수 기업은 ' + t.cluster_count + '곳입니다. 큰 매도의 대부분은 사전 계획 매도로 보이므로 지분 대비 비율과 반복 여부를 함께 봅니다.');
+      setT('t-sell', fmtUSD(t.sell_total)); $('t-sell-n').textContent = t.n_sell + '건 · ' + t.companies_with_tx + '개 기업';
+      setT('t-buy', fmtUSD(t.buy_total)); $('t-buy-n').textContent = t.n_buy + '건';
+      setT('t-top', t.top_seller_company || '—'); $('t-top-v').textContent = t.top_seller_value != null ? '순매도 ' + fmtUSD(t.top_seller_value) : '—';
+      setT('t-cluster', String(t.cluster_count)); setT('t-cos', String(t.companies_with_tx));
+    } else {
+      ['t-sell', 't-buy', 't-top', 't-cluster'].forEach((id) => { const el = $(id); el.textContent = '—'; if (tot.status !== 'loading') el.classList.remove('dash-skeleton'); });
+      $('take-text').textContent = tot.status === 'loading' ? '불러오는 중입니다.' : '집계를 불러오지 못했습니다.';
+    }
+
+    drawChart(net.status === 'ok' ? net.data : []);
+    if (cov.status === 'ok') { fillSelect(cov.data); drawCov(cov.data); drawSources(cov.data); } else { drawCov([]); }
+    drawTxTable(tx.status === 'ok' ? tx.data : []);
+    draw13f(f13.status === 'ok' ? f13.data : []);
+    drawF13Chart(f13.status === 'ok' ? f13.data : []);
+    {
+      document.querySelectorAll('.rd-ws').forEach((e) => { e.textContent = m ? String(m.window_start) : '—'; });
+      document.querySelectorAll('.rd-we').forEach((e) => { e.textContent = m ? String(m.window_end) : '—'; });
+      const rows = f13.status === 'ok' ? f13.data : [];
+      $('rd-q').textContent = rows[0] && rows[0].quarter ? String(rows[0].quarter) : '—';
+      const nn = (v) => (v == null || v === '' ? null : Number(v));
+      const exList = (id, lead, list, field, fmt) => {
+        const box = $(id); box.textContent = '';
+        if (!list.length) return;
+        const w = document.createElement('span'); w.className = 'ex'; w.textContent = lead; box.appendChild(w);
+        list.forEach((r, i) => {
+          const sp = document.createElement('span'); sp.className = 'ex';
+          sp.dataset.source = 'inst_13f'; sp.dataset.field = field; sp.dataset.where = 'ticker=' + encodeURIComponent(String(r.ticker));
+          sp.textContent = String(r.company) + ' ' + fmt(nn(r[field])) + (i < list.length - 1 ? ', ' : '');
+          box.appendChild(sp);
+        });
+        const e = document.createElement('span'); e.className = 'ex'; e.textContent = '.'; box.appendChild(e);
+      };
+      const sg = (v) => (v < 0 ? '−' : '+');
+      const dnH = rows.filter((r) => nn(r.holders_change_qoq) != null && nn(r.holders_change_qoq) < 0);
+      const dnP = rows.filter((r) => nn(r.own_pct_chg_pp) != null && nn(r.own_pct_chg_pp) < 0 && !dnH.includes(r));
+      $('rd-dn').textContent = '';
+      if (dnH.length || dnP.length) {
+        const holder = document.createElement('span'); $('rd-dn').appendChild(holder); holder.id = 'rd-dn-h';
+        exList('rd-dn-h', '이번 분기 예: 보유기관 감소 ', dnH, 'holders_change_qoq', (v) => sg(v) + fmtInt(Math.abs(v)) + '곳');
+        if (dnP.length) {
+          const h2 = document.createElement('span'); h2.id = 'rd-dn-p'; $('rd-dn').appendChild(document.createTextNode(' ')); $('rd-dn').appendChild(h2);
+          exList('rd-dn-p', '지분율 하락 ', dnP, 'own_pct_chg_pp', (v) => sg(v) + Math.abs(v).toFixed(2) + '%p');
+        }
+      }
+      exList('rd-over', '이번 분기 예: ', rows.filter((r) => nn(r.inst_own_pct) != null && nn(r.inst_own_pct) > 100), 'inst_own_pct', (v) => v.toFixed(1) + '%');
+    }
+    { const q = f13.status === 'ok' ? f13.data.map((r) => r.quarter).filter(Boolean)[0] : null; $('f13-q').textContent = q ? String(q) : '—'; }
+
+    if (firstDraw && tx.status === 'ok') {
+      firstDraw = false;
+      const named = document.getElementById(location.hash.slice(1));
+      if (named) named.scrollIntoView();
+    }
+  }
+
+  dash.onData(draw);
+})();
+</script>
+</div></body></html>

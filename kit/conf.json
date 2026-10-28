@@ -1,0 +1,250 @@
+{
+ "groups": [
+  [
+   "핵심",
+   [
+    [
+     "lights",
+     "경고등"
+    ],
+    [
+     "brief",
+     "데일리 시황"
+    ],
+    [
+     "earn",
+     "실적 결과"
+    ],
+    [
+     "prices",
+     "시세 보드"
+    ],
+    [
+     "targets",
+     "목표주가"
+    ],
+    [
+     "opt",
+     "옵션 온도계"
+    ],
+    [
+     "bond",
+     "채권·금리"
+    ],
+    [
+     "cal",
+     "실적 캘린더"
+    ],
+    [
+     "econ",
+     "경제지표"
+    ]
+   ]
+  ],
+  [
+   "흐름",
+   [
+    [
+     "trend",
+     "차트 길잡이"
+    ],
+    [
+     "short",
+     "공매도"
+    ],
+    [
+     "fx",
+     "환율"
+    ],
+    [
+     "capex",
+     "설비투자"
+    ],
+    [
+     "policy",
+     "정책·지정학"
+    ],
+    [
+     "tech",
+     "테크 행사"
+    ]
+   ]
+  ],
+  [
+   "점검",
+   [
+    [
+     "supply",
+     "한국·대만"
+    ],
+    [
+     "neo",
+     "네오클라우드"
+    ],
+    [
+     "qtr",
+     "분기 실적"
+    ],
+    [
+     "insider",
+     "내부자·기관"
+    ]
+   ]
+  ]
+ ],
+ "titles": {
+  "brief": "아침 브리핑 주요 시황정리",
+  "cal": "AI 밸류체인 실적 캘린더",
+  "earn": "AI 밸류체인 실적 결과",
+  "prices": "AI 밸류체인 시세 보드",
+  "econ": "미국 경제지표 캘린더",
+  "policy": "정책·지정학 타임라인",
+  "short": "AI 밸류체인 공매도 추이",
+  "opt": "옵션 시장 온도계",
+  "targets": "관심종목 기관 매수의견 목표주가",
+  "fx": "원·달러 환율 보드",
+  "supply": "한국·대만 월간 실적",
+  "neo": "네오클라우드 신용 점검",
+  "capex": "빅테크 설비투자 트래커",
+  "qtr": "AI 밸류체인 실적 분기별 추이",
+  "insider": "내부자·기관 보유 변화",
+  "trend": "차트 길잡이",
+  "bond": "채권·금리 보드",
+  "tech": "AI·테크 행사 타임라인",
+  "lights": "시장 경고등"
+ },
+ "params": {
+  "targets": {
+   "cat": "연산칩 (GPU·CPU)",
+   "tk": "NVDA"
+  },
+  "insider": {
+   "ticker": null
+  },
+  "prices": {
+   "period": "1m"
+  }
+ },
+ "datasets": {
+  "brief": [
+   "briefs"
+  ],
+  "qtr": [
+   "earnings"
+  ],
+  "targets": [
+   "events",
+   "tickers"
+  ],
+  "prices": [
+   "prices",
+   "tickers",
+   "history"
+  ],
+  "short": [
+   "flows",
+   "leopold",
+   "perf",
+   "px",
+   "si",
+   "sv"
+  ],
+  "insider": [
+   "insider_tx",
+   "inst_13f",
+   "coverage",
+   "meta"
+  ],
+  "capex": [
+   "capex_guidance",
+   "capex_quarterly",
+   "next_earnings"
+  ],
+  "supply": [
+   "kr_chip_exports",
+   "kr_prelim",
+   "memory_fixed",
+   "memory_qoq",
+   "release_calendar",
+   "tw_revenue",
+   "kr_companies",
+   "kr_company_meta",
+   "kr_memory_exports"
+  ],
+  "econ": [
+   "calendar",
+   "trends"
+  ],
+  "opt": [
+   "earnings_moves",
+   "putcall",
+   "term",
+   "vix_daily",
+   "vix_futures",
+   "vix_ratio",
+   "qqq_px",
+   "lights_log"
+  ],
+  "policy": [
+   "events",
+   "meta"
+  ],
+  "fx": [
+   "crosses",
+   "usdkrw",
+   "yields",
+   "usdkrw_long"
+  ],
+  "neo": [
+   "nc_debt",
+   "nc_backlog",
+   "nc_prepay",
+   "nc_rates",
+   "nc_rev_gw",
+   "nc_deals",
+   "nc_campus",
+   "nc_campus_sum"
+  ],
+  "bond": [
+   "yields_daily",
+   "policy_rate",
+   "kr_us10y",
+   "auctions",
+   "hy_spread",
+   "real_be",
+   "lights_log"
+  ],
+  "tech": [
+   "events",
+   "meta"
+  ],
+  "lights": [
+   "lights_log",
+   "thresholds",
+   "qqq_px",
+   "oil"
+  ]
+ },
+ "urls": {
+  "brief": "https://claude.ai/artifact/Y2mjj2pz26FDkxgBz6QPHf",
+  "cal": "https://claude.ai/artifact/UvxFR86KVcTfar6zG9SaSF",
+  "earn": "https://claude.ai/artifact/Fivfo7VsSyU7q49LLETczJ",
+  "prices": "https://claude.ai/artifact/AnAQfuMTHL9jmsyPRvtfqS",
+  "econ": "https://claude.ai/artifact/F43DA8rx7MUkiQXpbKRq9S",
+  "policy": "https://claude.ai/artifact/XUcNeiMzLs2jKhsywYcJyJ",
+  "short": "https://claude.ai/artifact/UgpD3W6H6oekWP55PVD4Li",
+  "opt": "https://claude.ai/artifact/PNjJF3eVrYbQ8wVsGKGJQ6",
+  "targets": "https://claude.ai/artifact/N1dHWCzkteiMefav4xHz98",
+  "fx": "https://claude.ai/artifact/UsE24kGzeviMMyWC7T1jPc",
+  "supply": "https://claude.ai/artifact/1kiVRjcSCExpMfphjCLryD",
+  "neo": "https://claude.ai/artifact/Lp1dTYvW8BCCPAsid3sDsy",
+  "capex": "https://claude.ai/artifact/NHw7hGsmF1Wgci53iwa8By",
+  "qtr": "https://claude.ai/artifact/XaxCApwy73nNh1P7sd3cug",
+  "insider": "https://claude.ai/artifact/EAmvDcxy6VZWzBdEcfTBG7",
+  "hub": "https://claude.ai/artifact/HkcqCCubQZd34e3YxeTa4j",
+  "trend": "https://claude.ai/artifact/742tEQrCxGsEn4LNrnB3Lb",
+  "bond": "https://claude.ai/artifact/2r3f3fxfjmkMSgXT3fbryb",
+  "tech": "https://claude.ai/artifact/TdqnWzQaet98cLo48RoTJx",
+  "lights": "https://claude.ai/artifact/J13ws2qsdx8TocuvPb6dqE"
+ }
+}

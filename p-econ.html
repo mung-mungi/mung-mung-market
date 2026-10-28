@@ -1,0 +1,444 @@
+<!doctype html><html lang="ko"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>미국 경제지표 캘린더</title><style>:root{color-scheme:light;
+--color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
+--font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
+--cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
+--cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:12px;--cds-gap-lg:20px;--cds-gap-xl:28px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:18px;--cds-pad-xl:24px;--cds-radius:12px;
+--cds-chart-grid:rgba(11,11,11,.07);--cds-chart-axis:rgba(11,11,11,.25);--cds-chart-muted:rgba(111,109,104,.45);--cds-chart-reference:rgba(11,11,11,.4);--cds-chart-status-critical:#b23434;
+--cds-surface-popover:#ffffff;--cds-border:rgba(11,11,11,.12);--cds-shadow-popover:0 6px 24px -8px rgba(0,0,0,.25);--cds-text-secondary:#6f6d68;--cds-dur-slow:.3s;--cds-ease-out:cubic-bezier(.2,.8,.2,1);
+--dc1:#2f5bb8;--dc2:#b07a12;--dc3:#1d7a4a;--dc4:#b53a3a;--dc5:#7246b0;--dc6:#1b7880;--dc7:#b35c2a;--dc8:#6b5b95}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}}
+:root[data-theme="dark"]{color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}
+*{box-sizing:border-box}
+html,body.ibody{margin:0;background:var(--color-bg);color:var(--color-fg)}
+body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+#dash-root{padding:20px max(16px,env(safe-area-inset-left,0px)) 48px max(16px,env(safe-area-inset-right,0px))}
+#dash-root b,#dash-root strong{font-weight:700}
+.dash-skeleton{color:transparent!important;background:linear-gradient(90deg,color-mix(in srgb,var(--color-fg-muted) 14%,transparent),color-mix(in srgb,var(--color-fg-muted) 24%,transparent),color-mix(in srgb,var(--color-fg-muted) 14%,transparent));background-size:200% 100%;border-radius:6px;animation:skl 1.4s linear infinite}
+@keyframes skl{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.dash-skeleton{animation:none}}
+.ib{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;padding:9px max(12px,env(safe-area-inset-left,0px));background:var(--ib-bg,#f9f9f7);border-bottom:1px solid var(--ib-line,rgba(11,11,11,.1));font:600 14px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+.ib::-webkit-scrollbar{display:none}
+.ib a{flex:none;text-decoration:none;color:var(--ib-mu,#6f6d68);padding:6px 12px;border-radius:999px;border:1px solid var(--ib-line,rgba(11,11,11,.1));background:var(--ib-pn,#fff);white-space:nowrap}
+.ib a.home{color:var(--ib-fg,#0b0b0b);font-weight:800}
+.ib a.home{position:sticky;left:0;z-index:3;box-shadow:-8px 0 0 5px var(--ib-bg,#f9f9f7),-22px 0 0 5px var(--ib-bg,#f9f9f7),9px 0 10px -8px rgba(0,0,0,.3)}
+.ib a[aria-current]{background:var(--ib-fg,#0b0b0b);color:var(--ib-bg,#f9f9f7);border-color:var(--ib-fg,#0b0b0b)}
+.ib .tg{flex:none;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--ib-fa,#9a978f);padding-left:8px;border-left:1px solid var(--ib-line,rgba(11,11,11,.1));margin-left:2px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}}
+:root[data-theme="dark"]{--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script><script>window.__PAGE__={"page": "econ", "ds": ["calendar", "trends"], "params": {}};window.__SYNC__="202610280842";</script><script src="shim.js"></script></head><body class="ibody"><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html">경고등</a><a href="p-brief.html">데일리 시황</a><a href="p-earn.html">실적 결과</a><a href="p-prices.html">시세 보드</a><a href="p-targets.html">목표주가</a><a href="p-opt.html">옵션 온도계</a><a href="p-bond.html">채권·금리</a><a href="p-cal.html">실적 캘린더</a><a href="p-econ.html" aria-current="page">경제지표</a><span class="tg">흐름</span><a href="p-trend.html">차트 길잡이</a><a href="p-short.html">공매도</a><a href="p-fx.html">환율</a><a href="p-capex.html">설비투자</a><a href="p-policy.html">정책·지정학</a><a href="p-tech.html">테크 행사</a><span class="tg">점검</span><a href="p-supply.html">한국·대만</a><a href="p-neo.html">네오클라우드</a><a href="p-qtr.html">분기 실적</a><a href="p-insider.html">내부자·기관</a></nav><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script><div id="dash-root" data-dash-state="loading"><style>
+.mc-wrap,.mc-tip{--cds-font-size-caption:14.5px;--cds-font-size-body:17px;--cds-font-size-heading:19.5px;--cds-font-size-title:30.5px}
+.mc-wrap{font-family:var(--font-anthropic-sans);display:flex;flex-direction:column;gap:var(--cds-gap-lg);max-width:1100px;margin-inline:auto;word-break:keep-all;position:relative}
+.mc-note{margin:0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.55}
+.mc-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,8.5rem),1fr));gap:var(--cds-gap-sm)}
+.mc-tile{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-md);display:flex;flex-direction:column;gap:var(--cds-gap-xs);min-width:0}
+.mc-tile .k{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.mc-tile .v{font-family:var(--font-anthropic-serif);font-size:var(--cds-font-size-title);font-variant-numeric:tabular-nums;min-height:1.2em;line-height:1.15}
+.mc-tile .s{font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums;line-height:1.45}
+.mc-tile.hot{border-color:color-mix(in srgb,var(--color-warn) 60%,var(--color-border-line))}
+.mc-tile .v.sm{font-size:21px;font-family:var(--font-anthropic-sans);font-weight:600;line-height:1.3}
+.mc-card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg);display:flex;flex-direction:column;gap:var(--cds-gap-sm);min-width:0}
+.mc-card h3{margin:0;font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium)}
+.mc-card .sub{margin:0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.5}
+.mc-sec{display:flex;flex-direction:column;gap:var(--cds-gap-sm);scroll-margin-top:56px}
+.mc-sec>.k{font-size:var(--cds-font-size-heading);color:var(--color-fg);display:block;margin:0 0 4px;font-weight:700;letter-spacing:-.01em;line-height:1.3;border-left:4px solid var(--color-warn);padding-left:10px}
+.mc-hlt{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--color-warn) 42%,transparent) 58%);color:var(--color-fg);font-weight:500;padding:0 1px}
+.mc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:var(--cds-gap-md)}
+.mc-chart{position:relative;width:100%;min-height:220px}
+.mc-take{margin:0;font-size:var(--cds-font-size-body);line-height:1.6;border-left:3px solid var(--color-warn);padding-left:12px}
+.mc-tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);border-radius:var(--cds-radius);box-shadow:var(--cds-shadow-popover);padding:var(--cds-pad-xs) var(--cds-pad-sm);font-size:var(--cds-font-size-caption);white-space:nowrap;z-index:5;display:none;font-variant-numeric:tabular-nums}
+.mc-legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:var(--cds-font-size-caption)}
+.mc-legend span{display:inline-flex;align-items:center;gap:6px}
+.mc-legend i{width:12px;height:3px;border-radius:2px;display:inline-block}
+.mc-ctrl{display:flex;flex-wrap:wrap;gap:var(--cds-gap-sm);align-items:center}
+.mc-chip{font:inherit;font-size:var(--cds-font-size-caption);padding:5px 12px;border-radius:999px;border:1px solid var(--color-border-line);background:var(--color-panel);color:var(--color-fg);cursor:pointer}
+.mc-chip[aria-pressed=true]{background:var(--color-fg);color:var(--color-bg);border-color:var(--color-fg)}
+.mc-stars{color:var(--color-warn);letter-spacing:-1px;white-space:nowrap;font-size:15px}
+.mc-stars i{font-style:normal;color:var(--color-border-line)}
+/* 머리말 */
+.mc-mast{display:flex;flex-direction:column;gap:10px;padding:6px 0 4px;word-break:keep-all}
+.mc-eyebrow{margin:0;display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;letter-spacing:.12em;color:var(--color-fg-muted)}
+.mc-eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--color-bad);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-bad) 22%,transparent)}
+.mc-h1{font-family:var(--font-anthropic-serif);font-size:clamp(30px,7.4vw,42px);line-height:1.15;letter-spacing:-.02em;font-weight:400;margin:0;padding-bottom:12px;border-bottom:1px solid var(--color-border-line);position:relative}
+.mc-h1::after{content:"";position:absolute;left:0;bottom:-1px;width:56px;height:3px;border-radius:2px;background:var(--color-warn)}
+.mc-h1 .m{font-weight:600}
+.mc-h1 .s{color:var(--color-fg-muted);font-size:.62em;letter-spacing:-.01em;white-space:nowrap}
+.mc-takeln{margin:6px 0 0;font-family:var(--font-anthropic-serif);font-size:clamp(19.5px,4.9vw,23px);line-height:1.5;letter-spacing:-.01em;color:var(--color-fg);text-wrap:pretty}
+.mc-takeln b{display:table;margin-bottom:8px;font-family:var(--font-anthropic-sans);font-size:13.5px;font-weight:700;letter-spacing:.02em;font-variant-numeric:tabular-nums;color:var(--color-warn);padding:3px 10px;border-radius:999px;border:1px solid color-mix(in srgb,var(--color-warn) 55%,transparent);background:color-mix(in srgb,var(--color-warn) 10%,transparent)}
+/* 이번 주 · 다음 주 */
+.mc-weeks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:var(--cds-gap-md)}
+.mc-wk h4{margin:0 0 4px;font-size:var(--cds-font-size-body);font-weight:700}
+.mc-day{border-top:1px solid var(--color-border-line);padding:10px 0 4px}
+.mc-day:first-of-type{border-top:0}
+.mc-dl{font-family:var(--font-anthropic-serif);font-size:var(--cds-font-size-heading);margin:0 0 6px}
+.mc-dl.today{color:var(--color-warn)}
+.mc-ev{display:grid;grid-template-columns:3.4em minmax(0,1fr) auto;gap:2px 10px;align-items:baseline;padding:6px 8px;border-radius:var(--cds-radius);font-size:var(--cds-font-size-body)}
+.mc-ev.p3{background:color-mix(in srgb,var(--color-warn) 12%,transparent);box-shadow:inset 3px 0 0 var(--color-warn)}
+.mc-ev.p3 .nm{font-weight:700}
+.mc-ev .tm{font-variant-numeric:tabular-nums;font-weight:600}
+.mc-ev .nm{min-width:0}
+.mc-ev .ex{grid-column:2 / span 2;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);font-variant-numeric:tabular-nums;line-height:1.5}
+.mc-ev .ex b{color:var(--color-fg);font-weight:600}
+.mc-badge{font-size:12.5px;padding:1px 7px;border-radius:6px;border:1px solid var(--color-border-line);color:var(--color-fg-muted);white-space:nowrap}
+.mc-badge.done{border-color:var(--color-ok);color:var(--color-ok)}
+.mc-badge.wait{border-color:var(--color-warn);color:var(--color-warn)}
+/* 표 */
+.mc-tbox{overflow-x:auto;max-height:640px;overflow-y:auto;border:1px solid var(--color-border-line);border-radius:var(--cds-radius)}
+.mc-tbl{border-collapse:collapse;width:100%;min-width:760px;font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums}
+.mc-tbl th{position:sticky;top:0;background:var(--color-panel);text-align:left;font-weight:600;color:var(--color-fg-muted);padding:8px;border-bottom:1px solid var(--color-border-line);white-space:nowrap;z-index:1}
+.mc-tbl td{padding:8px;border-bottom:1px solid var(--color-border-line);vertical-align:top}
+.mc-tbl td.n{text-align:right;white-space:nowrap}
+.mc-tbl th.n{text-align:right}
+.mc-tbl tr.p3 td:first-child{box-shadow:inset 3px 0 0 var(--color-warn)}
+.mc-tbl tr.done td{background:color-mix(in srgb,var(--color-fg) 3%,transparent)}
+.mc-tbl .nm{font-weight:600;font-size:15px;color:var(--color-fg)}
+.mc-tbl .pd{color:var(--color-fg-muted)}
+.mc-tbl .nt{display:block;color:var(--color-fg-muted);margin-top:2px;max-width:30ch;white-space:normal}
+.mc-tbl a{color:var(--color-fg-muted)}
+.mc-read ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:10px;font-size:var(--cds-font-size-body);line-height:1.6}
+.mc-read li b{font-weight:700}
+.mc-src a{display:block;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);word-break:break-all;line-height:1.7}
+.up{color:var(--color-ok)} .dn{color:var(--color-bad)} .mu{color:var(--color-fg-muted)} .wn{color:var(--color-warn)}
+.mc-fail{display:flex;align-items:center;justify-content:center;gap:8px;min-height:120px;color:var(--color-fg-muted);font-size:var(--cds-font-size-caption)}
+.mc-fail::before{content:"";width:.375rem;height:.375rem;border-radius:50%;background:var(--color-bad)}
+[data-dash-source-state=empty]{color:transparent}
+[data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
+</style>
+
+<div class="mc-wrap" id="wrap">
+  <header id="top" class="mc-mast">
+    <p class="mc-eyebrow"><i aria-hidden="true"></i>매크로 · 발표 때마다 갱신</p>
+    <h1 class="mc-h1"><span class="m">미국 경제지표</span> <span class="s">캘린더 · 추세</span></h1>
+    <p class="mc-takeln" id="take" data-source="calendar"><span class="dash-skeleton">불러오는 중</span></p>
+  </header>
+
+  <section class="mc-tiles" id="tiles">
+    <div class="mc-tile hot"><span class="k">다음 큰 발표</span><span class="v sm dash-skeleton" id="t-next" data-source="calendar" data-field="event">불러오는 중</span><span class="s wn" id="t-nextd"></span></div>
+    <div class="mc-tile"><span class="k">소비자물가 전년비</span><span class="v dash-skeleton" id="t-cpi" data-source="trends" data-field="cpi_yoy">불러오는 중</span><span class="s" id="t-cpis"></span></div>
+    <div class="mc-tile"><span class="k">근원 PCE 전년비</span><span class="v dash-skeleton" id="t-pce" data-source="trends" data-field="core_pce_yoy">불러오는 중</span><span class="s" id="t-pces"></span></div>
+    <div class="mc-tile"><span class="k">실업률</span><span class="v dash-skeleton" id="t-ur" data-source="trends" data-field="unrate">불러오는 중</span><span class="s" id="t-urs"></span></div>
+    <div class="mc-tile"><span class="k">기준금리 범위</span><span class="v dash-skeleton" id="t-ff" data-source="trends" data-field="ff_upper">불러오는 중</span><span class="s" id="t-ffs"></span></div>
+  </section>
+
+  <section class="mc-sec" id="weeks-sec">
+    <span class="k">이번 주 · 다음 주</span>
+    <p class="mc-note"><b>모두 미국 경제지표</b>이며, 날짜와 시각은 <b>한국시간</b>으로 묶었습니다(아래 회색 글씨가 뉴욕 현지 시각). 노란 띠는 중요도 ★3(시장을 크게 움직일 수 있는 발표)입니다. 한국 시각은 11월 1일 미국 서머타임 종료 전에는 뉴욕 +13시간, 이후에는 +14시간입니다.</p>
+    <div class="mc-weeks" id="weeks" data-source="calendar"></div>
+  </section>
+
+  <section class="mc-sec" id="cal-sec">
+    <span class="k">전체 일정표</span>
+    <p class="mc-note">10월 중순부터 11월 말까지입니다. 발표된 지표는 실제치와 그날 S&amp;P 500·나스닥 종합 등락률을 함께 적었습니다. 예상치는 시장 컨센서스이며, 아직 집계되지 않은 칸은 '자료 없음'입니다.</p>
+    <div class="mc-ctrl" id="calf">
+      <button class="mc-chip" data-f="all" aria-pressed="true">전체</button>
+      <button class="mc-chip" data-f="done" aria-pressed="false">발표됨</button>
+      <button class="mc-chip" data-f="todo" aria-pressed="false">예정</button>
+      <button class="mc-chip" data-f="p3" aria-pressed="false">★3만</button>
+    </div>
+    <div class="mc-tbox" id="calbox" data-source="calendar" data-fetchpriority="low">
+      <table class="mc-tbl" id="caltbl">
+        <thead><tr><th>한국 시각</th><th>뉴욕 시각</th><th>지표 · 기간</th><th>중요</th><th class="n">예상</th><th class="n">이전</th><th class="n">실제</th><th class="n">S&amp;P 500</th><th class="n">나스닥</th></tr></thead>
+        <tbody id="calbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mc-sec" id="trend-sec">
+    <span class="k">주요 지표 추세</span>
+    <p class="mc-note">최근 24개월 월별 값입니다. 마지막 점(진한 점)이 최신치입니다. 점에 손가락을 대면 그 달 값을 봅니다. 2025년 10월은 그해 연방정부 셧다운으로 소비자물가와 실업률이 발표되지 않아 빈칸입니다.</p>
+    <div class="mc-grid">
+      <article class="mc-card" id="c-infl">
+        <h3>물가: 소비자물가 · 근원 · 근원 PCE</h3>
+        <p class="sub">전년 같은 달 대비 상승률(%). 점선은 연준 목표 2%입니다.</p>
+        <div class="mc-legend" id="lg-infl"></div>
+        <div class="mc-chart" id="ch-infl" data-source="trends"></div>
+        <p class="mc-take" id="tk-infl" data-source="trends"></p>
+      </article>
+      <article class="mc-card" id="c-nfp">
+        <h3>비농업 고용 증감</h3>
+        <p class="sub">한 달 동안 늘어난 일자리(천 명). 초록 증가, 빨강 감소입니다.</p>
+        <div class="mc-chart" id="ch-nfp" data-source="trends"></div>
+        <p class="mc-take" id="tk-nfp" data-source="trends"></p>
+      </article>
+      <article class="mc-card" id="c-ur">
+        <h3>실업률</h3>
+        <p class="sub">일하려는 사람 가운데 일자리가 없는 비율(%).</p>
+        <div class="mc-chart" id="ch-ur" data-source="trends"></div>
+        <p class="mc-take" id="tk-ur" data-source="trends"></p>
+      </article>
+      <article class="mc-card" id="c-ahe">
+        <h3>평균 시간당 임금 vs 소비자물가</h3>
+        <p class="sub">둘 다 전년비(%). 임금선이 물가선보다 아래면 실질임금이 줄어듭니다.</p>
+        <div class="mc-legend" id="lg-ahe"></div>
+        <div class="mc-chart" id="ch-ahe" data-source="trends"></div>
+        <p class="mc-take" id="tk-ahe" data-source="trends"></p>
+      </article>
+      <article class="mc-card" id="c-ff">
+        <h3>기준금리(연방기금금리 목표 상단)</h3>
+        <p class="sub">월말 기준(%). 계단이 오르면 인상, 내리면 인하입니다.</p>
+        <div class="mc-chart" id="ch-ff" data-source="trends"></div>
+        <p class="mc-take" id="tk-ff" data-source="trends"></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="mc-sec mc-read" id="read-sec">
+    <span class="k">읽는 법 — 기술주에 어떤 의미인가</span>
+    <ul>
+      <li><b>연준 회의(FOMC)</b> 기준금리를 정합니다. 금리가 오르거나 인상 신호가 나오면 미래 이익을 현재 가치로 깎는 폭이 커져 엔비디아 같은 고평가 성장주가 먼저 흔들립니다. 결정문보다 의장 기자회견의 말투를 함께 봅니다.</li>
+      <li><b>소비자물가(CPI) · 근원</b> 근원은 변동이 큰 식품·에너지를 뺀 값입니다. 예상보다 높으면 금리 인상 우려로 기술주가 약해지는 경우가 많습니다. 전월비가 예상과 얼마나 다른지가 핵심입니다.</li>
+      <li><b>개인소비지출(PCE) 물가 · 근원 PCE</b> 연준이 목표(2%)로 삼는 물가입니다. 소비자물가가 이미 나온 뒤라 놀라움은 작지만 연준의 판단 근거가 됩니다.</li>
+      <li><b>생산자물가(PPI)</b> 기업이 받는 가격입니다. 몇 달 뒤 소비자물가로 옮겨 갈 수 있는 압력을 미리 보여 줍니다.</li>
+      <li><b>고용보고서(비농업 고용 · 실업률 · 임금)</b> 고용이 너무 강하고 임금이 빠르게 오르면 물가 걱정, 너무 약하면 경기 둔화 걱정입니다. 둘 다 아닌 '적당히 식는' 숫자가 주식에 가장 편합니다.</li>
+      <li><b>구인·이직(JOLTS) · 실업수당 청구</b> 노동시장 온도를 미리 봅니다. 청구 건수가 갑자기 늘면 해고가 시작됐다는 신호입니다.</li>
+      <li><b>ISM 제조업·서비스업</b> 기업 구매 담당자 설문입니다. 기준선(50) 위면 확장입니다. 가격 항목이 높으면 물가 압력으로 읽습니다.</li>
+      <li><b>소매판매 · 소비심리 · GDP</b> 소비와 성장의 힘입니다. 성장이 강한데 물가도 높으면 금리 부담이, 성장이 꺾이면 실적 부담이 커집니다.</li>
+      <li><b>보는 순서</b> 실제치가 예상과 얼마나 다른지 → 미 국채 금리가 어느 쪽으로 움직이는지 → 반도체·빅테크가 따라가는지를 확인합니다. 매수·매도 판단은 각자의 몫입니다.</li>
+    </ul>
+  </section>
+
+  <section class="mc-sec mc-src" id="src-sec">
+    <span class="k">출처</span>
+    <p class="mc-note">일정은 각 기관 공식 발표 일정, 예상치·이전치는 트레이딩 이코노믹스 경제 캘린더와 기사, 월별 추세는 미 노동통계국·경제분석국 원자료(세인트루이스 연은 FRED 수록본)를 썼습니다. 지수 등락률은 새벽 브리핑에 쌓인 종가로 계산했습니다. 각 행의 출처는 일정표 지표명 아래 링크에 있습니다.</p>
+    <a href="https://www.bls.gov/schedule/2026/home.htm" target="_blank" rel="noopener">미 노동통계국(BLS) 2026 발표 일정</a>
+    <a href="https://www.bea.gov/news/schedule" target="_blank" rel="noopener">미 경제분석국(BEA) 발표 일정</a>
+    <a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" target="_blank" rel="noopener">연준(Fed) FOMC 일정</a>
+    <a href="https://www.sca.isr.umich.edu/" target="_blank" rel="noopener">미시간대 소비자조사</a>
+    <a href="https://tradingeconomics.com/united-states/calendar" target="_blank" rel="noopener">트레이딩 이코노믹스 미국 경제 캘린더</a>
+    <a href="https://tradingeconomics.com/united-states/interest-rate" target="_blank" rel="noopener">트레이딩 이코노믹스 미국 기준금리</a>
+    <a href="https://www.investing.com/economic-calendar/" target="_blank" rel="noopener">인베스팅닷컴 경제 캘린더(교차 확인용)</a>
+    <a href="https://www.marketwatch.com/economy-politics/calendar" target="_blank" rel="noopener">마켓워치 경제 캘린더(교차 확인용)</a>
+    <a href="https://fred.stlouisfed.org/" target="_blank" rel="noopener">세인트루이스 연은 FRED (CPIAUCNS · CPILFENS · PCEPILFE · PAYEMS · UNRATE · CES0500000003)</a>
+  </section>
+  <div class="mc-tip" id="tip"></div>
+</div>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const WD=['일','월','화','수','목','금','토'];
+const enc=s=>encodeURIComponent(s);
+const st={f:'all'};
+let CAL=[],TR=[];
+const pd=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(Date.UTC(y,m-1,d))};
+const dl=s=>{const d=pd(s);return (d.getUTCMonth()+1)+'.'+String(d.getUTCDate()).padStart(2,'0')+'('+WD[d.getUTCDay()]+')'};
+const absT=r=>{const [y,m,d]=r.date_kst.split('-').map(Number);const [h,mi]=r.time_kst.split(':').map(Number);return Date.UTC(y,m-1,d,h,mi)-9*3600e3};
+const nowK=()=>new Date(Date.now()+9*3600e3);
+const isoK=()=>nowK().toISOString().slice(0,10);
+const dayDiff=(a,b)=>Math.round((pd(b)-pd(a))/864e5);
+const f1=v=>v==null?'자료 없음':Number(v).toLocaleString('ko-KR',{minimumFractionDigits:1,maximumFractionDigits:1});
+const fv=(v,u)=>{if(v==null)return '자료 없음';const n=Number(v);let s;
+  if(u==='천 건'||u==='천 명')s=n.toLocaleString('ko-KR',{maximumFractionDigits:0})+(u==='천 건'?'천 건':'천 명');
+  else if(u==='백만 건')s=n.toLocaleString('ko-KR',{maximumFractionDigits:2})+'백만';
+  else if(u==='지수')s=n.toLocaleString('ko-KR',{minimumFractionDigits:1,maximumFractionDigits:1});
+  else if(u&&u.startsWith('%'))s=n.toLocaleString('ko-KR',{minimumFractionDigits:1,maximumFractionDigits:2})+'%';
+  else s=String(n);return s};
+const sg=v=>v==null?'자료 없음':(v>0?'+':'')+Number(v).toFixed(2)+'%';
+const cl=v=>v==null?'mu':v>0?'up':v<0?'dn':'mu';
+const stars=n=>{const s=document.createElement('span');s.className='mc-stars';s.setAttribute('aria-label','중요도 '+n);s.textContent='★'.repeat(n);const i=document.createElement('i');i.textContent='★'.repeat(3-n);s.appendChild(i);return s};
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
+const mk=(e,src,field,where)=>{e.setAttribute('data-source',src);if(field)e.setAttribute('data-field',field);if(where)e.setAttribute('data-where',where);return e};
+const fail=box=>{box.textContent='';box.appendChild(el('div','mc-fail','불러오지 못했습니다'))};
+
+/* ---------- 상태 판별 ---------- */
+const stateOf=r=>{if(r.actual!=null)return 'done';if(absT(r)>Date.now())return 'todo';return r.unit?'wait':'past'};
+
+function draw(){
+  const c=dash.data('calendar'),t=dash.data('trends');
+  CAL=c.status==='ok'?c.data.slice().sort((a,b)=>absT(a)-absT(b)||(b.stars-a.stars)):[];
+  TR=t.status==='ok'?t.data.slice().sort((a,b)=>a.month.localeCompare(b.month)).map(r=>Object.assign({},r,{d:pd(r.month.slice(0,10))})):[];
+  document.querySelectorAll('.dash-skeleton').forEach(e=>{if((c.status==='ok'||c.status==='error')&&(t.status==='ok'||t.status==='error'))e.classList.remove('dash-skeleton')});
+  if(c.status==='ok'){drawTake();drawNext();drawWeeks();drawTable()}else if(c.status==='error'){fail($('weeks'));fail($('calbox'));$('take').textContent='일정을 불러오지 못했습니다.';$('t-next').textContent='—'}
+  if(t.status==='ok'){drawTiles();drawCharts()}else if(t.status==='error'){['ch-infl','ch-nfp','ch-ur','ch-ahe','ch-ff'].forEach(id=>fail($(id)))}
+}
+
+/* ---------- 머리말 한 줄 ---------- */
+function drawTake(){
+  const tk=$('take');tk.textContent='';
+  const b=el('b',null,dl(isoK())+' 한국시간 기준');tk.appendChild(b);
+  const nx=CAL.find(r=>r.stars===3&&absT(r)>Date.now());
+  const L=CAL.filter(r=>r.stars===3&&r.actual!=null&&r.consensus!=null);const lt=L.length?absT(L[L.length-1]):0;const last=L.find(r=>absT(r)===lt);
+  if(nx){tk.appendChild(document.createTextNode('다음 큰 일정은 '));tk.appendChild(mk(el('span','mc-hlt',nx.event),'calendar','event','id='+enc(nx.id)));
+    tk.appendChild(document.createTextNode('('+dl(nx.date_kst)+' '+nx.time_kst+')입니다. '))}
+  if(last){const diff=last.actual-last.consensus;tk.appendChild(document.createTextNode('직전 '+last.period+' '+last.event.replace(/ 전년비| 전월비/,'')+'는 '));
+    tk.appendChild(mk(el('span',null,fv(last.actual,last.unit)),'calendar','actual','id='+enc(last.id)));
+    tk.appendChild(document.createTextNode('로 예상('+fv(last.consensus,last.unit)+')을 '+(diff>0?'웃돌았습니다.':diff<0?'밑돌았습니다.':'맞혔습니다.')))}
+}
+function drawNext(){
+  const nx=CAL.find(r=>r.stars===3&&absT(r)>Date.now());const v=$('t-next'),s=$('t-nextd');
+  if(!nx){v.textContent='예정 없음';s.textContent='';return}
+  v.textContent=nx.event;v.setAttribute('data-where','id='+enc(nx.id));
+  const dd=dayDiff(isoK(),nx.date_kst);
+  s.textContent=(dd<=0?'D-day':'D-'+dd)+' · '+dl(nx.date_kst)+' '+nx.time_kst+' 한국시간';
+}
+
+/* ---------- 타일 ---------- */
+function lastOf(f){for(let i=TR.length-1;i>=0;i--)if(TR[i][f]!=null)return [TR[i],TR[i-1]&&TR[i-1][f]!=null?TR[i-1]:null,TR[i-12]&&TR[i-12][f]!=null?TR[i-12]:null];return [null,null,null]}
+const mlab=r=>r?(r.d.getUTCFullYear()%100)+'년 '+(r.d.getUTCMonth()+1)+'월':'';
+function tile(id,sid,f,unitTxt){const [a,b]=lastOf(f);const v=$(id),s=$(sid);
+  if(!a){v.textContent='—';s.textContent='';return}
+  v.textContent=f1(a[f])+'%';v.setAttribute('data-where','month='+enc(a.month));
+  s.textContent='';const d=b?a[f]-b[f]:null;
+  s.appendChild(el('span','mu',mlab(a)+' · '));
+  const ch=el('span',null,d==null?'전월 자료 없음':'전월비 '+(d>0?'+':'')+d.toFixed(1)+'%p');
+  // 물가·실업률은 오르면 나쁨
+  ch.className=d==null||Math.abs(d)<0.05?'mu':d>0?'dn':'up';s.appendChild(ch);
+}
+function drawTiles(){
+  tile('t-cpi','t-cpis','cpi_yoy');tile('t-pce','t-pces','core_pce_yoy');tile('t-ur','t-urs','unrate');
+  const [a]=lastOf('ff_upper');const v=$('t-ff'),s=$('t-ffs');
+  if(!a){v.textContent='—';return}
+  v.textContent=a.ff_lower.toFixed(2)+'~'+a.ff_upper.toFixed(2)+'%';v.setAttribute('data-where','month='+enc(a.month));
+  const ch=lastChange();s.textContent='';
+  if(ch){const sp=el('span',ch.dir>0?'dn':'up',mlab(ch.r)+' '+(ch.dir>0?'인상':'인하')+' '+Math.abs(ch.size*100).toFixed(0)+'bp');s.appendChild(sp);s.appendChild(el('span','mu',' 이후 유지'))}
+}
+function lastChange(){for(let i=TR.length-1;i>0;i--){const d=TR[i].ff_upper-TR[i-1].ff_upper;if(Math.abs(d)>1e-9)return {r:TR[i],dir:Math.sign(d),size:d,prev:TR[i-1]}}return null}
+
+/* ---------- 이번 주 · 다음 주 ---------- */
+function weekStart(iso){const d=pd(iso);const w=(d.getUTCDay()+6)%7;return new Date(d.getTime()-w*864e5).toISOString().slice(0,10)}
+const addD=(iso,n)=>new Date(pd(iso).getTime()+n*864e5).toISOString().slice(0,10);
+function evRow(r){
+  const s=stateOf(r);const li=el('div','mc-ev'+(r.stars===3?' p3':''));
+  li.appendChild(mk(el('span','tm',r.time_kst),'calendar','time_kst','id='+enc(r.id)));
+  const nm=el('span','nm');nm.appendChild(mk(el('span',null,r.event),'calendar','event','id='+enc(r.id)));nm.appendChild(document.createTextNode(' '));nm.appendChild(stars(r.stars));li.appendChild(nm);
+  li.appendChild(el('span','mc-badge '+(s==='done'||s==='past'?'done':s==='wait'?'wait':''),s==='done'?'발표':s==='wait'?'갱신 대기':s==='past'?'지남':'예정'));
+  const ex=el('span','ex');
+  ex.appendChild(document.createTextNode(r.period+' · 뉴욕 '+dl(r.date_et)+' '+r.time_et));
+  if(r.unit){ex.appendChild(el('br'));
+    if(r.actual!=null){ex.appendChild(document.createTextNode('실제 '));ex.appendChild(mk(el('b',cl(0),fv(r.actual,r.unit)),'calendar','actual','id='+enc(r.id)));ex.appendChild(document.createTextNode(' · '))}
+    ex.appendChild(document.createTextNode('예상 '));ex.appendChild(mk(el('span',null,fv(r.consensus,r.unit)),'calendar','consensus','id='+enc(r.id)));
+    ex.appendChild(document.createTextNode(' · 이전 '));ex.appendChild(mk(el('span',null,fv(r.previous,r.unit)),'calendar','previous','id='+enc(r.id)))}
+  if(r.spx_chg_pct!=null){ex.appendChild(el('br'));ex.appendChild(document.createTextNode('그날 S&P 500 '));ex.appendChild(mk(el('span',cl(r.spx_chg_pct),sg(r.spx_chg_pct)),'calendar','spx_chg_pct','id='+enc(r.id)));
+    ex.appendChild(document.createTextNode(' · 나스닥 '));ex.appendChild(mk(el('span',cl(r.ndx_chg_pct),sg(r.ndx_chg_pct)),'calendar','ndx_chg_pct','id='+enc(r.id)))}
+  if(r.note){ex.appendChild(el('br'));ex.appendChild(mk(el('span',null,r.note),'calendar','note','id='+enc(r.id)))}
+  li.appendChild(ex);return li;
+}
+function drawWeeks(){
+  const box=$('weeks');box.textContent='';const today=isoK();const w0=weekStart(today);
+  [['이번 주',w0],['다음 주',addD(w0,7)]].forEach(([lab,ws])=>{
+    const we=addD(ws,6);const card=el('div','mc-card mc-wk');
+    card.appendChild(el('h4',null,lab+' · '+dl(ws)+'~'+dl(we)));
+    const rows=CAL.filter(r=>r.date_kst>=ws&&r.date_kst<=we);
+    if(!rows.length)card.appendChild(el('p','mc-note','이 기간 등록된 발표가 없습니다.'));
+    const days=[...new Set(rows.map(r=>r.date_kst))];
+    days.forEach(d=>{const g=el('div','mc-day');g.appendChild(el('p','mc-dl'+(d===today?' today':''),dl(d)+(d===today?' · 오늘':'')+' · 한국시간'));
+      rows.filter(r=>r.date_kst===d).forEach(r=>g.appendChild(evRow(r)));card.appendChild(g)});
+    box.appendChild(card)});
+}
+
+/* ---------- 전체 일정표 ---------- */
+document.querySelectorAll('#calf .mc-chip').forEach(b=>b.onclick=()=>{st.f=b.dataset.f;document.querySelectorAll('#calf .mc-chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));drawTable()});
+function drawTable(){
+  const tb=$('calbody');tb.textContent='';
+  CAL.filter(r=>st.f==='all'||(st.f==='done'?r.actual!=null:st.f==='todo'?r.actual==null:r.stars===3)).forEach(r=>{
+    const tr=el('tr',(r.stars===3?'p3 ':'')+(r.actual!=null?'done':''));tr.dataset.key=r.id;const w='id='+enc(r.id);
+    const td=(c,x)=>{const e=el('td',c);if(x!=null)e.textContent=x;tr.appendChild(e);return e};
+    const k=td(null);k.appendChild(mk(el('span',null,dl(r.date_kst)+' '+r.time_kst),'calendar','date_kst',w));if(!r.date_confirmed)k.appendChild(el('span','nt','날짜 공식 확인 전'));
+    td('pd',dl(r.date_et)+' '+r.time_et);
+    const n=td(null);n.appendChild(mk(el('span','nm',r.event),'calendar','event',w));n.appendChild(el('span','nt',r.period));
+    if(r.note)n.appendChild(mk(el('span','nt',r.note),'calendar','note',w));
+    if(r.source){const a=el('a','nt','출처');a.href=r.source;a.target='_blank';a.rel='noopener';n.appendChild(a)}
+    td(null).appendChild(stars(r.stars));
+    const num=(f,cls)=>{const e=td('n'+(cls?' '+cls:''));e.appendChild(mk(el('span',null,r.unit?fv(r[f],r.unit):'—'),'calendar',f,w));return e};
+    num('consensus');num('previous');
+    const a=num('actual');if(r.actual!=null){a.style.fontWeight='700';if(r.consensus!=null){const d=r.actual-r.consensus;a.appendChild(el('span','nt',d>0?'예상 상회':d<0?'예상 하회':'예상 부합'))}}
+    else a.firstChild.textContent=stateOf(r)==='wait'?'갱신 대기':r.unit?'예정':'—';
+    [['spx_chg_pct'],['ndx_chg_pct']].forEach(([f])=>{const e=td('n '+cl(r[f]));e.appendChild(mk(el('span',null,r[f]==null?(r.actual!=null?'자료 없음':''):sg(r[f])),'calendar',f,w))});
+    tb.appendChild(tr)});
+}
+
+/* ---------- 차트 ---------- */
+const tip=$('tip');
+function showTip(e,lines){tip.textContent='';lines.forEach((t,i)=>{const d=el('div');if(Array.isArray(t)){const sw=el('i');sw.style.cssText='display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;background:'+t[0];d.appendChild(sw);d.appendChild(document.createTextNode(t[1]))}else{d.textContent=t;if(i===0)d.style.color='var(--cds-text-secondary)'}tip.appendChild(d)});
+  tip.style.display='block';const root=$('wrap').getBoundingClientRect();let x=e.clientX-root.left+12,y=e.clientY-root.top+12;const w=tip.offsetWidth;if(x+w>root.width)x=Math.max(0,x-w-24);tip.style.left=x+'px';tip.style.top=y+'px'}
+const hideTip=()=>{tip.style.display='none'};
+const mfmt=d=>(d.getUTCFullYear()%100)+'.'+String(d.getUTCMonth()+1).padStart(2,'0');
+function measure(svg,texts){const g=svg.append('g').attr('font-size',14.5).attr('opacity',0);let w=0;texts.forEach(t=>{const n=g.append('text').text(t).node();w=Math.max(w,n.getComputedTextLength())});g.remove();return w}
+
+/* 선 차트: series=[{f,name,color,step?}] */
+function lineChart(id,rows,series,opt){
+  const box=$(id);box.textContent='';const W=Math.max(300,box.clientWidth||320),H=opt.h||230;
+  const svg=d3.select(box).append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('width','100%').style('display','block').style('overflow','visible');
+  const vals=[];series.forEach(s=>rows.forEach(r=>{if(r[s.f]!=null)vals.push(r[s.f])}));if(opt.ref!=null)vals.push(opt.ref);
+  if(!vals.length){box.appendChild(el('div','mc-fail','자료 없음'));return}
+  let lo=d3.min(vals),hi=d3.max(vals);const pad=(hi-lo)*0.12||0.5;lo=opt.zero?Math.min(0,lo):lo-pad;hi=hi+pad;
+  const y0=d3.scaleLinear([lo,hi],[H-26,10]).nice(5);const ticks=y0.ticks(5);
+  const tf=opt.tf||(v=>d3.format('.1f')(v));
+  const lastLab=series.map(s=>{const r=rows.filter(r=>r[s.f]!=null).slice(-1)[0];return r?tf(r[s.f]):''});
+  const ml=measure(svg,ticks.map(tf))+8,mr=measure(svg,lastLab)+14;
+  const x=d3.scaleUtc(d3.extent(rows,r=>r.d),[ml,W-mr]);const y=y0;
+  const g=svg.append('g');
+  g.selectAll('line.gr').data(ticks).join('line').attr('x1',ml).attr('x2',W-mr).attr('y1',d=>y(d)).attr('y2',d=>y(d)).attr('stroke','var(--cds-chart-grid)');
+  g.selectAll('text.yt').data(ticks).join('text').attr('x',ml-6).attr('y',d=>y(d)).attr('dy','0.32em').attr('text-anchor','end').attr('font-size',14.5).attr('fill','var(--color-fg-muted)').text(tf);
+  const xt=x.ticks(W<420?4:6);
+  g.selectAll('text.xt').data(xt).join('text').attr('x',d=>x(d)).attr('y',H-6).attr('text-anchor','middle').attr('font-size',14.5).attr('fill','var(--color-fg-muted)').text(mfmt);
+  if(opt.ref!=null)g.append('line').attr('x1',ml).attr('x2',W-mr).attr('y1',y(opt.ref)).attr('y2',y(opt.ref)).attr('stroke','var(--cds-chart-reference)').attr('stroke-dasharray','4 4');
+  const ends=[];
+  series.forEach((s,si)=>{
+    const ln=d3.line().defined(r=>r[s.f]!=null).x(r=>x(r.d)).y(r=>y(r[s.f]));if(s.step)ln.curve(d3.curveStepAfter);
+    g.append('path').datum(rows).attr('d',ln).attr('fill','none').attr('stroke',s.color).attr('stroke-width',s.main?2.5:2).attr('stroke-linecap','round').attr('stroke-linejoin','round').attr('opacity',s.main===false?.75:1);
+    const last=rows.filter(r=>r[s.f]!=null).slice(-1)[0];
+    if(last){g.append('circle').attr('cx',x(last.d)).attr('cy',y(last[s.f])).attr('r',5).attr('fill',s.color).attr('stroke','var(--color-panel)').attr('stroke-width',2);
+      ends.push({y:y(last[s.f]),x:x(last.d),t:tf(last[s.f]),c:s.color})}
+  });
+  ends.sort((a,b)=>a.y-b.y);for(let i=1;i<ends.length;i++)if(ends[i].y-ends[i-1].y<16)ends[i].y=ends[i-1].y+16;
+  ends.forEach(e=>g.append('text').attr('x',e.x+9).attr('y',e.y).attr('dy','0.32em').attr('font-size',14.5).attr('font-weight',700).attr('fill',e.c).text(e.t));
+  const hv=g.append('line').attr('y1',10).attr('y2',H-26).attr('stroke','var(--cds-chart-axis)').attr('opacity',0);
+  svg.append('rect').attr('x',ml).attr('y',0).attr('width',W-mr-ml).attr('height',H-20).attr('fill','transparent')
+    .on('pointermove',ev=>{const [mx]=d3.pointer(ev);const dt=x.invert(mx);const r=rows[d3.minIndex(rows,q=>Math.abs(q.d-dt))];hv.attr('x1',x(r.d)).attr('x2',x(r.d)).attr('opacity',1);
+      showTip(ev,[mlab(r)].concat(series.map(s=>[s.color,s.name+' '+(r[s.f]==null?'자료 없음':tf(r[s.f])+(opt.unit||''))])))})
+    .on('pointerleave',()=>{hv.attr('opacity',0);hideTip()});
+}
+function barChart(id,rows,f,opt){
+  const box=$(id);box.textContent='';const W=Math.max(300,box.clientWidth||320),H=230;
+  const R=rows.filter(r=>r[f]!=null);if(!R.length){box.appendChild(el('div','mc-fail','자료 없음'));return}
+  const svg=d3.select(box).append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('width','100%').style('display','block').style('overflow','visible');
+  const y=d3.scaleLinear([Math.min(0,d3.min(R,r=>r[f])),Math.max(0,d3.max(R,r=>r[f]))],[H-26,14]).nice(5);const ticks=y.ticks(5);const tf=d3.format(',');
+  const ml=measure(svg,ticks.map(tf))+8,mr=8;
+  const x=d3.scaleBand(rows.map(r=>r.month),[ml,W-mr]).padding(0.25);const g=svg.append('g');
+  g.selectAll('line').data(ticks).join('line').attr('x1',ml).attr('x2',W-mr).attr('y1',d=>y(d)).attr('y2',d=>y(d)).attr('stroke',d=>d===0?'var(--cds-chart-axis)':'var(--cds-chart-grid)');
+  g.selectAll('text.yt').data(ticks).join('text').attr('x',ml-6).attr('y',d=>y(d)).attr('dy','0.32em').attr('text-anchor','end').attr('font-size',14.5).attr('fill','var(--color-fg-muted)').text(tf);
+  const every=Math.ceil(rows.length/(W<420?4:6));
+  g.selectAll('text.xt').data(rows.filter((r,i)=>i%every===0)).join('text').attr('x',r=>x(r.month)+x.bandwidth()/2).attr('y',H-6).attr('text-anchor','middle').attr('font-size',14.5).attr('fill','var(--color-fg-muted)').text(r=>mfmt(r.d));
+  const last=R[R.length-1];
+  g.selectAll('rect.b').data(R).join('rect').attr('x',r=>x(r.month)).attr('width',x.bandwidth()).attr('y',r=>Math.min(y(0),y(r[f]))).attr('height',r=>Math.max(1,Math.abs(y(r[f])-y(0)))).attr('rx',3)
+    .attr('fill',r=>r[f]>=0?'var(--color-ok)':'var(--color-bad)').attr('opacity',r=>r===last?1:.55)
+    .attr('stroke',r=>r===last?'var(--color-fg)':'none').attr('stroke-width',1.5)
+    .on('pointermove',(ev,r)=>showTip(ev,[mlab(r),'증감 '+(r[f]>0?'+':'')+tf(r[f])+'천 명']))
+    .on('pointerleave',hideTip);
+  const lx=x(last.month)+x.bandwidth()/2,ly=last[f]>=0?y(last[f])-6:y(last[f])+16;
+  g.append('text').attr('x',Math.min(lx,W-mr-4)).attr('y',ly).attr('text-anchor','end').attr('font-size',14.5).attr('font-weight',700).attr('fill','var(--color-fg)').text((last[f]>0?'+':'')+tf(last[f]));
+}
+function legend(id,series){const b=$(id);b.textContent='';series.forEach(s=>{const sp=el('span');const i=el('i');i.style.background=s.color;sp.appendChild(i);sp.appendChild(document.createTextNode(s.name));b.appendChild(sp)})}
+function takeEl(id,parts){const p=$(id);p.textContent='';parts.forEach(x=>{if(typeof x==='string')p.appendChild(document.createTextNode(x));else p.appendChild(mk(el('b',null,x.t),'trends',x.f,'month='+enc(x.r.month)))})}
+const pp=v=>f1(v)+'%';
+
+function drawCharts(){
+  const C=dash.colors||[];const R=TR.filter(r=>r.month<'2026-10'||r.cpi_yoy!=null);
+  const sInf=[{f:'cpi_yoy',name:'소비자물가',color:C[0],main:true},{f:'core_cpi_yoy',name:'근원 소비자물가',color:C[1]},{f:'core_pce_yoy',name:'근원 PCE',color:C[2]}];
+  legend('lg-infl',sInf);lineChart('ch-infl',R,sInf,{ref:2,unit:'%'});
+  {const [a,,c]=lastOf('cpi_yoy');const [p]=lastOf('core_pce_yoy');
+   if(a){const up=c?a.cpi_yoy-c.cpi_yoy:null;
+     takeEl('tk-infl',[mlab(a)+' 소비자물가 상승률은 ',{t:pp(a.cpi_yoy),f:'cpi_yoy',r:a},c?'로 1년 전('+pp(c.cpi_yoy)+')보다 '+(up>0.05?'높아 물가가 다시 뜨거워지고 있습니다':up<-0.05?'낮아 물가가 식고 있습니다':'비슷합니다'):'입니다',
+       p?'. 연준이 보는 근원 PCE는 ':'',p?{t:pp(p.core_pce_yoy),f:'core_pce_yoy',r:p}:'',p?(p.core_pce_yoy>2.05?'로 목표 2%를 웃돕니다.':'로 목표 2% 근처입니다.'):'.'])}}
+  barChart('ch-nfp',R,'nfp_chg_k');
+  {const N=TR.filter(r=>r.nfp_chg_k!=null);const l3=N.slice(-3),p3=N.slice(-6,-3);const a=d3.mean(l3,r=>r.nfp_chg_k),b=d3.mean(p3,r=>r.nfp_chg_k);const last=N[N.length-1];
+   if(last)takeEl('tk-nfp',[mlab(last)+' 일자리는 ',{t:d3.format(',')(Math.abs(last.nfp_chg_k))+'천 명',f:'nfp_chg_k',r:last},(last.nfp_chg_k>=0?' 늘었습니다. ':' 줄었습니다. ')+'최근 3개월 평균은 '+d3.format(',.0f')(a)+'천 명으로 그 전 3개월('+d3.format(',.0f')(b)+'천 명)보다 '+(a<b?'느려져 고용이 식고 있습니다.':'빨라졌습니다.')])}
+  lineChart('ch-ur',R,[{f:'unrate',name:'실업률',color:C[0],main:true}],{unit:'%'});
+  {const [a,,c]=lastOf('unrate');const U=TR.filter(r=>r.unrate!=null).slice(-12);const mx=d3.max(U,r=>r.unrate);
+   if(a)takeEl('tk-ur',[mlab(a)+' 실업률은 ',{t:pp(a.unrate),f:'unrate',r:a},'입니다. '+(a.unrate<mx?'최근 1년 최고('+pp(mx)+')보다 낮아 노동시장이 급격히 나빠지지는 않았습니다.':'최근 1년 가운데 가장 높은 수준이라 노동시장 냉각을 경계합니다.')])}
+  const sW=[{f:'ahe_yoy',name:'시간당 임금',color:C[0],main:true},{f:'cpi_yoy',name:'소비자물가',color:C[1],main:false}];
+  legend('lg-ahe',sW);lineChart('ch-ahe',R,sW,{unit:'%'});
+  {const [a]=lastOf('ahe_yoy');const r=a&&a.cpi_yoy!=null?a:null;
+   if(a)takeEl('tk-ahe',[mlab(a)+' 임금 상승률 ',{t:pp(a.ahe_yoy),f:'ahe_yoy',r:a},r?'는 물가 '+pp(r.cpi_yoy)+'보다 '+(a.ahe_yoy<r.cpi_yoy?'낮아 실질임금이 줄고 있습니다. 임금발 물가 압력은 크지 않지만 소비 여력은 약해집니다.':'높아 실질임금이 늘고 있습니다.'):'입니다.'])}
+  lineChart('ch-ff',TR,[{f:'ff_upper',name:'목표 상단',color:C[0],main:true,step:true}],{unit:'%',tf:v=>d3.format('.2f')(v)});
+  {const ch=lastChange();const [a]=lastOf('ff_upper');
+   if(ch&&a)takeEl('tk-ff',[mlab(ch.r)+'에 '+(ch.dir>0?'인상':'인하')+'해 상단 ',{t:d3.format('.2f')(a.ff_upper)+'%',f:'ff_upper',r:a},'입니다. '+(ch.dir>0?'인하 흐름이 끝나고 다시 올리기 시작했으므로 다음 회의의 추가 인상 신호를 봅니다.':'인하 흐름이 이어지는지 다음 회의를 봅니다.')])}
+}
+
+dash.onData(draw);
+let rw;window.addEventListener('resize',()=>{clearTimeout(rw);rw=setTimeout(()=>{if(TR.length)drawCharts()},150)});
+const go=()=>{const n=document.getElementById(location.hash.slice(1));if(n){n.scrollIntoView();dash.setLink(n.id)}};
+setTimeout(go,600);
+})();
+</script>
+</div></body></html>

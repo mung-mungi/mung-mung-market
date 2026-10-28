@@ -1,0 +1,517 @@
+<!doctype html><html lang="ko"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>한국·대만 월간 실적</title><style>:root{color-scheme:light;
+--color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
+--font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
+--cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
+--cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:12px;--cds-gap-lg:20px;--cds-gap-xl:28px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:18px;--cds-pad-xl:24px;--cds-radius:12px;
+--cds-chart-grid:rgba(11,11,11,.07);--cds-chart-axis:rgba(11,11,11,.25);--cds-chart-muted:rgba(111,109,104,.45);--cds-chart-reference:rgba(11,11,11,.4);--cds-chart-status-critical:#b23434;
+--cds-surface-popover:#ffffff;--cds-border:rgba(11,11,11,.12);--cds-shadow-popover:0 6px 24px -8px rgba(0,0,0,.25);--cds-text-secondary:#6f6d68;--cds-dur-slow:.3s;--cds-ease-out:cubic-bezier(.2,.8,.2,1);
+--dc1:#2f5bb8;--dc2:#b07a12;--dc3:#1d7a4a;--dc4:#b53a3a;--dc5:#7246b0;--dc6:#1b7880;--dc7:#b35c2a;--dc8:#6b5b95}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}}
+:root[data-theme="dark"]{color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}
+*{box-sizing:border-box}
+html,body.ibody{margin:0;background:var(--color-bg);color:var(--color-fg)}
+body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+#dash-root{padding:20px max(16px,env(safe-area-inset-left,0px)) 48px max(16px,env(safe-area-inset-right,0px))}
+#dash-root b,#dash-root strong{font-weight:700}
+.dash-skeleton{color:transparent!important;background:linear-gradient(90deg,color-mix(in srgb,var(--color-fg-muted) 14%,transparent),color-mix(in srgb,var(--color-fg-muted) 24%,transparent),color-mix(in srgb,var(--color-fg-muted) 14%,transparent));background-size:200% 100%;border-radius:6px;animation:skl 1.4s linear infinite}
+@keyframes skl{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.dash-skeleton{animation:none}}
+.ib{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;padding:9px max(12px,env(safe-area-inset-left,0px));background:var(--ib-bg,#f9f9f7);border-bottom:1px solid var(--ib-line,rgba(11,11,11,.1));font:600 14px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+.ib::-webkit-scrollbar{display:none}
+.ib a{flex:none;text-decoration:none;color:var(--ib-mu,#6f6d68);padding:6px 12px;border-radius:999px;border:1px solid var(--ib-line,rgba(11,11,11,.1));background:var(--ib-pn,#fff);white-space:nowrap}
+.ib a.home{color:var(--ib-fg,#0b0b0b);font-weight:800}
+.ib a.home{position:sticky;left:0;z-index:3;box-shadow:-8px 0 0 5px var(--ib-bg,#f9f9f7),-22px 0 0 5px var(--ib-bg,#f9f9f7),9px 0 10px -8px rgba(0,0,0,.3)}
+.ib a[aria-current]{background:var(--ib-fg,#0b0b0b);color:var(--ib-bg,#f9f9f7);border-color:var(--ib-fg,#0b0b0b)}
+.ib .tg{flex:none;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--ib-fa,#9a978f);padding-left:8px;border-left:1px solid var(--ib-line,rgba(11,11,11,.1));margin-left:2px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}}
+:root[data-theme="dark"]{--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script><script>window.__PAGE__={"page": "supply", "ds": ["kr_chip_exports", "kr_prelim", "memory_fixed", "memory_qoq", "release_calendar", "tw_revenue", "kr_companies", "kr_company_meta", "kr_memory_exports"], "params": {}};window.__SYNC__="202610280842";</script><script src="shim.js"></script></head><body class="ibody"><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html">경고등</a><a href="p-brief.html">데일리 시황</a><a href="p-earn.html">실적 결과</a><a href="p-prices.html">시세 보드</a><a href="p-targets.html">목표주가</a><a href="p-opt.html">옵션 온도계</a><a href="p-bond.html">채권·금리</a><a href="p-cal.html">실적 캘린더</a><a href="p-econ.html">경제지표</a><span class="tg">흐름</span><a href="p-trend.html">차트 길잡이</a><a href="p-short.html">공매도</a><a href="p-fx.html">환율</a><a href="p-capex.html">설비투자</a><a href="p-policy.html">정책·지정학</a><a href="p-tech.html">테크 행사</a><span class="tg">점검</span><a href="p-supply.html" aria-current="page">한국·대만</a><a href="p-neo.html">네오클라우드</a><a href="p-qtr.html">분기 실적</a><a href="p-insider.html">내부자·기관</a></nav><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script><div id="dash-root" data-dash-state="loading"><style>
+.sp-wrap,.sp-tip{--cds-font-size-caption:14.5px;--cds-font-size-body:17px;--cds-font-size-heading:19.5px;--cds-font-size-title:30.5px}
+.sp-wrap{font-family:var(--font-anthropic-sans);display:flex;flex-direction:column;gap:var(--cds-gap-lg);max-width:1100px;margin-inline:auto;word-break:keep-all;position:relative}
+.sp-wrap p{margin:0}
+.sp-note{margin:0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.sp-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,8.5rem),1fr));gap:var(--cds-gap-sm)}
+.sp-tile{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-md);display:flex;flex-direction:column;gap:var(--cds-gap-xs);min-width:0}
+.sp-tile .k{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.sp-tile .v{font-family:var(--font-anthropic-serif);font-size:var(--cds-font-size-title);font-variant-numeric:tabular-nums;min-height:1.2em;line-height:1.2}
+.sp-tile .s{font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums;color:var(--color-fg-muted)}
+.sp-card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg);display:flex;flex-direction:column;gap:var(--cds-gap-sm);min-width:0;scroll-margin-top:56px}
+.sp-card h3{margin:0;font-size:var(--cds-font-size-heading);font-weight:700;letter-spacing:-.01em;line-height:1.3;border-left:4px solid var(--color-warn);padding-left:10px}
+.sp-card .sub{margin:0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.5}
+.sp-how{margin:4px 0 0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.6;border-top:1px dashed var(--color-border-line);padding-top:8px}
+.sp-how b{color:var(--color-fg);font-weight:600}
+.sp-chart{position:relative;width:100%}
+.sp-chart svg{display:block}
+.sp-tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);border-radius:var(--cds-radius);box-shadow:var(--cds-shadow-popover);padding:var(--cds-pad-xs) var(--cds-pad-sm);font-size:var(--cds-font-size-caption);white-space:nowrap;z-index:5;display:none;font-variant-numeric:tabular-nums}
+.sp-tip div+div{color:var(--cds-text-secondary)}
+.sp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10.5rem),1fr));gap:var(--cds-gap-sm)}
+.sp-small{border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:10px 10px 6px;display:flex;flex-direction:column;gap:2px;min-width:0;background:var(--color-bg)}
+.sp-small .n{font-size:var(--cds-font-size-body);font-weight:600;line-height:1.25}
+.sp-small .r{font-size:13px;color:var(--color-fg-muted)}
+.sp-small .y{font-family:var(--font-anthropic-serif);font-size:24px;font-variant-numeric:tabular-nums;line-height:1.2;margin-top:2px}
+.sp-small{cursor:pointer;transition:border-color .15s}.sp-small:hover,.sp-small.open{border-color:var(--color-fg-muted)}.sp-small.open{box-shadow:0 0 0 2px color-mix(in srgb,var(--color-fg) 18%,transparent)}
+.sp-small .more{font-size:12.5px;font-weight:700;color:var(--color-fg-muted);margin-top:2px}
+.tw-det{grid-column:1/-1;border:1px solid var(--color-border-line);border-left:5px solid var(--dc,var(--color-fg-muted));border-radius:var(--cds-radius);padding:12px 14px;background:var(--color-panel,var(--color-bg))}
+.tw-det h4{margin:0 0 6px;font-size:18px;font-weight:800}
+.tw-det .vd{display:inline-block;font-size:14px;font-weight:800;padding:2px 10px;border-radius:999px;color:#fff;background:var(--dc,var(--color-fg-muted));margin-bottom:8px}
+.tw-det .an{margin:0 0 10px;padding:0;list-style:none;display:grid;gap:5px;font-size:15.5px;line-height:1.55}
+.tw-det .an li::before{content:"▪ ";color:var(--color-fg-muted)}
+.tw-det .ai{margin:0 0 10px;font-size:15px;line-height:1.55;padding:8px 10px;border-radius:8px;background:color-mix(in srgb,var(--color-fg) 5%,transparent)}
+.tw-det .tch{margin:0 0 10px}.tw-det .tch .lg{display:flex;gap:12px;font-size:13px;color:var(--color-fg-muted);margin-bottom:2px}.tw-det .tch .lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.tw-det table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}.tw-det th,.tw-det td{white-space:nowrap;padding:5px 4px;text-align:right;border-bottom:1px solid var(--color-border-line)}.tw-det th:first-child,.tw-det td:first-child{text-align:left}.tw-det th{color:var(--color-fg-muted);font-weight:600}
+.tw-det tr.rec td{font-weight:800}.tw-det .src{margin:8px 0 0;font-size:13px;color:var(--color-fg-muted)}.tw-det .x{float:right;font-size:13px;font-weight:700;color:var(--color-fg-muted);cursor:pointer;border:0;background:none}
+.tw-sum{margin:0 0 10px;padding:10px 12px;border-radius:10px;border:1px solid var(--color-border-line);font-size:15.5px;line-height:1.6}.tw-sum b{font-weight:800}
+.sp-small .m{font-size:13px;color:var(--color-fg-muted);font-variant-numeric:tabular-nums}
+.sp-legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:var(--cds-font-size-caption)}
+.sp-legend span{display:inline-flex;align-items:center;gap:5px}
+.sp-legend i{width:12px;height:3px;border-radius:2px;display:inline-block}
+.sp-pills{display:flex;flex-wrap:wrap;gap:8px}
+.sp-pill{border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:8px 12px;display:flex;flex-direction:column;gap:2px;min-width:9rem;flex:1;background:var(--color-bg)}
+.sp-pill .k{font-size:13px;color:var(--color-fg-muted)}
+.sp-pill .v{font-family:var(--font-anthropic-serif);font-size:24px;font-variant-numeric:tabular-nums;line-height:1.2}
+.sp-pill .s{font-size:13px;color:var(--color-fg-muted);font-variant-numeric:tabular-nums}
+.sp-tbox{overflow-x:auto}
+.sp-table{width:100%;border-collapse:collapse;font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums}
+.sp-table th,.sp-table td{padding:7px 8px;text-align:right;border-bottom:1px solid var(--color-border-line);white-space:nowrap}
+.sp-table th{color:var(--color-fg-muted);font-weight:500;text-align:right}
+.sp-table th:first-child,.sp-table td:first-child{text-align:left}
+.sp-table td.l,.sp-table th.l{text-align:left;white-space:normal}
+.sp-table tr:last-child td{border-bottom:0}
+.sp-cal{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.sp-cal li{display:grid;grid-template-columns:5.2em minmax(0,1fr);column-gap:10px;padding:8px 0;border-bottom:1px solid var(--color-border-line);font-size:var(--cds-font-size-body)}
+.sp-cal li:last-child{border-bottom:0}
+.sp-cal .d{font-family:var(--font-anthropic-serif);color:var(--color-warn);font-variant-numeric:tabular-nums}
+.sp-cal .e{font-weight:500}
+.sp-cal .t{display:block;font-size:13px;color:var(--color-fg-muted)}
+.sp-src{display:flex;flex-direction:column;gap:6px}
+.sp-src .g{font-size:var(--cds-font-size-caption);font-weight:600;margin-top:4px}
+.sp-src a{display:block;font-size:13px;color:var(--color-fg-muted);word-break:break-all;text-decoration:underline;text-underline-offset:2px}
+.sp-read ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:8px;font-size:var(--cds-font-size-body);line-height:1.6}
+.sp-read li b{font-weight:600}
+.sp-fail{display:flex;align-items:center;justify-content:center;gap:8px;min-height:120px;color:var(--color-fg-muted);font-size:var(--cds-font-size-caption)}
+.sp-fail i{width:.375rem;height:.375rem;border-radius:50%;background:var(--color-bad)}
+.up{color:var(--color-ok)} .dn{color:var(--color-bad)} .mu{color:var(--color-fg-muted)} .wn{color:var(--color-warn)}
+.sp-wrap b.up,.sp-wrap b.dn{font-weight:600}
+[data-dash-source-state=empty]{color:transparent}
+[data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
+
+/* 머리말: 작은 머리띠 → 큰 제목 → 날짜 칩 + 핵심 한 줄 */
+.sp-mast{display:flex;flex-direction:column;gap:10px;padding:6px 0 4px;word-break:keep-all}
+.sp-eyebrow{margin:0;display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;letter-spacing:.12em;color:var(--color-fg-muted)}
+.sp-eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--color-bad);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-bad) 22%,transparent)}
+.sp-mast .sp-h1{font-family:var(--font-anthropic-serif);font-size:clamp(30px,7.4vw,42px);line-height:1.15;letter-spacing:-.02em;font-weight:400;margin:0;padding-bottom:12px;border-bottom:1px solid var(--color-border-line);position:relative}
+.sp-mast .sp-h1::after{content:"";position:absolute;left:0;bottom:-1px;width:56px;height:3px;border-radius:2px;background:var(--color-warn)}
+.sp-mast .sp-h1 .m{font-weight:600}
+.sp-mast .sp-h1 .s{color:var(--color-fg-muted);font-size:.62em;letter-spacing:-.01em;white-space:nowrap}
+.sp-mast .sp-take{margin:6px 0 0;font-family:var(--font-anthropic-serif);font-size:clamp(19.5px,4.9vw,23px);line-height:1.5;letter-spacing:-.01em;color:var(--color-fg);text-wrap:pretty}
+.sp-mast .sp-take b{display:table;margin-bottom:8px;font-family:var(--font-anthropic-sans);font-size:13.5px;font-weight:700;letter-spacing:.02em;font-variant-numeric:tabular-nums;color:var(--color-warn);padding:3px 10px;border-radius:999px;border:1px solid color-mix(in srgb,var(--color-warn) 55%,transparent);background:color-mix(in srgb,var(--color-warn) 10%,transparent)}
+.sp-mast .sp-take .up,.sp-mast .sp-take .dn{font-weight:600}
+</style>
+
+<div class="sp-wrap">
+  <header id="top" class="sp-mast">
+    <p class="sp-eyebrow"><i aria-hidden="true"></i>AI 밸류체인 · 아시아(한국·대만) · 매달 갱신</p>
+    <h1 class="sp-h1"><span class="m">한국·대만</span> <span class="s">반도체 수출 · 월간 실적</span></h1>
+    <p class="sp-take" id="take"><span class="dash-skeleton">—</span></p>
+    <p style="margin:6px 0 0;font-size:14.5px;line-height:1.55;color:var(--color-fg-muted)">대만 회사는 매달 10일 전후 월매출을 공개합니다(TSMC·폭스콘·콴타 등). 삼성전자·SK하이닉스는 월매출을 내지 않아, 한국은 반도체 수출(매달 1일 확정, 10일·20일 잠정)로 대신 봅니다.</p>
+  </header>
+
+  <section class="sp-tiles" id="tiles" data-fetchpriority="high">
+    <div class="sp-tile"><span class="k">TSMC 월매출 · 전년 대비</span><span class="v dash-skeleton" id="t-tsmc" data-source="tw_revenue" data-field="yoy_pct">—</span><span class="s" id="t-tsmc-s">—</span></div>
+    <div class="sp-tile"><span class="k">대만 8개사 합산 · 전년 대비</span><span class="v dash-skeleton" id="t-tw" data-source="tw_total" data-field="yoy_pct">—</span><span class="s" id="t-tw-s">—</span></div>
+    <div class="sp-tile"><span class="k">한국 반도체 수출 · 전년 대비</span><span class="v dash-skeleton" id="t-kr" data-source="kr_chip_exports" data-field="chip_yoy_pct">—</span><span class="s" id="t-kr-s">—</span></div>
+    <div class="sp-tile"><span class="k" id="t-pre-k">이달 잠정 반도체 수출</span><span class="v dash-skeleton" id="t-pre" data-source="kr_prelim" data-field="chip_yoy_pct">—</span><span class="s" id="t-pre-s">—</span></div>
+    <div class="sp-tile"><span class="k">D램 고정가격 DDR5 16Gb</span><span class="v dash-skeleton" id="t-dram" data-source="memory_fixed" data-field="price_usd">—</span><span class="s" id="t-dram-s">—</span></div>
+    <div class="sp-tile"><span class="k">낸드 고정가격 128Gb</span><span class="v dash-skeleton" id="t-nand" data-source="memory_fixed" data-field="price_usd">—</span><span class="s" id="t-nand-s">—</span></div>
+  </section>
+
+  <section class="sp-card" id="tw-card">
+    <h3>대만 AI 8개사 · 월매출 전년 대비</h3>
+    <p class="sub">최근 12개월, 각 회사의 월매출이 1년 전 같은 달보다 몇 % 늘었는지입니다. 모든 작은 차트는 같은 눈금을 씁니다. 회사 칸을 누르면 12개월 세부 내용과 간단 분석이 펼쳐집니다.</p>
+    <div class="tw-sum" id="tw-sum" data-source="tw_revenue">—</div>
+    <div class="sp-grid" id="tw-grid" data-source="tw_revenue"></div>
+    <p class="sp-how"><b>읽는 법</b> 대만 회사들은 매달 10일까지 전달 매출을 공시해 분기 실적보다 한 달 이상 먼저 수요를 보여 줍니다. 전년 대비(YoY)가 높게 유지되면 AI 서버·칩 수요가 꺾이지 않았다는 뜻이고, 전월 대비(MoM)는 명절·분기말 효과가 커서 한 달 등락만으로 판단하지 않습니다.</p>
+  </section>
+
+  <section class="sp-card" id="tw-table-card">
+    <h3>최근 월 매출표 · 대만 8개사</h3>
+    <p class="sub" id="tw-table-sub">—</p>
+    <div class="sp-tbox">
+      <table class="sp-table" id="tw-table" data-source="tw_latest" data-row-key="company">
+        <thead><tr><th class="l" data-field="company">회사</th><th class="l" data-field="role">역할</th><th data-field="revenue_ntd_100m">매출(억 대만달러)</th><th data-field="mom_pct">전월 대비</th><th data-field="yoy_pct">전년 대비</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="sp-how"><b>읽는 법</b> 억 대만달러 단위입니다(1억 대만달러 ≈ 42~45억 원). 조립사(폭스콘·콴타·위스트론·위윈)는 매출이 크지만 마진이 얇고, TSMC·미디어텍·ASE는 반도체 쪽, 델타는 전원·냉각 쪽을 봅니다.</p>
+  </section>
+
+  <section class="sp-card" id="krco-card">
+    <h3>한국 AI 반도체 6개사 · 분기 실적</h3>
+    <p class="sub">삼성전자·SK하이닉스는 월매출을 내지 않아 분기 실적으로 봅니다. 회사 칸을 누르면 8분기 흐름과 AI 포인트가 펼쳐집니다.</p>
+    <div class="tw-sum" id="krco-sum" data-source="kr_companies kr_company_meta">—</div>
+    <div class="sp-grid" id="krco-grid" data-source="kr_companies kr_company_meta"></div>
+  </section>
+
+  <section class="sp-card" id="krmem-card">
+    <h3>한국 메모리·시스템반도체·SSD 수출 · 월별</h3>
+    <p class="sub">메모리 수출이 SK하이닉스·삼성전자 실적을 가장 먼저 보여 줍니다(억 달러, ICT 수출입 동향).</p>
+    <div class="tw-sum" id="krmem-sum" data-source="kr_memory_exports">—</div>
+    <div class="sp-chart" id="krmem-chart" data-source="kr_memory_exports" style="min-height:220px"></div>
+  </section>
+
+  <section class="sp-card" id="kr-card">
+    <h3>한국 반도체 수출 · 월별</h3>
+    <p class="sub">산업통상부 월간 수출입동향의 반도체 수출액(억 달러)과 전년 대비 증가율입니다. 관세청 1~10일·1~20일 잠정치는 아래 칸에 따로 둡니다.</p>
+    <div class="sp-chart" id="kr-chart" data-source="kr_chip_exports" style="min-height:260px"></div>
+    <div class="sp-pills" id="kr-pills" data-source="kr_prelim"></div>
+    <p class="sp-how"><b>읽는 법</b> 한국 반도체 수출은 SK하이닉스·삼성전자 메모리 출하를 거의 실시간으로 보여 주는 지표입니다. 잠정치는 조업일수 차이가 크므로 하루 평균 수출로 나눠 보는 것이 안전합니다.</p>
+  </section>
+
+  <section class="sp-card" id="mem-card">
+    <h3>메모리 고정거래가격 · 월별</h3>
+    <p class="sub">정보통신(ICT) 수출입 동향 등에 실린 D램·낸드 고정거래가격(달러)입니다. 선 끝의 숫자가 최근 값입니다.</p>
+    <div class="sp-legend" id="mem-legend" data-source="memory_fixed"></div>
+    <div class="sp-chart" id="mem-chart" data-source="memory_fixed" style="min-height:260px"></div>
+    <p class="sub" id="mem-q-sub">분기 계약가격 전망 · 트렌드포스 등</p>
+    <div class="sp-tbox">
+      <table class="sp-table" id="mem-q" data-source="memory_qoq" data-row-key="quarter,product">
+        <thead><tr><th class="l" data-field="quarter">분기</th><th class="l" data-field="product">제품</th><th data-field="qoq_low_pct">전분기 대비(하단)</th><th data-field="qoq_high_pct">전분기 대비(상단)</th><th class="l" data-field="kind">구분</th><th data-field="published">발표일</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="sp-how"><b>읽는 법</b> 고정거래가격은 대형 고객과 맺는 계약 가격이라 현물가격보다 늦게, 그러나 더 크게 실적에 반영됩니다. 가격이 오르는 동안은 메모리 회사 마진이 좋아지고, 분기 전망 폭이 좁아지기 시작하면 상승 속도가 둔해지는 신호로 봅니다. 제품별로 기준 규격이 달라 서로 비교하지 않습니다.</p>
+  </section>
+
+  <section class="sp-card sp-read" id="read-card">
+    <h3>읽는 법 · 전체</h3>
+    <ul>
+      <li><b>순서</b> 대만 월매출(매달 10일) → 한국 수출(1일·11일·21일) → 메모리 가격(월말·중순) 순으로 나오므로, 세 지표를 합치면 분기 실적 발표 전에 AI 공급망의 수요 방향을 미리 가늠할 수 있습니다.</li>
+      <li><b>색</b> 초록은 1년 전보다 늘어난 것, 빨강은 줄어든 것입니다. 증가율이 높은 것이 곧 주가 상승을 뜻하지는 않으며, 시장이 이미 기대한 수준과 비교해야 합니다.</li>
+      <li><b>한계</b> 모든 수치는 공개 보도자료·공시 기준이며, 환율·조업일수·명절 효과가 섞여 있습니다. 이 페이지는 무엇을 보면 되는지만 정리하며 매수·매도 판단은 다루지 않습니다.</li>
+    </ul>
+  </section>
+
+  <section class="sp-card" id="cal-card">
+    <h3>다음 발표 일정</h3>
+    <p class="sub">앞으로 나올 월간 자료입니다. '추정'이라고 적힌 날짜는 관례에 따른 예상입니다.</p>
+    <ul class="sp-cal" id="cal" data-source="release_calendar"></ul>
+  </section>
+
+  <section class="sp-card sp-src" id="src-card" data-source="tw_revenue kr_chip_exports kr_prelim memory_fixed memory_qoq release_calendar">
+    <h3>출처</h3>
+    <p class="sub">각 수치의 원문 링크입니다. 숫자를 누르면 오른쪽 '출처' 패널에서 자료와 행을 볼 수 있습니다.</p>
+    <div id="src"></div>
+  </section>
+  <div class="sp-tip" id="tip"></div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const enc=s=>encodeURIComponent(s);
+const nf=(v,d=1)=>v==null||isNaN(v)?'—':d3.format(',.'+d+'f')(v);
+const sg=(v,d=1)=>v==null||isNaN(v)?'—':(v>0?'+':'')+d3.format(',.'+d+'f')(v)+'%';
+const cl=v=>v==null||isNaN(v)?'mu':v>0?'up':v<0?'dn':'mu';
+const ml=m=>{const [y,mo]=m.split('-');return (mo==='01'?y.slice(2)+'년 ':'')+Number(mo)+'월'};
+const mlong=m=>{const [y,mo]=m.split('-');return y+'년 '+Number(mo)+'월'};
+const tip=$('tip');
+function showTip(e,lines){tip.textContent='';lines.forEach(t=>{const d=document.createElement('div');d.textContent=t;tip.appendChild(d)});tip.style.display='block';const root=document.querySelector('.sp-wrap').getBoundingClientRect();let x=e.clientX-root.left+12,y=e.clientY-root.top+12;const w=tip.offsetWidth;if(x+w>root.width)x=Math.max(0,x-w-24);tip.style.left=x+'px';tip.style.top=y+'px'}
+function hideTip(){tip.style.display='none'}
+function fail(box){box.textContent='';const d=document.createElement('div');d.className='sp-fail';const i=document.createElement('i');d.appendChild(i);d.appendChild(document.createTextNode('Failed to load'));box.appendChild(d)}
+function textW(svg,t,size){const e=svg.append('text').attr('font-size',size).text(t);const w=e.node().getComputedTextLength();e.remove();return w}
+
+dash.calc('tw_latest',{inputs:['tw_revenue'],title:'대만 8개사 최근 월 매출',description:'가장 최근 달의 회사별 매출·전월 대비·전년 대비 행만 고릅니다.',
+  fn:(tw_revenue)=>{const last=tw_revenue.map(r=>r.month).sort().pop();return tw_revenue.filter(r=>r.month===last).sort((a,b)=>a.order-b.order).map(r=>({company:r.company,code:r.code,role:r.role,month:r.month,revenue_ntd_100m:Number(r.revenue_ntd_100m),mom_pct:Number(r.mom_pct),yoy_pct:Number(r.yoy_pct)}))}});
+dash.calc('tw_total',{inputs:['tw_revenue'],title:'대만 8개사 합산 매출 전년 대비',description:'최근 달 8개사 매출을 더하고, 각 회사의 전년 대비로 역산한 1년 전 매출 합계와 비교합니다.',
+  fn:(tw_revenue)=>{const last=tw_revenue.map(r=>r.month).sort().pop();const rows=tw_revenue.filter(r=>r.month===last);const sum=rows.reduce((s,r)=>s+Number(r.revenue_ntd_100m),0);const prev=rows.reduce((s,r)=>s+Number(r.revenue_ntd_100m)/(1+Number(r.yoy_pct)/100),0);return [{month:last,revenue_ntd_100m:Math.round(sum*100)/100,yoy_pct:Math.round((sum/prev-1)*1000)/10,companies:rows.length}]}});
+dash.calc('mem_latest',{inputs:['memory_fixed'],title:'메모리 가격 최근 값과 전월 대비',description:'제품별 가장 최근 달 가격과 그 전달 가격의 차이(%)입니다.',
+  fn:(memory_fixed)=>{const out=[];for(const p of [...new Set(memory_fixed.map(r=>r.product))]){const s=memory_fixed.filter(r=>r.product===p).sort((a,b)=>a.month.localeCompare(b.month));const l=s[s.length-1],q=s[s.length-2];const c=q?Math.round((Number(l.price_usd)/Number(q.price_usd)-1)*1000)/10:null;out.push({product:p,month:l.month,price_usd:Number(l.price_usd),prev_month:q?q.month:null,prev_price_usd:q?Number(q.price_usd):null,change_pct:c,direction:c==null?'자료 없음':c>0?'상승':c<0?'하락':'보합'})}return out}});
+
+let drawn=false;
+dash.onData(()=>{
+  const TW=dash.data('tw_revenue'),KR=dash.data('kr_chip_exports'),PRE=dash.data('kr_prelim'),MEM=dash.data('memory_fixed'),MQ=dash.data('memory_qoq'),CAL=dash.data('release_calendar'),TL=dash.data('tw_latest'),TT=dash.data('tw_total'),ML=dash.data('mem_latest');
+  const tw=TW.status==='ok'?TW.data.map(r=>({...r,revenue_ntd_100m:Number(r.revenue_ntd_100m),mom_pct:Number(r.mom_pct),yoy_pct:Number(r.yoy_pct),order:Number(r.order)})):[];
+  const kr=KR.status==='ok'?KR.data.map(r=>({...r,chip_exports_usd_100m:Number(r.chip_exports_usd_100m),chip_yoy_pct:Number(r.chip_yoy_pct),total_exports_usd_100m:Number(r.total_exports_usd_100m)})).sort((a,b)=>a.month.localeCompare(b.month)):[];
+  const pre=PRE.status==='ok'?PRE.data.map(r=>({...r,day_to:Number(r.day_to),chip_exports_usd_100m:Number(r.chip_exports_usd_100m),chip_yoy_pct:Number(r.chip_yoy_pct),total_exports_usd_100m:Number(r.total_exports_usd_100m),workdays:Number(r.workdays),workdays_prev:Number(r.workdays_prev)})).sort((a,b)=>a.month.localeCompare(b.month)||a.day_to-b.day_to):[];
+  const mem=MEM.status==='ok'?MEM.data.map(r=>({...r,price_usd:Number(r.price_usd)})).sort((a,b)=>a.month.localeCompare(b.month)):[];
+  const tl=TL.status==='ok'?TL.data:[];const tt=TT.status==='ok'&&TT.data.length?TT.data[0]:null;const mlst=ML.status==='ok'?ML.data:[];
+  const twLast=tw.length?tw.map(r=>r.month).sort().pop():null;
+  const tsmc=tw.find(r=>r.company==='TSMC'&&r.month===twLast);
+  const krLast=kr[kr.length-1];const preLast=pre[pre.length-1];
+  const ddr=mlst.find(r=>r.product==='DDR5 16Gb');const nand=mlst.find(r=>r.product==='낸드 128Gb');
+
+  // 타일
+  const setTile=(id,el,v,txt,cls,where)=>{el.classList.remove('dash-skeleton');if(where)el.setAttribute('data-where',where);el.textContent=v==null?'—':txt;el.className='v '+(cls||'')};
+  setTile('t-tsmc',$('t-tsmc'),tsmc&&tsmc.yoy_pct,tsmc?sg(tsmc.yoy_pct):'',tsmc?cl(tsmc.yoy_pct):'',tsmc?'company=TSMC&month='+enc(tsmc.month):null);
+  $('t-tsmc-s').textContent=tsmc?mlong(tsmc.month)+' · '+nf(tsmc.revenue_ntd_100m,0)+'억 대만달러 · 전월 '+sg(tsmc.mom_pct):'—';
+  setTile('t-tw',$('t-tw'),tt&&tt.yoy_pct,tt?sg(tt.yoy_pct):'',tt?cl(tt.yoy_pct):'',tt?'month='+enc(tt.month):null);
+  $('t-tw-s').textContent=tt?mlong(tt.month)+' · 합산 '+nf(tt.revenue_ntd_100m,0)+'억 대만달러':'—';
+  setTile('t-kr',$('t-kr'),krLast&&krLast.chip_yoy_pct,krLast?sg(krLast.chip_yoy_pct):'',krLast?cl(krLast.chip_yoy_pct):'',krLast?'month='+enc(krLast.month):null);
+  $('t-kr-s').textContent=krLast?mlong(krLast.month)+' · '+nf(krLast.chip_exports_usd_100m,1)+'억 달러':'—';
+  $('t-pre-k').textContent=preLast?preLast.period+' 잠정 반도체 수출 · 전년 대비':'이달 잠정 반도체 수출';
+  setTile('t-pre',$('t-pre'),preLast&&preLast.chip_yoy_pct,preLast?sg(preLast.chip_yoy_pct):'',preLast?cl(preLast.chip_yoy_pct):'',preLast?'period='+enc(preLast.period):null);
+  $('t-pre-s').textContent=preLast?nf(preLast.chip_exports_usd_100m,0)+'억 달러 · 조업일 '+nf(preLast.workdays,1)+'일(작년 '+nf(preLast.workdays_prev,1)+'일)':'—';
+  setTile('t-dram',$('t-dram'),ddr&&ddr.price_usd,ddr?nf(ddr.price_usd,1)+'$':'',ddr?cl(ddr.change_pct):'',ddr?'product='+enc('DDR5 16Gb')+'&month='+enc(ddr.month):null);
+  $('t-dram-s').textContent=ddr?mlong(ddr.month)+' · 전월 대비 '+sg(ddr.change_pct)+' '+ddr.direction:'—';
+  setTile('t-nand',$('t-nand'),nand&&nand.price_usd,nand?nf(nand.price_usd,1)+'$':'',nand?cl(nand.change_pct):'',nand?'product='+enc('낸드 128Gb')+'&month='+enc(nand.month):null);
+  $('t-nand-s').textContent=nand?mlong(nand.month)+' · 전월 대비 '+sg(nand.change_pct)+' '+nand.direction:'—';
+
+  // 핵심 한 줄
+  const tk=$('take');tk.textContent='';
+  if(tsmc&&krLast){
+    const b=document.createElement('b');b.textContent=mlong(twLast)+' 집계'+(preLast?' · '+preLast.period+' 잠정':'');tk.appendChild(b);
+    const add=(t)=>tk.appendChild(document.createTextNode(t));
+    const mk=(txt,src,field,where,c)=>{const s=document.createElement('span');s.textContent=txt;s.className=c||'';s.setAttribute('data-source',src);s.setAttribute('data-field',field);s.setAttribute('data-where',where);tk.appendChild(s)};
+    add('TSMC 월매출은 1년 전보다 ');mk(sg(tsmc.yoy_pct),'tw_revenue','yoy_pct','company=TSMC&month='+enc(tsmc.month),cl(tsmc.yoy_pct));
+    if(tt){add(', 대만 8개사 합산은 ');mk(sg(tt.yoy_pct),'tw_total','yoy_pct','month='+enc(tt.month),cl(tt.yoy_pct))}
+    add(', 한국 반도체 수출은 ');mk(sg(krLast.chip_yoy_pct),'kr_chip_exports','chip_yoy_pct','month='+enc(krLast.month),cl(krLast.chip_yoy_pct));add(krLast.chip_yoy_pct>=0?' 늘었습니다.':' 줄었습니다.');
+    if(preLast){add(' '+preLast.period+' 잠정치도 ');mk(sg(preLast.chip_yoy_pct),'kr_prelim','chip_yoy_pct','period='+enc(preLast.period),cl(preLast.chip_yoy_pct));add(preLast.chip_yoy_pct>=0?'로 증가세가 이어집니다.':'로 꺾였습니다.')}
+    if(ddr){add(' D램 고정가격(DDR5 16Gb)은 ');mk(nf(ddr.price_usd,1)+'달러','memory_fixed','price_usd','product='+enc('DDR5 16Gb')+'&month='+enc(ddr.month));add('로 전달보다 ');mk(ddr.direction,'mem_latest','direction','product='+enc('DDR5 16Gb'),cl(ddr.change_pct));add('했습니다.')}
+  } else tk.textContent='—';
+
+  drawTw(TW,tw,twLast);drawTwTable(TL,tl,twLast);drawKr(KR,kr);drawPills(PRE,pre);drawMem(MEM,mem);drawMq(MQ);drawCal(CAL);drawSrc({tw_revenue:TW,kr_chip_exports:KR,kr_prelim:PRE,memory_fixed:MEM,memory_qoq:MQ,release_calendar:CAL});
+});
+
+
+const TW_AI={'TSMC':'엔비디아·AMD·브로드컴 AI 칩을 만드는 곳이라, AI 칩 주문이 가장 먼저 찍히는 숫자입니다.','폭스콘(홍하이)':'엔비디아 GB 랙 서버 조립 1위라, 랙 출하 속도를 보여 줍니다. 아이폰 등 비AI 매출도 커서 9월 같은 신제품 달에는 그 영향이 섞입니다.','콴타컴퓨터':'빅테크 데이터센터 서버를 만드는 곳이라, 클라우드 회사들의 서버 주문을 보여 줍니다.','위스트론':'엔비디아 GPU 기판과 서버를 만드는 곳이라, 엔비디아 물량과 가장 가깝게 움직입니다.','위윈':'빅테크 자체 데이터센터 서버(클라우드용) 위주라, 빅테크 설비투자가 그대로 찍힙니다.','델타일렉트로닉스':'데이터센터 전원·냉각 장비라, 전력 쪽 투자 흐름을 보여 줍니다.','미디어텍':'스마트폰 칩 비중이 커서 AI보다 폰 경기 영향이 큽니다. 구글 등 맞춤형 AI 칩은 아직 일부입니다.','ASE(일월광)':'칩 패키징·테스트라, AI 칩 후공정 물량과 함께 일반 반도체 경기도 섞여 있습니다.'};
+const TW_SRC_CO={};
+function twAnalyze(rows){
+  const n=rows.length,last=rows[n-1],prev=rows[n-2];
+  const avg=a=>a.length?d3.mean(a,r=>r.yoy_pct):null;
+  const a3=avg(rows.slice(-3)),b3=avg(rows.slice(-6,-3));
+  const mx=d3.max(rows,r=>r.revenue_ntd_100m),isRec=last.revenue_ntd_100m>=mx;
+  let streak=0;for(let i=n-1;i>=0&&rows[i].yoy_pct>0;i--)streak++;
+  const yr=last.month.slice(0,4),ytd=rows.filter(r=>r.month.slice(0,4)===yr);
+  const cur=d3.sum(ytd,r=>r.revenue_ntd_100m),pv=d3.sum(ytd,r=>r.revenue_ntd_100m/(1+r.yoy_pct/100));const ytdY=pv?(cur/pv-1)*100:null;
+  const d=a3!=null&&b3!=null?a3-b3:0;
+  const vd=last.yoy_pct<0?['역성장','var(--color-bad)']:d>=5?['성장 가속','var(--color-ok)']:d<=-5?['성장 둔화','#d0731f']:['성장 유지','var(--color-fg-muted)'];
+  const L=[];
+  L.push(mlong(last.month)+' 매출 '+nf(last.revenue_ntd_100m,0)+'억 대만달러, 1년 전보다 '+sg(last.yoy_pct)+', 전달보다 '+sg(last.mom_pct)+'입니다.');
+  if(a3!=null&&b3!=null)L.push('최근 3개월 평균 전년 대비 '+sg(a3)+'로, 그 전 3개월('+sg(b3)+')보다 '+(d>=0?'높아졌습니다':'낮아졌습니다')+' → '+vd[0]+'입니다.');
+  if(ytdY!=null)L.push(yr+'년 누적('+ytd.length+'개월) 매출은 1년 전보다 '+sg(ytdY)+'입니다.');
+  L.push(isRec?'최근 12개월 중 가장 큰 달입니다(최고 기록).':'최근 12개월 최고 달('+mlong(rows.find(r=>r.revenue_ntd_100m===mx).month)+')보다 '+sg((last.revenue_ntd_100m/mx-1)*100)+' 아래입니다.');
+  if(streak>=3)L.push(streak+'개월 연속 전년보다 늘었습니다.');
+  if(Math.abs(last.mom_pct)>=15)L.push('전월 대비 변동이 큰 달입니다. 대만 월매출은 명절·분기말·신제품 출하로 한 달씩 크게 출렁이니, 전년 대비와 3개월 평균을 함께 봅니다.');
+  return {vd,L,mx};
+}
+function twDetail(c,rows,grid,box){
+  const old=grid.querySelector('.tw-det');const wasMe=old&&old.dataset.co===c.company;
+  if(old)old.remove();grid.querySelectorAll('.sp-small.open').forEach(b=>b.classList.remove('open'));
+  if(wasMe)return;
+  const {vd,L,mx}=twAnalyze(rows);
+  const det=document.createElement('div');det.className='tw-det';det.dataset.co=c.company;det.style.setProperty('--dc',vd[1]);
+  const x=document.createElement('button');x.className='x';x.textContent='닫기 ✕';x.onclick=e=>{e.stopPropagation();det.remove();box.classList.remove('open')};
+  const h=document.createElement('h4');h.textContent=c.company+' · '+c.role;
+  const b=document.createElement('span');b.className='vd';b.textContent=vd[0];
+  const ul=document.createElement('ul');ul.className='an';L.forEach(t=>{const li=document.createElement('li');li.textContent=t;ul.appendChild(li)});
+  const ai=document.createElement('p');ai.className='ai';ai.textContent='AI 관점 · '+(TW_AI[c.company]||c.role);
+  const tb=document.createElement('table');const th=tb.createTHead().insertRow();['월','매출(억)','전월 대비','전년 대비'].forEach(t=>{const e=document.createElement('th');e.textContent=t;th.appendChild(e)});
+  const bd=tb.createTBody();rows.slice().reverse().forEach(r=>{const tr=bd.insertRow();if(r.revenue_ntd_100m===mx)tr.className='rec';tr.insertCell().textContent=r.month.slice(2).replace('-','.')+(r.revenue_ntd_100m===mx?' ★':'');tr.insertCell().textContent=nf(r.revenue_ntd_100m,0);const m=tr.insertCell();m.textContent=sg(r.mom_pct);m.className=cl(r.mom_pct);const y=tr.insertCell();y.textContent=sg(r.yoy_pct);y.className=cl(r.yoy_pct)});
+  const src=document.createElement('p');src.className='src';const last=rows[rows.length-1];src.append('매출 단위 억 대만달러 · ★ = 최근 12개월 최고 달 · 출처: ');if(last.source){const a=document.createElement('a');a.href=last.source;a.target='_blank';a.rel='noopener';a.textContent=(last.source.split('/')[2]||'원문');src.appendChild(a)}
+  const tch=document.createElement('div');tch.className='tch';const lg=document.createElement('div');lg.className='lg';lg.innerHTML='<span><i style="background:var(--color-fg-muted);opacity:.45"></i>월매출</span><span><i style="background:'+vd[1]+'"></i>전년 대비(%)</span>';tch.appendChild(lg);
+  det.append(x,h,b,ul,ai,tch,tb,src);
+  {const W=Math.max(260,(det.clientWidth||330)-28),H=150,m={l:6,r:34,t:16,b:20};
+   const xs=d3.scaleBand().domain(rows.map(r=>r.month)).range([m.l,W-m.r]).paddingInner(.25);
+   const yr=d3.scaleLinear().domain([0,d3.max(rows,r=>r.revenue_ntd_100m)*1.08]).range([H-m.b,m.t]);
+   const ye=d3.extent(rows.map(r=>r.yoy_pct).concat([0]));const yy=d3.scaleLinear().domain(ye).nice().range([H-m.b,m.t]);
+   const svg=d3.select(tch).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+   svg.selectAll('rect').data(rows).join('rect').attr('x',r=>xs(r.month)).attr('width',xs.bandwidth()).attr('y',r=>yr(r.revenue_ntd_100m)).attr('height',r=>yr(0)-yr(r.revenue_ntd_100m)).attr('rx',2).attr('fill','var(--color-fg-muted)').attr('opacity',r=>r===rows[rows.length-1]?.7:.35);
+   if(ye[0]<0)svg.append('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',yy(0)).attr('y2',yy(0)).attr('stroke',vd[1]).attr('stroke-dasharray','3 3').attr('opacity',.5);
+   const ln=d3.line().x(r=>xs(r.month)+xs.bandwidth()/2).y(r=>yy(r.yoy_pct));
+   svg.append('path').attr('d',ln(rows)).attr('fill','none').attr('stroke',vd[1]).attr('stroke-width',2.5);
+   svg.selectAll('circle').data(rows).join('circle').attr('cx',r=>xs(r.month)+xs.bandwidth()/2).attr('cy',r=>yy(r.yoy_pct)).attr('r',(r,i)=>i===rows.length-1?4.5:2.5).attr('fill',vd[1]);
+   const l=rows[rows.length-1];svg.append('text').attr('x',xs(l.month)+xs.bandwidth()/2+6).attr('y',yy(l.yoy_pct)+4).attr('font-size',12).attr('font-weight',800).attr('fill',vd[1]).text(sg(l.yoy_pct,0));
+   [rows[0],l].forEach((r,i)=>svg.append('text').attr('x',i?W-m.r:m.l).attr('y',H-4).attr('font-size',11).attr('text-anchor',i?'end':'start').attr('fill','var(--color-fg-muted)').text(ml(r.month)));}
+  // 같은 줄 끝 다음에 넣기
+  const items=[...grid.querySelectorAll('.sp-small')];const top=box.offsetTop;let after=box;items.forEach(it=>{if(it.offsetTop===top)after=it});
+  after.after(det);box.classList.add('open');det.scrollIntoView({block:'nearest',behavior:'smooth'});
+}
+function twSummary(tw){
+  const el=document.getElementById('tw-sum');if(!el)return;el.textContent='';if(!tw.length)return;
+  const cos=[...new Set(tw.map(r=>r.company))];let up=0,acc=0,slow=0,rec=0;const last=tw.map(r=>r.month).sort().pop();const accN=[],slowN=[];
+  cos.forEach(co=>{const rows=tw.filter(r=>r.company===co).sort((a,b)=>a.month.localeCompare(b.month));if(rows[rows.length-1].month!==last)return;const {vd}=twAnalyze(rows);const l=rows[rows.length-1];if(l.yoy_pct>0)up++;if(vd[0]==='성장 가속'){acc++;accN.push(co)}if(vd[0]==='성장 둔화'||vd[0]==='역성장'){slow++;slowN.push(co)}if(l.revenue_ntd_100m>=d3.max(rows,r=>r.revenue_ntd_100m))rec++});
+  const b=t=>{const e=document.createElement('b');e.textContent=t;return e};
+  el.append('간단 분석 · '+mlong(last)+': 8개사 중 ',b(up+'곳'),' 전년보다 늘었고, ',b(rec+'곳'),'이 최근 12개월 최고 매출입니다. ');
+  el.append('3개월 흐름으로는 가속 ',b(acc+'곳'),(accN.length?'('+accN.join('·')+')':''),', 둔화 ',b(slow+'곳'),(slowN.length?'('+slowN.join('·')+')':''),'입니다.');
+}
+function drawTw(TW,tw,twLast){
+  const grid=$('tw-grid');grid.textContent='';grid.classList.remove('dash-skeleton');
+  if(TW.status==='error'){fail(grid);return}
+  if(!tw.length){grid.classList.add('dash-skeleton');grid.style.minHeight='300px';return}
+  grid.style.minHeight='';twSummary(tw);
+  const months=[...new Set(tw.map(r=>r.month))].sort();
+  const ext=d3.extent(tw.map(r=>r.yoy_pct).concat([0]));
+  const cos=[...new Map(tw.sort((a,b)=>a.order-b.order).map(r=>[r.company,r])).values()];
+  cos.forEach(c=>{
+    const rows=tw.filter(r=>r.company===c.company).sort((a,b)=>a.month.localeCompare(b.month));const last=rows[rows.length-1];
+    const box=document.createElement('div');box.className='sp-small';
+    const n=document.createElement('div');n.className='n';n.textContent=c.company;const r=document.createElement('div');r.className='r';r.textContent=c.role+' · '+c.code;
+    const y=document.createElement('div');y.className='y '+cl(last.yoy_pct);y.textContent=sg(last.yoy_pct);
+    const m=document.createElement('div');m.className='m';m.textContent=mlong(last.month)+' · '+nf(last.revenue_ntd_100m,0)+'억 대만달러';
+    const ch=document.createElement('div');ch.className='sp-chart';ch.style.minHeight='96px';
+    const mo=document.createElement('div');mo.className='more';mo.textContent='눌러서 자세히 ▾';box.append(n,r,y,m,ch,mo);grid.appendChild(box);box.tabIndex=0;box.setAttribute('role','button');box.onclick=()=>twDetail(c,rows,grid,box);box.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();twDetail(c,rows,grid,box)}};
+    const W=Math.max(120,ch.clientWidth||160),H=96,mg={l:4,r:4,t:12,b:18};
+    const x=d3.scaleBand().domain(months).range([mg.l,W-mg.r]).paddingInner(.25);
+    const yS=d3.scaleLinear().domain(ext).nice().range([H-mg.b,mg.t]);
+    const svg=d3.select(ch).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+    svg.append('line').attr('x1',mg.l).attr('x2',W-mg.r).attr('y1',yS(0)).attr('y2',yS(0)).attr('stroke','var(--cds-chart-axis)');
+    svg.selectAll('rect').data(rows).join('rect').attr('x',d=>x(d.month)).attr('width',x.bandwidth()).attr('y',d=>Math.min(yS(0),yS(d.yoy_pct))).attr('height',d=>Math.abs(yS(0)-yS(d.yoy_pct))).attr('rx',2).attr('fill',d=>d.yoy_pct>=0?'var(--color-ok)':'var(--color-bad)').attr('opacity',d=>d.month===last.month?1:.65)
+      .on('pointerenter pointermove',(e,d)=>showTip(e,[c.company+' · '+mlong(d.month),'매출 '+nf(d.revenue_ntd_100m,0)+'억 대만달러','전년 대비 '+sg(d.yoy_pct)+' · 전월 대비 '+sg(d.mom_pct)])).on('pointerleave',hideTip);
+    const f=months[0],l=months[months.length-1];
+    svg.append('text').attr('x',mg.l).attr('y',H-4).attr('font-size',11).attr('fill','var(--color-fg-muted)').text(ml(f));
+    svg.append('text').attr('x',W-mg.r).attr('y',H-4).attr('font-size',11).attr('text-anchor','end').attr('fill','var(--color-fg-muted)').text(ml(l));
+  });
+}
+
+function drawTwTable(TL,tl,twLast){
+  const tb=$('tw-table').querySelector('tbody');tb.textContent='';
+  $('tw-table-sub').textContent=twLast?mlong(twLast)+' 매출입니다. 전월 대비·전년 대비는 각 사 공시 기준입니다.':'—';
+  if(TL.status==='error'){const tr=tb.insertRow();const td=tr.insertCell();td.colSpan=5;fail(td);return}
+  tl.forEach(r=>{const tr=tb.insertRow();tr.setAttribute('data-key',r.company);
+    const c1=tr.insertCell();c1.className='l';c1.textContent=r.company;const c2=tr.insertCell();c2.className='l';c2.textContent=r.role;
+    tr.insertCell().textContent=nf(r.revenue_ntd_100m,0);const c4=tr.insertCell();c4.textContent=sg(r.mom_pct);c4.className=cl(r.mom_pct);const c5=tr.insertCell();c5.textContent=sg(r.yoy_pct);c5.className=cl(r.yoy_pct)});
+}
+
+function drawKr(KR,kr){
+  const box=$('kr-chart');box.textContent='';box.classList.remove('dash-skeleton');
+  if(KR.status==='error'){fail(box);return}
+  if(!kr.length){box.classList.add('dash-skeleton');return}
+  const W=Math.max(300,box.clientWidth),H=260,mg={l:40,r:10,t:26,b:26};
+  const svg=d3.select(box).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  const y=d3.scaleLinear().domain([0,d3.max(kr,d=>d.chip_exports_usd_100m)]).nice().range([H-mg.b,mg.t]);
+  mg.l=Math.ceil(d3.max(y.ticks(5),t=>textW(svg,d3.format(',')(t),12)))+10;
+  const x=d3.scaleBand().domain(kr.map(d=>d.month)).range([mg.l,W-mg.r]).paddingInner(.3);
+  svg.append('g').selectAll('line').data(y.ticks(5)).join('line').attr('x1',mg.l).attr('x2',W-mg.r).attr('y1',d=>y(d)).attr('y2',d=>y(d)).attr('stroke','var(--cds-chart-grid)');
+  svg.append('g').selectAll('text').data(y.ticks(5)).join('text').attr('x',mg.l-6).attr('y',d=>y(d)+4).attr('text-anchor','end').attr('font-size',12).attr('fill','var(--color-fg-muted)').text(d=>d3.format(',')(d));
+  svg.selectAll('rect').data(kr).join('rect').attr('x',d=>x(d.month)).attr('width',x.bandwidth()).attr('y',d=>y(d.chip_exports_usd_100m)).attr('height',d=>y(0)-y(d.chip_exports_usd_100m)).attr('rx',4).attr('fill',(d,i)=>i===kr.length-1?dash.colors[0]:'var(--cds-chart-muted)')
+    .on('pointerenter pointermove',(e,d)=>showTip(e,[mlong(d.month),'반도체 수출 '+nf(d.chip_exports_usd_100m,1)+'억 달러','전년 대비 '+sg(d.chip_yoy_pct),'총수출 '+nf(d.total_exports_usd_100m,1)+'억 달러'])).on('pointerleave',hideTip);
+  const bw=x.bandwidth();const every=bw<34?2:1;
+  svg.selectAll('text.yo').data(kr).join('text').attr('class','yo').attr('x',d=>x(d.month)+bw/2).attr('y',d=>y(d.chip_exports_usd_100m)-5).attr('text-anchor','middle').attr('font-size',bw<34?10:11.5).attr('fill',d=>d.chip_yoy_pct>=0?'var(--color-ok)':'var(--color-bad)').text((d,i)=>(i%every===(kr.length-1)%every)?sg(d.chip_yoy_pct,0):'');
+  svg.selectAll('text.mo').data(kr).join('text').attr('class','mo').attr('x',d=>x(d.month)+bw/2).attr('y',H-8).attr('text-anchor','middle').attr('font-size',11.5).attr('fill','var(--color-fg-muted)').text((d,i)=>(i%every===(kr.length-1)%every)?ml(d.month):'');
+}
+
+function drawPills(PRE,pre){
+  const box=$('kr-pills');box.textContent='';
+  if(PRE.status==='error'){fail(box);return}
+  pre.forEach(p=>{const d=document.createElement('div');d.className='sp-pill';
+    const k=document.createElement('span');k.className='k';k.textContent=p.period+' 잠정(관세청) · 반도체';
+    const v=document.createElement('span');v.className='v '+cl(p.chip_yoy_pct);v.textContent=sg(p.chip_yoy_pct);
+    const s=document.createElement('span');s.className='s';s.textContent=nf(p.chip_exports_usd_100m,0)+'억 달러 · 총수출 '+nf(p.total_exports_usd_100m,0)+'억 달러 · 조업일 '+nf(p.workdays,1)+'일(작년 '+nf(p.workdays_prev,1)+'일)';
+    d.append(k,v,s);box.appendChild(d)});
+}
+
+function drawMem(MEM,mem){
+  const box=$('mem-chart');box.textContent='';box.classList.remove('dash-skeleton');const lg=$('mem-legend');lg.textContent='';
+  if(MEM.status==='error'){fail(box);return}
+  if(!mem.length){box.classList.add('dash-skeleton');return}
+  const prods=[...new Set(mem.map(r=>r.product))];
+  prods.forEach((p,i)=>{const s=document.createElement('span');const ic=document.createElement('i');ic.style.background=dash.colors[i];s.appendChild(ic);s.appendChild(document.createTextNode(p));lg.appendChild(s)});
+  const months=[...new Set(mem.map(r=>r.month))].sort();
+  const W=Math.max(300,box.clientWidth),H=260,mg={l:36,r:56,t:14,b:26};
+  const svg=d3.select(box).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  const y=d3.scaleLinear().domain([0,d3.max(mem,d=>d.price_usd)]).nice().range([H-mg.b,mg.t]);
+  mg.l=Math.ceil(d3.max(y.ticks(5),t=>textW(svg,'$'+t,12)))+10;
+  mg.r=Math.ceil(d3.max(prods,p=>{const s=mem.filter(r=>r.product===p);return textW(svg,nf(s[s.length-1].price_usd,1),12)}))+10;
+  const x=d3.scalePoint().domain(months).range([mg.l,W-mg.r]);
+  svg.append('g').selectAll('line').data(y.ticks(5)).join('line').attr('x1',mg.l).attr('x2',W-mg.r).attr('y1',d=>y(d)).attr('y2',d=>y(d)).attr('stroke','var(--cds-chart-grid)');
+  svg.append('g').selectAll('text').data(y.ticks(5)).join('text').attr('x',mg.l-6).attr('y',d=>y(d)+4).attr('text-anchor','end').attr('font-size',12).attr('fill','var(--color-fg-muted)').text(d=>'$'+d);
+  const step=Math.max(1,Math.ceil(months.length/Math.floor((W-mg.l-mg.r)/48)));
+  svg.append('g').selectAll('text').data(months.filter((m,i)=>(months.length-1-i)%step===0)).join('text').attr('x',d=>x(d)).attr('y',H-8).attr('text-anchor','middle').attr('font-size',11.5).attr('fill','var(--color-fg-muted)').text(ml);
+  const line=d3.line().x(d=>x(d.month)).y(d=>y(d.price_usd));
+  const ends=[];
+  prods.forEach((p,i)=>{const s=mem.filter(r=>r.product===p);svg.append('path').datum(s).attr('d',line).attr('fill','none').attr('stroke',dash.colors[i]).attr('stroke-width',2).attr('stroke-linecap','round').attr('stroke-linejoin','round');
+    svg.selectAll('circle.p'+i).data(s).join('circle').attr('class','p'+i).attr('cx',d=>x(d.month)).attr('cy',d=>y(d.price_usd)).attr('r',3).attr('fill',dash.colors[i]);
+    const l=s[s.length-1];ends.push({p,i,y:y(l.price_usd),t:nf(l.price_usd,1)})});
+  ends.sort((a,b)=>a.y-b.y);for(let i=1;i<ends.length;i++){if(ends[i].y-ends[i-1].y<13)ends[i].y=ends[i-1].y+13}
+  ends.forEach(e=>svg.append('text').attr('x',W-mg.r+6).attr('y',e.y+4).attr('font-size',12).attr('fill',dash.colors[e.i]).text(e.t));
+  const hover=svg.append('g');
+  svg.append('rect').attr('x',mg.l).attr('y',mg.t).attr('width',W-mg.l-mg.r).attr('height',H-mg.t-mg.b).attr('fill','transparent')
+    .on('pointermove',e=>{const [px]=d3.pointer(e);const m=months.reduce((a,b)=>Math.abs(x(b)-px)<Math.abs(x(a)-px)?b:a);hover.selectAll('*').remove();hover.append('line').attr('x1',x(m)).attr('x2',x(m)).attr('y1',mg.t).attr('y2',H-mg.b).attr('stroke','var(--cds-chart-reference)').attr('stroke-dasharray','3 3');
+      showTip(e,[mlong(m)].concat(prods.map(p=>{const r=mem.find(q=>q.product===p&&q.month===m);return p+' '+(r?'$'+nf(r.price_usd,1):'자료 없음')})))})
+    .on('pointerleave',()=>{hover.selectAll('*').remove();hideTip()});
+}
+
+function drawMq(MQ){
+  const tb=$('mem-q').querySelector('tbody');tb.textContent='';
+  if(MQ.status==='error'){const tr=tb.insertRow();const td=tr.insertCell();td.colSpan=6;fail(td);return}
+  const rows=MQ.status==='ok'?MQ.data.slice().sort((a,b)=>b.quarter.localeCompare(a.quarter)||a.product.localeCompare(b.product)):[];
+  rows.forEach(r=>{const tr=tb.insertRow();tr.setAttribute('data-key',enc(r.quarter)+','+enc(r.product));
+    const c1=tr.insertCell();c1.className='l';c1.textContent=r.quarter.replace('-',' ');const c2=tr.insertCell();c2.className='l';c2.textContent=r.product;
+    const lo=Number(r.qoq_low_pct),hi=Number(r.qoq_high_pct);const c3=tr.insertCell();c3.textContent=sg(lo,0);c3.className=cl(lo);const c4=tr.insertCell();c4.textContent=sg(hi,0);c4.className=cl(hi);
+    const c5=tr.insertCell();c5.className='l';c5.textContent=r.kind;tr.insertCell().textContent=r.published});
+}
+
+function drawCal(CAL){
+  const ul=$('cal');ul.textContent='';
+  if(CAL.status==='error'){const li=document.createElement('li');fail(li);ul.appendChild(li);return}
+  const rows=CAL.status==='ok'?CAL.data.slice().sort((a,b)=>a.date.localeCompare(b.date)):[];
+  rows.forEach(r=>{const li=document.createElement('li');const d=document.createElement('span');d.className='d';const dt=new Date(r.date+'T00:00:00Z');d.textContent=(dt.getUTCMonth()+1)+'.'+String(dt.getUTCDate()).padStart(2,'0')+' '+['일','월','화','수','목','금','토'][dt.getUTCDay()];
+    const e=document.createElement('span');e.className='e';e.textContent=r.event;const t=document.createElement('span');t.className='t';t.textContent=r.region+' · '+r.note;e.appendChild(t);li.append(d,e);ul.appendChild(li)});
+}
+
+function drawSrc(all){
+  const box=$('src');box.textContent='';
+  const groups=[['tw_revenue','대만 월매출 (야후 파이낸스 대만 · 테크뉴스 · TSMC 공시)'],['kr_chip_exports','한국 월간 수출입동향 (산업통상부 · 언론 보도)'],['kr_prelim','한국 1~10일·1~20일 잠정치 (관세청 · 언론 보도)'],['memory_fixed','메모리 고정거래가격 (정보통신 수출입 동향 등)'],['memory_qoq','분기 계약가격 전망 (트렌드포스 · 테크뉴스 등)'],['release_calendar','발표 일정 근거']];
+  groups.forEach(([id,label])=>{const d=all[id];if(!d||d.status!=='ok')return;const urls=[...new Set(d.data.map(r=>r.source).filter(Boolean))];if(!urls.length)return;const g=document.createElement('div');g.className='g';g.textContent=label;box.appendChild(g);urls.forEach(u=>{const a=document.createElement('a');a.href=u;a.target='_blank';a.rel='noopener';a.textContent=u;box.appendChild(a)})});
+}
+</script>
+<script id="kr-js">
+(function(){
+const won=v=>v==null?'—':Math.abs(v)>=10000?(v/10000).toFixed(1)+'조':Math.round(v).toLocaleString('ko-KR')+'억';
+const sg=v=>v==null||isNaN(v)?'—':(v>0?'+':'')+Number(v).toFixed(1)+'%';const cl=v=>v==null?'mu':v>0?'up':v<0?'dn':'mu';
+const ql=q=>{const [y,n]=q.split('-Q');return y.slice(2)+'.'+n+'Q'};
+function E(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function verdict(rows){const l=rows[rows.length-1],p=rows[rows.length-2];if(!p)return ['—','var(--color-fg-muted)'];
+  const mg=r=>r.op_100m_krw/r.revenue_100m_krw*100;const dm=mg(l)-mg(p);
+  if(l.rev_yoy_pct!=null&&l.rev_yoy_pct<0)return ['역성장','var(--color-bad)'];
+  if(l.revenue_100m_krw>p.revenue_100m_krw&&dm>=0)return ['성장·이익률 개선','var(--color-ok)'];
+  if(l.revenue_100m_krw>p.revenue_100m_krw)return ['성장(이익률 주춤)','#e07b16'];return ['직전 분기보다 둔화','#e07b16']}
+function detail(c,rows,meta,grid,box){const old=grid.querySelector('.tw-det');const me=old&&old.dataset.co===c;if(old)old.remove();grid.querySelectorAll('.sp-small.open').forEach(b=>b.classList.remove('open'));if(me)return;
+  const vd=verdict(rows),l=rows[rows.length-1],p=rows[rows.length-2];const det=E('div','tw-det');det.dataset.co=c;det.style.setProperty('--dc',vd[1]);
+  const x=E('button','x','닫기 ✕');x.onclick=e=>{e.stopPropagation();det.remove();box.classList.remove('open')};
+  const h=E('h4',null,c+' · '+(meta.role||''));const b=E('span','vd',vd[0]);
+  const mg=r=>r.op_100m_krw/r.revenue_100m_krw*100;
+  const L=[ql(l.quarter)+(l.status==='잠정'?'(잠정)':'')+' 매출 '+won(l.revenue_100m_krw)+' 원('+sg(l.rev_yoy_pct)+'), 영업이익 '+won(l.op_100m_krw)+' 원('+sg(l.op_yoy_pct)+')입니다.'];
+  if(p)L.push('영업이익률 '+mg(l).toFixed(1)+'%로 직전 분기('+mg(p).toFixed(1)+'%)보다 '+(mg(l)>=mg(p)?'높아졌습니다':'낮아졌습니다')+'.');
+  const y4=rows.slice(-4),y0=rows.slice(-8,-4);if(y0.length===4){const a=y4.reduce((s,r)=>s+r.op_100m_krw,0),bq=y0.reduce((s,r)=>s+r.op_100m_krw,0);L.push('최근 4분기 영업이익 합계 '+won(a)+' 원 — 그 전 4분기('+won(bq)+' 원)의 '+(a/bq).toFixed(1)+'배입니다.')}
+  if(meta.next_report)L.push('다음 실적 발표: '+meta.next_report.slice(5).replace('-','/')+(String(meta.source||'').includes('추정')?' (예상)':''));
+  const ul=E('ul','an');L.forEach(t=>ul.appendChild(E('li',null,t)));
+  const ai=E('p','ai','AI 관점 · '+(meta.ai_point||''));const sgm=meta.segments?E('p','ai','부문 · '+meta.segments):null;
+  const tch=E('div','tch');const lg=E('div','lg');lg.innerHTML='<span><i style="background:var(--color-fg-muted);opacity:.45"></i>매출</span><span><i style="background:'+vd[1]+'"></i>영업이익률(%)</span>';tch.appendChild(lg);
+  const tb=document.createElement('table');const th=tb.createTHead().insertRow();['분기','매출','영업이익','이익률'].forEach(t=>th.appendChild(E('th',null,t)));const bd=tb.createTBody();
+  rows.slice().reverse().forEach(r=>{const tr=bd.insertRow();tr.insertCell().textContent=ql(r.quarter)+(r.status==='잠정'?'*':'');tr.insertCell().textContent=won(r.revenue_100m_krw);const o=tr.insertCell();o.textContent=won(r.op_100m_krw);tr.insertCell().textContent=mg(r).toFixed(1)+'%'});
+  const src=E('p','src','단위 원 · *잠정 · 출처: 회사 발표·DART 기반 집계');
+  det.append(x,h,b,ul,ai);if(sgm)det.append(sgm);det.append(tch,tb,src);
+  const items=[...grid.querySelectorAll('.sp-small')];const top=box.offsetTop;let after=box;items.forEach(it=>{if(it.offsetTop===top)after=it});after.after(det);box.classList.add('open');
+  {const W=Math.max(260,(det.clientWidth||330)-28),H=150,m={l:6,r:40,t:16,b:20};const xs=d3.scaleBand().domain(rows.map(r=>r.quarter)).range([m.l,W-m.r]).paddingInner(.25);
+   const yr=d3.scaleLinear().domain([0,d3.max(rows,r=>r.revenue_100m_krw)*1.08]).range([H-m.b,m.t]);const ye=d3.extent(rows.map(mg).concat([0]));const yy=d3.scaleLinear().domain(ye).nice().range([H-m.b,m.t]);
+   const svg=d3.select(tch).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+   svg.selectAll('rect').data(rows).join('rect').attr('x',r=>xs(r.quarter)).attr('width',xs.bandwidth()).attr('y',r=>yr(r.revenue_100m_krw)).attr('height',r=>yr(0)-yr(r.revenue_100m_krw)).attr('rx',2).attr('fill','var(--color-fg-muted)').attr('opacity',(r,i)=>i===rows.length-1?.7:.35);
+   svg.append('path').attr('d',d3.line().x(r=>xs(r.quarter)+xs.bandwidth()/2).y(r=>yy(mg(r)))(rows)).attr('fill','none').attr('stroke',vd[1]).attr('stroke-width',2.5);
+   svg.selectAll('circle').data(rows).join('circle').attr('cx',r=>xs(r.quarter)+xs.bandwidth()/2).attr('cy',r=>yy(mg(r))).attr('r',(r,i)=>i===rows.length-1?4.5:2.5).attr('fill',vd[1]);
+   svg.append('text').attr('x',xs(l.quarter)+xs.bandwidth()/2+6).attr('y',yy(mg(l))+4).attr('font-size',12).attr('font-weight',800).attr('fill',vd[1]).text(mg(l).toFixed(0)+'%');
+   [rows[0],l].forEach((r,i)=>svg.append('text').attr('x',i?W-m.r:m.l).attr('y',H-4).attr('font-size',11).attr('text-anchor',i?'end':'start').attr('fill','var(--color-fg-muted)').text(ql(r.quarter)));}
+}
+function drawKrCo(){const A=dash.data('kr_companies'),M=dash.data('kr_company_meta');const grid=document.getElementById('krco-grid');if(!grid)return;
+  if(A.status!=='ok'||M.status!=='ok'){grid.textContent=A.status==='error'?'불러오지 못했습니다':'불러오는 중';return}
+  grid.textContent='';const meta={};M.data.forEach(m=>meta[m.company]=m);const cos=[...new Set(A.data.slice().sort((a,b)=>a.order-b.order).map(r=>r.company))];
+  let up=0;const nx=[];
+  cos.forEach(c=>{const rows=A.data.filter(r=>r.company===c).sort((a,b)=>a.quarter.localeCompare(b.quarter));const l=rows[rows.length-1];const mt=meta[c]||{};if(l.op_yoy_pct>0)up++;if(mt.next_report&&mt.next_report>='2026-10-28')nx.push(c+' '+mt.next_report.slice(5).replace('-','/'));
+    const box=E('div','sp-small');box.append(E('div','n',c),E('div','r',(mt.role||'')+' · '+(mt.code||l.code)));
+    const y=E('div','y '+cl(l.op_yoy_pct),sg(l.op_yoy_pct));const m=E('div','m',ql(l.quarter)+(l.status==='잠정'?' 잠정':'')+' 영업이익 '+won(l.op_100m_krw)+' 원 · 전년 대비');
+    box.append(y,m,E('div','more','눌러서 자세히 ▾'));grid.appendChild(box);box.tabIndex=0;box.setAttribute('role','button');box.onclick=()=>detail(c,rows,mt,grid,box);box.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();detail(c,rows,mt,grid,box)}}});
+  const sm=document.getElementById('krco-sum');sm.textContent='';const b=t=>E('b',null,t);sm.append('간단 분석 · 6개사 중 ',b(up+'곳'),'의 최근 분기 영업이익이 1년 전보다 늘었습니다. ');if(nx.length)sm.append('이번 주 발표: ',b(nx.join(' · ')),' — 발표 뒤 이 칸도 같이 바뀝니다.')}
+function drawKrMem(){const D=dash.data('kr_memory_exports');const ch=document.getElementById('krmem-chart');if(!ch)return;if(D.status!=='ok'){ch.textContent=D.status==='error'?'불러오지 못했습니다':'불러오는 중';return}
+  ch.textContent='';const rows=D.data.slice().sort((a,b)=>a.month.localeCompare(b.month));const l=rows[rows.length-1];
+  const sm=document.getElementById('krmem-sum');sm.textContent='';const b=t=>E('b',null,t);const ml=m=>Number(m.slice(5))+'월';
+  sm.append(ml(l.month)+' 메모리 수출 ',b((l.memory_usd_100m||0).toFixed(1)+'억 달러('+sg(l.memory_yoy_pct)+')'),', 시스템반도체 '+(l.system_usd_100m||0).toFixed(1)+'억 달러('+sg(l.system_yoy_pct)+'), SSD '+(l.ssd_usd_100m||0).toFixed(1)+'억 달러('+sg(l.ssd_yoy_pct)+')입니다. 메모리가 시스템반도체의 ',b(((l.memory_usd_100m||0)/(l.system_usd_100m||1)).toFixed(0)+'배'),'라, 한국 반도체 수출은 사실상 메모리 가격·HBM 출하 지표입니다.');
+  const S=[['memory_usd_100m','메모리','#b03d20'],['system_usd_100m','시스템반도체','#3e556a'],['ssd_usd_100m','SSD','#c99a06']];
+  const W=Math.max(300,ch.clientWidth||340),H=210,m={l:34,r:12,t:14,b:22};const xs=d3.scalePoint().domain(rows.map(r=>r.month)).range([m.l,W-m.r]);
+  const y=d3.scaleLinear().domain([0,d3.max(rows,r=>Math.max(r.memory_usd_100m||0,r.system_usd_100m||0,r.ssd_usd_100m||0))*1.1]).nice().range([H-m.b,m.t]);
+  const svg=d3.select(ch).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  y.ticks(4).forEach(t=>{svg.append('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y(t)).attr('y2',y(t)).attr('stroke','var(--cds-chart-grid)');svg.append('text').attr('x',m.l-4).attr('y',y(t)+4).attr('text-anchor','end').attr('font-size',11).attr('fill','var(--color-fg-muted)').text(t)});
+  S.forEach(([k,n,c])=>{const pts=rows.filter(r=>r[k]!=null);svg.append('path').attr('d',d3.line().x(r=>xs(r.month)).y(r=>y(r[k]))(pts)).attr('fill','none').attr('stroke',c).attr('stroke-width',2.5);const lp=pts[pts.length-1];if(lp)svg.append('text').attr('x',xs(lp.month)-4).attr('y',y(lp[k])+(k==='system_usd_100m'?16:-6)).attr('text-anchor','end').attr('font-size',11.5).attr('font-weight',800).attr('fill',c).text(n)});
+  [rows[0],l].forEach((r,i)=>svg.append('text').attr('x',xs(r.month)).attr('y',H-5).attr('text-anchor',i?'end':'start').attr('font-size',11).attr('fill','var(--color-fg-muted)').text(r.month.slice(2).replace('-','.')))}
+dash.onData(()=>{drawKrCo();drawKrMem()});
+})();
+</script>
+</div></body></html>

@@ -1,0 +1,486 @@
+<!doctype html><html lang="ko"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>원·달러 환율 보드</title><style>:root{color-scheme:light;
+--color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
+--font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
+--cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
+--cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:12px;--cds-gap-lg:20px;--cds-gap-xl:28px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:18px;--cds-pad-xl:24px;--cds-radius:12px;
+--cds-chart-grid:rgba(11,11,11,.07);--cds-chart-axis:rgba(11,11,11,.25);--cds-chart-muted:rgba(111,109,104,.45);--cds-chart-reference:rgba(11,11,11,.4);--cds-chart-status-critical:#b23434;
+--cds-surface-popover:#ffffff;--cds-border:rgba(11,11,11,.12);--cds-shadow-popover:0 6px 24px -8px rgba(0,0,0,.25);--cds-text-secondary:#6f6d68;--cds-dur-slow:.3s;--cds-ease-out:cubic-bezier(.2,.8,.2,1);
+--dc1:#2f5bb8;--dc2:#b07a12;--dc3:#1d7a4a;--dc4:#b53a3a;--dc5:#7246b0;--dc6:#1b7880;--dc7:#b35c2a;--dc8:#6b5b95}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}}
+:root[data-theme="dark"]{color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}
+*{box-sizing:border-box}
+html,body.ibody{margin:0;background:var(--color-bg);color:var(--color-fg)}
+body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+#dash-root{padding:20px max(16px,env(safe-area-inset-left,0px)) 48px max(16px,env(safe-area-inset-right,0px))}
+#dash-root b,#dash-root strong{font-weight:700}
+.dash-skeleton{color:transparent!important;background:linear-gradient(90deg,color-mix(in srgb,var(--color-fg-muted) 14%,transparent),color-mix(in srgb,var(--color-fg-muted) 24%,transparent),color-mix(in srgb,var(--color-fg-muted) 14%,transparent));background-size:200% 100%;border-radius:6px;animation:skl 1.4s linear infinite}
+@keyframes skl{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.dash-skeleton{animation:none}}
+.ib{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;padding:9px max(12px,env(safe-area-inset-left,0px));background:var(--ib-bg,#f9f9f7);border-bottom:1px solid var(--ib-line,rgba(11,11,11,.1));font:600 14px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+.ib::-webkit-scrollbar{display:none}
+.ib a{flex:none;text-decoration:none;color:var(--ib-mu,#6f6d68);padding:6px 12px;border-radius:999px;border:1px solid var(--ib-line,rgba(11,11,11,.1));background:var(--ib-pn,#fff);white-space:nowrap}
+.ib a.home{color:var(--ib-fg,#0b0b0b);font-weight:800}
+.ib a.home{position:sticky;left:0;z-index:3;box-shadow:-8px 0 0 5px var(--ib-bg,#f9f9f7),-22px 0 0 5px var(--ib-bg,#f9f9f7),9px 0 10px -8px rgba(0,0,0,.3)}
+.ib a[aria-current]{background:var(--ib-fg,#0b0b0b);color:var(--ib-bg,#f9f9f7);border-color:var(--ib-fg,#0b0b0b)}
+.ib .tg{flex:none;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--ib-fa,#9a978f);padding-left:8px;border-left:1px solid var(--ib-line,rgba(11,11,11,.1));margin-left:2px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}}
+:root[data-theme="dark"]{--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script><script>window.__PAGE__={"page": "fx", "ds": ["crosses", "usdkrw", "yields", "usdkrw_long"], "params": {}};window.__SYNC__="202610280842";</script><script src="shim.js"></script></head><body class="ibody"><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html">경고등</a><a href="p-brief.html">데일리 시황</a><a href="p-earn.html">실적 결과</a><a href="p-prices.html">시세 보드</a><a href="p-targets.html">목표주가</a><a href="p-opt.html">옵션 온도계</a><a href="p-bond.html">채권·금리</a><a href="p-cal.html">실적 캘린더</a><a href="p-econ.html">경제지표</a><span class="tg">흐름</span><a href="p-trend.html">차트 길잡이</a><a href="p-short.html">공매도</a><a href="p-fx.html" aria-current="page">환율</a><a href="p-capex.html">설비투자</a><a href="p-policy.html">정책·지정학</a><a href="p-tech.html">테크 행사</a><span class="tg">점검</span><a href="p-supply.html">한국·대만</a><a href="p-neo.html">네오클라우드</a><a href="p-qtr.html">분기 실적</a><a href="p-insider.html">내부자·기관</a></nav><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script><div id="dash-root" data-dash-state="loading"><style>
+.fx-wrap,.fx-tip{--cds-font-size-caption:14.5px;--cds-font-size-body:17px;--cds-font-size-heading:19.5px;--cds-font-size-title:30.5px}
+.fx-wrap{font-family:var(--font-anthropic-sans);display:flex;flex-direction:column;gap:var(--cds-gap-lg);max-width:1100px;margin-inline:auto;position:relative;word-break:keep-all}
+.fx-note{margin:0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.fx-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,8.5rem),1fr));gap:var(--cds-gap-sm)}
+.fx-tile{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-md);display:flex;flex-direction:column;gap:var(--cds-gap-xs);min-width:0}
+.fx-tile .k{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.fx-tile .v{font-family:var(--font-anthropic-serif);font-size:clamp(20px,6.4vw,var(--cds-font-size-title));overflow-wrap:anywhere;font-variant-numeric:tabular-nums;min-height:1.2em;line-height:1.2}
+.fx-tile .s{font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums;min-height:1.2em}
+.fx-card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg);display:flex;flex-direction:column;gap:var(--cds-gap-sm);min-width:0}
+.fx-card h3{margin:0;font-size:var(--cds-font-size-heading);font-weight:700;letter-spacing:-.01em;line-height:1.3;border-left:4px solid var(--color-warn);padding-left:10px}
+.fx-card .sub{margin:0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.5}
+.fx-chart{position:relative;width:100%}
+.fx-tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);border-radius:var(--cds-radius);box-shadow:var(--cds-shadow-popover);padding:var(--cds-pad-xs) var(--cds-pad-sm);font-size:var(--cds-font-size-caption);white-space:nowrap;z-index:5;display:none;font-variant-numeric:tabular-nums}
+.fx-tip div{display:flex;align-items:center;gap:6px}
+.fx-tip i{width:10px;height:3px;border-radius:2px;display:inline-block}
+.fx-legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:var(--cds-font-size-caption)}
+.fx-legend button{font:inherit;background:none;border:0;padding:2px 0;color:var(--color-fg);cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.fx-legend button[aria-pressed=false]{opacity:.4}
+.fx-legend i{width:10px;height:3px;border-radius:2px;display:inline-block}
+.fx-read{display:flex;flex-direction:column;gap:14px}
+.fx-read p,.fx-read li{margin:0;font-size:var(--cds-font-size-body);line-height:1.65;max-width:72ch}
+.fx-read ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:8px}
+.fx-read .t{font-weight:700;display:block}
+.fx-hlt{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--color-warn) 42%,transparent) 58%);color:var(--color-fg);font-weight:500;padding:0 1px}
+.fx-src a{display:block;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);word-break:break-all;line-height:1.6}
+.fx-src p{margin:0;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted);line-height:1.6}
+.up{color:var(--color-ok)} .dn{color:var(--color-bad)} .mu{color:var(--color-fg-muted)} .wn{color:var(--color-warn)}
+[data-dash-source-state=empty]{color:transparent}
+[data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
+.fx-fail{display:flex;align-items:center;justify-content:center;gap:8px;min-height:120px;color:var(--color-fg-muted);font-size:var(--cds-font-size-caption)}
+.fx-fail i{width:.375rem;height:.375rem;border-radius:50%;background:var(--color-bad);display:inline-block}
+.fx-tablebox{overflow-x:auto;width:100%}
+.fx-table{width:100%;border-collapse:collapse;font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums}
+.fx-table th,.fx-table td{padding:8px 8px;border-bottom:1px solid var(--color-border-line);text-align:right;white-space:nowrap}
+.fx-table th:first-child,.fx-table td:first-child{text-align:left}
+.fx-table th{color:var(--color-fg-muted);font-weight:500}
+.fx-table tr.hl td{background:color-mix(in srgb,var(--color-warn) 12%,transparent);font-weight:600}
+.fx-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,11rem),1fr));gap:var(--cds-gap-sm)}
+.fx-form label{display:flex;flex-direction:column;gap:4px;font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.fx-form input{font:inherit;font-size:var(--cds-font-size-body);padding:8px 10px;border-radius:var(--cds-radius);border:1px solid var(--color-border-line);background:var(--color-bg);color:var(--color-fg);min-width:0;font-variant-numeric:tabular-nums}
+.fx-form input:focus{outline:2px solid var(--color-warn);outline-offset:1px}
+.fx-out{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,9rem),1fr));gap:var(--cds-gap-sm);margin-top:4px}
+.fx-out div{border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.fx-out .k{font-size:13.5px;color:var(--color-fg-muted)}
+.fx-out .v{font-family:var(--font-anthropic-serif);font-size:24px;font-variant-numeric:tabular-nums;line-height:1.2;min-height:1.2em}
+.fx-out .s{font-size:13.5px;font-variant-numeric:tabular-nums;min-height:1.2em}
+.fx-out div.big{grid-column:1 / -1;border-color:var(--color-warn)}
+.fx-chip{font:inherit;font-size:var(--cds-font-size-caption);padding:5px 12px;border-radius:999px;border:1px solid var(--color-border-line);background:var(--color-panel);color:var(--color-fg);cursor:pointer}
+.fx-chip:hover{border-color:var(--color-warn)}
+.fx-ctrl{display:flex;flex-wrap:wrap;gap:var(--cds-gap-sm);align-items:center}
+.fx-range{position:relative;height:8px;border-radius:999px;background:color-mix(in srgb,var(--color-fg-muted) 25%,transparent);margin:10px 0 4px}
+.fx-range em{position:absolute;top:-4px;width:4px;height:16px;margin-left:-2px;border-radius:2px;background:var(--color-warn)}
+.fx-rl{display:flex;justify-content:space-between;font-size:12.5px;color:var(--color-fg-muted);font-variant-numeric:tabular-nums}
+
+/* 머리말: 작은 머리띠 → 큰 제목 → 날짜 칩 + 오늘의 한 줄 */
+.fx-mast{display:flex;flex-direction:column;gap:10px;padding:6px 0 4px;word-break:keep-all}
+.fx-eyebrow{margin:0;display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;letter-spacing:.12em;color:var(--color-fg-muted)}
+.fx-eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--color-bad);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-bad) 22%,transparent)}
+.fx-mast .fx-h1{font-family:var(--font-anthropic-serif);font-size:clamp(30px,7.4vw,42px);line-height:1.15;letter-spacing:-.02em;font-weight:400;margin:0;padding-bottom:12px;border-bottom:1px solid var(--color-border-line);position:relative}
+.fx-mast .fx-h1::after{content:"";position:absolute;left:0;bottom:-1px;width:56px;height:3px;border-radius:2px;background:var(--color-warn)}
+.fx-mast .fx-h1 .m{font-weight:600}
+.fx-mast .fx-h1 .s{color:var(--color-fg-muted);font-size:.62em;letter-spacing:-.01em;white-space:nowrap}
+.fx-mast .fx-take{margin:6px 0 0;font-family:var(--font-anthropic-serif);font-size:clamp(19.5px,4.9vw,23px);line-height:1.5;letter-spacing:-.01em;color:var(--color-fg);text-wrap:pretty;font-variant-numeric:tabular-nums}
+.fx-mast .fx-take b{display:table;margin-bottom:8px;font-family:var(--font-anthropic-sans);font-size:13.5px;font-weight:700;letter-spacing:.02em;font-variant-numeric:tabular-nums;color:var(--color-warn);padding:3px 10px;border-radius:999px;border:1px solid color-mix(in srgb,var(--color-warn) 55%,transparent);background:color-mix(in srgb,var(--color-warn) 10%,transparent)}
+.fx-mast .fx-take .n{font-weight:600}
+@media (prefers-reduced-motion: no-preference){
+  @keyframes fx-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .fx-anim{animation:fx-in var(--cds-dur-slow) var(--cds-ease-out) both}
+}
+.fx-one{margin:6px 0 8px;font-weight:700;line-height:1.5}.fx-xlink{display:inline-block;margin-top:10px;padding:8px 12px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;color:inherit;border:1px solid var(--cds-chart-grid)}
+.env-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.env-col{border:1px solid var(--color-border-line);border-radius:10px;padding:10px;min-width:0}
+.env-h{margin:0 0 6px;font-weight:800;font-size:14px}.env-h.dn{color:var(--color-bad)}.env-h.up{color:var(--color-ok)}
+.env-lt{display:flex;gap:7px;align-items:flex-start;font-size:13px;line-height:1.45;padding:4px 0;color:var(--color-fg-muted)}
+.env-lt i{flex:none;width:11px;height:11px;border-radius:50%;margin-top:4px;background:var(--color-border-line);border:1px solid var(--cds-chart-axis)}
+.env-lt.on{color:var(--color-fg);font-weight:700}.env-lt.on.dn i{background:var(--color-bad);border-color:var(--color-bad)}.env-lt.on.up i{background:var(--color-ok);border-color:var(--color-ok)}
+.env-h2{margin:10px 0 0;font-weight:800}
+.env-lg{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--color-fg-muted)}.env-lg i{display:inline-block;width:12px;height:10px;margin-right:5px;vertical-align:middle}
+.env-lg i.bar{background:var(--dc2);opacity:.6}.env-lg i.ln{height:3px;background:var(--dc1)}
+.env-more summary{cursor:pointer;font-weight:700}.env-more p{margin:6px 0;font-size:14px;line-height:1.6}
+.fx-chips{display:flex;flex-wrap:wrap;gap:6px}.fx-chips button{font:inherit;font-size:14px;padding:6px 14px;border-radius:999px;border:1px solid var(--color-border-line);background:var(--color-panel);color:var(--color-fg);cursor:pointer}.fx-chips button.on{background:var(--color-fg);color:var(--color-panel);border-color:var(--color-fg);font-weight:700}
+.fx-rule{border-left:4px solid var(--color-warn);background:color-mix(in srgb,var(--color-warn) 8%,var(--color-panel));border-radius:8px;padding:10px 12px;margin:2px 0 6px}.fx-rule p{margin:4px 0;font-size:14.5px;line-height:1.6}.fx-rule .h{font-weight:800;margin:0 0 4px}
+.fx-card.env-hot{border:2px solid var(--color-warn);box-shadow:0 6px 18px -12px var(--color-warn)}.env-hot #env-one{font-size:16.5px;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--color-warn) 10%,var(--color-panel))}
+</style>
+
+<div class="fx-wrap" id="fx-root">
+  <header id="top" class="fx-mast">
+    <p class="fx-eyebrow"><i aria-hidden="true"></i>환율 · 매일 갱신</p>
+    <h1 class="fx-h1"><span class="m">원·달러 환율</span> <span class="s">보드</span></h1>
+    <p class="fx-take" id="take"><b id="take-date">—</b><span id="take-body">—</span></p>
+  </header>
+
+  <section class="fx-tiles" id="tiles">
+    <div class="fx-tile"><span class="k">오늘 환율 (원/달러)</span><span class="v dash-skeleton" id="t-rate" data-source="fxnow" data-field="rate" data-fetchpriority="high">—</span><span class="s mu" id="t-rate-s">—</span></div>
+    <div class="fx-tile"><span class="k">전일 대비</span><span class="v dash-skeleton" id="t-d1" data-source="fxnow" data-field="d1_chg_pct">—</span><span class="s" id="t-d1-s" data-source="fxnow" data-field="d1_chg">—</span></div>
+    <div class="fx-tile"><span class="k">1개월 변동</span><span class="v dash-skeleton" id="t-m1" data-source="fxnow" data-field="m1_chg_pct">—</span><span class="s mu" id="t-m1-s">—</span></div>
+    <div class="fx-tile"><span class="k">52주 범위 위치</span><span class="v dash-skeleton" id="t-pos" data-source="fxnow" data-field="pos52_pct">—</span><span class="s mu" id="t-pos-s">—</span></div>
+    <div class="fx-tile"><span class="k">달러지수 (근사)</span><span class="v dash-skeleton" id="t-dxy" data-source="dxynow" data-field="dxy">—</span><span class="s" id="t-dxy-s" data-source="dxynow" data-field="m1_chg_pct">—</span></div>
+    <div class="fx-tile"><span class="k">엔/달러</span><span class="v dash-skeleton" id="t-jpy" data-source="fxnow" data-field="usdjpy">—</span><span class="s" id="t-jpy-s" data-source="fxnow" data-field="usdjpy_d1_pct">—</span></div>
+  </section>
+
+  <section class="fx-card env-hot" id="env-card">
+    <h3>금리차로 본 환율 환경 · 원화 강세 쪽인가 약세 쪽인가</h3>
+    <p class="sub">금리차 = 미국 10년물 − 한국 10년물(월평균). 미국 금리가 많이 높을수록 달러에 돈을 넣는 게 유리해 원화가 약해지기 쉽고, 차이가 좁혀질수록 원화가 강해질 환경이 열립니다. 아래 불 6개로 지금 바람이 어느 쪽인지 봅니다.</p>
+    <p class="fx-one" id="env-one" data-source="spread dxynow">—</p>
+    <div class="env-grid" data-source="spread dxynow">
+      <div class="env-col"><p class="env-h dn">원화 약세 쪽 불</p><div id="env-weak"></div></div>
+      <div class="env-col"><p class="env-h up">원화 강세 쪽 불</p><div id="env-strong"></div></div>
+    </div>
+    <p class="env-h2">교과서대로 움직였을까 · 지난 1년 금리차와 환율</p>
+    <div class="lg env-lg"><span><i class="bar"></i>금리차(미국−한국, %p, 왼쪽)</span><span><i class="ln"></i>월평균 원·달러(원, 오른쪽)</span></div>
+    <div class="fx-chart dash-skeleton" id="env-chart" data-source="spread usdkrw" style="min-height:200px"></div>
+    <p class="fx-one" id="env-real" data-source="spread usdkrw">—</p>
+    <details class="env-more"><summary>그래서 환율을 맞힐 수 있을까</summary>
+      <p>솔직히 환율 예측은 거의 무의미합니다. 전문가 전망도 자주 빗나갑니다.</p>
+      <p>금리차는 '바람의 방향' 정도입니다. 실제 환율은 반도체 수출, 외국인의 한국 주식 매매, 달러 자체의 강약, 위기 때 안전자산 쏠림이 함께 끌고 갑니다.</p>
+      <p>그래서 이 칸은 '지금 금리 쪽 바람이 원화에 우호적인가, 불리한가'만 봅니다. 달러 자산의 원화 환산 수익을 볼 때 배경으로 참고하는 용도이며, 매수·매도 권유가 아닙니다.</p>
+      <p>불 기준(이 페이지가 정한 것): 금리차 1%p 이상 / 0.3%p 미만, 3개월 새 금리차 ±0.1%p 이상 변화, 달러지수 1개월 ±1% 이상.</p>
+    </details>
+  </section>
+
+  <section class="fx-card" id="krw-card">
+    <h3 id="krw-title">원·달러 환율 1년</h3>
+    <p class="sub" id="krw-sub">일별 ECB 기준환율(원/달러). 점선은 참고선 1,300 · 1,400 · 1,450원, 주황 점은 기간 중 최고·최저입니다. 선 위에 손을 올리면 그날 값이 보입니다. 3년 이상은 야후 파이낸스 월말 환율입니다.</p>
+    <div class="fx-chips" id="krw-period"></div>
+    <p class="fx-one" id="krw-long-one" data-source="usdkrw_long"></p>
+    <div class="fx-chart dash-skeleton" id="krw-chart" data-source="usdkrw fxnow usdkrw_long" style="min-height:300px"></div>
+    <p class="fx-note">읽는 법: 선이 내려가면 원화 강세(달러가 싸짐), 올라가면 원화 약세입니다. 미국 주식을 원화로 환산한 가치는 이 선과 같은 방향으로 움직입니다.</p>
+  </section>
+
+  <section class="fx-card" id="dxy-card">
+    <h3>달러지수와 원·달러 비교</h3>
+    <p class="sub">12개월 전을 100으로 놓고 같은 눈금에 그렸습니다. 달러지수는 유로·엔·파운드·캐나다달러·크로나·프랑 6개 통화의 ECB 기준환율에 ICE 달러지수 공식을 적용한 근사치입니다.</p>
+    <div class="fx-legend" id="dxy-legend"></div>
+    <div class="fx-chart dash-skeleton" id="dxy-chart" data-source="rebased" style="min-height:260px"></div>
+    <p class="fx-note">읽는 법: 두 선이 같이 움직이면 '달러 전반'의 흐름이고, 원·달러만 따로 움직이면 한국 고유 요인(반도체 수출, 외국인 주식 매매, 한·미 금리 차)이 작용한 구간입니다.</p>
+  </section>
+
+  <section class="fx-card" id="calc-card">
+    <h3>내 미국 주식, 환율 효과 계산</h3>
+    <p class="sub">매수 금액과 매수 당시 환율, 지금 달러 평가액을 넣으면 오늘 환율 <span data-source="fxnow" data-field="rate" id="calc-rate">—</span>원으로 원화 가치를 계산하고, 수익을 '주식 효과'와 '환율 효과'로 나눕니다. 입력값은 저장되지 않습니다.</p>
+    <div class="fx-form">
+      <label>매수 금액 (달러)<input id="in-usd0" type="number" inputmode="decimal" min="0" step="any" placeholder="달러"></label>
+      <label>매수 당시 환율 (원/달러)<input id="in-rate0" type="number" inputmode="decimal" min="0" step="any" placeholder="원/달러"></label>
+      <label>지금 평가액 (달러)<input id="in-usd1" type="number" inputmode="decimal" min="0" step="any" placeholder="달러"></label>
+    </div>
+    <div class="fx-ctrl"><button class="fx-chip" id="btn-y1" type="button">매수 환율에 1년 전 값 넣기</button><button class="fx-chip" id="btn-same" type="button">평가액 = 매수 금액</button><button class="fx-chip" id="btn-clear" type="button">지우기</button></div>
+    <div class="fx-out" id="calc-out">
+      <div class="big"><span class="k">지금 원화 가치</span><span class="v" id="o-now">—</span><span class="s" id="o-total">—</span></div>
+      <div><span class="k">매수 때 원화 금액</span><span class="v" id="o-cost">—</span><span class="s mu" id="o-cost-s">—</span></div>
+      <div><span class="k">주식 효과</span><span class="v" id="o-stock">—</span><span class="s" id="o-stock-s">—</span></div>
+      <div><span class="k">환율 효과</span><span class="v" id="o-fx">—</span><span class="s" id="o-fx-s">—</span></div>
+      <div><span class="k">교차 효과</span><span class="v" id="o-cross">—</span><span class="s mu">주식 수익에 환율 변동이 곱해진 몫</span></div>
+    </div>
+    <p class="fx-note">읽는 법: 주식 효과 = (지금 달러 − 매수 달러) × 매수 환율, 환율 효과 = 매수 달러 × (오늘 환율 − 매수 환율)입니다. 환율 효과가 마이너스면 원화가 강해져 달러 자산의 원화 가치가 줄었다는 뜻입니다.</p>
+  </section>
+
+  <section class="fx-card" id="table-card">
+    <h3>원화가 ±5% 움직이면 달러 수익은 원화로 얼마가 될까</h3>
+    <p class="sub">오늘 환율을 기준으로 환율이 바뀌었을 때, 달러 기준 수익률이 원화 기준으로 어떻게 달라지는지 계산한 표입니다. 원화 수익률 = (1 + 달러 수익률) × (1 + 환율 변동률) − 1.</p>
+    <div class="fx-tablebox">
+      <table class="fx-table" id="fxtable" data-source="fxtable" data-row-key="move_pct">
+        <thead><tr><th data-field="label">환율 시나리오</th><th data-field="move_pct">환율 변동</th><th data-field="rate">환율 (원/달러)</th><th data-field="ret10_pct">달러 +10% → 원화</th><th data-field="ret0_pct">달러 0% → 원화</th><th data-field="retm10_pct">달러 −10% → 원화</th></tr></thead>
+        <tbody id="fxtable-body"></tbody>
+      </table>
+    </div>
+    <p class="fx-note">읽는 법: 원화가 5% 강해지면(환율 −5%) 달러로 10% 번 것이 원화로는 약 4.5%만 남습니다. 반대로 원화가 5% 약해지면 15.5%가 됩니다. 환율은 수익을 키우기도, 깎기도 합니다.</p>
+  </section>
+
+  <section class="fx-card" id="yield-card">
+    <h3>한·미 10년 국채 금리 차 (월평균)</h3>
+    <p class="sub">한국 10년물 − 미국 10년물(%포인트). 플러스면 한국 금리가 더 높습니다. 자료는 FRED 월평균이며, 아직 집계되지 않은 달은 '자료 없음'으로 둡니다.</p>
+    <p class="fx-one" id="spread-one" data-source="spread">—</p>
+    <div class="fx-chart dash-skeleton" id="spread-chart" data-source="spread" style="min-height:180px"></div>
+    <div class="fx-tablebox">
+      <table class="fx-table" id="spread-table" data-source="spread" data-row-key="month">
+        <thead><tr><th data-field="month">월</th><th data-field="kr10y_pct">한국 10년 (%)</th><th data-field="us10y_pct">미국 10년 (%)</th><th data-field="spread_pp">격차 (한−미, %p)</th></tr></thead>
+        <tbody id="spread-body"></tbody>
+      </table>
+    </div>
+    <p class="fx-note">읽는 법: 미국 금리가 한국보다 많이 높을수록 달러 자산이 유리해 원화가 약해지기 쉽습니다. 격차가 플러스로 벌어지면 원화 강세 쪽 압력이 됩니다.</p>
+    <a class="fx-xlink" href="p-bond.html" rel="noopener">채권·금리 보드에서 미국 국채 금리 자세히 보기 →</a>
+  </section>
+
+  <section class="fx-card fx-read" id="howto">
+    <h3>읽는 법</h3>
+    <div class="fx-rule"><p class="h">이 보드를 보는 원칙</p>
+      <p>① 장기 투자금은 환율을 기본적으로 매수·매도 판단에 넣지 않습니다. 당장 쓸 돈이 아니라면 환율을 맞히려다 좋은 자리를 놓치는 기회비용이 더 큽니다.</p>
+      <p>② 길게 보면 원화보다 달러가 강해질 가능성이 높다고 보는 쪽입니다. 위 20년 그래프에서 원·달러가 어느 구간을 오갔는지 함께 보면 됩니다.</p>
+      <p>③ 환율은 '원화로 본 수익이 왜 이렇게 나왔나'를 설명하는 데 씁니다. 달러 수익과 환율 효과를 나눠 보는 용도입니다.</p>
+    </div>
+    <p><span class="t">미국 주식을 들고 있는 한국 투자자에게 환율이 중요한 이유</span>미국 주식의 원화 가치는 <span class="fx-hlt">달러 가격 × 환율</span>입니다. 달러로 10% 벌어도 환율이 10% 내리면(원화 강세) 원화로는 거의 제자리이고, 환율이 오르면(원화 약세) 주식이 제자리여도 원화 평가액은 늘어납니다. 그래서 '달러로 얼마 벌었나'와 '원화로 얼마 벌었나'를 나눠 보는 습관이 필요합니다.</p>
+    <p><span class="t">원·달러를 움직이는 세 가지</span></p>
+    <ul>
+      <li><span class="t">달러지수</span>달러가 모든 통화에 대해 강해지는 날은 원화도 약해집니다. 위 비교 차트에서 두 선이 같이 움직이는 구간입니다. 연준의 금리 결정, 미국 물가·고용 지표가 달러지수를 흔듭니다.</li>
+      <li><span class="t">반도체 수출</span>SK하이닉스·삼성전자의 메모리 수출이 늘면 달러가 국내로 들어와 원화가 강해지는 쪽으로 작용합니다. AI 인프라 투자가 커지는 구간에는 이 힘이 커집니다. 반대로 수출 둔화나 외국인의 국내 주식 매도는 원화 약세 요인입니다.</li>
+      <li><span class="t">한·미 금리 차</span>미국 금리가 한국보다 많이 높으면 돈이 달러 쪽으로 쏠려 원화가 약해지기 쉽습니다. 아래 표의 격차가 벌어지거나 좁혀지는 방향을 보면 됩니다.</li>
+    </ul>
+    <p><span class="t">참고선 1,300 · 1,400 · 1,450원</span>시장에서 자주 언급되는 심리적 구간입니다. 1,450원 위는 원화가 크게 약한 구간, 1,300원 아래는 원화가 강한 구간으로 읽습니다. 환율이 어느 구간에 있는지에 따라 같은 달러 수익이 원화로는 다르게 보입니다.</p>
+    <p class="fx-note">이 페이지는 환율이 수익에 어떻게 작용하는지 보여 줄 뿐, 매수·매도를 권하지 않습니다.</p>
+  </section>
+
+  <section class="fx-card fx-src" id="sources">
+    <h3>출처</h3>
+    <p>원·달러, 엔/달러, 달러지수 계산용 6개 통화: 유럽중앙은행(ECB) 일별 기준환율을 Frankfurter API로 받았습니다. 서울 외환시장 종가(매매기준율)가 아니라 유럽 시간 오후 2시 15분 기준값이라 국내 보도 숫자와 몇 원 차이가 날 수 있습니다.</p>
+    <a href="https://api.frankfurter.dev/v1/2025-10-20..2026-10-26?from=USD&amp;to=KRW,JPY" target="_blank" rel="noopener">api.frankfurter.dev — USD→KRW, JPY (2025-10-20 ~ 2026-10-26)</a>
+    <a href="https://api.frankfurter.dev/v1/2025-10-20..2026-10-26?from=USD&amp;to=EUR,JPY,GBP,CAD,SEK,CHF" target="_blank" rel="noopener">api.frankfurter.dev — USD→EUR, JPY, GBP, CAD, SEK, CHF (달러지수 근사 계산용)</a>
+    <a href="https://fred.stlouisfed.org/series/IRLTLT01KRM156N" target="_blank" rel="noopener">FRED IRLTLT01KRM156N — 한국 10년 국채 금리 (월평균, OECD)</a>
+    <a href="https://fred.stlouisfed.org/series/GS10" target="_blank" rel="noopener">FRED GS10 — 미국 10년 국채 금리 (월평균)</a>
+    <p>달러지수 근사 공식: 50.14348112 × EUR^0.576 × JPY^0.136 × GBP^0.119 × CAD^0.091 × SEK^0.042 × CHF^0.036 (ICE 달러지수 가중치). 실제 ICE 지수와 소수점 수준에서 차이가 날 수 있습니다. 대만달러(TWD)는 ECB 기준환율에 없어 싣지 않았습니다.</p>
+  </section>
+  <div class="fx-tip" id="tip"></div>
+</div>
+
+<script>
+dash.calc('fxnow',{inputs:['usdkrw'],title:'원·달러 최근값과 변동',description:'최근 환율, 전일·1개월·1년 변동, 52주 최고·최저와 현재 위치를 원·달러 일별 자료에서 계산합니다.',fn:(usdkrw)=>{
+  const r=usdkrw.map(x=>({date:String(x.date).slice(0,10),v:Number(x.usdkrw),j:Number(x.usdjpy)})).filter(x=>x.v>0).sort((a,b)=>a.date<b.date?-1:1);
+  if(!r.length)return null;
+  const L=r[r.length-1],P=r[r.length-2]||L;
+  const back=(days)=>{const t=new Date(L.date+'T00:00:00Z');t.setUTCDate(t.getUTCDate()-days);const k=t.toISOString().slice(0,10);let b=r[0];for(const x of r){if(x.date<=k)b=x;else break}return b};
+  const M=back(30),Y=r[0];
+  let hi=r[0],lo=r[0];r.forEach(x=>{if(x.v>hi.v)hi=x;if(x.v<lo.v)lo=x});
+  const f2=n=>Math.round(n*100)/100;
+  return {date:L.date,rate:L.v,prev_date:P.date,prev_rate:P.v,d1_chg:f2(L.v-P.v),d1_chg_pct:f2((L.v/P.v-1)*100),m1_date:M.date,m1_rate:M.v,m1_chg_pct:f2((L.v/M.v-1)*100),y1_date:Y.date,y1_rate:Y.v,y1_chg_pct:f2((L.v/Y.v-1)*100),hi52:hi.v,hi52_date:hi.date,lo52:lo.v,lo52_date:lo.date,pos52_pct:Math.round((L.v-lo.v)/(hi.v-lo.v)*1000)/10,usdjpy:L.j,usdjpy_d1_pct:f2((L.j/P.j-1)*100),days:r.length};
+}});
+dash.calc('dxy',{inputs:['crosses'],title:'달러지수 근사치 (ECB 환율)',description:'ICE 달러지수 공식 50.14348112×EUR^0.576×JPY^0.136×GBP^0.119×CAD^0.091×SEK^0.042×CHF^0.036을 달러 기준 ECB 환율에 적용한 일별 근사치입니다.',fn:(crosses)=>crosses.map(x=>({date:String(x.date).slice(0,10),dxy:Math.round(50.14348112*Math.pow(Number(x.eur),.576)*Math.pow(Number(x.jpy),.136)*Math.pow(Number(x.gbp),.119)*Math.pow(Number(x.cad),.091)*Math.pow(Number(x.sek),.042)*Math.pow(Number(x.chf),.036)*100)/100})).sort((a,b)=>a.date<b.date?-1:1)});
+dash.calc('dxynow',{inputs:['dxy'],title:'달러지수 최근값과 변동',description:'달러지수 근사치의 최근값과 1개월·1년 변동률입니다.',fn:(dxy)=>{
+  if(!dxy||!dxy.length)return null;const L=dxy[dxy.length-1];
+  const t=new Date(L.date+'T00:00:00Z');t.setUTCDate(t.getUTCDate()-30);const k=t.toISOString().slice(0,10);let M=dxy[0];for(const x of dxy){if(x.date<=k)M=x;else break}
+  const f2=n=>Math.round(n*100)/100;
+  return {date:L.date,dxy:L.dxy,m1_date:M.date,m1_chg_pct:f2((L.dxy/M.dxy-1)*100),y1_chg_pct:f2((L.dxy/dxy[0].dxy-1)*100)};
+}});
+dash.calc('rebased',{inputs:['usdkrw','dxy'],title:'원·달러 vs 달러지수 (시작=100)',description:'원·달러, 엔/달러, 달러지수 근사치를 첫 날을 100으로 놓고 다시 계산한 일별 지수입니다.',fn:(usdkrw,dxy)=>{
+  const r=usdkrw.map(x=>({date:String(x.date).slice(0,10),v:Number(x.usdkrw),j:Number(x.usdjpy)})).filter(x=>x.v>0).sort((a,b)=>a.date<b.date?-1:1);
+  const D=new Map(dxy.map(x=>[x.date,x.dxy]));if(!r.length)return [];
+  const b0=r[0].v,j0=r[0].j,d0=D.get(r[0].date);
+  return r.map(x=>({date:x.date,krw_idx:Math.round(x.v/b0*10000)/100,jpy_idx:Math.round(x.j/j0*10000)/100,dxy_idx:D.has(x.date)&&d0?Math.round(D.get(x.date)/d0*10000)/100:null}));
+}});
+dash.calc('fxtable',{inputs:['usdkrw'],title:'환율 ±5% 시나리오 표',description:'오늘 환율에서 환율이 −10~+10% 움직일 때 달러 수익률 +10%, 0%, −10%가 원화 수익률로 얼마가 되는지 계산합니다.',fn:(usdkrw)=>{
+  const r=usdkrw.map(x=>({date:String(x.date).slice(0,10),v:Number(x.usdkrw)})).filter(x=>x.v>0).sort((a,b)=>a.date<b.date?-1:1);
+  if(!r.length)return [];const R=r[r.length-1].v;const f1=n=>Math.round(n*10)/10;
+  return [-10,-5,0,5,10].map(m=>({move_pct:m,label:m<0?'원화 강세 '+(-m)+'%':m>0?'원화 약세 '+m+'%':'변동 없음',rate:Math.round(R*(1+m/100)*100)/100,ret10_pct:f1((1.1*(1+m/100)-1)*100),ret0_pct:f1(((1+m/100)-1)*100),retm10_pct:f1((0.9*(1+m/100)-1)*100)}));
+}});
+dash.calc('spread',{inputs:['yields'],title:'한·미 10년 금리 차 (월)',description:'한국 10년물에서 미국 10년물을 뺀 월평균 금리 차(%포인트)입니다. 한쪽이 없는 달은 빈칸입니다.',fn:(yields)=>yields.map(x=>{const k=x.kr10y_pct==null||x.kr10y_pct===''?null:Number(x.kr10y_pct),u=x.us10y_pct==null||x.us10y_pct===''?null:Number(x.us10y_pct);return {month:String(x.month).slice(0,7),kr10y_pct:k,us10y_pct:u,spread_pp:k!=null&&u!=null?Math.round((k-u)*100)/100:null}}).sort((a,b)=>a.month<b.month?-1:1)});
+</script>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const nf=(v,d=2)=>v==null||isNaN(v)?'—':Number(v).toLocaleString('ko-KR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const sg=(v,d=2,u='%')=>v==null||isNaN(v)?'—':(v>0?'+':v<0?'−':'')+nf(Math.abs(v),d)+u;
+const cl=v=>v>0?'up':v<0?'dn':'mu';
+const dstr=s=>s?s.slice(5).replace('-','.'):'';
+const md=s=>s?s.slice(2).replace(/-/g,'.'):'';
+const wrap=$('fx-root');const tip=$('tip');
+function showTip(e,lines){tip.textContent='';lines.forEach((t,i)=>{const d=document.createElement('div');if(Array.isArray(t)){const ic=document.createElement('i');ic.style.background=t[0];d.appendChild(ic);d.appendChild(document.createTextNode(t[1]))}else{d.textContent=t;if(i===0)d.style.color='var(--cds-text-secondary)'}tip.appendChild(d)});tip.style.display='block';const root=wrap.getBoundingClientRect();let x=e.clientX-root.left+12,y=e.clientY-root.top+12;const w=tip.offsetWidth;if(x+w>root.width)x=Math.max(0,x-w-24);tip.style.left=x+'px';tip.style.top=y+'px'}
+function hideTip(){tip.style.display='none'}
+function fail(box,msg){box.textContent='';const d=document.createElement('div');d.className='fx-fail';const i=document.createElement('i');d.appendChild(i);d.appendChild(document.createTextNode(msg||'불러오지 못했습니다'));box.appendChild(d)}
+function skel(el,on){el.classList.toggle('dash-skeleton',!!on)}
+const st={hide:{},animated:false};
+let NOW=null,FIRSTDRAW=false,KRW_P=1;
+function krwChips(){const c=$('krw-period');if(!c||c.childNodes.length)return;[[1,'1년'],[3,'3년'],[5,'5년'],[10,'10년'],[20,'20년']].forEach(([v,l])=>{const b=document.createElement('button');b.type='button';b.textContent=l;b.dataset.v=v;if(v===KRW_P)b.className='on';b.addEventListener('click',()=>{KRW_P=v;c.querySelectorAll('button').forEach(x=>x.classList.toggle('on',Number(x.dataset.v)===v));$('krw-title').textContent='원·달러 환율 '+l;draw()});c.appendChild(b)})}
+
+function draw(){
+  const fx=dash.data('fxnow'),kr=dash.data('usdkrw'),dx=dash.data('dxynow'),rb=dash.data('rebased'),ft=dash.data('fxtable'),sp=dash.data('spread');
+  NOW=fx.status==='ok'?fx.data:null;
+  drawTiles(fx,dx);drawTake();drawKrw(kr,fx);drawDxy(rb);drawCalc();drawTable(ft);drawSpread(sp);drawEnv(sp,kr,dx);
+}
+function drawEnv(sp,kr,dx){
+  const one=$('env-one'),wk=$('env-weak'),st=$('env-strong'),box=$('env-chart'),real=$('env-real');if(!one)return;
+  if(sp.status!=='ok'){skel(box,sp.status==='loading');return}
+  const R=sp.data.filter(r=>r.spread_pp!=null).map(r=>({m:r.month,g:-r.spread_pp}));if(R.length<4)return;
+  const a=R[R.length-1],b=R[R.length-4];const dg=a.g-b.g;const d1=dx&&dx.status==='ok'&&dx.data?dx.data.m1_chg_pct:null;
+  const W=[[a.g>=1,'금리차 1%p 이상 ('+a.g.toFixed(2)+'%p)'],[dg>=0.1,'3개월 새 금리차 벌어짐 ('+(dg>=0?'+':'')+dg.toFixed(2)+'%p)'],[d1!=null&&d1>=1,'달러 자체가 강해짐 (달러지수 1개월 '+(d1==null?'—':(d1>=0?'+':'')+d1.toFixed(2)+'%')+')']];
+  const S=[[a.g<0.3,'금리차 0.3%p 미만으로 좁음'],[dg<=-0.1,'3개월 새 금리차 좁혀짐'],[d1!=null&&d1<=-1,'달러 자체가 약해짐 (달러지수 1개월 −1% 이하)']];
+  const put=(el,L,c)=>{el.textContent='';L.forEach(([on,t])=>{const d=document.createElement('div');d.className='env-lt '+c+(on?' on':'');const i=document.createElement('i');d.appendChild(i);d.appendChild(document.createTextNode(t));el.appendChild(d)})};
+  put(wk,W,'dn');put(st,S,'up');
+  const nw=W.filter(x=>x[0]).length,ns=S.filter(x=>x[0]).length;
+  const lv=a.g>=1?'큰 편':a.g<0.3?'좁은 편':'중간';
+  const wind=nw>ns?(nw>=2?'원화 약세 쪽 바람이 꽤 부는 환경':'원화 약세 쪽 바람이 조금 부는 환경'):ns>nw?(ns>=2?'원화 강세 환경이 꽤 열린 상태':'원화 강세 쪽 바람이 조금 부는 환경'):'어느 쪽도 뚜렷하지 않은 환경';
+  one.textContent='약세 쪽 불 '+nw+'개 · 강세 쪽 불 '+ns+'개 → 금리만 보면 '+wind+'입니다. 지금 금리차 '+a.g.toFixed(2)+'%p('+a.m.replace('-','.')+', '+lv+'), 3개월 전 '+b.g.toFixed(2)+'%p에서 '+(dg>=0?'벌어졌습니다.':'좁혀졌습니다.');
+  // 실제 1년
+  if(kr.status!=='ok'){skel(box,true);return}
+  const mm={};kr.data.forEach(r=>{const k=String(r.date).slice(0,7);const v=Number(r.usdkrw);if(!isNaN(v))(mm[k]=mm[k]||[]).push(v)});
+  const P=R.filter(r=>mm[r.m]).map(r=>({m:r.m,g:r.g,fx:d3.mean(mm[r.m])}));skel(box,false);box.textContent='';if(P.length<3)return;
+  const Wd=Math.max(280,box.clientWidth),H=200,mg={l:40,r:46,t:12,b:26};
+  const x=d3.scaleBand().domain(P.map(p=>p.m)).range([mg.l,Wd-mg.r]).padding(.3);
+  const yg=d3.scaleLinear([0,Math.max(1.2,d3.max(P,p=>p.g)+.1)],[H-mg.b,mg.t]);
+  const ext=d3.extent(P,p=>p.fx);const yf=d3.scaleLinear([ext[0]-20,ext[1]+20],[H-mg.b,mg.t]);
+  const svg=d3.select(box).append('svg').attr('width','100%').attr('viewBox',`0 0 ${Wd} ${H}`);
+  yg.ticks(4).forEach(v=>{svg.append('line').attr('x1',mg.l).attr('x2',Wd-mg.r).attr('y1',yg(v)).attr('y2',yg(v)).attr('stroke','var(--cds-chart-grid)');svg.append('text').attr('x',mg.l-5).attr('y',yg(v)+4).attr('text-anchor','end').attr('font-size',11).attr('fill','var(--color-fg-muted)').text(v.toFixed(1))});
+  yf.ticks(4).forEach(v=>svg.append('text').attr('x',Wd-mg.r+5).attr('y',yf(v)+4).attr('font-size',11).attr('fill','var(--dc1)').text(nf(v,0)));
+  svg.append('g').selectAll('rect').data(P).join('rect').attr('x',p=>x(p.m)).attr('width',x.bandwidth()).attr('y',p=>yg(p.g)).attr('height',p=>yg(0)-yg(p.g)).attr('fill','var(--dc2)').attr('opacity',.6).attr('rx',2);
+  svg.append('path').datum(P).attr('fill','none').attr('stroke','var(--dc1)').attr('stroke-width',2.5).attr('d',d3.line().x(p=>x(p.m)+x.bandwidth()/2).y(p=>yf(p.fx)));
+  svg.append('g').selectAll('circle').data(P).join('circle').attr('cx',p=>x(p.m)+x.bandwidth()/2).attr('cy',p=>yf(p.fx)).attr('r',3).attr('fill','var(--dc1)');
+  P.forEach((p,i)=>{if(i%3===0||i===P.length-1)svg.append('text').attr('x',x(p.m)+x.bandwidth()/2).attr('y',H-8).attr('text-anchor','middle').attr('font-size',11).attr('fill','var(--color-fg-muted)').text(p.m.slice(2).replace('-','.'))});
+  svg.append('g').selectAll('rect.h').data(P).join('rect').attr('x',p=>x(p.m)).attr('width',x.bandwidth()).attr('y',mg.t).attr('height',H-mg.t-mg.b).attr('fill','transparent').on('mousemove',(ev,p)=>showTip(ev,[p.m.replace('-','.'),'금리차 '+p.g.toFixed(2)+'%p','월평균 '+nf(p.fx,1)+'원'])).on('mouseleave',hideTip);
+  // 실제 해석: 금리차 최저 달을 기준으로 두 구간
+  let lo=0;P.forEach((p,i)=>{if(p.g<P[lo].g)lo=i});const f=P[0],l=P[P.length-1],m=P[lo];
+  const leg=(s,e)=>s.m.replace('-','.')+'→'+e.m.replace('-','.')+' 금리차 '+s.g.toFixed(2)+'→'+e.g.toFixed(2)+'%p('+(e.g<s.g?'좁혀짐':'벌어짐')+'), 환율 '+nf(s.fx,0)+'→'+nf(e.fx,0)+'원('+(e.fx>s.fx?'원화 약세':'원화 강세')+')';
+  const textbook=(s,e)=>(e.g<s.g)===(e.fx<e.fx+0)?null:((e.g-s.g)*(e.fx-s.fx)>0);
+  let txt='';
+  if(lo>0&&lo<P.length-1){const ok1=(m.g-f.g)*(m.fx-f.fx)>0,ok2=(l.g-m.g)*(l.fx-m.fx)>0;
+    txt='① '+leg(f,m)+(ok1?' — 교과서대로였습니다.':' — 교과서와 반대였습니다.')+'\n② '+leg(m,l)+(ok2?' — 교과서대로였습니다.':' — 교과서와 반대였습니다.');
+    if(!ok1&&!ok2)txt+='\n지난 1년은 금리차와 환율이 거꾸로 움직였습니다. 반도체 수출·외국인 주식 매매·달러 자체 흐름 같은 다른 힘이 금리보다 컸다는 뜻입니다.';
+    else if(!ok1||!ok2)txt+='\n한 구간은 맞고 한 구간은 틀렸습니다. 금리차만으로는 환율 방향을 설명하기 어렵다는 뜻입니다.';
+    else txt+='\n지난 1년은 금리차와 환율이 교과서대로 움직였습니다. 그래도 크기까지 맞는 것은 아닙니다.';
+  }else{const ok=(l.g-f.g)*(l.fx-f.fx)>0;txt=leg(f,l)+(ok?' — 교과서대로였습니다.':' — 교과서와 반대였습니다.')}
+  real.textContent='';txt.split('\n').forEach((t,i)=>{if(i)real.appendChild(document.createElement('br'));real.appendChild(document.createTextNode(t))});
+}
+
+function drawTiles(fx,dx){
+  const n=NOW;const ids=['t-rate','t-d1','t-m1','t-pos','t-jpy'];
+  ids.forEach(id=>skel($(id),fx.status==='loading'));skel($('t-dxy'),dx.status==='loading');
+  $('t-rate').textContent=n?nf(n.rate,2):'—';$('t-rate-s').textContent=n?n.date+' ECB 기준':'—';
+  $('t-d1').textContent=n?sg(n.d1_chg_pct):'—';$('t-d1').className='v '+(n?cl(n.d1_chg_pct):'');
+  $('t-d1-s').textContent=n?sg(n.d1_chg,2,'원'):'—';$('t-d1-s').className='s '+(n?cl(n.d1_chg):'');
+  $('t-m1').textContent=n?sg(n.m1_chg_pct):'—';$('t-m1').className='v '+(n?cl(n.m1_chg_pct):'');
+  $('t-m1-s').textContent=n?dstr(n.m1_date)+' '+nf(n.m1_rate,2)+'원 대비':'—';
+  $('t-pos').textContent=n?nf(n.pos52_pct,1)+'%':'—';
+  $('t-pos-s').textContent=n?'최저 '+nf(n.lo52,0)+' ~ 최고 '+nf(n.hi52,0)+' (0%=최저)':'—';
+  const d=dx.status==='ok'?dx.data:null;
+  $('t-dxy').textContent=d?nf(d.dxy,2):'—';$('t-dxy-s').textContent=d?sg(d.m1_chg_pct)+' 1개월':'—';$('t-dxy-s').className='s '+(d?cl(d.m1_chg_pct):'');
+  $('t-jpy').textContent=n?nf(n.usdjpy,2):'—';$('t-jpy-s').textContent=n?sg(n.usdjpy_d1_pct)+' 전일 대비':'—';$('t-jpy-s').className='s '+(n?cl(n.usdjpy_d1_pct):'');
+  $('calc-rate').textContent=n?nf(n.rate,2):'—';
+}
+function drawTake(){
+  const n=NOW;const b=$('take-date'),body=$('take-body');body.textContent='';
+  if(!n){b.textContent='—';body.textContent='—';return}
+  b.textContent=n.date+' 기준 · ECB 환율';
+  const add=(t,mark,cls)=>{const s=document.createElement('span');s.textContent=t;if(mark){s.setAttribute('data-source','fxnow');s.setAttribute('data-field',mark)}if(cls)s.className=cls;body.appendChild(s)};
+  const pos=n.pos52_pct<20?'최저 부근':n.pos52_pct<45?'아래쪽':n.pos52_pct<=55?'중간':n.pos52_pct<80?'위쪽':'최고 부근';
+  const dir=n.m1_chg_pct<0?'내려 원화가 강해졌고':n.m1_chg_pct>0?'올라 원화가 약해졌고':'거의 그대로이고';
+  add('달러당 ');add(nf(n.rate,2)+'원','rate','n');add('으로 전일보다 ');add(sg(n.d1_chg,2,'원'),'d1_chg','n '+cl(n.d1_chg));add(', 한 달 전보다 ');add(sg(n.m1_chg_pct),'m1_chg_pct','n '+cl(n.m1_chg_pct));add(' '+dir+', 52주 범위에서는 ');add(pos,null,'n');add('에 있습니다.');
+}
+function drawKrw(kr,fx){
+  const box=$('krw-chart');box.textContent='';skel(box,kr.status==='loading');
+  if(kr.status==='error'||kr.status==='connect'){fail(box);return}
+  if(kr.status!=='ok'||!kr.data.length)return;
+  krwChips();const LG=dash.data('usdkrw_long');let rows,n;
+  if(KRW_P>1){
+    if(LG.status!=='ok'){skel(box,LG.status==='loading');if(LG.status==='error')fail(box);return}
+    const all=LG.data.map(x=>({date:String(x.month).slice(0,7)+'-15',v:Number(x.close)})).filter(x=>x.v>0).sort((a,b)=>a.date<b.date?-1:1);
+    const last=all[all.length-1].date;const cut=(Number(last.slice(0,4))-KRW_P)+last.slice(4);
+    rows=all.filter(x=>x.date>=cut).map(x=>({date:x.date,d:new Date(x.date+'T00:00:00Z'),v:x.v}));
+    let hi=rows[0],lo=rows[0];rows.forEach(r=>{if(r.v>hi.v)hi=r;if(r.v<lo.v)lo=r});n={hi52_date:hi.date,hi52:hi.v,lo52_date:lo.date,lo52:lo.v};
+    const av=d3.mean(rows,r=>r.v),cur=rows[rows.length-1].v,rk=rows.filter(r=>r.v<=cur).length/rows.length*100;
+    $('krw-long-one').textContent=KRW_P+'년 평균 '+nf(av,0)+'원 · 지금 '+nf(cur,0)+'원은 '+KRW_P+'년 중 아래에서 '+Math.round(rk)+'% 자리입니다'+(cur<av?'(평균보다 원화가 강한 쪽).':'(평균보다 원화가 약한 쪽).')+' 최고 '+nf(hi.v,0)+'원('+hi.date.slice(2,7).replace('-','.')+'), 최저 '+nf(lo.v,0)+'원('+lo.date.slice(2,7).replace('-','.')+').';
+  }else{
+    rows=kr.data.map(x=>({date:String(x.date).slice(0,10),d:new Date(String(x.date).slice(0,10)+'T00:00:00Z'),v:Number(x.usdkrw)})).filter(x=>x.v>0).sort((a,b)=>a.d-b.d);n=NOW;$('krw-long-one').textContent='';
+  }const REF=[1300,1400,1450];
+  const W=Math.max(300,box.clientWidth),H=300,m={l:52,r:14,t:18,b:30};
+  const svg=d3.select(box).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  const x=d3.scaleUtc(d3.extent(rows,r=>r.d),[m.l,W-m.r]);
+  const ys=rows.map(r=>r.v).concat(REF);const lo=d3.min(ys),hi=d3.max(ys),pad=(hi-lo)*.08;
+  const y=d3.scaleLinear([lo-pad,hi+pad],[H-m.b,m.t]);
+  // y label width → margin
+  const ticks=y.ticks(5);const meas=svg.append('text').attr('font-size',13).attr('visibility','hidden');let tw=0;ticks.forEach(t=>{meas.text(nf(t,0));tw=Math.max(tw,meas.node().getComputedTextLength())});meas.remove();m.l=Math.ceil(tw)+12;x.range([m.l,W-m.r]);
+  const defs=svg.append('defs');const g=defs.append('linearGradient').attr('id','fx-grad').attr('x1',0).attr('x2',0).attr('y1',0).attr('y2',1);
+  [[0,.26],[.25,.16],[.5,.08],[.75,.03],[1,0]].forEach(([o,a])=>g.append('stop').attr('offset',o).attr('style','stop-color:'+dash.colors[0]).attr('stop-opacity',a));
+  svg.append('g').selectAll('line').data(ticks).join('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',d=>y(d)).attr('y2',d=>y(d)).attr('stroke','var(--cds-chart-grid)');
+  svg.append('g').selectAll('text').data(ticks).join('text').attr('x',m.l-6).attr('y',d=>y(d)+4).attr('text-anchor','end').attr('font-size',13).attr('fill','var(--color-fg-muted)').text(d=>nf(d,0));
+  // reference lines
+  REF.forEach(v=>{svg.append('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y(v)).attr('y2',y(v)).attr('stroke','var(--cds-chart-reference)').attr('stroke-dasharray','5 4');svg.append('text').attr('x',W-m.r).attr('y',y(v)-4).attr('text-anchor','end').attr('font-size',12).attr('fill','var(--color-fg-muted)').text(nf(v,0)+'원')});
+  svg.append('path').datum(rows).attr('fill','url(#fx-grad)').attr('d',d3.area().x(r=>x(r.d)).y0(H-m.b).y1(r=>y(r.v)));
+  svg.append('path').datum(rows).attr('fill','none').attr('stroke',dash.colors[0]).attr('stroke-width',2).attr('stroke-linecap','round').attr('stroke-linejoin','round').attr('d',d3.line().x(r=>x(r.d)).y(r=>y(r.v)));
+  // x ticks (months)
+  const xt=x.ticks(Math.max(3,Math.floor((W-m.l-m.r)/70)));
+  svg.append('g').selectAll('text').data(xt).join('text').attr('x',d=>x(d)).attr('y',H-8).attr('text-anchor','middle').attr('font-size',13).attr('fill','var(--color-fg-muted)').text(d=>d3.utcFormat(KRW_P>=5?'%Y':'%y.%m')(d));
+  // 52w hi/lo
+  if(n){[[n.hi52_date,n.hi52,'최고 '],[n.lo52_date,n.lo52,'최저 ']].forEach(([dt,v,lb])=>{const px=x(new Date(dt+'T00:00:00Z')),py=y(v);svg.append('circle').attr('cx',px).attr('cy',py).attr('r',5).attr('fill','var(--color-warn)').attr('stroke','var(--color-panel)').attr('stroke-width',2);
+    const t=svg.append('text').attr('y',lb==='최고 '?py-9:py+18).attr('font-size',12.5).attr('font-weight',700).attr('fill','var(--color-warn)').text(lb+nf(v,0)+' ('+(KRW_P>1?dt.slice(2,7).replace('-','.'):md(dt))+')');const tl=t.node().getComputedTextLength();let tx=px-tl/2;tx=Math.max(m.l,Math.min(W-m.r-tl,tx));t.attr('x',tx)})}
+  // last value label
+  const L=rows[rows.length-1];svg.append('circle').attr('cx',x(L.d)).attr('cy',y(L.v)).attr('r',4).attr('fill',dash.colors[0]);
+  // hover
+  const bis=d3.bisector(r=>r.d).center;const hov=svg.append('circle').attr('r',5).attr('fill',dash.colors[0]).attr('stroke','var(--color-panel)').attr('stroke-width',2).style('display','none');
+  const rule=svg.append('line').attr('y1',m.t).attr('y2',H-m.b).attr('stroke','var(--cds-chart-axis)').style('display','none');
+  svg.append('rect').attr('x',m.l).attr('y',m.t).attr('width',W-m.l-m.r).attr('height',H-m.t-m.b).attr('fill','transparent')
+    .on('mousemove touchmove',(ev)=>{const [mx]=d3.pointer(ev);const i=bis(rows,x.invert(mx));const r=rows[i];if(!r)return;hov.style('display',null).attr('cx',x(r.d)).attr('cy',y(r.v));rule.style('display',null).attr('x1',x(r.d)).attr('x2',x(r.d));const prev=rows[i-1];const ev2=ev.touches?ev.touches[0]:ev;showTip(ev2,[r.date,'원/달러 '+nf(r.v,2)+(prev?'  ('+sg(r.v-prev.v,2,'원')+')':'')])})
+    .on('mouseleave touchend',()=>{hov.style('display','none');rule.style('display','none');hideTip()});
+  if(!st.animated){st.animated=true;box.classList.add('fx-anim')}
+}
+const SER=[['krw_idx','원·달러',0],['dxy_idx','달러지수(근사)',1],['jpy_idx','엔/달러',2]];
+function drawDxy(rb){
+  const box=$('dxy-chart');box.textContent='';skel(box,rb.status==='loading');const lg=$('dxy-legend');lg.textContent='';
+  if(rb.status==='error'||rb.status==='connect'){fail(box);return}
+  if(rb.status!=='ok'||!rb.data.length)return;
+  SER.forEach(s=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed',!st.hide[s[0]]);const ic=document.createElement('i');ic.style.background=dash.colors[s[2]];b.appendChild(ic);b.appendChild(document.createTextNode(s[1]));b.onclick=()=>{st.hide[s[0]]=!st.hide[s[0]];drawDxy(dash.data('rebased'))};lg.appendChild(b)});
+  const rows=rb.data.map(x=>({date:x.date,d:new Date(x.date+'T00:00:00Z'),krw_idx:x.krw_idx,dxy_idx:x.dxy_idx,jpy_idx:x.jpy_idx})).sort((a,b)=>a.d-b.d);
+  const vis=SER.filter(s=>!st.hide[s[0]]);
+  const W=Math.max(300,box.clientWidth),H=260,m={l:44,r:14,t:14,b:30};
+  const svg=d3.select(box).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  const x=d3.scaleUtc(d3.extent(rows,r=>r.d),[m.l,W-m.r]);
+  const vals=rows.flatMap(r=>vis.map(s=>r[s[0]])).filter(v=>v!=null).concat([100]);
+  const y=d3.scaleLinear(d3.extent(vals),[H-m.b,m.t]).nice();
+  const ticks=y.ticks(5);const meas=svg.append('text').attr('font-size',13).attr('visibility','hidden');let tw=0;ticks.forEach(t=>{meas.text(nf(t,0));tw=Math.max(tw,meas.node().getComputedTextLength())});meas.remove();m.l=Math.ceil(tw)+12;x.range([m.l,W-m.r]);
+  svg.append('g').selectAll('line').data(ticks).join('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',d=>y(d)).attr('y2',d=>y(d)).attr('stroke',d=>d===100?'var(--cds-chart-axis)':'var(--cds-chart-grid)');
+  svg.append('g').selectAll('text').data(ticks).join('text').attr('x',m.l-6).attr('y',d=>y(d)+4).attr('text-anchor','end').attr('font-size',13).attr('fill','var(--color-fg-muted)').text(d=>nf(d,0));
+  const xt=x.ticks(Math.max(3,Math.floor((W-m.l-m.r)/70)));
+  svg.append('g').selectAll('text').data(xt).join('text').attr('x',d=>x(d)).attr('y',H-8).attr('text-anchor','middle').attr('font-size',13).attr('fill','var(--color-fg-muted)').text(d=>d3.utcFormat('%y.%m')(d));
+  vis.forEach(s=>{const pts=rows.filter(r=>r[s[0]]!=null);svg.append('path').datum(pts).attr('fill','none').attr('stroke',dash.colors[s[2]]).attr('stroke-width',2).attr('stroke-linecap','round').attr('stroke-linejoin','round').attr('d',d3.line().x(r=>x(r.d)).y(r=>y(r[s[0]])))});
+  // end labels
+  const L=rows[rows.length-1];const labs=vis.map(s=>({s,y:y(L[s[0]]),t:nf(L[s[0]],1)})).sort((a,b)=>a.y-b.y);for(let i=1;i<labs.length;i++)if(labs[i].y-labs[i-1].y<14)labs[i].y=labs[i-1].y+14;
+  labs.forEach(l=>svg.append('text').attr('x',W-m.r).attr('y',l.y+4).attr('text-anchor','end').attr('font-size',12.5).attr('font-weight',700).attr('fill',dash.colors[l.s[2]]).text(l.t));
+  const bis=d3.bisector(r=>r.d).center;const rule=svg.append('line').attr('y1',m.t).attr('y2',H-m.b).attr('stroke','var(--cds-chart-axis)').style('display','none');
+  const dots=vis.map(s=>svg.append('circle').attr('r',4).attr('fill',dash.colors[s[2]]).attr('stroke','var(--color-panel)').attr('stroke-width',2).style('display','none'));
+  svg.append('rect').attr('x',m.l).attr('y',m.t).attr('width',W-m.l-m.r).attr('height',H-m.t-m.b).attr('fill','transparent')
+    .on('mousemove touchmove',(ev)=>{const [mx]=d3.pointer(ev);const i=bis(rows,x.invert(mx));const r=rows[i];if(!r)return;rule.style('display',null).attr('x1',x(r.d)).attr('x2',x(r.d));vis.forEach((s,k)=>{if(r[s[0]]!=null)dots[k].style('display',null).attr('cx',x(r.d)).attr('cy',y(r[s[0]]));else dots[k].style('display','none')});const ev2=ev.touches?ev.touches[0]:ev;showTip(ev2,[r.date+' (시작=100)'].concat(vis.map(s=>[dash.colors[s[2]],s[1]+' '+nf(r[s[0]],1)])))})
+    .on('mouseleave touchend',()=>{rule.style('display','none');dots.forEach(d=>d.style('display','none'));hideTip()});
+}
+function drawCalc(){
+  const n=NOW;const u0=parseFloat($('in-usd0').value),r0=parseFloat($('in-rate0').value),u1=parseFloat($('in-usd1').value);
+  const out=['o-now','o-total','o-cost','o-cost-s','o-stock','o-stock-s','o-fx','o-fx-s','o-cross'];
+  const ok=n&&u0>0&&r0>0&&u1>=0;
+  if(!ok){out.forEach(id=>{$(id).textContent='—';$(id).className=$(id).className.replace(/\b(up|dn)\b/g,'').trim()});return}
+  const R1=n.rate;const cost=u0*r0,now=u1*R1,stock=(u1-u0)*r0,fxe=u0*(R1-r0),cross=(u1-u0)*(R1-r0);
+  const tot=now/cost-1,s=u1/u0-1,f=R1/r0-1;
+  const won=v=>sg(v,0,'원');const won0=v=>nf(v,0)+'원';
+  $('o-now').textContent=won0(now);$('o-total').textContent='원화 수익률 '+sg(tot*100)+' · 달러 수익률 '+sg(s*100);$('o-total').className='s '+cl(tot);
+  $('o-cost').textContent=won0(cost);$('o-cost-s').textContent=nf(u0,0)+'달러 × '+nf(r0,2)+'원';
+  $('o-stock').textContent=won(stock);$('o-stock').className='v '+cl(stock);$('o-stock-s').textContent='달러 기준 '+sg(s*100);$('o-stock-s').className='s '+cl(stock);
+  $('o-fx').textContent=won(fxe);$('o-fx').className='v '+cl(fxe);$('o-fx-s').textContent='환율 '+nf(r0,2)+' → '+nf(R1,2)+' ('+sg(f*100)+')';$('o-fx-s').className='s '+cl(fxe);
+  $('o-cross').textContent=won(cross);$('o-cross').className='v '+cl(cross);
+}
+['in-usd0','in-rate0','in-usd1'].forEach(id=>$(id).addEventListener('input',drawCalc));
+$('btn-y1').onclick=()=>{if(NOW){$('in-rate0').value=NOW.y1_rate;drawCalc()}};
+$('btn-same').onclick=()=>{$('in-usd1').value=$('in-usd0').value;drawCalc()};
+$('btn-clear').onclick=()=>{['in-usd0','in-rate0','in-usd1'].forEach(id=>$(id).value='');drawCalc()};
+function drawTable(ft){
+  const tb=$('fxtable-body');tb.textContent='';
+  if(ft.status!=='ok')return;
+  ft.data.forEach(r=>{const tr=document.createElement('tr');tr.setAttribute('data-key',String(r.move_pct));if(r.move_pct===0)tr.className='hl';
+    [r.label,sg(r.move_pct,0),nf(r.rate,2),sg(r.ret10_pct,1),sg(r.ret0_pct,1),sg(r.retm10_pct,1)].forEach((t,i)=>{const td=document.createElement('td');td.textContent=t;if(i>=3)td.className=cl([r.ret10_pct,r.ret0_pct,r.retm10_pct][i-3]);tr.appendChild(td)});tb.appendChild(tr)});
+}
+function drawSpread(sp){
+  {const o=$('spread-one');if(o&&sp.status==='ok'){const R=sp.data.filter(r=>r.spread_pp!=null);const a=R[R.length-1],b=R[R.length-2];if(a){const g=-a.spread_pp,gp=b?-b.spread_pp:null;o.textContent=(g>0?'지금 미국이 '+g.toFixed(2)+'%p 높습니다':'지금 한국이 '+(-g).toFixed(2)+'%p 높습니다')+'('+a.month.replace('-','.')+' 월평균) → '+(g>0?'원화 약세(환율 상승) 압력 쪽':'원화 강세(환율 하락) 쪽')+(gp==null?'.':Math.abs(g-gp)<0.03?', 지난달과 격차가 비슷합니다.':g>gp?', 지난달('+gp.toFixed(2)+'%p)보다 격차가 벌어졌습니다.':', 지난달('+gp.toFixed(2)+'%p)보다 격차가 줄었습니다.')}}}
+  const tb=$('spread-body');tb.textContent='';const box=$('spread-chart');box.textContent='';skel(box,sp.status==='loading');
+  if(sp.status==='error'||sp.status==='connect'){fail(box);return}
+  if(sp.status!=='ok')return;
+  const rows=sp.data;
+  rows.slice().reverse().forEach(r=>{const tr=document.createElement('tr');tr.setAttribute('data-key',r.month);[r.month.replace('-','.'),r.kr10y_pct==null?'자료 없음':nf(r.kr10y_pct,2),r.us10y_pct==null?'자료 없음':nf(r.us10y_pct,2),r.spread_pp==null?'자료 없음':sg(r.spread_pp,2,'%p')].forEach((t,i)=>{const td=document.createElement('td');td.textContent=t;if(i===3&&r.spread_pp!=null)td.className=cl(r.spread_pp);if(t==='자료 없음')td.className='mu';tr.appendChild(td)});tb.appendChild(tr)});
+  const pts=rows.filter(r=>r.spread_pp!=null);if(!pts.length)return;
+  const W=Math.max(300,box.clientWidth),H=180,m={l:48,r:14,t:14,b:28};
+  const svg=d3.select(box).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  const x=d3.scaleBand(rows.map(r=>r.month),[m.l,W-m.r]).padding(.25);
+  const ext=d3.extent(pts.map(r=>r.spread_pp).concat([0]));const y=d3.scaleLinear(ext,[H-m.b,m.t]).nice();
+  const ticks=y.ticks(4);
+  svg.append('g').selectAll('line').data(ticks).join('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',d=>y(d)).attr('y2',d=>y(d)).attr('stroke',d=>d===0?'var(--cds-chart-axis)':'var(--cds-chart-grid)');
+  svg.append('g').selectAll('text').data(ticks).join('text').attr('x',m.l-6).attr('y',d=>y(d)+4).attr('text-anchor','end').attr('font-size',13).attr('fill','var(--color-fg-muted)').text(d=>sg(d,1,''));
+  svg.append('g').selectAll('rect').data(pts).join('rect').attr('x',r=>x(r.month)).attr('y',r=>Math.min(y(0),y(r.spread_pp))).attr('width',x.bandwidth()).attr('height',r=>Math.abs(y(r.spread_pp)-y(0))).attr('rx',4).attr('fill',r=>r.spread_pp>=0?'var(--color-ok)':'var(--color-bad)')
+    .on('mousemove',(ev,r)=>showTip(ev,[r.month.replace('-','.'),'한국 '+nf(r.kr10y_pct,2)+'% · 미국 '+nf(r.us10y_pct,2)+'% · 격차 '+sg(r.spread_pp,2,'%p')])).on('mouseleave',hideTip);
+  const step=Math.ceil(rows.length/Math.max(1,Math.floor((W-m.l-m.r)/48)));
+  svg.append('g').selectAll('text').data(rows.filter((r,i)=>i%step===0||i===rows.length-1)).join('text').attr('x',r=>x(r.month)+x.bandwidth()/2).attr('y',H-8).attr('text-anchor','middle').attr('font-size',12.5).attr('fill','var(--color-fg-muted)').text(r=>r.month.slice(2).replace('-','.'));
+}
+dash.onData(draw);
+})();
+</script>
+</div></body></html>
