@@ -127,8 +127,9 @@ function tidy(){
 .mm-rec .lb{flex:none;font-size:11.5px;font-weight:700;color:#9a978f;margin-right:2px}
 .mm-rec button{flex:none;font:inherit;font-size:13px;font-weight:700;height:28px;padding:0 11px;border-radius:999px;border:1px solid #e3dfd6;background:#fff;color:#4a463f;box-shadow:0 1px 0 rgba(0,0,0,.05),0 2px 5px rgba(0,0,0,.05)}
 .mm-rec button.on{background:#141210;color:#fff;border-color:#141210}
-.mm-shbar{position:fixed;z-index:9980;left:16px;right:80px;height:46px;border-radius:999px;border:1px solid #e3d6b8;background:#fffdf8;color:#141210;font:inherit;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px;box-shadow:0 6px 20px rgba(30,22,8,.16),0 2px 0 rgba(30,22,8,.06)}
-.mm-shbar small{font-size:11.5px;font-weight:600;color:#9a6200}
+.mm-shbar{position:fixed;z-index:9980;left:50%;transform:translateX(-50%);height:38px;padding:0 16px;border-radius:999px;border:1px solid #e6dfcf;background:rgba(255,253,248,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#3a372f;font:inherit;font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:6px;white-space:nowrap;box-shadow:0 3px 10px rgba(30,22,8,.10)}
+.mm-shbar small{font-size:11px;font-weight:600;color:#a39f96}
+#mm-snd{display:none!important}
 html.mm-land .mm-shbar,html.mm-full .mm-shbar{display:none}
 .mm-sheet{position:fixed;inset:0;z-index:9990;pointer-events:none}
 .mm-shbg{position:absolute;inset:0;background:rgba(20,18,16,.35);opacity:0;transition:opacity .25s}
