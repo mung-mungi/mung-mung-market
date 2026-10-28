@@ -50,6 +50,13 @@ for f in glob.glob(os.path.join(src, '*.html')):
         tag = og(mt[1] if mt else 'AI 밸류체인 통합본', os.path.basename(f))
         s = re.sub(r'(<meta name="robots"[^>]*>)', lambda x: x[1] + tag, s, count=1)
     if s != o: open(f, 'w', encoding='utf-8').write(s); n += 1
+# 사이트 안 링크에 판 번호(?v=)를 붙여, 휴대폰·카톡 브라우저가 10분 동안 예전 페이지를 붙잡지 않게 합니다
+import time as _t
+STAMP = _t.strftime('%m%d%H%M')
+for f in glob.glob(os.path.join(src, '*.html')):
+    s = open(f, encoding='utf-8').read()
+    n = re.sub(r'href="((?:index|p-[a-z0-9]+)\.html)(?:\?v=\d+)?(#[^"]*)?"', lambda x: 'href="' + x[1] + '?v=' + STAMP + (x[2] or '') + '"', s)
+    if n != s: open(f, 'w', encoding='utf-8').write(n)
 open(os.path.join(src, 'robots.txt'), 'w').write('User-agent: kakaotalk-scrap\nAllow: /\n\nUser-agent: facebookexternalhit\nAllow: /\n\nUser-agent: *\nDisallow: /\n')
 open(os.path.join(src, '.nojekyll'), 'w').write('')
 left = [f for f in glob.glob(os.path.join(src, '*.html')) if 'claude.ai/' in open(f, encoding='utf-8').read()]
