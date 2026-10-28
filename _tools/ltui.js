@@ -43,3 +43,20 @@ function lv(){document.querySelectorAll('#areas li[data-lt]:not([data-lv])').for
  document.querySelectorAll('#areas .area:not([data-lvk])').forEach(function(a){if(!a.querySelector('li[data-lv]'))return;a.dataset.lvk=1})}
 var k3=0;(function g3(){try{lv()}catch(e){}if(++k3<14)setTimeout(g3,400)})();
 if(window.MutationObserver){var r3=document.querySelector('.lw');if(r3)new MutationObserver(function(){try{lv()}catch(e){}}).observe(r3,{childList:true,subtree:true})}
+
+// 오늘 한눈에(경고등) 정리: 단계 크게 → 달라진 것 · 흐름 · 참고 3줄(사용자 2026-10-29)
+function tk(){var box=document.querySelector('.lw-take');if(!box)return;var t1=box.querySelector('.tk1'),t2=box.querySelector('.tk2'),cg=document.getElementById('today-chg'),as=document.getElementById('asof');if(!t2||!cg)return;
+ var sig=(t1?t1.textContent:'')+'|'+t2.textContent+'|'+cg.textContent;if(box.dataset.sig===sig)return;
+ var s2=t2.textContent,c=cg.textContent.replace(/\s+/g,' ');var on=(s2.match(/(\d+)\s*\/\s*(\d+)/)||[]);var st=(s2.match(/·\s*(\S+)\s*단계/)||[])[1]||'';
+ var em=(c.match(/^(\S+)/)||[''])[0];var why=(c.match(/단계\(([^)]+)\)/)||[])[1]||'';var mv=(c.match(/불\s*(\d+)\s*→\s*(\d+)개/)||[]);var chg=(c.match(/(꺼짐|켜짐):\s*([^.]+)\./)||[]);
+ var ref=(c.match(/지난 1년([^.]+)\./)||[])[1]||'';var tr=t1?t1.textContent.replace(/\s+/g,' ').trim():'';var dir=(tr.match(/^[↘↗→]\s*\S+\s*\S+\s*\S+/)||[tr])[0];var avg=(tr.match(/([\d.]+)개\s*→\s*([\d.]+)개/)||[]);
+ if(!on[1]||!st){return}
+ box.dataset.sig=sig;var w=box.querySelector('.tk-new');if(!w){w=document.createElement('div');w.className='tk-new';box.appendChild(w)}
+ var col=getComputedStyle(cg).borderLeftColor||'';
+ w.innerHTML='<div class="tk-top"><span class="tk-st" style="--tc:'+col+'">'+em+' '+st+'</span><span class="tk-n">불 <em class="tk-b">'+on[1]+'</em> / '+on[2]+'</span></div>'+(why?'<p class="tk-why">'+why.replace(/에서 내려옴/,'에서 한 단계 내려왔습니다').replace(/에서 올라옴/,'에서 한 단계 올라갔습니다')+'</p>':'')+
+ '<ul class="tk-rows">'+(chg[1]?'<li><i>달라진 것</i><span>'+chg[2]+' <em class="tk-s '+(chg[1]==='꺼짐'?'off':'on')+'">'+chg[1]+'</em>'+(mv[1]?' ('+mv[1]+' → '+mv[2]+'개)':'')+'</span></li>':'')+
+ (tr?'<li><i>흐름</i><span>'+dir.replace(/불\s*/,'')+(avg[1]?' · 평균 '+avg[1]+' → '+avg[2]+'개':'')+'</span></li>':'')+
+ (ref?'<li><i>참고</i><span>'+ref.trim().replace(/^불이 줄어든 날 뒤 1달은/,'불이 줄어든 날 뒤 1달, 나스닥100')+'</span></li>':'')+'</ul>';
+ box.classList.add('tk-on')}
+var k4=0;(function g4(){try{tk()}catch(e){}if(++k4<14)setTimeout(g4,400)})();
+if(window.MutationObserver){var r4=document.querySelector('.lw-take');if(r4)new MutationObserver(function(){try{tk()}catch(e){}}).observe(r4,{childList:true,subtree:true,characterData:true})}
