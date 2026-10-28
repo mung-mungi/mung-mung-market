@@ -50,13 +50,16 @@ document.documentElement.setAttribute('data-theme','light'); /* 주간 모드 �
   let t = null;
   window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fire, 150); });
   const bust = window.__SYNC__ ? '?v=' + window.__SYNC__ : '';
-  Promise.all(cfg.ds.map((id) => fetch('d/' + cfg.page + '/' + id + '.json' + bust).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then((d) => {
+  const liveSt = cfg.page === 'prices' ? fetch('live/stamp.json?t=' + Date.now(), { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)).catch(() => null) : Promise.resolve(null);
+  liveSt.then((st) => { const useLive = !!(st && st.base === window.__SYNC__ && Array.isArray(st.files)); window.__LIVE__ = useLive ? st : null;
+  Promise.all(cfg.ds.map((id) => fetch(useLive && st.files.indexOf(id) >= 0 ? 'live/' + id + '.json?t=' + st.key : 'd/' + cfg.page + '/' + id + '.json' + bust).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then((d) => {
     const rows = Array.isArray(d) ? d : d.rows || d.data || d;
     store[id] = { status: 'ok', data: rows, columns: Array.isArray(rows) ? colsOf(rows) : [], meta: [] };
   }).catch((e) => { store[id] = { status: 'error', data: [], columns: [], meta: [], message: String(e) }; }))).then(() => {
     const root = document.getElementById('dash-root'); if (root) root.removeAttribute('data-dash-state');
     fire();
     const named = location.hash && document.getElementById(location.hash.slice(1)); if (named) named.scrollIntoView();
+  });
   });
 })();
 /* 가독성: 한 덩어리에 ①②③이 이어 붙은 문단은 번호마다 줄을 바꿔 보여 줍니다(내용은 그대로). */

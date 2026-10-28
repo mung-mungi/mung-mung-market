@@ -1,0 +1,28 @@
+# 시세 5분 갱신(사용자 2026-10-29 지시) — 장 시간에만 실제로 받고, 나머지는 바로 끝남(_tools/live_update.py가 판단)
+name: prices-5min
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: '게시 횟수·Claude 우선 규칙 무시(장 시간 규칙은 유지)'
+        required: false
+        default: '0'
+permissions:
+  contents: write
+concurrency:
+  group: prices-5min
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 50
+      - name: refresh
+        env:
+          FORCE: ${{ github.event.inputs.force }}
+        run: python3 _tools/live_update.py

@@ -143,10 +143,19 @@ def trend(page, pp, hp):
             hh[r['ticker']][r['date']] = (r['close'], 1 if r['kind'] == 'm' else 0)
     Hd = {t: [[d, v[0], v[1]] for d, v in sorted(x.items())] for t, x in hh.items()}
     D = {'asof': asof, 'label': label, 'P': [{k: r.get(k) for k in KEYS} for r in P], 'H': Hd}
+    if page.endswith('.json'):  # trendjson: 차트 길잡이용 자료만 따로 파일로(5분 갱신이 씀)
+        json.dump(D, open(page, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+        print(json.dumps({'trendjson': 'ok', 'asof': asof, 'label': label}, ensure_ascii=False)); return
     line = 'const DATA = ' + json.dumps(D, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + ';'
     s = open(page, encoding='utf-8').read()
+    had_live = 'live/trend.json' in s
     i = s.index('const DATA = '); j = s.index('\n', i)
     s = s[:i] + line + s[j:]
+    if had_live:  # 사이트용 실시간 자료 읽기(site_live.py)를 지우지 않게 다시 감쌈
+        import os as _o
+        sys.path.insert(0, _o.path.dirname(_o.path.abspath(__file__))); import site_live as _sl
+        k = s.index('const DATA = ') + len('const DATA = '); e = s.index('\n', k); ln = s[k:e].rstrip()
+        s = s[:k] + _sl.TREND_LOADER + ln[:-1] + ');' + s[e:]
     s = s.replace("document.getElementById('asof').textContent = '대부분 ' + fmtDate(DATA.asof) + ' 종가 기준';",
                   "document.getElementById('asof').textContent = DATA.label || ('대부분 ' + fmtDate(DATA.asof) + ' 종가 기준');")
     open(page, 'w', encoding='utf-8').write(s)
@@ -168,5 +177,5 @@ def unwrap(page):
 if __name__ == '__main__':
     c = sys.argv[1]
     if c == 'update': update(sys.argv[2], sys.argv[3])
-    elif c == 'trend': trend(sys.argv[2], sys.argv[3], sys.argv[4])
+    elif c in ('trend', 'trendjson'): trend(sys.argv[2], sys.argv[3], sys.argv[4])
     elif c == 'unwrap': unwrap(sys.argv[2])

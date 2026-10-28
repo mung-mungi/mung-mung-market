@@ -79,3 +79,7 @@ open(os.path.join(src, 'robots.txt'), 'w').write('User-agent: kakaotalk-scrap\nA
 open(os.path.join(src, '.nojekyll'), 'w').write('')
 left = [f for f in glob.glob(os.path.join(src, '*.html')) if 'claude.ai/' in open(f, encoding='utf-8').read()]
 print('changed', n, 'left-claude-links', left)
+# 실시간 장치(5분 갱신 live/ 파일 읽기, Finnhub 차트 시세) — 사용자 2026-10-29 지시
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import site_live
+site_live.run(src)
