@@ -132,9 +132,9 @@ body .wrap > p.foot,body .wrap > p.mm-foot{display:none!important}.mm-shbody .mm
 #main.mmt-on .hd{margin:0!important;padding:0!important;row-gap:0!important}
 #main.mmt-on .mmt{margin:0!important}#main.mmt-on .mmt-top{margin:2px 0 0!important;min-height:28px}
 #main.mmt-on .mmt-per{margin:4px -4px 0!important}
-html.mm-hx-off .wrap{padding-top:4px!important}
+
 body .wrap{padding-top:0!important}#main.mmt-on{margin-top:0!important}
-body{margin:0!important;padding:6px 8px 80px!important}html.mm-hx-off body .wrap{row-gap:0!important;gap:0!important}html.mm-hx-off body header.mm-hero.mm-hx{margin:0!important}
+body{margin:0!important;padding:6px 8px 80px!important}body .wrap{row-gap:0!important;gap:0!important}
 /* 배너 접힌 뒤엔 페이지가 위아래로 안 움직이게(차트만 고정) */
 html.mm-hx-off.mm-lock,html.mm-hx-off.mm-lock body{overflow:hidden!important;overscroll-behavior:none}
 .mm-rec{display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;margin:-2px 0 10px;padding:2px 0}.mm-rec::-webkit-scrollbar{display:none}
@@ -170,9 +170,10 @@ html.mm-shon .mm-sheet{pointer-events:auto}html.mm-shon .mm-shbg{opacity:1}html.
 .mm-lhint{margin:4px 2px 0;font-size:12px;color:#9a6200;text-align:center}
 /* 종목 차트에선 멍뭉이 배너·오늘 한눈에 카드 숨기고 차트가 바로 보이게(사용자 2026-10-29) — 기준 시각은 차트 카드 위에 작게 */
 html body .mm-take,html body .hx-card{display:none!important}
-/* 멍뭉이 배너: 처음 5초 보이고 접힘, 20초 동안 아무것도 안 하면 다시 펼쳐짐(사용자 2026-10-29) */
-html body header.mm-hero.mm-hx{overflow:hidden;max-height:240px;transition:max-height .45s ease,opacity .35s ease,margin .45s ease,padding .45s ease}
-html.mm-hx-off body header.mm-hero.mm-hx{max-height:0!important;min-height:0!important;height:0!important;opacity:0;margin-top:0!important;margin-bottom:0!important;padding-top:0!important;padding-bottom:0!important;border-width:0!important}
+/* 멍뭉이 배너: 차트 위에 겹쳐 떠서 7초 보인 뒤 페이드아웃 — 아래 화면은 밀리지 않음(사용자 2026-10-29) */
+html body header.mm-hero.mm-hx{position:fixed!important;z-index:9000;background-color:#fbf5ea!important;top:max(6px,env(safe-area-inset-top));left:8px;right:8px;margin:0!important;box-shadow:0 10px 30px rgba(30,22,8,.22)!important;transition:opacity .7s ease,transform .7s ease;opacity:1;transform:none}
+html.mm-hx-off body header.mm-hero.mm-hx{opacity:0;transform:translateY(-8px);pointer-events:none}
+html.mm-land body header.mm-hero.mm-hx,html.mm-full body header.mm-hero.mm-hx{display:none!important}
 .mm-asof2{margin:2px 4px 8px;font-size:12px;color:#8a877f;text-align:right}
 #main .rg .zm{display:none!important}
 #main .rg{background:#f3f1ec;padding:3px!important;border-radius:12px;gap:4px!important;overflow:hidden!important}
@@ -674,9 +675,9 @@ function mmGuide(main,gl){ if(!gl||main.querySelector('.mm-sum'))return; var t=g
 function mmAsof(){ var main=document.getElementById('main'), a=document.getElementById('asof'); if(!main||!a||!a.textContent.trim())return; var old=document.querySelector('.mm-asof2'); if(old) old.remove(); var kd=main.querySelector('.hd .kind'), pr=main.querySelector('.hd .pr'); var m=a.textContent.match(/(\d{1,2}:\d{2})\s*기준/); if(!kd||!m||(pr&&pr.classList.contains('mm-fh'))) return; var t=' · '+m[1]+' 기준'; if(kd.textContent.indexOf(t)<0) kd.textContent=kd.textContent.replace(/ · \d{1,2}:\d{2} 기준$/,'')+t; return; var e=document.querySelector('.mm-asof2'); var card=main.closest('section,.card,.panel')||main; if(!e){ e=document.createElement('p'); e.className='mm-asof2'; card.parentNode.insertBefore(e,card); } var t='● '+a.textContent.trim(); if(e.textContent!==t) e.textContent=t; }
 (function(){ var h=document.documentElement, t=null, idle=null;
   function off(){ h.classList.add('mm-hx-off'); setTimeout(function(){ window.__mmFitN=0; try{mmFitCard()}catch(e){} if(h.classList.contains('mm-lock')) scrollTo(0,0); },480); } function on(){ if(h.classList.contains('mm-land')||h.classList.contains('mm-full')) return; h.classList.remove('mm-hx-off'); }
-  function act(){ clearTimeout(idle); if(!h.classList.contains('mm-hx-off')){ clearTimeout(t); t=setTimeout(off,1500); } idle=setTimeout(on,20000); }
-  t=setTimeout(off,5000); idle=setTimeout(on,25000);
-  ['pointerdown','scroll','keydown','wheel','touchstart'].forEach(function(e){ addEventListener(e,act,{passive:true,capture:true}); }); })();
+  function act(){ clearTimeout(idle); if(!h.classList.contains('mm-hx-off')){ clearTimeout(t); t=setTimeout(off,2500); } idle=setTimeout(on,20000); }
+  t=setTimeout(off,7000); idle=setTimeout(on,27000);
+  ['pointerdown','keydown','wheel','touchstart'].forEach(function(e){ addEventListener(e,act,{passive:true,capture:true}); }); })();
 // 종목 찾기 목록을 시세 보드 '종목별 시세' 한 줄 카드로(사용자 2026-10-29): 이름+티커·층위 / 가격+52주 막대 / 1일 등락 크게·고점 대비 / ›, 목록은 상자 안 스크롤
 function mmList(){ var L=document.getElementById('list'); if(!L)return; var byT={}; try{ DATA.P.forEach(function(r){ byT[r.ticker.replace('^','')]=r; }); }catch(e){ return; }
   L.querySelectorAll('button.row').forEach(function(b){ if(b.dataset.mm)return; var sm=b.querySelector('small'), tk=sm&&sm.textContent.trim(), r=byT[tk]; if(!r)return; b.dataset.mm=1;
@@ -717,7 +718,7 @@ function mmRecent(){ var main=document.getElementById('main'); if(!main||!main.q
 try{ addEventListener('resize',function(){ clearTimeout(window.__mmFr); window.__mmFr=setTimeout(function(){ window.__mmFitN=0; try{mmFitCard()}catch(e){} },350); }); if(window.visualViewport) visualViewport.addEventListener('resize',function(){ clearTimeout(window.__mmFr); window.__mmFr=setTimeout(function(){ window.__mmFitN=0; try{mmFitCard()}catch(e){} },350); }); }catch(e){}
 function mmFitCard(){ var h=document.documentElement; if(h.classList.contains('mm-land')||h.classList.contains('mm-full'))return; var m=document.getElementById('main'), sv=m&&m.querySelector('.mmt-box > svg'); if(!m||!sv)return;
   var dockTop=innerHeight; [].slice.call(document.querySelectorAll('nav,div')).forEach(function(e){ var cs=getComputedStyle(e); if(cs.position!=='fixed')return; var r=e.getBoundingClientRect(); if(r.width>300&&r.top>innerHeight*0.6&&r.height>30&&r.top<dockTop) dockTop=r.top; });
-  var hero=document.querySelector('header.mm-hero'), heroH=(hero&&!h.classList.contains('mm-hx-off'))?hero.getBoundingClientRect().height+(parseFloat(getComputedStyle(hero).marginBottom)||0):0;
+  var heroH=0;
   var top=m.getBoundingClientRect().top+scrollY-heroH, non=m.offsetHeight-sv.getBoundingClientRect().height, want=Math.round(Math.max(240,Math.min(680,dockTop-4-top-non)));
   h.classList.toggle('mm-lock', want>240&&want<680); if(h.classList.contains('mm-hx-off')&&h.classList.contains('mm-lock')&&scrollY) scrollTo(0,0);
   var cur=Math.round(sv.getBoundingClientRect().height); if(Math.abs(want-cur)>6&&(window.__mmFitN=(window.__mmFitN||0)+1)<4){ window.__mmFitH=want; window.__mmH=want; try{mmtDraw()}catch(e){} } }
