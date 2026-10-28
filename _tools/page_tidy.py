@@ -109,11 +109,11 @@ function tidy(){
 /* 기간별 등락 6칸은 빼고 그만큼 차트를 크게(사용자 2026-10-29) */
 #main .rt{display:none!important}
 /* 차트 위 핵심 4칸(저항·지지·단기 채널·장기 추세) */
-.mm-lv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:8px 0 2px}
-.mm-lv>div{border-radius:11px;padding:7px 9px;background:#f6f3ec;border:1px solid rgba(0,0,0,.05);min-width:0}
-.mm-lv small{display:block;font-size:11px;color:#8a877f;font-weight:700;letter-spacing:.02em}
-.mm-lv b{display:block;font-size:15.5px;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mm-lv em{font-style:normal;font-size:11.5px;color:#6b675f;font-weight:600}
+.mm-lv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin:6px 0 2px}
+.mm-lv>div{border-radius:9px;padding:5px 6px;text-align:center;background:#f6f3ec;border:1px solid rgba(0,0,0,.05);min-width:0}
+.mm-lv small{display:block;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#8a877f;font-weight:700;letter-spacing:.02em}
+.mm-lv b{display:block;font-size:13px;letter-spacing:-.02em;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mm-lv em{display:none}
 .mm-lv .up{background:#fdf0ee}.mm-lv .up b{color:#b23a2e}.mm-lv .dn{background:#edf7ef}.mm-lv .dn b{color:#1f7a3f}
 /* 추세 가이드·선 설명은 접기 */
 #main details.mm-fold p.gl{margin-top:4px}
@@ -282,10 +282,10 @@ function tidy(){
     var C=t.match(/(단기 [^(]*채널)[^·]*·\s*상단\s*([\d,.]+)[^·]*·\s*하단\s*([\d,.]+)/), L=t.match(/장기 추세선보다\s*([−+\-]?[\d.]+%)/);
     var box=document.createElement('div'); box.className='mm-lv';
     function cell(cls,k,v,e){ if(!v)return; var d=document.createElement('div'); if(cls)d.className=cls; d.innerHTML='<small></small><b></b><em></em>'; d.children[0].textContent=k; d.children[1].textContent=v; d.children[2].textContent=e||''; box.appendChild(d); }
-    if(R)cell('up','▲ 위 저항',R[1],'지금보다 +'+R[2]);
-    if(S)cell('dn','▼ 아래 지지',S[1],'지금보다 −'+S[2]);
-    if(C)cell('',C[1],C[2]+' / '+C[3],'상단 / 하단');
-    if(L)cell('','장기 추세 대비',L[1],'12개월 추세선');
+    if(R)cell('up','▲ 저항',R[1],'');
+    if(S)cell('dn','▼ 지지',S[1],'');
+    if(C)cell('',C[1].replace(/ 채널/,''),C[2]+'/'+C[3],'');
+    if(L)cell('','장기 추세',L[1],'');
     if(box.children.length)ch.after(box);
   }
   if(gl&&!gl.closest('details')){ var nt=main.querySelector('p.nt'); var d=document.createElement('details'); d.className='mm-fold'; d.innerHTML='<summary><span>추세 가이드 자세히 · 선 읽는 법</span></summary>'; gl.before(d); d.appendChild(gl); if(nt)d.appendChild(nt); }
