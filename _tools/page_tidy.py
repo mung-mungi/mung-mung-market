@@ -330,21 +330,18 @@ function mmtChart(box, pts, base, cur, intra, opt){ opt=opt||{}; var OV=opt.ov||
         s+='<line x1="'+xa+'" x2="'+xb+'" y1="'+sy(F(L.ta))+'" y2="'+sy(F(L.tb))+'" stroke="'+c+'" stroke-width="1.3" opacity=".5"/>'; }); s+='</g>'; } }
     var RGr=null; if(RG&&(t1-t0)>120*86400){ var p3=pts.filter(function(p){return p[0]>=t1-92*86400}); RGr=mmRG(p3); if(RGr&&Math.abs(RGr.ta-RG.ta)<5*86400) RGr=null; }
     if(RGr){ var xa=sx(RGr.ta), xb=sx(RGr.tb), Ua=RGr.up(RGr.ta), Ub=RGr.up(RGr.tb), Da=RGr.dn(RGr.ta), Db=RGr.dn(RGr.tb);
-      s+='<g clip-path="url(#mmclip2)"><path d="M'+xa+','+sy(Ua)+'L'+xb+','+sy(Ub)+'L'+xb+','+sy(Db)+'L'+xa+','+sy(Da)+'Z" fill="'+(RGr.dir<0?'#3a6fe0':'#e0423a')+'" opacity=".07"/>'
-       +'<line x1="'+xa+'" x2="'+xb+'" y1="'+sy(Ua)+'" y2="'+sy(Ub)+'" stroke="#c4453a" stroke-width="1.5" opacity=".85"/><line x1="'+xa+'" x2="'+xb+'" y1="'+sy(Da)+'" y2="'+sy(Db)+'" stroke="#2f8a4c" stroke-width="1.5" opacity=".85"/></g>'; }
-    if(RG){ // 추세 채널: 꼭짓점부터 지금까지 실선, 오른쪽 끝까지 점선 연장
-      var xa=sx(RG.ta), xb=sx(RG.tb), xe=W-m.r, Ua=RG.up(RG.ta), Ub=RG.up(RG.tb), Da=RG.dn(RG.ta), Db=RG.dn(RG.tb), ch=(((Ub+Db)/2)/((Ua+Da)/2)-1)*100;
-      var Ue=RG.up(RG.tb+(RG.tb-RG.ta)*0.12), De=RG.dn(RG.tb+(RG.tb-RG.ta)*0.12), xE=sx(RG.tb+(RG.tb-RG.ta)*0.12);
+      s+='<g clip-path="url(#mmclip2)">'
+       +(RGr.dir<0?'<line x1="'+xa+'" x2="'+xb+'" y1="'+sy(Ua)+'" y2="'+sy(Ub)+'" stroke="#c4453a" stroke-width="1.6" opacity=".8"/>':'<line x1="'+xa+'" x2="'+xb+'" y1="'+sy(Da)+'" y2="'+sy(Db)+'" stroke="#2f8a4c" stroke-width="1.6" opacity=".8"/>')+'</g>'; }
+    if(RG){ // 추세(사용자 2026-10-29 '이해가 쉽게'): 주 추세선 하나(하락=고점 잇는 빨강, 상승=저점 잇는 초록)를 진하게 + 오른쪽 점선 연장, 반대쪽 평행선은 옅은 점선만
+      var xa=sx(RG.ta), xb=sx(RG.tb), dn=RG.dir<0, F=dn?RG.up:RG.dn, G=dn?RG.dn:RG.up, c=dn?'#c4453a':'#2f8a4c', c2=dn?'#2f8a4c':'#c4453a';
+      var tE=RG.tb+(RG.tb-RG.ta)*0.15, xE=sx(tE), Fb=F(RG.tb), Gb=G(RG.tb), above=dn?(last[1]>Fb):(last[1]<Fb);
       s+='<clipPath id="mmclip"><rect x="'+m.l+'" y="'+m.t+'" width="'+(W-m.l-m.r)+'" height="'+(H-m.t-m.b)+'"/></clipPath><g clip-path="url(#mmclip)">'
-       +(RGr?'':'<path d="M'+xa+','+sy(Ua)+'L'+xb+','+sy(Ub)+'L'+xb+','+sy(Db)+'L'+xa+','+sy(Da)+'Z" fill="'+(RG.dir<0?'#3a6fe0':'#e0423a')+'" opacity=".06"/>')
-       +'<line x1="'+xa+'" x2="'+xb+'" y1="'+sy(Ua)+'" y2="'+sy(Ub)+'" stroke="#c4453a" stroke-width="1.4" opacity=".7"/>'
-       +'<line x1="'+xa+'" x2="'+xb+'" y1="'+sy(Da)+'" y2="'+sy(Db)+'" stroke="#2f8a4c" stroke-width="1.4" opacity=".7"/>'
-       +'<line x1="'+xb+'" x2="'+xE+'" y1="'+sy(Ub)+'" y2="'+sy(Ue)+'" stroke="#c4453a" stroke-width="1.2" stroke-dasharray="3 3" opacity=".6"/>'
-       +'<line x1="'+xb+'" x2="'+xE+'" y1="'+sy(Db)+'" y2="'+sy(De)+'" stroke="#2f8a4c" stroke-width="1.2" stroke-dasharray="3 3" opacity=".6"/>'
-       +'<circle cx="'+xa+'" cy="'+sy(RG.anchor[1])+'" r="3" fill="none" stroke="#6b675f" stroke-width="1.2"/></g>'
-       +(CY[0]<0?'':'<text x="'+(W-2)+'" y="'+(CY[0]+4)+'" font-size="10" font-weight="700" fill="#c4453a" text-anchor="end">'+mmtTick(Ub,cur,(hi-lo)/40)+'</text>')
-       +(CY[1]<0?'':'<text x="'+(W-2)+'" y="'+(CY[1]+4)+'" font-size="10" font-weight="700" fill="#2f8a4c" text-anchor="end">'+mmtTick(Db,cur,(hi-lo)/40)+'</text>')
-       +'<text x="'+(m.l+2)+'" y="'+(m.t-9)+'" font-size="11" font-weight="700" fill="#6b675f">'+(RG.dir<0?'하락 추세 ↘':'상승 추세 ↗')+' <tspan font-weight="500">'+mmtKst(RG.ta,true).replace(/^\d+\./,'').replace('.','/')+' '+(RG.dir<0?'고점':'저점')+'부터'+(RGr?' · 최근 '+(RGr.dir<0?'↘ ':'↗ ')+mmtKst(RGr.ta,true).replace(/^\d+\./,'').replace('.','/')+'부터(진한 선)':'')+'</tspan></text>'; }
+       +'<line x1="'+xa+'" x2="'+xb+'" y1="'+sy(G(RG.ta))+'" y2="'+sy(Gb)+'" stroke="'+c2+'" stroke-width="1" stroke-dasharray="3 4" opacity=".45"/>'
+       +'<line x1="'+xa+'" x2="'+xb+'" y1="'+sy(F(RG.ta))+'" y2="'+sy(Fb)+'" stroke="'+c+'" stroke-width="2" opacity=".9"/>'
+       +'<line x1="'+xb+'" x2="'+xE+'" y1="'+sy(Fb)+'" y2="'+sy(F(tE))+'" stroke="'+c+'" stroke-width="1.6" stroke-dasharray="4 3" opacity=".75"/>'
+       +'<circle cx="'+xa+'" cy="'+sy(RG.anchor[1])+'" r="3.5" fill="#fff" stroke="'+c+'" stroke-width="1.6"/></g>'
+       +(CY[0]<0?'':'<text x="'+(W-2)+'" y="'+((dn?CY[0]:CY[1])+4)+'" font-size="10.5" font-weight="800" fill="'+c+'" text-anchor="end">'+mmtTick(Fb,cur,(hi-lo)/40)+'</text>')
+       +'<text x="'+(m.l+2)+'" y="'+(m.t-9)+'" font-size="11" font-weight="700" fill="'+c+'">'+(dn?'하락 추세선 ↘':'상승 추세선 ↗')+' <tspan font-weight="500" fill="#6b675f">'+mmtKst(RG.ta,true).replace(/^\d+\./,'').replace('.','/')+' '+(dn?'고점들을 이은 선':'저점들을 이은 선')+' · '+(dn?(above?'지금 선 위 → 탈출 시도':'선 넘으면 탈출'):(above?'지금 선 아래 → 이탈':'선 깨지면 이탈'))+'</tspan></text>'; }
   })();
   // 기준선(1일은 어제 종가, 그 밖은 기간 시작가): 또렷하게 + 값 표시. 선은 위는 빨강·아래는 파랑(양전·음전, 사용자 2026-10-29)
   var yB=base!=null?sy(base):null; if(yB!=null&&yB>m.t-2&&yB<H-m.b+2) s+='<line x1="'+m.l+'" x2="'+(W-m.r+2)+'" y1="'+yB+'" y2="'+yB+'" stroke="#9a978f" stroke-dasharray="4 3" stroke-width="1" opacity=".8"/><text x="'+(W-2)+'" y="'+(yB+4)+'" font-size="10" font-weight="700" fill="#6b675f" text-anchor="end">'+(intra?'전일 ':'시작 ')+mmtTick(base,cur,(hi-lo)/40)+'</text>';
