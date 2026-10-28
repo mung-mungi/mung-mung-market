@@ -157,8 +157,8 @@ def tidy_hits(s):
     return s.replace('</body>', HITS + '</body>', 1) if '</body>' in s else s + HITS
 
 
-# 맨 위 페이지 줄(.ib): 아이패드·카톡 안 브라우저에서 옆으로 밀어도 안 움직이는 문제 → 손가락 끌기를 직접 처리(사용자 2026-10-29)
-IBDRAG = (r'''<style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y}</style>'''
+# 맨 위 페이지 줄(.ib): 아이패드·카톡 안 브라우저에서 옆으로 밀어도 안 움직이는 문제 → 손가락 끌기를 직접 처리, '핵심·흐름·점검' 묶음 글자는 숨김(사용자 2026-10-29)
+IBDRAG = (r'''<style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y}.ib .tg{display:none!important}</style>'''
           r'''<script data-ibdrag>(function(){function on(n){if(!n||n.__drag)return;n.__drag=1;var x0,y0,s0,mode=null;'''
           r'''n.addEventListener('touchstart',function(e){var t=e.touches[0];x0=t.clientX;y0=t.clientY;s0=n.scrollLeft;mode=null},{passive:true});'''
           r'''n.addEventListener('touchmove',function(e){var t=e.touches[0],dx=t.clientX-x0,dy=t.clientY-y0;if(mode===null&&(Math.abs(dx)>6||Math.abs(dy)>6))mode=Math.abs(dx)>Math.abs(dy)?'x':'y';'''
