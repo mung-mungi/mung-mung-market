@@ -16,3 +16,7 @@ function fx(){
 var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})();
 try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}catch(e){}
 })();
+// 공매도 '오늘 한눈에'를 3줄로(사용자 2026-10-29)
+(function(){function fx(){var t=document.querySelector('#take.sh-take');if(!t||t.querySelector('.sh3'))return;var b=[].slice.call(t.querySelectorAll(':scope>b'));if(b.length<4)return;var tx=t.textContent;var tail=(tx.split('→')[1]||'').trim().replace(/\.$/,'');
+ var ul=document.createElement('ul');ul.className='sh3';ul.innerHTML='<li><i>많이 쌓인 곳</i><span><b>'+b[0].textContent+'</b></span></li><li><i>요즘 몰리는 곳</i><span><b>'+b[1].textContent+'</b> <small style="color:#6f6d68">(최근 5일)</small></span></li><li><i>전체 흐름</i><span>늘어난 <span class="up">'+b[2].textContent.replace(/[^\d]/g,'')+'</span> · 줄어든 <span class="dn">'+b[3].textContent.replace(/[^\d]/g,'')+'</span>곳 → '+tail.replace(/^밸류체인 전체로는\s*/,'')+'</span></li>';t.appendChild(ul);t.classList.add('sh-rows')}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})()})();
