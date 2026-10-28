@@ -471,6 +471,15 @@ body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font
 body .mm-take.hu b:not(.mm-chipx){font-weight:800}
 body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
 body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}
+/* 형광펜은 더 옅게(사용자 2026-10-29) */
+body .mm-take :is(b,mark,[class*="hlt"]):not(.mm-chipx){background:linear-gradient(transparent 62%,rgba(233,196,120,.38) 62%)!important;box-shadow:none!important;text-decoration:none!important;border-bottom:0!important}
+/* 공매도 오늘 한마디: 3줄 */
+body #take.sh-rows>:not(.sh3){display:none!important}
+body #take .sh3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+body #take .sh3 li{display:grid;grid-template-columns:5.6em 1fr;gap:8px;align-items:baseline;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif}
+body #take .sh3 li i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center}
+body #take .sh3 li b{font-weight:800;background:none!important}
+body #take .sh3 .up{color:#c62828;font-weight:800}body #take .sh3 .dn{color:#1a7f37;font-weight:800}
 </style><script data-headui>// 페이지 맨 위 '오늘 한눈에' 양식 통일(사용자 2026-10-29): 날짜 칩 모양, 본문 글자, 바로가기 줄은 배너 아래로
 (function(){function fx(){
  document.querySelectorAll('.mm-take').forEach(function(t){if(t.classList.contains('np')||t.classList.contains('tk-on')||t.classList.contains('o-on'))return;t.classList.add('hu');
@@ -478,7 +487,7 @@ body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;wid
 });
  var hero=document.querySelector('.mm-hero');if(hero){document.querySelectorAll('nav[class$="-nav"]:not(.ib)').forEach(function(n){if(n.dataset.hu)return;if(n.compareDocumentPosition(hero)&Node.DOCUMENT_POSITION_FOLLOWING){n.dataset.hu=1;var t=document.querySelector('.mm-take');(t&&t.nextElementSibling&&t.nextElementSibling.classList.contains('hu-more')?t.nextElementSibling:(t||hero)).after(n)}})}}
 var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
-</script><script data-mkt>(function(){
+</script><style data-statgo>.stats .stat[data-go]{cursor:pointer;transition:transform .08s}.stats .stat[data-go]:active{transform:translateY(1px);background:rgba(154,98,0,.06)}.stats .stat[data-go] .k::after{content:" ›";color:#b9b6ae;font-weight:700}</style><script data-statgo>document.addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('.stats .stat[data-go]');if(!s)return;var g=s.dataset.go;if(/\.html/.test(g))return;e.stopPropagation();e.preventDefault();location.href='p-trend.html?per=1y#'+g},true);</script><script data-mkt>(function(){
   // 홈 '오늘 한눈에' 숫자 4개를 5분 시세 갱신(live/market.json) 값으로 바꿈 — 사용자 2026-10-29 지시. 페이지를 열어 둔 동안 5분마다 다시 읽음
   var MAP = [[/나스닥/, 'nasdaq'], [/반도체|SOX/, 'sox'], [/10년/, 'us10y'], [/WTI|유가/, 'wti']];
   function f2(v){ return v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
@@ -573,4 +582,4 @@ var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
   go(); document.addEventListener('DOMContentLoaded', go); window.addEventListener('load', go);
   var q = 0; try { new MutationObserver(function(){ if (q) return; q = 1; setTimeout(function(){ q = 0; go(); }, 80); }).observe(document.documentElement, { subtree: true, childList: true }); } catch (e) {}
 })();
-</script><style data-statgo>.stats .stat[data-go]{cursor:pointer;transition:transform .08s}.stats .stat[data-go]:active{transform:translateY(1px);background:rgba(154,98,0,.06)}.stats .stat[data-go] .k::after{content:" ›";color:#b9b6ae;font-weight:700}</style><script data-statgo>document.addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('.stats .stat[data-go]');if(!s)return;var g=s.dataset.go;if(/\.html/.test(g))return;e.stopPropagation();e.preventDefault();location.href='p-trend.html?per=1y#'+g},true);</script>
+</script>

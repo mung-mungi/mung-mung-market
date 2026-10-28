@@ -1545,7 +1545,44 @@ function run(){
 }
 run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);[300,900,1600,2600,4000].forEach(function(t){setTimeout(run,t)});
 })();</script>
-<style data-ptidy>
+<style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
+body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
+body .mm-take.hu b:not(.mm-chipx){font-weight:800}
+body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
+body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}
+/* 형광펜은 더 옅게(사용자 2026-10-29) */
+body .mm-take :is(b,mark,[class*="hlt"]):not(.mm-chipx){background:linear-gradient(transparent 62%,rgba(233,196,120,.38) 62%)!important;box-shadow:none!important;text-decoration:none!important;border-bottom:0!important}
+/* 공매도 오늘 한마디: 3줄 */
+body #take.sh-rows>:not(.sh3){display:none!important}
+body #take .sh3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+body #take .sh3 li{display:grid;grid-template-columns:5.6em 1fr;gap:8px;align-items:baseline;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif}
+body #take .sh3 li i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center}
+body #take .sh3 li b{font-weight:800;background:none!important}
+body #take .sh3 .up{color:#c62828;font-weight:800}body #take .sh3 .dn{color:#1a7f37;font-weight:800}
+</style><script data-headui>// 페이지 맨 위 '오늘 한눈에' 양식 통일(사용자 2026-10-29): 날짜 칩 모양, 본문 글자, 바로가기 줄은 배너 아래로
+(function(){function fx(){
+ document.querySelectorAll('.mm-take').forEach(function(t){if(t.classList.contains('np')||t.classList.contains('tk-on')||t.classList.contains('o-on'))return;t.classList.add('hu');
+  var f=t.firstElementChild;if(f&&f.tagName==='B'&&!f.classList.contains('mm-chipx')&&/\d/.test(f.textContent)&&/(기준|집계|마감|잠정|월|일)/.test(f.textContent)&&f.textContent.length<40)f.classList.add('mm-chipx');
+});
+ var hero=document.querySelector('.mm-hero');if(hero){document.querySelectorAll('nav[class$="-nav"]:not(.ib)').forEach(function(n){if(n.dataset.hu)return;if(n.compareDocumentPosition(hero)&Node.DOCUMENT_POSITION_FOLLOWING){n.dataset.hu=1;var t=document.querySelector('.mm-take');(t&&t.nextElementSibling&&t.nextElementSibling.classList.contains('hu-more')?t.nextElementSibling:(t||hero)).after(n)}})}}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
+</script><style data-rdbox>body .rd-btn{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:8px;width:100%;margin:10px 0 0;padding:8px 12px;border:1px solid rgba(11,11,11,.1);border-radius:10px;cursor:pointer;font:700 15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b;background:#fff}
+body .rd-btn::before{content:"▸";color:#9a6200;font-size:13px}body .rd-btn.op::before{content:"▾"}
+body .rd-btn span{font:500 12.5px/1.4 -apple-system,sans-serif;color:#6f6d68}
+body .rd-btn.op{border-radius:10px 10px 0 0;border-bottom-style:dashed}
+body .rd-body:not(.op){display:none!important}
+body .rd-body.op{display:block!important;-webkit-line-clamp:unset!important;margin:0!important;padding:8px 12px 10px!important;border:1px solid rgba(11,11,11,.1);border-top:0;border-radius:0 0 10px 10px;font-size:14px!important;line-height:1.65!important}
+</style><script data-rdbox>// '읽는 법'은 모든 페이지에서 공매도 '이렇게 읽습니다' 상자 모양으로 통일(사용자 2026-10-29)
+(function(){function mk(p){if(p.dataset.rd||p.closest('details')||p.closest('.u-fold')||p.closest('.o-fold'))return;p.dataset.rd=1;
+ var b0=p.firstElementChild;if(b0&&/^읽는 법/.test(b0.textContent.trim())&&p.firstChild===b0)b0.remove();p.innerHTML=p.innerHTML.replace(/^\s*읽는 법\s*[:·—-]?\s*/,'');
+ var old=p.nextElementSibling;if(old&&/(u-more|o-more)/.test(old.className))old.remove();p.classList.remove('u-clamp','o-clamp','op');
+ var b=document.createElement('button');b.type='button';b.className='rd-btn';b.innerHTML='이렇게 읽습니다 <span>눌러서 펼치기</span>';p.parentNode.insertBefore(b,p);p.classList.add('rd-body');
+ b.onclick=function(){var o=!b.classList.contains('op');b.classList.toggle('op',o);p.classList.toggle('op',o);b.querySelector('span').textContent=o?'접기':'눌러서 펼치기'}}
+function fx(){document.querySelectorAll('p.how,p[class$="-how"],.ot-card .how,p.sp-how').forEach(mk);
+ document.querySelectorAll('p,div.note').forEach(function(p){if(p.dataset.rd||p.children.length>12)return;var t=p.textContent.trim();if(/^읽는 법\s*[:·—]/.test(t)||(p.firstElementChild&&p.firstElementChild.tagName==='B'&&p.firstElementChild.textContent.trim()==='읽는 법'&&p.firstChild===p.firstElementChild))mk(p)})}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})();
+try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}catch(e){}})();
+</script><style data-ptidy>
 details.mm-fold{margin-top:8px;border-top:1px dashed rgba(0,0,0,.12)}
 details.mm-fold>summary{list-style:none;cursor:pointer;padding:9px 2px 2px;font:700 14px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:#9a6200}
 details.mm-fold>summary::-webkit-details-marker{display:none}
@@ -1677,41 +1714,4 @@ var nav=document.querySelector('.pt-nav');if(nav){var L=[['#recent','최근 변�
 })();
 }
 var __k=0;(function g(){try{__tgord()}catch(e){}if(++__k<8&&!(document.querySelector('.pt-wrap')||{dataset:{}}).dataset.ord)setTimeout(g,400)})();
-</script><style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
-body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
-body .mm-take.hu b:not(.mm-chipx){font-weight:800}
-body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
-body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}
-/* 형광펜은 더 옅게(사용자 2026-10-29) */
-body .mm-take :is(b,mark,[class*="hlt"]):not(.mm-chipx){background:linear-gradient(transparent 62%,rgba(233,196,120,.38) 62%)!important;box-shadow:none!important;text-decoration:none!important;border-bottom:0!important}
-/* 공매도 오늘 한마디: 3줄 */
-body #take.sh-rows>:not(.sh3){display:none!important}
-body #take .sh3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
-body #take .sh3 li{display:grid;grid-template-columns:5.6em 1fr;gap:8px;align-items:baseline;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif}
-body #take .sh3 li i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center}
-body #take .sh3 li b{font-weight:800;background:none!important}
-body #take .sh3 .up{color:#c62828;font-weight:800}body #take .sh3 .dn{color:#1a7f37;font-weight:800}
-</style><script data-headui>// 페이지 맨 위 '오늘 한눈에' 양식 통일(사용자 2026-10-29): 날짜 칩 모양, 본문 글자, 바로가기 줄은 배너 아래로
-(function(){function fx(){
- document.querySelectorAll('.mm-take').forEach(function(t){if(t.classList.contains('np')||t.classList.contains('tk-on')||t.classList.contains('o-on'))return;t.classList.add('hu');
-  var f=t.firstElementChild;if(f&&f.tagName==='B'&&!f.classList.contains('mm-chipx')&&/\d/.test(f.textContent)&&/(기준|집계|마감|잠정|월|일)/.test(f.textContent)&&f.textContent.length<40)f.classList.add('mm-chipx');
-});
- var hero=document.querySelector('.mm-hero');if(hero){document.querySelectorAll('nav[class$="-nav"]:not(.ib)').forEach(function(n){if(n.dataset.hu)return;if(n.compareDocumentPosition(hero)&Node.DOCUMENT_POSITION_FOLLOWING){n.dataset.hu=1;var t=document.querySelector('.mm-take');(t&&t.nextElementSibling&&t.nextElementSibling.classList.contains('hu-more')?t.nextElementSibling:(t||hero)).after(n)}})}}
-var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
-</script><style data-rdbox>body .rd-btn{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:8px;width:100%;margin:10px 0 0;padding:8px 12px;border:1px solid rgba(11,11,11,.1);border-radius:10px;cursor:pointer;font:700 15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b;background:#fff}
-body .rd-btn::before{content:"▸";color:#9a6200;font-size:13px}body .rd-btn.op::before{content:"▾"}
-body .rd-btn span{font:500 12.5px/1.4 -apple-system,sans-serif;color:#6f6d68}
-body .rd-btn.op{border-radius:10px 10px 0 0;border-bottom-style:dashed}
-body .rd-body:not(.op){display:none!important}
-body .rd-body.op{display:block!important;-webkit-line-clamp:unset!important;margin:0!important;padding:8px 12px 10px!important;border:1px solid rgba(11,11,11,.1);border-top:0;border-radius:0 0 10px 10px;font-size:14px!important;line-height:1.65!important}
-</style><script data-rdbox>// '읽는 법'은 모든 페이지에서 공매도 '이렇게 읽습니다' 상자 모양으로 통일(사용자 2026-10-29)
-(function(){function mk(p){if(p.dataset.rd||p.closest('details')||p.closest('.u-fold')||p.closest('.o-fold'))return;p.dataset.rd=1;
- var b0=p.firstElementChild;if(b0&&/^읽는 법/.test(b0.textContent.trim())&&p.firstChild===b0)b0.remove();p.innerHTML=p.innerHTML.replace(/^\s*읽는 법\s*[:·—-]?\s*/,'');
- var old=p.nextElementSibling;if(old&&/(u-more|o-more)/.test(old.className))old.remove();p.classList.remove('u-clamp','o-clamp','op');
- var b=document.createElement('button');b.type='button';b.className='rd-btn';b.innerHTML='이렇게 읽습니다 <span>눌러서 펼치기</span>';p.parentNode.insertBefore(b,p);p.classList.add('rd-body');
- b.onclick=function(){var o=!b.classList.contains('op');b.classList.toggle('op',o);p.classList.toggle('op',o);b.querySelector('span').textContent=o?'접기':'눌러서 펼치기'}}
-function fx(){document.querySelectorAll('p.how,p[class$="-how"],.ot-card .how,p.sp-how').forEach(mk);
- document.querySelectorAll('p,div.note').forEach(function(p){if(p.dataset.rd||p.children.length>12)return;var t=p.textContent.trim();if(/^읽는 법\s*[:·—]/.test(t)||(p.firstElementChild&&p.firstElementChild.tagName==='B'&&p.firstElementChild.textContent.trim()==='읽는 법'&&p.firstChild===p.firstElementChild))mk(p)})}
-var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})();
-try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}catch(e){}})();
 </script></body></html>

@@ -176,7 +176,7 @@ const MYLINES = {};
   const bySlug = new Map(P.map((r) => [slug(r.ticker), r.ticker]));
   document.getElementById('asof').textContent = DATA.label || ('대부분 ' + fmtDate(DATA.asof) + ' 종가 기준');
   // 분야 칩
-  const rank = (c) => (/지수|ETF/.test(c) ? 0 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : c === '빅테크' ? 1 : 2);
+  const rank = (c) => (/지수|ETF/.test(c) ? 0 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : /금리|유가/.test(c) ? 0.5 : c === '빅테크' ? 1 : 2);
   const cats = []; P.forEach((r) => { if (!cats.includes(r.category)) cats.push(r.category); });
   const cats0 = cats.slice(); cats.sort((a, b) => rank(a) - rank(b) || cats0.indexOf(a) - cats0.indexOf(b));
   const catBox = document.getElementById('cats');
@@ -486,7 +486,7 @@ const MYLINES = {};
       let rel = '', relc = 'var(--color-fg-muted)';
       if (chan && best.d >= chan.from) { const lo = chan.lo(best), d = (best.v / lo - 1) * 100; rel = '단기 하단 ' + fmtShort(lo, r.currency) + ' 대비 ' + (d >= 0 ? '+' : '−') + Math.abs(d).toFixed(1) + '%'; relc = Math.abs(d) <= 3 ? 'var(--color-ok)' : 'var(--color-fg-muted)'; }
       else if (ltMid) { const md = ltMid(best), d = (best.v / md - 1) * 100; rel = '장기 추세선 대비 ' + (d >= 0 ? '+' : '−') + Math.abs(d).toFixed(1) + '%'; }
-      t3.text(rel).attr('fill', relc); try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {}
+      t3.text(rel).attr('fill', relc); try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {} try { mmDtip(t1.text(), t2.text(), rel, relc); } catch (e) {}
       const bw = Math.max(t2.text().length * 10.5, t1.text().length * 6.6, rel.length * 7.6) + 20, bh = rel ? 62 : 46;
       const left = X(best) > (W - m.r) / 2; let bx = left ? X(best) - 10 - bw : X(best) + 10; bx = Math.max(m.l, Math.min(W - m.r - bw, bx));
       const by = Math.max(m.t - 6, Math.min(H - m.b - bh, Y(best) - bh - 12 < m.t - 6 ? Y(best) + 12 : Y(best) - bh - 12));
@@ -808,6 +808,43 @@ run();document.addEventListener('DOMContentLoaded',run);window.addEventListener(
   document.addEventListener('DOMContentLoaded', scan); window.addEventListener('load', scan); setTimeout(scan, 1500);
   var st = document.createElement('style'); st.textContent = '.mm-fh{color:#1f7a3f!important}'; (document.head || document.documentElement).appendChild(st);
 })();
+</script><style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
+body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
+body .mm-take.hu b:not(.mm-chipx){font-weight:800}
+body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
+body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}
+/* 형광펜은 더 옅게(사용자 2026-10-29) */
+body .mm-take :is(b,mark,[class*="hlt"]):not(.mm-chipx){background:linear-gradient(transparent 62%,rgba(233,196,120,.38) 62%)!important;box-shadow:none!important;text-decoration:none!important;border-bottom:0!important}
+/* 공매도 오늘 한마디: 3줄 */
+body #take.sh-rows>:not(.sh3){display:none!important}
+body #take .sh3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+body #take .sh3 li{display:grid;grid-template-columns:5.6em 1fr;gap:8px;align-items:baseline;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif}
+body #take .sh3 li i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center}
+body #take .sh3 li b{font-weight:800;background:none!important}
+body #take .sh3 .up{color:#c62828;font-weight:800}body #take .sh3 .dn{color:#1a7f37;font-weight:800}
+</style><script data-headui>// 페이지 맨 위 '오늘 한눈에' 양식 통일(사용자 2026-10-29): 날짜 칩 모양, 본문 글자, 바로가기 줄은 배너 아래로
+(function(){function fx(){
+ document.querySelectorAll('.mm-take').forEach(function(t){if(t.classList.contains('np')||t.classList.contains('tk-on')||t.classList.contains('o-on'))return;t.classList.add('hu');
+  var f=t.firstElementChild;if(f&&f.tagName==='B'&&!f.classList.contains('mm-chipx')&&/\d/.test(f.textContent)&&/(기준|집계|마감|잠정|월|일)/.test(f.textContent)&&f.textContent.length<40)f.classList.add('mm-chipx');
+});
+ var hero=document.querySelector('.mm-hero');if(hero){document.querySelectorAll('nav[class$="-nav"]:not(.ib)').forEach(function(n){if(n.dataset.hu)return;if(n.compareDocumentPosition(hero)&Node.DOCUMENT_POSITION_FOLLOWING){n.dataset.hu=1;var t=document.querySelector('.mm-take');(t&&t.nextElementSibling&&t.nextElementSibling.classList.contains('hu-more')?t.nextElementSibling:(t||hero)).after(n)}})}}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
+</script><style data-rdbox>body .rd-btn{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:8px;width:100%;margin:10px 0 0;padding:8px 12px;border:1px solid rgba(11,11,11,.1);border-radius:10px;cursor:pointer;font:700 15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b;background:#fff}
+body .rd-btn::before{content:"▸";color:#9a6200;font-size:13px}body .rd-btn.op::before{content:"▾"}
+body .rd-btn span{font:500 12.5px/1.4 -apple-system,sans-serif;color:#6f6d68}
+body .rd-btn.op{border-radius:10px 10px 0 0;border-bottom-style:dashed}
+body .rd-body:not(.op){display:none!important}
+body .rd-body.op{display:block!important;-webkit-line-clamp:unset!important;margin:0!important;padding:8px 12px 10px!important;border:1px solid rgba(11,11,11,.1);border-top:0;border-radius:0 0 10px 10px;font-size:14px!important;line-height:1.65!important}
+</style><script data-rdbox>// '읽는 법'은 모든 페이지에서 공매도 '이렇게 읽습니다' 상자 모양으로 통일(사용자 2026-10-29)
+(function(){function mk(p){if(p.dataset.rd||p.closest('details')||p.closest('.u-fold')||p.closest('.o-fold'))return;p.dataset.rd=1;
+ var b0=p.firstElementChild;if(b0&&/^읽는 법/.test(b0.textContent.trim())&&p.firstChild===b0)b0.remove();p.innerHTML=p.innerHTML.replace(/^\s*읽는 법\s*[:·—-]?\s*/,'');
+ var old=p.nextElementSibling;if(old&&/(u-more|o-more)/.test(old.className))old.remove();p.classList.remove('u-clamp','o-clamp','op');
+ var b=document.createElement('button');b.type='button';b.className='rd-btn';b.innerHTML='이렇게 읽습니다 <span>눌러서 펼치기</span>';p.parentNode.insertBefore(b,p);p.classList.add('rd-body');
+ b.onclick=function(){var o=!b.classList.contains('op');b.classList.toggle('op',o);p.classList.toggle('op',o);b.querySelector('span').textContent=o?'접기':'눌러서 펼치기'}}
+function fx(){document.querySelectorAll('p.how,p[class$="-how"],.ot-card .how,p.sp-how').forEach(mk);
+ document.querySelectorAll('p,div.note').forEach(function(p){if(p.dataset.rd||p.children.length>12)return;var t=p.textContent.trim();if(/^읽는 법\s*[:·—]/.test(t)||(p.firstElementChild&&p.firstElementChild.tagName==='B'&&p.firstElementChild.textContent.trim()==='읽는 법'&&p.firstChild===p.firstElementChild))mk(p)})}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})();
+try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}catch(e){}})();
 </script><style data-ptidy>
 details.mm-fold{margin-top:8px;border-top:1px dashed rgba(0,0,0,.12)}
 details.mm-fold>summary{list-style:none;cursor:pointer;padding:9px 2px 2px;font:700 14px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:#9a6200}
@@ -1026,14 +1063,15 @@ function mmtChart(box, pts, base, cur, intra, opt){ opt=opt||{}; var OV=opt.ov||
   var path=pts.map(function(a,i){return (i?'L':'M')+sx(a[0]).toFixed(1)+','+sy(a[1]).toFixed(1)}).join('');
   var iMax=0,iMin=0; pts.forEach(function(a,i){ if(a[1]>pts[iMax][1])iMax=i; if(a[1]<pts[iMin][1])iMin=i; });
   var lab=function(i,top){ var a=pts[i], x=sx(a[0]), y=sy(a[1]), anc=x<W*0.2?'start':x>W*0.8?'end':'middle';
-    return '<circle cx="'+x+'" cy="'+y+'" r="3" fill="'+col+'" opacity=".55"/><text x="'+x+'" y="'+(top?y-9:y+17)+'" font-size="11.5" fill="'+col+'" text-anchor="'+anc+'">'+(top?'최고 ':'최저 ')+mmtFmt(a[1],cur)+'</text>'; };
+    var lc=(base!=null)?(a[1]>=base?'#e0423a':'#3a6fe0'):col;
+    return '<circle cx="'+x+'" cy="'+y+'" r="3" fill="'+lc+'" opacity=".55"/><text x="'+x+'" y="'+(top?y-9:y+17)+'" font-size="11.5" fill="'+lc+'" text-anchor="'+anc+'">'+(top?'최고 ':'최저 ')+mmtFmt(a[1],cur)+'</text>'; };
   var s='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:'+(LAND?H+'px':'auto')+';display:block;touch-action:none">';
   if(intra){ s+='<rect x="'+sx(intra.rs)+'" y="'+m.t+'" width="'+(sx(intra.re)-sx(intra.rs))+'" height="'+(H-m.t-m.b)+'" fill="#000" opacity=".025"/>'
      +'<text x="'+sx(intra.rs)+'" y="'+(H-8)+'" font-size="10.5" fill="#9a978f" text-anchor="middle">'+mmtKst(intra.rs)+' 개장</text><text x="'+sx(intra.re)+'" y="'+(H-8)+'" font-size="10.5" fill="#9a978f" text-anchor="middle">'+mmtKst(intra.re)+' 마감</text>'; }
   // 눈금(사용자 2026-10-29): 오른쪽 가격 3~4개, 아래 날짜 3~4개 — 옅게
   (function(){ var span=hi-lo, raw=span/7, p=Math.pow(10,Math.floor(Math.log10(raw))), st=[1,2,2.5,5,10].map(function(k){return k*p}).filter(function(k){return k>=raw*0.75})[0]||raw;
     var CY=RG?[sy(RG.up(RG.tb)),sy(RG.dn(RG.tb))].map(function(y){return (y<m.t||y>H-m.b)?-99:y}):[];
-    for(var v=Math.ceil(lo/st)*st; v<=hi; v+=st){ var y=sy(v); if(y<m.t+6||y>H-m.b-4) continue; if(CY.some(function(c){return Math.abs(c-y)<13})){ s+='<line x1="'+m.l+'" x2="'+(W-m.r+4)+'" y1="'+y+'" y2="'+y+'" stroke="#ece9e2" stroke-width="1"/>'; continue; }
+    for(var v=Math.ceil(lo/st)*st; v<=hi; v+=st){ var y=sy(v); if(y<m.t+6||y>H-m.b-4) continue; if(CY.some(function(c){return Math.abs(c-y)<13})||(base!=null&&Math.abs(sy(base)-y)<12)){ s+='<line x1="'+m.l+'" x2="'+(W-m.r+4)+'" y1="'+y+'" y2="'+y+'" stroke="#ece9e2" stroke-width="1"/>'; continue; }
       s+='<line x1="'+m.l+'" x2="'+(W-m.r+4)+'" y1="'+y+'" y2="'+y+'" stroke="#ece9e2" stroke-width="1"/><text x="'+(W-2)+'" y="'+(y+4)+'" font-size="10.5" fill="#a29f97" text-anchor="end">'+mmtTick(v,cur,st)+'</text>'; }
     if(!intra){ var sp=(t1-t0)/86400; for(var k=0;k<4;k++){ var t=t0+(t1-t0)*(k+0.5)/4, d=new Date(t*1000+9*3600000), lb=sp<=100?(d.getUTCMonth()+1)+'/'+d.getUTCDate():sp<=400?(d.getUTCFullYear()%100)+'.'+(d.getUTCMonth()+1):(d.getUTCFullYear())+'';
       s+='<text x="'+sx(t)+'" y="'+(H-8)+'" font-size="10.5" fill="#a29f97" text-anchor="middle">'+lb+'</text>'; } }
@@ -1059,13 +1097,18 @@ function mmtChart(box, pts, base, cur, intra, opt){ opt=opt||{}; var OV=opt.ov||
        +(CY[1]<0?'':'<text x="'+(W-2)+'" y="'+(CY[1]+4)+'" font-size="10" font-weight="700" fill="#2f8a4c" text-anchor="end">'+mmtTick(Db,cur,(hi-lo)/40)+'</text>')
        +'<text x="'+(m.l+2)+'" y="'+(m.t-9)+'" font-size="11" font-weight="700" fill="#6b675f">'+(RG.dir<0?'하락 추세 ↘':'상승 추세 ↗')+' <tspan font-weight="500">'+mmtKst(RG.ta,true).replace(/^\d+\./,'').replace('.','/')+' '+(RG.dir<0?'고점':'저점')+'부터</tspan></text>'; }
   })();
-  if(base!=null) s+='<line x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+sy(base)+'" y2="'+sy(base)+'" stroke="#c9c6bf" stroke-dasharray="2 4" stroke-width="1"/>';
+  // 기준선(1일은 어제 종가, 그 밖은 기간 시작가): 또렷하게 + 값 표시. 선은 위는 빨강·아래는 파랑(양전·음전, 사용자 2026-10-29)
+  var yB=base!=null?sy(base):null; if(yB!=null&&yB>m.t-2&&yB<H-m.b+2) s+='<line x1="'+m.l+'" x2="'+(W-m.r+2)+'" y1="'+yB+'" y2="'+yB+'" stroke="#9a978f" stroke-dasharray="4 3" stroke-width="1" opacity=".8"/><text x="'+(W-2)+'" y="'+(yB+4)+'" font-size="10" font-weight="700" fill="#6b675f" text-anchor="end">'+(intra?'전일 ':'시작 ')+mmtTick(base,cur,(hi-lo)/40)+'</text>';
   if(CD){ var bw=Math.max(1,Math.min(9,(W-m.l-m.r)/CD.length*0.62));
     CD.forEach(function(c){ var x=sx(c[0]), u=c[4]>=c[1], cc=u?'#e0423a':'#3a6fe0', yo=sy(c[1]), yc=sy(c[4]);
       s+='<line x1="'+x+'" x2="'+x+'" y1="'+sy(c[2])+'" y2="'+sy(c[3])+'" stroke="'+cc+'" stroke-width="1"/><rect x="'+(x-bw/2)+'" y="'+Math.min(yo,yc)+'" width="'+bw+'" height="'+Math.max(1,Math.abs(yc-yo))+'" fill="'+cc+'"/>'; });
     var jX=0,jN=0; CD.forEach(function(c,i){ if(c[2]>CD[jX][2])jX=i; if(c[3]<CD[jN][3])jN=i; });
     var lab2=function(c,top){ var x=sx(c[0]), v=top?c[2]:c[3], y=sy(v), anc=x<W*0.2?'start':x>W*0.8?'end':'middle'; return '<text x="'+x+'" y="'+(top?y-7:y+15)+'" font-size="11.5" fill="'+(top?'#e0423a':'#3a6fe0')+'" text-anchor="'+anc+'">'+(top?'최고 ':'최저 ')+mmtFmt(v,cur)+'</text>'; };
     s+=lab2(CD[jX],true)+lab2(CD[jN],false); }
+  else if(yB!=null){ var cid='mmb'+Math.random().toString(36).slice(2,7);
+    s+='<clipPath id="'+cid+'u"><rect x="0" y="0" width="'+W+'" height="'+Math.max(0,yB)+'"/></clipPath><clipPath id="'+cid+'d"><rect x="0" y="'+yB+'" width="'+W+'" height="'+Math.max(0,H-yB)+'"/></clipPath>'
+     +'<path d="'+path+'" fill="none" stroke="#e0423a" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#'+cid+'u)"/>'
+     +'<path d="'+path+'" fill="none" stroke="#3a6fe0" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#'+cid+'d)"/>'+lab(iMax,true)+lab(iMin,false); }
   else s+='<path d="'+path+'" fill="none" stroke="'+col+'" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>'+lab(iMax,true)+lab(iMin,false);
   s+=''
    +(CD?'':'<circle cx="'+sx(last[0])+'" cy="'+sy(last[1])+'" r="4.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>')
@@ -1362,41 +1405,4 @@ function tidy(){
   if(gl&&!gl.closest('details')){ var nt=main.querySelector('p.nt'); var d=document.createElement('details'); d.className='mm-fold'; d.innerHTML='<summary><span>추세 한눈에</span></summary>'; gl.before(d); d.appendChild(gl); if(nt)d.appendChild(nt); }
 }
 
-(function(){var q=0,n=0,t0=0,busy=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(busy)return;var now=Date.now();if(now-t0>300){t0=now;n=0}if(++n>8){if(!q){q=1;setTimeout(function(){q=0;go()},120)}return}busy=1;try{go()}finally{busy=0}}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();</script><script data-pergo>(function(){var m=(location.search||'').match(/per=(1d|1w|1m|3m|1y|5y|10y)/);if(!m)return;var L={'1d':'1일','1w':'1주','1m':'1달','3m':'3달','1y':'1년','5y':'5년','10y':'10년'}[m[1]];try{window.__mmT=window.__mmT||{};window.__mmT.per=m[1]}catch(e){}var k=0;(function go(){var b=[...document.querySelectorAll('button')].find(function(x){return x.textContent.trim()===L&&x.offsetParent});if(b){if(b.getAttribute('aria-pressed')!=='true'&&!b.classList.contains('on'))b.click();if(++k<4)setTimeout(go,500);return}if(++k<30)setTimeout(go,300)})()})();</script><style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
-body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
-body .mm-take.hu b:not(.mm-chipx){font-weight:800}
-body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
-body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}
-/* 형광펜은 더 옅게(사용자 2026-10-29) */
-body .mm-take :is(b,mark,[class*="hlt"]):not(.mm-chipx){background:linear-gradient(transparent 62%,rgba(233,196,120,.38) 62%)!important;box-shadow:none!important;text-decoration:none!important;border-bottom:0!important}
-/* 공매도 오늘 한마디: 3줄 */
-body #take.sh-rows>:not(.sh3){display:none!important}
-body #take .sh3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
-body #take .sh3 li{display:grid;grid-template-columns:5.6em 1fr;gap:8px;align-items:baseline;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif}
-body #take .sh3 li i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center}
-body #take .sh3 li b{font-weight:800;background:none!important}
-body #take .sh3 .up{color:#c62828;font-weight:800}body #take .sh3 .dn{color:#1a7f37;font-weight:800}
-</style><script data-headui>// 페이지 맨 위 '오늘 한눈에' 양식 통일(사용자 2026-10-29): 날짜 칩 모양, 본문 글자, 바로가기 줄은 배너 아래로
-(function(){function fx(){
- document.querySelectorAll('.mm-take').forEach(function(t){if(t.classList.contains('np')||t.classList.contains('tk-on')||t.classList.contains('o-on'))return;t.classList.add('hu');
-  var f=t.firstElementChild;if(f&&f.tagName==='B'&&!f.classList.contains('mm-chipx')&&/\d/.test(f.textContent)&&/(기준|집계|마감|잠정|월|일)/.test(f.textContent)&&f.textContent.length<40)f.classList.add('mm-chipx');
-});
- var hero=document.querySelector('.mm-hero');if(hero){document.querySelectorAll('nav[class$="-nav"]:not(.ib)').forEach(function(n){if(n.dataset.hu)return;if(n.compareDocumentPosition(hero)&Node.DOCUMENT_POSITION_FOLLOWING){n.dataset.hu=1;var t=document.querySelector('.mm-take');(t&&t.nextElementSibling&&t.nextElementSibling.classList.contains('hu-more')?t.nextElementSibling:(t||hero)).after(n)}})}}
-var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
-</script><style data-rdbox>body .rd-btn{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:8px;width:100%;margin:10px 0 0;padding:8px 12px;border:1px solid rgba(11,11,11,.1);border-radius:10px;cursor:pointer;font:700 15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b;background:#fff}
-body .rd-btn::before{content:"▸";color:#9a6200;font-size:13px}body .rd-btn.op::before{content:"▾"}
-body .rd-btn span{font:500 12.5px/1.4 -apple-system,sans-serif;color:#6f6d68}
-body .rd-btn.op{border-radius:10px 10px 0 0;border-bottom-style:dashed}
-body .rd-body:not(.op){display:none!important}
-body .rd-body.op{display:block!important;-webkit-line-clamp:unset!important;margin:0!important;padding:8px 12px 10px!important;border:1px solid rgba(11,11,11,.1);border-top:0;border-radius:0 0 10px 10px;font-size:14px!important;line-height:1.65!important}
-</style><script data-rdbox>// '읽는 법'은 모든 페이지에서 공매도 '이렇게 읽습니다' 상자 모양으로 통일(사용자 2026-10-29)
-(function(){function mk(p){if(p.dataset.rd||p.closest('details')||p.closest('.u-fold')||p.closest('.o-fold'))return;p.dataset.rd=1;
- var b0=p.firstElementChild;if(b0&&/^읽는 법/.test(b0.textContent.trim())&&p.firstChild===b0)b0.remove();p.innerHTML=p.innerHTML.replace(/^\s*읽는 법\s*[:·—-]?\s*/,'');
- var old=p.nextElementSibling;if(old&&/(u-more|o-more)/.test(old.className))old.remove();p.classList.remove('u-clamp','o-clamp','op');
- var b=document.createElement('button');b.type='button';b.className='rd-btn';b.innerHTML='이렇게 읽습니다 <span>눌러서 펼치기</span>';p.parentNode.insertBefore(b,p);p.classList.add('rd-body');
- b.onclick=function(){var o=!b.classList.contains('op');b.classList.toggle('op',o);p.classList.toggle('op',o);b.querySelector('span').textContent=o?'접기':'눌러서 펼치기'}}
-function fx(){document.querySelectorAll('p.how,p[class$="-how"],.ot-card .how,p.sp-how').forEach(mk);
- document.querySelectorAll('p,div.note').forEach(function(p){if(p.dataset.rd||p.children.length>12)return;var t=p.textContent.trim();if(/^읽는 법\s*[:·—]/.test(t)||(p.firstElementChild&&p.firstElementChild.tagName==='B'&&p.firstElementChild.textContent.trim()==='읽는 법'&&p.firstChild===p.firstElementChild))mk(p)})}
-var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})();
-try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}catch(e){}})();
-</script>
+(function(){var q=0,n=0,t0=0,busy=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(busy)return;var now=Date.now();if(now-t0>300){t0=now;n=0}if(++n>8){if(!q){q=1;setTimeout(function(){q=0;go()},120)}return}busy=1;try{go()}finally{busy=0}}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();</script><script data-pergo>(function(){var m=(location.search||'').match(/per=(1d|1w|1m|3m|1y|5y|10y)/);if(!m)return;var L={'1d':'1일','1w':'1주','1m':'1달','3m':'3달','1y':'1년','5y':'5년','10y':'10년'}[m[1]];try{window.__mmT=window.__mmT||{};window.__mmT.per=m[1]}catch(e){}var k=0;(function go(){var b=[...document.querySelectorAll('button')].find(function(x){return x.textContent.trim()===L&&x.offsetParent});if(b){if(b.getAttribute('aria-pressed')!=='true'&&!b.classList.contains('on'))b.click();if(++k<4)setTimeout(go,500);return}if(++k<30)setTimeout(go,300)})()})();</script>

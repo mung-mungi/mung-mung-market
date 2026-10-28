@@ -290,14 +290,15 @@ function mmtChart(box, pts, base, cur, intra, opt){ opt=opt||{}; var OV=opt.ov||
   var path=pts.map(function(a,i){return (i?'L':'M')+sx(a[0]).toFixed(1)+','+sy(a[1]).toFixed(1)}).join('');
   var iMax=0,iMin=0; pts.forEach(function(a,i){ if(a[1]>pts[iMax][1])iMax=i; if(a[1]<pts[iMin][1])iMin=i; });
   var lab=function(i,top){ var a=pts[i], x=sx(a[0]), y=sy(a[1]), anc=x<W*0.2?'start':x>W*0.8?'end':'middle';
-    return '<circle cx="'+x+'" cy="'+y+'" r="3" fill="'+col+'" opacity=".55"/><text x="'+x+'" y="'+(top?y-9:y+17)+'" font-size="11.5" fill="'+col+'" text-anchor="'+anc+'">'+(top?'최고 ':'최저 ')+mmtFmt(a[1],cur)+'</text>'; };
+    var lc=(base!=null)?(a[1]>=base?'#e0423a':'#3a6fe0'):col;
+    return '<circle cx="'+x+'" cy="'+y+'" r="3" fill="'+lc+'" opacity=".55"/><text x="'+x+'" y="'+(top?y-9:y+17)+'" font-size="11.5" fill="'+lc+'" text-anchor="'+anc+'">'+(top?'최고 ':'최저 ')+mmtFmt(a[1],cur)+'</text>'; };
   var s='<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:'+(LAND?H+'px':'auto')+';display:block;touch-action:none">';
   if(intra){ s+='<rect x="'+sx(intra.rs)+'" y="'+m.t+'" width="'+(sx(intra.re)-sx(intra.rs))+'" height="'+(H-m.t-m.b)+'" fill="#000" opacity=".025"/>'
      +'<text x="'+sx(intra.rs)+'" y="'+(H-8)+'" font-size="10.5" fill="#9a978f" text-anchor="middle">'+mmtKst(intra.rs)+' 개장</text><text x="'+sx(intra.re)+'" y="'+(H-8)+'" font-size="10.5" fill="#9a978f" text-anchor="middle">'+mmtKst(intra.re)+' 마감</text>'; }
   // 눈금(사용자 2026-10-29): 오른쪽 가격 3~4개, 아래 날짜 3~4개 — 옅게
   (function(){ var span=hi-lo, raw=span/7, p=Math.pow(10,Math.floor(Math.log10(raw))), st=[1,2,2.5,5,10].map(function(k){return k*p}).filter(function(k){return k>=raw*0.75})[0]||raw;
     var CY=RG?[sy(RG.up(RG.tb)),sy(RG.dn(RG.tb))].map(function(y){return (y<m.t||y>H-m.b)?-99:y}):[];
-    for(var v=Math.ceil(lo/st)*st; v<=hi; v+=st){ var y=sy(v); if(y<m.t+6||y>H-m.b-4) continue; if(CY.some(function(c){return Math.abs(c-y)<13})){ s+='<line x1="'+m.l+'" x2="'+(W-m.r+4)+'" y1="'+y+'" y2="'+y+'" stroke="#ece9e2" stroke-width="1"/>'; continue; }
+    for(var v=Math.ceil(lo/st)*st; v<=hi; v+=st){ var y=sy(v); if(y<m.t+6||y>H-m.b-4) continue; if(CY.some(function(c){return Math.abs(c-y)<13})||(base!=null&&Math.abs(sy(base)-y)<12)){ s+='<line x1="'+m.l+'" x2="'+(W-m.r+4)+'" y1="'+y+'" y2="'+y+'" stroke="#ece9e2" stroke-width="1"/>'; continue; }
       s+='<line x1="'+m.l+'" x2="'+(W-m.r+4)+'" y1="'+y+'" y2="'+y+'" stroke="#ece9e2" stroke-width="1"/><text x="'+(W-2)+'" y="'+(y+4)+'" font-size="10.5" fill="#a29f97" text-anchor="end">'+mmtTick(v,cur,st)+'</text>'; }
     if(!intra){ var sp=(t1-t0)/86400; for(var k=0;k<4;k++){ var t=t0+(t1-t0)*(k+0.5)/4, d=new Date(t*1000+9*3600000), lb=sp<=100?(d.getUTCMonth()+1)+'/'+d.getUTCDate():sp<=400?(d.getUTCFullYear()%100)+'.'+(d.getUTCMonth()+1):(d.getUTCFullYear())+'';
       s+='<text x="'+sx(t)+'" y="'+(H-8)+'" font-size="10.5" fill="#a29f97" text-anchor="middle">'+lb+'</text>'; } }
@@ -323,13 +324,18 @@ function mmtChart(box, pts, base, cur, intra, opt){ opt=opt||{}; var OV=opt.ov||
        +(CY[1]<0?'':'<text x="'+(W-2)+'" y="'+(CY[1]+4)+'" font-size="10" font-weight="700" fill="#2f8a4c" text-anchor="end">'+mmtTick(Db,cur,(hi-lo)/40)+'</text>')
        +'<text x="'+(m.l+2)+'" y="'+(m.t-9)+'" font-size="11" font-weight="700" fill="#6b675f">'+(RG.dir<0?'하락 추세 ↘':'상승 추세 ↗')+' <tspan font-weight="500">'+mmtKst(RG.ta,true).replace(/^\d+\./,'').replace('.','/')+' '+(RG.dir<0?'고점':'저점')+'부터</tspan></text>'; }
   })();
-  if(base!=null) s+='<line x1="'+m.l+'" x2="'+(W-m.r)+'" y1="'+sy(base)+'" y2="'+sy(base)+'" stroke="#c9c6bf" stroke-dasharray="2 4" stroke-width="1"/>';
+  // 기준선(1일은 어제 종가, 그 밖은 기간 시작가): 또렷하게 + 값 표시. 선은 위는 빨강·아래는 파랑(양전·음전, 사용자 2026-10-29)
+  var yB=base!=null?sy(base):null; if(yB!=null&&yB>m.t-2&&yB<H-m.b+2) s+='<line x1="'+m.l+'" x2="'+(W-m.r+2)+'" y1="'+yB+'" y2="'+yB+'" stroke="#9a978f" stroke-dasharray="4 3" stroke-width="1" opacity=".8"/><text x="'+(W-2)+'" y="'+(yB+4)+'" font-size="10" font-weight="700" fill="#6b675f" text-anchor="end">'+(intra?'전일 ':'시작 ')+mmtTick(base,cur,(hi-lo)/40)+'</text>';
   if(CD){ var bw=Math.max(1,Math.min(9,(W-m.l-m.r)/CD.length*0.62));
     CD.forEach(function(c){ var x=sx(c[0]), u=c[4]>=c[1], cc=u?'#e0423a':'#3a6fe0', yo=sy(c[1]), yc=sy(c[4]);
       s+='<line x1="'+x+'" x2="'+x+'" y1="'+sy(c[2])+'" y2="'+sy(c[3])+'" stroke="'+cc+'" stroke-width="1"/><rect x="'+(x-bw/2)+'" y="'+Math.min(yo,yc)+'" width="'+bw+'" height="'+Math.max(1,Math.abs(yc-yo))+'" fill="'+cc+'"/>'; });
     var jX=0,jN=0; CD.forEach(function(c,i){ if(c[2]>CD[jX][2])jX=i; if(c[3]<CD[jN][3])jN=i; });
     var lab2=function(c,top){ var x=sx(c[0]), v=top?c[2]:c[3], y=sy(v), anc=x<W*0.2?'start':x>W*0.8?'end':'middle'; return '<text x="'+x+'" y="'+(top?y-7:y+15)+'" font-size="11.5" fill="'+(top?'#e0423a':'#3a6fe0')+'" text-anchor="'+anc+'">'+(top?'최고 ':'최저 ')+mmtFmt(v,cur)+'</text>'; };
     s+=lab2(CD[jX],true)+lab2(CD[jN],false); }
+  else if(yB!=null){ var cid='mmb'+Math.random().toString(36).slice(2,7);
+    s+='<clipPath id="'+cid+'u"><rect x="0" y="0" width="'+W+'" height="'+Math.max(0,yB)+'"/></clipPath><clipPath id="'+cid+'d"><rect x="0" y="'+yB+'" width="'+W+'" height="'+Math.max(0,H-yB)+'"/></clipPath>'
+     +'<path d="'+path+'" fill="none" stroke="#e0423a" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#'+cid+'u)"/>'
+     +'<path d="'+path+'" fill="none" stroke="#3a6fe0" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#'+cid+'d)"/>'+lab(iMax,true)+lab(iMin,false); }
   else s+='<path d="'+path+'" fill="none" stroke="'+col+'" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>'+lab(iMax,true)+lab(iMin,false);
   s+=''
    +(CD?'':'<circle cx="'+sx(last[0])+'" cy="'+sy(last[1])+'" r="4.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>')
