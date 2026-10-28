@@ -152,6 +152,7 @@ HITS = ('<style data-hits>body .hits{display:flex!important;flex-wrap:wrap!impor
 
 
 def tidy_hits(s):
+    s = tidy_ups(s)
     if 'data-hits' in s or 'id="hits"' not in s:
         return s
     return s.replace('</body>', HITS + '</body>', 1) if '</body>' in s else s + HITS
@@ -172,3 +173,27 @@ def tidy_ibdrag(s):
     if 'data-ibdrag' in s or 'class="ib"' not in s:
         return s
     return s.replace('</body>', IBDRAG + '</body>', 1) if '</body>' in s else s + IBDRAG
+
+
+# 실적 결과 '이번 주 발표 예정': 날짜 아래 구간(새벽 장후·아시아·저녁 장전)마다 한 줄씩, 글자 모양 하나로 통일(사용자 2026-10-29 — 산만함 정리)
+UPS = (r'''<style data-ups>body .ups{gap:0!important}body .ups .ud{display:block!important;padding:7px 0!important}'''
+       r'''body .ups .ud>em{display:block;width:auto!important;font:800 13px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:var(--accent)!important;margin:0 0 3px}'''
+       r'''body .ups .ur{display:grid;grid-template-columns:4.6em 1fr;gap:6px;align-items:baseline;padding:2px 0}'''
+       r'''body .ups .ud .ur>.slot,body .ups .ud .ur>.slot.pre,body .ups .ud .ur>.slot.post,body .ups .ud .ur>.slot.asia{all:unset!important;font:700 11.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:var(--muted)!important;white-space:nowrap!important}'''
+       r'''body .ups .ud .ur>.slot.pre{color:var(--accent)!important}'''
+       r'''body .ups .un{display:flex;flex-wrap:wrap;gap:1px 9px}'''
+       r'''body .ups .un>*{all:unset;font:500 13.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:var(--faint,#9a978f);white-space:nowrap}'''
+       r'''body .ups .un>button{color:var(--fg);font-weight:700;cursor:pointer}'''
+       r'''body .ups .un>button i{font-style:normal;font-size:11px;color:var(--up);margin-left:2px}</style>'''
+       r'''<script data-ups>(function(){function fix(){var u=document.getElementById('ups');if(!u)return;u.querySelectorAll('.ud').forEach(function(d){if(d.dataset.tidy)return;d.dataset.tidy=1;'''
+       r'''var kids=[].slice.call(d.childNodes),row=null,names=null;kids.forEach(function(n){if(n.nodeType===1&&n.tagName==='EM')return;'''
+       r'''if(n.nodeType===1&&n.classList.contains('slot')){row=document.createElement('div');row.className='ur';names=document.createElement('div');names.className='un';row.appendChild(n);row.appendChild(names);d.appendChild(row);return}'''
+       r'''if(n.nodeType!==1){if(n.textContent.trim()==='')n.remove();return}if(!names){row=document.createElement('div');row.className='ur';row.appendChild(document.createElement('span'));names=document.createElement('div');names.className='un';row.appendChild(names);d.appendChild(row)}'''
+       r'''if(n.tagName==='SPAN')n.textContent=n.textContent.replace(/\s*·\s*$/,'');if(n.tagName==='BUTTON'&&/✓/.test(n.textContent)){n.textContent=n.textContent.replace(/\s*✓\s*/,'');var c=document.createElement('i');c.textContent='✓';n.appendChild(c)}names.appendChild(n)})})}'''
+       r'''var k=0;(function go(){fix();var u=document.getElementById('ups');if(u&&!u.__mo){u.__mo=1;new MutationObserver(function(){fix()}).observe(u,{childList:true})}if(++k<20&&!(u&&u.children.length))setTimeout(go,300)})()})();</script>''')
+
+
+def tidy_ups(s):
+    if 'data-ups' in s or 'id="ups"' not in s:
+        return s
+    return s.replace('</body>', UPS + '</body>', 1) if '</body>' in s else s + UPS
