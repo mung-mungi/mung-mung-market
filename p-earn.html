@@ -26,7 +26,7 @@ html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
   });
 })();
 </script>
-<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610282351">(function(){var me="202610282351";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 결과</title>
+<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610290004">(function(){var me="202610290004";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 결과</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
@@ -519,6 +519,77 @@ var q=0;function later(){if(q)return;q=1;requestAnimationFrame(function(){q=0;fi
 document.addEventListener('click',function(){setTimeout(fix,0);setTimeout(fix,120)},true);
 try{new MutationObserver(later).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['class']})}catch(e){}
 window.addEventListener('load',fix);setTimeout(fix,600);setTimeout(fix,2000);
+})();</script>
+<style data-hero2>
+/* 페이지 머리 2판 — 사용자 2026-10-28 지시: 시세 보드에서 정한 모양(파스텔 배너 + 유리 숫자칸 + 상황별 멍뭉이)을 전 페이지에. 요약 문장은 배너 아래 흰 카드로 */
+.mm-hero.mm-hx{display:grid!important;grid-template-columns:auto 1fr!important;grid-auto-rows:auto!important;column-gap:14px!important;row-gap:0!important;align-items:center!important;align-content:center!important;position:relative!important;overflow:hidden!important;min-height:104px!important;padding:14px 92px 14px 14px!important;margin:0 0 12px!important;border-radius:22px!important;
+background:radial-gradient(120% 90% at 0% 0%,#ffe9c4 0%,transparent 55%),radial-gradient(90% 90% at 100% 0%,#fde2d6 0%,transparent 55%),radial-gradient(100% 100% at 100% 100%,#dff1e2 0%,transparent 60%),#fffaf1!important;border:1px solid rgba(255,255,255,.9)!important;box-shadow:0 4px 0 rgba(30,22,8,.06),0 12px 26px rgba(30,22,8,.08)!important}
+.mm-hero.mm-hx>*{grid-column:2!important;min-width:0}
+.mm-hero.mm-hx>.hx-side{grid-column:1!important;grid-row:1/span 3!important;display:grid!important;place-content:center;text-align:center;align-self:stretch;width:68px;min-height:76px;border-radius:15px;background:rgba(255,255,255,.7);color:#a26a0c;border:1px solid rgba(162,106,12,.25);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 3px 0 rgba(140,95,20,.1),0 6px 14px rgba(140,95,20,.12);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+.mm-hx .hx-side b{display:block;font-size:24px;line-height:1.05;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}.mm-hx .hx-side b.ic{font-size:30px;line-height:1.1}.mm-hx .hx-side small{display:block;font-size:11px;font-weight:700;margin-top:2px}
+.mm-hero.mm-hx>.hx-cat{position:absolute!important;right:2px;bottom:-30px;height:132px;width:auto;max-width:none;pointer-events:none;filter:drop-shadow(0 3px 6px rgba(80,50,10,.16));grid-column:auto!important}
+.mm-hero.mm-hx>.mm-eb{display:block!important;margin:0!important;font:800 12px/1.3 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;letter-spacing:.16em!important;color:#a26a0c!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mm-hero.mm-hx>.mm-eb i{display:none!important}
+.mm-hero.mm-hx>h1.mm-h1{margin:2px 0 4px!important;padding:0!important;border:0!important;font:900 clamp(25px,7.4vw,32px)/1.15 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;letter-spacing:-.035em!important;color:#141210!important;text-wrap:balance}
+.mm-hero.mm-hx>h1.mm-h1::after{display:none!important}
+.mm-hero.mm-hx>.hx-meta{display:flex!important;align-items:center;gap:6px;margin:0!important;font:600 13px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;color:#6b675f}
+.mm-hx .hx-meta>i{flex:none;width:7px;height:7px;border-radius:50%;background:#2f9a4c;box-shadow:0 0 0 3px rgba(47,154,76,.18)}
+.mm-hx .hx-meta>span{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:2;margin:0!important;padding:0!important;border:0!important;background:none!important;color:inherit!important;font:inherit!important;letter-spacing:0!important;min-width:0;overflow:hidden}
+.mm-hero.mm-hx>.mm-chip,.mm-hero.mm-hx>.hx-meta.hx-off{display:none!important}
+.mm-hero.mm-hx>img.hx-cat{display:block!important}
+.mm-take.hx-card{display:block!important;margin:0 0 16px!important;padding:14px 16px 13px!important;border-radius:16px!important;background:#fff!important;border:1px solid rgba(0,0,0,.06)!important;box-shadow:0 3px 0 rgba(30,22,8,.08),0 8px 18px rgba(30,22,8,.08)!important;font:400 16px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;color:#1d1c1a!important;text-wrap:pretty}
+.mm-take.hx-card b,.mm-take.hx-card strong{font-weight:700!important}
+.mm-take.hx-card .mm-chipx{display:flex!important;width:max-content!important;max-width:100%;margin:0 0 6px!important;padding:2px 9px!important;border:1px solid rgba(162,106,12,.4)!important;border-radius:999px!important;background:rgba(162,106,12,.06)!important;color:#8a5a08!important;font:700 12px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important}
+.mm-take.hx-card::before{content:"오늘 한눈에";display:block;font:800 12px/1.3 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;letter-spacing:.06em;color:#a26a0c;margin-bottom:6px}
+@media (min-width:760px){.mm-hero.mm-hx{padding-right:150px!important;min-height:128px!important}.mm-hero.mm-hx>.hx-cat{height:170px;bottom:-38px;right:14px}}
+</style>
+<script data-hero2>(function(){
+// 페이지별: 짧은 제목 · 영문 머리말 · 멍뭉이 동작 · 숫자칸(값을 글에서 뽑거나, 없으면 아이콘)
+var CFG={
+ 'p-earn':{t:'실적 결과',en:'EARNINGS',cat:'earn',ic:'📑',lb:'실적 노트'},
+ 'p-cal':{t:'실적 캘린더',en:'EARNINGS CALENDAR',cat:'cal',ic:'🗓️',lb:'이번 주'},
+ 'p-qtr':{t:'분기별 실적 추이',en:'QUARTERLY',cat:'earn',ic:'📈',lb:'분기'},
+ 'p-capex':{t:'빅테크 설비투자',en:'BIG TECH CAPEX',cat:'capex',ic:'🏗️',lb:'설비투자'},
+ 'p-targets':{t:'목표주가',en:'PRICE TARGETS',cat:'target',ic:'🎯',lb:'목표가',re:/상향\s*([\d,]+)\s*건/,rl:'1년 상향'},
+ 'p-opt':{t:'옵션 온도계',en:'OPTIONS',cat:'opt',ic:'🌡️',lb:'온도',re:/VIX\s*([\d.]+)/,rl:'VIX'},
+ 'p-lights':{t:'시장 경고등',en:'MARKET LIGHTS',cat:'lights',ic:'🚦',lb:'경고등',re:/불\s*(\d+)\s*\/\s*10/,rl:'/10 켜짐',body:1},
+ 'p-bond':{t:'채권·금리',en:'BONDS & RATES',cat:'fx',ic:'🏦',lb:'금리'},
+ 'p-fx':{t:'원·달러 환율',en:'USD / KRW',cat:'fx',ic:'💱',lb:'환율',re:/달러당\s*([\d,]+)/,rl:'원'},
+ 'p-brief':{t:'데일리 시황',en:'DAILY BRIEF',cat:'brief',ic:'📰',lb:'아침'},
+ 'p-econ':{t:'경제지표',en:'MACRO CALENDAR',cat:'cal',ic:'📊',lb:'지표'},
+ 'p-policy':{t:'정책·지정학',en:'GEOPOLITICS',cat:'globe',ic:'🌐',lb:'정책'},
+ 'p-tech':{t:'AI·테크 행사',en:'TECH EVENTS',cat:'wafer',ic:'🎤',lb:'행사'},
+ 'p-supply':{t:'아시아 반도체 수출',en:'ASIA SUPPLY',cat:'wafer',ic:'🚢',lb:'수출'},
+ 'p-neo':{t:'네오클라우드 신용',en:'NEOCLOUD',cat:'magnify',ic:'☁️',lb:'신용'},
+ 'p-insider':{t:'내부자·기관 보유',en:'INSIDERS',cat:'magnify',ic:'🕵️',lb:'수급'},
+ 'p-short':{t:'공매도 추이',en:'SHORT INTEREST',cat:'magnify',ic:'🐻',lb:'공매도'},
+ 'p-trend':{t:'차트 길잡이',en:'CHART GUIDE',cat:'trend',ic:'🧭',lb:'지지·저항'}
+};
+var key=(location.pathname.split('/').pop()||'').replace(/\.html$/,'');var C=CFG[key];if(!C)return;
+function badge(c,side){
+  if(!C.re){return}
+  var src=C.body?document.body.innerText:(document.querySelector('.mm-take')||{}).textContent||'';var m=src&&src.match(C.re);
+  if(m){side.innerHTML='<b></b><small></small>';side.firstChild.textContent=m[1];side.lastChild.textContent=C.rl;}
+}
+function run(){
+  var c=document.querySelector('.mm-hero');if(!c||c.classList.contains('pb-hx'))return;
+  var h=c.querySelector('h1.mm-h1');if(!h)return;
+  if(!c.classList.contains('mm-hx')){
+    c.classList.add('mm-hx');
+    if(!h.title)h.title=h.textContent.trim();h.textContent=C.t;document.title=document.title||C.t;
+    var eb=c.querySelector(':scope>.mm-eb');if(!eb){eb=document.createElement('p');eb.className='mm-eb';c.insertBefore(eb,h)}eb.textContent=C.en;
+    var side=document.createElement('div');side.className='hx-side';side.setAttribute('aria-hidden','true');side.innerHTML='<b class="ic"></b><small></small>';side.firstChild.textContent=C.ic;side.lastChild.textContent=C.lb;c.insertBefore(side,c.firstChild);
+    var img=document.createElement('img');img.className='hx-cat';img.alt='';img.setAttribute('aria-hidden','true');img.src='img/cat-'+C.cat+'.webp?v=1';img.onerror=function(){img.remove()};c.appendChild(img);
+    var meta=document.createElement('p');meta.className='hx-meta';meta.innerHTML='<i></i>';h.after(meta);
+  }
+  var meta=c.querySelector(':scope>.hx-meta'),chip=c.querySelector(':scope>.mm-chip');
+  if(chip&&meta){var sp=meta.querySelector('span');if(!sp){sp=document.createElement('span');meta.appendChild(sp)}var ct=chip.textContent.trim();if(sp.textContent!==ct)sp.textContent=ct}
+  if(meta)meta.classList.toggle('hx-off',!meta.querySelector('span'));
+  var tk=c.querySelector(':scope>.mm-take');if(tk){c.after(tk);}
+  tk=document.querySelector('.mm-take');if(tk)tk.classList.add('hx-card');
+  var s=c.querySelector(':scope>.hx-side');if(s)badge(c,s);
+}
+run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);[300,900,1600,2600,4000].forEach(function(t){setTimeout(run,t)});
 })();</script>
 </body></html>
 <script>

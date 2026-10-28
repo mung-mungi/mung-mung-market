@@ -44,6 +44,10 @@ for f in glob.glob(os.path.join(src, '*.html')):
     HERO = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'hero.html'), encoding='utf-8').read()
     s = re.sub(r'<style data-hero>[\s\S]*?</style>\s*<script data-hero>[\s\S]*?</script>\s*(?:<script data-hero-fix>[\s\S]*?</script>\s*)?', '', s)
     s = s.replace('</body>', HERO + '</body>', 1) if '</body>' in s else s + HERO
+    if os.path.basename(f).startswith('p-'):  # 머리 2판(파스텔 배너+멍뭉이) — 사용자 2026-10-28 지시
+        H2 = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'hero2.html'), encoding='utf-8').read()
+        s = re.sub(r'<style data-hero2>[\s\S]*?</style>\s*<script data-hero2>[\s\S]*?</script>\s*', '', s)
+        s = s.replace('</body>', H2 + '</body>', 1) if '</body>' in s else s + H2
     if not re.match(r'\s*<!doctype', s, re.I):
         s = '<!doctype html>' + s
     if 'name="robots"' not in s:
