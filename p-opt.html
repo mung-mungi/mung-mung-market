@@ -25,7 +25,7 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
 .ib .tg{flex:none;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--ib-fa,#9a978f);padding-left:8px;border-left:1px solid var(--ib-line,rgba(11,11,11,.1));margin-left:2px}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}}
 :root[data-theme="dark"]{--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}
-</style><script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script><script>window.__PAGE__={"page": "opt", "ds": ["earnings_moves", "putcall", "term", "vix_daily", "vix_futures", "vix_ratio", "qqq_px", "lights_log"], "params": {}};window.__SYNC__="202610280842";</script><script src="shim.js"></script></head><body class="ibody"><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html">경고등</a><a href="p-brief.html">데일리 시황</a><a href="p-earn.html">실적 결과</a><a href="p-prices.html">시세 보드</a><a href="p-targets.html">목표주가</a><a href="p-opt.html" aria-current="page">옵션 온도계</a><a href="p-bond.html">채권·금리</a><a href="p-cal.html">실적 캘린더</a><a href="p-econ.html">경제지표</a><span class="tg">흐름</span><a href="p-trend.html">차트 길잡이</a><a href="p-short.html">공매도</a><a href="p-fx.html">환율</a><a href="p-capex.html">설비투자</a><a href="p-policy.html">정책·지정학</a><a href="p-tech.html">테크 행사</a><span class="tg">점검</span><a href="p-supply.html">한국·대만</a><a href="p-neo.html">네오클라우드</a><a href="p-qtr.html">분기 실적</a><a href="p-insider.html">내부자·기관</a></nav><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script><div id="dash-root" data-dash-state="loading"><style>
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script><script>window.__PAGE__={"page": "opt", "ds": ["earnings_moves", "putcall", "term", "vix_daily", "vix_futures", "vix_ratio", "qqq_px", "lights_log"], "params": {}};window.__SYNC__="202610281922";</script><script src="shim.js"></script></head><body class="ibody"><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html">경고등</a><a href="p-brief.html">데일리 시황</a><a href="p-earn.html">실적 결과</a><a href="p-prices.html">시세 보드</a><a href="p-targets.html">목표주가</a><a href="p-opt.html" aria-current="page">옵션 온도계</a><a href="p-bond.html">채권·금리</a><a href="p-cal.html">실적 캘린더</a><a href="p-econ.html">경제지표</a><span class="tg">흐름</span><a href="p-trend.html">차트 길잡이</a><a href="p-short.html">공매도</a><a href="p-fx.html">환율</a><a href="p-capex.html">설비투자</a><a href="p-policy.html">정책·지정학</a><a href="p-tech.html">테크 행사</a><span class="tg">점검</span><a href="p-supply.html">한국·대만</a><a href="p-neo.html">네오클라우드</a><a href="p-qtr.html">분기 실적</a><a href="p-insider.html">내부자·기관</a></nav><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script><div id="dash-root" data-dash-state="loading"><style>
 .ot-wrap,.ot-tip{--cds-font-size-caption:14.5px;--cds-font-size-body:17px;--cds-font-size-heading:19.5px;--cds-font-size-title:30.5px}
 .ot-wrap{font-family:var(--font-anthropic-sans);display:flex;flex-direction:column;gap:var(--cds-gap-lg);max-width:1100px;margin-inline:auto;word-break:keep-all;position:relative}
 .ot-mast{display:flex;flex-direction:column;gap:10px;padding:6px 0 4px;word-break:keep-all}
@@ -77,6 +77,9 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
 .up{color:var(--color-ok)}.dn{color:var(--color-bad)}.mu{color:var(--color-fg-muted)}.wn{color:var(--color-warn)}
 [data-dash-source-state=empty]{color:transparent}
 [data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
+.ot-seg{display:inline-flex;gap:0;border:1px solid var(--color-border-line);border-radius:999px;overflow:hidden;align-self:flex-start}
+.ot-seg button{font:inherit;font-size:var(--cds-font-size-caption);padding:5px 14px;border:0;background:transparent;color:var(--color-fg-muted);cursor:pointer}
+.ot-seg button[aria-pressed=true]{background:var(--color-fg);color:var(--color-bg);font-weight:600}
 </style>
 <style id="bt-css">
 .bt-card{margin:10px 0 14px;padding:12px 14px;border-radius:12px;border:1px solid var(--color-border-line);background:var(--color-panel);border-left:5px solid var(--btc,var(--color-fg-muted))}
@@ -138,10 +141,20 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
 
   <section class="ot-card" id="pc-card">
     <h3>풋콜 비율 · 시카고옵션거래소(CBOE) 일별</h3>
-    <p class="sub">막대 = 전체 풋콜 비율, 가는 막대 = 개별주 풋콜 비율. 점선 = 0.9(이 페이지의 경계 기준). 막대에 올리면 지수옵션 비율도 보입니다.</p>
+    <p class="sub">막대 = 전체 풋콜 비율(0.9를 넘은 날은 주황), 가는 막대 = 개별주 풋콜 비율. 점선 = 0.9(이 페이지의 경계 기준). 숫자는 마지막 날만 적고, 막대에 올리면 그날 숫자와 지수옵션 비율이 보입니다.</p>
+    <div class="ot-seg" id="pc-range" role="group" aria-label="기간"><button type="button" data-n="63" aria-pressed="true">3개월</button><button type="button" data-n="126" aria-pressed="false">6개월</button><button type="button" data-n="0" aria-pressed="false">1년</button></div>
     <div class="ot-legend" id="pc-legend" data-source="putcall"></div>
     <div class="ot-chart" id="pc-chart" data-source="putcall" style="min-height:240px"></div>
     <p class="how">읽는 법: 풋(하락 보험) 거래량을 콜(상승 베팅) 거래량으로 나눈 값입니다. 숫자가 클수록 보험을 많이 사는 것이니 <b>경계심이 높다</b>는 뜻이고, 개별주 비율이 0.5 근처로 낮으면 개별 종목에 낙관이 강한 상태입니다. 전체 비율은 2025년 이후 평균이 0.87 안팎이라 0.9를 넘으면 평소보다 조심하는 쪽, 1.0을 넘으면 꽤 겁먹은 쪽으로 읽습니다. 하루 값보다 며칠 흐름이 중요합니다.</p>
+  </section>
+
+  <section class="ot-card" id="pcq-card">
+    <h3>풋콜 5일 평균 × 나스닥100(QQQ)</h3>
+    <p class="sub">왼쪽 축 = CBOE 전체 풋콜 비율 5일 평균, 오른쪽 축 = QQQ 종가. 세로 띠 = 5일 평균이 앞뒤 10거래일 중 가장 높고 0.93 이상이었던 날(겁이 꼭지에 달했다가 풀리기 시작한 날). 띠에 올리면 그 뒤 5일·20일 QQQ 수익률이 보입니다.</p>
+    <div class="ot-legend" id="pcq-legend" data-source="pcq"></div>
+    <div class="ot-chart" id="pcq-chart" data-source="pcq" style="min-height:260px"></div>
+    <p class="ot-note" id="pcq-sum" data-source="pcq_sum" data-field="text" data-row="0">—</p>
+    <p class="how">읽는 법: 풋(하락 보험)을 몰아 사던 사람들이 보험을 내려놓기 시작하면 5일 평균이 꺾입니다. 그 꺾이는 자리 뒤에 주가가 오른 경우가 많았지만 늘 그렇지는 않습니다. 같은 자리에서 주가가 더 빠진 적도 있으니, <b>신호 하나가 아니라 VIX·기간구조와 함께</b> 보세요. CNN 공포·탐욕 지수의 풋콜 그래프도 5일 평균이지만 쓰는 계열이 공개되지 않아 숫자가 똑같지는 않습니다.</p>
   </section>
 
   <section class="ot-card" id="earn-card">
@@ -190,7 +203,7 @@ body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antia
 
   <section class="ot-card ot-src" id="src-card">
     <h3>출처</h3>
-    <p class="ot-note">VIX 일별 종가: 야후파이낸스(7/20~10/20)·인베스팅닷컴(10/21~, 10/26은 장중 값). VIX3M·VIX9D·VVIX: 야후파이낸스(최근 값은 끊김) + thetrading.tools·squawkflow·삭소뱅크 옵션 브리프(10/23). 풋콜: CBOE 일별 통계(thetrading.tools 정리, 10/23은 CBOE 페이지 직접). 실적 예상 변동: 팁랭크스·earnings-watcher·벤징가·dev.to(SIGNUM)·삭소. 실제 변동: stockanalysis.com 종가. 각 행의 source 열에 링크가 있습니다.</p>
+    <p class="ot-note">VIX 일별 종가: 야후파이낸스(7/20~10/20)·인베스팅닷컴(10/21~, 10/26은 장중 값). VIX3M·VIX9D·VVIX: 야후파이낸스(최근 값은 끊김) + thetrading.tools·squawkflow·삭소뱅크 옵션 브리프(10/23). 풋콜: CBOE 일별 통계(thetrading.tools 정리, 10/23은 CBOE 페이지 직접). QQQ 종가: 야후파이낸스(풋콜 5일 평균 겹침 차트). 실적 예상 변동: 팁랭크스·earnings-watcher·벤징가·dev.to(SIGNUM)·삭소. 실제 변동: stockanalysis.com 종가. 각 행의 source 열에 링크가 있습니다.</p>
     <a href="https://finance.yahoo.com/quote/%5EVIX/history/" target="_blank" rel="noopener">finance.yahoo.com/quote/^VIX/history</a>
     <a href="https://www.investing.com/indices/volatility-s-p-500-historical-data" target="_blank" rel="noopener">investing.com/indices/volatility-s-p-500-historical-data</a>
     <a href="https://www.thetrading.tools/vix-term-structure" target="_blank" rel="noopener">thetrading.tools/vix-term-structure</a>
@@ -367,31 +380,100 @@ function drawFut(){
   F.forEach(r=>tickText(svg,x(r.mo),H-8,r.mo.slice(2).replace('-','.')+'월','middle'));
 }
 
+let pcN=63;
+document.querySelectorAll('#pc-range button').forEach(b=>b.addEventListener('click',()=>{pcN=Number(b.dataset.n);document.querySelectorAll('#pc-range button').forEach(o=>o.setAttribute('aria-pressed',o===b?'true':'false'));drawPC()}));
 function drawPC(){
   const box=$('pc-chart');box.textContent='';const lg=$('pc-legend');lg.textContent='';
   const d=dash.data('putcall');
   if(d.status==='error'){fail(box);return}
   if(d.status!=='ok'){box.classList.add('dash-skeleton');return}
   box.classList.remove('dash-skeleton');
-  const P=d.data.map(r=>({date:r.date,t:Number(r.total),e:Number(r.equity),i:Number(r.index),m:r.total_ema9==null?null:Number(r.total_ema9),note:r.note||''})).sort((a,b)=>a.date<b.date?-1:1);
+  const all=d.data.map(r=>({date:r.date,t:Number(r.total),e:Number(r.equity),i:Number(r.index),m:r.total_ema9==null?null:Number(r.total_ema9),note:r.note||''})).sort((a,b)=>a.date<b.date?-1:1);
+  const P=pcN?all.slice(-pcN):all;
   if(!P.length){fail(box,'자료 없음');return}
-  [['전체',dash.colors[0],1],['개별주',dash.colors[5],1]].forEach(([n,c])=>{const s=document.createElement('span');const i=document.createElement('i');i.style.background=c;s.appendChild(i);s.appendChild(document.createTextNode(n));lg.appendChild(s)});
-  const W=Math.max(300,box.clientWidth),H=240,m={l:40,r:14,t:14,b:28};
-  const x=d3.scaleBand().domain(P.map(r=>r.date)).range([m.l,W-m.r]).padding(.3);
+  [['전체',dash.colors[0]],['0.9 넘은 날','var(--color-warn)'],['개별주',dash.colors[5]]].forEach(([n,c])=>{const s=document.createElement('span');const i=document.createElement('i');i.style.background=c;s.appendChild(i);s.appendChild(document.createTextNode(n));lg.appendChild(s)});
+  const W=Math.max(300,box.clientWidth),H=240,m={l:40,r:40,t:14,b:28};
+  const x=d3.scaleBand().domain(P.map(r=>r.date)).range([m.l,W-m.r]).padding(P.length>130?.15:.25);
   const y=d3.scaleLinear().domain([0,Math.max(1.2,d3.max(P,r=>Math.max(r.t,r.e))+.1)]).range([H-m.b,m.t]);
   const svg=d3.select(box).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
   const ticks=y.ticks(4);svg.append('g').selectAll('line').data(ticks).join('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',v=>y(v)).attr('y2',v=>y(v)).attr('stroke','var(--cds-chart-grid)');
   ticks.forEach(v=>tickText(svg,m.l-6,y(v)+4,nf(v,1),'end'));
+  const bw=x.bandwidth(),rx=bw>8?2:0;
+  svg.append('g').selectAll('rect').data(P).join('rect').attr('x',r=>x(r.date)).attr('y',r=>y(r.t)).attr('width',bw*.62).attr('height',r=>y(0)-y(r.t)).attr('rx',rx).attr('fill',r=>r.t>=0.9?'var(--color-warn)':dash.colors[0]);
+  svg.append('g').selectAll('rect').data(P).join('rect').attr('x',r=>x(r.date)+bw*.66).attr('y',r=>y(r.e)).attr('width',bw*.34).attr('height',r=>y(0)-y(r.e)).attr('rx',rx).attr('fill',dash.colors[5]).attr('opacity',.85);
   svg.append('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y(0.9)).attr('y2',y(0.9)).attr('stroke','var(--color-warn)').attr('stroke-dasharray','5 4');
-  svg.append('text').attr('x',W-m.r).attr('y',y(0.9)-5).attr('text-anchor','end').attr('font-size',12.5).attr('fill','var(--color-warn)').text('0.9 경계');
-  const bw=x.bandwidth();
-  svg.append('g').selectAll('rect').data(P).join('rect').attr('x',r=>x(r.date)).attr('y',r=>y(r.t)).attr('width',bw*.62).attr('height',r=>y(0)-y(r.t)).attr('rx',3).attr('fill',r=>r.t>=0.9?'var(--color-warn)':dash.colors[0]);
-  svg.append('g').selectAll('rect').data(P).join('rect').attr('x',r=>x(r.date)+bw*.66).attr('y',r=>y(r.e)).attr('width',bw*.34).attr('height',r=>y(0)-y(r.e)).attr('rx',3).attr('fill',dash.colors[5]);
-  P.forEach(r=>{svg.append('text').attr('x',x(r.date)+bw*.31).attr('y',y(r.t)-5).attr('text-anchor','middle').attr('font-size',12).attr('fill','var(--color-fg)').text(nf(r.t))});
-  const step=Math.ceil(P.length/Math.max(1,Math.floor(W/56)));
-  P.forEach((r,i)=>{if(i%step===0||i===P.length-1)tickText(svg,x(r.date)+bw/2,H-8,md(r.date))});
-  svg.append('g').selectAll('rect').data(P).join('rect').attr('x',r=>x(r.date)-x.step()*.15).attr('y',m.t).attr('width',x.step()).attr('height',H-m.b-m.t).attr('fill','transparent')
-    .on('mousemove',(ev,r)=>{const L=[r.date+(r.note?' (추정일)':''),'전체 '+nf(r.t)+' · 개별주 '+nf(r.e)+' · 지수 '+nf(r.i)];if(r.m!=null)L.push('전체 9일 평균 '+nf(r.m));showTip(ev,L)}).on('mouseleave',hideTip);
+  svg.append('text').attr('x',m.l+4).attr('y',y(0.9)-5).attr('font-size',12.5).attr('fill','var(--color-warn)').text('0.9 경계');
+  const L=P[P.length-1];
+  svg.append('text').attr('x',x(L.date)+bw*.31).attr('y',y(L.t)-6).attr('text-anchor','end').attr('font-size',13).attr('font-weight',700).attr('fill','var(--color-fg)').text(nf(L.t));
+  const step=Math.ceil(P.length/Math.max(1,Math.floor(W/64)));
+  P.forEach((r,i)=>{if((i%step===0&&P.length-1-i>=step*.8)||i===P.length-1)tickText(svg,x(r.date)+bw/2,H-8,md(r.date),i===P.length-1?'end':i===0?'start':'middle')});
+  svg.append('g').selectAll('rect').data(P).join('rect').attr('x',r=>x(r.date)-(x.step()-bw)/2).attr('y',m.t).attr('width',x.step()).attr('height',H-m.b-m.t).attr('fill','transparent')
+    .on('mousemove',(ev,r)=>{const T=[r.date+(r.note?' (추정일)':''),'전체 '+nf(r.t)+' · 개별주 '+nf(r.e)+' · 지수 '+nf(r.i)];if(r.m!=null)T.push('전체 9일 평균 '+nf(r.m));showTip(ev,T)}).on('mouseleave',hideTip);
+}
+
+// 풋콜 5일 평균 × QQQ: 날짜별 5일 평균, QQQ 종가, 꼭지(앞뒤 10거래일 최고 & 0.93 이상) 표시와 그 뒤 5·20거래일 QQQ 수익률
+dash.calc('pcq',{
+  title:'풋콜 5일 평균과 QQQ',
+  description:'CBOE 전체 풋콜 비율의 5거래일 단순평균과 같은 날 QQQ 종가, 5일 평균 꼭지(앞뒤 10거래일 중 최고이며 0.93 이상)와 그 뒤 5·20거래일 QQQ 수익률(%)입니다.',
+  inputs:['putcall','qqq_px'],
+  fn:(putcall,qqq_px)=>{
+    const P=putcall.map(r=>({date:String(r.date).slice(0,10),t:Number(r.total)})).filter(r=>!isNaN(r.t)).sort((a,b)=>a.date<b.date?-1:1);
+    const Q=qqq_px.map(r=>({date:String(r.date).slice(0,10),c:Number(r.close)})).sort((a,b)=>a.date<b.date?-1:1);
+    const qi=new Map(Q.map((r,i)=>[r.date,i]));
+    const rows=P.map((r,i)=>{const w=P.slice(Math.max(0,i-4),i+1);return {date:r.date,total:r.t,avg5:w.length<5?null:Math.round(w.reduce((s,x)=>s+x.t,0)/5*1000)/1000}});
+    const fwd=(d,n)=>{const i=qi.get(d);if(i==null||i+n>=Q.length)return null;return Math.round((Q[i+n].c/Q[i].c-1)*1000)/10};
+    return rows.map((r,i)=>{
+      const w=rows.slice(Math.max(0,i-10),i+11).filter(x=>x.avg5!=null);
+      const peak=r.avg5!=null&&i>=10&&i+10<rows.length&&r.avg5>=0.93&&r.avg5===Math.max(...w.map(x=>x.avg5));
+      const i2=qi.get(r.date);
+      return {...r,qqq:i2==null?null:Q[i2].c,peak,qqq_5d:peak?fwd(r.date,5):null,qqq_20d:peak?fwd(r.date,20):null};
+    });
+  }
+});
+dash.calc('pcq_sum',{
+  title:'풋콜 꼭지 뒤 QQQ 요약',
+  description:'풋콜 5일 평균 꼭지 날짜 수와, 그 뒤 5거래일·20거래일에 QQQ가 오른 횟수입니다.',
+  inputs:['pcq'],
+  fn:(pcq)=>{
+    const pk=pcq.filter(r=>r.peak);const a=pk.filter(r=>r.qqq_5d!=null),b=pk.filter(r=>r.qqq_20d!=null);
+    const md=d=>d.slice(5).replace('-','.');
+    return [{text:'최근 1년 꼭지 '+pk.length+'번('+pk.map(r=>md(r.date)).join(' · ')+'). 그 뒤 5거래일 QQQ 상승 '+a.filter(r=>r.qqq_5d>0).length+'/'+a.length+'번, 20거래일 상승 '+b.filter(r=>r.qqq_20d>0).length+'/'+b.length+'번.'}];
+  }
+});
+
+function drawPCQ(){
+  const box=$('pcq-chart');box.textContent='';const lg=$('pcq-legend');lg.textContent='';const sm=$('pcq-sum');
+  const d=dash.data('pcq'),s=dash.data('pcq_sum');
+  sm.textContent=s.status==='ok'&&s.data&&s.data[0]?s.data[0].text:'—';
+  if(d.status==='error'){fail(box);return}
+  if(d.status!=='ok'||!d.data){box.classList.add('dash-skeleton');return}
+  box.classList.remove('dash-skeleton');
+  const R=d.data.filter(r=>r.avg5!=null||r.qqq!=null);
+  if(!R.length){fail(box,'자료 없음');return}
+  const cA=dash.colors[0],cQ=dash.colors[2];
+  [['풋콜 5일 평균 (왼쪽)',cA],['QQQ 종가 (오른쪽)',cQ],['꼭지',null]].forEach(([n,c])=>{const sp=document.createElement('span');const i=document.createElement('i');if(c)i.style.background=c;else{i.style.background='var(--color-warn)';i.style.opacity=.45;i.style.height='10px';i.style.width='6px'}sp.appendChild(i);sp.appendChild(document.createTextNode(n));lg.appendChild(sp)});
+  const W=Math.max(300,box.clientWidth),H=260,m={l:40,r:48,t:14,b:28};
+  const x=d3.scalePoint().domain(R.map(r=>r.date)).range([m.l,W-m.r]).padding(.3);
+  const A=R.filter(r=>r.avg5!=null),Qr=R.filter(r=>r.qqq!=null);
+  const ya=d3.scaleLinear().domain([Math.min(0.6,d3.min(A,r=>r.avg5)-.02),Math.max(1.05,d3.max(A,r=>r.avg5)+.02)]).nice().range([H-m.b,m.t]);
+  const qe=d3.extent(Qr,r=>r.qqq);const yq=d3.scaleLinear().domain([qe[0]*.98,qe[1]*1.02]).nice().range([H-m.b,m.t]);
+  const svg=d3.select(box).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  const ticks=ya.ticks(4);
+  svg.append('g').selectAll('line').data(ticks).join('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',v=>ya(v)).attr('y2',v=>ya(v)).attr('stroke','var(--cds-chart-grid)');
+  ticks.forEach(v=>tickText(svg,m.l-6,ya(v)+4,nf(v,2),'end',cA));
+  yq.ticks(4).forEach(v=>tickText(svg,W-m.r+6,yq(v)+4,nf(v,0),'start',cQ));
+  const pk=R.filter(r=>r.peak);const bw=Math.max(6,x.step()*3);
+  svg.append('g').selectAll('rect').data(pk).join('rect').attr('x',r=>x(r.date)-bw/2).attr('y',m.t).attr('width',bw).attr('height',H-m.b-m.t).attr('fill','var(--color-warn)').attr('opacity',.18);
+  svg.append('line').attr('x1',m.l).attr('x2',W-m.r).attr('y1',ya(0.9)).attr('y2',ya(0.9)).attr('stroke','var(--color-warn)').attr('stroke-dasharray','5 4');
+  svg.append('text').attr('x',m.l+4).attr('y',ya(0.9)-5).attr('font-size',12.5).attr('fill','var(--color-warn)').text('0.9 경계');
+  svg.append('path').datum(Qr).attr('fill','none').attr('stroke',cQ).attr('stroke-width',2).attr('stroke-opacity',.85).attr('stroke-linejoin','round').attr('d',d3.line().x(r=>x(r.date)).y(r=>yq(r.qqq)));
+  svg.append('path').datum(A).attr('fill','none').attr('stroke',cA).attr('stroke-width',2.2).attr('stroke-linejoin','round').attr('stroke-linecap','round').attr('d',d3.line().x(r=>x(r.date)).y(r=>ya(r.avg5)));
+  svg.append('g').selectAll('circle').data(pk).join('circle').attr('cx',r=>x(r.date)).attr('cy',r=>ya(r.avg5)).attr('r',4).attr('fill','var(--color-warn)');
+  const step=Math.ceil(R.length/Math.max(1,Math.floor(W/64)));
+  R.forEach((r,i)=>{if((i%step===0&&R.length-1-i>=step*1.3)||i===R.length-1)tickText(svg,x(r.date),H-8,r.date.slice(2,7).replace('-','.'),i===R.length-1?'end':i===0?'start':'middle')});
+  const hw=x.step();
+  svg.append('g').selectAll('rect').data(R).join('rect').attr('x',r=>x(r.date)-hw/2).attr('y',m.t).attr('width',hw).attr('height',H-m.b-m.t).attr('fill','transparent')
+    .on('mousemove',(ev,r)=>{const L=[r.date+(r.peak?' · 꼭지':''),'풋콜 당일 '+nf(r.total)+' · 5일 평균 '+nf(r.avg5)];if(r.qqq!=null)L.push('QQQ '+nf(r.qqq));if(r.peak)L.push('그 뒤 QQQ 5일 '+(r.qqq_5d==null?'—':sg(r.qqq_5d,1,'%'))+' · 20일 '+(r.qqq_20d==null?'—':sg(r.qqq_20d,1,'%')));showTip(ev,L)}).on('mouseleave',hideTip);
 }
 
 // 실적 표: 예상·실제 변동을 글자로 정리한 행 (표의 모든 칸은 이 계산의 값 그대로)
@@ -432,7 +514,7 @@ function drawEarn(){
   });
 }
 
-dash.onData(()=>{drawTiles();drawVix();drawTerm();drawFut();drawPC();drawEarn()});
+dash.onData(()=>{drawTiles();drawVix();drawTerm();drawFut();drawPC();drawPCQ();drawEarn()});
 })();
 </script>
 <script id="bt-js">
