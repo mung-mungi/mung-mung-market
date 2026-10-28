@@ -41,6 +41,7 @@ def run(root):
         s = s.replace('</body>', LJ + '</body>', 1) if '</body>' in s else s + LJ
         if s != o: open(p, 'w', encoding='utf-8').write(s); n.append(f)
     n += fix_nav(root)
+    n += fix_hub(root)
     print('site_live', n)
 
 
@@ -72,6 +73,22 @@ def fix_nav(root):
         s = s[:k] + add + nav + s[k:]
         open(f, 'w', encoding='utf-8').write(s); done.append(me)
     return done
+
+
+def fix_hub(root):
+    # 홈 배너 멍뭉이: 배경 없는 그림을 배너 위에 얹고, '하루 6~8회 갱신' 대신 '80종목 한눈에'(사용자 2026-10-28·29 지시)
+    import base64
+    p = os.path.join(root, 'index.html')
+    if not os.path.exists(p): return []
+    s = o = open(p, encoding='utf-8').read()
+    uri = 'data:image/webp;base64,' + base64.b64encode(open(os.path.join(T, 'cat-hub.webp'), 'rb').read()).decode()
+    s = re.sub(r'<img alt="" src="data:image/jpeg;base64,[^"]+"', '<img class="bn-cat" alt="" src="' + uri + '"', s, count=1)
+    s = s.replace('.bn img{flex:none;height:100%;width:auto;max-width:42%;object-fit:cover;object-position:left top}',
+                  '.bn img{position:absolute;right:4px;bottom:-34px;height:148px;width:auto;max-width:none;pointer-events:none;filter:drop-shadow(0 4px 8px rgba(80,50,10,.16))}\n.bn .tx{padding-right:118px!important}')
+    s = s.replace(' 기준 · 하루 6~8회 갱신', ' 기준 · 80종목 한눈에')
+    if s != o: open(p, 'w', encoding='utf-8').write(s); return ['index.html']
+    return []
+
 
 if __name__ == '__main__':
     run(sys.argv[1] if len(sys.argv) > 1 else '.')
