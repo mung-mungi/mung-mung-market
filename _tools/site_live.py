@@ -41,6 +41,10 @@ def run(root):
         s = s.replace('</body>', LJ + '</body>', 1) if '</body>' in s else s + LJ
         if s != o: open(p, 'w', encoding='utf-8').write(s); n.append(f)
     n += fix_nav(root)
+    sys.path.insert(0, T); import hub_tidy as _ht
+    for f in _g_all(root):
+        s0 = open(f, encoding='utf-8').read(); s1 = _ht.tidy_ibdrag(s0)
+        if s1 != s0: open(f, 'w', encoding='utf-8').write(s1); n.append('ibdrag:' + os.path.basename(f))
     # 누름 소리: 통합본 빌더가 넣은 예전 틱을 사이트 최신본(_tools/tick.js)으로 교체(사용자 2026-10-29 — 들릴 듯 말 듯하게)
     import glob as _g
     TK = open(os.path.join(T, 'tick.js'), encoding='utf-8').read()
@@ -66,6 +70,11 @@ def run(root):
         if b != o: open(pb, 'w', encoding='utf-8').write(b); n.append('p-brief')
     print('site_live', n)
 
+
+
+def _g_all(root):
+    import glob
+    return glob.glob(os.path.join(root, '*.html'))
 
 
 def fix_nav(root):

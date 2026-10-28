@@ -155,3 +155,20 @@ def tidy_hits(s):
     if 'data-hits' in s or 'id="hits"' not in s:
         return s
     return s.replace('</body>', HITS + '</body>', 1) if '</body>' in s else s + HITS
+
+
+# 맨 위 페이지 줄(.ib): 아이패드·카톡 안 브라우저에서 옆으로 밀어도 안 움직이는 문제 → 손가락 끌기를 직접 처리(사용자 2026-10-29)
+IBDRAG = (r'''<style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y}</style>'''
+          r'''<script data-ibdrag>(function(){function on(n){if(!n||n.__drag)return;n.__drag=1;var x0,y0,s0,mode=null;'''
+          r'''n.addEventListener('touchstart',function(e){var t=e.touches[0];x0=t.clientX;y0=t.clientY;s0=n.scrollLeft;mode=null},{passive:true});'''
+          r'''n.addEventListener('touchmove',function(e){var t=e.touches[0],dx=t.clientX-x0,dy=t.clientY-y0;if(mode===null&&(Math.abs(dx)>6||Math.abs(dy)>6))mode=Math.abs(dx)>Math.abs(dy)?'x':'y';'''
+          r'''if(mode==='x'){var before=n.scrollLeft;n.scrollLeft=s0-dx;if(n.scrollLeft!==before||Math.abs(dx)>10){e.preventDefault()}}},{passive:false});'''
+          r'''n.addEventListener('touchend',function(){if(mode==='x'){var a=n.querySelectorAll('a');a.forEach(function(l){l.__noclick=Date.now()})}mode=null},{passive:true});'''
+          r'''n.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a');if(l&&l.__noclick&&Date.now()-l.__noclick<350){e.preventDefault();e.stopPropagation()}},true)}'''
+          r'''function go(){document.querySelectorAll('.ib').forEach(on)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();setTimeout(go,1500)})();</script>''')
+
+
+def tidy_ibdrag(s):
+    if 'data-ibdrag' in s or 'class="ib"' not in s:
+        return s
+    return s.replace('</body>', IBDRAG + '</body>', 1) if '</body>' in s else s + IBDRAG
