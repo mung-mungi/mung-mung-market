@@ -180,6 +180,7 @@ IBDRAG = (r'''<style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll
 
 
 def tidy_ibdrag(s):
+    s = tidy_perf(s)
     s = tidy_navorder(s)
     s = tidy_dock(s)
     s = tidy_headui(s)
@@ -455,3 +456,14 @@ def tidy_dock(s):
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-dock>' + open(os.path.join(d, 'dock.css'), encoding='utf-8').read() + '</style><script data-dock>' + open(os.path.join(d, 'dock.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+# 휴대폰 버벅임 줄이기 — _tools/perf.js를 <head> 맨 앞에(사용자 2026-10-29)
+def tidy_perf(s):
+    s = re.sub(r'<script data-perf>.*?</script>', '', s, flags=re.S)
+    js = '<script data-perf>' + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'perf.js'), encoding='utf-8').read() + '</script>'
+    m = re.search(r'<head[^>]*>', s)
+    if m:
+        return s[:m.end()] + js + s[m.end():]
+    m = re.search(r'<script', s)
+    return s[:m.start()] + js + s[m.start():] if m else js + s

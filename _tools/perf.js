@@ -1,0 +1,2 @@
+// 휴대폰 버벅임 줄이기(사용자 2026-10-29): 화면 감시 콜백을 한 프레임에 한 번으로 묶고, 탭이 안 보일 땐 쉼
+(function(){var MO=window.MutationObserver;if(!MO||MO.__thr)return;try{var T=class extends MO{constructor(cb){var q=0,self;super(function(){if(q)return;q=1;(window.requestAnimationFrame||setTimeout)(function(){q=0;if(document.hidden)return;try{cb.call(self,[],self)}catch(e){}})});self=this}};T.__thr=1;window.MutationObserver=T}catch(e){}})();
