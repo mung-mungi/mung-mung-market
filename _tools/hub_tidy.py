@@ -182,6 +182,7 @@ IBDRAG = (r'''<style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll
 def tidy_ibdrag(s):
     s = tidy_navorder(s)
     s = tidy_headui(s)
+    s = tidy_rdbox(s)
     if 'data-ibdrag' in s or 'class="ib"' not in s:
         return s
     return s.replace('</body>', IBDRAG + '</body>', 1) if '</body>' in s else s + IBDRAG
@@ -431,4 +432,14 @@ def tidy_uni(s):
         k = '<style data-krtable>' + open(os.path.join(d, 'krtable.css'), encoding='utf-8').read() + '</style><script data-krtable>' + open(os.path.join(d, 'krtable.js'), encoding='utf-8').read() + '</script>'
         s = s.replace('</body>', k + '</body>', 1) if '</body>' in s else s + k
     add = '<style data-uniui>' + open(os.path.join(d, 'uniui.css'), encoding='utf-8').read() + '</style><script data-uniui>' + open(os.path.join(d, 'uniui.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+# '읽는 법' 상자 통일 — _tools/rdbox.css·rdbox.js (사용자 2026-10-29)
+def tidy_rdbox(s):
+    s = re.sub(r'<(style|script) data-rdbox>.*?</\1>', '', s, flags=re.S)
+    if 'class="ib"' not in s:
+        return s
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-rdbox>' + open(os.path.join(d, 'rdbox.css'), encoding='utf-8').read() + '</style><script data-rdbox>' + open(os.path.join(d, 'rdbox.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add

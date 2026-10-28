@@ -11,7 +11,7 @@ for f, fn in M.items():
     if a != o: open(p, 'w', encoding='utf-8').write(a); print('tidy', f)
 import glob as _g
 for p in _g.glob(os.path.join(R, 'p-*.html')):
-    o = open(p, encoding='utf-8').read(); a = h.tidy_navorder(h.tidy_headui(o))
+    o = open(p, encoding='utf-8').read(); a = h.tidy_rdbox(h.tidy_navorder(h.tidy_headui(o)))
     if a != o: open(p, 'w', encoding='utf-8').write(a)
 for f in h.UNI_PAGES:
     p = os.path.join(R, f)

@@ -1,0 +1,6 @@
+body .rd-btn{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:8px;width:100%;margin:10px 0 0;padding:8px 12px;border:1px solid rgba(11,11,11,.1);border-radius:10px;cursor:pointer;font:700 15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b;background:#fff}
+body .rd-btn::before{content:"▸";color:#9a6200;font-size:13px}body .rd-btn.op::before{content:"▾"}
+body .rd-btn span{font:500 12.5px/1.4 -apple-system,sans-serif;color:#6f6d68}
+body .rd-btn.op{border-radius:10px 10px 0 0;border-bottom-style:dashed}
+body .rd-body:not(.op){display:none!important}
+body .rd-body.op{display:block!important;-webkit-line-clamp:unset!important;margin:0!important;padding:8px 12px 10px!important;border:1px solid rgba(11,11,11,.1);border-top:0;border-radius:0 0 10px 10px;font-size:14px!important;line-height:1.65!important}

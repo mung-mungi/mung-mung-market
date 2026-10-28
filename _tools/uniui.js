@@ -20,3 +20,8 @@ try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(docu
 (function(){function fx(){var t=document.querySelector('#take.sh-take');if(!t||t.querySelector('.sh3'))return;var b=[].slice.call(t.querySelectorAll(':scope>b'));if(b.length<4)return;var tx=t.textContent;var tail=(tx.split('→')[1]||'').trim().replace(/\.$/,'');
  var ul=document.createElement('ul');ul.className='sh3';ul.innerHTML='<li><i>많이 쌓인 곳</i><span><b>'+b[0].textContent+'</b></span></li><li><i>요즘 몰리는 곳</i><span><b>'+b[1].textContent+'</b> <small style="color:#6f6d68">(최근 5일)</small></span></li><li><i>전체 흐름</i><span>늘어난 <span class="up">'+b[2].textContent.replace(/[^\d]/g,'')+'</span> · 줄어든 <span class="dn">'+b[3].textContent.replace(/[^\d]/g,'')+'</span>곳 → '+tail.replace(/^밸류체인 전체로는\s*/,'')+'</span></li>';t.appendChild(ul);t.classList.add('sh-rows')}
 var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})()})();
+
+// 공매도 표: '22.3 (추정)' → 숫자 + 작은 '추정' 표시, 안내 문구 새로(사용자 2026-10-29)
+(function(){function fx(){var t=document.getElementById('tbl');if(!t)return;t.querySelectorAll('tbody td:nth-child(5)').forEach(function(td){var m=td.textContent.match(/^([\d.]+)\s*\(추정\)/);if(m&&!td.querySelector('i')){td.innerHTML=m[1]+'<i class="est">추정</i>'}});
+ var c=document.getElementById('list-card');var s=c&&c.querySelector(':scope>p.sub');if(s&&/옆으로 밀어/.test(s.textContent))s.textContent='정렬 버튼으로 순서를 바꾸고, 종목을 누르면 위에 추이가 열립니다. 큰 숫자 = 유통주식 중 숏 비율.'}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})();try{var t0=document.getElementById('list-card');if(t0)new MutationObserver(function(){try{fx()}catch(e){}}).observe(t0,{childList:true,subtree:true})}catch(e){}})();
