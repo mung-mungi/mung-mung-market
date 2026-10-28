@@ -83,6 +83,54 @@ function tidy(){
 }
 """,
  },
+ 'p-trend.html': {
+  'css': """
+/* 기간별 등락 6칸은 빼고 그만큼 차트를 크게(사용자 2026-10-29) */
+#main .rt{display:none!important}
+/* 차트 위 핵심 4칸(저항·지지·단기 채널·장기 추세) */
+.mm-lv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:8px 0 2px}
+.mm-lv>div{border-radius:11px;padding:7px 9px;background:#f6f3ec;border:1px solid rgba(0,0,0,.05);min-width:0}
+.mm-lv small{display:block;font-size:11px;color:#8a877f;font-weight:700;letter-spacing:.02em}
+.mm-lv b{display:block;font-size:15.5px;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mm-lv em{font-style:normal;font-size:11.5px;color:#6b675f;font-weight:600}
+.mm-lv .up{background:#fdf0ee}.mm-lv .up b{color:#b23a2e}.mm-lv .dn{background:#edf7ef}.mm-lv .dn b{color:#1f7a3f}
+/* 추세 가이드·선 설명은 접기 */
+#main details.mm-fold p.gl{margin-top:4px}
+/* 분야 버튼 한 줄 */
+#cats{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;scrollbar-width:none;gap:6px!important;padding-bottom:4px}
+#cats::-webkit-scrollbar{display:none}#cats>*{flex:none!important}
+/* 종목 목록: 한 줄 카드(이름 · 티커 · 1일 · 고점 대비) */
+#list .grp h3{font-size:14px!important;margin:12px 0 4px!important}#list .grp h3 span{font-size:11.5px!important}
+#list .rows{display:flex;flex-direction:column;gap:5px}
+#list .row{display:flex!important;align-items:center!important;gap:8px!important;padding:9px 12px!important;min-height:0!important;border-radius:12px!important;background:var(--color-panel,#fff)!important;border:1px solid rgba(0,0,0,.06)!important;box-shadow:0 2px 0 rgba(30,22,8,.06)!important;text-align:left}
+#list .row b{order:1;flex:0 1 auto;min-width:0;font-size:15px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#list .row small{order:2;flex:none;font-size:11.5px!important;color:#8a877f;margin:0!important}
+#list .row .d1{order:3;margin-left:auto;flex:none;font-weight:700;font-size:14px!important}
+#list .row .dd{order:4;flex:none;font-size:12px!important;color:#8a877f;min-width:4.6em;text-align:right}
+#list .row[aria-current=true]{background:#f4ecdb!important;border-color:rgba(162,106,12,.35)!important}
+""",
+  'js': r"""
+function tidy(){
+  var main=document.getElementById('main'); if(!main)return;
+  // 차트 안에서 선과 겹치던 글자 빼기(장기 추세·단기 상단·하단) — 같은 내용은 위 4칸에
+  main.querySelectorAll('.ch svg text').forEach(function(t){ if(/^(장기 추세|단기 상단|단기 하단)/.test(t.textContent))t.remove(); });
+  var gl=main.querySelector('p.gl'), ch=main.querySelector('.ch');
+  if(gl&&ch&&!main.querySelector('.mm-lv')){
+    var t=gl.textContent.replace(/\s+/g,' ');
+    var R=t.match(/위 저항 후보\s*([\d,.~]+)\s*·\s*지금보다\s*([\d.~]+%)/), S=t.match(/아래 지지 후보\s*([\d,.~]+)\s*·\s*지금보다\s*([\d.~]+%)/);
+    var C=t.match(/(단기 [^(]*채널)[^·]*·\s*상단\s*([\d,.]+)[^·]*·\s*하단\s*([\d,.]+)/), L=t.match(/장기 추세선보다\s*([−+\-]?[\d.]+%)/);
+    var box=document.createElement('div'); box.className='mm-lv';
+    function cell(cls,k,v,e){ if(!v)return; var d=document.createElement('div'); if(cls)d.className=cls; d.innerHTML='<small></small><b></b><em></em>'; d.children[0].textContent=k; d.children[1].textContent=v; d.children[2].textContent=e||''; box.appendChild(d); }
+    if(R)cell('up','▲ 위 저항',R[1],'지금보다 +'+R[2]);
+    if(S)cell('dn','▼ 아래 지지',S[1],'지금보다 −'+S[2]);
+    if(C)cell('',C[1],C[2]+' / '+C[3],'상단 / 하단');
+    if(L)cell('','장기 추세 대비',L[1],'12개월 추세선');
+    if(box.children.length)ch.before(box);
+  }
+  if(gl&&!gl.closest('details')){ var nt=main.querySelector('p.nt'); var d=document.createElement('details'); d.className='mm-fold'; d.innerHTML='<summary><span>추세 가이드 자세히 · 선 읽는 법</span></summary>'; gl.before(d); d.appendChild(gl); if(nt)d.appendChild(nt); }
+}
+""",
+ },
 }
 
 CSS_COMMON = """
@@ -96,6 +144,11 @@ details.mm-fold[open]>summary{margin-bottom:8px}
 
 def run(root):
     done = []
+    p = os.path.join(root, 'p-trend.html')
+    if os.path.exists(p):  # 종목 차트: 휴대폰에서 차트를 크게(사용자 2026-10-29)
+        s = open(p, encoding='utf-8').read(); o = s
+        s = s.replace('Math.round(Math.min(300, Math.max(200, W * 0.42)))', 'Math.round(Math.min(440, Math.max(300, W * 0.95)))')
+        if s != o: open(p, 'w', encoding='utf-8').write(s); done.append('trend-height')
     for f, cfg in PAGES.items():
         p = os.path.join(root, f)
         if not os.path.exists(p): continue
