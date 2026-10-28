@@ -75,10 +75,10 @@ def tidy_targets(s):
 
 
 # 데일리 시황 맨 위 요약을 신문 1면처럼(사용자 2026-10-29): 제호 · 판 정보 · 첫 문장 = 큰 제목 · 나머지 = 본문(첫 글자 크게)
-PAPER = r'''<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap"><style data-paper>
+PAPER = r'''<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=UnifrakturMaguntia&display=swap"><style data-paper>
 #take.np{display:block!important;padding:14px 16px 16px!important;background:#fbf8f1!important;border:1px solid #d9d0bd!important;border-radius:6px!important;box-shadow:0 2px 0 rgba(60,45,20,.08),0 8px 18px rgba(60,45,20,.08)!important;color:#1d1a15!important}
 #take.np::before{content:none!important;display:none!important}
-#take.np .np-mast{text-align:center;font-family:"Noto Serif KR",ui-serif,Georgia,serif;font-weight:900;font-size:27px;letter-spacing:.02em;line-height:1.1;padding:2px 0 6px;border-bottom:3px double #1d1a15}
+#take.np .np-mast{text-align:center;font-family:"UnifrakturMaguntia","Old English Text MT",ui-serif,Georgia,serif;font-weight:400;font-size:32px;letter-spacing:.01em;line-height:1.1;padding:2px 0 6px;border-bottom:3px double #1d1a15}
 #take.np .np-mast small{display:block;font:700 10.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;letter-spacing:.32em;color:#7a6a4c;margin-bottom:3px}
 #take.np .np-line{display:flex;justify-content:space-between;gap:8px;font:600 11.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#5d5240;padding:5px 0;border-bottom:1px solid #1d1a15;margin-bottom:12px}
 #take.np .np-hd{font-family:"Noto Serif KR",ui-serif,Georgia,serif;font-weight:900;font-size:22px;line-height:1.35;letter-spacing:-.02em;margin:0 0 10px;text-wrap:balance}
@@ -91,7 +91,7 @@ if(!bd||!bd.textContent.trim()){if(++k<40)setTimeout(go,250);return}
 var a=dl?(dl.querySelector('b')||{}).textContent||'':'',u=dl?(dl.querySelector('.bf-us')||{}).textContent||'':'';a=a.replace(/\s*\([^)]*\)/,'');
 var h=bd.innerHTML,i=h.search(/다\.(\s|$)/),hd,rest;if(i>0){hd=h.slice(0,i+2);rest=h.slice(i+2).trim()}else{hd=h;rest=''}
 var tmp=document.createElement('div');tmp.innerHTML=hd;hd=tmp.textContent.replace(/\.$/,'');
-t.classList.add('np');t.innerHTML='<div class="np-mast"><small>AI VALUE CHAIN DAILY</small>멍뭉 타임스</div><div class="np-line"><span>'+a+'</span><span>'+u+'</span></div><h2 class="np-hd"></h2>'+(rest?'<p class="np-body">'+rest+'</p>':'')+'<div class="np-foot">아래 숫자·차트로 이어집니다 ▾</div>';t.querySelector('.np-hd').textContent=hd}
+t.classList.add('np');t.innerHTML='<div class="np-mast"><small>AI VALUE CHAIN DAILY</small>The Mungmung Times</div><div class="np-line"><span>'+a+'</span><span>'+u+'</span></div><h2 class="np-hd"></h2>'+(rest?'<p class="np-body">'+rest+'</p>':'')+'<div class="np-foot">아래 숫자·차트로 이어집니다 ▾</div>';t.querySelector('.np-hd').textContent=hd}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go()})();</script>'''
 
 
