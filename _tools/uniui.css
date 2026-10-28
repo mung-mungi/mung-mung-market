@@ -55,3 +55,11 @@ body #detail-card .dp-l button{all:unset;flex:none;cursor:pointer;white-space:no
 body #detail-card .dp-t button{all:unset;flex:none;cursor:pointer;white-space:nowrap;font:700 13.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:4px 11px;border-radius:999px;background:#fff;border:1px solid rgba(11,11,11,.1);box-shadow:0 3px 0 rgba(30,22,8,.16)}
 body #detail-card :is(.dp-l,.dp-t) button[aria-pressed=true]{background:#0b0b0b;color:#f9f9f7;border-color:#0b0b0b}
 body #detail-card .dp-none{font:500 12.5px/1.6 sans-serif;color:#9a978f}
+/* 숫자 칸 갈무리(사용자 2026-10-29): 왼쪽 정렬로 통일, 글자 값(행사 이름 등)은 작게 줄바꿈, 잘림 없음 */
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*{text-align:left!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:0!important}
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>*{text-align:left!important;margin-left:0!important;margin-right:0!important;padding-left:0!important;padding-right:0!important;letter-spacing:-.01em!important;max-width:100%!important}
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>:nth-child(2){font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif!important;font-weight:800!important;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>.mm-vtxt,body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>:nth-child(2).mm-vtxt{font-size:14px!important;line-height:1.3!important;white-space:normal!important;word-break:keep-all!important;overflow-wrap:anywhere;display:-webkit-box!important;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>:nth-child(n+3){word-break:keep-all!important}
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>*{display:block!important;align-self:stretch!important;justify-content:flex-start!important;width:auto!important}
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>:nth-child(2):not(.mm-vtxt){display:block!important}

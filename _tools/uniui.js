@@ -40,3 +40,6 @@ var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})();try{v
  T.addEventListener('click',function(e){var b=e.target.closest('button[data-tk]');if(!b)return;var r=rows().find(function(r){return info(r).tk===b.dataset.tk});if(r){var y=scrollY;r.click();setTimeout(function(){scrollTo(0,y);draw()},60)}});
  draw();new MutationObserver(function(){draw()}).observe(c.querySelector('#d-h'),{childList:true,characterData:true,subtree:true})}
 var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})()})();
+// 숫자 칸: 글자 값(한글 포함)은 작은 줄바꿈 글씨로, 숫자가 칸을 넘으면 글자를 줄여 맞춤(사용자 2026-10-29)
+(function(){function fx(){document.querySelectorAll('[class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>:nth-child(2)').forEach(function(v){var t=v.textContent.trim();if(/[가-힣]{2,}/.test(t)&&!/^[\d.,\s~%+\-−$₩억원조달러건곳배개]+$/.test(t))v.classList.add('mm-vtxt');else{v.style.fontSize='';var fs=parseFloat(getComputedStyle(v).fontSize),k=0;while(v.scrollWidth>v.clientWidth&&fs>12&&k<12){fs-=1;v.style.setProperty('font-size',fs+'px','important');k++}}})}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<8)setTimeout(go,600)})()})();
