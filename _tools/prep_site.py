@@ -27,6 +27,11 @@ for f in glob.glob(os.path.join(src, '*.html')):
     s = re.sub(r'(<a [^>]*href="(?:index|p-[a-z]+)\.html"[^>]*?)\s+target="_blank"', r'\1', s)
     if not re.search(r"<meta charset", s, re.I):
         s = '<meta charset="utf-8">' + s
+    # 휴대폰(카톡 안 브라우저 포함)에서 화면 폭에 맞게 — 없으면 PC 화면처럼 작게 보임
+    if not re.search(r'<meta name=["\']?viewport', s, re.I):
+        s = '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">' + s
+    if not re.match(r'\s*<!doctype', s, re.I):
+        s = '<!doctype html>' + s
     if 'name="robots"' not in s:
         s = re.sub(r'(<head[^>]*>)', r'\1' + META, s, count=1) if '<head' in s else META + s
     s = re.sub(r'<meta (?:property="og:[a-z:_]+"|name="twitter:card") content="[^"]*">', '', s)
