@@ -153,6 +153,7 @@ HITS = ('<style data-hits>body .hits{display:flex!important;flex-wrap:wrap!impor
 
 def tidy_hits(s):
     s = tidy_ups(s)
+    s = tidy_sumrow(s)
     if 'data-hits' in s or 'id="hits"' not in s:
         return s
     return s.replace('</body>', HITS + '</body>', 1) if '</body>' in s else s + HITS
@@ -197,3 +198,27 @@ def tidy_ups(s):
     if 'data-ups' in s or 'id="ups"' not in s:
         return s
     return s.replace('</body>', UPS + '</body>', 1) if '</body>' in s else s + UPS
+
+
+# 실적 결과 노트 요약 줄: 한 덩어리 글 → ① AI 판정 한 줄 ② 체크 칩(매출·EPS·가이던스)+주가 반응 ③ 나머지 작은 글씨(사용자 2026-10-29 — 산만함 정리)
+SUMROW = (r'''<style data-sumrow>body .sumrow{align-items:flex-start!important}body .sumrow .ar{font-size:0!important;flex:none;align-self:flex-start;padding-top:4px}'''
+          r'''body .sumrow .ar::after{content:"▾";font-size:15px;color:var(--muted)}body .sumrow[aria-expanded=true] .ar::after{content:"▴"}'''
+          r'''body .sumrow .nm{font-family:inherit!important;font-weight:800!important}body .sumrow .sm.sx{display:block;margin-top:5px;font-size:13.5px!important;line-height:1.5!important;color:var(--fg)!important}'''
+          r'''body .sm.sx .sx-ai{display:block}body .sm.sx .sx-ai b{font-weight:800;margin-right:5px}body .sm.sx .sx-ai b.g{color:var(--up)}body .sm.sx .sx-ai b.y{color:#a26a0c}body .sm.sx .sx-ai b.r{color:var(--down)}'''
+          r'''body .sm.sx .sx-ck{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px}body .sm.sx .sx-ck i{font-style:normal;font-size:11.5px;font-weight:700;padding:1px 5px;border-radius:5px;background:color-mix(in srgb,var(--up) 11%,transparent);color:var(--up)}'''
+          r'''body .sm.sx .sx-ck i.n{background:color-mix(in srgb,var(--down) 11%,transparent);color:var(--down)}body .sm.sx .sx-ck i.m{background:var(--panel-2,#f1f0ec);color:var(--fg)}body .sm.sx .sx-ck i.m.dn{color:var(--down)}body .sm.sx .sx-ck i.m.up{color:var(--up)}'''
+          r'''body .sm.sx .sx-et{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);line-height:1.5}</style>'''
+          r'''<script data-sumrow>(function(){function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}'''
+          r'''function fix(){document.querySelectorAll('.sumrow .sm:not(.sx)').forEach(function(sm){var raw=sm.textContent.trim();if(!raw)return;var parts=raw.split(/\s+·\s+/),ai='',chk=[],react=[],etc=[];'''
+          r'''parts.forEach(function(p,i){if(i===0&&/^\d{1,2}\/\d{1,2}$/.test(p))return;var m=p.match(/^AI 관점\s*(호재|중립|경고)\s*(?:\((.*)\))?$/);if(m){var c=m[1]==='호재'?'g':m[1]==='중립'?'y':'r';ai='<b class="'+c+'">AI '+m[1]+'</b>'+esc(m[2]||'');return}'''
+          r'''if(/(프리마켓|시간외|장중|종가)\s*[+\-−–~]/.test(p)&&p.length<30){var neg=/[\-−–]\d/.test(p)&&!/\+/.test(p);react.push('<i class="m '+(neg?'dn':'up')+'">'+esc(p)+'</i>');return}'''
+          r'''if(/[✅❌]/.test(p)){var re=/([^\s✅❌()]+)\s*(✅|❌)\s*(\([^)]*\))?/g,x,any=false;while((x=re.exec(p))){any=true;chk.push('<i class="'+(x[2]==='✅'?'':'n')+'">'+esc(x[1])+' '+(x[2]==='✅'?'✓':'✗')+'</i>');if(x[3])etc.push(esc(x[1]+' '+x[3].slice(1,-1)))}if(any)return}'''
+          r'''etc.push(esc(p))});var h='';if(ai)h+='<span class="sx-ai">'+ai+'</span>';if(chk.length||react.length)h+='<span class="sx-ck">'+chk.join('')+react.join('')+'</span>';if(etc.length)h+='<span class="sx-et">'+etc.join(' · ')+'</span>';'''
+          r'''if(h){sm.innerHTML=h;sm.classList.add('sx');var br=sm.previousElementSibling;if(br&&br.tagName==='BR')br.remove()}})}'''
+          r'''var k=0;(function go(){fix();if(!document.__sxmo){document.__sxmo=1;new MutationObserver(function(){fix()}).observe(document.body,{childList:true,subtree:true})}if(++k<10)setTimeout(go,400)})()})();</script>''')
+
+
+def tidy_sumrow(s):
+    if 'data-sumrow' in s or 'sumrow' not in s:
+        return s
+    return s.replace('</body>', SUMROW + '</body>', 1) if '</body>' in s else s + SUMROW
