@@ -527,24 +527,41 @@ dash.onData(draw);
   var KEY = 'mm-tick-off', off = false, ctx = null;
   try { off = localStorage.getItem(KEY) === '1'; } catch (e) {}
   var SEL = 'a,button,summary,select,label,[role=button],[role=tab],[onclick],.pb-row,.pb-hc,.pb-tile,.cp,.item,tr[data-tk],input[type=checkbox],input[type=radio]';
+  var buf = null;
+  function ac(){
+    if (!ctx) { var A = window.AudioContext || window.webkitAudioContext; if (!A) return null; ctx = new A(); }
+    if (ctx.state !== 'running' && ctx.resume) ctx.resume();
+    if (!buf) { // 짧은 '틱' = 25ms 잡음을 고음대만 걸러서(휴대폰 스피커에서도 잘 들림)
+      var n = Math.floor(ctx.sampleRate * 0.025); buf = ctx.createBuffer(1, n, ctx.sampleRate); var d = buf.getChannelData(0);
+      for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 4);
+    }
+    return ctx;
+  }
   function tick(){
     if (off) return;
     try { if (navigator.vibrate) navigator.vibrate(8); } catch (e) {}  // 안드로이드만 살짝 진동(아이폰 웹은 진동 불가)
     try {
-      if (!ctx) { var A = window.AudioContext || window.webkitAudioContext; if (!A) return; ctx = new A(); }
-      if (ctx.state === 'suspended') ctx.resume();
-      var t = ctx.currentTime, o = ctx.createOscillator(), g = ctx.createGain(), f = ctx.createBiquadFilter();
-      o.type = 'triangle'; o.frequency.setValueAtTime(1500, t); o.frequency.exponentialRampToValueAtTime(700, t + 0.03);
-      f.type = 'lowpass'; f.frequency.value = 3200;
-      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.06, t + 0.004); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.045);
-      o.connect(f); f.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t + 0.05);
+      var c = ac(); if (!c) return;
+      var t = c.currentTime + 0.005, s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+      s.buffer = buf; f.type = 'bandpass'; f.frequency.value = 2400; f.Q.value = 0.9; g.gain.value = 0.55;
+      s.connect(f); f.connect(g); g.connect(c.destination); s.start(t);
     } catch (e) {}
   }
-  document.addEventListener('pointerdown', function(e){
+  // 아이폰·카톡 안 브라우저는 '누름이 끝난 뒤(click)'에만 소리를 허락하는 경우가 많아 click에서 냅니다
+  var last = 0;
+  function onTap(e){
     var el = e.target && e.target.closest ? e.target.closest(SEL) : null;
     if (!el || el.id === 'mm-snd' || el.disabled) return;
+    var now = Date.now(); if (now - last < 120) return; last = now;
     tick();
-  }, true);
+    // 다른 페이지로 넘어가는 링크는 소리가 끊기지 않게 0.07초 뒤에 이동
+    if (el.tagName === 'A' && el.href && !el.target && !e.defaultPrevented && !e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
+      var u = new URL(el.href, location.href);
+      if (u.origin === location.origin && u.pathname !== location.pathname) { e.preventDefault(); setTimeout(function(){ location.href = el.href; }, 70); }
+    }
+  }
+  document.addEventListener('click', onTap, true);
+  ['touchend', 'pointerdown', 'keydown'].forEach(function(ev){ document.addEventListener(ev, function(){ try { if (!off) ac(); } catch (e) {} }, { capture: true, passive: true }); });
   function ui(){
     if (document.getElementById('mm-snd')) return;
     var b = document.createElement('button'); b.id = 'mm-snd'; b.type = 'button';
