@@ -1,0 +1,13 @@
+/* 페이지 줄 → 화면 아래 아이콘 독(사용자 2026-10-29) */
+body nav.ib{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;z-index:9000!important;display:flex!important;flex-wrap:nowrap!important;gap:2px!important;overflow-x:auto!important;scrollbar-width:none;margin:0!important;padding:5px 6px calc(5px + env(safe-area-inset-bottom))!important;background:rgba(255,255,255,.96)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:0!important;border-top:1px solid #e8e6df!important;box-shadow:0 -4px 14px rgba(11,11,11,.06)!important;border-radius:0!important}
+body nav.ib::-webkit-scrollbar{display:none}
+body nav.ib>*{all:unset!important;box-sizing:border-box!important;flex:none!important;width:60px!important;text-align:center!important;font:600 10.5px/1.25 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif!important;color:#8a877f!important;padding:4px 0 3px!important;border-radius:10px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;cursor:pointer}
+body nav.ib>*::before{display:block;font-size:20px;line-height:1.2;margin-bottom:2px;content:"•"}
+body nav.ib>[aria-current=page]{background:#f3efe4!important;color:#0b0b0b!important;font-weight:800!important}
+body nav.ib>.tg{width:1px!important;min-width:1px!important;padding:0!important;margin:8px 3px!important;background:#e8e6df!important;font-size:0!important;align-self:stretch}
+body nav.ib>.tg::before{display:none!important}
+body nav.ib>a.home::before{content:"🏠"}
+body nav.ib>a[href*="p-lights"]::before{content:"🚦"}body nav.ib>a[href*="p-brief"]::before{content:"📰"}body nav.ib>a[href*="p-prices"]::before{content:"📈"}body nav.ib>a[href*="p-earn"]::before{content:"📑"}body nav.ib>a[href*="p-cal"]::before{content:"🗓️"}body nav.ib>a[href*="p-econ"]::before{content:"📊"}body nav.ib>a[href*="p-bond"]::before{content:"🏦"}body nav.ib>a[href*="p-opt"]::before{content:"🌡️"}body nav.ib>a[href*="p-targets"]::before{content:"🎯"}
+body nav.ib>a[href*="p-trend"]::before{content:"🧭"}body nav.ib>a[href*="p-short"]::before{content:"🐻"}body nav.ib>a[href*="p-fx"]::before{content:"💱"}body nav.ib>a[href*="p-capex"]::before{content:"🏗️"}body nav.ib>a[href*="p-policy"]::before{content:"🌐"}body nav.ib>a[href*="p-tech"]::before{content:"🎤"}body nav.ib>a[href*="p-supply"]::before{content:"🚢"}body nav.ib>a[href*="p-neo"]::before{content:"☁️"}body nav.ib>a[href*="p-qtr"]::before{content:"📉"}body nav.ib>a[href*="p-insider"]::before{content:"🕵️"}
+body{padding-bottom:calc(74px + env(safe-area-inset-bottom))!important}
+body #mm-snd{bottom:calc(84px + env(safe-area-inset-bottom))!important}

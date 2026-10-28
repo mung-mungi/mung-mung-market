@@ -181,6 +181,7 @@ IBDRAG = (r'''<style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll
 
 def tidy_ibdrag(s):
     s = tidy_navorder(s)
+    s = tidy_dock(s)
     s = tidy_headui(s)
     s = tidy_rdbox(s)
     if 'data-ibdrag' in s or 'class="ib"' not in s:
@@ -443,3 +444,12 @@ def tidy_rdbox(s):
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-rdbox>' + open(os.path.join(d, 'rdbox.css'), encoding='utf-8').read() + '</style><script data-rdbox>' + open(os.path.join(d, 'rdbox.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+# 페이지 줄을 화면 아래 아이콘 독으로 — _tools/dock.css (사용자 2026-10-29)
+def tidy_dock(s):
+    s = re.sub(r'<style data-dock>.*?</style>', '', s, flags=re.S)
+    if 'class="ib"' not in s:
+        return s
+    css = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dock.css'), encoding='utf-8').read()
+    return s.replace('</body>', '<style data-dock>' + css + '</style></body>', 1) if '</body>' in s else s + '<style data-dock>' + css + '</style>'
