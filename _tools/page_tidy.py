@@ -123,6 +123,20 @@ function tidy(){
 .mmt-pen .mmt-hint{flex:1 0 100%;margin:0;font-size:11.5px;color:#9a6200;font-weight:600}
 #main.mmt-detail .mmt-pen{display:none!important}html.mm-full .mmt-pen,html.mm-land .mmt-pen{display:none!important}.mmt-x{display:none!important}
 #main.mmt-detail .ch{padding-top:0;margin-top:-10px!important;margin-bottom:-10px!important}#main.mmt-detail .ch>.mmt-tools{top:0}#main .zhint{display:none!important}
+#list{max-height:560px;overflow-y:auto;overscroll-behavior:contain;padding:2px 4px 8px;margin:0 -4px;border-radius:12px;-webkit-overflow-scrolling:touch}
+#list .grp h3{position:sticky;top:0;z-index:2;background:#fff;margin:0!important;padding:10px 4px 6px!important;font-size:14.5px!important}
+#list .grp h3 span{font-size:11.5px!important}
+#list button.row[data-mm]{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) auto 12px;align-items:center;gap:8px;padding:10px 10px 10px 14px!important;min-height:0!important;margin:0 0 7px!important;border:1px solid #ecdcb8!important;border-radius:14px!important;background:#fff!important;box-shadow:0 2px 0 rgba(30,22,8,.06),0 4px 10px rgba(30,22,8,.05)!important;text-align:left}
+#list button.row[data-mm][aria-current=true]{background:#fbf3e2!important;border-color:#d9b46a!important}
+#list .grp{margin:0!important;padding:0!important}#list .grp .rows{margin:0!important;gap:0!important}
+#list .row .l{min-width:0;display:flex;flex-direction:column;gap:2px}#list .row .l b{order:1;font-size:15.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#list .row .l i{order:2;font-style:normal;font-size:11.5px;color:#8a877f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#list .row .m{min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:3px}#list .row .m em{font-style:normal;font-weight:800;font-size:15px;text-align:right}
+#list .row .bar{position:relative;height:5px;border-radius:3px;background:linear-gradient(90deg,#e7b4b0,#e8e4dc,#a9d1b6)}#list .row .bar s{position:absolute;top:-3px;width:3px;height:11px;margin-left:-1.5px;border-radius:2px;background:#141210;text-decoration:none}
+#list .row .rg{display:flex;justify-content:space-between;font-size:10.5px;color:#9a978f}#list .row .rg u{text-decoration:none}
+#list .row .r{display:flex;flex-direction:column;align-items:flex-end;gap:2px;min-width:52px}#list .row .r strong{font-size:16px;font-weight:800}#list .row .r small{font-size:11px;color:#8a877f;white-space:nowrap}
+#list .row .r strong.up{color:#1f8a4c}#list .row .r strong.dn,#list .row .r strong.down{color:#c4453a}
+#list .row .go{color:#9a6200;font-size:20px;font-weight:700;line-height:1}
+.mm-lhint{margin:4px 2px 0;font-size:12px;color:#9a6200;text-align:center}
 /* 종목 차트에선 멍뭉이 배너·오늘 한눈에 카드 숨기고 차트가 바로 보이게(사용자 2026-10-29) — 기준 시각은 차트 카드 위에 작게 */
 html body .mm-take,html body .hx-card{display:none!important}
 /* 멍뭉이 배너: 처음 5초 보이고 접힘, 20초 동안 아무것도 안 하면 다시 펼쳐짐(사용자 2026-10-29) */
@@ -632,11 +646,21 @@ function mmAsof(){ var main=document.getElementById('main'), a=document.getEleme
   function act(){ clearTimeout(idle); if(!h.classList.contains('mm-hx-off')){ clearTimeout(t); t=setTimeout(off,1500); } idle=setTimeout(on,20000); }
   t=setTimeout(off,5000); idle=setTimeout(on,25000);
   ['pointerdown','scroll','keydown','wheel','touchstart'].forEach(function(e){ addEventListener(e,act,{passive:true,capture:true}); }); })();
+// 종목 찾기 목록을 시세 보드 '종목별 시세' 한 줄 카드로(사용자 2026-10-29): 이름+티커·층위 / 가격+52주 막대 / 1일 등락 크게·고점 대비 / ›, 목록은 상자 안 스크롤
+function mmList(){ var L=document.getElementById('list'); if(!L)return; var byT={}; try{ DATA.P.forEach(function(r){ byT[r.ticker.replace('^','')]=r; }); }catch(e){ return; }
+  L.querySelectorAll('button.row').forEach(function(b){ if(b.dataset.mm)return; var sm=b.querySelector('small'), tk=sm&&sm.textContent.trim(), r=byT[tk]; if(!r)return; b.dataset.mm=1;
+    var d1=b.querySelector('.d1'), dd=b.querySelector('.dd'), p=Number(r.price), lo=Number(r.lo_52w), hi=Number(r.hi_52w), pos=(hi>lo)?Math.max(0,Math.min(100,(p-lo)/(hi-lo)*100)):50, cur=r.currency;
+    var nm=r.name.replace(/\(([^)]*)\)$/,'').trim()||r.name, f=function(v){ return isNaN(v)?'':mmtTick(v,cur,cur==='%'?0.01:v>=1000?1:v>=100?0.01:0.01); };
+    b.innerHTML='<span class="l"><b></b><i></i></span><span class="m"><em></em><span class="bar"><s style="left:'+pos.toFixed(0)+'%"></s></span><span class="rg"><u></u><u></u></span></span><span class="r"><strong></strong><small></small></span><span class="go">›</span>';
+    b.querySelector('.l b').textContent=nm; b.querySelector('.l i').textContent=tk+' · '+r.category; b.querySelector('.m em').textContent=f(p)+(cur==='%'?'%':'');
+    var u=b.querySelectorAll('.rg u'); u[0].textContent=f(lo); u[1].textContent=f(hi);
+    var st=b.querySelector('.r strong'); st.textContent=d1?d1.textContent:''; st.className=d1?d1.className.replace('d1','').trim():''; b.querySelector('.r small').textContent=dd?dd.textContent:''; });
+  var box=L; if(!box.dataset.box){ box.dataset.box=1; var h=document.createElement('p'); h.className='mm-lhint'; h.textContent='↕ 상자 안에서 내려 보면 전체 종목이 있습니다'; box.after(h); } }
 function mmtTidy(){ var main=document.getElementById('main'); if(!main||!main.querySelector('.hd'))return; var w=main.querySelector('.mmt'); if(!w||w.dataset.tk!==mmTk()) mmtDraw(); }
 
 function tidy(){
   try{ var RN={'1개월':'1달','3개월':'3달','6개월':'6달','12개월':'1년'}; document.querySelectorAll('#main .rg .pb-chip').forEach(function(b){ var k=b.textContent.trim(); if(RN[k]) b.textContent=RN[k]; }); }catch(e){}
-  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){} try{mmAsof()}catch(e){} try{mmTools()}catch(e){} try{mmDtipSlot()}catch(e){} try{mmPerPlace()}catch(e){} try{mmtAxisTags()}catch(e){console.log(e)}
+  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){} try{mmAsof()}catch(e){} try{mmList()}catch(e){} try{mmTools()}catch(e){} try{mmDtipSlot()}catch(e){} try{mmPerPlace()}catch(e){} try{mmtAxisTags()}catch(e){console.log(e)}
   // 차트 안에서 선과 겹치던 글자 빼기(장기 추세·단기 상단·하단) — 같은 내용은 위 4칸에
   main.querySelectorAll('.ch svg text').forEach(function(t){ if(/^(장기 추세|단기 상단|단기 하단)/.test(t.textContent))t.remove(); });
   var gl=main.querySelector('p.gl'), ch=main.querySelector('.ch');
