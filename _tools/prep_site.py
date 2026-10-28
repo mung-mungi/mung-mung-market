@@ -52,11 +52,21 @@ for f in glob.glob(os.path.join(src, '*.html')):
     if s != o: open(f, 'w', encoding='utf-8').write(s); n += 1
 # 사이트 안 링크에 판 번호(?v=)를 붙여, 휴대폰·카톡 브라우저가 10분 동안 예전 페이지를 붙잡지 않게 합니다
 import time as _t
-STAMP = _t.strftime('%m%d%H%M')
+STAMP = _t.strftime('%Y%m%d%H%M')
 for f in glob.glob(os.path.join(src, '*.html')):
     s = open(f, encoding='utf-8').read()
     n2 = re.sub(r'href="((?:index|p-[a-z0-9]+)\.html)(?:\?v=\d+)?(#[^"]*)?"', lambda x: 'href="' + x[1] + '?v=' + STAMP + (x[2] or '') + '"', s)
     if n2 != s: open(f, 'w', encoding='utf-8').write(n2)
+# 자동 새로고침: 페이지에 판 번호를 심고, 더 새 판이 올라와 있으면(version.json) 한 번 다시 불러옵니다 — 카톡 안 브라우저 캐시 대응
+open(os.path.join(src, 'version.json'), 'w').write('{"v":"' + STAMP + '"}')
+VS = ('<script data-ver="' + STAMP + '">(function(){var me="' + STAMP + '";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){'
+      'if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");'
+      'var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script>')
+for f in glob.glob(os.path.join(src, '*.html')):
+    s2 = open(f, encoding='utf-8').read()
+    s3 = re.sub(r'<script data-ver="\d+">[\s\S]*?</script>', '', s2)
+    s3 = re.sub(r'(<meta charset[^>]*>)', lambda m: m.group(1) + VS, s3, count=1, flags=re.I) if re.search(r'<meta charset', s3, re.I) else VS + s3
+    if s3 != s2: open(f, 'w', encoding='utf-8').write(s3)
 open(os.path.join(src, 'robots.txt'), 'w').write('User-agent: kakaotalk-scrap\nAllow: /\n\nUser-agent: facebookexternalhit\nAllow: /\n\nUser-agent: *\nDisallow: /\n')
 open(os.path.join(src, '.nojekyll'), 'w').write('')
 left = [f for f in glob.glob(os.path.join(src, '*.html')) if 'claude.ai/' in open(f, encoding='utf-8').read()]
