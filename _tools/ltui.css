@@ -28,8 +28,15 @@ body #score .s-m.up{color:#1a7f37}body #score .s-d{color:#c62828;text-align:righ
 body #area-card #areas .area .hd{text-align:left!important;flex-direction:row!important}
 body .lw .l-clamp:not(.op){padding-bottom:0!important;border-bottom:12px solid transparent!important}
 body #area-card #areas .area li{grid-template-areas:"d n v" "d q t" "x x x"!important;cursor:pointer}
-body #area-card #areas .l-q{grid-area:q;font:600 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;justify-self:start}
+body #area-card #areas .l-q{grid-area:q;font:600 11px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;justify-self:start}
 body #area-card #areas .l-q::after{content:" ▾";font-size:10px}body #area-card #areas li.lxo .l-q::after{content:" ▴"}
 body #area-card #areas .l-ex{grid-area:x;display:none;margin-top:6px;padding:7px 9px;border-radius:8px;background:#f6f4ee;font:500 13px/1.55 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3a3833}
 body #area-card #areas li.lxo .l-ex{display:block}
 body #area-card #areas .a-desc{margin:0 0 4px!important;font:500 13px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:#6f6d68!important}
+body #area-card #areas .area li{grid-template-areas:"d n v" "d q t" "d q m" "x x x"!important}
+body #area-card #areas .l-lv{grid-area:m;justify-self:end;display:flex;align-items:center;gap:2px;margin-top:2px}
+body #area-card #areas .l-lv i{width:9px;height:5px;border-radius:2px;background:#e4e1d8}
+body #area-card #areas .l-lv em{font-style:normal;font:700 10.5px/1 -apple-system,sans-serif;margin-left:4px;color:var(--lc)}
+body #area-card #areas li[data-lv="1"]{--lc:#1a7f37}body #area-card #areas li[data-lv="2"]{--lc:#6aa84f}body #area-card #areas li[data-lv="3"]{--lc:#c9a20a}body #area-card #areas li[data-lv="4"]{--lc:#e07b16}body #area-card #areas li[data-lv="5"]{--lc:#c62828}
+body #area-card #areas li[data-lv] .l-now{color:var(--lc)}body #area-card #areas li[data-lv] .l-dot{background:var(--lc)}
+body #area-card #areas li[data-lv="1"] .l-lv i:nth-child(-n+1),body #area-card #areas li[data-lv="2"] .l-lv i:nth-child(-n+2),body #area-card #areas li[data-lv="3"] .l-lv i:nth-child(-n+3),body #area-card #areas li[data-lv="4"] .l-lv i:nth-child(-n+4),body #area-card #areas li[data-lv="5"] .l-lv i:nth-child(-n+5){background:var(--lc)}

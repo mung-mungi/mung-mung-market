@@ -33,3 +33,13 @@ function lx(){var A=document.getElementById('areas');if(!A)return;A.querySelecto
  A.querySelectorAll('.area>a:not([data-lx])').forEach(function(a){a.dataset.lx=1;var h=(a.closest('.area').querySelector('.hd b')||{}).textContent||'';a.textContent=h+' 차트로 보기 →'})}
 var k2=0;(function g2(){try{lx()}catch(e){}if(++k2<14)setTimeout(g2,400)})();
 if(window.MutationObserver){var r2=document.querySelector('.lw');if(r2)new MutationObserver(function(){try{lx()}catch(e){}}).observe(r2,{childList:true,subtree:true})}
+
+// 지금 값이 기준에 얼마나 가까운지 5단계 색(사용자 2026-10-29): 1 안전 … 5 켜짐
+var LV=['','안전','양호','보통','근접','위험'];
+function lv(){document.querySelectorAll('#areas li[data-lt]:not([data-lv])').forEach(function(li){var nw=li.querySelector('.l-now'),th=li.querySelector('.l-th');if(!nw||!th)return;
+ var n=parseFloat(nw.textContent.replace(/[^\d.\-−]/g,'').replace('−','-')),t=parseFloat(th.textContent.replace(/[^\d.\-−]/g,'').replace('−','-'));if(isNaN(n)||isNaN(t))return;
+ var lt=/</.test(th.textContent),x;if(lt){x=t===0?1-(n/0.5):(t/n)}else{x=t>0?n/t:0}var on=lt?n<t:n>=t;
+ var k=on?5:x>=0.9?4:x>=0.8?3:x>=0.6?2:1;li.dataset.lv=k;var m=document.createElement('span');m.className='l-lv';m.innerHTML='<i></i><i></i><i></i><i></i><i></i><em>'+LV[k]+'</em>';th.after(m)});
+ document.querySelectorAll('#areas .area:not([data-lvk])').forEach(function(a){if(!a.querySelector('li[data-lv]'))return;a.dataset.lvk=1})}
+var k3=0;(function g3(){try{lv()}catch(e){}if(++k3<14)setTimeout(g3,400)})();
+if(window.MutationObserver){var r3=document.querySelector('.lw');if(r3)new MutationObserver(function(){try{lv()}catch(e){}}).observe(r3,{childList:true,subtree:true})}
