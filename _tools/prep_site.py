@@ -15,6 +15,12 @@ for f in glob.glob(os.path.join(src, '*.html')):
     s = re.sub(r'(<a [^>]*href="(?:index|p-[a-z]+)\.html"[^>]*?)\s+target="_blank"', r'\1', s)
     if 'name="robots"' not in s:
         s = re.sub(r'(<head[^>]*>)', r'\1' + META, s, count=1) if '<head' in s else META + s
+    # 사이트 이름: 멍뭉 마켓
+    s = s.replace('<title>AI 밸류체인 통합본</title>', '<title>멍뭉 마켓</title>')
+    s = s.replace('<h1>AI 밸류체인 <span class="dim">통합본</span></h1>', '<h1>멍뭉 마켓</h1>')
+    s = re.sub(r'<title>(?!멍뭉 마켓)([^<]*?)(?: · 멍뭉 마켓)?</title>', r'<title>\1 · 멍뭉 마켓</title>', s)
+    if 'apple-mobile-web-app-title' not in s:
+        s = s.replace(META, META + '<meta name="apple-mobile-web-app-title" content="멍뭉 마켓"><meta name="application-name" content="멍뭉 마켓">', 1)
     if s != o: open(f, 'w', encoding='utf-8').write(s); n += 1
 open(os.path.join(src, 'robots.txt'), 'w').write('User-agent: *\nDisallow: /\n')
 open(os.path.join(src, '.nojekyll'), 'w').write('')
