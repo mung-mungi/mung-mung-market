@@ -1545,7 +1545,19 @@ function run(){
 }
 run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);[300,900,1600,2600,4000].forEach(function(t){setTimeout(run,t)});
 })();</script>
-<style data-ptidy>
+<style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
+body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
+body .mm-take.hu b:not(.mm-chipx){font-weight:800}
+body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
+body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}
+</style><script data-headui>// 페이지 맨 위 '오늘 한눈에' 양식 통일(사용자 2026-10-29): 날짜 칩 모양, 본문 글자, 바로가기 줄은 배너 아래로
+(function(){function fx(){
+ document.querySelectorAll('.mm-take').forEach(function(t){if(t.classList.contains('np')||t.classList.contains('tk-on')||t.classList.contains('o-on'))return;t.classList.add('hu');
+  var f=t.firstElementChild;if(f&&f.tagName==='B'&&!f.classList.contains('mm-chipx')&&/\d/.test(f.textContent)&&/(기준|집계|마감|잠정|월|일)/.test(f.textContent)&&f.textContent.length<40)f.classList.add('mm-chipx');
+});
+ var hero=document.querySelector('.mm-hero');if(hero){document.querySelectorAll('nav[class$="-nav"]:not(.ib)').forEach(function(n){if(n.dataset.hu)return;if(n.compareDocumentPosition(hero)&Node.DOCUMENT_POSITION_FOLLOWING){n.dataset.hu=1;var t=document.querySelector('.mm-take');(t&&t.nextElementSibling&&t.nextElementSibling.classList.contains('hu-more')?t.nextElementSibling:(t||hero)).after(n)}})}}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
+</script><style data-ptidy>
 details.mm-fold{margin-top:8px;border-top:1px dashed rgba(0,0,0,.12)}
 details.mm-fold>summary{list-style:none;cursor:pointer;padding:9px 2px 2px;font:700 14px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:#9a6200}
 details.mm-fold>summary::-webkit-details-marker{display:none}
@@ -1677,16 +1689,4 @@ var nav=document.querySelector('.pt-nav');if(nav){var L=[['#recent','최근 변�
 })();
 }
 var __k=0;(function g(){try{__tgord()}catch(e){}if(++__k<8&&!(document.querySelector('.pt-wrap')||{dataset:{}}).dataset.ord)setTimeout(g,400)})();
-</script><style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
-body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
-body .mm-take.hu b:not(.mm-chipx){font-weight:800}
-body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
-body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}
-</style><script data-headui>// 페이지 맨 위 '오늘 한눈에' 양식 통일(사용자 2026-10-29): 날짜 칩 모양, 본문 글자, 바로가기 줄은 배너 아래로
-(function(){function fx(){
- document.querySelectorAll('.mm-take').forEach(function(t){if(t.classList.contains('np')||t.classList.contains('tk-on')||t.classList.contains('o-on'))return;t.classList.add('hu');
-  var f=t.firstElementChild;if(f&&f.tagName==='B'&&!f.classList.contains('mm-chipx')&&/\d/.test(f.textContent)&&/(기준|집계|마감|잠정|월|일)/.test(f.textContent)&&f.textContent.length<40)f.classList.add('mm-chipx');
-});
- var hero=document.querySelector('.mm-hero');if(hero){document.querySelectorAll('nav[class$="-nav"]:not(.ib)').forEach(function(n){if(n.dataset.hu)return;if(n.compareDocumentPosition(hero)&Node.DOCUMENT_POSITION_FOLLOWING){n.dataset.hu=1;var t=document.querySelector('.mm-take');(t&&t.nextElementSibling&&t.nextElementSibling.classList.contains('hu-more')?t.nextElementSibling:(t||hero)).after(n)}})}}
-var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
 </script></body></html>

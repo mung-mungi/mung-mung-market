@@ -123,6 +123,9 @@ function tidy(){
 .mmt-pen .mmt-hint{flex:1 0 100%;margin:0;font-size:11.5px;color:#9a6200;font-weight:600}
 #main.mmt-detail .mmt-pen{display:none!important}html.mm-full .mmt-pen,html.mm-land .mmt-pen{display:none!important}.mmt-x{display:none!important}
 #main.mmt-detail .ch{padding-top:0;margin-top:-10px!important;margin-bottom:-10px!important}#main.mmt-detail .ch>.mmt-tools{top:0}#main .zhint{display:none!important}
+/* 종목 차트에선 멍뭉이 배너·오늘 한눈에 카드 숨기고 차트가 바로 보이게(사용자 2026-10-29) — 기준 시각은 차트 카드 위에 작게 */
+html body header.mm-hero.mm-hx,html body .mm-hero,html body .mm-take,html body .hx-card{display:none!important}
+.mm-asof2{margin:2px 4px 8px;font-size:12px;color:#8a877f;text-align:right}
 #main .rg .zm{display:none!important}
 #main .rg{background:#f3f1ec;padding:3px!important;border-radius:12px;gap:4px!important;overflow:hidden!important}
 #main .rg .pb-chip{flex:1 1 0!important;min-width:0;border:0!important;background:transparent!important;box-shadow:none!important;color:#8a877f!important;font-size:14px!important;font-weight:700!important;padding:7px 0!important;border-radius:9px!important;justify-content:center;text-align:center}
@@ -598,11 +601,12 @@ function mmGuide(main,gl){ if(!gl||main.querySelector('.mm-sum'))return; var t=g
   box.innerHTML='<b class="ttl">추세 한눈에</b>'+rows.map(function(r,i){return '<p><em>'+'①②③④'[i]+' '+r[0]+'</em><span></span></p>'}).join('')+'<p class="lg">선: <i style="background:#c4453a"></i><i style="background:#2f8a4c"></i> 단기 채널 · <i style="background:#bdb9b0"></i> 1년 추세 · 띠 = 매물대(진하면 1차, 옅으면 그다음)</p>';
   rows.forEach(function(r,i){ box.querySelectorAll('p span')[i].textContent=r[1]; });
   var lv=main.querySelector('.mm-lv'); (lv||main.querySelector('.ch')).after(box); }
+function mmAsof(){ var main=document.getElementById('main'), a=document.getElementById('asof'); if(!main||!a||!a.textContent.trim())return; var e=document.querySelector('.mm-asof2'); var card=main.closest('section,.card,.panel')||main; if(!e){ e=document.createElement('p'); e.className='mm-asof2'; card.parentNode.insertBefore(e,card); } var t='● '+a.textContent.trim(); if(e.textContent!==t) e.textContent=t; }
 function mmtTidy(){ var main=document.getElementById('main'); if(!main||!main.querySelector('.hd'))return; var w=main.querySelector('.mmt'); if(!w||w.dataset.tk!==mmTk()) mmtDraw(); }
 
 function tidy(){
   try{ var RN={'1개월':'1달','3개월':'3달','6개월':'6달','12개월':'1년'}; document.querySelectorAll('#main .rg .pb-chip').forEach(function(b){ var k=b.textContent.trim(); if(RN[k]) b.textContent=RN[k]; }); }catch(e){}
-  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){} try{mmTools()}catch(e){} try{mmDtipSlot()}catch(e){} try{mmPerPlace()}catch(e){} try{mmtAxisTags()}catch(e){console.log(e)}
+  var main=document.getElementById('main'); if(!main)return; try{mmtTidy()}catch(e){console.log(e)} try{mmtStyleDetail()}catch(e){} try{mmAsof()}catch(e){} try{mmTools()}catch(e){} try{mmDtipSlot()}catch(e){} try{mmPerPlace()}catch(e){} try{mmtAxisTags()}catch(e){console.log(e)}
   // 차트 안에서 선과 겹치던 글자 빼기(장기 추세·단기 상단·하단) — 같은 내용은 위 4칸에
   main.querySelectorAll('.ch svg text').forEach(function(t){ if(/^(장기 추세|단기 상단|단기 하단)/.test(t.textContent))t.remove(); });
   var gl=main.querySelector('p.gl'), ch=main.querySelector('.ch');
