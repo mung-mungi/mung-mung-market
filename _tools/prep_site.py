@@ -12,8 +12,9 @@ SITE = 'https://mung-mungi.github.io/mung-mung-market/'
 OGDESC = '실적 속보·실적 캘린더·목표주가·공매도·시세를 한 곳에서. 매일 6~8회 업데이트.'
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'og-card.jpg'), os.path.join(src, 'og-card.jpg'))
 def og(title, fn):
+    if fn == 'index.html': title = '멍뭉 터미널 · AI 밸류체인 레이더'
     t = H.escape(title, quote=True)
-    return (f'<meta property="og:type" content="website"><meta property="og:site_name" content="AI 밸류체인 통합본">'
+    return (f'<meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널">'
             f'<meta property="og:title" content="{t}"><meta property="og:description" content="{OGDESC}">'
             f'<meta property="og:url" content="{SITE}{"" if fn == "index.html" else fn}">'
             f'<meta property="og:image" content="{SITE}og-card.jpg"><meta property="og:image:width" content="1200">'
@@ -26,7 +27,8 @@ for f in glob.glob(os.path.join(src, '*.html')):
     s = re.sub(r'(<a [^>]*href="(?:index|p-[a-z]+)\.html"[^>]*?)\s+target="_blank"', r'\1', s)
     if 'name="robots"' not in s:
         s = re.sub(r'(<head[^>]*>)', r'\1' + META, s, count=1) if '<head' in s else META + s
-    if 'property="og:image"' not in s:
+    s = re.sub(r'<meta (?:property="og:[a-z:_]+"|name="twitter:card") content="[^"]*">', '', s)
+    if True:
         mt = re.search(r'<title>([^<]*)</title>', s)
         tag = og(mt[1] if mt else 'AI 밸류체인 통합본', os.path.basename(f))
         s = re.sub(r'(<meta name="robots"[^>]*>)', lambda x: x[1] + tag, s, count=1)
