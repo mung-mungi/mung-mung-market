@@ -475,6 +475,7 @@ def tidy_perf(s):
 def tidy_splash(s):
     s = re.sub(r'<(style|script) data-splash>.*?</\1>', '', s, flags=re.S)
     d = os.path.dirname(os.path.abspath(__file__))
-    add = '<style data-splash>' + open(os.path.join(d, 'splash.css'), encoding='utf-8').read() + '</style><script data-splash>' + open(os.path.join(d, 'splash.js'), encoding='utf-8').read() + '</script>'
+    s = re.sub(r'<link data-hsicon[^>]*>|<meta data-hsicon[^>]*>', '', s)
+    add = '<link data-hsicon rel="apple-touch-icon" href="img/icon180.png"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>' + open(os.path.join(d, 'splash.css'), encoding='utf-8').read() + '</style><script data-splash>' + open(os.path.join(d, 'splash.js'), encoding='utf-8').read() + '</script>'
     m = re.search(r'<script data-perf>.*?</script>', s, re.S) or re.search(r'<head[^>]*>', s)
     return s[:m.end()] + add + s[m.end():] if m else add + s
