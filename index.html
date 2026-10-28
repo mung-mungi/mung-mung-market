@@ -523,7 +523,7 @@ window.addEventListener('load',fix);setTimeout(fix,600);setTimeout(fix,2000);
       var C = document.querySelector('a.item[href*="p-trend"]');
       var box = document.createElement('div'); box.className = 'mm-bars';
       box.appendChild(bar(L, '시장 경고등', lightsMid(L))); L.remove();
-      if (C) { box.appendChild(bar(C, '차트 길잡이', '지지·저항 바로 보기')); C.remove(); }
+      if (C) { box.appendChild(bar(C, '종목 차트', '지지·저항 바로 보기')); C.remove(); }
       var sh = list.previousElementSibling; (sh || list).before(box);
       [].slice.call(list.querySelectorAll(':scope > a.item')).sort(function(a, b){ var i = ORDER.indexOf(key(a)), j = ORDER.indexOf(key(b)); return (i < 0 ? 99 : i) - (j < 0 ? 99 : j); }).forEach(function(a){ list.appendChild(a); });
       var SHORT = {'p-cal': '실적 일정', 'p-opt': '옵션 온도계', 'p-neo': '네오클라우드', 'p-supply': '한국·대만 실적', 'p-qtr': '분기 실적 추이', 'p-insider': '내부자·기관', 'p-capex': '설비투자', 'p-econ': '경제지표'};

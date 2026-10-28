@@ -141,6 +141,7 @@ def rename_cal(root):
     for f in glob.glob(os.path.join(root, '*.html')):
         s = o = open(f, encoding='utf-8').read()
         s = re.sub(r'(<a href="p-cal\.html[^"]*"[^>]*>)실적 캘린더(</a>)', r'\1실적 일정\2', s)
+        s = re.sub(r'(<a href="p-trend\.html[^"]*"[^>]*>)차트 길잡이(</a>)', r'\1종목 차트\2', s)  # 사용자 2026-10-29: 보통 쓰는 말로
         if s != o: open(f, 'w', encoding='utf-8').write(s); done.append(os.path.basename(f))
     return ['rename_cal:%d' % len(done)] if done else []
 
