@@ -425,6 +425,10 @@ UNI_PAGES = ['p-bond.html', 'p-econ.html', 'p-cal.html', 'p-short.html', 'p-fx.h
 
 def tidy_uni(s):
     s = re.sub(r'<(style|script) data-uniui>.*?</\1>', '', s, flags=re.S)
+    s = re.sub(r'<(style|script) data-krtable>.*?</\1>', '', s, flags=re.S)
     d = os.path.dirname(os.path.abspath(__file__))
+    if 'id="tw-table-card"' in s:
+        k = '<style data-krtable>' + open(os.path.join(d, 'krtable.css'), encoding='utf-8').read() + '</style><script data-krtable>' + open(os.path.join(d, 'krtable.js'), encoding='utf-8').read() + '</script>'
+        s = s.replace('</body>', k + '</body>', 1) if '</body>' in s else s + k
     add = '<style data-uniui>' + open(os.path.join(d, 'uniui.css'), encoding='utf-8').read() + '</style><script data-uniui>' + open(os.path.join(d, 'uniui.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add

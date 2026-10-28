@@ -1,0 +1,4 @@
+body #kr-table td.up{color:var(--up,#1a7f37);font-weight:700}body #kr-table td.dn{color:var(--down,#c62828);font-weight:700}body #kr-table td.mu{color:#b9b6ae}
+body #kr-table td.l b{font-weight:800}body #kr-table td.l small{display:block;font-size:11px;color:#9a6200;font-weight:700}
+body #kr-table tr.kr-pre td{background:rgba(154,98,0,.06)}
+body #kr-table th,body #kr-table td{white-space:nowrap}
