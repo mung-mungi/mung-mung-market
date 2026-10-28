@@ -50,6 +50,39 @@ function tidy(){
 }
 """,
  },
+ 'p-targets.html': {
+  'css': """
+/* 분야 버튼 줄: 한 줄로 옆으로 밀기 */
+.pt-chips{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;scrollbar-width:none;gap:6px!important;padding-bottom:4px!important;-webkit-overflow-scrolling:touch}
+.pt-chips::-webkit-scrollbar{display:none}.pt-chips>*{flex:none!important}
+/* 설명 글: 2줄만, 누르면 펼침 */
+#dash-root p.sub{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;cursor:pointer}
+#dash-root p.sub.open{display:block}
+/* 최근 변경 코멘트: 3줄만, 카드를 누르면 펼침 */
+#recent-list li .cm{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+#recent-list li.open .cm{display:block}
+/* 요약 칸 4개 한 줄 */
+.pt-tiles{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important}
+.pt-tile{padding:8px 7px!important;min-height:0!important}
+.pt-tile>*:first-child{font-size:11px!important;line-height:1.3!important}
+.pt-tile .v,.pt-tile b{font-size:21px!important}
+.pt-tile>*:last-child{font-size:10.5px!important}
+/* 종목별 보기: 요약 칸 3열, 기관 범례는 접기, 출처 접기 */
+#tk-sec .pt-tiles{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+#srcs a{display:block;font-size:11.5px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+""",
+  'js': r"""
+function tidy(){
+  document.querySelectorAll('#dash-root p.sub').forEach(function(p){ if(p.dataset.c)return; p.dataset.c=1; p.title='눌러서 펼치기'; p.addEventListener('click',function(){p.classList.toggle('open')}); });
+  document.querySelectorAll('#recent-list li').forEach(function(li){ if(li.dataset.c)return; li.dataset.c=1; li.addEventListener('click',function(e){ if(e.target.closest('a,button'))return; li.classList.toggle('open'); }); });
+  var wrap=function(el,label){ if(!el||el.closest('details.mm-fold'))return; var d=document.createElement('details'); d.className='mm-fold'; d.innerHTML='<summary><span>'+label+'</span></summary>'; el.before(d); d.appendChild(el); };
+  wrap(document.querySelector('#month-card ul.mkey'),'막대·선 읽는 법');
+  wrap(document.getElementById('legend'),'기관별 선 고르기 · 가장 긍정·비관 기관');
+  wrap(document.getElementById('srcs'),'출처 보기');
+  var mk=document.querySelector('#vsprice ul.mkey'); if(mk&&!mk.closest('details')){ var d=document.createElement('details'); d.className='mm-fold'; d.innerHTML='<summary><span>막대·점 읽는 법</span></summary>'; mk.before(d); d.appendChild(mk); }
+}
+""",
+ },
 }
 
 CSS_COMMON = """
