@@ -53,6 +53,7 @@ def run(root):
         s1 = re.sub(r'<script data-tick>[\s\S]*?</script>', lambda m: '<script data-tick>' + TK + '</script>', s0)
         if s1 != s0: open(f, 'w', encoding='utf-8').write(s1); n.append('tick:' + os.path.basename(f))
     n += fix_hub(root)
+    n += rename_cal(root)
     sys.path.insert(0, T); import page_tidy; n += page_tidy.run(root)
     pe = os.path.join(root, 'p-earn.html')
     if os.path.exists(pe):
@@ -125,10 +126,23 @@ def fix_hub(root):
     s = s.replace(' 기준 · 하루 6~8회 갱신', ' 기준 · 80종목 한눈에')
     sys.path.insert(0, T); import hub_tidy; s = hub_tidy.tidy(s)  # 첫 화면 정리(사용자 2026-10-29)
     MJ = '<script data-mkt>' + open(os.path.join(T, 'market.js'), encoding='utf-8').read() + '</script>'
+    MJ += '<script data-mkt>' + open(os.path.join(T, 'home_order.js'), encoding='utf-8').read() + '</script>'
     s = re.sub(r'<script data-mkt>[\s\S]*?</script>', '', s)
     s = s.replace('</body>', MJ + '</body>', 1) if '</body>' in s else s + MJ
     if s != o: open(p, 'w', encoding='utf-8').write(s); return ['index.html']
     return []
+
+
+
+def rename_cal(root):
+    # '실적 캘린더' → '실적 일정'(사용자 2026-10-29: 더 직관적) — 맨 위 페이지 줄 링크 글자만
+    import glob
+    done = []
+    for f in glob.glob(os.path.join(root, '*.html')):
+        s = o = open(f, encoding='utf-8').read()
+        s = re.sub(r'(<a href="p-cal\.html[^"]*"[^>]*>)실적 캘린더(</a>)', r'\1실적 일정\2', s)
+        if s != o: open(f, 'w', encoding='utf-8').write(s); done.append(os.path.basename(f))
+    return ['rename_cal:%d' % len(done)] if done else []
 
 
 if __name__ == '__main__':
