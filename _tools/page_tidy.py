@@ -13,6 +13,55 @@ window.mmFold=function(card,keep,label,open){ // card 안에서 keep(남길 것)
 """
 
 PAGES = {
+ 'p-earn.html': {  # 실적 결과: 학점 2개 [실적][AI 관점] + 점수 보는 법(사용자 2026-10-29)
+  'sync': True,
+  'css': """
+.mg{flex:none;display:inline-flex;gap:4px;margin-right:4px;align-items:center}
+.sumrow .mk-l small b.g{display:none}
+.mg em{font-style:normal;display:inline-flex;align-items:baseline;gap:3px;border:1.5px solid;border-radius:7px;padding:1px 7px 2px;color:#fff;line-height:1.2;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;white-space:nowrap}
+.mg em b{font-size:15px;font-weight:900}.mg em small{font-size:11px;font-weight:700;opacity:.95}
+.mg em.ai{background:#fff!important}
+.sumrow .mk-ck{align-items:center}
+.mg-how{background:#fff;border:1px solid #ecdcb8;border-radius:12px;padding:9px 12px;margin:8px 0 10px;font-size:13.5px;line-height:1.55;color:#3a3630}
+.mg-how .t{font-weight:800;color:#9a6200;font-size:12.5px;margin:0 0 3px}
+.mg-how p{margin:0}.mg-how p+p{margin-top:2px}.mg-how .sc{color:#8a877f;font-size:12px;margin-top:4px}
+.mg-how .bd{display:inline-block;min-width:34px;text-align:center;border-radius:6px;padding:0 5px;font-size:11.5px;font-weight:800;color:#fff;background:#e0573a;margin-right:4px;vertical-align:1px}
+.mg-how .bd.ai{background:#fff;color:#e0573a;border:1.5px solid #e0573a}
+.mg-how .tot{margin-top:6px;padding-top:6px;border-top:1px dashed #ecdcb8;font-weight:700;color:#141210}
+.verdict .k .mgk{display:inline-block;margin-left:6px;border-radius:6px;padding:0 6px;font-weight:900;color:#fff;letter-spacing:0;font-size:13px}
+.verdict .k .mgk.ai{background:#fff!important;border:1.5px solid}
+""",
+  'js': r"""
+var MGC={'A+':'#c9302c','A':'#e0573a','B':'#c47a12','C':'#6b675f','D':'#3a6fe0'};
+function mgVd(a,re){var vs=[].slice.call(a.querySelectorAll('.verdict'));var v=vs.filter(function(x){var k=x.querySelector('.k');return k&&re.test(k.textContent)})[0];var g=v&&v.querySelector('.g');return {v:v,w:g?g.textContent.trim():''}}
+function mgRx(a){var sum=a.dataset.sum||'';var fr=[].slice.call(a.querySelectorAll('.row')).filter(function(r){return /첫 거래일 종가/.test(r.textContent)})[0];var m;
+  if(fr&&(m=fr.textContent.match(/\(([+−-]\d+(?:\.\d+)?)%/)))return parseFloat(m[1].replace('−','-'));
+  m=sum.match(/(시간외|프리마켓|장중|종가)[^·]*?([+−-]\d+(?:\.\d+)?)/);return m?parseFloat(m[2].replace('−','-')):null}
+function mgGrade(a){
+  var g=(a.dataset.g||'').match(/실적\s*([A-D]\+?)\D*AI\s*([A-D]\+?|–)?/);if(g)return {p:g[1],ai:g[2]||'–'};
+  var sum=a.dataset.sum||'',P=mgVd(a,/실적 자체/),AI=mgVd(a,/AI/);
+  var ok=(sum.match(/✅/g)||[]).length,no=(sum.match(/❌/g)||[]).length,s;
+  if(/좋음|호실적/.test(P.w))s=3;else if(/보통|혼조/.test(P.w))s=2;else if(/나쁨|부진/.test(P.w))s=.8;else s=2+(ok-no)*.4;
+  s+=Math.max(-.5,Math.min(.5,(ok-no)*.25));if(/가이던스✅/.test(sum))s+=.25;
+  var r=mgRx(a);if(r!=null)s+=r>=5?.4:r<=-12?-1.2:r<=-8?-.75:r<=-3?-.25:0;
+  var p=s>=3.7?'A+':s>=2.9?'A':s>=2.2?'B':s>=1?'C':'D';
+  var w=AI.w;if(!w){var m=sum.match(/AI 관점 (호재|중립|경고)/);w=m?m[1]:''}
+  var why=(sum.match(/AI 관점 [^(]*\(([^)]*)\)/)||[])[1]||'',big=/사상 최대|두 배/.test(why)||(why.match(/\+(\d+)/g)||[]).some(function(x){return +x.slice(1)>=50});
+  var ai=/호재|좋음/.test(w)?(big?'A+':'A'):/중립|보통/.test(w)?'B':/경고|나쁨/.test(w)?(/❌/.test(why)?'D':'C'):'–';
+  return {p:p,ai:ai}}
+function mgBadge(t,lab,ai){var i=document.createElement('em');var c=MGC[t]||'#a8a49b';if(ai){i.className='ai';i.style.borderColor=c;i.style.color=c}else{i.style.background=c;i.style.borderColor=c}var sm=document.createElement('small');sm.textContent=lab;var b=document.createElement('b');b.textContent=t;i.append(sm,b);return i}
+function tidy(){
+  var arts=[].slice.call(document.querySelectorAll('article[data-sum]'));
+  arts.forEach(function(a){var G=a.__mg||(a.__mg=mgGrade(a));
+    var sr=a.querySelector(':scope>.sumrow');if(sr&&!sr.querySelector('.mg')){var d=document.createElement('span');d.className='mg';d.append(mgBadge(G.p,'실적'),mgBadge(G.ai,'AI 관점',1));var ck=sr.querySelector('.mk-ck');if(ck)ck.insertBefore(d,ck.firstChild);else{var mr=sr.querySelector('.mk-row');if(mr)mr.after(d);else sr.insertBefore(d,sr.firstChild)}}
+    if(!a.dataset.mgk){a.dataset.mgk=1;[[/실적 자체/,'📊 시장이 본 이 실적 ',G.p,0],[/AI/,'🧠 AI 사슬에서 본 이 실적 ',G.ai,1]].forEach(function(z){var v=mgVd(a,z[0]).v;if(!v)return;var k=v.querySelector('.k');k.textContent=z[1];var e=document.createElement('span');e.className='mgk'+(z[3]?' ai':'');var c=MGC[z[2]]||'#a8a49b';if(z[3]){e.style.borderColor=c;e.style.color=c}else e.style.background=c;e.textContent=(z[3]?'AI 관점 ':'실적 ')+z[2];k.appendChild(e)})}});
+  var SP=document.getElementById('spot');if(!SP||SP.hidden)return;var cur=[].slice.call(SP.querySelectorAll('#spl article[data-sum]'));if(!cur.length)return;
+  var h=SP.querySelector('.mg-how');if(!h){h=document.createElement('div');h.className='mg-how';var after=SP.querySelector('p.sum')||SP.querySelector('.sh');after.after(h)}
+  var nP=cur.filter(function(a){return /^A/.test(a.__mg.p)}).length,nA=cur.filter(function(a){return /^A/.test(a.__mg.ai)}).length;
+  var html='<p class="t">점수 보는 법</p><p><span class="bd">실적</span>시장이 본 성적표 — 매출·EPS가 예상보다 잘 나왔나, 가이던스, 주가 반응</p><p><span class="bd ai">AI 관점</span>AI 사슬에서 본 성적표 — AI 매출·수주·설비투자가 커졌나 (AI와 무관한 부진은 빼고 봄)</p><p class="sc">A+ 아주 좋음 · A 좋음 · B 보통 · C 아쉬움 · D 나쁨</p><p class="tot">'+cur.length+'곳 중 실적 A 이상 '+nP+'곳 · AI 관점 A 이상 '+nA+'곳</p>';
+  if(h.innerHTML!==html)h.innerHTML=html}
+"""
+ },
  'p-lights.html': {
   'css': """
 /* 영역별 경고등: 2열 카드, 항목은 이름 한 줄 + 지금·기준 작게 */
