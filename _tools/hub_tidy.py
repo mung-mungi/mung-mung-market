@@ -42,6 +42,7 @@ BRIEF_CSS = ('<style data-pmore>.bf-pmore{display:block;margin:6px 0 0;padding:7
 
 
 def tidy_brief(s):
+    s = tidy_np2(s)
     s = tidy_deep(s)
     s = tidy_paper(s)
     s = tidy_tiles(s)
@@ -88,12 +89,12 @@ PAPER = r'''<link rel="stylesheet" href="https://fonts.googleapis.com/css2?famil
 #take.np .np-body{font-family:"Noto Serif KR",ui-serif,Georgia,serif;font-weight:500;font-size:15px;line-height:1.75;text-align:left;word-break:keep-all;color:#333;margin:10px 0 0!important;padding-top:10px;border-top:1px solid #cfccc4}
 #take.np .np-body b,#take.np .np-body strong{font-weight:700;color:#111}
 #take.np .np-more{display:block;width:100%;margin:10px 0 0;padding:6px 0 0;border:0;border-top:1px solid #cfccc4;background:none;font:600 12.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#66635c;text-align:right;cursor:pointer}
-</style><script data-paper>(function(){var k=0;function go(){var t=document.getElementById('take');if(!t||t.classList.contains('np'))return;var dl=t.querySelector('.bf-dl'),bd=t.querySelector('[data-field=comment]');
+</style><script data-paper>(function(){var k=0;function go(){var t=document.getElementById('take');if(!t||t.querySelector('.np-mast'))return;var dl=t.querySelector('.bf-dl'),bd=t.querySelector('[data-field=comment]');
 if(!bd||!bd.textContent.trim()){if(++k<40)setTimeout(go,250);return}
 var a=dl?(dl.querySelector('b')||{}).textContent||'':'',u=dl?(dl.querySelector('.bf-us')||{}).textContent||'':'';a=a.replace(/\s*\([^)]*\)/,'');
 var h=bd.innerHTML,hd,rest;if(t.dataset.hd){hd=t.dataset.hd;rest=h}else{var i=h.search(/다\.(\s|$)/);if(i>0){hd=h.slice(0,i+2);rest=h.slice(i+2).trim()}else{hd=h;rest=''}var tmp=document.createElement('div');tmp.innerHTML=hd;hd=tmp.textContent.replace(/\.$/,'')}
 t.classList.add('np');t.innerHTML='<div class="np-mast"><span>멍뭉일보</span><em>AI 밸류체인<br>아침판</em></div><div class="np-line"><span>'+a+'</span><span>'+u+'</span></div><h2 class="np-hd"></h2>'+(rest?'<p class="np-body" hidden>'+rest+'</p><button type="button" class="np-more">기사 펼치기 ▾</button>':'');var he=t.querySelector('.np-hd');String(hd).replace(/\*\*/g,'').split(/\s*(?:,|…|\.\.\.)\s*/).filter(Boolean).forEach(function(x,k){if(k)he.appendChild(document.createElement('br'));he.appendChild(document.createTextNode(x.trim()))});var pb=t.querySelector('.np-body');if(pb)pb.innerHTML=pb.innerHTML.replace(/다\.\s+/g,'다.<br>');var mb=t.querySelector('.np-more');if(mb)mb.onclick=function(){var p=t.querySelector('.np-body'),o=p.hidden;p.hidden=!o;mb.textContent=o?'접기 ▴':'기사 펼치기 ▾'}}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go()})();</script>'''
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();var tk0=document.getElementById('take');if(tk0)new MutationObserver(function(){if(!tk0.querySelector('.np-mast')){k=0;go()}}).observe(tk0,{childList:true})})();</script>'''
 
 
 HD_ANCHOR = "const tk=$('take');tk.textContent='';const lastAll=ALL[ALL.length-1];"
@@ -237,3 +238,30 @@ def tidy_opt(s):
     s = s[:m.start()] + s[m.end():]
     r = s.find('<section class="ot-card ot-sec" id="rule-card">')
     return s[:r] + blk.strip() + '\n\n  ' + s[r:]
+
+
+# 데일리 시황 펼친 카드: 시장 이야기를 맨 앞 신문 기사로, 나머지 섹션은 제목만 보이는 접이식 신문 목차로(사용자 2026-10-29 — 전체 글이 너무 김)
+NP2 = (r"""<style data-np2>body #days .bf-more{gap:0!important;row-gap:0!important;background:#f3f2ee;border-top:3px solid #333;margin-top:8px;padding:10px 12px 6px;border-radius:2px}"""
+       r"""body #days .bf-more .bf-toc{display:none!important}"""
+       r"""body #days .bf-more .np-lead{border:0!important;background:none!important;padding:0 0 6px!important;margin:0!important}"""
+       r"""body #days .bf-more .np-lead>.k{display:block;font:900 19px/1.3 "Noto Serif KR","Nanum Myeongjo",serif!important;color:#111!important;letter-spacing:-.01em;padding-bottom:6px;margin-bottom:8px;border-bottom:1px solid #cfccc4}"""
+       r"""body #days .bf-more .np-lead>.k::before{content:"시황 해설";display:block;font:700 11px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#7a766d;letter-spacing:.08em;margin-bottom:2px}"""
+       r"""body #days .bf-more .np-lead p{font-size:15px!important;line-height:1.72!important;color:#222!important;margin:0 0 10px!important}"""
+       r"""body #days .bf-more .np-lead .bf-hlt{background:none!important;font-weight:800;box-shadow:inset 0 -.42em 0 #e4dfd2}"""
+       r"""body #days .bf-day.on>.bf-com{display:none!important}body #days .np-lead .np-x{display:none!important}body #days .np-lead.op .np-x{display:block!important}"""
+       r"""body #days .np-lead .np-rd{all:unset;display:block;margin:2px 0 8px;font:600 13px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#66635c;cursor:pointer}"""
+       r"""body #days .bf-more .bf-cite{font-size:11px!important;opacity:.7}"""
+       r"""body #days .bf-more .bf-sec.npf{border:0!important;border-top:1px solid #cfccc4!important;background:none!important;border-radius:0!important;padding:0!important;margin:0!important}"""
+       r"""body #days .bf-more .bf-sec.npf>.k{display:flex!important;justify-content:space-between;align-items:center;cursor:pointer;padding:9px 2px!important;margin:0!important;font:800 15px/1.35 "Noto Serif KR","Nanum Myeongjo",serif!important;color:#222!important;border:0!important;background:none!important}"""
+       r"""body #days .bf-more .bf-sec.npf>.k::after{content:"▾";font:400 13px sans-serif;color:#7a766d}body #days .bf-more .bf-sec.npf.op>.k::after{content:"▴"}"""
+       r"""body #days .bf-more .bf-sec.npf:not(.op)>:not(.k){display:none!important}body #days .bf-more .bf-sec.npf.op{padding-bottom:10px!important}</style>"""
+       r"""<script data-np2>(function(){function fix(){document.querySelectorAll('#days .bf-more').forEach(function(m){if(m.dataset.np2)return;m.dataset.np2=1;var st=m.querySelector('.bf-story');if(st){st.classList.add('np-lead');m.insertBefore(st,m.firstChild);var ps=st.querySelectorAll('p');if(ps.length>2){for(var i=2;i<ps.length;i++)ps[i].classList.add('np-x');var rb=document.createElement('button');rb.type='button';rb.className='np-rd';rb.textContent='기사 이어 읽기 ▾ ('+(ps.length-2)+'단락)';rb.onclick=function(){st.classList.toggle('op');rb.textContent=st.classList.contains('op')?'접기 ▴':'기사 이어 읽기 ▾ ('+(ps.length-2)+'단락)'};st.appendChild(rb)}}var ex=[m.querySelector(':scope>.bf-macro'),m.querySelector(':scope>.bf-src')].filter(Boolean);if(ex.length){var w=document.createElement('div');w.className='bf-sec';var kk=document.createElement('span');kk.className='k';kk.textContent='수치 · 출처';w.appendChild(kk);ex.forEach(function(e){w.appendChild(e)});m.appendChild(w)}"""
+       r"""m.querySelectorAll('.bf-sec').forEach(function(c){if(c.classList.contains('np-lead'))return;c.classList.add('npf');var k=c.querySelector(':scope>.k');if(k)k.addEventListener('click',function(){c.classList.toggle('op')})})})}"""
+       r"""var k=0;(function go(){fix();if(!document.__np2){var d=document.getElementById('days');if(d){document.__np2=1;new MutationObserver(fix).observe(d,{childList:true,subtree:true})}}if(++k<10)setTimeout(go,500)})()})();</script>""")
+
+
+def tidy_np2(s):
+    s = re.sub(r'<(style|script) data-np2>.*?</\1>', '', s, flags=re.S)
+    if 'id="days"' not in s:
+        return s
+    return s.replace('</body>', NP2 + '</body>', 1) if '</body>' in s else s + NP2
