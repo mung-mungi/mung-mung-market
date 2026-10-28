@@ -44,6 +44,7 @@ def tidy_brief(s):
     s = tidy_deep(s)
     s = tidy_paper(s)
     s = tidy_tiles(s)
+    s = tidy_units(s)
     if "'더 보기 ▾ ('" in s or BRIEF_ANCHOR not in s:
         return s
     s = s.replace(BRIEF_ANCHOR, "s.appendChild(ul);" + BRIEF_ADD + ";if(kind==='eco'", 1)
@@ -115,3 +116,18 @@ def tidy_tiles(s):
     if 'data-tiles' in s or 'bf-tiles' not in s:
         return s
     return s.replace('</body>', TILES + '</body>', 1) if '</body>' in s else s + TILES
+
+
+# 숫자 칸 단위: '%'·'달러/배럴'은 숫자 옆에 작게 붙이고, 'YYYY-MM-DD 마감' 같은 날짜 줄은 숨김(사용자 2026-10-29)
+UNITS = (r'''<style data-units>body .bf-tile .v .u{font-family:-apple-system,"Apple SD Gothic Neo",sans-serif;font-size:12px;font-weight:600;color:var(--color-fg-muted,#6f6d68);margin-left:3px;letter-spacing:0}</style>'''
+         r'''<script data-units>(function(){var k=0;function go(){var t=document.querySelectorAll('.bf-tile');if(!t.length||![].some.call(t,function(e){var v=e.querySelector('.v');return v&&v.textContent.trim()})){if(++k<40)setTimeout(go,250);return}'''
+         r'''t.forEach(function(e){var v=e.querySelector('.v'),s=e.querySelector('.s');if(!v||!s||v.querySelector('.u'))return;var x=s.textContent.trim(),u=null;'''
+         r'''if(x==='%')u='%';else if(/^달러\/배럴$/.test(x))u='달러';else if(/^달러/.test(x)&&x.length<8)u=x;else if(/^\d{4}-\d{2}-\d{2}\s*마감$/.test(x))u='';'''
+         r'''if(u===null)return;if(u){var sp=document.createElement('span');sp.className='u';sp.textContent=u;v.appendChild(sp)}s.style.display='none'})}'''
+         r'''if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go()})();</script>''')
+
+
+def tidy_units(s):
+    if 'data-units' in s or 'bf-tiles' not in s:
+        return s
+    return s.replace('</body>', UNITS + '</body>', 1) if '</body>' in s else s + UNITS
