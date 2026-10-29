@@ -115,11 +115,11 @@ function pros(D){
     return row(esc(e.name),md(e.date)+' · '+esc(e.firm)+'('+e.rank+'위) · '+esc(e.type)+(e.rating?' · '+esc(e.rating):''),'<b>'+pt+'</b><small>목표가</small>','<span class="'+cls(e.since)+'">'+sg(e.since,1)+'%</span><small>그 뒤 주가</small>',
       '<p class="iv-note">'+esc(e.firm)+'는 종합 '+e.rank+'위입니다. '+(e.pt_from&&e.pt_to?'목표가를 '+num(e.pt_from)+'에서 '+num(e.pt_to)+'('+sg((e.pt_to/e.pt_from-1)*100,0)+'%)로 올렸습니다.':'투자의견을 올렸습니다.')+'</p>')});
   tog($('recent'));more($('recent'),rc,10);
-  var bt='l';seg($('btab'),[['l','레오폴드 펀드'],['i','기관 보유 변화'],['s','내부자 순매수']],'l',function(k){bt=k;drawB()});tog($('big'));
+  var bt='l';seg($('btab'),[['l','레오폴드 펀드'],['i','기관 보유 변화'],['s','내부자 매매']],'l',function(k){bt=k;drawB()});tog($('big'));
   function drawB(){var h;
     if(bt==='l')h=D.leopold.map(function(x){return row(esc(x.name),esc(x.q)+' · '+esc(x.ticker),'<b>'+usd(x.value_bn*1e9)+'</b><small>보유 금액</small>','<span class="iv-0">'+x.pct.toFixed(1)+'%</span><small>포트 비중</small>','<p class="iv-note">직전 분기 대비 '+esc(x.change)+'. AI 인프라에 집중 투자하는 상황인식(Situational Awareness, 레오폴드 아셴브레너) 펀드의 13F 공시 기준입니다.</p>')});
     else if(bt==='i')h=D.inst.map(function(x){return row(esc(x.name),esc(x.cat),'<b>'+num(x.holders)+'곳</b><small>보유 기관 '+sg(x.chg)+'곳</small>','<span class="'+cls(x.own_chg)+'">'+sg(x.own_chg,1)+'</span><small>지분율 %p</small>','<p class="iv-note">'+esc(x.q)+' 말 기준 기관 지분율 '+x.own.toFixed(1)+'%. 보유 기관 수는 대체로 늘어나는 게 보통이라, 지분율이 줄어든 곳이 더 눈에 띄는 신호입니다.</p>')});
-    else h=D.insider.map(function(x){var n=x.buy-x.sell;return row(esc(x.name),esc(x.ticker),'매수 <b>'+x.nb+'</b> · 매도 <b>'+x.ns+'</b><small>최근 60일 건수</small>','<span class="'+cls(n)+'">'+usd(n)+'</span><small>순매수</small>','<p class="iv-note">매수 '+usd(x.buy)+' · 매도 '+usd(x.sell)+'. 임원 매도는 보수·세금 때문에 늘 많아서, 드문 매수가 더 의미 있는 신호입니다.</p>')});
+    else h=D.insider.map(function(x){var n=x.buy-x.sell;return row(esc(x.name),esc(x.ticker),'매수 <b>'+x.nb+'</b> · 매도 <b>'+x.ns+'</b><small>최근 60일 건수</small>','<span class="'+cls(n)+'">'+(n<0?usd(-n):usd(n))+'</span><small>'+(n<0?'순매도':n>0?'순매수':'매수=매도')+'</small>','<p class="iv-note">매수 '+usd(x.buy)+' · 매도 '+usd(x.sell)+'. 임원 매도는 보수·세금 때문에 늘 많아서, 드문 매수가 더 의미 있는 신호입니다.</p>')});
     more($('big'),h.length?h:['<p class="iv-empty">자료가 없습니다.</p>'],12)}
   drawB();
 }
