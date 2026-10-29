@@ -1,0 +1,6 @@
+/* 아래 메뉴 위 왼쪽 '이전·홈' 동그란 버튼 — 반투명(사용자 2026-10-29). 메인 화면에서는 숨김 */
+#mm-fab{position:fixed;left:12px;bottom:calc(92px + env(safe-area-inset-bottom));z-index:8990;display:flex;gap:8px;pointer-events:none}
+#mm-fab a{all:unset;pointer-events:auto;width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.7);border:1px solid rgba(160,140,100,.28);box-shadow:0 3px 10px rgba(11,11,11,.12);color:#3a3630;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s,background .12s}
+#mm-fab a:active{transform:scale(.92);background:rgba(243,239,228,.9)}
+#mm-fab svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+body:not(.mmd-on) #mm-fab{bottom:calc(16px + env(safe-area-inset-bottom))}
