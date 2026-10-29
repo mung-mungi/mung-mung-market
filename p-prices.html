@@ -484,6 +484,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
         n_intraday: prices.filter((r) => r.price_kind === 'intraday').length,
         n_pre: prices.filter((r) => r.price_kind === 'premarket').length,
         n_after: prices.filter((r) => r.price_kind === 'aftermarket').length,
+        n_day: prices.filter((r) => r.price_kind === 'daymarket').length,
         ptime: prices.map((r) => r.price_time_kst || '').sort().pop() || '',
         med_1d: med(d1),
         n_up: d1.filter((x) => x > 0).length,
@@ -652,7 +653,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
     const setT = (el, txt, c) => { if (typeof el === 'string') el = document.getElementById(el); el.textContent = txt; el.className = el.className.replace(/\bpb-(up|dn)\b/g, '').trim(); if (c) el.classList.add(c); };
     const fillMarks = (f) => document.querySelectorAll('#take-line [data-field], #tiles .s [data-field]').forEach((el) => { setT(el, f ? f(el.dataset.field) : '—'); });
     if (t) {
-      setT('asof', fmtDate(t.as_of) + (t.n_pre > 0 ? ' 프리마켓 포함' : t.n_after > 0 ? ' 애프터 포함' : t.n_intraday > 0 ? ' 종가·장중 기준' : ' 종가 기준') + (t.ptime ? ' · ' + t.ptime.slice(-5) + ' 갱신' : ''));
+      setT('asof', fmtDate(t.as_of) + (t.n_pre > 0 ? ' 프리마켓 포함' : t.n_day > 0 ? ' 데이장 포함' : t.n_after > 0 ? ' 애프터 포함' : t.n_intraday > 0 ? ' 종가·장중 기준' : ' 종가 기준') + (t.ptime ? ' · ' + t.ptime.slice(-5) + ' 갱신' : ''));
       setT('t-med1d', fmtPct(t.med_1d, 2), cls(t.med_1d));
       setT('t-up', `${t.n_up}`);
       setT('t-hi', `${t.near_high}`);
@@ -752,6 +753,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
       const tdp = cell(tr, fmtPrice(p, r.currency), p == null ? 'na' : '');
       if (p != null) { const u = document.createElement('span'); u.className = 'cur'; u.textContent = r.currency; tdp.appendChild(u); }
       if (r.price_kind === 'premarket') { const bg = document.createElement('span'); bg.className = 'pb-badge'; bg.textContent = '프리마켓'; tdp.appendChild(bg); }
+      if (r.price_kind === 'daymarket') { const bg = document.createElement('span'); bg.className = 'pb-badge'; bg.textContent = '데이장'; tdp.appendChild(bg); }
       if (r.price_kind === 'aftermarket') { const bg = document.createElement('span'); bg.className = 'pb-badge'; bg.textContent = '애프터'; tdp.appendChild(bg); }
       if (r.price_kind === 'intraday') { const bg = document.createElement('span'); bg.className = 'pb-badge'; bg.textContent = '장중'; tdp.appendChild(bg); }
       cell(tr, fmtPct(c.chg_1d, 2), cls(c.chg_1d));
@@ -778,7 +780,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
       const pt = c.cons_avg_pt;
       cell(tr, pt == null ? '자료 없음' : fmtPrice(pt, r.currency), pt == null ? 'na' : '');
       cell(tr, fmtPct(c.upside), cls(c.upside));
-      cell(tr, fmtDate(r.price_date) + (r.price_date && r.price_kind === 'intraday' ? ' 장중' : r.price_date && r.price_kind === 'aftermarket' ? ' 애프터' : r.price_kind === 'premarket' ? ' 프리마켓' : r.price_date ? ' 종가' : ''), r.price_date ? '' : 'na');
+      cell(tr, fmtDate(r.price_date) + (r.price_date && r.price_kind === 'intraday' ? ' 장중' : r.price_date && r.price_kind === 'daymarket' ? ' 데이장' : r.price_kind === 'aftermarket' ? ' 애프터' : r.price_kind === 'premarket' ? ' 프리마켓' : r.price_date ? ' 종가' : ''), r.price_date ? '' : 'na');
       tb.appendChild(tr);
       if (openTk === r.ticker) tb.appendChild(detailRow(r, c, HI));
     });
@@ -795,7 +797,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
     const hd = document.createElement('div'); hd.className = 'hd';
     const nm = document.createElement('b'); nm.textContent = r.name + ' 가격 흐름';
     const p = num(r.price);
-    const pr = document.createElement('span'); pr.className = 'pr'; pr.textContent = fmtPrice(p, r.currency) + ' ' + r.currency + (r.price_kind === 'aftermarket' ? ' · 애프터' : r.price_kind === 'premarket' ? ' · 프리마켓' : r.price_kind === 'intraday' ? ' · 장중' : '');
+    const pr = document.createElement('span'); pr.className = 'pr'; pr.textContent = fmtPrice(p, r.currency) + ' ' + r.currency + (r.price_kind === 'daymarket' ? ' · 데이장' : r.price_kind === 'aftermarket' ? ' · 애프터' : r.price_kind === 'premarket' ? ' · 프리마켓' : r.price_kind === 'intraday' ? ' · 장중' : '');
     const x = document.createElement('button'); x.type = 'button'; x.className = 'x'; x.textContent = '닫기 ✕';
     x.addEventListener('click', (e) => { e.stopPropagation(); openTk = null; draw(); });
     hd.append(nm, pr, x); box.appendChild(hd);
@@ -1266,7 +1268,7 @@ run();document.addEventListener('DOMContentLoaded',run);window.addEventListener(
   // 한 자리(가격 칸 pr, 설명 칸 kd)에 결과 반영
   function apply(t, pr, kd, cur){
     if (!pr || pr.dataset.fh === t) return; pr.dataset.fh = t;
-    var saved = pr.textContent, savedLive = /프리마켓|장중|애프터/.test(saved + (kd ? kd.textContent : ''));
+    var saved = pr.textContent, savedLive = /프리마켓|장중|애프터|데이장/.test(saved + (kd ? kd.textContent : ''));
     quote(t, function(q){
       if (!pr.isConnected) return;
       var fresh = q && Date.now() - q.t * 1000 < FRESH;

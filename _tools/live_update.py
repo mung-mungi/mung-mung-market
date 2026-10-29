@@ -4,7 +4,7 @@
 # 실적 시간대(뉴욕 06:00~09:30, 16:00~19:30)는 15분 간격.
 # 결과는 live/ 에만 씀(통합본 동기화가 덮어쓰는 d/prices 와 분리). 충돌 시 최신본 받고 다시 계산.
 import urllib.parse, re
-import datetime as dt, json, os, shutil, subprocess, sys
+import datetime as dt, json, os, shutil, subprocess, sys, time
 from zoneinfo import ZoneInfo
 
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +20,9 @@ def sh(*a, check=True):
 def window(now):
     ny = now.astimezone(ZoneInfo('America/New_York')); kr = now.astimezone(ZoneInfo('Asia/Seoul'))
     m_ny = ny.hour * 60 + ny.minute; m_kr = kr.hour * 60 + kr.minute
-    us = ny.weekday() < 5 and 4 * 60 <= m_ny < 20 * 60
+    wd = ny.weekday()
+    # 미국 프리(04:00)~애프터(20:00) + 데이장(주간거래·오버나이트, 일~목 20:00~다음날 04:00 뉴욕) — 사용자 2026-10-29
+    us = (wd < 5 and 4 * 60 <= m_ny < 20 * 60) or (wd in (6, 0, 1, 2, 3) and m_ny >= 20 * 60) or (wd < 5 and m_ny < 4 * 60)
     ko = kr.weekday() < 5 and 9 * 60 <= m_kr < 15 * 60 + 40
     earn = ny.weekday() < 5 and (6 * 60 <= m_ny < 9 * 60 + 30 or 16 * 60 <= m_ny < 19 * 60 + 30)
     return us, ko, earn
@@ -274,10 +276,10 @@ def build():
     return st
 
 
-def main():
+def once():
     now = dt.datetime.now(dt.timezone.utc)
     g = gate(now)
-    if g: print(g); return
+    if g: print(g); return g
     for k in range(4):
         st = build()
         if not st: return
@@ -291,6 +293,23 @@ def main():
         g = gate(dt.datetime.now(dt.timezone.utc))
         if g: print('retry stop:', g); return
     print('push failed 4x')
+
+
+def main():
+    # GitHub 예약 실행이 실제로는 40~60분에 한 번만 와서(2026-10-29 확인), 한 번 켜지면 LOOP분 동안 STEP분마다 스스로 다시 돎
+    # STEP 6분 = 시간당 최대 10번 게시(GitHub Pages 시간당 빌드 한도 안)
+    loop = float(os.environ.get('LOOP') or 0) * 60; step = float(os.environ.get('STEP') or 6) * 60
+    t0 = time.time()
+    while True:
+        t1 = time.time()
+        try:
+            r = once()
+        except Exception as e:
+            print('error', e); r = None
+        if isinstance(r, str) and r.startswith('rest'): return
+        if time.time() - t0 + step > loop: return
+        time.sleep(max(30, step - (time.time() - t1)))
+        sh('git', 'fetch', '-q', 'origin', 'main'); sh('git', 'reset', '-q', '--hard', 'origin/main')
 
 
 if __name__ == '__main__':

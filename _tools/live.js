@@ -24,7 +24,7 @@
   // 한 자리(가격 칸 pr, 설명 칸 kd)에 결과 반영
   function apply(t, pr, kd, cur){
     if (!pr || pr.dataset.fh === t) return; pr.dataset.fh = t;
-    var saved = pr.textContent, savedLive = /프리마켓|장중|애프터/.test(saved + (kd ? kd.textContent : ''));
+    var saved = pr.textContent, savedLive = /프리마켓|장중|애프터|데이장/.test(saved + (kd ? kd.textContent : ''));
     quote(t, function(q){
       if (!pr.isConnected) return;
       var fresh = q && Date.now() - q.t * 1000 < FRESH;

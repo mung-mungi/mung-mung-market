@@ -1,6 +1,6 @@
 # 멍뭉 터미널 시세 새로고침 — 야후 차트 API에서 숫자만 받아 prices.json·history.json을 고친다(검색 없음)
 # 사용:
-#   python3 -I refresh_prices.py update  <prices.json> <history.json>      → 현재가(프리마켓·장중·종가) + 일별 종가 기록
+#   python3 -I refresh_prices.py update  <prices.json> <history.json>      → 현재가(프리마켓·장중·애프터·데이장·종가) + 일별 종가 기록
 #   python3 -I refresh_prices.py trend   <p-trend.html> <prices.json> <history.json>  → 차트 길잡이 페이지의 const DATA 한 줄만 교체
 #   python3 -I refresh_prices.py unwrap  <page.html>   → Artifact read로 받은 파일 앞뒤의 게시용 바깥 틀 제거
 import json, sys, time, subprocess, datetime as dt, concurrent.futures as cf, re
@@ -110,6 +110,13 @@ def update(pp, hp):
             if pts:
                 kind, price, pdate = 'aftermarket', float(pts[-1][1]), last_d
                 prev_d, prev_c = last_d, last_c
+            # 데이장(미국 주간거래·오버나이트, 사용자 2026-10-29): 애프터가 끝난 뒤 야후 fulldayPrice가 애프터 마지막 값과 다르면 그 값
+            fd = m.get('fulldayPrice'); pend = tp.get('post', {}).get('end', 1 << 62)
+            if fd and now >= pend and m.get('currency') == 'USD':
+                ref = float(pts[-1][1]) if pts else last_c
+                if abs(float(fd) - ref) > 1e-6:
+                    kind, price, pdate = 'daymarket', float(fd), last_d
+                    prev_d, prev_c = last_d, last_c
         r['price'] = round(price, 4); r['price_date'] = pdate; r['price_kind'] = kind
         r['prev_close'] = prev_c; r['prev_date'] = prev_d
         r['price_time_kst'] = dt.datetime.now(KST).strftime('%m.%d %H:%M')
@@ -155,9 +162,9 @@ def trend(page, pp, hp):
     P = sorted(P, key=lambda r: r.get('order', 0))
     from collections import Counter
     asof = Counter(r.get('price_date') for r in P).most_common(1)[0][0]
-    live = [r for r in P if r.get('price_kind') in ('premarket', 'intraday', 'aftermarket')]
+    live = [r for r in P if r.get('price_kind') in ('premarket', 'intraday', 'aftermarket', 'daymarket')]
     stamp = dt.datetime.now(KST).strftime('%m.%d %H:%M')
-    label = f'{stamp} 기준 · ' + ('프리마켓·장중·애프터 가격 포함' if live else '종가 기준')
+    label = f'{stamp} 기준 · ' + ('프리마켓·장중·애프터·데이장 가격 포함' if live else '종가 기준')
     hh = {}
     for r in H:
         hh.setdefault(r['ticker'], {})

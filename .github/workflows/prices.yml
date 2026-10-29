@@ -1,4 +1,5 @@
-# 시세 5분 갱신(사용자 2026-10-29 지시) — 장 시간에만 실제로 받고, 나머지는 바로 끝남(_tools/live_update.py가 판단)
+# 시세 갱신(사용자 2026-10-29 지시) — 장 시간(프리·장중·애프터·데이장·한국장)에만 받고, 나머지는 바로 끝남(_tools/live_update.py가 판단)
+# 예약이 40~60분에 한 번만 와서, 한 번 켜지면 50분 동안 6분마다 스스로 다시 돎. 겹치면 하나만 대기(concurrency)
 name: prices-5min
 on:
   schedule:
@@ -17,7 +18,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 58
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,4 +26,6 @@ jobs:
       - name: refresh
         env:
           FORCE: ${{ github.event.inputs.force }}
+          LOOP: '50'
+          STEP: '6'
         run: python3 _tools/live_update.py

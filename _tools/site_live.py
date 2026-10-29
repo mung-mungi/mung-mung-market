@@ -19,13 +19,21 @@ BADGE = "if (r.price_kind === 'premarket') { const bg = document.createElement('
 
 
 def kinds(s):
-    """애프터(시간외) 가격 표시(사용자 2026-10-29) — 시세 보드·차트 길잡이 원본에 '애프터' 이름표를 덧입힘(멱등)"""
-    if "'aftermarket'" in s: return s
+    """애프터·데이장 가격 표시(사용자 2026-10-29) — 시세 보드·차트 길잡이 원본에 이름표를 덧입힘(멱등)"""
+    if "'daymarket'" in s: return s
     for a in (" ' · 프리마켓' :", " ' 프리마켓' :"):
-        s = s.replace("r.price_kind === 'premarket' ?" + a, "r.price_kind === 'aftermarket' ?" + a.replace('프리마켓', '애프터') + " r.price_kind === 'premarket' ?" + a)
-    s = s.replace(BADGE, BADGE + "\n      " + BADGE.replace("'premarket'", "'aftermarket'").replace("'프리마켓'", "'애프터'"))
-    s = s.replace("(t.n_pre > 0 ? ' 프리마켓 포함' :", "(t.n_pre > 0 ? ' 프리마켓 포함' : t.n_after > 0 ? ' 애프터 포함' :")
-    s = s.replace("n_pre: prices.filter((r) => r.price_kind === 'premarket').length,", "n_pre: prices.filter((r) => r.price_kind === 'premarket').length,\n        n_after: prices.filter((r) => r.price_kind === 'aftermarket').length,")
+        day = "r.price_kind === 'daymarket' ?" + a.replace('프리마켓', '데이장') + " "
+        aft = "r.price_kind === 'aftermarket' ?" + a.replace('프리마켓', '애프터') + " "
+        if aft in s: s = s.replace(aft, day + aft)
+        else: s = s.replace("r.price_kind === 'premarket' ?" + a, day + aft + "r.price_kind === 'premarket' ?" + a)
+    for kd, lb in (("'aftermarket'", "'애프터'"), ("'daymarket'", "'데이장'")):
+        nb = BADGE.replace("'premarket'", kd).replace("'프리마켓'", lb)
+        if nb not in s: s = s.replace(BADGE, BADGE + "\n      " + nb)
+    if 't.n_after' not in s:
+        s = s.replace("(t.n_pre > 0 ? ' 프리마켓 포함' :", "(t.n_pre > 0 ? ' 프리마켓 포함' : t.n_after > 0 ? ' 애프터 포함' :")
+        s = s.replace("n_pre: prices.filter((r) => r.price_kind === 'premarket').length,", "n_pre: prices.filter((r) => r.price_kind === 'premarket').length,\n        n_after: prices.filter((r) => r.price_kind === 'aftermarket').length,")
+    s = s.replace("(t.n_pre > 0 ? ' 프리마켓 포함' : t.n_after > 0", "(t.n_pre > 0 ? ' 프리마켓 포함' : t.n_day > 0 ? ' 데이장 포함' : t.n_after > 0", 1)
+    s = s.replace("n_after: prices.filter((r) => r.price_kind === 'aftermarket').length,", "n_after: prices.filter((r) => r.price_kind === 'aftermarket').length,\n        n_day: prices.filter((r) => r.price_kind === 'daymarket').length,", 1)
     return s
 
 
