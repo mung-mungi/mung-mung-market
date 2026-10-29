@@ -485,6 +485,6 @@ def tidy_splash(s):
     add += '<style data-wrapfix>' + open(os.path.join(d, 'wrapfix.css'), encoding='utf-8').read() + '</style><script data-wrapfix>' + open(os.path.join(d, 'wrapfix.js'), encoding='utf-8').read() + '</script>'
     # 이전·홈 동그란 버튼 — _tools/navfab.* (사용자 2026-10-29)
     add += '<style data-navfab>' + open(os.path.join(d, 'navfab.css'), encoding='utf-8').read() + '</style><script data-navfab>' + open(os.path.join(d, 'navfab.js'), encoding='utf-8').read() + '</script>'
-    add += '<link data-hsicon rel="apple-touch-icon" href="img/icon180.png"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>' + open(os.path.join(d, 'splash.css'), encoding='utf-8').read() + '</style><script data-splash>' + open(os.path.join(d, 'splash.js'), encoding='utf-8').read() + '</script>'
+    add += '<link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>' + open(os.path.join(d, 'splash.css'), encoding='utf-8').read() + '</style><script data-splash>' + open(os.path.join(d, 'splash.js'), encoding='utf-8').read() + '</script>'
     m = re.search(r'<script data-perf>.*?</script>', s, re.S) or re.search(r'<head[^>]*>', s)
     return s[:m.end()] + add + s[m.end():] if m else add + s
