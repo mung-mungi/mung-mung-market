@@ -10,6 +10,7 @@ function usd(v){var a=Math.abs(v);return (v<0?'−':'')+(a>=1e8?(a/1e8).toFixed(
 function seg(el,opts,cur,cb){el.innerHTML=opts.map(function(o){return '<button type="button" data-k="'+o[0]+'"'+(o[0]===cur?' class="on"':'')+'>'+o[1]+'</button>'}).join('');
   el.onclick=function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(el.children,function(x){x.classList.toggle('on',x===b)});cb(b.dataset.k)}}
 function tog(el){el.addEventListener('click',function(e){var h=e.target.closest('.iv-hd');if(h)h.parentElement.classList.toggle('open')})}
+function tg3(rows){var t=$('take-text');if(!t)return;t.innerHTML='<ul class="tg3">'+rows.map(function(r){return '<li><i>'+r[0]+'</i><span>'+r[1]+'</span></li>'}).join('')+'</ul>'}
 function tiles(a){$('tiles').innerHTML=a.map(function(t){return '<div class="in-tile"><span class="k">'+t[0]+'</span><span class="v">'+t[1]+'</span><span class="s">'+t[2]+'</span></div>'}).join('')}
 function row(nm,sub,mid,big,body){return '<div class="iv-row"><button type="button" class="iv-hd"><span class="iv-nm"><b>'+nm+'</b><small>'+sub+'</small></span><span class="iv-mid">'+mid+'</span><span class="iv-big">'+big+'</span></button><div class="iv-bd">'+body+'</div></div>'}
 function more(el,html,n0){if(html.length<=n0){el.innerHTML=html.join('');return}
@@ -26,7 +27,10 @@ function val(D,G){
   var cnt={};it.forEach(function(o){o.L.forEach(function(l){if(l.on)cnt[l.k]=(cnt[l.k]||0)+1})});
   var top=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a]});
   var hi=it.filter(function(o){return o.lights>=6});
-  $('take-text').textContent='불 6개 이상 켜진 곳은 '+hi.map(function(o){return o.name+'('+o.lights+')'}).join('·')+'입니다. 요즘은 \''+top[0]+'\'('+cnt[top[0]]+'곳)과 \''+top[1]+'\'('+cnt[top[1]]+'곳) 불이 가장 많이 켜져 있어, 실적은 좋은데 주가가 빠져 있는 곳이 많은 장입니다.';
+  var mx=Math.max.apply(null,it.map(function(o){return o.lights})),hi2=it.filter(function(o){return o.lights>=mx-1}).slice(0,6);
+  tg3([['많이 켜진 곳','<span class="chips">'+hi2.map(function(o){return '<span><em>'+o.lights+'</em>'+esc(o.name)+'</span>'}).join('')+'</span>'],
+   ['요즘 많은 불',esc(top[0])+' '+cnt[top[0]]+'곳 · '+esc(top[1])+' '+cnt[top[1]]+'곳'],
+   ['한 줄 평',(cnt['고점 대비 눌림']>it.length*.5&&cnt['실적 탄력']>it.length*.5)?'실적은 좋은데 주가가 빠져 있는 곳이 많은 장입니다.':'불이 고르게 흩어진 장입니다. 층별로 나눠 보시면 좋습니다.']]);
   tiles([['살펴본 종목',it.length+'곳','AI 밸류체인(지수 ETF 제외)'],['불 5개 이상',it.filter(function(o){return o.lights>=5}).length+'곳',it[0].L.length+'개 만점'],['가장 적게 켜진 불',top[top.length-1],cnt[top[top.length-1]]+'곳만 켜짐']]);
   var cats={};it.forEach(function(o){cats[o.cat]=(cats[o.cat]||0)+1});
   var CK=['전체'].concat(Object.keys(cats).sort(function(a,b){return cats[b]-cats[a]})),cat='전체',srt='l';
@@ -90,7 +94,8 @@ function val(D,G){
 function pros(D){
   var R=D.rank;$('take-chip').textContent=md(D.asof)+' 기준 · 3개월 채점';
   var t=R.slice(0,3);
-  $('take-text').textContent='지난 1년 의견 가운데 3개월이 지난 '+num(D.scored)+'건을 실제 주가로 채점했습니다. 종합 1위는 '+t[0].firm+'(적중 '+t[0].hit+'% · 평균 '+sg(t[0].avg,1)+'%p), 2위 '+t[1].firm+', 3위 '+t[2].firm+'입니다. 상위 10곳은 최근 45일 동안 '+D.recent.length+'건을 올렸습니다.';
+  tg3([['종합 순위','<span class="chips">'+t.map(function(r){return '<span><em>'+r.rank+'위</em>'+esc(r.firm)+' '+r.hit+'%</span>'}).join('')+'</span>'],
+   ['채점','3개월 지난 의견 '+num(D.scored)+'건 · '+R.length+'곳 순위'],['최근 상향','상위 10곳 · 최근 45일 '+D.recent.length+'건']]);
   var bh=R.slice().sort(function(a,b){return b.hit-a.hit||b.n-a.n})[0];
   tiles([['채점한 의견',num(D.scored)+'건','3개월 지난 상향·하향·신규'],['순위 오른 곳',R.length+'곳','채점 '+D.min_calls+'건 이상 · 전체 '+D.firms_total+'곳'],['적중률 최고',bh.hit+'%',bh.firm+' · '+bh.n+'건']]);
   var srt='s';seg($('rsort'),[['s','종합'],['h','적중률'],['a','평균 초과'],['n','건수']],'s',function(k){srt=k;drawR()});tog($('rank'));
@@ -168,18 +173,18 @@ function heat(G){var X=G.soxx;
    +'<div class="iv-lights">'+X.L.map(function(l,i){return '<span'+(X.on[i]?' class="on"':'')+'>'+(X.on[i]?'● ':'○ ')+esc(l)+'</span>'}).join('')+'</div>'
    +'<p class="iv-vd">불 '+X.lights+'/'+X.L.length+' 켜짐 · '+esc(vd)+'</p>';
   var LS=Object.keys(G.layers).map(function(c){var L=G.layers[c];L.c=c;return L}).sort(function(a,b){return b.lv-a.lv||(b.m3||0)-(a.m3||0)});
-  $('layers').innerHTML='<h3>사슬 층별 온도판</h3><p class="sub">층마다 \'실적(AI 확인)\'과 \'주가 흐름\'을 함께 봅니다. 실적은 좋은데 주가가 식은 층이 사슬 관점의 관심 자리입니다. 줄을 누르면 층 안 종목의 관문이 펼쳐집니다.</p>'
+  $('layers').innerHTML='<h3>사슬 층별 온도판</h3><p class="sub">줄을 누르면 층 안 종목의 관문이 펼쳐집니다.</p><p class="how">층마다 \'실적(AI 확인)\'과 \'주가 흐름\'을 함께 봅니다. 실적은 좋은데 주가가 식은 층(실적 좋음·주가 쉼)이 사슬 관점에서 들여다볼 자리입니다. 매출 성장은 층별 최근 분기 전년비 가운데값, AI는 실적 결과 페이지의 AI 관점 판정 수입니다.</p>'
    +'<div class="iv-lrh"><span>층 · 최근 실적 상회</span><span>매출 성장</span><span>3개월</span><span>온도</span></div>'
    +LS.map(function(L){var ai=Object.keys(L.ai||{}).map(function(k){return k+L.ai[k]}).join('·')||'—';
      var mem=Object.keys(G.items).filter(function(t){return G.items[t].cat===L.c}).map(function(t){var g=G.items[t];return '<div><b>'+esc(g.name)+'</b><span>'+esc(g.chain.v)+' · 재무 '+esc(g.fin.v)+' · '+esc(g.spot.v)+'</span></div>'}).join('');
      return '<button type="button" class="iv-lr"><span class="n"><b>'+esc(L.c)+'</b><small>상회 '+L.beat+'/'+L.rep+' · AI '+ai+' · 50일선 위 '+L.a50+'/'+L.n+'</small></span><span class="c">'+(L.yoy==null?'—':sg(L.yoy)+'%')+'</span><span class="c '+cls(L.m3)+'">'+sg(L.m3,1)+'%</span><span class="c"><span class="iv-st iv-s'+L.lv+'">'+esc(L.temp)+'</span></span></button><div class="iv-mem">'+mem+'</div>'}).join('')
-   +'<p class="iv-note">매출 성장은 층별 최근 분기 전년비 가운데값 · AI는 실적 결과 페이지의 AI 관점 판정 수입니다.</p>';
+   ;
   $('layers').onclick=function(e){var b=e.target.closest('.iv-lr');if(b)b.nextElementSibling.classList.toggle('open')};
   var B=G.bt,ORD=['눌림 자리','보통','고점 근처','추세 아래'];
   function tb(o){return '<table class="iv-bt"><tr><th>자리</th><th>건수</th><th>평균</th><th>가운데값</th><th>이긴 비율</th></tr>'+ORD.filter(function(k){return o[k]}).map(function(k){var r=o[k];return '<tr><td>'+k+'</td><td>'+num(r.n)+'</td><td class="'+cls(r.avg)+'">'+sg(r.avg,1)+'%p</td><td class="'+cls(r.med)+'">'+sg(r.med,1)+'%p</td><td>'+r.hit+'%</td></tr>'}).join('')+'</table>'}
   var hs=ORD.filter(function(k){return B.stocks[k]}).map(function(k){return B.stocks[k].hit}),sp=Math.max.apply(null,hs)-Math.min.apply(null,hs);
-  $('bt').innerHTML='<h3>자리 규칙 10년 채점</h3><p class="sub">‘자리’ 판정이 실제로 의미가 있었나 거꾸로 확인했습니다. 지난 10년 매달 말 각 종목의 자리를 판정하고, 3개월 뒤 나스닥100보다 얼마나 더 갔는지 셌습니다.</p>'
+  $('bt').innerHTML='<h3>자리 규칙 10년 채점</h3><p class="sub">‘자리’ 판정이 실제로 의미가 있었나 거꾸로 확인했습니다.</p><p class="how">지난 10년 매달 말 각 종목의 자리를 판정하고, 3개월 뒤 나스닥100보다 얼마나 더 갔는지 셌습니다. 월말 종가 기준이라 200일선 대신 10개월 평균을 쓰고 RSI·50일선은 뺐습니다. 지금 추적 중인 종목으로 과거를 본 것이라 성적이 실제보다 좋게 나오는 쪽입니다(살아남은 종목만 보는 편향).</p>'
    +'<p class="iv-pk-t" style="margin-top:6px">추적 종목 전체</p>'+tb(B.stocks)+'<p class="iv-pk-t">반도체 지수(SOXX)</p>'+tb(B.soxx)
    +'<p class="iv-vd">'+(sp<8?'자리만으로는 3개월 성과가 거의 갈리지 않았습니다(이긴 비율 '+Math.min.apply(null,hs)+'~'+Math.max.apply(null,hs)+'%). 그래서 이 페이지는 자리를 맨 마지막 관문으로 둡니다. 사슬·재무가 먼저입니다.':'자리 단계에 따라 3개월 성과 차이가 뚜렷했습니다.')+' 평균이 가운데값보다 큰 건 몇몇 크게 오른 종목 덕분입니다.</p>'
-   +'<p class="iv-note">'+esc(B.note)+' · 지금 추적 중인 종목으로 과거를 본 것이라 성적이 실제보다 좋게 나오는 쪽입니다(살아남은 종목만 보는 편향).</p>'}
+}
 })();

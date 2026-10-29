@@ -21,10 +21,11 @@ PAGES = {
   <div class="iv-tabs" id="tabs"><button type="button" data-t="find" class="on">종목 찾기</button><button type="button" data-t="my">내 종목 점검</button><button type="button" data-t="heat">반도체 온도판</button></div>
   <div class="iv-tab" id="t-find">
   <section class="in-card"><h3>불 많이 켜진 순</h3>
-    <p class="sub">추천 목록이 아니라 '한번 들여다볼 만한 곳'을 고르는 체입니다. 아래에서 어떤 불을 셀지 직접 고를 수 있고, 줄을 누르면 불마다 근거 숫자가 펼쳐집니다.</p>
+    <p class="sub">줄을 누르면 불마다 근거 숫자가 펼쳐집니다.</p>
+    <p class="how">추천 목록이 아니라 '한번 들여다볼 만한 곳'을 고르는 체입니다. '내 불 고르기'에서 셀 불과 불마다 기준을 직접 고를 수 있고, 불을 누르면 그 불이 뭘 보는지와 지금 몇 곳이 켜졌는지 나옵니다.</p>
     <div class="iv-pick" id="pickbox"></div>
     <div class="iv-pills" id="cat"></div>
-    <div class="iv-seg" id="sort"></div>
+    <div class="iv-pills iv-sortp" id="sort"></div>
     <div class="iv-list" id="list"></div>
   </section>
   <section class="in-card in-read" id="read-card"><h3>불 7개는 이렇게 읽습니다</h3>
@@ -46,7 +47,8 @@ PAGES = {
   </div>
   <div class="iv-tab" id="t-my" hidden>
   <section class="in-card"><h3>내 종목 점검</h3>
-    <p class="sub">담았거나 관심 있는 종목을 고르면 사슬 → 재무 → 자리 순서로 점검합니다. 앞 관문이 흔들리면 자리가 좋아도 '물타기 멈춤'을 띄웁니다. 고른 목록은 이 휴대폰에만 저장됩니다.</p>
+    <p class="sub">담은 종목·관심 종목을 사슬 → 재무 → 자리 순서로 점검합니다.</p>
+    <p class="how">앞 관문(사슬·재무)이 흔들리면 자리가 좋아도 '물타기 멈춤'을 띄웁니다. 네모 칸을 누르면 그 관문을 어떻게 보는지 설명이 나오고 아래 근거 줄이 강조됩니다. 고른 목록은 이 휴대폰에만 저장됩니다.</p>
     <div id="mypick"></div>
   </section>
   <div class="iv-list" id="mylist"></div>
@@ -67,12 +69,13 @@ PAGES = {
   </header>
   <section class="in-tiles" id="tiles"></section>
   <section class="in-card"><h3>증권사 적중률 순위</h3>
-    <p class="sub">의견을 낸 날부터 3개월(63거래일) 뒤, 나스닥100(QQQ)보다 의견 방향대로 갔으면 '적중'입니다. 줄을 누르면 1개월 적중률·최고 적중 사례가 펼쳐집니다.</p>
-    <div class="iv-seg" id="rsort"></div>
+    <p class="sub">의견 3개월 뒤 주가로 채점했습니다. 줄을 누르면 자세히 펼쳐집니다.</p>
+    <p class="how">의견을 낸 날부터 3개월(63거래일) 뒤, 나스닥100(QQQ)보다 의견 방향대로 갔으면 '적중'입니다. 펼치면 1개월 적중률·가운데값·최고 적중 사례가 나옵니다.</p>
+    <div class="iv-pills iv-sortp" id="rsort"></div>
     <div class="iv-list" id="rank"></div>
   </section>
   <section class="in-card"><h3>잘 맞히는 곳의 최근 상향</h3>
-    <p class="sub">적중률 상위 10곳이 최근 45일 안에 올린 의견입니다. 오른쪽 숫자는 그날 이후 주가 변화입니다.</p>
+    <p class="sub">상위 10곳이 최근 45일 안에 올린 의견 · 오른쪽은 그 뒤 주가입니다.</p>
     <div class="iv-list" id="recent"></div>
   </section>
   <section class="in-card"><h3>큰손 포트폴리오</h3>
