@@ -1,0 +1,821 @@
+<!doctype html><html lang="ko"><head><script data-perf>// 휴대폰 버벅임 줄이기(사용자 2026-10-29): 화면 감시 콜백을 한 프레임에 한 번으로 묶고, 탭이 안 보일 땐 쉼
+(function(){var MO=window.MutationObserver;if(!MO||MO.__thr)return;try{var T=class extends MO{constructor(cb){var q=0,self;super(function(){if(q)return;q=1;(window.requestAnimationFrame||setTimeout)(function(){q=0;if(document.hidden)return;try{cb.call(self,[],self)}catch(e){}})});self=this}};T.__thr=1;window.MutationObserver=T}catch(e){}})();
+</script><link data-hsicon rel="manifest" href="manifest.webmanifest"><meta data-hsicon name="mobile-web-app-capable" content="yes"><meta data-hsicon name="apple-mobile-web-app-capable" content="yes"><script data-hshome>// 홈 화면 앱으로 다시 시작하면 마지막 본 페이지 대신 메인(index)부터(사용자 2026-10-29)
+// - 앱을 완전히 닫았다 다시 열면(새 세션) → 메인으로
+// - 30분 넘게 다른 앱에 있다가 돌아와도 → 메인으로
+// - 카톡 링크 등 일반 브라우저로 연 페이지는 그대로 둠(공유 링크가 메인으로 튀지 않게)
+(function(){try{
+var sa=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
+var home=/\/(index\.html)?$/.test(location.pathname),LIM=30*60*1000,ss=sessionStorage,ls=localStorage;
+function go(){try{ls.removeItem('mmHid')}catch(e){}location.replace('./')}
+if(!sa){ss.setItem('mmAlive','1');return}
+var h=+(ls.getItem('mmHid')||0),stale=h&&Date.now()-h>LIM;
+if(!home&&(!ss.getItem('mmAlive')||stale)){ss.setItem('mmAlive','1');go();return}
+ss.setItem('mmAlive','1');ls.removeItem('mmHid');
+document.addEventListener('visibilitychange',function(){try{
+if(document.hidden){ls.setItem('mmHid',String(Date.now()));return}
+var t=+(ls.getItem('mmHid')||0);ls.removeItem('mmHid');
+if(!home&&t&&Date.now()-t>LIM)go()}catch(e){}});
+window.addEventListener('pageshow',function(e){try{if(!e.persisted||home)return;var t=+(ls.getItem('mmHid')||0);if(t&&Date.now()-t>LIM)go()}catch(x){}});
+}catch(e){}})();
+// 새 판 자동 반영(사용자 2026-10-29) — 페이지를 열어 둔 채(앱이 메모리에 남아) 있어도 화면 수정이 올라오면 반영
+// - 다른 앱 갔다 돌아올 때 새 판이 있으면 → 조용히 새로 불러옴
+// - 보고 있는 중(10분마다 확인)에 새 판이 나오면 → 아래 작은 '새 화면 ↻' 알약만 띄움(읽는 도중 화면이 튀지 않게)
+// - 5분 시세 갱신은 판 번호를 안 올리므로 여기에 걸리지 않음
+(function(){try{
+function me(){var s=document.querySelector('script[data-ver]');return s?s.getAttribute('data-ver'):''}
+function reload(v){var u=new URL(location.href);u.searchParams.set('v',v);location.replace(u.toString())}
+var busy=0,pill=null;
+function check(quiet){if(busy||!me())return;busy=1;
+fetch('version.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){busy=0;
+if(!j||!j.v||j.v<=me())return;if(quiet)return reload(j.v);if(pill)return;
+pill=document.createElement('button');pill.textContent='새 화면이 나왔습니다 ↻';
+pill.setAttribute('style','position:fixed;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom));z-index:99999;border:0;border-radius:999px;padding:9px 16px;font:700 14px/1 inherit;background:#1f2329;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.25)');
+pill.onclick=function(){reload(j.v)};(document.body||document.documentElement).appendChild(pill)}).catch(function(){busy=0})}
+var hidAt=0;
+document.addEventListener('visibilitychange',function(){if(document.hidden){hidAt=Date.now();return}if(hidAt&&Date.now()-hidAt>15000)check(true)});
+window.addEventListener('pageshow',function(e){if(e.persisted)check(true)});
+setInterval(function(){if(!document.hidden)check(false)},10*60*1000);
+}catch(e){}})();
+</script><style data-wrapfix>/* 줄바꿈 다듬기 — 전 페이지 공통(사용자 2026-10-29): 낱말 중간에서 안 끊고, 한 글자만 다음 줄로 넘어가는 줄을 줄임 */
+body{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
+p,li,dd,td,th,small,[class*="tile"] span,[class*="card"] span,[class*="card"] p{text-wrap:pretty}
+h1,h2,h3,h4,[class*="tile"] .v,[class*="tile"] b,[class*="kpi"] b{text-wrap:balance}
+/* 경제지표 '다음 큰 발표' 칸은 두 칸 너비 — 긴 행사 이름이 2줄로 끝나고, 5칸이 빈자리 없이 2줄에 딱 맞음 */
+.mc-tiles .mc-tile.hot{grid-column:span 2!important}
+.mc-tiles .mc-tile.hot .v.sm{-webkit-line-clamp:2!important}
+</style><script data-wrapfix>// 줄바꿈 다듬기 — 전 페이지 공통(사용자 2026-10-29)
+// ① 붙어 있는 괄호 앞에 '끊어도 되는 자리'를 넣음: 국내총생산(GDP) → 국내총생산 / (GDP) 로만 끊김 ('(GDP' / ')' 처럼 깨지지 않게)
+//    날짜 요일 10.29(목), 숫자 괄호는 건드리지 않음
+// ② 칸(줄 수 제한 있는 글)이 넘치면 글자를 1px씩 줄여(최대 3px) 잘림(…) 없이 다 보이게
+(function(){
+var SKIP={SCRIPT:1,STYLE:1,TEXTAREA:1,INPUT:1,CODE:1,PRE:1,NOSCRIPT:1};
+var RX=/([가-힣A-Za-z])\((?=[^)\d\s][^)]+\))/g;
+function txt(root){try{
+var w=document.createTreeWalker(root||document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;return p&&!SKIP[p.nodeName]&&!(p.closest&&p.closest('svg,[contenteditable]'))&&RX.test(n.nodeValue)?1:3}});
+var a=[],n;while(n=w.nextNode())a.push(n);
+a.forEach(function(n){RX.lastIndex=0;n.nodeValue=n.nodeValue.replace(RX,'$1​(')});RX.lastIndex=0}catch(e){}}
+var SEL='[class*="tile"] *,[class*="kpi"] *,[class*="cell"] *,[class*="stat"] *';
+function fit(){try{document.querySelectorAll(SEL).forEach(function(e){
+if(!e.childNodes.length||e.children.length>2)return;var c=getComputedStyle(e);
+var clamp=c.webkitLineClamp&&c.webkitLineClamp!=='none';
+var over=function(){return (clamp&&e.scrollHeight>e.clientHeight+2)||e.scrollWidth>e.clientWidth+1};
+if(!e.dataset.wfBase){if(!over())return;e.dataset.wfBase=parseFloat(c.fontSize)}
+var b=+e.dataset.wfBase,s=b;e.style.fontSize=b+'px';
+while(over()&&s>b-3&&s>11){s-=1;e.style.fontSize=s+'px'}
+})}catch(x){}}
+var t=0;function run(){clearTimeout(t);t=setTimeout(function(){txt();fit()},60)}
+function start(){run();try{new MutationObserver(function(m){for(var i=0;i<m.length;i++){if(m[i].type!=='attributes'){run();return}}}).observe(document.body,{childList:true,subtree:true,characterData:true})}catch(e){}
+addEventListener('resize',function(){document.querySelectorAll('[data-wf-base]').forEach(function(e){e.style.fontSize=''});run()})}
+if(document.body)start();else document.addEventListener('DOMContentLoaded',start);
+})();
+</script><style data-navfab>/* 아래 메뉴 위 왼쪽 '이전·홈' 동그란 버튼 — 반투명(사용자 2026-10-29). 메인 화면에서는 숨김 */
+#mm-fab{position:fixed;left:10px;bottom:calc(78px + env(safe-area-inset-bottom));z-index:8990;display:flex;gap:6px;pointer-events:none}
+#mm-fab a{all:unset;pointer-events:auto;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.7);border:1px solid rgba(160,140,100,.28);box-shadow:0 3px 10px rgba(11,11,11,.12);color:#3a3630;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s,background .12s}
+#mm-fab a:active{transform:scale(.92);background:rgba(243,239,228,.9)}
+#mm-fab svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+body:not(.mmd-on) #mm-fab{bottom:calc(16px + env(safe-area-inset-bottom))}
+/* 한동안 안 쓰면 독·이전·홈이 아래로 숨고, 가운데 손잡이만 남음 — 누르거나 위로 밀면 다시 올라옴(사용자 2026-10-29) */
+body .mmd{transition:transform .45s cubic-bezier(.33,.9,.3,1)}
+#mm-fab{transition:transform .45s cubic-bezier(.33,.9,.3,1),opacity .25s}
+body.mmd-hide .mmd{transform:translateY(100%)}
+body.mmd-hide #mm-fab{transform:translateY(110px);opacity:0;pointer-events:none}
+body.mmd-hide.mmd-on{padding-bottom:calc(30px + env(safe-area-inset-bottom))!important}
+/* 손잡이: 독 박스 위 가운데에 붙은 탭(일체형, 시안 A) — 독이 내려가면 이 탭만 화면 바닥에 남음(사용자 2026-10-29) */
+body .mmd .grab em{visibility:hidden}
+body.mmd-on .mmd{border-top:1px solid #e0d3b4!important}
+body .mmd #mm-pull{all:unset;box-sizing:border-box;position:absolute;left:50%;top:-24px;width:84px;height:25px;margin-left:-42px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.88);border:1px solid #e0d3b4;border-bottom:0;border-radius:14px 14px 0 0;box-shadow:0 -4px 10px rgba(11,11,11,.07);cursor:pointer;touch-action:none;-webkit-tap-highlight-color:transparent}
+body .mmd #mm-pull:after{content:'';width:8px;height:8px;margin-top:5px;border-right:2.5px solid #9a7420;border-bottom:2.5px solid #9a7420;transform:translateY(-3px) rotate(45deg);transition:transform .3s}
+body.mmd-hide .mmd #mm-pull{background:rgba(255,255,255,.95);border-color:#c9a24a;box-shadow:0 -3px 10px rgba(11,11,11,.16)}
+body.mmd-hide .mmd #mm-pull:after{transform:translateY(1px) rotate(-135deg)}
+body .mmd #mm-pull:active{background:#f3efe4}
+body.mmd-on #mm-snd{transition:bottom .32s cubic-bezier(.2,.8,.2,1)}
+body.mmd-hide.mmd-on #mm-snd{bottom:calc(4px + env(safe-area-inset-bottom))!important}
+
+/* 좌우로 크게 밀면 옆 페이지로(사용자 2026-10-29) — 미는 동안 가장자리에서 다음 페이지 이름표가 따라 나옴 */
+#mm-swp{position:fixed;top:50%;z-index:9500;pointer-events:none;display:flex;align-items:center;gap:6px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.95);border:1.5px solid #e0d6bf;box-shadow:0 4px 14px rgba(11,11,11,.16);font:800 15px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#3a3630;white-space:nowrap;opacity:0;transition:background .15s,color .15s,border-color .15s}
+#mm-swp.ready{background:#8a5a12;border-color:#8a5a12;color:#fff}
+html.mm-leave body{opacity:.25;transition:opacity .18s}
+</style><script data-navfab>// 아래 메뉴 위 왼쪽 '이전·홈' 버튼(사용자 2026-10-29)
+(function(){try{
+if(/\/(index\.html)?$/.test(location.pathname))return;
+function add(){if(document.getElementById('mm-fab'))return;var d=document.createElement('div');d.id='mm-fab';
+d.innerHTML='<a role="button" aria-label="이전 화면" data-k="b"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></a><a role="button" aria-label="메인 화면" data-k="h"><svg viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h5v-6h4v6h5V9.5"/></svg></a>';
+d.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;e.preventDefault();
+if(a.dataset.k==='h'){location.href='./';return}
+var r=document.referrer;if(history.length>1&&r&&r.indexOf(location.origin)===0)history.back();else location.href='./'});
+document.body.appendChild(d)}
+if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
+}catch(e){}})();
+// 독 숨기기(사용자 2026-10-29) — 본문을 아래로 읽어 내려가면 바로 스르륵 숨김 · 독을 아래로 쓸어도 숨김 · 6초 동안 안 건드려도 숨김 → 손잡이만 남음
+// 다시 올리기: 손잡이 누르기·위로 밀기, 또는 화면을 위로 크게 되돌려 올릴 때
+(function(){try{
+var IDLE=6000,t=0,B=document.body;
+function sheetOpen(){var s=document.querySelector('.mmd-sheet');return s&&!s.hidden}
+function arm(){clearTimeout(t);t=setTimeout(function(){if(!sheetOpen()&&document.querySelector('.mmd'))B.classList.add('mmd-hide')},IDLE)}
+function show(){B.classList.remove('mmd-hide');arm()}
+function init(){B=document.body;if(!document.querySelector('.mmd'))return setTimeout(init,500);
+// 손잡이는 독 박스 위 가운데에 붙어 함께 움직임(일체형) — 독이 내려가면 손잡이만 바닥에 남음
+var dk=document.querySelector('.mmd');
+var p=document.createElement('button');p.id='mm-pull';p.setAttribute('aria-label','아래 메뉴 올리기·내리기');dk.appendChild(p);
+function hide(){if(sheetOpen())return;B.classList.add('mmd-hide');clearTimeout(t)}
+var y0=0,moved=0;
+p.addEventListener('touchstart',function(e){y0=e.touches[0].clientY;moved=0;e.stopPropagation()},{passive:true});
+p.addEventListener('touchmove',function(e){var d=e.touches[0].clientY-y0;e.preventDefault();e.stopPropagation();if(moved)return;
+if(d<-12){moved=1;show()}else if(d>12){moved=1;hide()}},{passive:false});
+p.addEventListener('touchend',function(e){e.stopPropagation()},{passive:true});
+p.addEventListener('click',function(e){e.stopPropagation();if(moved){moved=0;return}B.classList.contains('mmd-hide')?show():hide()});
+['touchstart','click'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest('.mmd,#mm-fab,.mmd-sheet')&&!e.target.closest('#mm-pull'))show()},{passive:true})});
+var ly=scrollY,up=0,dn=0;addEventListener('scroll',function(){var y=scrollY;
+if(y<ly){dn=0;up+=ly-y;if(up>160||y<40)show()}else{up=0;dn+=y-ly;if(dn>14&&y>60&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}}ly=y},{passive:true});
+// 독을 아래로 쓸어내리면 바로 숨김(위로 올리는 동작의 반대)
+var dy=0;
+dk.addEventListener('touchstart',function(e){dy=e.touches[0].clientY},{passive:true});
+dk.addEventListener('touchmove',function(e){if(e.touches[0].clientY-dy>22&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}},{passive:true});
+arm()}
+if(document.body)init();else document.addEventListener('DOMContentLoaded',init);
+}catch(e){}})();
+// 좌우로 크게 밀면 옆 페이지로(사용자 2026-10-29) — 왼쪽으로 밀면 다음, 오른쪽으로 밀면 이전 페이지(아래 메뉴 순서)
+// 옆으로 스크롤되는 줄·표·차트 위, 화면 가장자리(브라우저 뒤로가기 몸짓), 메뉴판 열림 중에는 동작 안 함
+(function(){try{
+var TH=0.3,box=null,x0,y0,dx=0,on=0,tgt=null;
+function list(){return [].slice.call(document.querySelectorAll('.mmd .row>a[href]'))}
+function cur(){var a=list();for(var i=0;i<a.length;i++)if(a[i].classList.contains('on'))return i;return -1}
+function scrollX(el){for(;el&&el!==document.body;el=el.parentElement){var c=getComputedStyle(el);if(/(auto|scroll)/.test(c.overflowX)&&el.scrollWidth>el.clientWidth+4)return 1}return 0}
+document.addEventListener('touchstart',function(e){on=0;if(e.touches.length>1)return;var t=e.touches[0],w=innerWidth;
+if(t.clientX<26||t.clientX>w-26)return;var g=e.target;
+if(g.closest&&g.closest('canvas,input,textarea,select,.mmd,.mmd-sheet,#mm-fab,[data-noswipe]'))return;
+var sv=g.closest&&g.closest('svg');while(sv&&sv.parentElement&&sv.parentElement.closest('svg'))sv=sv.parentElement.closest('svg');
+if(sv&&sv.getBoundingClientRect().width>140)return;
+if(scrollX(g))return;var s=document.querySelector('.mmd-sheet');if(s&&!s.hidden)return;
+if(cur()<0)return;x0=t.clientX;y0=t.clientY;dx=0;on=1;tgt=null},{passive:true,capture:true});
+document.addEventListener('touchmove',function(e){if(!on)return;var t=e.touches[0];dx=t.clientX-x0;var dy=t.clientY-y0;
+if(!tgt){if(Math.abs(dx)+Math.abs(dy)<16)return;if(Math.abs(dx)<Math.abs(dy)*1.2){on=0;return}
+var a=list(),i=cur(),j=dx<0?i+1:i-1;if(j<0||j>=a.length){on=0;return}tgt=a[j];
+box=document.getElementById('mm-swp')||document.body.appendChild(Object.assign(document.createElement('div'),{id:'mm-swp'}));
+box.textContent=dx<0?(tgt.textContent.trim()+' ›'):('‹ '+tgt.textContent.trim())}
+if((dx<0)!==(box.textContent.slice(-1)==='›')){hideBox();on=0;return}
+var w=innerWidth,f=Math.min(Math.abs(dx)/(w*TH),1),pos=-120+f*136;
+box.style.opacity=Math.min(1,f*1.6);box.style.transform='translateY(-50%)';
+if(dx<0){box.style.right=pos+'px';box.style.left='auto'}else{box.style.left=pos+'px';box.style.right='auto'}
+box.classList.toggle('ready',f>=1)},{passive:true,capture:true});
+function hideBox(){if(box){box.style.opacity=0;box.classList.remove('ready')}}
+document.addEventListener('touchend',function(){if(!on)return;on=0;
+if(tgt&&Math.abs(dx)>=innerWidth*TH){var h=tgt.getAttribute('href');document.documentElement.classList.add('mm-leave');setTimeout(function(){location.href=h},140)}else hideBox()},{passive:true,capture:true});
+document.addEventListener('touchcancel',function(){on=0;hideBox()},{passive:true,capture:true});
+addEventListener('pageshow',function(){document.documentElement.classList.remove('mm-leave');hideBox()});
+}catch(e){}})();
+</script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>#mm-splash{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:linear-gradient(180deg,#fbf7ee,#f3efe4);transition:opacity .4s ease,transform .4s ease}
+#mm-splash.out{opacity:0;transform:scale(1.06);pointer-events:none}
+#mm-splash .sp-in{display:flex;flex-direction:column;align-items:center;gap:4px;animation:spUp .45s ease-out}
+#mm-splash .sp-v{width:min(70vw,280px);aspect-ratio:3/4;border-radius:24px;overflow:hidden;box-shadow:0 18px 40px rgba(60,40,10,.2);margin-bottom:14px;background:#2a2622;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+#mm-splash.done .sp-v{transform:scale(1.04)}
+#mm-splash video{width:100%;height:100%;object-fit:cover;display:block}
+#mm-splash b{font:900 26px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#1f1e1b;letter-spacing:-.02em}
+#mm-splash small{font:700 12.5px/1.4 -apple-system,sans-serif;color:#9a6200;letter-spacing:.08em}
+#mm-splash i{display:block;width:120px;height:4px;border-radius:3px;background:#e8e1cf;margin-top:16px;overflow:hidden}
+#mm-splash i em{display:block;height:100%;width:40%;border-radius:3px;background:#9a6200;animation:spBar 1s ease-in-out infinite}
+@keyframes spUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes spBar{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
+#mm-splash p{margin:14px 0 0!important;font:600 13.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#6f6d68}
+</style><script data-splash>// 처음 열 때 멍뭉이 로딩 화면(사용자 2026-10-29) — 의자를 돌려 앉으며 화이팅하는 움짤 뒤 앱으로 들어감. 같은 창에서는 다시 안 뜸, 누르면 바로 닫힘
+(function(){try{if(sessionStorage.getItem('mmSplash')&&!/splash/.test(location.search))return;sessionStorage.setItem('mmSplash','1')}catch(e){return}
+var d=document.createElement('div');d.id='mm-splash';d.innerHTML='<div class="sp-in"><div class="sp-v"><video muted playsinline webkit-playsinline autoplay preload="auto" poster="img/splash0.webp?d=0612"><source src="img/splash.mp4?d=0612" type="video/mp4"></video></div><b>멍뭉 터미널</b><small>AI 밸류체인 레이더</small><i><em></em></i><p>성공 투자를 기원합니다 🐾</p></div>';
+function add(){(document.body||document.documentElement).appendChild(d);var v=d.querySelector('video');v.muted=true;var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){v.poster='img/splash.webp';setTimeout(close,1400)});v.addEventListener('ended',function(){d.classList.add('done');setTimeout(close,650)});v.addEventListener('error',function(){setTimeout(close,1200)},true)}
+if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
+function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
+d.addEventListener('click',close);setTimeout(close,6500)})();
+</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="저평가 서치"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-value.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610291758">(function(){var me="202610291758";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>저평가 서치 · 멍뭉 터미널</title><style>:root{color-scheme:light;
+--color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
+--font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
+--cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
+--cds-gap-xs:4px;--cds-gap-sm:8px;--cds-gap-md:12px;--cds-gap-lg:20px;--cds-gap-xl:28px;--cds-pad-xs:4px;--cds-pad-sm:8px;--cds-pad-md:12px;--cds-pad-lg:18px;--cds-pad-xl:24px;--cds-radius:12px;
+--cds-chart-grid:rgba(11,11,11,.07);--cds-chart-axis:rgba(11,11,11,.25);--cds-chart-muted:rgba(111,109,104,.45);--cds-chart-reference:rgba(11,11,11,.4);--cds-chart-status-critical:#b23434;
+--cds-surface-popover:#ffffff;--cds-border:rgba(11,11,11,.12);--cds-shadow-popover:0 6px 24px -8px rgba(0,0,0,.25);--cds-text-secondary:#6f6d68;--cds-dur-slow:.3s;--cds-ease-out:cubic-bezier(.2,.8,.2,1);
+--dc1:#2f5bb8;--dc2:#b07a12;--dc3:#1d7a4a;--dc4:#b53a3a;--dc5:#7246b0;--dc6:#1b7880;--dc7:#b35c2a;--dc8:#6b5b95}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}}
+:root[data-theme="dark"]{color-scheme:dark;--color-bg:#0b0b0b;--color-fg:#f0efec;--color-fg-muted:#9a9891;--color-panel:#161615;--color-border-line:rgba(255,255,255,.09);--color-ok:#4cc27e;--color-warn:#e0a62e;--color-bad:#ec7e7e;--cds-chart-grid:rgba(255,255,255,.07);--cds-chart-axis:rgba(255,255,255,.25);--cds-chart-muted:rgba(154,152,145,.45);--cds-chart-reference:rgba(255,255,255,.4);--cds-chart-status-critical:#ec7e7e;--cds-surface-popover:#201f1d;--cds-border:rgba(255,255,255,.12);--cds-text-secondary:#9a9891;--dc1:#7196ec;--dc2:#e0a62e;--dc3:#4cb87e;--dc4:#e57a7a;--dc5:#a88ae0;--dc6:#4fb9bf;--dc7:#e8915a;--dc8:#a99ad4}
+*{box-sizing:border-box}
+html,body.ibody{margin:0;background:var(--color-bg);color:var(--color-fg)}
+body.ibody{font:15px/1.6 var(--font-anthropic-sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+#dash-root{padding:20px max(16px,env(safe-area-inset-left,0px)) 48px max(16px,env(safe-area-inset-right,0px))}
+#dash-root b,#dash-root strong{font-weight:700}
+.dash-skeleton{color:transparent!important;background:linear-gradient(90deg,color-mix(in srgb,var(--color-fg-muted) 14%,transparent),color-mix(in srgb,var(--color-fg-muted) 24%,transparent),color-mix(in srgb,var(--color-fg-muted) 14%,transparent));background-size:200% 100%;border-radius:6px;animation:skl 1.4s linear infinite}
+@keyframes skl{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.dash-skeleton{animation:none}}
+.ib{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;padding:9px max(12px,env(safe-area-inset-left,0px));background:var(--ib-bg,#f9f9f7);border-bottom:1px solid var(--ib-line,rgba(11,11,11,.1));font:600 14px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+.ib::-webkit-scrollbar{display:none}
+.ib a{flex:none;text-decoration:none;color:var(--ib-mu,#6f6d68);padding:6px 12px;border-radius:999px;border:1px solid var(--ib-line,rgba(11,11,11,.1));background:var(--ib-pn,#fff);white-space:nowrap}
+.ib a.home{color:var(--ib-fg,#0b0b0b);font-weight:800}
+.ib a.home{position:sticky;left:0;z-index:3;box-shadow:-8px 0 0 5px var(--ib-bg,#f9f9f7),-22px 0 0 5px var(--ib-bg,#f9f9f7),9px 0 10px -8px rgba(0,0,0,.3)}
+.ib a[aria-current]{background:var(--ib-fg,#0b0b0b);color:var(--ib-bg,#f9f9f7);border-color:var(--ib-fg,#0b0b0b)}
+.ib .tg{flex:none;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--ib-fa,#9a978f);padding-left:8px;border-left:1px solid var(--ib-line,rgba(11,11,11,.1));margin-left:2px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}}
+:root[data-theme="dark"]{--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script><script>window.__PAGE__={"page": "value", "ds": [], "params": {}};window.__SYNC__="202610291715";</script><script src="shim.js"></script><style data-vt>
+/* 페이지 넘길 때 아이폰 기본 앱처럼 옆으로 밀려 들어오는 전환(지원하는 브라우저만, 아니면 그냥 바로 넘어감) */
+@view-transition{navigation:auto}
+::view-transition-group(root){animation-duration:.34s;animation-timing-function:cubic-bezier(.22,.8,.24,1)}
+::view-transition-old(root){animation:.34s cubic-bezier(.22,.8,.24,1) both mm-vt-out}
+::view-transition-new(root){animation:.34s cubic-bezier(.22,.8,.24,1) both mm-vt-in}
+html.mm-back::view-transition-old(root){animation-name:mm-vt-out-back;z-index:2}
+html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
+@keyframes mm-vt-in{from{transform:translateX(100%);box-shadow:-12px 0 24px rgba(0,0,0,.08)}to{transform:none}}
+@keyframes mm-vt-out{to{transform:translateX(-28%);filter:brightness(.92)}}
+@keyframes mm-vt-in-back{from{transform:translateX(-28%);filter:brightness(.92)}to{transform:none}}
+@keyframes mm-vt-out-back{to{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){::view-transition-old(root),::view-transition-new(root){animation:none}}
+</style><script data-vt>
+(function(){
+  // 홈으로 가거나 '뒤로'일 때는 반대 방향(오른쪽으로 빠짐)
+  window.addEventListener('pagereveal', function(e){
+    if (!e.viewTransition) return;
+    var back = false;
+    try {
+      var a = window.navigation && navigation.activation;
+      if (a) { back = a.navigationType === 'traverse' && a.from && a.entry && a.entry.index < a.from.index; if (!back && /\/(index\.html)?$/.test(new URL(a.entry.url).pathname)) back = true; }
+      else back = /\/(index\.html)?$/.test(location.pathname);
+    } catch (x) {}
+    if (back) { document.documentElement.classList.add('mm-back'); e.viewTransition.finished.finally(function(){ document.documentElement.classList.remove('mm-back'); }); }
+  });
+})();
+</script>
+</head><body class="ibody"><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html?v=202610290817">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html?v=202610290817">경고등</a><a href="p-brief.html?v=202610290817">데일리 시황</a><a href="p-earn.html?v=202610290817">실적 결과</a><a href="p-prices.html?v=202610290817">시세 보드</a><a href="p-targets.html?v=202610290817">목표주가</a><a href="p-opt.html?v=202610290817">옵션 온도계</a><a href="p-bond.html?v=202610290817">채권·금리</a><a href="p-cal.html?v=202610290817">실적 일정</a><a href="p-econ.html?v=202610290817">경제지표</a><span class="tg">흐름</span><a href="p-trend.html?v=202610290817">종목 차트</a><a href="p-short.html?v=202610290817">공매도</a><a href="p-fx.html?v=202610290817">환율</a><a href="p-capex.html?v=202610290817">설비투자</a><a href="p-policy.html?v=202610290817">정책·지정학</a><a href="p-tech.html?v=202610290817">테크 행사</a><span class="tg">점검</span><a href="p-supply.html?v=202610290817">한국·대만</a><a href="p-neo.html?v=202610290817">네오클라우드</a><a href="p-qtr.html?v=202610290817">분기 실적</a><a href="p-insider.html?v=202610290817">내부자·기관</a><span class="tg">아이디어</span><a href="p-value.html?v=202610290817" aria-current="page">저평가 서치</a><a href="p-pros.html?v=202610290817">고수 성적표</a></nav><script data-navorder>(function(){var O=['p-lights','p-brief','p-prices','p-trend','p-earn','p-cal','p-econ','p-bond','p-opt','p-targets'];
+function key(a){var m=(a.getAttribute('href')||'').match(/(p-[a-z]+)\.html/);return m?m[1]:''}
+function fx(){document.querySelectorAll('nav.ib').forEach(function(n){if(n.dataset.ord)return;var as=[].slice.call(n.querySelectorAll(':scope>a')).filter(function(a){return O.indexOf(key(a))>=0});if(as.length<3)return;
+ as.sort(function(a,b){return O.indexOf(key(a))-O.indexOf(key(b))});var after=n.querySelector(':scope>.tg')||n.querySelector(':scope>a.home');if(!after)return;as.forEach(function(a){after.after(a);after=a});n.dataset.ord=1;
+ var c=n.querySelector('[aria-current=page]');if(c)try{n.scrollLeft=c.offsetLeft-n.clientWidth/2+c.offsetWidth/2}catch(e){}})}
+fx();document.addEventListener('DOMContentLoaded',fx);
+function ctr(){document.querySelectorAll('nav.ib').forEach(function(n){var c=n.querySelector('[aria-current=page]');if(c)n.scrollLeft=c.offsetLeft-n.clientWidth/2+c.offsetWidth/2})}
+window.addEventListener('load',function(){ctr();setTimeout(ctr,300);setTimeout(ctr,1200)})})();
+</script><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script><div id="dash-root" data-dash-state="ready"><style data-ideas>/* 아이디어 페이지(저평가 서치·고수 성적표) — 시세 보드 '종목별 시세' 양식 따라 한 줄 카드·알약·회색 탭(사용자 2026-10-29) */
+.iv-wrap .in-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.iv-pills{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 8px;margin:4px -2px 0}
+.iv-pills::-webkit-scrollbar{display:none}
+.iv-pills button{all:unset;flex:none;padding:7px 13px;border-radius:999px;background:#fff;border:1px solid #e6dcc6;box-shadow:0 2px 0 #ece4d2;font:700 14px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#5a554c;cursor:pointer;white-space:nowrap}
+.iv-pills button.on{background:#1d1c1a;color:#fff;border-color:#1d1c1a;box-shadow:none}
+.iv-seg{display:flex;gap:2px;background:#efece5;border-radius:11px;padding:3px;margin:4px 0 10px}
+.iv-seg button{all:unset;flex:1;text-align:center;padding:7px 4px;border-radius:9px;font:700 13.5px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#7a766d;cursor:pointer;white-space:nowrap}
+.iv-seg button.on{background:#fff;color:#1d1c1a;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.iv-list{display:flex;flex-direction:column;gap:8px}
+.iv-row{background:#fff;border:1px solid #e9d9b4;border-radius:14px;box-shadow:0 2px 0 #efe6d2;overflow:hidden}
+.iv-hd{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto auto 12px;align-items:center;gap:10px;padding:11px 12px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.iv-hd:active{background:#faf6ec}
+.iv-hd:after{content:'›';color:#b5ad9c;font-size:22px;line-height:1;transition:transform .2s}
+.iv-row.open .iv-hd:after{transform:rotate(90deg)}
+.iv-nm{min-width:0}.iv-nm b{display:block;white-space:nowrap!important;font-size:16.5px;font-weight:800;color:#1d1c1a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.iv-nm small{display:block;color:#8a877f;font-size:12.5px;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.iv-mid{text-align:right;font-size:13px;color:#5a554c;white-space:nowrap}.iv-mid b{font-size:15px;color:#1d1c1a}
+.iv-mid small{display:block;font-size:11.5px;color:#9a968c;margin-top:2px}
+.iv-big{min-width:66px;text-align:right;font-size:19px;font-weight:900;font-variant-numeric:tabular-nums;white-space:nowrap}
+.iv-big small{display:block;font-size:11px;font-weight:600;color:#9a968c;margin-top:1px}
+.iv-up{color:#1f8a4c}.iv-dn{color:#d0342c}.iv-0{color:#6b675f}
+.iv-dots{display:inline-flex;gap:3px;vertical-align:1px;margin-right:5px}.iv-dots i{width:7px;height:7px;border-radius:50%;background:#e6e0d2}.iv-dots i.on{background:#c98a12}
+.iv-bd{display:none;padding:4px 12px 12px;border-top:1px dashed #eadfc6}.iv-row.open .iv-bd{display:block}
+.iv-lt{display:grid;grid-template-columns:20px 1fr;gap:1px 8px;padding:7px 0;border-bottom:1px solid #f3eee3;font-size:14.5px;line-height:1.45}
+.iv-lt:last-child{border-bottom:0}.iv-lt i{font-style:normal;text-align:center}.iv-lt b{font-weight:800}.iv-lt span{grid-column:2;color:#6b675f;font-size:13.5px}
+.iv-lt.off b{color:#9a968c;font-weight:700}
+.iv-warn{margin-top:8px;padding:8px 10px;border-radius:10px;background:#fff4f1;color:#b4321f;font-size:13.5px;font-weight:700}
+.iv-note{margin-top:6px;color:#6b675f;font-size:13.5px;line-height:1.5}
+.iv-rk{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:22px;border-radius:7px;background:#f3efe4;color:#8a5a12;font-size:13px;font-weight:900;margin-right:6px;vertical-align:1px}
+.iv-rk.t3{background:#8a5a12;color:#fff}
+.iv-st{color:#c98a12;font-size:12px;letter-spacing:-1px;margin-left:4px}
+.iv-more{all:unset;display:block;margin:10px auto 0;padding:9px 16px;border-radius:999px;background:#fff;border:1px solid #e6dcc6;box-shadow:0 2px 0 #ece4d2;font-weight:800;font-size:14px;color:#5a554c;cursor:pointer}
+.iv-empty{color:#8a877f;font-size:14px;padding:10px 4px}
+</style>
+<div class="in-wrap iv-wrap">
+  <header id="top" class="in-mast">
+    <p class="in-eyebrow"><i aria-hidden="true"></i>아이디어 · 공사중 샘플</p>
+    <h1 class="in-h1"><span class="m">저평가 서치</span> <span class="s">불 7개</span></h1>
+    <p class="in-take" id="take"><b id="take-chip">—</b><span id="take-text">불러오는 중</span></p>
+  </header>
+  <section class="in-tiles" id="tiles"></section>
+  <section class="in-card"><h3>불 많이 켜진 순</h3>
+    <p class="sub">추천 목록이 아니라 '한번 들여다볼 만한 곳'을 고르는 체입니다. 줄을 누르면 불마다 근거 숫자가 펼쳐집니다.</p>
+    <div class="iv-pills" id="cat"></div>
+    <div class="iv-seg" id="sort"></div>
+    <div class="iv-list" id="list"></div>
+  </section>
+  <section class="in-card in-read" id="read-card"><h3>불 7개는 이렇게 읽습니다</h3>
+    <div class="in-read-grid"><div class="in-read-col"><ul>
+      <li><b>목표가 여력</b> 증권사 평균 목표가가 지금 주가보다 20% 이상 위.</li>
+      <li><b>같은 층 대비 싸다</b> 선행 PER이 같은 층(예: 메모리끼리) 가운데값보다 10% 이상 낮음. 같은 층이 3곳 미만이면 전체 가운데값과 비교.</li>
+      <li><b>실적 탄력</b> 가장 최근 분기 매출이 예상보다 높고, 전년비 +15% 이상.</li>
+      <li><b>고점 대비 눌림</b> 1년 최고가보다 15% 이상 낮은 자리.</li>
+    </ul></div><div class="in-read-col"><ul>
+      <li><b>목표가 오름세</b> 최근 60일 목표가 상향이 2건 이상이고 하향의 2배 넘음.</li>
+      <li><b>고수 상향</b> '고수 성적표' 적중률 상위 10곳 중 한 곳이라도 최근 60일 안에 상향.</li>
+      <li><b>수급 개선</b> 공매도 잔고 감소, 기관 보유 비중 증가, 내부자 순매수 가운데 하나 이상.</li>
+      <li><b>주의</b> 눌림 불은 '떨어지는 칼'일 수도 있습니다. 3개월 새 30% 넘게 빠진 곳은 따로 표시합니다.</li>
+    </ul></div></div>
+    <p class="how">자료: 사이트에 이미 쌓인 목표주가 기록·분기 실적·시세(선행 PER 포함)·공매도·13F·내부자 거래. 새로 긁어 오는 자료는 없습니다. 매수·매도 권유가 아닙니다.</p>
+  </section>
+</div><script data-ideas>window.__IDEA__="p-value";(function(){
+var K=window.__IDEA__;
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function sg(x,d){if(x==null||isNaN(x))return '—';var a=Math.abs(x).toFixed(d==null?0:d);return (x>0?'+':x<0?'−':'')+a}
+function cls(x){return x==null?'iv-0':x>0?'iv-up':x<0?'iv-dn':'iv-0'}
+function md(d){var p=String(d).split('-');return (+p[1])+'.'+(+p[2])}
+function num(v){return v==null?'—':Math.round(v).toLocaleString('ko-KR')}
+function usd(v){var a=Math.abs(v);return (v<0?'−':'')+(a>=1e8?(a/1e8).toFixed(a>=1e9?0:1)+'억$':(a/1e4).toFixed(0)+'만$')}
+function seg(el,opts,cur,cb){el.innerHTML=opts.map(function(o){return '<button type="button" data-k="'+o[0]+'"'+(o[0]===cur?' class="on"':'')+'>'+o[1]+'</button>'}).join('');
+  el.onclick=function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(el.children,function(x){x.classList.toggle('on',x===b)});cb(b.dataset.k)}}
+function tog(el){el.addEventListener('click',function(e){var h=e.target.closest('.iv-hd');if(h)h.parentElement.classList.toggle('open')})}
+function tiles(a){$('tiles').innerHTML=a.map(function(t){return '<div class="in-tile"><span class="k">'+t[0]+'</span><span class="v">'+t[1]+'</span><span class="s">'+t[2]+'</span></div>'}).join('')}
+function row(nm,sub,mid,big,body){return '<div class="iv-row"><button type="button" class="iv-hd"><span class="iv-nm"><b>'+nm+'</b><small>'+sub+'</small></span><span class="iv-mid">'+mid+'</span><span class="iv-big">'+big+'</span></button><div class="iv-bd">'+body+'</div></div>'}
+function more(el,html,n0){if(html.length<=n0){el.innerHTML=html.join('');return}
+  el.innerHTML=html.slice(0,n0).join('')+'<button type="button" class="iv-more">▼ 아래로 '+(html.length-n0)+'곳 더</button>';
+  el.querySelector('.iv-more').onclick=function(){el.innerHTML=html.join('')}}
+
+function val(D){
+  var it=D.items;$('take-chip').textContent=md(D.asof)+' 종가 기준';
+  var cnt={};it.forEach(function(o){o.L.forEach(function(l){if(l.on)cnt[l.k]=(cnt[l.k]||0)+1})});
+  var top=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a]});
+  var hi=it.filter(function(o){return o.lights>=6});
+  $('take-text').textContent='불 6개 이상 켜진 곳은 '+hi.map(function(o){return o.name+'('+o.lights+')'}).join('·')+'입니다. 요즘은 \''+top[0]+'\'('+cnt[top[0]]+'곳)과 \''+top[1]+'\'('+cnt[top[1]]+'곳) 불이 가장 많이 켜져 있어, 실적은 좋은데 주가가 빠져 있는 곳이 많은 장입니다.';
+  tiles([['살펴본 종목',it.length+'곳','AI 밸류체인(지수 ETF 제외)'],['불 5개 이상',it.filter(function(o){return o.lights>=5}).length+'곳','7개 만점'],['가장 적게 켜진 불',top[top.length-1],cnt[top[top.length-1]]+'곳만 켜짐']]);
+  var cats={};it.forEach(function(o){cats[o.cat]=(cats[o.cat]||0)+1});
+  var CK=['전체'].concat(Object.keys(cats).sort(function(a,b){return cats[b]-cats[a]})),cat='전체',srt='l';
+  $('cat').innerHTML=CK.map(function(c,i){return '<button type="button"'+(i?'':' class="on"')+' data-k="'+esc(c)+'">'+esc(c)+(i?' '+cats[c]:'')+'</button>'}).join('');
+  $('cat').onclick=function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(this.children,function(x){x.classList.toggle('on',x===b)});cat=b.dataset.k;draw()};
+  seg($('sort'),[['l','불 개수'],['u','목표가 여력'],['p','싼 순(PER)'],['d','많이 빠진 순']],'l',function(k){srt=k;draw()});
+  tog($('list'));
+  function draw(){
+    var a=it.filter(function(o){return cat==='전체'||o.cat===cat}).slice();
+    var nz=function(v,d){return v==null||v<=0?d:v};
+    a.sort(srt==='u'?function(x,y){return (y.up==null?-1e9:y.up)-(x.up==null?-1e9:x.up)}:srt==='p'?function(x,y){return nz(x.fpe,1e9)-nz(y.fpe,1e9)}:srt==='d'?function(x,y){return (x.dd==null?0:x.dd)-(y.dd==null?0:y.dd)}:function(x,y){return y.lights-x.lights||(y.up||-1e9)-(x.up||-1e9)});
+    var html=a.map(function(o){
+      var dots='<span class="iv-dots">'+o.L.map(function(l){return '<i'+(l.on?' class="on"':'')+'></i>'}).join('')+'</span>';
+      var mid=dots+'<b>'+o.lights+'</b>/7<small>'+(o.fpe&&o.fpe>0?'선행 PER '+o.fpe.toFixed(1)+'배':'PER —')+'</small>';
+      var big='<span class="'+cls(o.up)+'">'+sg(o.up)+'%</span><small>목표가까지</small>';
+      var body=o.L.map(function(l){return '<div class="iv-lt'+(l.on?'':' off')+'"><i>'+(l.on?'🟡':'⚪')+'</i><b>'+esc(l.k)+'</b><span>'+esc(l.v)+'</span></div>'}).join('');
+      body+='<p class="iv-note">3개월 주가 '+sg(o.m3,1)+'% · 증권사 의견 매수 '+(o.n_buy==null?'—':o.n_buy)+' · 중립 '+(o.n_hold==null?'—':o.n_hold)+' · 매도 '+(o.n_sell==null?'—':o.n_sell)+'</p>';
+      if(o.m3!=null&&o.m3<=-30)body+='<p class="iv-warn">⚠ 3개월 새 '+sg(o.m3,0)+'% — 빠진 이유(실적·가이던스·업황)를 먼저 확인할 자리입니다.</p>';
+      return row(esc(o.name),esc(o.cat)+' · '+esc(o.ticker),mid,big,body)});
+    more($('list'),html,25);
+  }
+  draw();
+}
+
+function pros(D){
+  var R=D.rank;$('take-chip').textContent=md(D.asof)+' 기준 · 3개월 채점';
+  var t=R.slice(0,3);
+  $('take-text').textContent='지난 1년 의견 가운데 3개월이 지난 '+num(D.scored)+'건을 실제 주가로 채점했습니다. 종합 1위는 '+t[0].firm+'(적중 '+t[0].hit+'% · 평균 '+sg(t[0].avg,1)+'%p), 2위 '+t[1].firm+', 3위 '+t[2].firm+'입니다. 상위 10곳은 최근 45일 동안 '+D.recent.length+'건을 올렸습니다.';
+  var bh=R.slice().sort(function(a,b){return b.hit-a.hit||b.n-a.n})[0];
+  tiles([['채점한 의견',num(D.scored)+'건','3개월 지난 상향·하향·신규'],['순위 오른 곳',R.length+'곳','채점 '+D.min_calls+'건 이상 · 전체 '+D.firms_total+'곳'],['적중률 최고',bh.hit+'%',bh.firm+' · '+bh.n+'건']]);
+  var srt='s';seg($('rsort'),[['s','종합'],['h','적중률'],['a','평균 초과'],['n','건수']],'s',function(k){srt=k;drawR()});tog($('rank'));
+  function drawR(){var a=R.slice();a.sort(srt==='h'?function(x,y){return y.hit-x.hit||y.n-x.n}:srt==='a'?function(x,y){return y.avg-x.avg}:srt==='n'?function(x,y){return y.n-x.n}:function(x,y){return x.rank-y.rank});
+    var html=a.map(function(r){
+      var nm='<span class="iv-rk'+(r.rank<=3?' t3':'')+'">'+r.rank+'</span>'+esc(r.firm)+'<span class="iv-st">'+'★★★★★'.slice(0,r.stars)+'</span>';
+      var mid='적중 <b>'+r.hit+'%</b><small>'+r.n+'건 채점</small>';
+      var big='<span class="'+cls(r.avg)+'">'+sg(r.avg,1)+'</span><small>평균 초과 %p</small>';
+      var b='<div class="iv-lt"><i>⏱</i><b>1개월 적중률 '+(r.hit1==null?'—':r.hit1+'%')+'</b><span>1개월이 지난 '+r.n1+'건 기준</span></div>';
+      b+='<div class="iv-lt"><i>📏</i><b>가운데값 '+sg(r.med,1)+'%p</b><span>평균이 몇 건의 대박에 끌려간 건 아닌지 보는 값</span></div>';
+      b+='<div class="iv-lt"><i>🗂</i><b>다룬 종목 '+r.cover+'곳 · 낸 의견 '+r.calls+'건</b><span>3개월이 아직 안 지난 최근 의견 포함</span></div>';
+      if(r.best)b+='<div class="iv-lt"><i>🎯</i><b>최고 적중: '+esc(r.best.name)+' '+sg(r.best.x,1)+'%p</b><span>'+md(r.best.date)+' '+esc(r.best.type)+' 의견 → 3개월 뒤 나스닥100 대비</span></div>';
+      return row(nm,esc(r.firm_en),mid,big,b)});
+    more($('rank'),html,15)}
+  drawR();
+  var rc=D.recent.map(function(e){var pt=e.pt_from&&e.pt_to?num(e.pt_from)+'→'+num(e.pt_to):(e.rating||'');
+    return row(esc(e.name),md(e.date)+' · '+esc(e.firm)+'('+e.rank+'위) · '+esc(e.type)+(e.rating?' · '+esc(e.rating):''),'<b>'+pt+'</b><small>목표가</small>','<span class="'+cls(e.since)+'">'+sg(e.since,1)+'%</span><small>그 뒤 주가</small>',
+      '<p class="iv-note">'+esc(e.firm)+'는 종합 '+e.rank+'위입니다. '+(e.pt_from&&e.pt_to?'목표가를 '+num(e.pt_from)+'에서 '+num(e.pt_to)+'('+sg((e.pt_to/e.pt_from-1)*100,0)+'%)로 올렸습니다.':'투자의견을 올렸습니다.')+'</p>')});
+  tog($('recent'));more($('recent'),rc,10);
+  var bt='l';seg($('btab'),[['l','레오폴드 펀드'],['i','기관 보유 변화'],['s','내부자 순매수']],'l',function(k){bt=k;drawB()});tog($('big'));
+  function drawB(){var h;
+    if(bt==='l')h=D.leopold.map(function(x){return row(esc(x.name),esc(x.q)+' · '+esc(x.ticker),'<b>'+usd(x.value_bn*1e9)+'</b><small>보유 금액</small>','<span class="iv-0">'+x.pct.toFixed(1)+'%</span><small>포트 비중</small>','<p class="iv-note">직전 분기 대비 '+esc(x.change)+'. AI 인프라에 집중 투자하는 상황인식(Situational Awareness, 레오폴드 아셴브레너) 펀드의 13F 공시 기준입니다.</p>')});
+    else if(bt==='i')h=D.inst.map(function(x){return row(esc(x.name),esc(x.cat),'<b>'+num(x.holders)+'곳</b><small>보유 기관 '+sg(x.chg)+'곳</small>','<span class="'+cls(x.own_chg)+'">'+sg(x.own_chg,1)+'</span><small>지분율 %p</small>','<p class="iv-note">'+esc(x.q)+' 말 기준 기관 지분율 '+x.own.toFixed(1)+'%. 보유 기관 수는 대체로 늘어나는 게 보통이라, 지분율이 줄어든 곳이 더 눈에 띄는 신호입니다.</p>')});
+    else h=D.insider.map(function(x){var n=x.buy-x.sell;return row(esc(x.name),esc(x.ticker),'매수 <b>'+x.nb+'</b> · 매도 <b>'+x.ns+'</b><small>최근 60일 건수</small>','<span class="'+cls(n)+'">'+usd(n)+'</span><small>순매수</small>','<p class="iv-note">매수 '+usd(x.buy)+' · 매도 '+usd(x.sell)+'. 임원 매도는 보수·세금 때문에 늘 많아서, 드문 매수가 더 의미 있는 신호입니다.</p>')});
+    more($('big'),h.length?h:['<p class="iv-empty">자료가 없습니다.</p>'],12)}
+  drawB();
+}
+fetch('d/ideas/'+(K==='p-value'?'value':'pros')+'.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(K==='p-value'?val:pros).catch(function(e){var t=$('take-text');if(t)t.textContent='자료를 불러오지 못했습니다.';console.error(e)});
+})();
+</script></div><script data-tick>(function(){
+  // 멍뭉 터미널: 누르는 곳마다 부드러운 '틱' 소리(소리 파일 없이 브라우저가 직접 만듦), 오른쪽 아래 🔊/🔇로 끄고 켬
+  if (window.__tick) return; window.__tick = 1;
+  var KEY = 'mm-tick-off', off = false, ctx = null;
+  try { off = localStorage.getItem(KEY) === '1'; } catch (e) {}
+  var SEL = 'a,button,summary,select,label,[role=button],[role=tab],[onclick],.pb-row,.pb-hc,.pb-tile,.cp,.item,tr[data-tk],input[type=checkbox],input[type=radio]';
+  var buf = null;
+  function ac(){
+    if (!ctx) { var A = window.AudioContext || window.webkitAudioContext; if (!A) return null; ctx = new A(); }
+    if (ctx.state !== 'running' && ctx.resume) ctx.resume();
+    if (!buf) { // 아이폰 키보드처럼 들릴 듯 말 듯한 '똑' = 7ms짜리 아주 짧은 잡음(손끝에 닿는 느낌만 남김, 사용자 2026-10-29)
+      var n = Math.floor(ctx.sampleRate * 0.007); buf = ctx.createBuffer(1, n, ctx.sampleRate); var d = buf.getChannelData(0);
+      for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 7);
+    }
+    return ctx;
+  }
+  // 소리 종류: tap(기본 틱) · nav(페이지 이동, 조금 낮은 톡) · open(펼침, 올라가는 두 번 틱) · close(닫힘, 낮은 틱)
+  var TONE = { tap: [[3400, 0.07, 0]], nav: [[2600, 0.075, 0]], open: [[3800, 0.06, 0]], close: [[2900, 0.055, 0]] };
+  function tick(kind){
+    if (off) return;
+    try { if (navigator.vibrate) navigator.vibrate(6); } catch (e) {}  // 안드로이드만 살짝 진동(아이폰 웹은 진동 불가)
+    try {
+      var c = ac(); if (!c) return;
+      (TONE[kind] || TONE.tap).forEach(function(x){
+        var t = c.currentTime + 0.005 + x[2], s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+        s.buffer = buf; f.type = 'bandpass'; f.frequency.value = x[0]; f.Q.value = 1.4; g.gain.value = x[1];
+        s.connect(f); f.connect(g); g.connect(c.destination); s.start(t);
+      });
+    } catch (e) {}
+  }
+  // 아이폰·카톡 안 브라우저는 '누름이 끝난 뒤(click)'에만 소리를 허락하는 경우가 많아 click에서 냅니다
+  var last = 0;
+  function onTap(e){
+    var el = e.target && e.target.closest ? e.target.closest(SEL) : null;
+    if (!el || el.id === 'mm-snd' || el.disabled) return;
+    var now = Date.now(); if (now - last < 120) return; last = now;
+    var isNav = el.tagName === 'A' && el.href && !el.target && (function(){ try { var u = new URL(el.href, location.href); return u.origin === location.origin && u.pathname !== location.pathname; } catch (x) { return false; } })();
+    var tog = el.hasAttribute('aria-expanded') ? 'aria-expanded' : el.hasAttribute('aria-pressed') && el.closest('[role=group]') == null ? 'aria-pressed' : null;
+    if (isNav) tick('nav');
+    else if (tog) { var before = el.getAttribute(tog); setTimeout(function(){ var after = el.getAttribute(tog); tick(after === before ? 'tap' : after === 'true' ? 'open' : 'close'); }, 0); }
+    else if (el.tagName === 'SUMMARY') { var d = el.parentElement; setTimeout(function(){ tick(d && d.open ? 'open' : 'close'); }, 0); }
+    else if (el.matches('tr, .pb-row')) { var wasOn = el.classList.contains('on'); setTimeout(function(){ tick(wasOn ? 'close' : 'open'); }, 0); }
+    else tick('tap');
+    // 다른 페이지로 넘어가는 링크는 소리가 끊기지 않게 0.07초 뒤에 이동
+    if (el.tagName === 'A' && el.href && !el.target && !e.defaultPrevented && !e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
+      var u = new URL(el.href, location.href);
+      if (u.origin === location.origin && u.pathname !== location.pathname) { e.preventDefault(); setTimeout(function(){ location.href = el.href; }, 70); }
+    }
+  }
+  document.addEventListener('click', onTap, true);
+  ['touchend', 'pointerdown', 'keydown'].forEach(function(ev){ document.addEventListener(ev, function(){ try { if (!off) ac(); } catch (e) {} }, { capture: true, passive: true }); });
+  // 누를 때 살짝 눌리는 느낌(움직임 줄이기 설정이면 생략)
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    var st = document.createElement('style');
+    st.textContent = '.mm-press{transform:scale(.975)!important;filter:brightness(.97);transition:transform .07s ease,filter .07s ease!important}tr.mm-press{transform:none!important}.item{box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 4px 0 rgba(30,22,8,.13),0 9px 20px rgba(30,22,8,.13)!important;transition:transform .1s ease,box-shadow .1s ease!important}.pb-chip,.pb-tdet .cp{box-shadow:0 3px 0 rgba(30,22,8,.16),0 4px 8px rgba(30,22,8,.10);transition:transform .1s ease,box-shadow .1s ease}.item.mm-press,.pb-chip.mm-press,.pb-tdet .cp.mm-press{transform:translateY(3px)!important;filter:none!important;box-shadow:0 1px 0 rgba(30,22,8,.14)!important}@media (hover:hover){.item:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 4px 0 rgba(40,30,10,.08),0 10px 20px rgba(40,30,10,.10)!important}}tr.mm-press>td{background:rgba(154,98,0,.08)!important}.mm-rel{transition:transform .16s ease,filter .16s ease}';
+    (document.head || document.documentElement).appendChild(st);
+    var pressed = null;
+    var rel = function(){ if (pressed) { var p = pressed; pressed = null; p.classList.remove('mm-press'); p.classList.add('mm-rel'); setTimeout(function(){ p.classList.remove('mm-rel'); }, 180); } };
+    document.addEventListener('pointerdown', function(e){ var el = e.target && e.target.closest ? e.target.closest(SEL) : null; if (!el || el.id === 'mm-snd') return; rel(); pressed = el; el.classList.add('mm-press'); }, { capture: true, passive: true });
+    ['pointerup', 'pointercancel', 'pointerleave', 'scroll'].forEach(function(ev){ document.addEventListener(ev, rel, { capture: true, passive: true }); });
+  }
+  function ui(){
+    if (document.getElementById('mm-snd')) return;
+    var b = document.createElement('button'); b.id = 'mm-snd'; b.type = 'button';
+    var paint = function(){ b.textContent = off ? '🔇' : '🔊'; b.setAttribute('aria-label', off ? '누름 소리 켜기' : '누름 소리 끄기'); b.title = b.getAttribute('aria-label'); };
+    b.style.cssText = 'position:fixed;z-index:50;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));width:36px;height:36px;border-radius:50%;border:1px solid rgba(0,0,0,.12);background:rgba(255,255,255,.92);box-shadow:0 2px 8px rgba(0,0,0,.12);font-size:16px;line-height:1;cursor:pointer;padding:0;opacity:.85';
+    b.addEventListener('click', function(){ off = !off; try { localStorage.setItem(KEY, off ? '1' : '0'); } catch (e) {} paint(); if (!off) tick(); });
+    paint(); document.body.appendChild(b);
+  }
+  if (document.body) ui(); else document.addEventListener('DOMContentLoaded', ui);
+})();
+</script><style data-hero>
+/* 페이지 머리(제목 영역) 통일 — 사용자 2026-10-28 지시: 모든 페이지 같은 모양, 정보와 무관한 안내문은 지움 */
+.mm-hero{display:flex!important;flex-direction:column!important;gap:12px!important;padding:6px 0 0!important;margin:0 0 22px!important;background:none!important;border:0!important;box-shadow:none!important}
+.mm-hero>.mm-x{display:none!important}
+.mm-hero>.mm-eb{display:flex!important;align-items:center!important;gap:8px!important;margin:0!important;font:700 12px/1.3 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;letter-spacing:.14em!important;color:#8a877f!important;text-transform:none!important}
+.mm-hero>.mm-eb i{flex:none;width:6px!important;height:6px!important;border-radius:50%;background:#b23434!important;box-shadow:0 0 0 3px rgba(178,52,52,.16)!important}
+.mm-hero>h1.mm-h1{margin:0!important;padding:0 0 14px!important;font-family:ui-serif,"New York","Noto Serif KR",Georgia,serif!important;font-size:clamp(27px,7vw,36px)!important;line-height:1.22!important;letter-spacing:-.02em!important;font-weight:700!important;color:#0b0b0b!important;border-bottom:1px solid rgba(11,11,11,.1)!important;position:relative!important;text-wrap:balance}
+.mm-hero>h1.mm-h1::after{content:""!important;position:absolute!important;left:0!important;bottom:-1px!important;width:44px!important;height:3px!important;border-radius:2px!important;background:#a26a0c!important}
+.mm-hero>h1.mm-h1 .m,.mm-hero>h1.mm-h1 b{font-weight:700!important;color:#0b0b0b!important;font-size:1em!important}
+.mm-hero>h1.mm-h1 .s,.mm-hero>h1.mm-h1 .dim,.mm-hero>h1.mm-h1 .lt{font-weight:400!important;color:#8a877f!important;font-size:1em!important;white-space:normal!important}
+.mm-hero .mm-chipx,.mm-hero>.mm-chip{display:inline-flex!important;align-self:flex-start!important;align-items:center!important;margin:0!important;padding:3px 10px!important;border:1px solid rgba(162,106,12,.45)!important;border-radius:999px!important;background:rgba(162,106,12,.06)!important;color:#8a5a08!important;font:700 12.5px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;letter-spacing:0!important;font-variant-numeric:tabular-nums}
+.mm-hero>.mm-take{margin:2px 0 0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;font-size:17px!important;line-height:1.7!important;font-weight:400!important;letter-spacing:-.005em!important;color:#1d1c1a!important;text-wrap:pretty}
+.mm-hero>.mm-take b,.mm-hero>.mm-take strong{font-weight:700!important}
+.mm-hero>.mm-take>:first-child.mm-chipx{margin:0 0 8px!important;display:flex!important;width:max-content!important;max-width:100%}
+.mm-foot{margin:36px 0 8px!important;padding-top:14px!important;border-top:1px solid rgba(11,11,11,.08)!important;font:400 12px/1.6 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;color:#9a978f!important;text-align:center}
+/* 요약 칸 큰 숫자는 모든 페이지에서 가운데 — 사용자 2026-10-28 지시(이름·설명 글자는 왼쪽 유지) */
+[class*="-tile"]:not([class*="-tiles"])>.v{display:flex!important;justify-content:center!important;align-items:baseline!important;flex-wrap:wrap!important;width:100%!important;text-align:center!important}
+[class*="-tile"]:not([class*="-tiles"])>.v.mm-vtxt{justify-content:flex-start!important;text-align:left!important}
+</style>
+<script data-hero>(function(){
+function run(){
+  var h=null,hs=document.querySelectorAll('h1');
+  for(var i=0;i<hs.length;i++){if(!hs[i].closest('.ib,.bn')){h=hs[i];break}}
+  if(!h)return;var c=h.parentElement;if(!c||c===document.body)return;
+  c.classList.add('mm-hero');h.classList.add('mm-h1');
+  for(var k=c.firstElementChild;k;k=k.nextElementSibling){
+    if(k===h||/^(META|SCRIPT|STYLE|LINK)$/.test(k.tagName))continue;
+    var s=(k.className&&k.className.baseVal===undefined?k.className:'')+' '+k.id;
+    k.classList.remove('mm-eb','mm-chip','mm-take','mm-x');
+    if(/eyebrow|(^|[\s-])eb(\s|$)/.test(s))k.classList.add('mm-eb');
+    else if(/take|chg/.test(s)){
+      var t=(k.textContent||'').replace(/\s+/g,'');
+      if(/chg/.test(s)&&(t===''||t==='—'))k.classList.add('mm-x');else{
+        k.classList.add('mm-take');var f=k.firstElementChild;
+        var n=k.firstChild;while(n&&n.nodeType===3&&!n.textContent.trim())n=n.nextSibling;if(f&&n===f&&(f.tagName==='B'||/chip|dl/.test(f.className||'')))f.classList.add('mm-chipx');}
+    }
+    else if(/date|chip|asof/.test(s))k.classList.add('mm-chip');
+    else k.classList.add('mm-x');
+  }
+  var vs=document.querySelectorAll('[class*="-tile"]>.v');for(var j=0;j<vs.length;j++){var tx=(vs[j].textContent||'').trim();vs[j].classList.toggle('mm-vtxt',tx!==''&&!/^[\s+\-−~—]*[\d.]/.test(tx)&&tx!=='—')}
+  var w=c.parentElement;
+  if(w&&!document.querySelector('.mm-foot')){var p=document.createElement('p');p.className='mm-foot';p.textContent='참고용 정보이며 매수·매도 권유가 아닙니다.';w.appendChild(p)}
+}
+run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);setTimeout(run,800);setTimeout(run,2500);
+})();</script>
+<script data-hero-fix>(function(){
+/* 아이폰 사파리: 숨긴 열이 있는 표에서 펼침 줄(colspan)이 숨은 열 폭까지 잡아 표가 찌그러지는 문제 — 펼침 줄 colspan을 보이는 열 수로 맞춤 */
+function fix(){var ts=document.querySelectorAll('table');for(var i=0;i<ts.length;i++){var t=ts[i],hs=t.querySelectorAll('thead th');if(!hs.length)continue;var n=0;for(var j=0;j<hs.length;j++)if(getComputedStyle(hs[j]).display!=='none')n++;if(!n)n=hs.length;var cs=t.querySelectorAll('tbody td[colspan]');for(var k=0;k<cs.length;k++){if(cs[k].colSpan!==n)cs[k].colSpan=n}}}
+var q=0;function later(){if(q)return;q=1;requestAnimationFrame(function(){q=0;fix()})}
+document.addEventListener('click',function(){setTimeout(fix,0);setTimeout(fix,120)},true);
+try{new MutationObserver(later).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['class']})}catch(e){}
+window.addEventListener('load',fix);setTimeout(fix,600);setTimeout(fix,2000);
+})();</script>
+<style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y}.ib .tg{display:none!important}</style><script data-ibdrag>(function(){function on(n){if(!n||n.__drag)return;n.__drag=1;var x0,y0,s0,mode=null;n.addEventListener('touchstart',function(e){var t=e.touches[0];x0=t.clientX;y0=t.clientY;s0=n.scrollLeft;mode=null},{passive:true});n.addEventListener('touchmove',function(e){var t=e.touches[0],dx=t.clientX-x0,dy=t.clientY-y0;if(mode===null&&(Math.abs(dx)>6||Math.abs(dy)>6))mode=Math.abs(dx)>Math.abs(dy)?'x':'y';if(mode==='x'){var before=n.scrollLeft;n.scrollLeft=s0-dx;if(n.scrollLeft!==before||Math.abs(dx)>10){e.preventDefault()}}},{passive:false});n.addEventListener('touchend',function(){if(mode==='x'){var a=n.querySelectorAll('a');a.forEach(function(l){l.__noclick=Date.now()})}mode=null},{passive:true});n.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a');if(l&&l.__noclick&&Date.now()-l.__noclick<350){e.preventDefault();e.stopPropagation()}},true)}function go(){document.querySelectorAll('.ib').forEach(on)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();setTimeout(go,1500)})();</script><style data-uniui>/* 나머지 페이지 공통 정리(사용자 2026-10-29) */
+body [class$="-tiles"]:not(.pb-tiles):not(.ot-tiles):not(.bf-tiles),body .tiles#tiles{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}
+body [class$="-tiles"]:not(.pb-tiles):not(.ot-tiles):not(.bf-tiles)>*,body .tiles#tiles>*{min-width:0!important;padding:8px 9px!important;border-radius:12px!important;overflow:hidden}
+body [class$="-tiles"]:not(.pb-tiles):not(.ot-tiles):not(.bf-tiles)>*>:first-child,body .tiles#tiles>*>:first-child{font-size:11.5px!important;line-height:1.3!important;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+body [class$="-tiles"]:not(.pb-tiles):not(.ot-tiles):not(.bf-tiles)>*>:nth-child(2),body .tiles#tiles>*>:nth-child(2){font-size:19px!important;line-height:1.25!important;margin:3px 0 2px!important;text-align:left!important}
+body [class$="-tiles"]:not(.pb-tiles):not(.ot-tiles):not(.bf-tiles)>*>:nth-child(n+3),body .tiles#tiles>*>:nth-child(n+3){font-size:11px!important;line-height:1.35!important;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+body .u-fold>:not(h2):not(h3):not(header):not(.hd){display:none!important}body .u-fold.op>:not(h2):not(h3):not(header):not(.hd){display:revert!important}
+body .u-fh{cursor:pointer;margin-bottom:0!important}body .u-fh::after{content:" ▾";font-size:13px;color:#9a6200}body .u-fold.op .u-fh::after{content:" ▴"}
+body .u-tbox{overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;border-radius:10px;box-shadow:inset 0 0 0 1px rgba(11,11,11,.06)}
+body .u-tbox.u-long{max-height:min(60vh,520px)}
+body .u-tbox thead th{position:sticky;top:0;z-index:2;background:var(--panel,#fff)}
+body .u-tbox table.u-wide tr>:first-child{position:sticky;left:0;z-index:1;background:var(--panel,#fff)}
+body .u-tbox thead tr>:first-child{z-index:3}
+body .u-clamp:not(.op){display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+body .u-more{all:unset;cursor:pointer;display:inline-block;margin:2px 0 6px;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200}
+body .u-box{max-height:min(70vh,640px)!important;overflow-y:auto!important;overscroll-behavior:contain}
+body .u-hint{text-align:center;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;margin:6px 0 0!important;transition:opacity .2s}
+/* 버튼 줄: 시세 보드 알약 */
+body :is([class$="-ctrl"],[class$="-chips"]):has(>button[aria-pressed]){display:flex!important;flex-wrap:nowrap!important;gap:6px!important;overflow-x:auto;scrollbar-width:none;padding:2px 2px 8px!important}
+body :is([class$="-ctrl"],[class$="-chips"])>button[aria-pressed]{flex:none!important;white-space:nowrap;border-radius:999px!important;padding:5px 12px!important;border:1px solid rgba(11,11,11,.1)!important;background:#f9f9f7!important;color:#0b0b0b!important;box-shadow:0 3px 0 rgba(30,22,8,.16),0 4px 8px rgba(30,22,8,.1)!important;font-weight:600!important}
+body :is([class$="-ctrl"],[class$="-chips"])>button[aria-pressed=true]{background:#0b0b0b!important;color:#f9f9f7!important;border-color:#0b0b0b!important}
+body :is([class$="-ctrl"],[class$="-chips"])>button[aria-pressed]:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(30,22,8,.16)!important}
+/* 공매도 '종목별 한눈에 보기' 표 → 시세 보드 한 줄 카드(사용자 2026-10-29) */
+body #list-card .u-tbox{box-shadow:none!important;padding:2px 4px 10px;margin:0 -4px}
+body #list-card table#tbl{display:block!important;width:100%!important;border:0!important;background:none!important}
+body #list-card #tbl :is(thead,tbody){display:flex!important;flex-direction:column;gap:7px}
+body #list-card #tbl thead{position:sticky;top:0;z-index:3;background:var(--panel,#fff);padding-bottom:4px}
+body #list-card #tbl thead tr{display:flex!important;gap:5px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 6px}
+body #list-card #tbl thead tr::before{content:"정렬";flex:none;align-self:center;font:600 12px/1 -apple-system,sans-serif;color:#6f6d68}
+body #list-card #tbl thead th{all:unset;flex:none;cursor:pointer;white-space:nowrap;font:600 12.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:3px 10px;border:1px solid rgba(11,11,11,.1);border-radius:999px;background:#f9f9f7;color:#0b0b0b;box-shadow:0 2px 0 rgba(30,22,8,.14)}
+body #list-card #tbl thead th:is([data-k=ticker],[data-k=date],[data-k=avg5],[data-k=avg10]){display:none}
+body #list-card #tbl thead th:is([aria-sort=ascending],[aria-sort=descending]){background:#0b0b0b;color:#f9f9f7;border-color:#0b0b0b}
+body #list-card #tbl tbody tr{display:flex!important;flex-wrap:wrap;align-items:center;column-gap:7px;row-gap:2px;position:relative;padding:9px 26px 9px 11px;border-radius:12px;background:#fff!important;box-shadow:0 0 0 1px rgba(154,98,0,.12),0 3px 0 rgba(11,11,11,.1),0 6px 14px rgba(11,11,11,.08)}
+body #list-card #tbl tbody tr.on{box-shadow:0 0 0 1.5px rgba(154,98,0,.55),0 3px 0 rgba(11,11,11,.1)}
+body #list-card #tbl tbody tr::after{content:"›";position:absolute;right:9px;top:50%;transform:translateY(-50%);color:#b9b6ae;font-size:20px}
+body #list-card #tbl tbody tr::before{content:"";order:4;flex-basis:100%;height:0}
+body #list-card #tbl tbody td{all:unset;order:5;display:block;white-space:nowrap;font:500 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#6f6d68;position:static!important;background:none!important}
+body #list-card #tbl tbody td:nth-child(2){order:1;font:800 15.5px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b}
+body #list-card #tbl tbody td:nth-child(1){order:2;font:600 11.5px/1 sans-serif;color:#9a978f}
+body #list-card #tbl tbody td:nth-child(3){order:2;font:700 11px/1 sans-serif;padding:3px 7px;border-radius:6px;background:#f1efe8!important;color:#3a3833}
+body #list-card #tbl tbody td:nth-child(5){order:3;margin-left:auto;font:800 17px/1.2 -apple-system,sans-serif;color:#0b0b0b;text-align:right}
+body #list-card #tbl tbody td:nth-child(5)::after{content:"%";font-size:12px;font-weight:700;color:#6f6d68}
+body #list-card #tbl tbody td:is(:nth-child(4),:nth-child(10),:nth-child(11)){display:none}
+body #list-card #tbl tbody td:nth-child(6)::before{content:"지난번 ";color:#9a978f}body #list-card #tbl tbody td:nth-child(6)::after{content:"%p"}
+body #list-card #tbl tbody td:nth-child(7)::before{content:"물량 ";color:#9a978f}body #list-card #tbl tbody td:nth-child(7)::after{content:"%"}
+body #list-card #tbl tbody td:nth-child(8)::before{content:"갚는 데 ";color:#9a978f}body #list-card #tbl tbody td:nth-child(8)::after{content:"일"}
+body #list-card #tbl tbody td:nth-child(9)::before{content:"하루 ";color:#9a978f}body #list-card #tbl tbody td:nth-child(9)::after{content:"%"}
+body #list-card #tbl tbody td:nth-child(12)::before{content:"평소보다 ";color:#9a978f}body #list-card #tbl tbody td:nth-child(12)::after{content:"%p"}
+body #list-card #tbl tbody td.dn{color:#c62828!important;font-weight:700}body #list-card #tbl tbody td.up{color:#1a7f37!important;font-weight:700}
+body #list-card #tbl td i.est{font-style:normal;font:700 10px/1 sans-serif;color:#9a6200;margin-left:3px;vertical-align:2px}body #list-card #tbl td:nth-child(5):has(i.est)::after{content:""}
+body #detail-card .dp{display:flex;flex-direction:column;gap:6px;margin:0 0 12px;padding:9px 10px;border-radius:12px;background:#f6f4ee;box-shadow:inset 0 0 0 1px rgba(154,98,0,.15)}
+body #detail-card .dp-q{all:unset;box-sizing:border-box;width:100%;padding:8px 11px;border-radius:10px;background:#fff;border:1px solid rgba(11,11,11,.1);font:500 14.5px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif}
+body #detail-card :is(.dp-l,.dp-t){display:flex;flex-wrap:nowrap;gap:5px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 6px}
+body #detail-card .dp-l button{all:unset;flex:none;cursor:pointer;white-space:nowrap;font:600 12.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:3px 10px;border-radius:999px;background:#fff;border:1px solid rgba(11,11,11,.1);box-shadow:0 2px 0 rgba(30,22,8,.14)}
+body #detail-card .dp-t button{all:unset;flex:none;cursor:pointer;white-space:nowrap;font:700 13.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:4px 11px;border-radius:999px;background:#fff;border:1px solid rgba(11,11,11,.1);box-shadow:0 3px 0 rgba(30,22,8,.16)}
+body #detail-card :is(.dp-l,.dp-t) button[aria-pressed=true]{background:#0b0b0b;color:#f9f9f7;border-color:#0b0b0b}
+body #detail-card .dp-none{font:500 12.5px/1.6 sans-serif;color:#9a978f}
+/* 숫자 칸 갈무리(사용자 2026-10-29): 왼쪽 정렬로 통일, 글자 값(행사 이름 등)은 작게 줄바꿈, 잘림 없음 */
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*{text-align:left!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:0!important}
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>*{text-align:left!important;margin-left:0!important;margin-right:0!important;padding-left:0!important;padding-right:0!important;letter-spacing:-.01em!important;max-width:100%!important}
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>:nth-child(2){font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif!important;font-weight:800!important;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>.mm-vtxt,body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>:nth-child(2).mm-vtxt{font-size:14px!important;line-height:1.3!important;white-space:normal!important;word-break:keep-all!important;overflow-wrap:anywhere;display:-webkit-box!important;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>:nth-child(n+3){word-break:keep-all!important}
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>*{display:block!important;align-self:stretch!important;justify-content:flex-start!important;width:auto!important}
+body [class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>:nth-child(2):not(.mm-vtxt){display:block!important}
+</style><script data-uniui>// 나머지 페이지 공통 정리(사용자 2026-10-29): 숫자 칸 3열, 읽는 법·출처 접기, 넓은/긴 표는 상자 안 스크롤, 긴 설명 2줄+더 읽기, 아주 긴 목록은 상자 스크롤
+(function(){
+function more(p,label){if(p.dataset.u)return;p.dataset.u=1;p.classList.add('u-clamp');var b=document.createElement('button');b.type='button';b.className='u-more';b.textContent=label+' ▾';p.after(b);b.onclick=function(){p.classList.toggle('op');b.textContent=p.classList.contains('op')?'접기 ▴':label+' ▾'}}
+function fx(){
+ // 1) 읽는 법·출처·준비 중 카드 접기
+ document.querySelectorAll('section,[class*="-card"],[class*="-sec"],.card,.panel').forEach(function(c){if(c.dataset.uf||c.closest('[data-uf]'))return;var h=c.querySelector(':scope>h2,:scope>h3,:scope>header h2,:scope>header h3,:scope>.hd h2');if(!h)return;var t=h.textContent.trim();
+  if(/^(읽는 법|출처|연결 준비 중|자동 실행 규칙|\* 알아두면)/.test(t)||/^(howto|sources|src-|read-sec)/.test(c.id||'')){if(c.querySelector('canvas,svg.chart'))return;c.dataset.uf=1;c.classList.add('u-fold');h.classList.add('u-fh');h.addEventListener('click',function(){c.classList.toggle('op')})}});
+ // 2) 넓은 표·긴 표: 상자 안 스크롤
+ document.querySelectorAll('table').forEach(function(t){if(t.dataset.ut||!t.rows.length||!t.offsetParent)return;var p=t.parentElement;var wide=t.scrollWidth>p.clientWidth+4,long=t.rows.length>14;if(!wide&&!long)return;t.dataset.ut=1;
+  var w=document.createElement('div');w.className='u-tbox'+(long?' u-long':'');t.parentNode.insertBefore(w,t);w.appendChild(t);if(wide)t.classList.add('u-wide')});
+ // 3) 긴 설명 문단: 2줄 + 더 읽기
+ document.querySelectorAll('p.sub,p.note,p[class$="-note"],p.m,p.nt,p[class$="-one"],p.how,p.nc-sub,.sh-guide,p.in-foot').forEach(function(p){if(p.dataset.u||p.closest('.u-fold')||p.closest('.mm-take')||p.closest('details')||p.closest('[class^="nc-"],.nc-card'))return;if(p.textContent.trim().length<110)return;more(p,/how|guide/.test(p.className)?'읽는 법':'더 읽기')});
+ // 4) 아주 긴 목록(타임라인·주간 일정)은 상자 안 스크롤
+ document.querySelectorAll('#tl-sec .pg-card,#weeks-sec .mc-card').forEach(function(c){if(c.dataset.ub||c.offsetHeight<1400)return;c.dataset.ub=1;c.classList.add('u-box');var h=document.createElement('p');h.className='u-hint';h.textContent='↕ 상자 안에서 내려 보면 전체가 있습니다';c.after(h);c.addEventListener('scroll',function(){h.style.opacity=c.scrollTop+c.clientHeight>=c.scrollHeight-8?'0':'1'})});
+}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})();
+try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}catch(e){}
+})();
+// 공매도 '오늘 한눈에'를 3줄로(사용자 2026-10-29)
+(function(){function fx(){var t=document.querySelector('#take.sh-take');if(!t||t.querySelector('.sh3'))return;var b=[].slice.call(t.querySelectorAll(':scope>b'));if(b.length<4)return;var tx=t.textContent;var tail=(tx.split('→')[1]||'').trim().replace(/\.$/,'');
+ var ul=document.createElement('ul');ul.className='sh3';ul.innerHTML='<li><i>많이 쌓인 곳</i><span><b>'+b[0].textContent+'</b></span></li><li><i>요즘 몰리는 곳</i><span><b>'+b[1].textContent+'</b> <small style="color:#6f6d68">(최근 5일)</small></span></li><li><i>전체 흐름</i><span>늘어난 <span class="up">'+b[2].textContent.replace(/[^\d]/g,'')+'</span> · 줄어든 <span class="dn">'+b[3].textContent.replace(/[^\d]/g,'')+'</span>곳 → '+tail.replace(/^밸류체인 전체로는\s*/,'')+'</span></li>';t.appendChild(ul);t.classList.add('sh-rows')}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})()})();
+
+// 공매도 표: '22.3 (추정)' → 숫자 + 작은 '추정' 표시, 안내 문구 새로(사용자 2026-10-29)
+(function(){function fx(){var t=document.getElementById('tbl');if(!t)return;t.querySelectorAll('tbody td:nth-child(5)').forEach(function(td){var m=td.textContent.match(/^([\d.]+)\s*\(추정\)/);if(m&&!td.querySelector('i')){td.innerHTML=m[1]+'<i class="est">추정</i>'}});
+ var c=document.getElementById('list-card');var s=c&&c.querySelector(':scope>p.sub');if(s&&/옆으로 밀어/.test(s.textContent))s.textContent='정렬 버튼으로 순서를 바꾸고, 종목을 누르면 위에 추이가 열립니다. 큰 숫자 = 유통주식 중 숏 비율.'}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})();try{var t0=document.getElementById('list-card');if(t0)new MutationObserver(function(){try{fx()}catch(e){}}).observe(t0,{childList:true,subtree:true})}catch(e){}})();
+// 공매도 종목 추이 카드: 위에 검색·분야·종목 고르기 상자(사용자 2026-10-29) — 고르면 표의 그 줄을 눌러 추이를 바꿈
+(function(){function fx(){var c=document.getElementById('detail-card'),t=document.getElementById('tbl');if(!c||!t||c.querySelector('.dp'))return;var h=c.querySelector('#d-h');if(!h||[].filter.call(t.querySelectorAll('tbody tr'),function(r){return r.children.length>=3}).length<3)return;
+ var box=document.createElement('div');box.className='dp';box.innerHTML='<input type="search" class="dp-q" placeholder="회사·티커 찾기"><div class="dp-l"></div><div class="dp-t"></div>';c.insertBefore(box,h);
+ var q=box.querySelector('.dp-q'),L=box.querySelector('.dp-l'),T=box.querySelector('.dp-t'),cur='전체';
+ function rows(){return [].slice.call(t.querySelectorAll('tbody tr')).filter(function(r){return r.children.length>=3})}
+ function info(r){var d=r.children;return {tk:d[0].textContent.trim(),nm:d[1].textContent.trim(),ly:d[2].textContent.trim(),tr:r}}
+ var lays=['전체'];rows().forEach(function(r){var l=info(r).ly;if(l&&lays.indexOf(l)<0)lays.push(l)});
+ L.innerHTML=lays.map(function(l){return '<button type="button" aria-pressed="'+(l===cur)+'">'+l+'</button>'}).join('');
+ function draw(){var s=q.value.trim().toLowerCase();var sel=(c.querySelector('#d-h').textContent.match(/\(([^)]+)\)/)||[])[1];
+  T.innerHTML=rows().map(info).filter(function(o){return (cur==='전체'||o.ly===cur)&&(!s||(o.nm+o.tk).toLowerCase().indexOf(s)>=0)}).map(function(o){return '<button type="button" data-tk="'+o.tk+'" aria-pressed="'+(o.tk===sel)+'">'+o.nm+'</button>'}).join('')||'<span class="dp-none">맞는 종목이 없습니다</span>'}
+ L.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;cur=b.textContent;L.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});draw()});
+ q.addEventListener('input',draw);
+ T.addEventListener('click',function(e){var b=e.target.closest('button[data-tk]');if(!b)return;var r=rows().find(function(r){return info(r).tk===b.dataset.tk});if(r){var y=scrollY;r.click();setTimeout(function(){scrollTo(0,y);draw()},60)}});
+ draw();new MutationObserver(function(){draw()}).observe(c.querySelector('#d-h'),{childList:true,characterData:true,subtree:true})}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})()})();
+// 숫자 칸: 글자 값(한글 포함)은 작은 줄바꿈 글씨로, 숫자가 칸을 넘으면 글자를 줄여 맞춤(사용자 2026-10-29)
+(function(){function fx(){document.querySelectorAll('[class$="-tiles"]:not(.pb-tiles):not(.bf-tiles)>*>:nth-child(2)').forEach(function(v){var t=v.textContent.trim();if(/[가-힣]{2,}/.test(t)&&!/^[\d.,\s~%+\-−$₩억원조달러건곳배개]+$/.test(t))v.classList.add('mm-vtxt');else{v.style.fontSize='';var fs=parseFloat(getComputedStyle(v).fontSize),k=0;while(v.scrollWidth>v.clientWidth&&fs>12&&k<12){fs-=1;v.style.setProperty('font-size',fs+'px','important');k++}}})}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<8)setTimeout(go,600)})()})();
+</script><style data-hero2>
+/* 페이지 머리 2판 — 사용자 2026-10-28 지시: 시세 보드에서 정한 모양(파스텔 배너 + 유리 숫자칸 + 상황별 멍뭉이)을 전 페이지에. 요약 문장은 배너 아래 흰 카드로 */
+.mm-hero.mm-hx{display:grid!important;grid-template-columns:auto 1fr!important;grid-auto-rows:auto!important;column-gap:14px!important;row-gap:0!important;align-items:center!important;align-content:center!important;position:relative!important;overflow:hidden!important;min-height:104px!important;padding:14px 92px 14px 14px!important;margin:0 0 12px!important;border-radius:22px!important;
+background:radial-gradient(120% 90% at 0% 0%,#ffe9c4 0%,transparent 55%),radial-gradient(90% 90% at 100% 0%,#fde2d6 0%,transparent 55%),radial-gradient(100% 100% at 100% 100%,#dff1e2 0%,transparent 60%),#fffaf1!important;border:1px solid rgba(255,255,255,.9)!important;box-shadow:0 4px 0 rgba(30,22,8,.06),0 12px 26px rgba(30,22,8,.08)!important}
+.mm-hero.mm-hx>*{grid-column:2!important;min-width:0}
+.mm-hero.mm-hx>.hx-side{grid-column:1!important;grid-row:1/span 3!important;display:grid!important;place-content:center;text-align:center;align-self:stretch;width:68px;min-height:76px;border-radius:15px;background:rgba(255,255,255,.7);color:#a26a0c;border:1px solid rgba(162,106,12,.25);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 3px 0 rgba(140,95,20,.1),0 6px 14px rgba(140,95,20,.12);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+.mm-hx .hx-side b{display:block;font-size:24px;line-height:1.05;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}.mm-hx .hx-side b.ic{font-size:30px;line-height:1.1}.mm-hx .hx-side small{display:block;font-size:11px;font-weight:700;margin-top:2px}
+.mm-hero.mm-hx>.hx-cat{position:absolute!important;right:2px;bottom:-30px;height:132px;width:auto;max-width:none;pointer-events:none;filter:drop-shadow(0 3px 6px rgba(80,50,10,.16));grid-column:auto!important}
+.mm-hero.mm-hx>.mm-eb{display:block!important;margin:0!important;font:800 12px/1.3 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;letter-spacing:.16em!important;color:#a26a0c!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mm-hero.mm-hx>.mm-eb i{display:none!important}
+.mm-hero.mm-hx>h1.mm-h1{margin:2px 0 4px!important;padding:0!important;border:0!important;font:900 clamp(25px,7.4vw,32px)/1.15 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;letter-spacing:-.035em!important;color:#141210!important;text-wrap:balance}
+.mm-hero.mm-hx>h1.mm-h1::after{display:none!important}
+.mm-hero.mm-hx>.hx-meta{display:flex!important;align-items:center;gap:6px;margin:0!important;font:600 13px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;color:#6b675f}
+.mm-hx .hx-meta>i{flex:none;width:7px;height:7px;border-radius:50%;background:#2f9a4c;box-shadow:0 0 0 3px rgba(47,154,76,.18)}
+.mm-hx .hx-meta>span{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:2;margin:0!important;padding:0!important;border:0!important;background:none!important;color:inherit!important;font:inherit!important;letter-spacing:0!important;min-width:0;overflow:hidden}
+.mm-hero.mm-hx>.mm-chip,.mm-hero.mm-hx>.hx-meta.hx-off{display:none!important}
+.mm-hero.mm-hx>img.hx-cat{display:block!important}
+.mm-take.hx-card{display:block!important;margin:0 0 16px!important;padding:14px 16px 13px!important;border-radius:16px!important;background:#fff!important;border:1px solid rgba(0,0,0,.06)!important;box-shadow:0 3px 0 rgba(30,22,8,.08),0 8px 18px rgba(30,22,8,.08)!important;font:400 16px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;color:#1d1c1a!important;text-wrap:pretty}
+.mm-take.hx-card .hx-sub{display:block!important;margin:8px 0 0!important;padding:8px 0 0!important;border:0!important;border-radius:0!important;box-shadow:none!important;border-top:1px dashed rgba(0,0,0,.1)!important;font-size:14.5px!important;color:#4a463f!important;background:none!important}
+.mm-take.hx-card b,.mm-take.hx-card strong{font-weight:700!important}
+.mm-take.hx-card .mm-chipx{display:flex!important;width:max-content!important;max-width:100%;margin:0 0 6px!important;padding:2px 9px!important;border:1px solid rgba(162,106,12,.4)!important;border-radius:999px!important;background:rgba(162,106,12,.06)!important;color:#8a5a08!important;font:700 12px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important}
+.mm-take.hx-card::before{content:"오늘 한눈에";display:block;font:800 12px/1.3 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;letter-spacing:.06em;color:#a26a0c;margin-bottom:6px}
+@media (min-width:760px){.mm-hero.mm-hx{padding-right:150px!important;min-height:128px!important}.mm-hero.mm-hx>.hx-cat{height:170px;bottom:-38px;right:14px}}
+</style>
+<script data-hero2>(function(){
+// 페이지별: 짧은 제목 · 영문 머리말 · 멍뭉이 동작 · 숫자칸(값을 글에서 뽑거나, 없으면 아이콘)
+var CFG={
+ 'p-earn':{t:'실적 결과',en:'EARNINGS',cat:'earn',ic:'📑',lb:'실적 노트'},
+ 'p-cal':{t:'실적 일정',en:'EARNINGS CALENDAR',cat:'cal',ic:'🗓️',lb:'이번 주'},
+ 'p-qtr':{t:'분기별 실적 추이',en:'QUARTERLY',cat:'earn',ic:'📈',lb:'분기'},
+ 'p-capex':{t:'빅테크 설비투자',en:'BIG TECH CAPEX',cat:'capex',ic:'🏗️',lb:'설비투자'},
+ 'p-targets':{t:'목표주가',en:'PRICE TARGETS',cat:'target',ic:'🎯',lb:'목표가',re:/상향\s*([\d,]+)\s*건/,rl:'1년 상향'},
+ 'p-opt':{t:'옵션 온도계',en:'OPTIONS',cat:'opt',ic:'🌡️',lb:'온도',re:/VIX\s*([\d.]+)/,rl:'VIX'},
+ 'p-lights':{t:'시장 경고등',en:'MARKET LIGHTS',cat:'lights',ic:'🚦',lb:'경고등',re:/불\s*(\d+)\s*\/\s*10/,rl:'/10 켜짐',body:1},
+ 'p-bond':{t:'채권·금리',en:'BONDS & RATES',cat:'fx',ic:'🏦',lb:'금리'},
+ 'p-fx':{t:'원·달러 환율',en:'USD / KRW',cat:'fx',ic:'💱',lb:'환율',re:/달러당\s*([\d,]+)/,rl:'원'},
+ 'p-brief':{t:'데일리 시황',en:'DAILY BRIEF',cat:'brief',ic:'📰',lb:'아침'},
+ 'p-econ':{t:'경제지표',en:'MACRO CALENDAR',cat:'cal',ic:'📊',lb:'지표'},
+ 'p-policy':{t:'정책·지정학',en:'GEOPOLITICS',cat:'globe',ic:'🌐',lb:'정책'},
+ 'p-tech':{t:'AI·테크 행사',en:'TECH EVENTS',cat:'wafer',ic:'🎤',lb:'행사'},
+ 'p-supply':{t:'아시아 반도체 수출',en:'ASIA SUPPLY',cat:'wafer',ic:'🚢',lb:'수출'},
+ 'p-neo':{t:'네오클라우드 신용',en:'NEOCLOUD',cat:'magnify',ic:'☁️',lb:'신용'},
+ 'p-insider':{t:'내부자·기관 보유',en:'INSIDERS',cat:'magnify',ic:'🕵️',lb:'수급'},
+ 'p-short':{t:'공매도 추이',en:'SHORT INTEREST',cat:'magnify',ic:'🐻',lb:'공매도'},
+ 'p-trend':{t:'종목 차트',en:'STOCK CHART',cat:'trend',ic:'🧭',lb:'지지·저항'},
+ 'p-value':{t:'저평가 서치',en:'VALUE RADAR · 공사중',cat:'magnify',ic:'🔎',lb:'불 7개'},
+ 'p-pros':{t:'고수 성적표',en:'PRO SCORECARD · 공사중',cat:'target',ic:'🏆',lb:'적중률'}
+};
+var key=(location.pathname.split('/').pop()||'').replace(/\.html$/,'');var C=CFG[key];if(!C)return;
+function badge(c,side){
+  if(!C.re){return}
+  var src=C.body?document.body.innerText:(document.querySelector('.mm-take')||{}).textContent||'';var m=src&&src.match(C.re);
+  if(m){side.innerHTML='<b></b><small></small>';side.firstChild.textContent=m[1];side.lastChild.textContent=C.rl;}
+}
+function run(){
+  var c=document.querySelector('.mm-hero');if(!c||c.classList.contains('pb-hx'))return;
+  var h=c.querySelector('h1.mm-h1');if(!h)return;
+  if(!c.classList.contains('mm-hx')){
+    c.classList.add('mm-hx');
+    if(!h.title)h.title=h.textContent.trim();h.textContent=C.t;document.title=document.title||C.t;
+    var eb=c.querySelector(':scope>.mm-eb');if(!eb){eb=document.createElement('p');eb.className='mm-eb';c.insertBefore(eb,h)}eb.textContent=C.en;
+    var side=document.createElement('div');side.className='hx-side';side.setAttribute('aria-hidden','true');side.innerHTML='<b class="ic"></b><small></small>';side.firstChild.textContent=C.ic;side.lastChild.textContent=C.lb;c.insertBefore(side,c.firstChild);
+    var img=document.createElement('img');img.className='hx-cat';img.alt='';img.setAttribute('aria-hidden','true');img.src='img/cat-'+C.cat+'.webp?v=1';img.onerror=function(){img.remove()};c.appendChild(img);
+    var meta=document.createElement('p');meta.className='hx-meta';meta.innerHTML='<i></i>';h.after(meta);
+  }
+  var meta=c.querySelector(':scope>.hx-meta'),chip=c.querySelector(':scope>.mm-chip');
+  if(chip&&meta){var sp=meta.querySelector('span');if(!sp){sp=document.createElement('span');meta.appendChild(sp)}var ct=chip.textContent.trim();if(sp.textContent!==ct)sp.textContent=ct}
+  if(meta)meta.classList.toggle('hx-off',!meta.querySelector('span'));
+  var tks=[].slice.call(c.querySelectorAll(':scope>.mm-take'));tks.forEach(function(t){c.after(t)});
+  var all=[].slice.call(document.querySelectorAll('.mm-take'));if(all.length){var base=all.filter(function(t){return t.querySelector('.mm-chipx')})[0]||all[0];base.classList.add('hx-card');
+    all.forEach(function(t){if(t===base)return;t.classList.remove('mm-take');t.classList.add('hx-sub');base.appendChild(t)});}
+  var s=c.querySelector(':scope>.hx-side');if(s)badge(c,s);
+}
+run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);[300,900,1600,2600,4000].forEach(function(t){setTimeout(run,t)});
+})();</script>
+<style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
+body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
+body .mm-take.hu b:not(.mm-chipx){font-weight:800}
+body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
+body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}
+/* 형광펜은 더 옅게(사용자 2026-10-29) */
+body .mm-take :is(b,mark,[class*="hlt"]):not(.mm-chipx):not(.mm-take>b:first-child):not(:is(.o-new,.tk-new,.sh3,.tg3) *){background:linear-gradient(transparent 62%,rgba(233,196,120,.38) 62%)!important;box-shadow:none!important;text-decoration:none!important;border-bottom:0!important}
+/* 공매도 오늘 한마디: 3줄 */
+body #take.sh-rows>:not(.sh3){display:none!important}
+body #take .sh3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+body #take .sh3 li{display:grid;grid-template-columns:5.6em 1fr;gap:8px;align-items:baseline;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif}
+body #take .sh3 li i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center}
+body #take .sh3 li b{font-weight:800;background:none!important}
+body #take .sh3 .up{color:#c62828;font-weight:800}body #take .sh3 .dn{color:#1a7f37;font-weight:800}
+body .mm-take>b:first-child{background:none!important}
+/* 테크 행사 '오늘 한눈에' 줄 나눔 */
+body #take.tg-rows>:not(b:first-child):not(.tg3){display:none!important}body #take.tg-rows{font-size:0!important}body #take.tg-rows>b:first-child{font-size:12px!important}
+body #take .tg3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14.5px}
+body #take .tg3 li{display:grid;grid-template-columns:4.6em 1fr;gap:8px;align-items:start;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1f1e1b}
+body #take .tg3 li>i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center;margin-top:1px}
+body #take .tg3 .chips{display:flex;flex-wrap:wrap;gap:4px}
+body #take .tg3 .chips span{font:700 12.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:2px 8px;border-radius:999px;background:#f6f4ee;color:#0b0b0b}
+body #take .tg3 .chips span em{font-style:normal;color:#9a6200;margin-right:4px}
+body #take .tg3 b.k{all:unset;font:800 15px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b}
+</style><script data-headui>// 페이지 맨 위 '오늘 한눈에' 양식 통일(사용자 2026-10-29): 날짜 칩 모양, 본문 글자, 바로가기 줄은 배너 아래로
+(function(){function fx(){
+ document.querySelectorAll('.mm-take').forEach(function(t){if(t.classList.contains('np')||t.classList.contains('tk-on')||t.classList.contains('o-on'))return;t.classList.add('hu');
+  var f=t.firstElementChild;if(f&&f.tagName==='B'&&!f.classList.contains('mm-chipx')&&/\d/.test(f.textContent)&&/(기준|집계|마감|잠정|월|일)/.test(f.textContent)&&f.textContent.length<40)f.classList.add('mm-chipx');
+});
+ var hero=document.querySelector('.mm-hero');if(hero){document.querySelectorAll('nav[class$="-nav"]:not(.ib)').forEach(function(n){if(n.dataset.hu)return;if(n.compareDocumentPosition(hero)&Node.DOCUMENT_POSITION_FOLLOWING){n.dataset.hu=1;var t=document.querySelector('.mm-take');(t&&t.nextElementSibling&&t.nextElementSibling.classList.contains('hu-more')?t.nextElementSibling:(t||hero)).after(n)}})}}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
+
+// 테크 행사 '오늘 한눈에': 이번 주 · 한 줄 평 · 다음 행사 3줄(사용자 2026-10-29)
+(function(){function fx(){var t=document.querySelector('#take.pg-take');if(!t||t.querySelector('.tg3'))return;var chip=t.querySelector(':scope>b:first-child');var tx=t.textContent.replace(chip?chip.textContent:'','').replace(/\s+/g,' ').trim();
+ var nx=(tx.match(/다음 큰 행사는\s*(.+?)입니다/)||[])[1];var m=tx.match(/^이번 주\s*(.+?)(?:이|가)? 열리는 가운데\s*(.+?)(?:이|가) 한꺼번에 나와\s*(.+?)\./);if(!nx||!m)return;
+ function split(s){return s.split(/,\s*|과\s+|와\s+/).map(function(x){return x.trim()}).filter(Boolean)}
+ function chips(l,date){return '<span class="chips">'+l.map(function(x){var d=date&&x.match(/^(\d+\/\d+)\s+(.+)$/);return '<span>'+(d?'<em>'+d[1]+'</em>'+d[2]:x)+'</span>'}).join('')+'</span>'}
+ var ul=document.createElement('ul');ul.className='tg3';ul.innerHTML='<li><i>이번 주</i><span>'+chips([m[1]].concat(split(m[2])))+'</span></li><li><i>한 줄 평</i><span><b class="k">'+m[3]+'</b></span></li><li><i>다음 행사</i><span>'+chips(split(nx),1)+'</span></li>';t.appendChild(ul);t.classList.add('tg-rows')}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})()})();
+</script><style data-rdbox>body .rd-btn{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:8px;width:100%;margin:10px 0 0;padding:8px 12px;border:1px solid rgba(11,11,11,.1);border-radius:10px;cursor:pointer;font:700 15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b;background:#fff}
+body .rd-btn::before{content:"▸";color:#9a6200;font-size:13px}body .rd-btn.op::before{content:"▾"}
+body .rd-btn span{font:500 12.5px/1.4 -apple-system,sans-serif;color:#6f6d68}
+body .rd-btn.op{border-radius:10px 10px 0 0;border-bottom-style:dashed}
+body .rd-body:not(.op){display:none!important}
+body .rd-body.op{display:block!important;-webkit-line-clamp:unset!important;margin:0!important;padding:8px 12px 10px!important;border:1px solid rgba(11,11,11,.1);border-top:0;border-radius:0 0 10px 10px;font-size:14px!important;line-height:1.65!important}
+</style><script data-rdbox>// '읽는 법'은 모든 페이지에서 공매도 '이렇게 읽습니다' 상자 모양으로 통일(사용자 2026-10-29)
+(function(){function mk(p){if(p.dataset.rd||p.closest('details')||p.closest('.u-fold')||p.closest('.o-fold'))return;p.dataset.rd=1;
+ var b0=p.firstElementChild;if(b0&&/^읽는 법/.test(b0.textContent.trim())&&p.firstChild===b0)b0.remove();p.innerHTML=p.innerHTML.replace(/^\s*읽는 법\s*[:·—-]?\s*/,'');
+ var old=p.nextElementSibling;if(old&&/(u-more|o-more)/.test(old.className))old.remove();p.classList.remove('u-clamp','o-clamp','op');
+ var b=document.createElement('button');b.type='button';b.className='rd-btn';b.innerHTML='이렇게 읽습니다 <span>눌러서 펼치기</span>';p.parentNode.insertBefore(b,p);p.classList.add('rd-body');
+ b.onclick=function(){var o=!b.classList.contains('op');b.classList.toggle('op',o);p.classList.toggle('op',o);b.querySelector('span').textContent=o?'접기':'눌러서 펼치기'}}
+function fx(){document.querySelectorAll('p.how,p[class$="-how"],.ot-card .how,p.sp-how').forEach(mk);
+ document.querySelectorAll('p,div.note').forEach(function(p){if(p.dataset.rd||p.children.length>12)return;var t=p.textContent.trim();if(/^읽는 법\s*[:·—]/.test(t)||(p.firstElementChild&&p.firstElementChild.tagName==='B'&&p.firstElementChild.textContent.trim()==='읽는 법'&&p.firstChild===p.firstElementChild))mk(p)})}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})();
+try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}catch(e){}})();
+</script><style data-dock>/* 아래 메뉴: 자주 쓰는 칸 + ☰ 전체 메뉴판(사용자 2026-10-29) */
+body.mmd-on nav.ib{display:none!important}
+body.mmd-on{padding-bottom:calc(80px + env(safe-area-inset-bottom))!important}
+body.mmd-on #mm-snd{bottom:calc(90px + env(safe-area-inset-bottom))!important}
+body .mmd{position:fixed;left:0;right:0;bottom:0;z-index:9000;padding:0 0 calc(6px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e8e6df;box-shadow:0 -4px 14px rgba(11,11,11,.06);touch-action:none}
+body .mmd .grab{all:unset;display:block;width:100%;height:14px;cursor:pointer}body .mmd .grab em{display:block;width:38px;height:4px;border-radius:3px;background:#cfccc4;margin:5px auto 0}
+body .mmd .row{display:flex;flex-wrap:nowrap!important;justify-content:flex-start;border-bottom:0;gap:2px;overflow-x:auto;scrollbar-width:none;padding:0 6px}body .mmd .row::-webkit-scrollbar{display:none}
+body .mmd .row>a{all:unset;flex:none;width:60px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px 0;border-radius:10px;cursor:pointer;font:600 10.5px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#8a877f;-webkit-tap-highlight-color:transparent}
+body .mmd .row>a i{font-style:normal;font-size:21px;line-height:1.2}body .mmd .row>a span{white-space:nowrap;max-width:58px;overflow:hidden;text-overflow:ellipsis}
+body .mmd .row>a.on{color:#0b0b0b;font-weight:800;background:#f3efe4}
+body .mmd .row>.sep{flex:none;width:1px;margin:6px 3px;background:#e8e6df}
+body .mmd-sheet[hidden]{display:none!important}
+body .mmd-dim{position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.35)}
+body .mmd-pan{position:fixed;left:0;right:0;bottom:0;z-index:9999;max-height:82vh;overflow-y:auto;background:#fff;border-radius:18px 18px 0 0;padding:8px 14px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(0,0,0,.15);animation:mmdup .18s ease-out}
+@keyframes mmdup{from{transform:translateY(30px);opacity:.6}to{transform:none;opacity:1}}
+body .mmd-grab{width:40px;height:5px;border-radius:3px;background:#ddd;margin:2px auto 6px}
+body .mmd-g{margin:10px 2px 6px!important;font:800 13px/1 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:#9a6200!important}
+body .mmd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+body .mmd-grid a{all:unset;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 2px;border-radius:12px;background:#f6f4ee;font:600 11.5px/1.2 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3a3833;cursor:pointer;box-shadow:0 2px 0 rgba(30,22,8,.08)}
+body .mmd-grid a i{font-style:normal;font-size:22px}
+body .mmd-grid a span{white-space:nowrap;max-width:76px;overflow:hidden;text-overflow:ellipsis}
+body .mmd-grid a.on{background:#0b0b0b;color:#fff}
+/* 선 아이콘 + 금색 네모(사용자 2026-10-29) */
+body .mmd .row>a i,body .mmd-grid a i{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;color:#9a6200;background:#fbf3e3;font-size:0!important}
+body .mmd .row>a i svg,body .mmd-grid a i svg{width:19px;height:19px}
+body .mmd .row>a.on{background:none!important}body .mmd .row>a.on i{background:#9a6200;color:#fff}
+body .mmd-grid a.on i{background:#fff;color:#0b0b0b}
+body .mmd .row>a{gap:3px!important}
+
+/* 아래 메뉴 바탕 반투명(사용자 2026-10-29) — 흐림 효과 없이 */
+body .mmd{background:rgba(255,255,255,.6)!important;border-top-color:rgba(11,11,11,.06)!important;box-shadow:0 -2px 10px rgba(11,11,11,.04)!important}
+body .mmd .row>a i{background:rgba(251,243,227,.82)}
+
+/* 공사중 표시(아이디어 페이지, 사용자 2026-10-29) */
+body .mmd a.wip i,body .mmd-sheet a.wip i{position:relative}
+body .mmd a.wip i:after,body .mmd-sheet a.wip i:after{content:'공사중';position:absolute;top:-6px;right:-14px;font:800 8.5px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#fff;background:#e07a12;border-radius:6px;padding:2px 4px;letter-spacing:-.02em;white-space:nowrap}
+</style><script data-dock>// 아래 메뉴: 자주 쓰는 칸 + ☰ 전체 메뉴판(사용자 2026-10-29) — 링크는 기존 페이지 줄(nav.ib)에서 읽음
+(function(){var IC={"p-value": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m21 21-4.3-4.3\"/><path d=\"M8 13l2-2 2 1.5L14.5 9\"/></svg>", "p-pros": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8 21h8\"/><path d=\"M12 17v4\"/><path d=\"M7 4h10v5a5 5 0 0 1-10 0z\"/><path d=\"M17 5h3v2a3 3 0 0 1-3 3\"/><path d=\"M7 5H4v2a3 3 0 0 0 3 3\"/></svg>", "home": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\" /> <path d=\"M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\" /> </svg>", "p-lights": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M7 18v-6a5 5 0 1 1 10 0v6\" /> <path d=\"M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z\" /> <path d=\"M21 12h1\" /> <path d=\"M18.5 4.5 18 5\" /> <path d=\"M2 12h1\" /> <path d=\"M12 2v1\" /> <path d=\"m4.929 4.929.707.707\" /> <path d=\"M12 12v6\" /> </svg>", "p-brief": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2\" /> <path d=\"M18 14h-8\" /> <path d=\"M15 18h-5\" /> <path d=\"M10 6h8v4h-8V6Z\" /> </svg>", "p-prices": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M9 5v4\" /> <rect width=\"4\" height=\"6\" x=\"7\" y=\"9\" rx=\"1\" /> <path d=\"M9 15v2\" /> <path d=\"M17 3v2\" /> <rect width=\"4\" height=\"8\" x=\"15\" y=\"5\" rx=\"1\" /> <path d=\"M17 13v3\" /> <path d=\"M3 3v16a2 2 0 0 0 2 2h16\" /> </svg>", "p-trend": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M3 3v16a2 2 0 0 0 2 2h16\" /> <path d=\"M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7\" /> </svg>", "p-earn": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4\" /> <path d=\"M14 2v4a2 2 0 0 0 2 2h4\" /> <path d=\"m3 15 2 2 4-4\" /> </svg>", "p-cal": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M8 2v4\" /> <path d=\"M16 2v4\" /> <rect width=\"18\" height=\"18\" x=\"3\" y=\"4\" rx=\"2\" /> <path d=\"M3 10h18\" /> <path d=\"M8 14h.01\" /> <path d=\"M12 14h.01\" /> <path d=\"M16 14h.01\" /> <path d=\"M8 18h.01\" /> <path d=\"M12 18h.01\" /> <path d=\"M16 18h.01\" /> </svg>", "p-econ": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <line x1=\"3\" x2=\"21\" y1=\"22\" y2=\"22\" /> <line x1=\"6\" x2=\"6\" y1=\"18\" y2=\"11\" /> <line x1=\"10\" x2=\"10\" y1=\"18\" y2=\"11\" /> <line x1=\"14\" x2=\"14\" y1=\"18\" y2=\"11\" /> <line x1=\"18\" x2=\"18\" y1=\"18\" y2=\"11\" /> <polygon points=\"12 2 20 7 4 7\" /> </svg>", "p-bond": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <line x1=\"19\" x2=\"5\" y1=\"5\" y2=\"19\" /> <circle cx=\"6.5\" cy=\"6.5\" r=\"2.5\" /> <circle cx=\"17.5\" cy=\"17.5\" r=\"2.5\" /> </svg>", "p-opt": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z\" /> </svg>", "p-targets": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <circle cx=\"12\" cy=\"12\" r=\"10\" /> <circle cx=\"12\" cy=\"12\" r=\"6\" /> <circle cx=\"12\" cy=\"12\" r=\"2\" /> </svg>", "p-short": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <polyline points=\"22 17 13.5 8.5 8.5 13.5 2 7\" /> <polyline points=\"16 17 22 17 22 11\" /> </svg>", "p-fx": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M8 3 4 7l4 4\" /> <path d=\"M4 7h16\" /> <path d=\"m16 21 4-4-4-4\" /> <path d=\"M20 17H4\" /> </svg>", "p-capex": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z\" /> <path d=\"M17 18h1\" /> <path d=\"M12 18h1\" /> <path d=\"M7 18h1\" /> </svg>", "p-policy": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20\" /> <path d=\"M2 12h20\" /> </svg>", "p-tech": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z\" /> <path d=\"M19 10v2a7 7 0 0 1-14 0v-2\" /> <line x1=\"12\" x2=\"12\" y1=\"19\" y2=\"22\" /> </svg>", "p-supply": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 .6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1\" /> <path d=\"M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76\" /> <path d=\"M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6\" /> <path d=\"M12 10v4\" /> <path d=\"M12 2v3\" /> </svg>", "p-neo": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <rect width=\"20\" height=\"8\" x=\"2\" y=\"2\" rx=\"2\" ry=\"2\" /> <rect width=\"20\" height=\"8\" x=\"2\" y=\"14\" rx=\"2\" ry=\"2\" /> <line x1=\"6\" x2=\"6.01\" y1=\"6\" y2=\"6\" /> <line x1=\"6\" x2=\"6.01\" y1=\"18\" y2=\"18\" /> </svg>", "p-qtr": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M3 3v16a2 2 0 0 0 2 2h16\" /> <path d=\"M18 17V9\" /> <path d=\"M13 17V5\" /> <path d=\"M8 17v-3\" /> </svg>", "p-insider": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <circle cx=\"10\" cy=\"7\" r=\"4\" /> <path d=\"M10.3 15H7a4 4 0 0 0-4 4v2\" /> <circle cx=\"17\" cy=\"17\" r=\"3\" /> <path d=\"m21 21-1.9-1.9\" /> </svg>"};
+function key(a){var m=(a.getAttribute('href')||'').match(/(p-[a-z]+)\.html/);return m?m[1]:''}
+function build(){var n=document.querySelector('nav.ib');if(!n||document.querySelector('.mmd'))return;var home=n.querySelector('a.home');var cur=n.querySelector('[aria-current=page]');var ck=cur?key(cur):'';
+ var groups=[],g=null;[].forEach.call(n.children,function(c){if(c.classList.contains('tg')){g={t:c.textContent.trim(),l:[]};groups.push(g);return}if(c.tagName==='A'&&!c.classList.contains('home')&&g)g.l.push(c)});
+ var by={};[].forEach.call(n.querySelectorAll('a'),function(a){by[key(a)]=a});
+ // 아이디어 페이지(공사중) — 페이지 줄에 아직 없으면 맨 끝 묶음으로 붙임(사용자 2026-10-29)
+ if(!by['p-value']){var vq=((home&&home.getAttribute('href'))||'').match(/\?v=\d+/);vq=vq?vq[0]:'';var ig={t:'아이디어',l:[]};[['p-value','저평가 서치'],['p-pros','고수 성적표']].forEach(function(x){var a=document.createElement('a');a.setAttribute('href',x[0]+'.html'+vq);a.textContent=x[1];ig.l.push(a);by[x[0]]=a});groups.push(ig)}
+ function lab(a){return (a.textContent||'').trim().replace('데일리 ','')}
+ var d=document.createElement('nav');d.className='mmd';
+ var row=(home?'<a href="'+home.getAttribute('href')+'"><i>'+IC.home+'</i><span>홈</span></a>':'')+groups.map(function(g,gi){return (gi?'<b class="sep"></b>':'')+g.l.map(function(a){var k=key(a);return '<a href="'+a.getAttribute('href')+'"'+(k===ck?' class="on"':'')+'><i>'+(IC[k]||'•')+'</i><span>'+lab(a)+'</span></a>'}).join('')}).join('');
+ d.innerHTML='<button type="button" class="grab" aria-label="전체 메뉴"><em></em></button><div class="row">'+row+'</div>';
+ var sh=document.createElement('div');sh.className='mmd-sheet';sh.hidden=true;
+ sh.innerHTML='<div class="mmd-dim"></div><div class="mmd-pan"><div class="mmd-grab"></div>'+groups.map(function(g){return '<p class="mmd-g">'+g.t+'</p><div class="mmd-grid">'+g.l.map(function(a){var k=key(a);return '<a href="'+a.getAttribute('href')+'"'+(k===ck?' class="on"':'')+'><i>'+(IC[k]||'•')+'</i><span>'+lab(a)+'</span></a>'}).join('')+'</div>'}).join('')+'</div>';
+ [].forEach.call(d.querySelectorAll('a[href^="p-value"],a[href^="p-pros"]'),function(a){a.classList.add('wip')});[].forEach.call(sh.querySelectorAll('a[href^="p-value"],a[href^="p-pros"]'),function(a){a.classList.add('wip')});
+ [].forEach.call(sh.querySelectorAll('.mmd-g'),function(g){if(g.textContent==='아이디어')g.textContent='아이디어 · 공사중'});
+ document.body.appendChild(d);document.body.appendChild(sh);document.body.classList.add('mmd-on');
+ function open(o){sh.hidden=!o;document.documentElement.style.overflow=o?'hidden':''}
+ d.querySelector('.grab').onclick=function(){open(sh.hidden)};
+ var rw=d.querySelector('.row');var c0=rw.querySelector('.on');if(c0)rw.scrollLeft=c0.offsetLeft-rw.clientWidth/2+c0.offsetWidth/2;
+ var sx=0,sy=0,s0=0,md=null;d.addEventListener('touchstart',function(e){var t=e.touches[0];sx=t.clientX;sy=t.clientY;s0=rw.scrollLeft;md=null},{passive:true});
+ d.addEventListener('touchmove',function(e){var t=e.touches[0],dx=t.clientX-sx,dy=t.clientY-sy;if(md===null&&(Math.abs(dx)>6||Math.abs(dy)>6))md=Math.abs(dx)>Math.abs(dy)?'x':'y';if(md==='x'){rw.scrollLeft=s0-dx}e.preventDefault()},{passive:false});
+ d.addEventListener('touchend',function(e){var dy=e.changedTouches[0].clientY-sy;if(md==='y'&&dy<-25)open(true);if(md==='x'){rw.querySelectorAll('a').forEach(function(a){a.__nc=Date.now()})}md=null},{passive:true});
+ rw.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&a.__nc&&Date.now()-a.__nc<350){e.preventDefault()}},true);sh.querySelector('.mmd-dim').onclick=function(){open(false)};
+ var y0=null;var pan=sh.querySelector('.mmd-pan');pan.addEventListener('touchstart',function(e){y0=e.touches[0].clientY},{passive:true});pan.addEventListener('touchend',function(e){if(y0!=null&&e.changedTouches[0].clientY-y0>60&&pan.scrollTop<=0)open(false);y0=null},{passive:true})}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();setTimeout(build,800)})();
+</script></body></html>
