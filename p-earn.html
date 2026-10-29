@@ -26,7 +26,7 @@ html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
   });
 })();
 </script>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610291238">(function(){var me="202610291238";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 결과</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610291412">(function(){var me="202610291412";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 결과</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
@@ -185,6 +185,24 @@ window.addEventListener('load',function(){ctr();setTimeout(ctr,300);setTimeout(c
 <main>
 <header><script data-perf>// 휴대폰 버벅임 줄이기(사용자 2026-10-29): 화면 감시 콜백을 한 프레임에 한 번으로 묶고, 탭이 안 보일 땐 쉼
 (function(){var MO=window.MutationObserver;if(!MO||MO.__thr)return;try{var T=class extends MO{constructor(cb){var q=0,self;super(function(){if(q)return;q=1;(window.requestAnimationFrame||setTimeout)(function(){q=0;if(document.hidden)return;try{cb.call(self,[],self)}catch(e){}})});self=this}};T.__thr=1;window.MutationObserver=T}catch(e){}})();
+</script><link data-hsicon rel="manifest" href="manifest.webmanifest"><meta data-hsicon name="mobile-web-app-capable" content="yes"><meta data-hsicon name="apple-mobile-web-app-capable" content="yes"><script data-hshome>// 홈 화면 앱으로 다시 시작하면 마지막 본 페이지 대신 메인(index)부터(사용자 2026-10-29)
+// - 앱을 완전히 닫았다 다시 열면(새 세션) → 메인으로
+// - 30분 넘게 다른 앱에 있다가 돌아와도 → 메인으로
+// - 카톡 링크 등 일반 브라우저로 연 페이지는 그대로 둠(공유 링크가 메인으로 튀지 않게)
+(function(){try{
+var sa=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
+var home=/\/(index\.html)?$/.test(location.pathname),LIM=30*60*1000,ss=sessionStorage,ls=localStorage;
+function go(){try{ls.removeItem('mmHid')}catch(e){}location.replace('./')}
+if(!sa){ss.setItem('mmAlive','1');return}
+var h=+(ls.getItem('mmHid')||0),stale=h&&Date.now()-h>LIM;
+if(!home&&(!ss.getItem('mmAlive')||stale)){ss.setItem('mmAlive','1');go();return}
+ss.setItem('mmAlive','1');ls.removeItem('mmHid');
+document.addEventListener('visibilitychange',function(){try{
+if(document.hidden){ls.setItem('mmHid',String(Date.now()));return}
+var t=+(ls.getItem('mmHid')||0);ls.removeItem('mmHid');
+if(!home&&t&&Date.now()-t>LIM)go()}catch(e){}});
+window.addEventListener('pageshow',function(e){try{if(!e.persisted||home)return;var t=+(ls.getItem('mmHid')||0);if(t&&Date.now()-t>LIM)go()}catch(x){}});
+}catch(e){}})();
 </script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>#mm-splash{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:linear-gradient(180deg,#fbf7ee,#f3efe4);transition:opacity .4s ease,transform .4s ease}
 #mm-splash.out{opacity:0;transform:scale(1.06);pointer-events:none}
 #mm-splash .sp-in{display:flex;flex-direction:column;align-items:center;gap:4px;animation:spUp .45s ease-out}

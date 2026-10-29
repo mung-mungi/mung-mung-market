@@ -476,6 +476,9 @@ def tidy_splash(s):
     s = re.sub(r'<(style|script) data-splash>.*?</\1>', '', s, flags=re.S)
     d = os.path.dirname(os.path.abspath(__file__))
     s = re.sub(r'<link data-hsicon[^>]*>|<meta data-hsicon[^>]*>', '', s)
-    add = '<link data-hsicon rel="apple-touch-icon" href="img/icon180.png"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>' + open(os.path.join(d, 'splash.css'), encoding='utf-8').read() + '</style><script data-splash>' + open(os.path.join(d, 'splash.js'), encoding='utf-8').read() + '</script>'
+    s = re.sub(r'<script data-hshome>.*?</script>', '', s, flags=re.S)
+    # 홈 화면 앱 다시 시작 → 메인부터 (_tools/homestart.js, 사용자 2026-10-29)
+    add = '<link data-hsicon rel="manifest" href="manifest.webmanifest"><meta data-hsicon name="mobile-web-app-capable" content="yes"><meta data-hsicon name="apple-mobile-web-app-capable" content="yes"><script data-hshome>' + open(os.path.join(d, 'homestart.js'), encoding='utf-8').read() + '</script>'
+    add += '<link data-hsicon rel="apple-touch-icon" href="img/icon180.png"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>' + open(os.path.join(d, 'splash.css'), encoding='utf-8').read() + '</style><script data-splash>' + open(os.path.join(d, 'splash.js'), encoding='utf-8').read() + '</script>'
     m = re.search(r'<script data-perf>.*?</script>', s, re.S) or re.search(r'<head[^>]*>', s)
     return s[:m.end()] + add + s[m.end():] if m else add + s
