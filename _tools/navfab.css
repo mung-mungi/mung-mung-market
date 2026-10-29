@@ -5,13 +5,15 @@
 #mm-fab svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 body:not(.mmd-on) #mm-fab{bottom:calc(16px + env(safe-area-inset-bottom))}
 /* 한동안 안 쓰면 독·이전·홈이 아래로 숨고, 가운데 손잡이만 남음 — 누르거나 위로 밀면 다시 올라옴(사용자 2026-10-29) */
-body .mmd{transition:transform .32s cubic-bezier(.2,.8,.2,1)}
-#mm-fab{transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .25s}
+body .mmd{transition:transform .45s cubic-bezier(.33,.9,.3,1)}
+#mm-fab{transition:transform .45s cubic-bezier(.33,.9,.3,1),opacity .25s}
 body.mmd-hide .mmd{transform:translateY(105%)}
 body.mmd-hide #mm-fab{transform:translateY(110px);opacity:0;pointer-events:none}
 body.mmd-hide.mmd-on{padding-bottom:calc(30px + env(safe-area-inset-bottom))!important}
-#mm-pull{all:unset;position:fixed;left:50%;bottom:calc(6px + env(safe-area-inset-bottom));z-index:9001;width:88px;height:26px;margin-left:-44px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.75);border:1px solid rgba(160,140,100,.3);box-shadow:0 3px 10px rgba(11,11,11,.14);cursor:pointer;touch-action:none;opacity:0;transform:translateY(40px);pointer-events:none;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .25s;-webkit-tap-highlight-color:transparent}
-#mm-pull em{display:block;width:38px;height:5px;border-radius:3px;background:#a8a297}
-body.mmd-hide #mm-pull{opacity:1;transform:none;pointer-events:auto}
+/* 손잡이: 화면 바닥에 붙은 흰 탭 + 금테 + ⌃ (시안 A, 사용자 2026-10-29) */
+#mm-pull{all:unset;box-sizing:content-box;position:fixed;left:50%;bottom:0;z-index:9001;width:96px;height:24px;margin-left:-48px;padding-bottom:env(safe-area-inset-bottom);display:flex;align-items:flex-start;justify-content:center;background:#fff;border:1.5px solid #c9a24a;border-bottom:0;border-radius:14px 14px 0 0;box-shadow:0 -3px 10px rgba(11,11,11,.14);cursor:pointer;touch-action:none;transform:translateY(110%);pointer-events:none;transition:transform .45s cubic-bezier(.33,.9,.3,1);-webkit-tap-highlight-color:transparent}
+#mm-pull:after{content:'';width:9px;height:9px;margin-top:10px;border-left:2.5px solid #9a7420;border-top:2.5px solid #9a7420;transform:rotate(45deg)}
+#mm-pull:active{background:#f3efe4}
+body.mmd-hide #mm-pull{transform:none;pointer-events:auto}
 body.mmd-on #mm-snd{transition:bottom .32s cubic-bezier(.2,.8,.2,1)}
 body.mmd-hide.mmd-on #mm-snd{bottom:calc(4px + env(safe-area-inset-bottom))!important}
