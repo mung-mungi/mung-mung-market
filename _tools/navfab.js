@@ -17,17 +17,51 @@ function sheetOpen(){var s=document.querySelector('.mmd-sheet');return s&&!s.hid
 function arm(){clearTimeout(t);t=setTimeout(function(){if(!sheetOpen()&&document.querySelector('.mmd'))B.classList.add('mmd-hide')},IDLE)}
 function show(){B.classList.remove('mmd-hide');arm()}
 function init(){B=document.body;if(!document.querySelector('.mmd'))return setTimeout(init,500);
-var p=document.createElement('button');p.id='mm-pull';p.setAttribute('aria-label','아래 메뉴 열기');B.appendChild(p);
-p.addEventListener('click',show);var y0=0;
-p.addEventListener('touchstart',function(e){y0=e.touches[0].clientY},{passive:true});
-p.addEventListener('touchmove',function(e){if(y0-e.touches[0].clientY>12)show();e.preventDefault()},{passive:false});
-['touchstart','click'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest('.mmd,#mm-fab,.mmd-sheet'))show()},{passive:true})});
+// 손잡이는 독 박스 위 가운데에 붙어 함께 움직임(일체형) — 독이 내려가면 손잡이만 바닥에 남음
+var dk=document.querySelector('.mmd');
+var p=document.createElement('button');p.id='mm-pull';p.setAttribute('aria-label','아래 메뉴 올리기·내리기');dk.appendChild(p);
+function hide(){if(sheetOpen())return;B.classList.add('mmd-hide');clearTimeout(t)}
+var y0=0,moved=0;
+p.addEventListener('touchstart',function(e){y0=e.touches[0].clientY;moved=0;e.stopPropagation()},{passive:true});
+p.addEventListener('touchmove',function(e){var d=e.touches[0].clientY-y0;e.preventDefault();e.stopPropagation();if(moved)return;
+if(d<-12){moved=1;show()}else if(d>12){moved=1;hide()}},{passive:false});
+p.addEventListener('touchend',function(e){e.stopPropagation()},{passive:true});
+p.addEventListener('click',function(e){e.stopPropagation();if(moved){moved=0;return}B.classList.contains('mmd-hide')?show():hide()});
+['touchstart','click'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest('.mmd,#mm-fab,.mmd-sheet')&&!e.target.closest('#mm-pull'))show()},{passive:true})});
 var ly=scrollY,up=0,dn=0;addEventListener('scroll',function(){var y=scrollY;
 if(y<ly){dn=0;up+=ly-y;if(up>160||y<40)show()}else{up=0;dn+=y-ly;if(dn>14&&y>60&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}}ly=y},{passive:true});
 // 독을 아래로 쓸어내리면 바로 숨김(위로 올리는 동작의 반대)
-var dy=0,dk=document.querySelector('.mmd');
+var dy=0;
 dk.addEventListener('touchstart',function(e){dy=e.touches[0].clientY},{passive:true});
 dk.addEventListener('touchmove',function(e){if(e.touches[0].clientY-dy>22&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}},{passive:true});
 arm()}
 if(document.body)init();else document.addEventListener('DOMContentLoaded',init);
+}catch(e){}})();
+// 좌우로 크게 밀면 옆 페이지로(사용자 2026-10-29) — 왼쪽으로 밀면 다음, 오른쪽으로 밀면 이전 페이지(아래 메뉴 순서)
+// 옆으로 스크롤되는 줄·표·차트 위, 화면 가장자리(브라우저 뒤로가기 몸짓), 메뉴판 열림 중에는 동작 안 함
+(function(){try{
+var TH=0.3,box=null,x0,y0,dx=0,on=0,tgt=null;
+function list(){return [].slice.call(document.querySelectorAll('.mmd .row>a[href]'))}
+function cur(){var a=list();for(var i=0;i<a.length;i++)if(a[i].classList.contains('on'))return i;return -1}
+function scrollX(el){for(;el&&el!==document.body;el=el.parentElement){var c=getComputedStyle(el);if(/(auto|scroll)/.test(c.overflowX)&&el.scrollWidth>el.clientWidth+4)return 1}return 0}
+document.addEventListener('touchstart',function(e){on=0;if(e.touches.length>1)return;var t=e.touches[0],w=innerWidth;
+if(t.clientX<26||t.clientX>w-26)return;var g=e.target;
+if(g.closest&&g.closest('svg,canvas,input,textarea,select,.mmd,.mmd-sheet,#mm-fab,[data-noswipe]'))return;
+if(scrollX(g))return;var s=document.querySelector('.mmd-sheet');if(s&&!s.hidden)return;
+if(cur()<0)return;x0=t.clientX;y0=t.clientY;dx=0;on=1;tgt=null},{passive:true});
+document.addEventListener('touchmove',function(e){if(!on)return;var t=e.touches[0];dx=t.clientX-x0;var dy=t.clientY-y0;
+if(!tgt){if(Math.abs(dy)>14&&Math.abs(dy)>Math.abs(dx)){on=0;return}if(Math.abs(dx)<14)return;
+var a=list(),i=cur(),j=dx<0?i+1:i-1;if(j<0||j>=a.length){on=0;return}tgt=a[j];
+box=document.getElementById('mm-swp')||document.body.appendChild(Object.assign(document.createElement('div'),{id:'mm-swp'}));
+box.textContent=dx<0?(tgt.textContent.trim()+' ›'):('‹ '+tgt.textContent.trim())}
+if((dx<0)!==(box.textContent.slice(-1)==='›')){hideBox();on=0;return}
+var w=innerWidth,f=Math.min(Math.abs(dx)/(w*TH),1),pos=-120+f*136;
+box.style.opacity=Math.min(1,f*1.6);box.style.transform='translateY(-50%)';
+if(dx<0){box.style.right=pos+'px';box.style.left='auto'}else{box.style.left=pos+'px';box.style.right='auto'}
+box.classList.toggle('ready',f>=1)},{passive:true});
+function hideBox(){if(box){box.style.opacity=0;box.classList.remove('ready')}}
+document.addEventListener('touchend',function(){if(!on)return;on=0;
+if(tgt&&Math.abs(dx)>=innerWidth*TH){var h=tgt.getAttribute('href');document.documentElement.classList.add('mm-leave');setTimeout(function(){location.href=h},140)}else hideBox()},{passive:true});
+document.addEventListener('touchcancel',function(){on=0;hideBox()},{passive:true});
+addEventListener('pageshow',function(){document.documentElement.classList.remove('mm-leave');hideBox()});
 }catch(e){}})();

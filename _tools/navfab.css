@@ -7,13 +7,21 @@ body:not(.mmd-on) #mm-fab{bottom:calc(16px + env(safe-area-inset-bottom))}
 /* 한동안 안 쓰면 독·이전·홈이 아래로 숨고, 가운데 손잡이만 남음 — 누르거나 위로 밀면 다시 올라옴(사용자 2026-10-29) */
 body .mmd{transition:transform .45s cubic-bezier(.33,.9,.3,1)}
 #mm-fab{transition:transform .45s cubic-bezier(.33,.9,.3,1),opacity .25s}
-body.mmd-hide .mmd{transform:translateY(105%)}
+body.mmd-hide .mmd{transform:translateY(100%)}
 body.mmd-hide #mm-fab{transform:translateY(110px);opacity:0;pointer-events:none}
 body.mmd-hide.mmd-on{padding-bottom:calc(30px + env(safe-area-inset-bottom))!important}
-/* 손잡이: 화면 바닥에 붙은 흰 탭 + 금테 + ⌃ (시안 A, 사용자 2026-10-29) */
-#mm-pull{all:unset;box-sizing:content-box;position:fixed;left:50%;bottom:0;z-index:9001;width:96px;height:24px;margin-left:-48px;padding-bottom:env(safe-area-inset-bottom);display:flex;align-items:flex-start;justify-content:center;background:#fff;border:1.5px solid #c9a24a;border-bottom:0;border-radius:14px 14px 0 0;box-shadow:0 -3px 10px rgba(11,11,11,.14);cursor:pointer;touch-action:none;transform:translateY(110%);pointer-events:none;transition:transform .45s cubic-bezier(.33,.9,.3,1);-webkit-tap-highlight-color:transparent}
-#mm-pull:after{content:'';width:9px;height:9px;margin-top:10px;border-left:2.5px solid #9a7420;border-top:2.5px solid #9a7420;transform:rotate(45deg)}
-#mm-pull:active{background:#f3efe4}
-body.mmd-hide #mm-pull{transform:none;pointer-events:auto}
+/* 손잡이: 독 박스 위 가운데에 붙은 탭(일체형, 시안 A) — 독이 내려가면 이 탭만 화면 바닥에 남음(사용자 2026-10-29) */
+body .mmd .grab em{visibility:hidden}
+body.mmd-on .mmd{border-top:1px solid #e0d3b4!important}
+body .mmd #mm-pull{all:unset;box-sizing:border-box;position:absolute;left:50%;top:-24px;width:84px;height:25px;margin-left:-42px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.88);border:1px solid #e0d3b4;border-bottom:0;border-radius:14px 14px 0 0;box-shadow:0 -4px 10px rgba(11,11,11,.07);cursor:pointer;touch-action:none;-webkit-tap-highlight-color:transparent}
+body .mmd #mm-pull:after{content:'';width:8px;height:8px;margin-top:5px;border-right:2.5px solid #9a7420;border-bottom:2.5px solid #9a7420;transform:translateY(-3px) rotate(45deg);transition:transform .3s}
+body.mmd-hide .mmd #mm-pull{background:rgba(255,255,255,.95);border-color:#c9a24a;box-shadow:0 -3px 10px rgba(11,11,11,.16)}
+body.mmd-hide .mmd #mm-pull:after{transform:translateY(1px) rotate(-135deg)}
+body .mmd #mm-pull:active{background:#f3efe4}
 body.mmd-on #mm-snd{transition:bottom .32s cubic-bezier(.2,.8,.2,1)}
 body.mmd-hide.mmd-on #mm-snd{bottom:calc(4px + env(safe-area-inset-bottom))!important}
+
+/* 좌우로 크게 밀면 옆 페이지로(사용자 2026-10-29) — 미는 동안 가장자리에서 다음 페이지 이름표가 따라 나옴 */
+#mm-swp{position:fixed;top:50%;z-index:9500;pointer-events:none;display:flex;align-items:center;gap:6px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.95);border:1.5px solid #e0d6bf;box-shadow:0 4px 14px rgba(11,11,11,.16);font:800 15px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#3a3630;white-space:nowrap;opacity:0;transition:background .15s,color .15s,border-color .15s}
+#mm-swp.ready{background:#8a5a12;border-color:#8a5a12;color:#fff}
+html.mm-leave body{opacity:.25;transition:opacity .18s}

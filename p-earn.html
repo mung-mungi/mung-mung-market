@@ -26,7 +26,7 @@ html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
   });
 })();
 </script>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610291537">(function(){var me="202610291537";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 결과</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610291541">(function(){var me="202610291541";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 결과</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
@@ -263,16 +263,24 @@ body:not(.mmd-on) #mm-fab{bottom:calc(16px + env(safe-area-inset-bottom))}
 /* 한동안 안 쓰면 독·이전·홈이 아래로 숨고, 가운데 손잡이만 남음 — 누르거나 위로 밀면 다시 올라옴(사용자 2026-10-29) */
 body .mmd{transition:transform .45s cubic-bezier(.33,.9,.3,1)}
 #mm-fab{transition:transform .45s cubic-bezier(.33,.9,.3,1),opacity .25s}
-body.mmd-hide .mmd{transform:translateY(105%)}
+body.mmd-hide .mmd{transform:translateY(100%)}
 body.mmd-hide #mm-fab{transform:translateY(110px);opacity:0;pointer-events:none}
 body.mmd-hide.mmd-on{padding-bottom:calc(30px + env(safe-area-inset-bottom))!important}
-/* 손잡이: 화면 바닥에 붙은 흰 탭 + 금테 + ⌃ (시안 A, 사용자 2026-10-29) */
-#mm-pull{all:unset;box-sizing:content-box;position:fixed;left:50%;bottom:0;z-index:9001;width:96px;height:24px;margin-left:-48px;padding-bottom:env(safe-area-inset-bottom);display:flex;align-items:flex-start;justify-content:center;background:#fff;border:1.5px solid #c9a24a;border-bottom:0;border-radius:14px 14px 0 0;box-shadow:0 -3px 10px rgba(11,11,11,.14);cursor:pointer;touch-action:none;transform:translateY(110%);pointer-events:none;transition:transform .45s cubic-bezier(.33,.9,.3,1);-webkit-tap-highlight-color:transparent}
-#mm-pull:after{content:'';width:9px;height:9px;margin-top:10px;border-left:2.5px solid #9a7420;border-top:2.5px solid #9a7420;transform:rotate(45deg)}
-#mm-pull:active{background:#f3efe4}
-body.mmd-hide #mm-pull{transform:none;pointer-events:auto}
+/* 손잡이: 독 박스 위 가운데에 붙은 탭(일체형, 시안 A) — 독이 내려가면 이 탭만 화면 바닥에 남음(사용자 2026-10-29) */
+body .mmd .grab em{visibility:hidden}
+body.mmd-on .mmd{border-top:1px solid #e0d3b4!important}
+body .mmd #mm-pull{all:unset;box-sizing:border-box;position:absolute;left:50%;top:-24px;width:84px;height:25px;margin-left:-42px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.88);border:1px solid #e0d3b4;border-bottom:0;border-radius:14px 14px 0 0;box-shadow:0 -4px 10px rgba(11,11,11,.07);cursor:pointer;touch-action:none;-webkit-tap-highlight-color:transparent}
+body .mmd #mm-pull:after{content:'';width:8px;height:8px;margin-top:5px;border-right:2.5px solid #9a7420;border-bottom:2.5px solid #9a7420;transform:translateY(-3px) rotate(45deg);transition:transform .3s}
+body.mmd-hide .mmd #mm-pull{background:rgba(255,255,255,.95);border-color:#c9a24a;box-shadow:0 -3px 10px rgba(11,11,11,.16)}
+body.mmd-hide .mmd #mm-pull:after{transform:translateY(1px) rotate(-135deg)}
+body .mmd #mm-pull:active{background:#f3efe4}
 body.mmd-on #mm-snd{transition:bottom .32s cubic-bezier(.2,.8,.2,1)}
 body.mmd-hide.mmd-on #mm-snd{bottom:calc(4px + env(safe-area-inset-bottom))!important}
+
+/* 좌우로 크게 밀면 옆 페이지로(사용자 2026-10-29) — 미는 동안 가장자리에서 다음 페이지 이름표가 따라 나옴 */
+#mm-swp{position:fixed;top:50%;z-index:9500;pointer-events:none;display:flex;align-items:center;gap:6px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.95);border:1.5px solid #e0d6bf;box-shadow:0 4px 14px rgba(11,11,11,.16);font:800 15px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#3a3630;white-space:nowrap;opacity:0;transition:background .15s,color .15s,border-color .15s}
+#mm-swp.ready{background:#8a5a12;border-color:#8a5a12;color:#fff}
+html.mm-leave body{opacity:.25;transition:opacity .18s}
 </style><script data-navfab>// 아래 메뉴 위 왼쪽 '이전·홈' 버튼(사용자 2026-10-29)
 (function(){try{
 if(/\/(index\.html)?$/.test(location.pathname))return;
@@ -292,19 +300,53 @@ function sheetOpen(){var s=document.querySelector('.mmd-sheet');return s&&!s.hid
 function arm(){clearTimeout(t);t=setTimeout(function(){if(!sheetOpen()&&document.querySelector('.mmd'))B.classList.add('mmd-hide')},IDLE)}
 function show(){B.classList.remove('mmd-hide');arm()}
 function init(){B=document.body;if(!document.querySelector('.mmd'))return setTimeout(init,500);
-var p=document.createElement('button');p.id='mm-pull';p.setAttribute('aria-label','아래 메뉴 열기');B.appendChild(p);
-p.addEventListener('click',show);var y0=0;
-p.addEventListener('touchstart',function(e){y0=e.touches[0].clientY},{passive:true});
-p.addEventListener('touchmove',function(e){if(y0-e.touches[0].clientY>12)show();e.preventDefault()},{passive:false});
-['touchstart','click'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest('.mmd,#mm-fab,.mmd-sheet'))show()},{passive:true})});
+// 손잡이는 독 박스 위 가운데에 붙어 함께 움직임(일체형) — 독이 내려가면 손잡이만 바닥에 남음
+var dk=document.querySelector('.mmd');
+var p=document.createElement('button');p.id='mm-pull';p.setAttribute('aria-label','아래 메뉴 올리기·내리기');dk.appendChild(p);
+function hide(){if(sheetOpen())return;B.classList.add('mmd-hide');clearTimeout(t)}
+var y0=0,moved=0;
+p.addEventListener('touchstart',function(e){y0=e.touches[0].clientY;moved=0;e.stopPropagation()},{passive:true});
+p.addEventListener('touchmove',function(e){var d=e.touches[0].clientY-y0;e.preventDefault();e.stopPropagation();if(moved)return;
+if(d<-12){moved=1;show()}else if(d>12){moved=1;hide()}},{passive:false});
+p.addEventListener('touchend',function(e){e.stopPropagation()},{passive:true});
+p.addEventListener('click',function(e){e.stopPropagation();if(moved){moved=0;return}B.classList.contains('mmd-hide')?show():hide()});
+['touchstart','click'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest('.mmd,#mm-fab,.mmd-sheet')&&!e.target.closest('#mm-pull'))show()},{passive:true})});
 var ly=scrollY,up=0,dn=0;addEventListener('scroll',function(){var y=scrollY;
 if(y<ly){dn=0;up+=ly-y;if(up>160||y<40)show()}else{up=0;dn+=y-ly;if(dn>14&&y>60&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}}ly=y},{passive:true});
 // 독을 아래로 쓸어내리면 바로 숨김(위로 올리는 동작의 반대)
-var dy=0,dk=document.querySelector('.mmd');
+var dy=0;
 dk.addEventListener('touchstart',function(e){dy=e.touches[0].clientY},{passive:true});
 dk.addEventListener('touchmove',function(e){if(e.touches[0].clientY-dy>22&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}},{passive:true});
 arm()}
 if(document.body)init();else document.addEventListener('DOMContentLoaded',init);
+}catch(e){}})();
+// 좌우로 크게 밀면 옆 페이지로(사용자 2026-10-29) — 왼쪽으로 밀면 다음, 오른쪽으로 밀면 이전 페이지(아래 메뉴 순서)
+// 옆으로 스크롤되는 줄·표·차트 위, 화면 가장자리(브라우저 뒤로가기 몸짓), 메뉴판 열림 중에는 동작 안 함
+(function(){try{
+var TH=0.3,box=null,x0,y0,dx=0,on=0,tgt=null;
+function list(){return [].slice.call(document.querySelectorAll('.mmd .row>a[href]'))}
+function cur(){var a=list();for(var i=0;i<a.length;i++)if(a[i].classList.contains('on'))return i;return -1}
+function scrollX(el){for(;el&&el!==document.body;el=el.parentElement){var c=getComputedStyle(el);if(/(auto|scroll)/.test(c.overflowX)&&el.scrollWidth>el.clientWidth+4)return 1}return 0}
+document.addEventListener('touchstart',function(e){on=0;if(e.touches.length>1)return;var t=e.touches[0],w=innerWidth;
+if(t.clientX<26||t.clientX>w-26)return;var g=e.target;
+if(g.closest&&g.closest('svg,canvas,input,textarea,select,.mmd,.mmd-sheet,#mm-fab,[data-noswipe]'))return;
+if(scrollX(g))return;var s=document.querySelector('.mmd-sheet');if(s&&!s.hidden)return;
+if(cur()<0)return;x0=t.clientX;y0=t.clientY;dx=0;on=1;tgt=null},{passive:true});
+document.addEventListener('touchmove',function(e){if(!on)return;var t=e.touches[0];dx=t.clientX-x0;var dy=t.clientY-y0;
+if(!tgt){if(Math.abs(dy)>14&&Math.abs(dy)>Math.abs(dx)){on=0;return}if(Math.abs(dx)<14)return;
+var a=list(),i=cur(),j=dx<0?i+1:i-1;if(j<0||j>=a.length){on=0;return}tgt=a[j];
+box=document.getElementById('mm-swp')||document.body.appendChild(Object.assign(document.createElement('div'),{id:'mm-swp'}));
+box.textContent=dx<0?(tgt.textContent.trim()+' ›'):('‹ '+tgt.textContent.trim())}
+if((dx<0)!==(box.textContent.slice(-1)==='›')){hideBox();on=0;return}
+var w=innerWidth,f=Math.min(Math.abs(dx)/(w*TH),1),pos=-120+f*136;
+box.style.opacity=Math.min(1,f*1.6);box.style.transform='translateY(-50%)';
+if(dx<0){box.style.right=pos+'px';box.style.left='auto'}else{box.style.left=pos+'px';box.style.right='auto'}
+box.classList.toggle('ready',f>=1)},{passive:true});
+function hideBox(){if(box){box.style.opacity=0;box.classList.remove('ready')}}
+document.addEventListener('touchend',function(){if(!on)return;on=0;
+if(tgt&&Math.abs(dx)>=innerWidth*TH){var h=tgt.getAttribute('href');document.documentElement.classList.add('mm-leave');setTimeout(function(){location.href=h},140)}else hideBox()},{passive:true});
+document.addEventListener('touchcancel',function(){on=0;hideBox()},{passive:true});
+addEventListener('pageshow',function(){document.documentElement.classList.remove('mm-leave');hideBox()});
 }catch(e){}})();
 </script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>#mm-splash{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:linear-gradient(180deg,#fbf7ee,#f3efe4);transition:opacity .4s ease,transform .4s ease}
 #mm-splash.out{opacity:0;transform:scale(1.06);pointer-events:none}
