@@ -67,3 +67,30 @@ if(tgt&&Math.abs(dx)>=innerWidth*TH){var h=tgt.getAttribute('href');document.doc
 document.addEventListener('touchcancel',function(){on=0;hideBox()},{passive:true,capture:true});
 addEventListener('pageshow',function(){document.documentElement.classList.remove('mm-leave');hideBox()});
 }catch(e){}})();
+// 새 실적 알림(사용자 2026-10-29, 실적 시즌) — d/earn_feed.json의 최신 실적이 내가 마지막으로 본 것보다 새로우면
+// 메인 화면 위에 '🔔 새 실적 n곳' 띠 + 실적 결과 카드에 NEW, 독의 실적 결과 아이콘에 빨간 점. 실적 결과 페이지를 열면 '봤음'으로 꺼짐
+(function(){try{
+var K='mm-earn-seen',onEarn=/p-earn\.html$/.test(location.pathname),onHub=/\/(index\.html)?$/.test(location.pathname);
+function get(){try{return localStorage.getItem(K)||''}catch(e){return ''}}
+function set(v){try{localStorage.setItem(K,v)}catch(e){}}
+function vq(){var a=document.querySelector('a[href*="p-earn.html"]');var m=a&&(a.getAttribute('href')||'').match(/\?v=\d+/);return m?m[0]:''}
+fetch('d/earn_feed.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(F){
+  if(!F||!F.items||!F.items.length)return;
+  if(onEarn){set(F.latest);return}
+  var seen=get(),cut=seen||new Date(Date.now()-30*3600e3).toISOString().slice(0,16);
+  var nw=F.items.filter(function(x){return x.ts>cut});if(!nw.length)return;
+  var n=0,t=setInterval(function(){paint(nw);if(++n>15)clearInterval(t)},700);paint(nw);
+}).catch(function(){});
+function paint(nw){
+  var d=document.querySelector('.mmd .row a[href*="p-earn"]');if(d)d.classList.add('mm-new');
+  [].forEach.call(document.querySelectorAll('.mmd-sheet a[href*="p-earn"]'),function(a){a.classList.add('mm-new')});
+  if(!onHub)return;
+  [].forEach.call(document.querySelectorAll('a.item[href*="p-earn"] .ttl,a.mm-bar[href*="p-earn"]>b'),function(t){if(!t.querySelector('.mm-newb')){var s=document.createElement('em');s.className='mm-newb';s.textContent='NEW '+nw.length;t.appendChild(s)}});
+  if(document.querySelector('.mm-earnnew'))return;
+  var sh=document.querySelector('p.sh');if(!sh)return;var box=sh.parentElement;
+  var a=document.createElement('a');a.className='mm-earnnew';a.href='p-earn.html'+vq();
+  var names=nw.slice(0,3).map(function(x){return x.name}).join(' · ')+(nw.length>3?' 외 '+(nw.length-3)+'곳':'');
+  a.innerHTML='<i></i><span class="t"><b>새 실적 '+nw.length+'곳</b><small></small></span><em>›</em>';a.querySelector('small').textContent=names;
+  box.parentElement.insertBefore(a,box);
+}
+}catch(e){}})();

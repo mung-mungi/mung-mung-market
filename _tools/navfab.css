@@ -25,3 +25,14 @@ body.mmd-hide.mmd-on #mm-snd{bottom:calc(4px + env(safe-area-inset-bottom))!impo
 #mm-swp{position:fixed;top:50%;z-index:9500;pointer-events:none;display:flex;align-items:center;gap:6px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.95);border:1.5px solid #e0d6bf;box-shadow:0 4px 14px rgba(11,11,11,.16);font:800 15px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#3a3630;white-space:nowrap;opacity:0;transition:background .15s,color .15s,border-color .15s}
 #mm-swp.ready{background:#8a5a12;border-color:#8a5a12;color:#fff}
 html.mm-leave body{opacity:.25;transition:opacity .18s}
+/* 새 실적 알림(사용자 2026-10-29) */
+body .mmd .row a.mm-new i,body .mmd-sheet a.mm-new i{position:relative}
+body .mmd .row a.mm-new i:before,body .mmd-sheet a.mm-new i:before{content:'';position:absolute;top:-2px;right:-3px;width:10px;height:10px;border-radius:50%;background:#e8343b;box-shadow:0 0 0 2px #fff}
+.mm-newb{font-style:normal;display:inline-block;vertical-align:2px;margin-left:5px;padding:2px 6px;border-radius:6px;background:#e8343b;color:#fff;font-size:10.5px;font-weight:900;letter-spacing:-.01em}
+a.mm-earnnew{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:11px 14px;border-radius:14px;background:#fff;border:1px solid #f1c9c4;border-left:4px solid #e8343b;box-shadow:0 2px 0 #f3dcd8;text-decoration:none;color:#1d1c1a;-webkit-tap-highlight-color:transparent}
+a.mm-earnnew:active{background:#fff6f5}
+a.mm-earnnew i{flex:none;width:10px;height:10px;border-radius:50%;background:#e8343b;box-shadow:0 0 0 0 rgba(232,52,59,.5);animation:mmPulse 1.6s infinite}
+@keyframes mmPulse{0%{box-shadow:0 0 0 0 rgba(232,52,59,.45)}70%{box-shadow:0 0 0 9px rgba(232,52,59,0)}100%{box-shadow:0 0 0 0 rgba(232,52,59,0)}}
+a.mm-earnnew .t{flex:1;min-width:0}a.mm-earnnew b{display:block;font-size:15.5px;font-weight:900;color:#d0342c}
+a.mm-earnnew small{display:block;font-size:13px;color:#5a554c;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+a.mm-earnnew em{font-style:normal;font-size:22px;font-weight:700;color:#e8343b}
