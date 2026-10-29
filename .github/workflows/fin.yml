@@ -17,6 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: build
+        env:
+          SEC_UA: ${{ secrets.SEC_UA }}
         run: python3 -I _tools/build_fin.py . && python3 -I _tools/build_gates.py .
       - name: commit
         run: |

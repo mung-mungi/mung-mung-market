@@ -223,7 +223,7 @@ function add(){(document.body||document.documentElement).appendChild(d);var v=d.
 if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
 d.addEventListener('click',close);setTimeout(close,6500)})();
-</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="저평가 서치"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-value.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610291849">(function(){var me="202610291849";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>저평가 서치 · 멍뭉 터미널</title><style>:root{color-scheme:light;
+</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="저평가 서치"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-value.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610291935">(function(){var me="202610291935";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>저평가 서치 · 멍뭉 터미널</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
@@ -337,14 +337,51 @@ window.addEventListener('load',function(){ctr();setTimeout(ctr,300);setTimeout(c
 .iv-cr{padding:4px 0 0}.iv-cr>b{display:block;font-size:13.5px;color:#5a554c;margin:0 2px 2px}
 .iv-cr .iv-pills button{font-size:13px;padding:5px 10px}
 .iv-reset{all:unset;display:inline-block;margin:6px 2px 4px;font-size:13px;font-weight:700;color:#8a877f;text-decoration:underline;cursor:pointer}
+/* 탭 3개 · 내 종목 점검 · 반도체 온도판(사용자 2026-10-29) */
+.iv-tabs{display:flex;gap:2px;background:#efece5;border-radius:13px;padding:3px;margin:2px 0 12px;position:sticky;top:6px;z-index:5;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.iv-tabs button{all:unset;flex:1;text-align:center;padding:10px 2px;border-radius:11px;font:800 14.5px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#7a766d;cursor:pointer;white-space:nowrap}
+.iv-tabs button.on{background:#fff;color:#1d1c1a;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.iv-tab[hidden]{display:none!important}
+.iv-info{margin:2px 2px 8px;padding:9px 11px;border-radius:11px;background:#fff;border:1px solid #eadcbc;font-size:13.5px;line-height:1.55;color:#4a463f}.iv-info b{color:#8a5a12}
+.iv-mc{background:#fff;border:1px solid #e9d9b4;border-radius:16px;padding:13px 13px 8px;box-shadow:0 2px 0 #efe6d2}
+.iv-mh{display:flex;align-items:baseline;justify-content:space-between;gap:8px}.iv-mh b{font-size:19px;font-weight:900}.iv-mh small{color:#8a877f;font-size:12.5px;text-align:right}
+.iv-gate{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0 4px}
+.iv-gate button{all:unset;cursor:pointer;border-radius:12px;padding:8px 4px;text-align:center;background:#f6f3ec;box-shadow:0 2px 0 rgba(0,0,0,.05);-webkit-tap-highlight-color:transparent}
+.iv-gate small{display:block;font-size:11.5px;color:#7a766d;font-weight:700}.iv-gate b{display:block;font-size:16px;font-weight:900;margin-top:3px;line-height:1.2}
+.iv-gate .ok{background:#eaf6ee}.iv-gate .ok b{color:#1f8a4c}.iv-gate .mid{background:#fff6e5}.iv-gate .mid b{color:#b7700a}.iv-gate .no{background:#fdeceb}.iv-gate .no b{color:#d0342c}
+.iv-gate button.sel{outline:2px solid #8a5a12;outline-offset:-2px}
+.iv-vd{margin:8px 0 4px;padding:9px 11px;border-radius:11px;background:#fbf7ee;font-size:14.5px;line-height:1.5;font-weight:700}.iv-vd.stop{background:#fdeceb;color:#b4321f}
+.iv-gx{margin:6px 0 2px;padding:9px 11px;border-radius:11px;background:#fff;border:1px dashed #c9b88f;font-size:13.5px;line-height:1.55;color:#4a463f}
+.iv-ln{display:grid;grid-template-columns:58px 1fr;gap:2px 8px;padding:7px 0;border-top:1px solid #f3eee3;font-size:14px;line-height:1.45}.iv-ln b{font-weight:900}.iv-ln span{color:#4a463f}
+.iv-ln.hl{background:#fff9ec;margin:0 -6px;padding:7px 6px;border-radius:8px}
+.iv-chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 4px}.iv-chips button{all:unset;cursor:pointer;padding:7px 12px;border-radius:999px;background:#1d1c1a;color:#fff;font-weight:800;font-size:14px}
+.iv-chips button.add{background:#fff;color:#8a5a12;border:1px dashed #c9a24a}
+.iv-find{margin:6px 0 2px;padding:10px;border-radius:12px;background:#fbf7ee;border:1px solid #eadcbc}
+.iv-find input{all:unset;box-sizing:border-box;width:100%;padding:9px 12px;border-radius:10px;background:#fff;border:1px solid #e3d6b8;font-size:15px;margin-bottom:8px}
+.iv-find .iv-opts{display:flex;flex-wrap:wrap;gap:6px;max-height:260px;overflow:auto}
+.iv-find .iv-opts button{all:unset;cursor:pointer;padding:6px 11px;border-radius:999px;background:#fff;border:1px solid #e6dcc6;box-shadow:0 2px 0 #ece4d2;font-size:13.5px;font-weight:700;color:#3a3630}
+.iv-find .iv-opts button.on{background:#1d1c1a;color:#fff;border-color:#1d1c1a;box-shadow:none}
+.iv-find .iv-opts p{width:100%;margin:6px 2px 0;font-size:12px;font-weight:800;color:#9a968c}
+.iv-sx{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0}.iv-sx div{background:#f6f3ec;border-radius:11px;padding:8px}.iv-sx small{display:block;color:#7a766d;font-size:11.5px;font-weight:700}.iv-sx b{font-size:16.5px;font-weight:900}
+.iv-lights{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 2px}.iv-lights span{padding:5px 10px;border-radius:999px;font-size:12.5px;font-weight:800;background:#f1ede4;color:#9a968c}.iv-lights span.on{background:#fff4dc;color:#8a5a12;border:1px solid #e8c77a}
+.iv-lr{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) 52px 56px 74px;gap:6px;align-items:center;padding:10px 2px;border-top:1px solid #f1ece2;font-size:13.5px}
+.iv-lr .n b{display:block;font-size:15px;font-weight:800}.iv-lr .n small{display:block;color:#8a877f;font-size:12px;margin-top:1px}
+.iv-lr .c{text-align:right;font-variant-numeric:tabular-nums}.iv-lrh{display:grid;grid-template-columns:minmax(0,1fr) 52px 56px 74px;gap:6px;padding:4px 2px;font-size:11.5px;color:#9a968c;font-weight:700}.iv-lrh span+span{text-align:right}
+.iv-st{display:inline-block;padding:4px 6px;border-radius:7px;font-weight:900;font-size:11.5px;color:#fff;text-align:center;line-height:1.25}
+.iv-s4{background:#d0342c}.iv-s3{background:#e07a12}.iv-s2{background:#c9a24a}.iv-s1{background:#8a95a5}
+.iv-mem{display:none;padding:2px 2px 10px}.iv-mem.open{display:block}.iv-mem div{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-top:1px dotted #eee6d6;font-size:13px}.iv-mem div b{font-weight:800}.iv-mem div span{color:#6b675f;white-space:nowrap}
+.iv-bt{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0}.iv-bt th{font-size:11.5px;color:#9a968c;text-align:right;font-weight:700;padding:4px}.iv-bt th:first-child,.iv-bt td:first-child{text-align:left}
+.iv-bt td{padding:7px 4px;border-top:1px solid #f1ece2;text-align:right;font-variant-numeric:tabular-nums}.iv-bt td:first-child{font-weight:800}
 </style>
 <div class="in-wrap iv-wrap">
   <header id="top" class="in-mast">
     <p class="in-eyebrow"><i aria-hidden="true"></i>아이디어 · 공사중 샘플</p>
-    <h1 class="in-h1"><span class="m">저평가 서치</span> <span class="s">불 7개</span></h1>
+    <h1 class="in-h1"><span class="m">저평가 서치</span> <span class="s">사슬 · 재무 · 자리</span></h1>
     <p class="in-take" id="take"><b id="take-chip">—</b><span id="take-text">불러오는 중</span></p>
   </header>
   <section class="in-tiles" id="tiles"></section>
+  <div class="iv-tabs" id="tabs"><button type="button" data-t="find" class="on">종목 찾기</button><button type="button" data-t="my">내 종목 점검</button><button type="button" data-t="heat">반도체 온도판</button></div>
+  <div class="iv-tab" id="t-find">
   <section class="in-card"><h3>불 많이 켜진 순</h3>
     <p class="sub">추천 목록이 아니라 '한번 들여다볼 만한 곳'을 고르는 체입니다. 아래에서 어떤 불을 셀지 직접 고를 수 있고, 줄을 누르면 불마다 근거 숫자가 펼쳐집니다.</p>
     <div class="iv-pick" id="pickbox"></div>
@@ -362,10 +399,25 @@ window.addEventListener('load',function(){ctr();setTimeout(ctr,300);setTimeout(c
       <li><b>목표가 오름세</b> 최근 60일 목표가 상향이 2건 이상이고 하향의 2배 넘음.</li>
       <li><b>고수 상향</b> '고수 성적표' 적중률 상위 10곳 중 한 곳이라도 최근 60일 안에 상향.</li>
       <li><b>수급 개선</b> 공매도 잔고 감소, 기관 보유 비중 증가, 내부자 순매수 가운데 하나 이상.</li>
+      <li><b>사슬 확인</b> 같은 층 동료들이 최근 실적에서 AI 매출을 잘 빼고 있고, 이 종목 자신도 실적·AI 판정으로 확인될 때.</li>
+      <li><b>재무 체력</b> 몸값·성장·이익률·현금흐름·빚을 묶은 재무 등급이 A·B일 때('내 종목 점검' 탭과 같은 기준).</li>
       <li><b>주의</b> 눌림 불은 '떨어지는 칼'일 수도 있습니다. 3개월 새 30% 넘게 빠진 곳은 따로 표시합니다.</li>
     </ul></div></div>
-    <p class="how">자료: 사이트에 이미 쌓인 목표주가 기록·분기 실적·시세(선행 PER 포함)·공매도·13F·내부자 거래. 새로 긁어 오는 자료는 없습니다. 매수·매도 권유가 아닙니다.</p>
+    <p class="how">자료: 사이트에 이미 쌓인 목표주가 기록·분기 실적·시세(선행 PER 포함)·공매도·13F·내부자 거래, 그리고 미국 증권거래위원회(SEC) 공식 재무 자료. 매수·매도 권유가 아닙니다.</p>
   </section>
+  </div>
+  <div class="iv-tab" id="t-my" hidden>
+  <section class="in-card"><h3>내 종목 점검</h3>
+    <p class="sub">담았거나 관심 있는 종목을 고르면 사슬 → 재무 → 자리 순서로 점검합니다. 앞 관문이 흔들리면 자리가 좋아도 '물타기 멈춤'을 띄웁니다. 고른 목록은 이 휴대폰에만 저장됩니다.</p>
+    <div id="mypick"></div>
+  </section>
+  <div class="iv-list" id="mylist"></div>
+  </div>
+  <div class="iv-tab" id="t-heat" hidden>
+  <section class="in-card" id="soxx"></section>
+  <section class="in-card" id="layers"></section>
+  <section class="in-card" id="bt"></section>
+  </div>
 </div><script data-ideas>window.__IDEA__="p-value";(function(){
 var K=window.__IDEA__;
 function $(i){return document.getElementById(i)}
@@ -384,20 +436,25 @@ function more(el,html,n0){if(html.length<=n0){el.innerHTML=html.join('');return}
   el.innerHTML=html.slice(0,n0).join('')+'<button type="button" class="iv-more">▼ 아래로 '+(html.length-n0)+'곳 더</button>';
   el.querySelector('.iv-more').onclick=function(){el.innerHTML=html.join('')}}
 
-function val(D){
-  var it=D.items;$('take-chip').textContent=md(D.asof)+' 종가 기준';
+function val(D,G){
+  var it=D.items;
+  // 사슬 확인·재무 체력 불(관문 자료에서) — 사용자 2026-10-29
+  if(G&&G.items)it.forEach(function(o){var g=G.items[o.ticker];if(!g||o.L.some(function(l){return l.k==='사슬 확인'}))return;
+    var cv=g.chain;o.L.push({k:'사슬 확인',on:cv.v==='AI 확인',v:cv.v+' · 같은 층 '+cv.peers+'곳 중 '+cv.pbeat+'곳 매출 상회'+(cv.pyoy!=null?' · 층 매출 성장 '+cv.pyoy+'%':'')+(cv.ai?' · AI 관점 '+cv.ai:'')});
+    o.L.push({k:'재무 체력',on:g.fin.v==='A'||g.fin.v==='B',v:'재무 등급 '+g.fin.v+(g.fin.why.length?' · '+g.fin.why.slice(0,3).join(' · '):'')});
+    o.lights=o.L.filter(function(l){return l.on}).length});$('take-chip').textContent=md(D.asof)+' 종가 기준';
   var cnt={};it.forEach(function(o){o.L.forEach(function(l){if(l.on)cnt[l.k]=(cnt[l.k]||0)+1})});
   var top=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a]});
   var hi=it.filter(function(o){return o.lights>=6});
   $('take-text').textContent='불 6개 이상 켜진 곳은 '+hi.map(function(o){return o.name+'('+o.lights+')'}).join('·')+'입니다. 요즘은 \''+top[0]+'\'('+cnt[top[0]]+'곳)과 \''+top[1]+'\'('+cnt[top[1]]+'곳) 불이 가장 많이 켜져 있어, 실적은 좋은데 주가가 빠져 있는 곳이 많은 장입니다.';
-  tiles([['살펴본 종목',it.length+'곳','AI 밸류체인(지수 ETF 제외)'],['불 5개 이상',it.filter(function(o){return o.lights>=5}).length+'곳','7개 만점'],['가장 적게 켜진 불',top[top.length-1],cnt[top[top.length-1]]+'곳만 켜짐']]);
+  tiles([['살펴본 종목',it.length+'곳','AI 밸류체인(지수 ETF 제외)'],['불 5개 이상',it.filter(function(o){return o.lights>=5}).length+'곳',it[0].L.length+'개 만점'],['가장 적게 켜진 불',top[top.length-1],cnt[top[top.length-1]]+'곳만 켜짐']]);
   var cats={};it.forEach(function(o){cats[o.cat]=(cats[o.cat]||0)+1});
   var CK=['전체'].concat(Object.keys(cats).sort(function(a,b){return cats[b]-cats[a]})),cat='전체',srt='l';
   $('cat').innerHTML=CK.map(function(c,i){return '<button type="button"'+(i?'':' class="on"')+' data-k="'+esc(c)+'">'+esc(c)+(i?' '+cats[c]:'')+'</button>'}).join('');
   $('cat').onclick=function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(this.children,function(x){x.classList.toggle('on',x===b)});cat=b.dataset.k;draw()};
   // 내 불 고르기 — 고른 불만 세어 줄 세움(사용자 2026-10-29). 고른 것은 이 휴대폰에만 기억
   var LK=it[0].L.map(function(l){return l.k});
-  var PS=[['all','전체 7개',LK],['safe','안정형',['실적 탄력','같은 층 대비 싸다','목표가 오름세','수급 개선']],['risk','하이리스크·반등',['고점 대비 눌림','목표가 여력','고수 상향','실적 탄력']],['mom','모멘텀',['목표가 오름세','고수 상향','실적 탄력','수급 개선']]];
+  var PS=[['all','전체 '+LK.length+'개',LK],['safe','안정형',['사슬 확인','재무 체력','실적 탄력','같은 층 대비 싸다','목표가 오름세']],['risk','하이리스크·반등',['고점 대비 눌림','목표가 여력','고수 상향','실적 탄력']],['mom','모멘텀',['사슬 확인','목표가 오름세','고수 상향','실적 탄력','수급 개선']]];
   var SEL;try{SEL=JSON.parse(localStorage.getItem('mm-val-pick')||'null')}catch(e){}
   if(!Array.isArray(SEL)||!SEL.length)SEL=LK.slice();
   function save(){try{localStorage.setItem('mm-val-pick',JSON.stringify(SEL))}catch(e){}}
@@ -414,13 +471,20 @@ function val(D){
   function vtxt(l){if(l.k==='고수 상향'&&Array.isArray(l.r)){var a=l.r.filter(function(z){return z[1]<=P[l.k]});return a.length?'적중률 상위 '+a.map(function(z){return z[0]+'('+z[1]+'위)'}).join(', ')+' 상향':'최근 60일 상위 '+P[l.k]+'곳 상향 없음'}return l.v}
   function pk(){var pb=$('pickbox');var same=function(a){return a.length===SEL.length&&a.every(function(x){return SEL.indexOf(x)>=0})};
     pb.innerHTML='<p class="iv-pk-t">내 불 고르기<small>고른 불만 셉니다</small></p><div class="iv-pills iv-ps">'+PS.map(function(p){return '<button type="button" data-p="'+p[0]+'"'+(same(p[2])?' class="on"':'')+'>'+p[1]+'</button>'}).join('')+'</div><div class="iv-pills iv-lp">'+LK.map(function(k){return '<button type="button" data-l="'+esc(k)+'"'+(SEL.indexOf(k)>=0?' class="on"':'')+'>'+esc(k)+'</button>'}).join('')+'</div>'
+    +'<div class="iv-info" id="linfo"'+(LAST?'':' hidden')+'>'+(LAST?info(LAST):'')+'</div>'
     +'<details class="iv-cut"'+(OPEN?' open':'')+'><summary>▸ 불마다 기준 바꾸기</summary>'+SEL.filter(function(k){return CUT[k]}).map(function(k){var c=CUT[k];return '<div class="iv-cr"><b>'+esc(k)+'</b><div class="iv-pills">'+c[0].map(function(v){return '<button type="button" data-c="'+esc(k)+'" data-v="'+v+'"'+(P[k]===v?' class="on"':'')+'>'+c[2](v)+'</button>'}).join('')+'</div></div>'}).join('')+'<button type="button" class="iv-reset" data-reset="1">기준 처음대로</button></details>'}
   $('pickbox').onclick=function(e){var b=e.target.closest('button');if(!b)return;
     if(b.dataset.reset){LK.forEach(function(k){if(CUT[k])P[k]=CUT[k][1]});saveP();pk();draw();return}
     if(b.dataset.c){P[b.dataset.c]=+b.dataset.v;saveP();pk();draw();return}
     if(b.dataset.p){SEL=PS.filter(function(p){return p[0]===b.dataset.p})[0][2].slice()}
-    else{var k=b.dataset.l,i=SEL.indexOf(k);if(i>=0){if(SEL.length>1)SEL.splice(i,1)}else SEL.push(k)}
+    else{var k=b.dataset.l,i=SEL.indexOf(k);LAST=k;if(i>=0){if(SEL.length>1)SEL.splice(i,1)}else SEL.push(k)}
     save();pk();draw()};
+  // 불을 누르면 그 불이 뭘 보는지 + 지금 몇 곳 켜졌는지(사용자 2026-10-29)
+  var LAST='';var IX={'목표가 여력':'증권사 평균 목표가가 지금 주가보다 얼마나 위에 있는지 봅니다.','같은 층 대비 싸다':'선행 PER을 같은 층(예: 메모리끼리) 가운데값과 비교합니다.','실적 탄력':'가장 최근 분기 매출이 예상보다 높고 전년보다 크게 늘었는지 봅니다.',
+   '고점 대비 눌림':'1년 최고가에서 얼마나 내려와 있는지 봅니다. 떨어지는 칼일 수 있어 사슬·실적 불과 함께 보는 게 좋습니다.','목표가 오름세':'최근 60일 증권사 목표가 상향이 하향보다 충분히 많은지 봅니다.','고수 상향':'고수 성적표의 적중률 상위 증권사가 최근 60일 안에 올렸는지 봅니다.',
+   '수급 개선':'공매도 잔고 감소·기관 보유 비중 증가·내부자 순매수 가운데 몇 개가 보이는지 셉니다.','사슬 확인':'AI 돈이 이 종목의 층(동료 실적)과 이 종목 자신(실적·AI 판정)까지 내려왔는지 봅니다. 우리 사슬 관점의 출발점입니다.','재무 체력':'몸값·성장·이익률·현금흐름·빚을 묶은 재무 등급이 A·B인지 봅니다. 시장가치를 받쳐 줄 체력이 있는지입니다.'};
+  function info(k){var n=it.filter(function(o){return o.L.some(function(l){return l.k===k&&lit(l)})}).length,on=SEL.indexOf(k)>=0;
+    return '<b>'+esc(k)+(on?' 켬':' 끔')+'</b> · '+esc(IX[k]||'')+(CUT[k]?' 지금 기준 '+CUT[k][2](P[k])+'.':'')+' '+it.length+'곳 중 <b>'+n+'곳</b> 켜짐.'}
   var OPEN=0;$('pickbox').addEventListener('toggle',function(e){if(e.target.classList&&e.target.classList.contains('iv-cut'))OPEN=e.target.open?1:0},true);
   pk();
   seg($('sort'),[['l','불 개수'],['u','목표가 여력'],['p','싼 순(PER)'],['d','많이 빠진 순']],'l',function(k){srt=k;draw()});
@@ -474,7 +538,70 @@ function pros(D){
     more($('big'),h.length?h:['<p class="iv-empty">자료가 없습니다.</p>'],12)}
   drawB();
 }
-fetch('d/ideas/'+(K==='p-value'?'value':'pros')+'.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(K==='p-value'?val:pros).catch(function(e){var t=$('take-text');if(t)t.textContent='자료를 불러오지 못했습니다.';console.error(e)});
+function get(n){return fetch('d/ideas/'+n+'.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()})}
+if(K==='p-value'){Promise.all([get('value'),get('gates').catch(function(){return null})]).then(function(a){val(a[0],a[1]);if(a[1]){my(a[1]);heat(a[1])}tabs()}).catch(function(e){var t=$('take-text');if(t)t.textContent='자료를 불러오지 못했습니다.';console.error(e)})}
+else get('pros').then(pros).catch(function(e){var t=$('take-text');if(t)t.textContent='자료를 불러오지 못했습니다.';console.error(e)});
+
+// 탭(사용자 2026-10-29) — 종목 찾기 / 내 종목 점검 / 반도체 온도판, 마지막 탭은 이 휴대폰에 기억
+function tabs(){var T=$('tabs');if(!T)return;var cur='find';try{cur=(location.hash.slice(1))||localStorage.getItem('mm-val-tab')||'find'}catch(e){}
+  function go(k){if(!$('t-'+k))k='find';[].forEach.call(T.children,function(b){b.classList.toggle('on',b.dataset.t===k)});['find','my','heat'].forEach(function(x){var el=$('t-'+x);if(el)el.hidden=x!==k});try{localStorage.setItem('mm-val-tab',k);history.replaceState(null,'','#'+k)}catch(e){}}
+  T.onclick=function(e){var b=e.target.closest('button');if(!b)return;go(b.dataset.t);var y=T.getBoundingClientRect().top+scrollY-8;if(scrollY>y)scrollTo(0,y)};go(cur)}
+var GCL={chain:{3:'ok',2:'mid',1:'no'},fin:{3:'ok',2:'mid',1:'no',0:''},spot:{4:'ok',3:'mid',2:'mid',1:'no'},wind:{3:'ok',2:'mid',1:'no'}};
+var GX={chain:'같은 층 동료들이 최근 실적에서 매출을 잘 넘기고 있는지(상회 비율)와 층 매출 성장, 그리고 이 종목 자신의 실적·AI 판정을 함께 봅니다. 층과 종목 둘 다 확인되면 \'AI 확인\', 한쪽만이면 \'확인 중\'입니다.',
+ fin:'선행 PER(같은 층 대비), 성장 대비 PER, EPS 서프라이즈, 매출 성장에 미국 증권거래위원회(SEC) 공식 재무의 영업이익률·잉여현금흐름·순부채를 더해 등급을 냅니다. 해외 상장사는 앞의 4가지만 씁니다.',
+ spot:'200일선 아래면 \'추세 아래\', 고점 근처·RSI 70 이상이면 \'고점 근처\', 고점 대비 −15% 이하·RSI 40 이하·50일선 근처면 \'눌림 자리\'입니다. 10년 채점에서 자리만으로는 3개월 성과가 크게 갈리지 않아, 사슬·재무 다음에 봅니다.',
+ wind:'같은 층 종목 가운데 50일선 위 비율과 이 종목 위치로 \'층 전체 조정\'인지 \'나 홀로 약세\'인지 구분합니다. 공매도·목표가·내부자 흐름도 함께 봅니다.'};
+var GN={chain:'① 사슬',fin:'② 재무',spot:'③ 자리',wind:'바람'};
+function lines(g){var c=g.chain,f=g.fin,s=g.spot,w=g.wind;
+  return {chain:'같은 층 '+c.peers+'곳 중 '+c.pbeat+'곳 최근 매출 상회'+(c.pyoy!=null?' · 층 매출 성장 가운데값 전년비 '+sg(c.pyoy)+'%':'')+' · 이 종목 '+(c.yoy!=null?'전년비 '+sg(c.yoy,0)+'%':'이번 분기 자료 대기')+(c.ai?' · AI 관점 '+c.ai:''),
+   fin:(f.why.length?f.why.join(' · '):'자료 부족')+(f.health?'':(FINON?' · 이익률·현금흐름·빚: SEC 자료 없음(해외 상장 등)':' · 이익률·현금흐름·빚은 SEC 공식 자료 연결 후 표시')),
+   spot:'1년 고점 대비 '+sg(s.dd,0)+'% · 50일선('+num(s.m50)+') 대비 '+sg(s.v50,1)+'% · 200일선('+num(s.m200)+') 대비 '+sg(s.v200,1)+'% · RSI '+(s.rsi==null?'—':s.rsi),
+   wind:'층 '+w.ln+'곳 중 '+w.a50+'곳 50일선 위 · 이 종목 50일선 '+(w.me50?'위':'아래')+(w.si!=null?' · 공매도 잔고 '+sg(w.si,1)+'%':'')+' · 목표가 60일 상향 '+w.up60+' · 하향 '+w.dn60+(w.ins?' · 내부자 순'+(w.ins>0?'매수 ':'매도 ')+usd(Math.abs(w.ins)):'')}}
+function card(t,g){var L=lines(g),k=['chain','fin','spot','wind'];
+  return '<div class="iv-mc" data-t="'+t+'"><div class="iv-mh"><b>'+esc(g.name)+'</b><small>'+esc(g.cat)+' · '+num(g.price)+(g.cur&&g.cur!=='USD'?' '+g.cur:'')+'</small></div>'
+   +'<div class="iv-gate">'+k.map(function(x){return '<button type="button" data-g="'+x+'" class="'+(GCL[x][g[x].lv]||'')+'"><small>'+GN[x]+'</small><b>'+esc(g[x].v)+'</b></button>'}).join('')+'</div>'
+   +'<div class="iv-gx" hidden></div><p class="iv-vd'+(g.stop?' stop':'')+'">'+esc(g.vd)+'</p>'
+   +k.map(function(x){return '<div class="iv-ln" data-l="'+x+'"><b>'+GN[x]+'</b><span>'+esc(L[x])+'</span></div>'}).join('')+'</div>'}
+var FINON=false;
+function my(G){FINON=!!G.fin_asof;var S=[];try{S=JSON.parse(localStorage.getItem('mm-my')||'[]')||[]}catch(e){}S=S.filter(function(t){return G.items[t]});
+  var open=0,qy='';function save(){try{localStorage.setItem('mm-my',JSON.stringify(S))}catch(e){}}
+  function opts(){var cats={};Object.keys(G.items).forEach(function(t){var g=G.items[t];if(qy&&(g.name+t).toLowerCase().indexOf(qy.toLowerCase())<0)return;(cats[g.cat]=cats[g.cat]||[]).push(t)});
+    return Object.keys(cats).map(function(c){return '<p>'+esc(c)+'</p>'+cats[c].map(function(t){return '<button type="button" data-a="'+t+'"'+(S.indexOf(t)>=0?' class="on"':'')+'>'+esc(G.items[t].name)+'</button>'}).join('')}).join('')||'<p>찾는 종목이 없습니다.</p>'}
+  function head(){$('mypick').innerHTML='<div class="iv-chips">'+S.map(function(t){return '<button type="button" data-x="'+t+'">'+esc(G.items[t].name)+' ✕</button>'}).join('')+'<button type="button" class="add" data-o="1">'+(open?'닫기':'＋ 종목 추가')+'</button></div>'
+    +(open?'<div class="iv-find"><input id="myq" placeholder="종목 이름 검색" value="'+esc(qy)+'"><div class="iv-opts" id="myopts">'+opts()+'</div></div>':'')}
+  function body(){$('mylist').innerHTML=S.length?S.map(function(t){return card(t,G.items[t])}).join(''):'<p class="iv-empty">＋ 종목 추가로 담은 종목이나 관심 종목을 고르면 여기에 관문 점검이 나옵니다. 예: 마이크론, 셀레스티카, 엔비디아</p>'}
+  $('mypick').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+    if(b.dataset.o){open=!open;head();var q=$('myq');if(q)q.focus();return}
+    if(b.dataset.x){S.splice(S.indexOf(b.dataset.x),1);save();head();body();return}
+    if(b.dataset.a){var i=S.indexOf(b.dataset.a);if(i>=0)S.splice(i,1);else S.push(b.dataset.a);save();var y=$('myopts')&&$('myopts').scrollTop;head();if($('myopts'))$('myopts').scrollTop=y;body()}});
+  $('mypick').addEventListener('input',function(e){if(e.target.id!=='myq')return;qy=e.target.value;$('myopts').innerHTML=opts()});
+  $('mylist').addEventListener('click',function(e){var b=e.target.closest('.iv-gate button');if(!b)return;var c=b.closest('.iv-mc'),x=b.dataset.g,gx=c.querySelector('.iv-gx'),was=b.classList.contains('sel');
+    [].forEach.call(c.querySelectorAll('.iv-gate button'),function(z){z.classList.remove('sel')});[].forEach.call(c.querySelectorAll('.iv-ln'),function(z){z.classList.toggle('hl',!was&&z.dataset.l===x)});
+    if(was){gx.hidden=true;return}b.classList.add('sel');gx.hidden=false;gx.innerHTML='<b>'+GN[x]+'은 이렇게 봅니다</b><br>'+esc(GX[x])});
+  head();body()}
+function heat(G){var X=G.soxx;
+  var vd=X.v200>0?(X.v50<0?'큰 추세(200일선)는 위, 짧은 추세(50일선)는 아래. 상승 추세 안에서 쉬어 가는 자리입니다.':'큰 추세·짧은 추세 모두 위. 오름세가 이어지는 자리입니다.'):'200일선 아래. 큰 추세가 꺾인 자리라 섹터째 담기는 신중할 때입니다.';
+  vd+=' 지난 1년 가장 깊었던 눌림은 '+md(X.worst_d)+' '+sg(X.worst,0)+'%였고, 지금은 '+sg(X.dd,0)+'%입니다. 우리 추적 종목 '+X.bn+'곳 중 '+X.breadth+'곳만 50일선 위에 있습니다.';
+  $('soxx').innerHTML='<h3>반도체 지수(SOXX)</h3><p class="sub">섹터째로 담을지 볼 때의 지수 자리입니다.</p><div class="iv-sx">'
+   +[['200일선 대비',X.v200],['50일선 대비',X.v50],['1년 고점 대비',X.dd]].map(function(a){return '<div><small>'+a[0]+'</small><b class="'+cls(a[1])+'">'+sg(a[1],1)+'%</b></div>'}).join('')
+   +'<div><small>RSI(14)</small><b>'+X.rsi+'</b></div><div><small>3개월</small><b class="'+cls(X.m3)+'">'+sg(X.m3,1)+'%</b></div><div><small>자리</small><b>'+esc(X.spot)+'</b></div></div>'
+   +'<div class="iv-lights">'+X.L.map(function(l,i){return '<span'+(X.on[i]?' class="on"':'')+'>'+(X.on[i]?'● ':'○ ')+esc(l)+'</span>'}).join('')+'</div>'
+   +'<p class="iv-vd">불 '+X.lights+'/'+X.L.length+' 켜짐 · '+esc(vd)+'</p>';
+  var LS=Object.keys(G.layers).map(function(c){var L=G.layers[c];L.c=c;return L}).sort(function(a,b){return b.lv-a.lv||(b.m3||0)-(a.m3||0)});
+  $('layers').innerHTML='<h3>사슬 층별 온도판</h3><p class="sub">층마다 \'실적(AI 확인)\'과 \'주가 흐름\'을 함께 봅니다. 실적은 좋은데 주가가 식은 층이 사슬 관점의 관심 자리입니다. 줄을 누르면 층 안 종목의 관문이 펼쳐집니다.</p>'
+   +'<div class="iv-lrh"><span>층 · 최근 실적 상회</span><span>매출 성장</span><span>3개월</span><span>온도</span></div>'
+   +LS.map(function(L){var ai=Object.keys(L.ai||{}).map(function(k){return k+L.ai[k]}).join('·')||'—';
+     var mem=Object.keys(G.items).filter(function(t){return G.items[t].cat===L.c}).map(function(t){var g=G.items[t];return '<div><b>'+esc(g.name)+'</b><span>'+esc(g.chain.v)+' · 재무 '+esc(g.fin.v)+' · '+esc(g.spot.v)+'</span></div>'}).join('');
+     return '<button type="button" class="iv-lr"><span class="n"><b>'+esc(L.c)+'</b><small>상회 '+L.beat+'/'+L.rep+' · AI '+ai+' · 50일선 위 '+L.a50+'/'+L.n+'</small></span><span class="c">'+(L.yoy==null?'—':sg(L.yoy)+'%')+'</span><span class="c '+cls(L.m3)+'">'+sg(L.m3,1)+'%</span><span class="c"><span class="iv-st iv-s'+L.lv+'">'+esc(L.temp)+'</span></span></button><div class="iv-mem">'+mem+'</div>'}).join('')
+   +'<p class="iv-note">매출 성장은 층별 최근 분기 전년비 가운데값 · AI는 실적 결과 페이지의 AI 관점 판정 수입니다.</p>';
+  $('layers').onclick=function(e){var b=e.target.closest('.iv-lr');if(b)b.nextElementSibling.classList.toggle('open')};
+  var B=G.bt,ORD=['눌림 자리','보통','고점 근처','추세 아래'];
+  function tb(o){return '<table class="iv-bt"><tr><th>자리</th><th>건수</th><th>평균</th><th>가운데값</th><th>이긴 비율</th></tr>'+ORD.filter(function(k){return o[k]}).map(function(k){var r=o[k];return '<tr><td>'+k+'</td><td>'+num(r.n)+'</td><td class="'+cls(r.avg)+'">'+sg(r.avg,1)+'%p</td><td class="'+cls(r.med)+'">'+sg(r.med,1)+'%p</td><td>'+r.hit+'%</td></tr>'}).join('')+'</table>'}
+  var hs=ORD.filter(function(k){return B.stocks[k]}).map(function(k){return B.stocks[k].hit}),sp=Math.max.apply(null,hs)-Math.min.apply(null,hs);
+  $('bt').innerHTML='<h3>자리 규칙 10년 채점</h3><p class="sub">‘자리’ 판정이 실제로 의미가 있었나 거꾸로 확인했습니다. 지난 10년 매달 말 각 종목의 자리를 판정하고, 3개월 뒤 나스닥100보다 얼마나 더 갔는지 셌습니다.</p>'
+   +'<p class="iv-pk-t" style="margin-top:6px">추적 종목 전체</p>'+tb(B.stocks)+'<p class="iv-pk-t">반도체 지수(SOXX)</p>'+tb(B.soxx)
+   +'<p class="iv-vd">'+(sp<8?'자리만으로는 3개월 성과가 거의 갈리지 않았습니다(이긴 비율 '+Math.min.apply(null,hs)+'~'+Math.max.apply(null,hs)+'%). 그래서 이 페이지는 자리를 맨 마지막 관문으로 둡니다. 사슬·재무가 먼저입니다.':'자리 단계에 따라 3개월 성과 차이가 뚜렷했습니다.')+' 평균이 가운데값보다 큰 건 몇몇 크게 오른 종목 덕분입니다.</p>'
+   +'<p class="iv-note">'+esc(B.note)+' · 지금 추적 중인 종목으로 과거를 본 것이라 성적이 실제보다 좋게 나오는 쪽입니다(살아남은 종목만 보는 편향).</p>'}
 })();
 </script></div><script data-tick>(function(){
   // 멍뭉 터미널: 누르는 곳마다 부드러운 '틱' 소리(소리 파일 없이 브라우저가 직접 만듦), 오른쪽 아래 🔊/🔇로 끄고 켬

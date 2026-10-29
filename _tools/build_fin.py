@@ -3,7 +3,10 @@
 # 사용: python3 -I _tools/build_fin.py <사이트 폴더>
 import json, os, sys, time, urllib.request, datetime as dt
 R = sys.argv[1] if len(sys.argv) > 1 else '.'
-UA = {'User-Agent': 'mung-mungi research mung-mungi@users.noreply.github.com'}  # SEC 규칙: '이름 이메일' 형식
+# SEC 규칙: 요청마다 '이름 연락처이메일'을 밝혀야 함 → GitHub 비밀값 SEC_UA로 받음(예: 'MungMung Terminal 이메일주소'). 없으면 조용히 건너뜀
+UA = {'User-Agent': os.environ.get('SEC_UA', '').strip()}
+if not UA['User-Agent']:
+    print('SEC_UA 없음 — 재무 체력 수집 건너뜀(사용자 연락처 이메일 설정 후 켜짐)'); sys.exit(0)
 def get(u):
     for i in range(3):
         try:

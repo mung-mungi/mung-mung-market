@@ -14,10 +14,12 @@ PAGES = {
 <div class="in-wrap iv-wrap">
   <header id="top" class="in-mast">
     <p class="in-eyebrow"><i aria-hidden="true"></i>아이디어 · 공사중 샘플</p>
-    <h1 class="in-h1"><span class="m">저평가 서치</span> <span class="s">불 7개</span></h1>
+    <h1 class="in-h1"><span class="m">저평가 서치</span> <span class="s">사슬 · 재무 · 자리</span></h1>
     <p class="in-take" id="take"><b id="take-chip">—</b><span id="take-text">불러오는 중</span></p>
   </header>
   <section class="in-tiles" id="tiles"></section>
+  <div class="iv-tabs" id="tabs"><button type="button" data-t="find" class="on">종목 찾기</button><button type="button" data-t="my">내 종목 점검</button><button type="button" data-t="heat">반도체 온도판</button></div>
+  <div class="iv-tab" id="t-find">
   <section class="in-card"><h3>불 많이 켜진 순</h3>
     <p class="sub">추천 목록이 아니라 '한번 들여다볼 만한 곳'을 고르는 체입니다. 아래에서 어떤 불을 셀지 직접 고를 수 있고, 줄을 누르면 불마다 근거 숫자가 펼쳐집니다.</p>
     <div class="iv-pick" id="pickbox"></div>
@@ -35,10 +37,25 @@ PAGES = {
       <li><b>목표가 오름세</b> 최근 60일 목표가 상향이 2건 이상이고 하향의 2배 넘음.</li>
       <li><b>고수 상향</b> '고수 성적표' 적중률 상위 10곳 중 한 곳이라도 최근 60일 안에 상향.</li>
       <li><b>수급 개선</b> 공매도 잔고 감소, 기관 보유 비중 증가, 내부자 순매수 가운데 하나 이상.</li>
+      <li><b>사슬 확인</b> 같은 층 동료들이 최근 실적에서 AI 매출을 잘 빼고 있고, 이 종목 자신도 실적·AI 판정으로 확인될 때.</li>
+      <li><b>재무 체력</b> 몸값·성장·이익률·현금흐름·빚을 묶은 재무 등급이 A·B일 때('내 종목 점검' 탭과 같은 기준).</li>
       <li><b>주의</b> 눌림 불은 '떨어지는 칼'일 수도 있습니다. 3개월 새 30% 넘게 빠진 곳은 따로 표시합니다.</li>
     </ul></div></div>
-    <p class="how">자료: 사이트에 이미 쌓인 목표주가 기록·분기 실적·시세(선행 PER 포함)·공매도·13F·내부자 거래. 새로 긁어 오는 자료는 없습니다. 매수·매도 권유가 아닙니다.</p>
+    <p class="how">자료: 사이트에 이미 쌓인 목표주가 기록·분기 실적·시세(선행 PER 포함)·공매도·13F·내부자 거래, 그리고 미국 증권거래위원회(SEC) 공식 재무 자료. 매수·매도 권유가 아닙니다.</p>
   </section>
+  </div>
+  <div class="iv-tab" id="t-my" hidden>
+  <section class="in-card"><h3>내 종목 점검</h3>
+    <p class="sub">담았거나 관심 있는 종목을 고르면 사슬 → 재무 → 자리 순서로 점검합니다. 앞 관문이 흔들리면 자리가 좋아도 '물타기 멈춤'을 띄웁니다. 고른 목록은 이 휴대폰에만 저장됩니다.</p>
+    <div id="mypick"></div>
+  </section>
+  <div class="iv-list" id="mylist"></div>
+  </div>
+  <div class="iv-tab" id="t-heat" hidden>
+  <section class="in-card" id="soxx"></section>
+  <section class="in-card" id="layers"></section>
+  <section class="in-card" id="bt"></section>
+  </div>
 </div>'''},
  'p-pros': {'title': '고수 성적표', 'desc': '증권사 의견을 3개월 뒤 실제 주가로 채점한 적중률 순위·최근 상향·큰손 포트폴리오(공사중)',
   'body': '''
