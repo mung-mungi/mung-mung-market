@@ -144,11 +144,13 @@ function cur(){var a=list();for(var i=0;i<a.length;i++)if(a[i].classList.contain
 function scrollX(el){for(;el&&el!==document.body;el=el.parentElement){var c=getComputedStyle(el);if(/(auto|scroll)/.test(c.overflowX)&&el.scrollWidth>el.clientWidth+4)return 1}return 0}
 document.addEventListener('touchstart',function(e){on=0;if(e.touches.length>1)return;var t=e.touches[0],w=innerWidth;
 if(t.clientX<26||t.clientX>w-26)return;var g=e.target;
-if(g.closest&&g.closest('svg,canvas,input,textarea,select,.mmd,.mmd-sheet,#mm-fab,[data-noswipe]'))return;
+if(g.closest&&g.closest('canvas,input,textarea,select,.mmd,.mmd-sheet,#mm-fab,[data-noswipe]'))return;
+var sv=g.closest&&g.closest('svg');while(sv&&sv.parentElement&&sv.parentElement.closest('svg'))sv=sv.parentElement.closest('svg');
+if(sv&&sv.getBoundingClientRect().width>140)return;
 if(scrollX(g))return;var s=document.querySelector('.mmd-sheet');if(s&&!s.hidden)return;
-if(cur()<0)return;x0=t.clientX;y0=t.clientY;dx=0;on=1;tgt=null},{passive:true});
+if(cur()<0)return;x0=t.clientX;y0=t.clientY;dx=0;on=1;tgt=null},{passive:true,capture:true});
 document.addEventListener('touchmove',function(e){if(!on)return;var t=e.touches[0];dx=t.clientX-x0;var dy=t.clientY-y0;
-if(!tgt){if(Math.abs(dy)>14&&Math.abs(dy)>Math.abs(dx)){on=0;return}if(Math.abs(dx)<14)return;
+if(!tgt){if(Math.abs(dx)+Math.abs(dy)<16)return;if(Math.abs(dx)<Math.abs(dy)*1.2){on=0;return}
 var a=list(),i=cur(),j=dx<0?i+1:i-1;if(j<0||j>=a.length){on=0;return}tgt=a[j];
 box=document.getElementById('mm-swp')||document.body.appendChild(Object.assign(document.createElement('div'),{id:'mm-swp'}));
 box.textContent=dx<0?(tgt.textContent.trim()+' ›'):('‹ '+tgt.textContent.trim())}
@@ -156,11 +158,11 @@ if((dx<0)!==(box.textContent.slice(-1)==='›')){hideBox();on=0;return}
 var w=innerWidth,f=Math.min(Math.abs(dx)/(w*TH),1),pos=-120+f*136;
 box.style.opacity=Math.min(1,f*1.6);box.style.transform='translateY(-50%)';
 if(dx<0){box.style.right=pos+'px';box.style.left='auto'}else{box.style.left=pos+'px';box.style.right='auto'}
-box.classList.toggle('ready',f>=1)},{passive:true});
+box.classList.toggle('ready',f>=1)},{passive:true,capture:true});
 function hideBox(){if(box){box.style.opacity=0;box.classList.remove('ready')}}
 document.addEventListener('touchend',function(){if(!on)return;on=0;
-if(tgt&&Math.abs(dx)>=innerWidth*TH){var h=tgt.getAttribute('href');document.documentElement.classList.add('mm-leave');setTimeout(function(){location.href=h},140)}else hideBox()},{passive:true});
-document.addEventListener('touchcancel',function(){on=0;hideBox()},{passive:true});
+if(tgt&&Math.abs(dx)>=innerWidth*TH){var h=tgt.getAttribute('href');document.documentElement.classList.add('mm-leave');setTimeout(function(){location.href=h},140)}else hideBox()},{passive:true,capture:true});
+document.addEventListener('touchcancel',function(){on=0;hideBox()},{passive:true,capture:true});
 addEventListener('pageshow',function(){document.documentElement.classList.remove('mm-leave');hideBox()});
 }catch(e){}})();
 </script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>#mm-splash{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:linear-gradient(180deg,#fbf7ee,#f3efe4);transition:opacity .4s ease,transform .4s ease}
@@ -183,7 +185,7 @@ function add(){(document.body||document.documentElement).appendChild(d);var v=d.
 if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
 d.addEventListener('click',close);setTimeout(close,6500)})();
-</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="내부자·기관 보유 변화"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-insider.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610291541">(function(){var me="202610291541";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>내부자·기관 보유 변화</title><style>:root{color-scheme:light;
+</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="내부자·기관 보유 변화"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-insider.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610291546">(function(){var me="202610291546";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>내부자·기관 보유 변화</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
