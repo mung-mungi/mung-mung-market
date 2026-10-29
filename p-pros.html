@@ -228,7 +228,7 @@ function add(){(document.body||document.documentElement).appendChild(d);var v=d.
 if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
 d.addEventListener('click',close);setTimeout(close,6500)})();
-</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="고수 성적표"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-pros.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610292245">(function(){var me="202610292245";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>고수 성적표 · 멍뭉 터미널</title><style>:root{color-scheme:light;
+</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="고수 성적표"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-pros.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610292251">(function(){var me="202610292251";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>고수 성적표 · 멍뭉 터미널</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
@@ -381,6 +381,8 @@ window.addEventListener('load',function(){ctr();setTimeout(ctr,300);setTimeout(c
 /* 정렬 알약 줄(스킬 양식 5: 표 머리글 → '정렬' 알약, 현재 기준은 검은 알약) */
 .iv-sortp{align-items:center}.iv-sortp:before{content:'정렬';flex:none;font:800 12.5px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a968c;margin:0 2px 0 2px}
 #take .tg3{margin-top:8px}
+
+.iv-grp{margin:14px 2px 2px;font-size:16px;font-weight:900;color:#1d1c1a}.iv-grp span{font-size:13px;color:#8a877f;font-weight:700;margin-left:4px}.iv-gsub{margin:0 2px 8px;font-size:13px;color:#6b675f;line-height:1.45}
 </style>
 <div class="in-wrap iv-wrap">
   <header id="top" class="in-mast">
@@ -535,9 +537,27 @@ function pros(D){
   var bt='l';seg($('btab'),[['l','레오폴드 펀드'],['i','기관 보유 변화'],['s','내부자 매매']],'l',function(k){bt=k;drawB()});tog($('big'));
   function drawB(){var h;
     if(bt==='l')h=D.leopold.map(function(x){return row(esc(x.name),esc(x.q)+' · '+esc(x.ticker),'<b>'+usd(x.value_bn*1e9)+'</b><small>보유 금액</small>','<span class="iv-0">'+x.pct.toFixed(1)+'%</span><small>포트 비중</small>','<p class="iv-note">직전 분기 대비 '+esc(x.change)+'. AI 인프라에 집중 투자하는 상황인식(Situational Awareness, 레오폴드 아셴브레너) 펀드의 13F 공시 기준입니다.</p>')});
-    else if(bt==='i')h=D.inst.map(function(x){return row(esc(x.name),esc(x.cat),'<b>'+num(x.holders)+'곳</b><small>보유 기관 '+sg(x.chg)+'곳</small>','<span class="'+cls(x.own_chg)+'">'+sg(x.own_chg,1)+'</span><small>지분율 %p</small>','<p class="iv-note">'+esc(x.q)+' 말 기준 기관 지분율 '+x.own.toFixed(1)+'%. 보유 기관 수는 대체로 늘어나는 게 보통이라, 지분율이 줄어든 곳이 더 눈에 띄는 신호입니다.</p>')});
-    else h=D.insider.map(function(x){var n=x.buy-x.sell;return row(esc(x.name),esc(x.ticker),'매수 <b>'+x.nb+'</b> · 매도 <b>'+x.ns+'</b><small>최근 60일 건수</small>','<span class="'+cls(n)+'">'+(n<0?usd(-n):usd(n))+'</span><small>'+(n<0?'순매도':n>0?'순매수':'매수=매도')+'</small>','<p class="iv-note">매수 '+usd(x.buy)+' · 매도 '+usd(x.sell)+'. 임원 매도는 보수·세금 때문에 늘 많아서, 드문 매수가 더 의미 있는 신호입니다.</p>')});
+    else if(bt==='i'){
+      // 의미 있는 신호만 위로(사용자 2026-10-29): 기관은 '줄인 곳'이 드문 신호, 크게 늘린 곳은 그다음, 나머지는 접음
+      var ir=function(x){return row(esc(x.name),esc(x.cat),'<b>'+num(x.holders)+'곳</b><small>보유 기관 '+sg(x.chg)+'곳</small>','<span class="'+cls(x.own_chg)+'">'+sg(x.own_chg,1)+'</span><small>지분율 %p</small>','<p class="iv-note">'+esc(x.q)+' 말 기준 기관 지분율 '+x.own.toFixed(1)+'%. 보유 기관 수는 대체로 늘어나는 게 보통이라, 지분율이 줄어든 곳이 더 눈에 띄는 신호입니다.</p>')};
+      var dn=D.inst.filter(function(x){return x.own_chg<0||x.chg<0}).sort(function(a,b){return Math.min(a.own_chg,0)-Math.min(b.own_chg,0)||a.chg-b.chg});
+      var up=D.inst.filter(function(x){return dn.indexOf(x)<0&&x.own_chg>=5});
+      var rest=D.inst.filter(function(x){return dn.indexOf(x)<0&&up.indexOf(x)<0});
+      grp($('big'),[['🔴 기관이 줄인 곳','지분율이나 보유 기관 수가 줄었습니다. 기관은 대체로 늘려 가는 게 보통이라 드문 신호입니다.',dn.map(ir)],
+        ['🟢 기관이 크게 늘린 곳','지분율 +5%p 이상. 한 분기에 이만큼 늘리면 기관이 새로 주목했다는 뜻입니다.',up.map(ir)]],
+        ['평소 수준으로 늘린 곳',rest.map(ir)]);return}
+    else{
+      // 내부자는 '매수'가 드문 신호, 매도는 최고경영진이 보유분 20% 넘게 판 경우만 위로. 나머지 매도(보수·세금용)는 접음
+      var sr=function(x,bm){var n=x.buy-x.sell,f=x.flag||[];return row(esc(x.name),esc(x.ticker),'매수 <b>'+x.nb+'</b> · 매도 <b>'+x.ns+'</b><small>최근 60일 건수</small>',(bm?'<span class="iv-up">'+usd(x.buy)+'</span><small>매수 금액</small>':'<span class="'+cls(n)+'">'+(n<0?usd(-n):usd(n))+'</span><small>'+(n<0?'순매도':n>0?'순매수':'매수=매도')+'</small>'),
+        '<p class="iv-note">매수 '+usd(x.buy)+' · 매도 '+usd(x.sell)+'.'+(f.length?'<br>'+f.map(function(t){return md(t.date)+' '+esc(t.who)+' '+usd(t.v)+' 매도 · 보유분의 '+t.pct+'%'}).join('<br>'):'')+'</p>')};
+      var by=D.insider.filter(function(x){return x.nb>0}),fl=D.insider.filter(function(x){return !x.nb&&x.flag}),rs=D.insider.filter(function(x){return !x.nb&&!x.flag});
+      grp($('big'),[['🟢 내부자가 산 곳','회사 사정을 가장 잘 아는 임원이 자기 돈으로 샀습니다. 매도보다 훨씬 드물어 의미 있는 신호입니다.',by.map(function(x){return sr(x,1)})],
+        ['🔴 핵심 임원이 크게 판 곳','최고경영자·재무책임자·회장이 가진 주식의 20% 넘게 한 번에 팔았습니다.',fl.map(function(x){return sr(x)})]],
+        ['평소 수준 매도(보수·세금용)',rs.map(function(x){return sr(x)})]);return}
     more($('big'),h.length?h:['<p class="iv-empty">자료가 없습니다.</p>'],12)}
+  function grp(el,G,R){var o='';G.forEach(function(g){o+='<p class="iv-grp">'+g[0]+' <span>'+g[2].length+'곳</span></p><p class="iv-gsub">'+g[1]+'</p>'+(g[2].length?g[2].join(''):'<p class="iv-empty">지금은 없습니다.</p>')});
+    o+=R[1].length?'<button type="button" class="iv-more">▼ '+R[0]+' '+R[1].length+'곳 보기</button><div class="iv-rest" hidden>'+R[1].join('')+'</div>':'';
+    el.innerHTML=o;var b=el.querySelector('.iv-more');if(b)b.onclick=function(){var r=el.querySelector('.iv-rest');r.hidden=!r.hidden;b.textContent=(r.hidden?'▼ ':'▲ ')+R[0]+' '+R[1].length+'곳 '+(r.hidden?'보기':'접기')}}
   drawB();
 }
 function get(n){return fetch('d/ideas/'+n+'.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()})}

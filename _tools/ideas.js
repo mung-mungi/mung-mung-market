@@ -118,9 +118,27 @@ function pros(D){
   var bt='l';seg($('btab'),[['l','레오폴드 펀드'],['i','기관 보유 변화'],['s','내부자 매매']],'l',function(k){bt=k;drawB()});tog($('big'));
   function drawB(){var h;
     if(bt==='l')h=D.leopold.map(function(x){return row(esc(x.name),esc(x.q)+' · '+esc(x.ticker),'<b>'+usd(x.value_bn*1e9)+'</b><small>보유 금액</small>','<span class="iv-0">'+x.pct.toFixed(1)+'%</span><small>포트 비중</small>','<p class="iv-note">직전 분기 대비 '+esc(x.change)+'. AI 인프라에 집중 투자하는 상황인식(Situational Awareness, 레오폴드 아셴브레너) 펀드의 13F 공시 기준입니다.</p>')});
-    else if(bt==='i')h=D.inst.map(function(x){return row(esc(x.name),esc(x.cat),'<b>'+num(x.holders)+'곳</b><small>보유 기관 '+sg(x.chg)+'곳</small>','<span class="'+cls(x.own_chg)+'">'+sg(x.own_chg,1)+'</span><small>지분율 %p</small>','<p class="iv-note">'+esc(x.q)+' 말 기준 기관 지분율 '+x.own.toFixed(1)+'%. 보유 기관 수는 대체로 늘어나는 게 보통이라, 지분율이 줄어든 곳이 더 눈에 띄는 신호입니다.</p>')});
-    else h=D.insider.map(function(x){var n=x.buy-x.sell;return row(esc(x.name),esc(x.ticker),'매수 <b>'+x.nb+'</b> · 매도 <b>'+x.ns+'</b><small>최근 60일 건수</small>','<span class="'+cls(n)+'">'+(n<0?usd(-n):usd(n))+'</span><small>'+(n<0?'순매도':n>0?'순매수':'매수=매도')+'</small>','<p class="iv-note">매수 '+usd(x.buy)+' · 매도 '+usd(x.sell)+'. 임원 매도는 보수·세금 때문에 늘 많아서, 드문 매수가 더 의미 있는 신호입니다.</p>')});
+    else if(bt==='i'){
+      // 의미 있는 신호만 위로(사용자 2026-10-29): 기관은 '줄인 곳'이 드문 신호, 크게 늘린 곳은 그다음, 나머지는 접음
+      var ir=function(x){return row(esc(x.name),esc(x.cat),'<b>'+num(x.holders)+'곳</b><small>보유 기관 '+sg(x.chg)+'곳</small>','<span class="'+cls(x.own_chg)+'">'+sg(x.own_chg,1)+'</span><small>지분율 %p</small>','<p class="iv-note">'+esc(x.q)+' 말 기준 기관 지분율 '+x.own.toFixed(1)+'%. 보유 기관 수는 대체로 늘어나는 게 보통이라, 지분율이 줄어든 곳이 더 눈에 띄는 신호입니다.</p>')};
+      var dn=D.inst.filter(function(x){return x.own_chg<0||x.chg<0}).sort(function(a,b){return Math.min(a.own_chg,0)-Math.min(b.own_chg,0)||a.chg-b.chg});
+      var up=D.inst.filter(function(x){return dn.indexOf(x)<0&&x.own_chg>=5});
+      var rest=D.inst.filter(function(x){return dn.indexOf(x)<0&&up.indexOf(x)<0});
+      grp($('big'),[['🔴 기관이 줄인 곳','지분율이나 보유 기관 수가 줄었습니다. 기관은 대체로 늘려 가는 게 보통이라 드문 신호입니다.',dn.map(ir)],
+        ['🟢 기관이 크게 늘린 곳','지분율 +5%p 이상. 한 분기에 이만큼 늘리면 기관이 새로 주목했다는 뜻입니다.',up.map(ir)]],
+        ['평소 수준으로 늘린 곳',rest.map(ir)]);return}
+    else{
+      // 내부자는 '매수'가 드문 신호, 매도는 최고경영진이 보유분 20% 넘게 판 경우만 위로. 나머지 매도(보수·세금용)는 접음
+      var sr=function(x,bm){var n=x.buy-x.sell,f=x.flag||[];return row(esc(x.name),esc(x.ticker),'매수 <b>'+x.nb+'</b> · 매도 <b>'+x.ns+'</b><small>최근 60일 건수</small>',(bm?'<span class="iv-up">'+usd(x.buy)+'</span><small>매수 금액</small>':'<span class="'+cls(n)+'">'+(n<0?usd(-n):usd(n))+'</span><small>'+(n<0?'순매도':n>0?'순매수':'매수=매도')+'</small>'),
+        '<p class="iv-note">매수 '+usd(x.buy)+' · 매도 '+usd(x.sell)+'.'+(f.length?'<br>'+f.map(function(t){return md(t.date)+' '+esc(t.who)+' '+usd(t.v)+' 매도 · 보유분의 '+t.pct+'%'}).join('<br>'):'')+'</p>')};
+      var by=D.insider.filter(function(x){return x.nb>0}),fl=D.insider.filter(function(x){return !x.nb&&x.flag}),rs=D.insider.filter(function(x){return !x.nb&&!x.flag});
+      grp($('big'),[['🟢 내부자가 산 곳','회사 사정을 가장 잘 아는 임원이 자기 돈으로 샀습니다. 매도보다 훨씬 드물어 의미 있는 신호입니다.',by.map(function(x){return sr(x,1)})],
+        ['🔴 핵심 임원이 크게 판 곳','최고경영자·재무책임자·회장이 가진 주식의 20% 넘게 한 번에 팔았습니다.',fl.map(function(x){return sr(x)})]],
+        ['평소 수준 매도(보수·세금용)',rs.map(function(x){return sr(x)})]);return}
     more($('big'),h.length?h:['<p class="iv-empty">자료가 없습니다.</p>'],12)}
+  function grp(el,G,R){var o='';G.forEach(function(g){o+='<p class="iv-grp">'+g[0]+' <span>'+g[2].length+'곳</span></p><p class="iv-gsub">'+g[1]+'</p>'+(g[2].length?g[2].join(''):'<p class="iv-empty">지금은 없습니다.</p>')});
+    o+=R[1].length?'<button type="button" class="iv-more">▼ '+R[0]+' '+R[1].length+'곳 보기</button><div class="iv-rest" hidden>'+R[1].join('')+'</div>':'';
+    el.innerHTML=o;var b=el.querySelector('.iv-more');if(b)b.onclick=function(){var r=el.querySelector('.iv-rest');r.hidden=!r.hidden;b.textContent=(r.hidden?'▼ ':'▲ ')+R[0]+' '+R[1].length+'곳 '+(r.hidden?'보기':'접기')}}
   drawB();
 }
 function get(n){return fetch('d/ideas/'+n+'.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()})}

@@ -88,3 +88,5 @@
 /* 정렬 알약 줄(스킬 양식 5: 표 머리글 → '정렬' 알약, 현재 기준은 검은 알약) */
 .iv-sortp{align-items:center}.iv-sortp:before{content:'정렬';flex:none;font:800 12.5px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a968c;margin:0 2px 0 2px}
 #take .tg3{margin-top:8px}
+
+.iv-grp{margin:14px 2px 2px;font-size:16px;font-weight:900;color:#1d1c1a}.iv-grp span{font-size:13px;color:#8a877f;font-weight:700;margin-left:4px}.iv-gsub{margin:0 2px 8px;font-size:13px;color:#6b675f;line-height:1.45}

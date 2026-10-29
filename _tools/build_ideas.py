@@ -87,7 +87,13 @@ for t in ins:
     v = t.get('value_usd') or 0
     o = insd.setdefault(t['ticker'], {'ticker': t['ticker'], 'name': t['company'], 'buy': 0, 'sell': 0, 'nb': 0, 'ns': 0})
     if t['side'] == '매수': o['buy'] += v; o['nb'] += 1
-    elif t['side'] == '매도': o['sell'] += v; o['ns'] += 1
+    elif t['side'] == '매도':
+        o['sell'] += v; o['ns'] += 1
+        # 의미 있는 매도(사용자 2026-10-29): 최고경영진(CEO·CFO·회장)이 보유분의 20% 이상을 한 번에 판 경우(대형주 임원의 정기 매도는 금액이 커도 보유분의 몇 %라 제외)
+        ttl = t.get('title') or ''; sh = t.get('shares') or 0; left = t.get('owned_after') or 0
+        pct = sh / (sh + left) * 100 if sh and (sh + left) else 0
+        if any(k in ttl for k in ('CEO', 'CFO', '회장')) and pct >= 20:
+            o.setdefault('flag', []).append({'who': ttl, 'name': t.get('insider'), 'date': t.get('trade_date'), 'v': v, 'pct': round(pct)})
 pros = {'asof': LAST, 'horizon_days': H, 'min_calls': MINN, 'scored': scored, 'firms_total': len(firms), 'rank': rows, 'recent': recent[:40],
         'leopold': [{'ticker': l['ticker'], 'name': l['name'], 'pct': l['pct_portfolio'], 'value_bn': round(l['value_usd'] / 1e9, 2), 'change': l['change'], 'q': l['q']} for l in leo_rows],
         'inst': inst, 'insider': sorted(insd.values(), key=lambda o: -(o['buy'] - o['sell']))}
