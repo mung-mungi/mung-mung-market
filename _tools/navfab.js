@@ -9,3 +9,20 @@ var r=document.referrer;if(history.length>1&&r&&r.indexOf(location.origin)===0)h
 document.body.appendChild(d)}
 if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 }catch(e){}})();
+// 한동안 안 쓰면 독 숨기기(사용자 2026-10-29) — 독·버튼을 6초 동안 안 건드리면 아래로 내려가고 손잡이만 남음
+// 다시 올리기: 손잡이 누르기·위로 밀기, 또는 화면을 위로 크게 되돌려 올릴 때
+(function(){try{
+var IDLE=6000,t=0,B=document.body;
+function sheetOpen(){var s=document.querySelector('.mmd-sheet');return s&&!s.hidden}
+function arm(){clearTimeout(t);t=setTimeout(function(){if(!sheetOpen()&&document.querySelector('.mmd'))B.classList.add('mmd-hide')},IDLE)}
+function show(){B.classList.remove('mmd-hide');arm()}
+function init(){B=document.body;if(!document.querySelector('.mmd'))return setTimeout(init,500);
+var p=document.createElement('button');p.id='mm-pull';p.setAttribute('aria-label','아래 메뉴 열기');p.innerHTML='<em></em>';B.appendChild(p);
+p.addEventListener('click',show);var y0=0;
+p.addEventListener('touchstart',function(e){y0=e.touches[0].clientY},{passive:true});
+p.addEventListener('touchmove',function(e){if(y0-e.touches[0].clientY>12)show();e.preventDefault()},{passive:false});
+['touchstart','click'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest('.mmd,#mm-fab,.mmd-sheet'))show()},{passive:true})});
+var ly=scrollY,up=0;addEventListener('scroll',function(){var y=scrollY;if(y<ly){up+=ly-y;if(up>160||y<40)show()}else up=0;ly=y},{passive:true});
+arm()}
+if(document.body)init();else document.addEventListener('DOMContentLoaded',init);
+}catch(e){}})();
