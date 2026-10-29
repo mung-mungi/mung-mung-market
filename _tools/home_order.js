@@ -19,7 +19,22 @@
     return (n ? '불 ' + n[1] + '/' + n[2] : '') + (st ? ' · <em style="color:' + col + '">● ' + st[1] + '</em>' : '');
   }
   var busy = false;
-  function go(){
+  // 아이디어 페이지 묶음(공사중) — 메인 화면 맨 아래에 붙임(사용자 2026-10-29)
+  function ideas(){
+    if (document.querySelector('a.item[href^="p-value"]')) return;
+    var last = document.querySelector('a.item[href^="p-insider"]'); if (!last) return;
+    var grp = last.closest('nav.list') && last.closest('nav.list').parentElement; if (!grp) return;
+    var vq = ((last.getAttribute('href') || '').match(/\?v=\d+/) || [''])[0];
+    var IC = {v:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M8 13l2-2 2 1.5L14.5 9"/></svg>',
+      p:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3"/><path d="M7 5H4v2a3 3 0 0 0 3 3"/></svg>'};
+    function card(h, ic, t, w, hl, g){ return '<a class="item" style="--c:#c2410c" href="' + h + vq + '"><div class="top"><div class="ic" aria-hidden="true">' + ic + '</div><div><div class="ttl">' + t + ' <em class="mm-wip">공사중</em></div><div class="when">' + w + '</div></div></div><div class="hl">' + hl + '</div><div class="go">' + g + '<span aria-hidden="true">→</span></div></a>'; }
+    var d = document.createElement('div'); d.className = 'mm-ideas';
+    d.innerHTML = '<p class="sh">아이디어 · 공사중<span>2개</span></p><nav class="list">'
+      + card('p-value.html', IC.v, '저평가 서치', '불 7개 · 내 기준 고르기', '목표가·실적·밸류·수급 불을 켜서 들여다볼 종목을 넓혀 봅니다', '서치 보기')
+      + card('p-pros.html', IC.p, '고수 성적표', '증권사 적중률 · 큰손 포트폴리오', '의견을 3개월 뒤 주가로 채점한 순위와 잘 맞히는 곳의 최근 상향을 봅니다', '성적표 보기') + '</nav>';
+    grp.after(d);
+  }
+  function go(){ try { ideas(); } catch (e) {}
     if (busy) return; busy = true;
     try {
       var first = document.querySelector('a.item[href*="p-brief.html"]'); var list = first && first.parentElement;
@@ -51,7 +66,8 @@
    + '.mm-compact .list .item .top::after{content:"›";flex:none;margin-left:auto;font-size:22px;line-height:1;font-weight:700;color:var(--c)}'
    + '.mm-compact .list .item .hl{font-size:13px!important;line-height:1.5!important;margin:9px 0 0!important;-webkit-line-clamp:2!important}'
    + '.mm-compact .list .item .go{display:none!important}'
-   + '.mm-compact .list{gap:10px!important}';
+   + '.mm-compact .list{gap:10px!important}'
+   + '.mm-wip{font-style:normal;display:inline-block;vertical-align:2px;margin-left:4px;padding:2px 6px;border-radius:6px;background:#e07a12;color:#fff;font-size:10.5px;font-weight:800;letter-spacing:-.02em}';
   (document.head || document.documentElement).appendChild(st);
   go(); document.addEventListener('DOMContentLoaded', go); window.addEventListener('load', go);
   var q = 0; try { new MutationObserver(function(){ if (q) return; q = 1; setTimeout(function(){ q = 0; go(); }, 80); }).observe(document.documentElement, { subtree: true, childList: true }); } catch (e) {}
