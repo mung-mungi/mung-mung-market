@@ -1,0 +1,7 @@
+/* 줄바꿈 다듬기 — 전 페이지 공통(사용자 2026-10-29): 낱말 중간에서 안 끊고, 한 글자만 다음 줄로 넘어가는 줄을 줄임 */
+body{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
+p,li,dd,td,th,small,[class*="tile"] span,[class*="card"] span,[class*="card"] p{text-wrap:pretty}
+h1,h2,h3,h4,[class*="tile"] .v,[class*="tile"] b,[class*="kpi"] b{text-wrap:balance}
+/* 경제지표 '다음 큰 발표' 칸은 두 칸 너비 — 긴 행사 이름이 2줄로 끝나고, 5칸이 빈자리 없이 2줄에 딱 맞음 */
+.mc-tiles .mc-tile.hot{grid-column:span 2!important}
+.mc-tiles .mc-tile.hot .v.sm{-webkit-line-clamp:2!important}

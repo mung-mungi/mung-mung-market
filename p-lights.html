@@ -37,6 +37,38 @@ document.addEventListener('visibilitychange',function(){if(document.hidden){hidA
 window.addEventListener('pageshow',function(e){if(e.persisted)check(true)});
 setInterval(function(){if(!document.hidden)check(false)},10*60*1000);
 }catch(e){}})();
+</script><style data-wrapfix>/* 줄바꿈 다듬기 — 전 페이지 공통(사용자 2026-10-29): 낱말 중간에서 안 끊고, 한 글자만 다음 줄로 넘어가는 줄을 줄임 */
+body{word-break:keep-all;overflow-wrap:break-word;line-break:strict}
+p,li,dd,td,th,small,[class*="tile"] span,[class*="card"] span,[class*="card"] p{text-wrap:pretty}
+h1,h2,h3,h4,[class*="tile"] .v,[class*="tile"] b,[class*="kpi"] b{text-wrap:balance}
+/* 경제지표 '다음 큰 발표' 칸은 두 칸 너비 — 긴 행사 이름이 2줄로 끝나고, 5칸이 빈자리 없이 2줄에 딱 맞음 */
+.mc-tiles .mc-tile.hot{grid-column:span 2!important}
+.mc-tiles .mc-tile.hot .v.sm{-webkit-line-clamp:2!important}
+</style><script data-wrapfix>// 줄바꿈 다듬기 — 전 페이지 공통(사용자 2026-10-29)
+// ① 붙어 있는 괄호 앞에 '끊어도 되는 자리'를 넣음: 국내총생산(GDP) → 국내총생산 / (GDP) 로만 끊김 ('(GDP' / ')' 처럼 깨지지 않게)
+//    날짜 요일 10.29(목), 숫자 괄호는 건드리지 않음
+// ② 칸(줄 수 제한 있는 글)이 넘치면 글자를 1px씩 줄여(최대 3px) 잘림(…) 없이 다 보이게
+(function(){
+var SKIP={SCRIPT:1,STYLE:1,TEXTAREA:1,INPUT:1,CODE:1,PRE:1,NOSCRIPT:1};
+var RX=/([가-힣A-Za-z])\((?=[^)\d\s][^)]+\))/g;
+function txt(root){try{
+var w=document.createTreeWalker(root||document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;return p&&!SKIP[p.nodeName]&&!(p.closest&&p.closest('svg,[contenteditable]'))&&RX.test(n.nodeValue)?1:3}});
+var a=[],n;while(n=w.nextNode())a.push(n);
+a.forEach(function(n){RX.lastIndex=0;n.nodeValue=n.nodeValue.replace(RX,'$1​(')});RX.lastIndex=0}catch(e){}}
+var SEL='[class*="tile"] *,[class*="kpi"] *,[class*="cell"] *,[class*="stat"] *';
+function fit(){try{document.querySelectorAll(SEL).forEach(function(e){
+if(!e.childNodes.length||e.children.length>2)return;var c=getComputedStyle(e);
+var clamp=c.webkitLineClamp&&c.webkitLineClamp!=='none';
+var over=function(){return (clamp&&e.scrollHeight>e.clientHeight+2)||e.scrollWidth>e.clientWidth+1};
+if(!e.dataset.wfBase){if(!over())return;e.dataset.wfBase=parseFloat(c.fontSize)}
+var b=+e.dataset.wfBase,s=b;e.style.fontSize=b+'px';
+while(over()&&s>b-3&&s>11){s-=1;e.style.fontSize=s+'px'}
+})}catch(x){}}
+var t=0;function run(){clearTimeout(t);t=setTimeout(function(){txt();fit()},60)}
+function start(){run();try{new MutationObserver(function(m){for(var i=0;i<m.length;i++){if(m[i].type!=='attributes'){run();return}}}).observe(document.body,{childList:true,subtree:true,characterData:true})}catch(e){}
+addEventListener('resize',function(){document.querySelectorAll('[data-wf-base]').forEach(function(e){e.style.fontSize=''});run()})}
+if(document.body)start();else document.addEventListener('DOMContentLoaded',start);
+})();
 </script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>#mm-splash{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:linear-gradient(180deg,#fbf7ee,#f3efe4);transition:opacity .4s ease,transform .4s ease}
 #mm-splash.out{opacity:0;transform:scale(1.06);pointer-events:none}
 #mm-splash .sp-in{display:flex;flex-direction:column;align-items:center;gap:4px;animation:spUp .45s ease-out}
@@ -57,7 +89,7 @@ function add(){(document.body||document.documentElement).appendChild(d);var v=d.
 if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
 d.addEventListener('click',close);setTimeout(close,6500)})();
-</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="시장 경고등"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-lights.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610291427">(function(){var me="202610291427";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>시장 경고등</title><style>:root{color-scheme:light;
+</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="시장 경고등"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-lights.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610291502">(function(){var me="202610291502";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>시장 경고등</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
