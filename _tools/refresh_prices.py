@@ -103,6 +103,13 @@ def update(pp, hp):
             if pts:
                 kind, price, pdate = 'premarket', float(pts[-1][1]), today
                 prev_d, prev_c = last_d, last_c
+        elif reg and now >= reg.get('end', 1 << 62) and last_d == ldate(reg['start'], off):
+            # 애프터(시간외, 사용자 2026-10-29): 정규장이 끝난 뒤 거래가 있으면 그 값을 보여 줌 — 다음 프리마켓 전까지 유지, 등락은 그날 종가 대비
+            q5 = a.get('indicators', {}).get('quote', [{}])[0].get('close', [])
+            pts = [(ts, c) for ts, c in zip(a.get('timestamp', []), q5) if c is not None and ts >= reg['end']]
+            if pts:
+                kind, price, pdate = 'aftermarket', float(pts[-1][1]), last_d
+                prev_d, prev_c = last_d, last_c
         r['price'] = round(price, 4); r['price_date'] = pdate; r['price_kind'] = kind
         r['prev_close'] = prev_c; r['prev_date'] = prev_d
         r['price_time_kst'] = dt.datetime.now(KST).strftime('%m.%d %H:%M')
@@ -148,9 +155,9 @@ def trend(page, pp, hp):
     P = sorted(P, key=lambda r: r.get('order', 0))
     from collections import Counter
     asof = Counter(r.get('price_date') for r in P).most_common(1)[0][0]
-    live = [r for r in P if r.get('price_kind') in ('premarket', 'intraday')]
+    live = [r for r in P if r.get('price_kind') in ('premarket', 'intraday', 'aftermarket')]
     stamp = dt.datetime.now(KST).strftime('%m.%d %H:%M')
-    label = f'{stamp} 기준 · ' + ('프리마켓·장중 가격 포함' if live else '종가 기준')
+    label = f'{stamp} 기준 · ' + ('프리마켓·장중·애프터 가격 포함' if live else '종가 기준')
     hh = {}
     for r in H:
         hh.setdefault(r['ticker'], {})

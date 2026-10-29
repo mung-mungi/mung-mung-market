@@ -15,6 +15,20 @@ TREND_LOADER = ("(function(d){try{var x=new XMLHttpRequest();x.open('GET','live/
                 "if(x.status===200){var j=JSON.parse(x.responseText);if(j&&j.P&&j.P.length&&j.asof>=d.asof&&(j.at||'')>(d.at||'')){window.__LIVE_TREND__=j.label;return j}}}catch(e){}return d})(")
 
 
+BADGE = "if (r.price_kind === 'premarket') { const bg = document.createElement('span'); bg.className = 'pb-badge'; bg.textContent = '프리마켓'; tdp.appendChild(bg); }"
+
+
+def kinds(s):
+    """애프터(시간외) 가격 표시(사용자 2026-10-29) — 시세 보드·차트 길잡이 원본에 '애프터' 이름표를 덧입힘(멱등)"""
+    if "'aftermarket'" in s: return s
+    for a in (" ' · 프리마켓' :", " ' 프리마켓' :"):
+        s = s.replace("r.price_kind === 'premarket' ?" + a, "r.price_kind === 'aftermarket' ?" + a.replace('프리마켓', '애프터') + " r.price_kind === 'premarket' ?" + a)
+    s = s.replace(BADGE, BADGE + "\n      " + BADGE.replace("'premarket'", "'aftermarket'").replace("'프리마켓'", "'애프터'"))
+    s = s.replace("(t.n_pre > 0 ? ' 프리마켓 포함' :", "(t.n_pre > 0 ? ' 프리마켓 포함' : t.n_after > 0 ? ' 애프터 포함' :")
+    s = s.replace("n_pre: prices.filter((r) => r.price_kind === 'premarket').length,", "n_pre: prices.filter((r) => r.price_kind === 'premarket').length,\n        n_after: prices.filter((r) => r.price_kind === 'aftermarket').length,")
+    return s
+
+
 def run(root):
     n = []
     p = os.path.join(root, 'shim.js')
@@ -38,6 +52,7 @@ def run(root):
         if not os.path.exists(p): continue
         s = o = open(p, encoding='utf-8').read()
         s = re.sub(r'<script data-live>[\s\S]*?</script>', '', s)
+        s = kinds(s)
         s = s.replace('</body>', LJ + '</body>', 1) if '</body>' in s else s + LJ
         if s != o: open(p, 'w', encoding='utf-8').write(s); n.append(f)
     n += fix_nav(root)
