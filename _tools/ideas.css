@@ -32,3 +32,20 @@
 .iv-st{color:#c98a12;font-size:12px;letter-spacing:-1px;margin-left:4px}
 .iv-more{all:unset;display:block;margin:10px auto 0;padding:9px 16px;border-radius:999px;background:#fff;border:1px solid #e6dcc6;box-shadow:0 2px 0 #ece4d2;font-weight:800;font-size:14px;color:#5a554c;cursor:pointer}
 .iv-empty{color:#8a877f;font-size:14px;padding:10px 4px}
+
+/* 내 불 고르기(사용자 2026-10-29) — 어떤 불을 셀지 직접 고름 */
+.iv-pick{background:#fbf7ee;border:1px solid #eadcbc;border-radius:14px;padding:10px 10px 4px;margin:6px 0 10px}
+.iv-pk-t{margin:0 2px 6px;font-weight:900;font-size:15.5px;color:#1d1c1a}.iv-pk-t small{font-weight:600;font-size:12.5px;color:#8a877f;margin-left:6px}
+.iv-pick .iv-pills button{font-size:13.5px;padding:6px 11px}
+.iv-pick .iv-lp button{background:#f1ede4;border-color:#e3dccb;color:#9a968c;box-shadow:none}
+.iv-pick .iv-lp button:before{content:'○ ';}
+.iv-pick .iv-lp button.on{background:#fff;color:#8a5a12;border-color:#c98a12;box-shadow:0 2px 0 #ecdcb8}
+.iv-pick .iv-lp button.on:before{content:'● ';color:#c98a12}
+.iv-pick .iv-ps button.on{background:#8a5a12;border-color:#8a5a12;color:#fff}
+.iv-dots i.x{opacity:.22;transform:scale(.75)}
+.iv-lt.ns{opacity:.5}.iv-lt.ns span:after{content:' · 고르지 않음';color:#b5ad9c}
+.iv-cut{margin:2px 0 8px}.iv-cut summary{list-style:none;cursor:pointer;font-weight:800;font-size:14px;color:#8a5a12;padding:6px 2px}.iv-cut summary::-webkit-details-marker{display:none}
+.iv-cut[open] summary{color:#1d1c1a}
+.iv-cr{padding:4px 0 0}.iv-cr>b{display:block;font-size:13.5px;color:#5a554c;margin:0 2px 2px}
+.iv-cr .iv-pills button{font-size:13px;padding:5px 10px}
+.iv-reset{all:unset;display:inline-block;margin:6px 2px 4px;font-size:13px;font-weight:700;color:#8a877f;text-decoration:underline;cursor:pointer}

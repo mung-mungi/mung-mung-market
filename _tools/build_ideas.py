@@ -67,6 +67,7 @@ for i, r in enumerate(rows):
     p = 1 - i / max(len(rows) - 1, 1)
     r['rank'] = i + 1; r['stars'] = 5 if p >= .8 else 4 if p >= .6 else 3 if p >= .4 else 2 if p >= .2 else 1; r['score'] = round(r['score'], 1)
 TOP = [r['firm'] for r in rows[:10]]
+RANK = {r['firm']: r['rank'] for r in rows}
 d45 = (dt.date.fromisoformat(LAST) - dt.timedelta(days=45)).isoformat()
 recent = []
 for e in sorted(ev, key=lambda e: e['date'], reverse=True):
@@ -109,26 +110,27 @@ out = []
 for p in uni:
     t = p['ticker']; tk = TK[t]; L = []
     pt = tk.get('cons_avg_pt') or p.get('cons_avg_pt'); up = (pt / p['price'] - 1) * 100 if pt else None
-    L.append({'k': '목표가 여력', 'on': up is not None and up >= 20, 'v': f'평균 목표가까지 {up:+.0f}%' if up is not None else '목표가 자료 없음'})
+    L.append({'k': '목표가 여력', 'r': round(up, 1) if up is not None else None, 'on': up is not None and up >= 20, 'v': f'평균 목표가까지 {up:+.0f}%' if up is not None else '목표가 자료 없음'})
     fpe = p.get('fwd_pe_snap'); peers = cat_pe.get(p['category'], []); med = st.median(peers) if len(peers) >= 3 else all_pe
-    L.append({'k': '같은 층 대비 싸다', 'on': bool(fpe and fpe > 0 and fpe < med * 0.9),
+    L.append({'k': '같은 층 대비 싸다', 'r': {'f': fpe, 'm': round(med, 2)} if fpe and fpe > 0 else None, 'on': bool(fpe and fpe > 0 and fpe < med * 0.9),
               'v': f'선행 PER {fpe:.1f}배 · {"같은 층" if len(peers) >= 3 else "전체"} 가운데값 {med:.1f}배' if fpe and fpe > 0 else '선행 PER 자료 없음'})
     e = lastq.get(t)
     ok = bool(e and (e.get('rev_vs') == '상회' or (e.get('rev') and e.get('rev_est') and e['rev'] > e['rev_est'])) and (e.get('rev_yoy') or 0) >= 15)
-    L.append({'k': '실적 탄력', 'on': ok, 'v': (f"{e['fq']} 매출 {'예상 상회' if e.get('rev_vs') == '상회' else '예상 하회' if e.get('rev_vs') == '하회' else '예상 부합'} · 전년비 {e['rev_yoy']:+.0f}%" if e and e.get('rev_yoy') is not None else (f"{e['fq']} 매출 발표" if e else '분기 실적 자료 없음'))})
+    L.append({'k': '실적 탄력', 'r': {'b': bool(e and (e.get('rev_vs') == '상회' or (e.get('rev') and e.get('rev_est') and e['rev'] > e['rev_est']))), 'y': e.get('rev_yoy') if e else None}, 'on': ok, 'v': (f"{e['fq']} 매출 {'예상 상회' if e.get('rev_vs') == '상회' else '예상 하회' if e.get('rev_vs') == '하회' else '예상 부합'} · 전년비 {e['rev_yoy']:+.0f}%" if e and e.get('rev_yoy') is not None else (f"{e['fq']} 매출 발표" if e else '분기 실적 자료 없음'))})
     hi = p.get('hi_52w'); dd = (p['price'] / hi - 1) * 100 if hi else None
-    L.append({'k': '고점 대비 눌림', 'on': dd is not None and dd <= -15, 'v': f'1년 고점 대비 {dd:.0f}%' if dd is not None else '고점 자료 없음'})
+    L.append({'k': '고점 대비 눌림', 'r': round(dd, 1) if dd is not None else None, 'on': dd is not None and dd <= -15, 'v': f'1년 고점 대비 {dd:.0f}%' if dd is not None else '고점 자료 없음'})
     re_ = [x for x in ev if x['ticker'] == t and x['date'] >= d60]
     upc = sum(1 for x in re_ if x['type'] in ('상향', '의견상향')); dnc = sum(1 for x in re_ if x['type'] in ('하향', '의견하향'))
-    L.append({'k': '목표가 오름세', 'on': upc >= 2 and upc > dnc * 2, 'v': f'최근 60일 상향 {upc} · 하향 {dnc}'})
+    L.append({'k': '목표가 오름세', 'r': {'u': upc, 'd': dnc}, 'on': upc >= 2 and upc > dnc * 2, 'v': f'최근 60일 상향 {upc} · 하향 {dnc}'})
     tp = [x for x in re_ if x['firm'] in TOP and direc(x) == 1]
-    L.append({'k': '고수 상향', 'on': bool(tp), 'v': ('적중률 상위 ' + ', '.join(sorted({f"{x['firm']}({TOP.index(x['firm']) + 1}위)" for x in tp})) + ' 상향') if tp else '최근 60일 상위 10곳 상향 없음'})
+    pr = sorted({(x['firm'], RANK[x['firm']]) for x in re_ if x['firm'] in RANK and direc(x) == 1}, key=lambda z: z[1])
+    L.append({'k': '고수 상향', 'r': [list(z) for z in pr], 'on': bool(tp), 'v': ('적중률 상위 ' + ', '.join(sorted({f"{x['firm']}({TOP.index(x['firm']) + 1}위)" for x in tp})) + ' 상향') if tp else '최근 60일 상위 10곳 상향 없음'})
     sl = silast.get(t, []); f = f13m.get(t); io = insd.get(t)
     sig = []
     if len(sl) >= 2 and sl[-1]['shares'] < sl[-2]['shares']: sig.append(f"공매도 잔고 감소({int(sl[-1]['date'][5:7])}.{int(sl[-1]['date'][8:10])} {sl[-1]['chg_pct']:+.1f}%)")
     if f and (f.get('own_pct_chg_pp') or 0) > 0: sig.append(f"기관 보유 +{f['own_pct_chg_pp']}%p")
     if io and io['buy'] > io['sell']: sig.append('내부자 순매수')
-    L.append({'k': '수급 개선', 'on': len(sig) >= 1, 'v': ' · '.join(sig) if sig else '뚜렷한 개선 없음'})
+    L.append({'k': '수급 개선', 'r': len(sig), 'on': len(sig) >= 1, 'v': ' · '.join(sig) if sig else '뚜렷한 개선 없음'})
     n = sum(1 for x in L if x['on'])
     out.append({'ticker': t, 'name': tk['name'], 'cat': p['category'], 'price': p['price'], 'cur': p['currency'], 'up': round(up, 1) if up is not None else None,
                 'fpe': fpe, 'dd': round(dd, 1) if dd is not None else None, 'm3': round((p['price'] / p['m3_close'] - 1) * 100, 1) if p.get('m3_close') else None,

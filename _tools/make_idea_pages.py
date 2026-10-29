@@ -19,7 +19,8 @@ PAGES = {
   </header>
   <section class="in-tiles" id="tiles"></section>
   <section class="in-card"><h3>불 많이 켜진 순</h3>
-    <p class="sub">추천 목록이 아니라 '한번 들여다볼 만한 곳'을 고르는 체입니다. 줄을 누르면 불마다 근거 숫자가 펼쳐집니다.</p>
+    <p class="sub">추천 목록이 아니라 '한번 들여다볼 만한 곳'을 고르는 체입니다. 아래에서 어떤 불을 셀지 직접 고를 수 있고, 줄을 누르면 불마다 근거 숫자가 펼쳐집니다.</p>
+    <div class="iv-pick" id="pickbox"></div>
     <div class="iv-pills" id="cat"></div>
     <div class="iv-seg" id="sort"></div>
     <div class="iv-list" id="list"></div>

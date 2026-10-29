@@ -27,17 +27,46 @@ function val(D){
   var CK=['전체'].concat(Object.keys(cats).sort(function(a,b){return cats[b]-cats[a]})),cat='전체',srt='l';
   $('cat').innerHTML=CK.map(function(c,i){return '<button type="button"'+(i?'':' class="on"')+' data-k="'+esc(c)+'">'+esc(c)+(i?' '+cats[c]:'')+'</button>'}).join('');
   $('cat').onclick=function(e){var b=e.target.closest('button');if(!b)return;[].forEach.call(this.children,function(x){x.classList.toggle('on',x===b)});cat=b.dataset.k;draw()};
+  // 내 불 고르기 — 고른 불만 세어 줄 세움(사용자 2026-10-29). 고른 것은 이 휴대폰에만 기억
+  var LK=it[0].L.map(function(l){return l.k});
+  var PS=[['all','전체 7개',LK],['safe','안정형',['실적 탄력','같은 층 대비 싸다','목표가 오름세','수급 개선']],['risk','하이리스크·반등',['고점 대비 눌림','목표가 여력','고수 상향','실적 탄력']],['mom','모멘텀',['목표가 오름세','고수 상향','실적 탄력','수급 개선']]];
+  var SEL;try{SEL=JSON.parse(localStorage.getItem('mm-val-pick')||'null')}catch(e){}
+  if(!Array.isArray(SEL)||!SEL.length)SEL=LK.slice();
+  function save(){try{localStorage.setItem('mm-val-pick',JSON.stringify(SEL))}catch(e){}}
+  // 불마다 기준도 직접(사용자 2026-10-29) — 원래 숫자(r)로 휴대폰에서 다시 판정
+  var CUT={'목표가 여력':[[10,20,30,50],20,function(v){return '+'+v+'% 이상'}],'같은 층 대비 싸다':[[0,10,20,30],10,function(v){return v?'가운데값보다 '+v+'%↓':'가운데값 아래'}],
+   '실적 탄력':[[0,15,30,50],15,function(v){return '상회+전년비 '+v+'%↑'}],'고점 대비 눌림':[[10,15,25,40],15,function(v){return '고점 −'+v+'% 이하'}],
+   '목표가 오름세':[[1,2,4],2,function(v){return '상향 '+v+'건↑'}],'고수 상향':[[5,10,20],10,function(v){return '상위 '+v+'곳'}],'수급 개선':[[1,2],1,function(v){return '신호 '+v+'개↑'}]};
+  var P={};try{P=JSON.parse(localStorage.getItem('mm-val-cut')||'{}')||{}}catch(e){P={}}
+  LK.forEach(function(k){if(CUT[k]&&CUT[k][0].indexOf(P[k])<0)P[k]=CUT[k][1]});
+  function saveP(){try{localStorage.setItem('mm-val-cut',JSON.stringify(P))}catch(e){}}
+  function lit(l){var r=l.r,v=P[l.k];if(r==null||!CUT[l.k])return !!l.on;switch(l.k){
+    case '목표가 여력':return r>=v;case '같은 층 대비 싸다':return r.f<r.m*(1-v/100);case '실적 탄력':return !!r.b&&r.y!=null&&r.y>=v;
+    case '고점 대비 눌림':return r<=-v;case '목표가 오름세':return r.u>=v&&r.u>r.d*2;case '고수 상향':return r.some(function(z){return z[1]<=v});case '수급 개선':return r>=v}return !!l.on}
+  function vtxt(l){if(l.k==='고수 상향'&&Array.isArray(l.r)){var a=l.r.filter(function(z){return z[1]<=P[l.k]});return a.length?'적중률 상위 '+a.map(function(z){return z[0]+'('+z[1]+'위)'}).join(', ')+' 상향':'최근 60일 상위 '+P[l.k]+'곳 상향 없음'}return l.v}
+  function pk(){var pb=$('pickbox');var same=function(a){return a.length===SEL.length&&a.every(function(x){return SEL.indexOf(x)>=0})};
+    pb.innerHTML='<p class="iv-pk-t">내 불 고르기<small>고른 불만 셉니다</small></p><div class="iv-pills iv-ps">'+PS.map(function(p){return '<button type="button" data-p="'+p[0]+'"'+(same(p[2])?' class="on"':'')+'>'+p[1]+'</button>'}).join('')+'</div><div class="iv-pills iv-lp">'+LK.map(function(k){return '<button type="button" data-l="'+esc(k)+'"'+(SEL.indexOf(k)>=0?' class="on"':'')+'>'+esc(k)+'</button>'}).join('')+'</div>'
+    +'<details class="iv-cut"'+(OPEN?' open':'')+'><summary>▸ 불마다 기준 바꾸기</summary>'+SEL.filter(function(k){return CUT[k]}).map(function(k){var c=CUT[k];return '<div class="iv-cr"><b>'+esc(k)+'</b><div class="iv-pills">'+c[0].map(function(v){return '<button type="button" data-c="'+esc(k)+'" data-v="'+v+'"'+(P[k]===v?' class="on"':'')+'>'+c[2](v)+'</button>'}).join('')+'</div></div>'}).join('')+'<button type="button" class="iv-reset" data-reset="1">기준 처음대로</button></details>'}
+  $('pickbox').onclick=function(e){var b=e.target.closest('button');if(!b)return;
+    if(b.dataset.reset){LK.forEach(function(k){if(CUT[k])P[k]=CUT[k][1]});saveP();pk();draw();return}
+    if(b.dataset.c){P[b.dataset.c]=+b.dataset.v;saveP();pk();draw();return}
+    if(b.dataset.p){SEL=PS.filter(function(p){return p[0]===b.dataset.p})[0][2].slice()}
+    else{var k=b.dataset.l,i=SEL.indexOf(k);if(i>=0){if(SEL.length>1)SEL.splice(i,1)}else SEL.push(k)}
+    save();pk();draw()};
+  var OPEN=0;$('pickbox').addEventListener('toggle',function(e){if(e.target.classList&&e.target.classList.contains('iv-cut'))OPEN=e.target.open?1:0},true);
+  pk();
   seg($('sort'),[['l','불 개수'],['u','목표가 여력'],['p','싼 순(PER)'],['d','많이 빠진 순']],'l',function(k){srt=k;draw()});
   tog($('list'));
   function draw(){
+    function sc(o){return o.L.filter(function(l){return lit(l)&&SEL.indexOf(l.k)>=0}).length}
     var a=it.filter(function(o){return cat==='전체'||o.cat===cat}).slice();
     var nz=function(v,d){return v==null||v<=0?d:v};
-    a.sort(srt==='u'?function(x,y){return (y.up==null?-1e9:y.up)-(x.up==null?-1e9:x.up)}:srt==='p'?function(x,y){return nz(x.fpe,1e9)-nz(y.fpe,1e9)}:srt==='d'?function(x,y){return (x.dd==null?0:x.dd)-(y.dd==null?0:y.dd)}:function(x,y){return y.lights-x.lights||(y.up||-1e9)-(x.up||-1e9)});
+    a.sort(srt==='u'?function(x,y){return (y.up==null?-1e9:y.up)-(x.up==null?-1e9:x.up)}:srt==='p'?function(x,y){return nz(x.fpe,1e9)-nz(y.fpe,1e9)}:srt==='d'?function(x,y){return (x.dd==null?0:x.dd)-(y.dd==null?0:y.dd)}:function(x,y){return sc(y)-sc(x)||(y.up||-1e9)-(x.up||-1e9)});
     var html=a.map(function(o){
-      var dots='<span class="iv-dots">'+o.L.map(function(l){return '<i'+(l.on?' class="on"':'')+'></i>'}).join('')+'</span>';
-      var mid=dots+'<b>'+o.lights+'</b>/7<small>'+(o.fpe&&o.fpe>0?'선행 PER '+o.fpe.toFixed(1)+'배':'PER —')+'</small>';
+      var dots='<span class="iv-dots">'+o.L.map(function(l){var s=SEL.indexOf(l.k)>=0;return '<i class="'+(lit(l)?'on':'')+(s?'':' x')+'"></i>'}).join('')+'</span>';
+      var mid=dots+'<b>'+sc(o)+'</b>/'+SEL.length+'<small>'+(o.fpe&&o.fpe>0?'선행 PER '+o.fpe.toFixed(1)+'배':'PER —')+'</small>';
       var big='<span class="'+cls(o.up)+'">'+sg(o.up)+'%</span><small>목표가까지</small>';
-      var body=o.L.map(function(l){return '<div class="iv-lt'+(l.on?'':' off')+'"><i>'+(l.on?'🟡':'⚪')+'</i><b>'+esc(l.k)+'</b><span>'+esc(l.v)+'</span></div>'}).join('');
+      var body=o.L.map(function(l){var on=lit(l);return '<div class="iv-lt'+(on?'':' off')+(SEL.indexOf(l.k)>=0?'':' ns')+'"><i>'+(on?'🟡':'⚪')+'</i><b>'+esc(l.k)+(CUT[l.k]?' <small style="font-weight:600;color:#a39d90">('+CUT[l.k][2](P[l.k])+')</small>':'')+'</b><span>'+esc(vtxt(l))+'</span></div>'}).join('');
       body+='<p class="iv-note">3개월 주가 '+sg(o.m3,1)+'% · 증권사 의견 매수 '+(o.n_buy==null?'—':o.n_buy)+' · 중립 '+(o.n_hold==null?'—':o.n_hold)+' · 매도 '+(o.n_sell==null?'—':o.n_sell)+'</p>';
       if(o.m3!=null&&o.m3<=-30)body+='<p class="iv-warn">⚠ 3개월 새 '+sg(o.m3,0)+'% — 빠진 이유(실적·가이던스·업황)를 먼저 확인할 자리입니다.</p>';
       return row(esc(o.name),esc(o.cat)+' · '+esc(o.ticker),mid,big,body)});
