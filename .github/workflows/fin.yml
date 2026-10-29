@@ -1,0 +1,27 @@
+# 재무 체력 자료(사용자 2026-10-29) — SEC 공식 XBRL 재무로 영업이익률·잉여현금흐름률·순부채 계산(d/ideas/fin.json)
+# 10-K·10-Q가 분기마다 나오므로 매주 일요일 한 번이면 충분. 끝나면 관문 점수(gates.json)도 다시 계산
+name: fin-weekly
+on:
+  schedule:
+    - cron: '17 1 * * 0'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: fin-weekly
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: build
+        run: python3 -I _tools/build_fin.py . && python3 -I _tools/build_gates.py .
+      - name: commit
+        run: |
+          git config user.name 'github-actions[bot]'; git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add d/ideas
+          if git diff --cached --quiet; then echo 'no change'; exit 0; fi
+          git commit -m "재무 체력 자료 갱신 $(TZ=Asia/Seoul date +%m.%d\ %H:%M)"
+          for i in 1 2 3 4 5; do git pull --rebase -X theirs origin main && git push && exit 0; sleep $((i*7)); done; exit 1
