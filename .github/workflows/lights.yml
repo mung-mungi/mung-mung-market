@@ -1,0 +1,30 @@
+# 시장 경고등 자동 갱신(사용자 2026-10-29) — 6시간마다(한국시간 07:23·13:23·19:23·01:23) 공식 출처 마감 숫자로 불 10개 다시 계산
+# 허브 동기화가 경고등 자료를 덮어쓰면(옛 값) 곧바로 다시 계산해 최신으로 되돌림. Claude 크레딧 없음
+name: lights-6h
+on:
+  schedule:
+    - cron: '23 4,10,16,22 * * *'
+  push:
+    branches: [main]
+    paths: ['d/lights/**', 'd/bond/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: lights-6h
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: build
+        run: python3 -I _tools/build_lights.py .
+      - name: commit
+        run: |
+          git config user.name 'github-actions[bot]'; git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add d/lights d/bond/yields_daily.json d/bond/hy_spread.json
+          if git diff --cached --quiet; then echo 'no change'; exit 0; fi
+          git commit -m "시장 경고등 자동 갱신 $(TZ=Asia/Seoul date +%m.%d\ %H:%M)"
+          for i in 1 2 3 4 5; do git pull --rebase -X theirs origin main && git push && exit 0; sleep $((i*7)); done; exit 1
