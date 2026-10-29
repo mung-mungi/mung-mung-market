@@ -107,6 +107,8 @@ a.mm-earnnew i{flex:none;width:10px;height:10px;border-radius:50%;background:#e8
 a.mm-earnnew .t{flex:1;min-width:0}a.mm-earnnew b{display:block;font-size:15.5px;font-weight:900;color:#d0342c}
 a.mm-earnnew small{display:block;font-size:13px;color:#5a554c;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 a.mm-earnnew em{font-style:normal;font-size:22px;font-weight:700;color:#e8343b}
+
+a.mm-earnnew.seen{border-color:#e6dcc6;border-left-color:#b08a3e;box-shadow:0 2px 0 #ece3cf}a.mm-earnnew.seen i{background:#b08a3e;animation:none}a.mm-earnnew.seen b{color:#8a6a2c}a.mm-earnnew.seen em{color:#b08a3e}
 </style><script data-navfab>// 아래 메뉴 위 왼쪽 '이전·홈' 버튼(사용자 2026-10-29)
 (function(){try{
 if(/\/(index\.html)?$/.test(location.pathname))return;
@@ -186,20 +188,23 @@ function vq(){var a=document.querySelector('a[href*="p-earn.html"]');var m=a&&(a
 fetch('d/earn_feed.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(F){
   if(!F||!F.items||!F.items.length)return;
   if(onEarn){set(F.latest);return}
-  var seen=get(),cut=seen||new Date(Date.now()-30*3600e3).toISOString().slice(0,16);
+  // 실적 시즌(사용자 2026-10-29): 최근 36시간 실적이 있으면 띠는 늘 보임(여러 사람이 보므로). 안 본 게 있으면 빨강, 다 봤으면 차분한 색
+  var seen=get(),cut=new Date(Date.now()-36*3600e3).toISOString().slice(0,16);
   var nw=F.items.filter(function(x){return x.ts>cut});if(!nw.length)return;
-  var n=0,t=setInterval(function(){paint(nw);if(++n>15)clearInterval(t)},700);paint(nw);
+  var un=seen?nw.filter(function(x){return x.ts>seen}).length:nw.length;
+  var n=0,t=setInterval(function(){paint(nw,un);if(++n>15)clearInterval(t)},700);paint(nw,un);
 }).catch(function(){});
-function paint(nw){
-  var d=document.querySelector('.mmd .row a[href*="p-earn"]');if(d)d.classList.add('mm-new');
-  [].forEach.call(document.querySelectorAll('.mmd-sheet a[href*="p-earn"]'),function(a){a.classList.add('mm-new')});
+function paint(nw,un){
+  if(un){var d=document.querySelector('.mmd .row a[href*="p-earn"]');if(d)d.classList.add('mm-new');
+    [].forEach.call(document.querySelectorAll('.mmd-sheet a[href*="p-earn"]'),function(a){a.classList.add('mm-new')})}
   if(!onHub)return;
-  [].forEach.call(document.querySelectorAll('a.item[href*="p-earn"] .ttl,a.mm-bar[href*="p-earn"]>b'),function(t){if(!t.querySelector('.mm-newb')){var s=document.createElement('em');s.className='mm-newb';s.textContent='NEW '+nw.length;t.appendChild(s)}});
+  if(un)[].forEach.call(document.querySelectorAll('a.item[href*="p-earn"] .ttl,a.mm-bar[href*="p-earn"]>b'),function(t){if(!t.querySelector('.mm-newb')){var s=document.createElement('em');s.className='mm-newb';s.textContent='NEW '+un;t.appendChild(s)}});
   if(document.querySelector('.mm-earnnew'))return;
   var sh=document.querySelector('p.sh');if(!sh)return;var box=sh.parentElement;
   var a=document.createElement('a');a.className='mm-earnnew';a.href='p-earn.html'+vq();
   var names=nw.slice(0,3).map(function(x){return x.name}).join(' · ')+(nw.length>3?' 외 '+(nw.length-3)+'곳':'');
-  a.innerHTML='<i></i><span class="t"><b>새 실적 '+nw.length+'곳</b><small></small></span><em>›</em>';a.querySelector('small').textContent=names;
+  if(!un)a.classList.add('seen');
+  a.innerHTML='<i></i><span class="t"><b>'+(un?'새 실적 '+nw.length+'곳':'✓ 최근 나온 실적 '+nw.length+'곳')+'</b><small></small></span><em>›</em>';a.querySelector('small').textContent=names;
   box.parentElement.insertBefore(a,box);
 }
 }catch(e){}})();
@@ -223,7 +228,7 @@ function add(){(document.body||document.documentElement).appendChild(d);var v=d.
 if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
 d.addEventListener('click',close);setTimeout(close,6500)})();
-</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="아침 브리핑 주요 시황정리"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-brief.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610292049">(function(){var me="202610292049";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>아침 브리핑 주요 시황정리</title><style>:root{color-scheme:light;
+</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="아침 브리핑 주요 시황정리"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-brief.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610292119">(function(){var me="202610292119";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>아침 브리핑 주요 시황정리</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;

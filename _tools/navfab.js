@@ -77,20 +77,23 @@ function vq(){var a=document.querySelector('a[href*="p-earn.html"]');var m=a&&(a
 fetch('d/earn_feed.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(F){
   if(!F||!F.items||!F.items.length)return;
   if(onEarn){set(F.latest);return}
-  var seen=get(),cut=seen||new Date(Date.now()-30*3600e3).toISOString().slice(0,16);
+  // 실적 시즌(사용자 2026-10-29): 최근 36시간 실적이 있으면 띠는 늘 보임(여러 사람이 보므로). 안 본 게 있으면 빨강, 다 봤으면 차분한 색
+  var seen=get(),cut=new Date(Date.now()-36*3600e3).toISOString().slice(0,16);
   var nw=F.items.filter(function(x){return x.ts>cut});if(!nw.length)return;
-  var n=0,t=setInterval(function(){paint(nw);if(++n>15)clearInterval(t)},700);paint(nw);
+  var un=seen?nw.filter(function(x){return x.ts>seen}).length:nw.length;
+  var n=0,t=setInterval(function(){paint(nw,un);if(++n>15)clearInterval(t)},700);paint(nw,un);
 }).catch(function(){});
-function paint(nw){
-  var d=document.querySelector('.mmd .row a[href*="p-earn"]');if(d)d.classList.add('mm-new');
-  [].forEach.call(document.querySelectorAll('.mmd-sheet a[href*="p-earn"]'),function(a){a.classList.add('mm-new')});
+function paint(nw,un){
+  if(un){var d=document.querySelector('.mmd .row a[href*="p-earn"]');if(d)d.classList.add('mm-new');
+    [].forEach.call(document.querySelectorAll('.mmd-sheet a[href*="p-earn"]'),function(a){a.classList.add('mm-new')})}
   if(!onHub)return;
-  [].forEach.call(document.querySelectorAll('a.item[href*="p-earn"] .ttl,a.mm-bar[href*="p-earn"]>b'),function(t){if(!t.querySelector('.mm-newb')){var s=document.createElement('em');s.className='mm-newb';s.textContent='NEW '+nw.length;t.appendChild(s)}});
+  if(un)[].forEach.call(document.querySelectorAll('a.item[href*="p-earn"] .ttl,a.mm-bar[href*="p-earn"]>b'),function(t){if(!t.querySelector('.mm-newb')){var s=document.createElement('em');s.className='mm-newb';s.textContent='NEW '+un;t.appendChild(s)}});
   if(document.querySelector('.mm-earnnew'))return;
   var sh=document.querySelector('p.sh');if(!sh)return;var box=sh.parentElement;
   var a=document.createElement('a');a.className='mm-earnnew';a.href='p-earn.html'+vq();
   var names=nw.slice(0,3).map(function(x){return x.name}).join(' · ')+(nw.length>3?' 외 '+(nw.length-3)+'곳':'');
-  a.innerHTML='<i></i><span class="t"><b>새 실적 '+nw.length+'곳</b><small></small></span><em>›</em>';a.querySelector('small').textContent=names;
+  if(!un)a.classList.add('seen');
+  a.innerHTML='<i></i><span class="t"><b>'+(un?'새 실적 '+nw.length+'곳':'✓ 최근 나온 실적 '+nw.length+'곳')+'</b><small></small></span><em>›</em>';a.querySelector('small').textContent=names;
   box.parentElement.insertBefore(a,box);
 }
 }catch(e){}})();

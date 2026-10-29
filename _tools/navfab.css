@@ -36,3 +36,5 @@ a.mm-earnnew i{flex:none;width:10px;height:10px;border-radius:50%;background:#e8
 a.mm-earnnew .t{flex:1;min-width:0}a.mm-earnnew b{display:block;font-size:15.5px;font-weight:900;color:#d0342c}
 a.mm-earnnew small{display:block;font-size:13px;color:#5a554c;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 a.mm-earnnew em{font-style:normal;font-size:22px;font-weight:700;color:#e8343b}
+
+a.mm-earnnew.seen{border-color:#e6dcc6;border-left-color:#b08a3e;box-shadow:0 2px 0 #ece3cf}a.mm-earnnew.seen i{background:#b08a3e;animation:none}a.mm-earnnew.seen b{color:#8a6a2c}a.mm-earnnew.seen em{color:#b08a3e}
