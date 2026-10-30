@@ -29,8 +29,12 @@ if first or not new:
     json.dump(st, open(SP, 'w', encoding='utf-8'), ensure_ascii=False); print('push: 보낼 것 없음' + (' (처음 켬)' if first else '')); sys.exit(0)
 if not (APP and KEY):
     print('::notice::push: 원시그널 키 없음 — 건너뜀(보낸 것으로 표시하지 않음) 새 노트 %s' % ','.join(x['id'] for x in new)); sys.exit(0)
+try: POS = json.load(open(os.path.join(R, 'd/chain_pos.json'), encoding='utf-8'))
+except Exception: POS = {}
+def pos(x): return POS.get(x['id'].split('-')[0]) or {}
 if len(new) == 1:
-    x = new[0]; head = '🔔 새 실적 · ' + x['name']; body = (x.get('sum') or '실적 결과 노트가 올라왔습니다.')[:160]; url = SITE + 'p-earn.html#' + x['id']
+    x = new[0]; c = pos(x); head = '🔔 새 실적 · ' + x['name'] + (' 〔%s〕' % c['tag'] if c.get('tag') else '')
+    body = ((c['up'] + ' ▶ ' + x['name'] + ' · ') if c.get('up') else '') + (x.get('sum') or '실적 결과 노트가 올라왔습니다.'); body = body[:170]; url = SITE + 'p-earn.html#' + x['id']
 else:
     names = ' · '.join(x['name'] for x in new[:4]) + (' 외 %d곳' % (len(new) - 4) if len(new) > 4 else '')
     head = '🔔 새 실적 %d곳' % len(new); body = names; url = SITE + 'p-earn.html'
