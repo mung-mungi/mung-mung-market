@@ -7,6 +7,13 @@ APP, KEY = (os.environ.get('ONESIGNAL_APP_ID', '').strip() or 'b81f8268-5aef-4a2
 SITE = 'https://mung-mungi.github.io/mung-mung-market/'
 SP = os.path.join(R, 'd/push_state.json')
 TEST = os.environ.get('PUSH_TEST', '').strip()  # 시험 알림(수동 실행): 이 문구로 한 번 보내고 끝
+if TEST == 'STAT' and KEY:  # 최근 알림 5개가 몇 대에 도착했는지(성공·실패) 확인
+    req = urllib.request.Request('https://api.onesignal.com/notifications?app_id=%s&limit=5' % APP, headers={'Authorization': 'Key ' + KEY})
+    try:
+        for n in json.load(urllib.request.urlopen(req, timeout=20)).get('notifications', []):
+            print('::notice::%s | %s | 성공 %s 실패 %s 오류 %s 남음 %s 클릭 %s' % (dt.datetime.fromtimestamp(n.get('completed_at') or n.get('queued_at') or 0).isoformat(timespec='minutes'), (n.get('headings') or {}).get('en', '')[:30], n.get('successful'), n.get('failed'), n.get('errored'), n.get('remaining'), n.get('converted')))
+    except Exception as e: print('::notice::STAT 실패 %s %s' % (e, getattr(e, 'read', lambda: b'')().decode()[:300]))
+    sys.exit(0)
 if TEST and APP and KEY:
     req = urllib.request.Request('https://api.onesignal.com/notifications', method='POST', headers={'Content-Type': 'application/json', 'Authorization': 'Key ' + KEY},
         data=json.dumps({'app_id': APP, 'included_segments': ['Total Subscriptions'], 'target_channel': 'push', 'headings': {'en': '🔔 멍뭉 터미널 시험 알림', 'ko': '🔔 멍뭉 터미널 시험 알림'},

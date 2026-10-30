@@ -272,33 +272,39 @@ function guide(k){var o=document.createElement('div');o.className='mm-guide '+k;
 function load(cb){if(sdk)return sdk.then(cb);sdk=new Promise(function(ok){window.OneSignalDeferred=window.OneSignalDeferred||[];
   var s=document.createElement('script');s.src='https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js';s.defer=true;document.head.appendChild(s);
   OneSignalDeferred.push(async function(OS){try{await OS.init({appId:APP,serviceWorkerPath:'mung-mung-market/OneSignalSDKWorker.js',serviceWorkerUpdaterPath:'mung-mung-market/OneSignalSDKUpdaterWorker.js',serviceWorkerParam:{scope:'/mung-mung-market/'},notifyButton:{enable:false}})}catch(e){}
-   ok(OS);OS.User&&OS.User.PushSubscription&&OS.User.PushSubscription.addEventListener('change',function(){draw(OS)})})});return sdk.then(cb)}
-function on(OS){try{if(Notification.permission!=='granted')return false;if(!OS||!OS.User||!OS.User.PushSubscription){return true}var o=OS.User.PushSubscription.optedIn;return o!==false||localStorage.getItem('mm-push-on')==='1'}catch(e){return false}}
+   OSR=OS;ok(OS);OS.User&&OS.User.PushSubscription&&OS.User.PushSubscription.addEventListener('change',function(){draw(OS);gate()})})});return sdk.then(cb)}
+// 켜짐 판정(사용자 2026-10-30 '켜짐인데 알림이 안 옴' 고침): 휴대폰 허용 + 원시그널에 실제 등록(구독 아이디)까지 돼야 켜짐
+var OSR=null;
+function real(OS){try{var p=OS&&OS.User&&OS.User.PushSubscription;return !!(p&&p.optedIn&&(p.id||p.token))}catch(e){return false}}
+function on(OS){try{if(Notification.permission!=='granted')return false;OS=OS||OSR;if(!OS)return localStorage.getItem('mm-push-ok')==='1';return real(OS)}catch(e){return false}}
 // 켠 사람은 메인 맨 아래로(사용자 2026-10-30), 아직 안 켠 사람은 '새 실적' 띠 아래(위쪽)
 function place(bottom){var sh=document.querySelector('p.sh');if(!sh||!card)return;var box=sh.parentElement,par=box.parentElement;
  if(bottom){if(card.parentElement!==par||card.nextElementSibling){par.appendChild(card)}card.classList.add('bot')}else if(card.nextElementSibling!==box&&!card.classList.contains('bot')){par.insertBefore(card,box)}}
 function draw(OS){if(!card)return;
  if(mobile&&!standalone){inst();return}
  if(!can){  card.className='mm-push off';card.innerHTML='<i>🔔</i><span><b>실적·속보 알림</b><small>'+(inApp?'카톡 안에서는 알림을 받을 수 없습니다. 사파리·크롬에서 열어 홈 화면에 추가하면 켤 수 있습니다.':'홈 화면에 추가한 멍뭉 터미널 앱에서 켤 수 있습니다.')+'</small></span>';return}
- if(on(OS)){try{localStorage.setItem('mm-push-on','1')}catch(e){}card.className='mm-push done';place(true);card.innerHTML='<i>✓</i><span><b>실적 알림 켜짐</b><small>새 실적 노트와 중요한 속보가 오면 알려 드립니다.</small></span>';return}
- try{localStorage.removeItem('mm-push-on')}catch(e){}place(false);card.className='mm-push';card.innerHTML='<i>📈</i><span><b>실적 알림 받기</b><small>새 실적 노트와 중요한 속보만 휴대폰으로 알려 드립니다.</small></span><button type="button" class="mm-push-on">켜기</button>';
- card.querySelector('button').onclick=function(){this.textContent='…';sub(function(){draw(null);gate()})}}
-// 알림 켜기(사용자 2026-10-30): 아이폰은 '누른 그 순간'에 허용 창을 띄워야 해서 휴대폰 기본 허용 창을 먼저 부르고, 허용되면 원시그널 등록
-function sub(done){var pr;try{pr=Notification.permission==='granted'?Promise.resolve('granted'):Notification.requestPermission()}catch(e){pr=Promise.resolve(Notification.permission)}
- Promise.resolve(pr).then(function(r){if(Notification.permission!=='granted'){done(false);return}try{localStorage.setItem('mm-push-on','1')}catch(e){}
-  load(function(OS){try{Promise.resolve(OS.User.PushSubscription.optIn()).catch(function(){}).then(function(){done(true,OS);setTimeout(function(){draw(OS)},800)})}catch(e){done(true)}});setTimeout(function(){done(true)},4000)})}
+ if(on(OS)){try{localStorage.setItem('mm-push-on','1');if(OSR)localStorage.setItem('mm-push-ok','1')}catch(e){}card.className='mm-push done';place(true);card.innerHTML='<i>✓</i><span><b>실적 알림 켜짐</b><small>새 실적 노트와 중요한 속보가 오면 알려 드립니다.</small></span>';return}
+ try{localStorage.removeItem('mm-push-on');if(OSR)localStorage.removeItem('mm-push-ok')}catch(e){}place(false);card.className='mm-push';card.innerHTML='<i>📈</i><span><b>실적 알림 받기</b><small>새 실적 노트와 중요한 속보만 휴대폰으로 알려 드립니다.</small></span><button type="button" class="mm-push-on">켜기</button>';
+ card.querySelector('button').onclick=function(){this.textContent='…';sub(function(){draw(null);gate()},this)}}
+// 알림 켜기(사용자 2026-10-30): 아이폰은 '누른 그 순간'에 허용·등록을 해야 함 → 원시그널을 미리 불러 두고, 누르면 바로 원시그널로 허용+등록
+function fin(done){var t=0;(function w(){if(on()){done(true);draw(OSR);return}if(++t>16){done(Notification.permission==='granted'&&!OSR,OSR);draw(OSR);return}setTimeout(w,500)})()}
+function sub(done){var OS=OSR;
+ if(OS){try{var p=Notification.permission==='granted'?OS.User.PushSubscription.optIn():OS.Notifications.requestPermission();Promise.resolve(p).catch(function(){}).then(function(){if(Notification.permission!=='granted'){done(false);return}try{OS.User.PushSubscription.optedIn||OS.User.PushSubscription.optIn()}catch(e){}fin(done)})}catch(e){done(false)}return}
+ var pr;try{pr=Notification.permission==='granted'?Promise.resolve('granted'):Notification.requestPermission()}catch(e){pr=Promise.resolve(Notification.permission)}
+ Promise.resolve(pr).then(function(){if(Notification.permission!=='granted'){done(false);return}
+  load(function(OS){try{Promise.resolve(OS.User.PushSubscription.optIn()).catch(function(){}).then(function(){fin(done)})}catch(e){done(false)}})})}
 // 앱으로 열었는데 알림이 꺼져 있으면 아래에서 올라오는 배너(사용자 2026-10-30: '나중에' 없음 — 켤 때까지 앱 열 때마다, 거절한 사람은 열 때마다 설정 안내)
-function gate(){var g=document.getElementById('mmpg');if(g)g.remove();if(!can||!standalone||Notification.permission==='granted')return;
+function gate(){var g=document.getElementById('mmpg');if(g)g.remove();if(!can||!standalone)return;var fix=Notification.permission==='granted';if(fix&&(!OSR||real(OSR)))return;
  var today=new Date().toISOString().slice(0,10),den=Notification.permission==='denied';
  try{if(den&&sessionStorage.getItem('mm-gate-den'))return}catch(e){}
  g=document.createElement('div');g.id='mmpg';
- g.innerHTML='<div class="bx"><img class="ic" src="img/icon192.png?v=2" alt=""><h3>'+(den?'알림이 꺼져 있습니다':'🔔 알림을 켜 주세요')+'</h3>'+(den?'<p>아이폰 <b>설정 → 알림 → 멍뭉 터미널</b>에서<br>‘알림 허용’을 켜 주세요.</p><button type="button" class="go">알겠습니다</button>':'<p>새 실적·중요 속보만 바로 알려 드립니다.</p><button type="button" class="go">알림 켜기</button>')+'</div>';
+ g.innerHTML='<div class="bx"><img class="ic" src="img/icon192.png?v=2" alt=""><h3>'+(den?'알림이 꺼져 있습니다':fix?'🔔 알림 연결 마무리':'🔔 알림을 켜 주세요')+'</h3>'+(den?'<p>아이폰 <b>설정 → 알림 → 멍뭉 터미널</b>에서<br>‘알림 허용’을 켜 주세요.</p><button type="button" class="go">알겠습니다</button>':(fix?'<p>알림 연결이 아직 덜 됐습니다.<br>한 번만 눌러 마무리해 주세요.</p><button type="button" class="go">연결하기</button>':'<p>새 실적·중요 속보만 바로 알려 드립니다.</p><button type="button" class="go">알림 켜기</button>'))+'</div>';
  document.body.appendChild(g);var go=g.querySelector('.go'),lt=g.querySelector('.ltr');
- go.onclick=function(){if(den){try{sessionStorage.setItem('mm-gate-den','1')}catch(e){}g.remove();return}go.textContent='…';sub(function(ok){g.remove();if(!ok)gate()})};
+ go.onclick=function(){if(den){try{sessionStorage.setItem('mm-gate-den','1')}catch(e){}g.remove();return}go.textContent='…';sub(function(ok){g.remove();if(!ok)setTimeout(gate,300)})};
 }
 function mount(){if(document.querySelector('.mm-push'))return true;var sh=document.querySelector('p.sh');if(!sh)return false;var box=sh.parentElement;
  card=document.createElement('div');var was=false;try{was=localStorage.getItem('mm-push-on')==='1'||Notification.permission==='granted'}catch(e){}if(was&&can)box.parentElement.appendChild(card);else box.parentElement.insertBefore(card,box);draw(null);
- if(can&&(Notification.permission==='granted'||standalone))load(draw);setTimeout(gate,1200);return true}
+ if(can&&(Notification.permission==='granted'||standalone))load(function(OS){draw(OS);setTimeout(gate,600)});setTimeout(gate,1200);return true}
 var n=0;(function go(){if(!mount()&&++n<40)setTimeout(go,250)})();
 }catch(e){}})();
 </script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>#mm-splash{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:linear-gradient(180deg,#fbf7ee,#f3efe4);transition:opacity .4s ease,transform .4s ease}
@@ -321,7 +327,7 @@ function add(){(document.body||document.documentElement).appendChild(d);var v=d.
 if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
 d.addEventListener('click',close);setTimeout(close,6500)})();
-</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="고수 성적표"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-pros.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610302024">(function(){var me="202610302024";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>고수 성적표 · 멍뭉 터미널</title><style>:root{color-scheme:light;
+</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="고수 성적표"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-pros.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610302040">(function(){var me="202610302040";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>고수 성적표 · 멍뭉 터미널</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
