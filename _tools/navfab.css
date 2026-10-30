@@ -9,6 +9,8 @@ body .mmd{transition:transform .45s cubic-bezier(.33,.9,.3,1)}
 #mm-fab{transition:transform .45s cubic-bezier(.33,.9,.3,1),opacity .25s}
 body.mmd-hide .mmd{transform:translateY(100%)}
 body.mmd-hide #mm-fab{transform:translateY(110px);opacity:0;pointer-events:none}
+/* 숨은 상태에서는 투명 버튼이 화면 아래 끝에 걸려 대신 눌리던 문제 막기(사용자 2026-10-30) */
+body.mmd-hide #mm-fab a{pointer-events:none}
 body.mmd-hide.mmd-on{padding-bottom:calc(30px + env(safe-area-inset-bottom))!important}
 /* 손잡이: 독 박스 위 가운데에 붙은 탭(일체형, 시안 A) — 독이 내려가면 이 탭만 화면 바닥에 남음(사용자 2026-10-29) */
 body .mmd .grab em{visibility:hidden}
