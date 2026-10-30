@@ -6,6 +6,14 @@ R = sys.argv[1] if len(sys.argv) > 1 else '.'
 APP, KEY = (os.environ.get('ONESIGNAL_APP_ID', '').strip() or 'b81f8268-5aef-4a29-b2b8-2173248136a3'), os.environ.get('ONESIGNAL_API_KEY', '').strip()
 SITE = 'https://mung-mungi.github.io/mung-mung-market/'
 SP = os.path.join(R, 'd/push_state.json')
+TEST = os.environ.get('PUSH_TEST', '').strip()  # 시험 알림(수동 실행): 이 문구로 한 번 보내고 끝
+if TEST and APP and KEY:
+    req = urllib.request.Request('https://api.onesignal.com/notifications', method='POST', headers={'Content-Type': 'application/json', 'Authorization': 'Key ' + KEY},
+        data=json.dumps({'app_id': APP, 'included_segments': ['Total Subscriptions'], 'target_channel': 'push', 'headings': {'en': '🔔 멍뭉 터미널 시험 알림', 'ko': '🔔 멍뭉 터미널 시험 알림'},
+                         'contents': {'en': TEST, 'ko': TEST}, 'url': SITE + 'p-earn.html'}).encode())
+    try: print('시험 알림', urllib.request.urlopen(req, timeout=20).read().decode()[:300])
+    except Exception as e: print('시험 실패', e, getattr(e, 'read', lambda: b'')().decode()[:300])
+    sys.exit(0)
 feed = json.load(open(os.path.join(R, 'd/earn_feed.json'), encoding='utf-8'))
 try: st = json.load(open(SP, encoding='utf-8'))
 except Exception: st = {}

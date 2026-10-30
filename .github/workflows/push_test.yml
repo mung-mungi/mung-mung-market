@@ -1,0 +1,20 @@
+# 휴대폰 알림 시험 보내기(사용자 2026-10-30) — Actions 화면에서 'Run workflow'로 수동 실행
+name: push-test
+on:
+  workflow_dispatch:
+    inputs:
+      msg:
+        description: '알림 내용'
+        required: false
+        default: '알림이 잘 도착했습니다. 누르면 실적 결과가 열립니다.'
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: send
+        env:
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          PUSH_TEST: ${{ github.event.inputs.msg }}
+        run: python3 -I _tools/push_notify.py .
