@@ -466,6 +466,22 @@
    "pdf_kr_site": "d/ir/pdf/20261026_RMBS_3Q26_kr.pdf"
   },
   {
+   "name": "블룸에너지",
+   "ticker": "BE",
+   "q": "3Q26",
+   "date": "2026-10-22",
+   "time": "장후",
+   "title": "AI 데이터센터 현장 발전 수요로 매출이 138% 늘어 사상 최대 12.36억 달러를 기록했고, 올해 연간 가이던스를 세 번째로 올렸습니다.",
+   "body": "【 블룸에너지 2026년 3분기 IR 정리 】\n★ 한 줄 핵심: AI 데이터센터 현장 발전 수요로 매출이 138% 늘어 사상 최대 12.36억 달러를 기록했고, 올해 연간 가이던스를 세 번째로 올렸습니다.\n\n▶ 회사가 강조한 것\n　▪ 분기 매출 12.36억 달러로 사상 최대(record)를 기록했습니다.\n　▪ 2026년 연간 매출 가이던스를 44억~46억 달러로 올렸고, 올해 들어 세 번째 상향입니다.\n　▪ S&P 500 지수에 편입되었습니다.\n　▪ 하이퍼스케일러(대형 클라우드 기업)에서 시작된 현장 발전 수요가 다른 업종으로 빠르게 퍼지고 있다고 했습니다.\n\n▶ 분기 숫자\n　▪ 매출: 5.19억 달러 → 12.36억 달러(+138%)\n　▪ 제품 매출: 3.84억 달러 → 10.74억 달러(+179%)\n　▪ 영업이익(GAAP 기준): 0.08억 달러 → 2.25억 달러(약 29배)\n　▪ 조정 영업이익(non-GAAP operating income): 0.46억 달러 → 2.86억 달러(+518%)\n　▪ 주당순이익(GAAP EPS): -0.10달러(적자) → 0.78달러(흑자 전환)\n　▪ 조정 주당순이익(non-GAAP EPS): 0.15달러 → 0.94달러(+527%)\n　▪ 조정 매출총이익률(non-GAAP gross margin): 30.4% → 34.5%\n\n▶ 가이던스\n　▪ 2026년 연간 매출: 44억~46억 달러(중간값 기준 전년 대비 +122%)\n　▪ 2026년 조정 매출총이익률: 약 34%\n　▪ 2026년 조정 영업이익: 9.6억~10.3억 달러\n　▪ 2026년 조정 주당순이익(non-GAAP EPS): 3.10~3.40달러\n\n▶ AI 인프라 관점\n　▪ 블룸에너지는 고체산화물 연료전지(SOFC)로 데이터센터 옆에서 바로 전기를 만드는 '현장 발전(onsite power)' 장비를 팝니다.\n　▪ AI 데이터센터의 큰 전력 수요를 기존 전력망(grid)이 빠르게 감당하지 못해 현장 발전 수요가 커졌다고 했습니다(어닝콜).\n　▪ 수주 잔고(backlog)가 매출보다 빠르게 늘고 있고, 고객·업종·지역도 다양해지고 있다고 했습니다(어닝콜).\n\n▶ 다음에 볼 것\n　▪ 4분기에 상향한 연간 가이던스를 달성하는지\n　▪ 하이퍼스케일러 외 고객으로 수주가 얼마나 넓어지는지\n\n[IR서재]\n회사: 블룸에너지\n티커: BE\n분기: 2026년 3분기\n발표일: 2026-10-22\n한줄: AI 데이터센터 현장 발전 수요로 매출이 138% 늘어 사상 최대 12.36억 달러를 기록했고, 올해 연간 가이던스를 세 번째로 올렸습니다.\nIR링크: https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm\n[/IR서재]",
+   "src": "https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm",
+   "pdf_kr": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261022/BE_3Q26_kr.pdf",
+   "pdf_orig": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261022/BE_3Q26_orig.pdf",
+   "pdf_slides": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261022/BE_3Q26_slides.pdf",
+   "by": "그록봇",
+   "id": "20261022_BE_3Q26",
+   "pdf_kr_site": "d/ir/pdf/20261022_BE_3Q26_kr.pdf"
+  },
+  {
    "name": "웨스턴디지털",
    "ticker": "WDC",
    "q": "1Q27",
@@ -579,5 +595,5 @@
   }
  ],
  "skipped": [],
- "updated": "2026-10-30T08:46Z"
+ "updated": "2026-10-30T08:47Z"
 }
