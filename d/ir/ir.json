@@ -352,6 +352,22 @@
    "pdf_kr_site": "d/ir/pdf/20261027_STX_1Q27_kr.pdf"
   },
   {
+   "name": "울트라클린",
+   "ticker": "UCTT",
+   "q": "3Q26",
+   "date": "2026-10-27",
+   "time": "장후",
+   "title": "반도체 장비 투자 확대로 매출이 49% 늘어 사상 최대 7.59억 달러를 기록했고, 4분기 매출은 8억~8.6억 달러로 더 늘 것으로 예상했습니다.",
+   "body": "【 울트라클린 2026년 3분기 IR 정리 】\n★ 한 줄 핵심: 반도체 장비 투자 확대로 매출이 49% 늘어 사상 최대 7.59억 달러를 기록했고, 4분기 매출은 8억~8.6억 달러로 더 늘 것으로 예상했습니다.\n\n▶ 회사가 강조한 것\n　▪ 분기 매출 7.59억 달러로 사상 최대(record)를 기록했습니다.\n　▪ 빨라진 고객 수요에 맞춰 생산을 빠르게 늘렸다고 했습니다.\n　▪ AI가 이끄는 반도체 산업 확장에서 더 많은 몫을 가져가겠다고 했습니다.\n　▪ 회사 체질 개선 계획 'UCT 3.0'으로 더 빠르고 효율적인 회사를 만들고 있다고 했습니다.\n\n▶ 분기 숫자\n　▪ 매출: 5.10억 달러 → 7.59억 달러(+49%)\n　▪ 영업이익(GAAP 기준): 0.11억 달러 → 0.54억 달러(+407%)\n　▪ 주당순이익(GAAP EPS): -0.24달러(적자) → 0.85달러(흑자 전환)\n　▪ 조정 주당순이익(non-GAAP EPS): 0.24달러 → 1.15달러(+379%)\n　▪ 조정 매출총이익률(non-GAAP gross margin): 17.3%(직전 분기 16.7%)\n　▪ 조정 영업이익률(non-GAAP operating margin): 9.0%(직전 분기 7.0%)\n\n▶ 가이던스\n　▪ 4분기 매출: 8.0억~8.6억 달러\n　▪ 4분기 조정 주당순이익(non-GAAP EPS): 1.11~1.35달러\n\n▶ AI 인프라 관점\n　▪ 울트라클린은 반도체 장비 회사에 들어가는 핵심 부품·모듈을 만들고, 장비 부품 세정 서비스도 합니다.\n　▪ 메모리 회사들이 D램과 차세대 HBM(고대역폭메모리)용 공장 공간을 늘리고 있다고 했습니다(어닝콜).\n　▪ 고객 정보를 바탕으로 2027년 반도체 장비 투자(WFE)가 2,000억 달러를 넘을 것으로 봤습니다(어닝콜).\n　▪ 내년 말레이시아·태국의 자체 생산능력을 2배로 늘릴 계획입니다(어닝콜).\n\n▶ 다음에 볼 것\n　▪ 매출이 늘면서 이익률이 계속 오르는지\n　▪ 동남아 생산능력 확대가 계획대로 진행되는지\n\n[IR서재]\n회사: 울트라클린\n티커: UCTT\n분기: 2026년 3분기\n발표일: 2026-10-27\n한줄: 반도체 장비 투자 확대로 매출이 49% 늘어 사상 최대 7.59억 달러를 기록했고, 4분기 매출은 8억~8.6억 달러로 더 늘 것으로 예상했습니다.\nIR링크: https://www.sec.gov/Archives/edgar/data/1275014/000162828026067578/q32026pressrelease.htm\n[/IR서재]",
+   "src": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026067578/q32026pressrelease.htm",
+   "pdf_kr": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261027/UCTT_3Q26_kr.pdf",
+   "pdf_orig": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261027/UCTT_3Q26_orig.pdf",
+   "pdf_slides": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261027/UCTT_3Q26_slides.pdf",
+   "by": "그록봇",
+   "id": "20261027_UCTT_3Q26",
+   "pdf_kr_site": "d/ir/pdf/20261027_UCTT_3Q26_kr.pdf"
+  },
+  {
    "name": "앰코",
    "ticker": "AMKR",
    "q": "3Q26",
@@ -529,5 +545,5 @@
   }
  ],
  "skipped": [],
- "updated": "2026-10-30T08:37Z"
+ "updated": "2026-10-30T08:39Z"
 }
