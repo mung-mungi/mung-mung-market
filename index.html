@@ -44,8 +44,6 @@ h1,h2,h3,h4,[class*="tile"] .v,[class*="tile"] b,[class*="kpi"] b{text-wrap:bala
 /* 경제지표 '다음 큰 발표' 칸은 두 칸 너비 — 긴 행사 이름이 2줄로 끝나고, 5칸이 빈자리 없이 2줄에 딱 맞음 */
 .mc-tiles .mc-tile.hot{grid-column:span 2!important}
 .mc-tiles .mc-tile.hot .v.sm{-webkit-line-clamp:2!important}
-
-/* hub_tidy */.today .lab{display:none!important}.today .c{font-family:var(--sans)!important;font-size:14.5px!important;font-weight:500!important;color:var(--fg)!important;line-height:1.55!important;letter-spacing:-.01em!important;white-space:pre-line;margin:8px 0 0!important;padding-top:8px;border-top:1px dashed var(--line)}
 </style><script data-wrapfix>// 줄바꿈 다듬기 — 전 페이지 공통(사용자 2026-10-29)
 // ① 붙어 있는 괄호 앞에 '끊어도 되는 자리'를 넣음: 국내총생산(GDP) → 국내총생산 / (GDP) 로만 끊김 ('(GDP' / ')' 처럼 깨지지 않게)
 //    날짜 요일 10.29(목), 숫자 괄호는 건드리지 않음
@@ -209,8 +207,43 @@ function paint(nw,un){
   var names=nw.slice(0,3).map(function(x){return x.name}).join(' · ')+(nw.length>3?' 외 '+(nw.length-3)+'곳':'');
   if(!un)a.classList.add('seen');
   a.innerHTML='<i></i><span class="t"><b>'+(un?'새 실적 '+nw.length+'곳':'✓ 최근 나온 실적 '+nw.length+'곳')+'</b><small></small></span><em>›</em>';a.querySelector('small').textContent=names;
-  box.parentElement.insertBefore(a,box);
+  var pc=document.querySelector('.mm-push');(pc||box).parentElement.insertBefore(a,pc||box);
 }
+}catch(e){}})();
+</script><style data-push>.mm-push{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:10px 12px 10px 14px;border-radius:14px;background:#fff;border:1px solid #e6dcc6;box-shadow:0 2px 0 #ece4d2;color:#1d1c1a}
+.mm-push i{font-style:normal;font-size:20px;flex:none}
+.mm-push span{flex:1;min-width:0}.mm-push b{display:block;font-size:15px;font-weight:900}.mm-push small{display:block;font-size:12.5px;color:#6b675f;margin-top:2px;line-height:1.45;word-break:keep-all}
+.mm-push button{all:unset;cursor:pointer;flex:none;padding:8px 16px;border-radius:999px;font-weight:900;font-size:14px;-webkit-tap-highlight-color:transparent}
+.mm-push .mm-push-on{background:#e8343b;color:#fff;box-shadow:0 2px 0 #b9262c}.mm-push .mm-push-on:active{transform:translateY(1px);box-shadow:none}
+.mm-push .mm-push-off{background:#f4efe4;color:#6b675f;border:1px solid #e6dcc6}
+.mm-push.done{border-left:4px solid #2f9e5a}.mm-push.done i{color:#2f9e5a;font-weight:900}
+.mm-push.off{background:#faf7f0;box-shadow:none}.mm-push.off b{font-size:14px}
+</style><script data-push>// 휴대폰 알림 받기(사용자 2026-10-30) — 원시그널 웹 푸시. 메인 화면에만 '📈 실적 알림 받기' 카드
+// 아이폰은 홈 화면에 추가한 앱에서만 됨(애플 규칙) → 그 밖에선 안내만. SDK는 버튼을 쓸 수 있는 기기에서만 불러옴(가볍게)
+(function(){try{
+if(!/\/(index\.html)?$/.test(location.pathname))return;
+var APP='b81f8268-5aef-4a29-b2b8-2173248136a3',ua=navigator.userAgent;
+var iOS=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
+var standalone=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
+var inApp=/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\//i.test(ua);
+var can='serviceWorker' in navigator&&'PushManager' in window&&'Notification' in window&&!inApp&&(!iOS||standalone);
+var card,sdk=null;
+function load(cb){if(sdk)return sdk.then(cb);sdk=new Promise(function(ok){window.OneSignalDeferred=window.OneSignalDeferred||[];
+  var s=document.createElement('script');s.src='https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js';s.defer=true;document.head.appendChild(s);
+  OneSignalDeferred.push(async function(OS){try{await OS.init({appId:APP,serviceWorkerPath:'mung-mung-market/OneSignalSDKWorker.js',serviceWorkerUpdaterPath:'mung-mung-market/OneSignalSDKUpdaterWorker.js',serviceWorkerParam:{scope:'/mung-mung-market/'},notifyButton:{enable:false}})}catch(e){}
+   ok(OS);OS.User&&OS.User.PushSubscription&&OS.User.PushSubscription.addEventListener('change',function(){draw(OS)})})});return sdk.then(cb)}
+function on(OS){try{return Notification.permission==='granted'&&OS&&OS.User.PushSubscription.optedIn}catch(e){return false}}
+function draw(OS){if(!card)return;
+ if(!can){card.className='mm-push off';card.innerHTML='<i>🔔</i><span><b>실적·속보 알림</b><small>'+(inApp?'카톡 안에서는 알림을 받을 수 없습니다. 사파리·크롬에서 열어 홈 화면에 추가하면 켤 수 있습니다.':'홈 화면에 추가한 멍뭉 터미널 앱에서 켤 수 있습니다.')+'</small></span>';return}
+ if(on(OS)){card.className='mm-push done';card.innerHTML='<i>✓</i><span><b>실적 알림 켜짐</b><small>새 실적 노트와 중요한 속보가 오면 알려 드립니다.</small></span><button type="button" class="mm-push-off">끄기</button>';
+  card.querySelector('button').onclick=function(){OS.User.PushSubscription.optOut().then(function(){draw(OS)})};return}
+ card.className='mm-push';card.innerHTML='<i>📈</i><span><b>실적 알림 받기</b><small>새 실적 노트와 중요한 속보만 휴대폰으로 알려 드립니다.</small></span><button type="button" class="mm-push-on">켜기</button>';
+ card.querySelector('button').onclick=function(){var b=this;b.textContent='…';load(function(OS){var p=Notification.permission==='granted'?OS.User.PushSubscription.optIn():OS.Notifications.requestPermission();
+  Promise.resolve(p).then(function(){if(Notification.permission==='granted'&&!OS.User.PushSubscription.optedIn)return OS.User.PushSubscription.optIn()}).catch(function(){}).then(function(){setTimeout(function(){draw(OS)},800)})})}}
+function mount(){if(document.querySelector('.mm-push'))return true;var sh=document.querySelector('p.sh');if(!sh)return false;var box=sh.parentElement;
+ card=document.createElement('div');box.parentElement.insertBefore(card,box);draw(null);
+ if(can&&Notification.permission==='granted')load(draw);return true}
+var n=0;(function go(){if(!mount()&&++n<40)setTimeout(go,250)})();
 }catch(e){}})();
 </script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>#mm-splash{position:fixed;inset:0;z-index:2147483000;display:grid;place-items:center;background:linear-gradient(180deg,#fbf7ee,#f3efe4);transition:opacity .4s ease,transform .4s ease}
 #mm-splash.out{opacity:0;transform:scale(1.06);pointer-events:none}
@@ -232,7 +265,7 @@ function add(){(document.body||document.documentElement).appendChild(d);var v=d.
 if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
 d.addEventListener('click',close);setTimeout(close,6500)})();
-</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="멍뭉 터미널 · AI 밸류체인 레이더"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset=utf8><script data-ver="202610300817">(function(){var me="202610300817";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><style data-vt>
+</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="멍뭉 터미널 · AI 밸류체인 레이더"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset=utf8><script data-ver="202610301733">(function(){var me="202610301733";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><style data-vt>
 /* 페이지 넘길 때 아이폰 기본 앱처럼 옆으로 밀려 들어오는 전환(지원하는 브라우저만, 아니면 그냥 바로 넘어감) */
 @view-transition{navigation:auto}
 ::view-transition-group(root){animation-duration:.34s;animation-timing-function:cubic-bezier(.22,.8,.24,1)}
@@ -739,7 +772,7 @@ var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
  function chips(l,date){return '<span class="chips">'+l.map(function(x){var d=date&&x.match(/^(\d+\/\d+)\s+(.+)$/);return '<span>'+(d?'<em>'+d[1]+'</em>'+d[2]:x)+'</span>'}).join('')+'</span>'}
  var ul=document.createElement('ul');ul.className='tg3';ul.innerHTML='<li><i>이번 주</i><span>'+chips([m[1]].concat(split(m[2])))+'</span></li><li><i>한 줄 평</i><span><b class="k">'+m[3]+'</b></span></li><li><i>다음 행사</i><span>'+chips(split(nx),1)+'</span></li>';t.appendChild(ul);t.classList.add('tg-rows')}
 var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})()})();
-</script><style data-statgo>.stats .stat[data-go]{cursor:pointer;transition:transform .08s}.stats .stat[data-go]:active{transform:translateY(1px);background:rgba(154,98,0,.06)}.stats .stat[data-go] .k::after{content:" ›";color:#b9b6ae;font-weight:700}</style><script data-statgo>document.addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('.stats .stat[data-go]');if(!s)return;var g=s.dataset.go;if(/\.html/.test(g))return;e.stopPropagation();e.preventDefault();location.href='p-trend.html?per=1y#'+g},true);</script><script data-mkt>(function(){
+</script><script data-mkt>(function(){
   // 홈 '오늘 한눈에' 숫자 4개를 5분 시세 갱신(live/market.json) 값으로 바꿈 — 사용자 2026-10-29 지시. 페이지를 열어 둔 동안 5분마다 다시 읽음
   var MAP = [[/나스닥/, 'nasdaq'], [/반도체|SOX/, 'sox'], [/10년/, 'us10y'], [/WTI|유가/, 'wti']];
   function f2(v){ return v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
@@ -850,4 +883,4 @@ var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})()})();
   go(); document.addEventListener('DOMContentLoaded', go); window.addEventListener('load', go);
   var q = 0; try { new MutationObserver(function(){ if (q) return; q = 1; setTimeout(function(){ q = 0; go(); }, 80); }).observe(document.documentElement, { subtree: true, childList: true }); } catch (e) {}
 })();
-</script></body></html>
+</script><style data-statgo>.stats .stat[data-go]{cursor:pointer;transition:transform .08s}.stats .stat[data-go]:active{transform:translateY(1px);background:rgba(154,98,0,.06)}.stats .stat[data-go] .k::after{content:" ›";color:#b9b6ae;font-weight:700}</style><script data-statgo>document.addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('.stats .stat[data-go]');if(!s)return;var g=s.dataset.go;if(/\.html/.test(g))return;e.stopPropagation();e.preventDefault();location.href='p-trend.html?per=1y#'+g},true);</script></body></html>

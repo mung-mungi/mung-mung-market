@@ -3,7 +3,7 @@
 # 사용: python3 -I _tools/push_notify.py <사이트 폴더>
 import json, os, sys, urllib.request, datetime as dt
 R = sys.argv[1] if len(sys.argv) > 1 else '.'
-APP, KEY = os.environ.get('ONESIGNAL_APP_ID', '').strip(), os.environ.get('ONESIGNAL_API_KEY', '').strip()
+APP, KEY = (os.environ.get('ONESIGNAL_APP_ID', '').strip() or 'b81f8268-5aef-4a29-b2b8-2173248136a3'), os.environ.get('ONESIGNAL_API_KEY', '').strip()
 SITE = 'https://mung-mungi.github.io/mung-mung-market/'
 SP = os.path.join(R, 'd/push_state.json')
 feed = json.load(open(os.path.join(R, 'd/earn_feed.json'), encoding='utf-8'))

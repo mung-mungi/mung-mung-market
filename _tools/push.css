@@ -1,0 +1,8 @@
+.mm-push{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:10px 12px 10px 14px;border-radius:14px;background:#fff;border:1px solid #e6dcc6;box-shadow:0 2px 0 #ece4d2;color:#1d1c1a}
+.mm-push i{font-style:normal;font-size:20px;flex:none}
+.mm-push span{flex:1;min-width:0}.mm-push b{display:block;font-size:15px;font-weight:900}.mm-push small{display:block;font-size:12.5px;color:#6b675f;margin-top:2px;line-height:1.45;word-break:keep-all}
+.mm-push button{all:unset;cursor:pointer;flex:none;padding:8px 16px;border-radius:999px;font-weight:900;font-size:14px;-webkit-tap-highlight-color:transparent}
+.mm-push .mm-push-on{background:#e8343b;color:#fff;box-shadow:0 2px 0 #b9262c}.mm-push .mm-push-on:active{transform:translateY(1px);box-shadow:none}
+.mm-push .mm-push-off{background:#f4efe4;color:#6b675f;border:1px solid #e6dcc6}
+.mm-push.done{border-left:4px solid #2f9e5a}.mm-push.done i{color:#2f9e5a;font-weight:900}
+.mm-push.off{background:#faf7f0;box-shadow:none}.mm-push.off b{font-size:14px}
