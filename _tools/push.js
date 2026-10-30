@@ -40,15 +40,15 @@ function draw(OS){if(!card)return;
 function sub(done){var pr;try{pr=Notification.permission==='granted'?Promise.resolve('granted'):Notification.requestPermission()}catch(e){pr=Promise.resolve(Notification.permission)}
  Promise.resolve(pr).then(function(r){if(Notification.permission!=='granted'){done(false);return}try{localStorage.setItem('mm-push-on','1')}catch(e){}
   load(function(OS){try{Promise.resolve(OS.User.PushSubscription.optIn()).catch(function(){}).then(function(){done(true,OS);setTimeout(function(){draw(OS)},800)})}catch(e){done(true)}});setTimeout(function(){done(true)},4000)})}
-// 앱으로 열었는데 알림이 꺼져 있으면 아래에서 올라오는 배너(나중에 = 오늘만 숨김, 켜면 다시 안 뜸, 거절했으면 설정 안내 한 번만)
+// 앱으로 열었는데 알림이 꺼져 있으면 아래에서 올라오는 배너(사용자 2026-10-30: '나중에' 없음 — 켤 때까지 앱 열 때마다, 거절한 사람은 열 때마다 설정 안내)
 function gate(){var g=document.getElementById('mmpg');if(g)g.remove();if(!can||!standalone||Notification.permission==='granted')return;
  var today=new Date().toISOString().slice(0,10),den=Notification.permission==='denied';
- try{if(den?localStorage.getItem('mm-gate-den'):localStorage.getItem('mm-gate-day')===today)return}catch(e){}
+ try{if(den&&sessionStorage.getItem('mm-gate-den'))return}catch(e){}
  g=document.createElement('div');g.id='mmpg';
- g.innerHTML='<div class="bx"><img class="ic" src="img/icon192.png?v=2" alt=""><h3>'+(den?'알림이 꺼져 있습니다':'🔔 실적 알림을 켜 주세요')+'</h3>'+(den?'<p>아이폰 <b>설정 → 알림 → 멍뭉 터미널</b>에서<br>‘알림 허용’을 켜 주세요.</p><button type="button" class="go">알겠습니다</button>':'<p>새 실적과 정말 중요한 속보만<br>휴대폰으로 바로 알려 드립니다.</p><div class="ex">예) <b>🔔 새 실적 · 캐터필러</b><br>AI 관점 호재 · 데이터센터 발전 +30% · 프리마켓 −10%</div><button type="button" class="go">알림 켜기</button><button type="button" class="ltr">나중에</button>')+'</div>';
+ g.innerHTML='<div class="bx"><img class="ic" src="img/icon192.png?v=2" alt=""><h3>'+(den?'알림이 꺼져 있습니다':'🔔 알림을 켜 주세요')+'</h3>'+(den?'<p>아이폰 <b>설정 → 알림 → 멍뭉 터미널</b>에서<br>‘알림 허용’을 켜 주세요.</p><button type="button" class="go">알겠습니다</button>':'<p>새 실적·중요 속보만 바로 알려 드립니다.</p><button type="button" class="go">알림 켜기</button>')+'</div>';
  document.body.appendChild(g);var go=g.querySelector('.go'),lt=g.querySelector('.ltr');
- go.onclick=function(){if(den){try{localStorage.setItem('mm-gate-den','1')}catch(e){}g.remove();return}go.textContent='…';sub(function(ok){g.remove();if(!ok)gate()})};
- if(lt)lt.onclick=function(){try{localStorage.setItem('mm-gate-day',today)}catch(e){}g.remove()}}
+ go.onclick=function(){if(den){try{sessionStorage.setItem('mm-gate-den','1')}catch(e){}g.remove();return}go.textContent='…';sub(function(ok){g.remove();if(!ok)gate()})};
+}
 function mount(){if(document.querySelector('.mm-push'))return true;var sh=document.querySelector('p.sh');if(!sh)return false;var box=sh.parentElement;
  card=document.createElement('div');var was=false;try{was=localStorage.getItem('mm-push-on')==='1'||Notification.permission==='granted'}catch(e){}if(was&&can)box.parentElement.appendChild(card);else box.parentElement.insertBefore(card,box);draw(null);
  if(can&&(Notification.permission==='granted'||standalone))load(draw);setTimeout(gate,1200);return true}
