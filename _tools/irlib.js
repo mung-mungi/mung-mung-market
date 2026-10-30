@@ -1,0 +1,56 @@
+// 실적 결과 > IR 서재 (사용자 2026-10-30) — 데이터는 d/ir/ir.json(새 정리는 items 맨 앞에 추가)
+(function(){
+var L={'연산칩':'NVDA AMD INTC','맞춤형 칩':'AVGO MRVL 2454','메모리·저장':'MU 000660 005930 SNDK WDC STX 285A SIMO 8299','파운드리':'TSM TSMC TSEM GFS','설계 SW':'CDNS SNPS',
+'장비·후공정':'AMAT LRCX KLAC ASML TER CAMT FORM MKSI UCTT AMKR 8150','광통신':'LITE COHR AAOI AXTI FN GLW VIAV','연결·네트워크':'ALAB SMTC CRDO RMBS APH TEL ANET CSCO LUMN',
+'서버':'CLS SMCI DELL','전력·냉각':'VRT GEV BE CAT','전력반도체':'NVTS ON MPWR TXN','전력 시공':'PWR FLR','네오클라우드':'CRWV NBIS IREN APLD CIFR','데이터센터 리츠':'EQIX DLR GDS',
+'빅테크':'MSFT GOOGL GOOG AMZN META ORCL AAPL TSLA IBM','SW·보안':'NET PLTR PANW NOW'};
+var T2L={};Object.keys(L).forEach(function(k){L[k].split(' ').forEach(function(t){T2L[t]=k})});
+function layer(t){t=String(t||'').toUpperCase().replace(/\..*$/,'');return T2L[t]||'기타'}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function md(d){var m=String(d||'').match(/\d{4}-(\d\d)-(\d\d)/);return m?(+m[1])+'/'+(+m[2]):''}
+var DATA=[],cur='전체',q='';
+function build(){var main=document.querySelector('main');var find=document.getElementById('find');if(!main||!find||document.getElementById('irlib'))return false;
+ var s=document.createElement('section');s.id='irlib';
+ s.innerHTML='<div class="ir-h"><h2>📚 IR 서재</h2><span class="ir-n">0권</span></div>'+
+ '<p class="ir-sub">회사가 직접 낸 실적 발표자료·어닝콜을 정리해 꽂아 둡니다 · 누르면 펼쳐집니다</p>'+
+ '<details class="ir-how"><summary>▸ 이렇게 읽습니다 · 눌러서 펼치기</summary><p>위 실적 결과가 시장이 본 \'숫자 성적표\'라면, IR 서재는 회사가 그 숫자를 어떻게 설명했는지 모아 둔 곳입니다.<br>실적 결과 카드 이름 옆 <b>IR</b> 알약을 누르면 그 회사 정리로 바로 넘어옵니다.<br>분야 알약으로 같은 층 회사들의 설명을 나란히 비교해 볼 수 있습니다.</p></details>'+
+ '<div class="ir-tool"><input class="ir-q" type="search" placeholder="회사·티커 찾기" aria-label="IR 서재 검색"></div>'+
+ '<div class="ir-pills" role="group" aria-label="분야"></div><div class="ir-list"></div>';
+ var anchor=(find.closest('section')&&find.closest('section').parentNode===main)?find.closest('section'):find;
+ main.insertBefore(s,anchor);
+ s.querySelector('.ir-q').addEventListener('input',function(e){q=e.target.value.trim().toLowerCase();render()});
+ return true}
+function pills(){var box=document.querySelector('#irlib .ir-pills');var have={};DATA.forEach(function(x){have[x._l]=(have[x._l]||0)+1});
+ var ks=['전체'].concat(Object.keys(L).filter(function(k){return have[k]}),have['기타']?['기타']:[]);
+ box.innerHTML='';ks.forEach(function(k){var b=document.createElement('button');b.type='button';b.textContent=k+(k==='전체'?' '+DATA.length:' '+have[k]);b.setAttribute('aria-pressed',k===cur);b.onclick=function(){cur=k;pills();render()};box.appendChild(b)});
+ box.style.display=DATA.length?'':'none';document.querySelector('#irlib .ir-tool').style.display=DATA.length>4?'':'none'}
+function card(x,i){var c=document.createElement('div');c.className='ir-c';c.id='ir-'+esc(x.id||i);c.dataset.tk=String(x.ticker||'').toUpperCase();
+ var fresh=(Date.now()-new Date(x.date||0).getTime())<3*864e5;
+ c.innerHTML='<button type="button" class="ir-row" aria-expanded="false"><div class="ir-l"><b>'+(fresh?'<i>최신</i>':'')+esc(x.name)+'</b><small>'+esc(x.ticker||'')+(x.q?' · '+esc(x.q):'')+(x.date?' · '+md(x.date)+' 발표':'')+'</small>'+(x.title?'<span class="ir-t">'+esc(x.title)+'</span>':'')+'</div><div class="ir-r"><em>'+esc(x._l)+'</em><span class="ar">›</span></div></button>'+
+ '<div class="ir-body"><p class="ir-txt">'+esc(x.body||'')+'</p><div class="ir-foot">'+(x.src?'<a href="'+esc(x.src)+'" target="_blank" rel="noopener">IR 원문 ↗</a>':'')+'<button type="button" class="ir-up">접기 ▴</button><span>'+(x.by?'정리 · '+esc(x.by):'')+'</span></div></div>';
+ var row=c.querySelector('.ir-row');function tog(){var on=c.classList.toggle('on');row.setAttribute('aria-expanded',on)}
+ row.onclick=tog;c.querySelector('.ir-up').onclick=function(){tog();var y=c.getBoundingClientRect().top+scrollY-80;if(c.getBoundingClientRect().top<0)scrollTo(0,y)};return c}
+function render(){var list=document.querySelector('#irlib .ir-list');if(!list)return;list.innerHTML='';list.classList.remove('open');list.style.removeProperty('--irh');var old=document.querySelector('#irlib .ir-more');if(old)old.remove();
+ document.querySelector('#irlib .ir-n').textContent=DATA.length+'권';
+ if(!DATA.length){list.innerHTML='<div class="ir-empty"><b>아직 꽂힌 자료가 없습니다</b>첫 IR 정리가 들어오면 최신순으로 여기에 쌓입니다.</div>';return}
+ var v=DATA.filter(function(x){if(cur!=='전체'&&x._l!==cur)return false;if(!q)return true;return (x.name+' '+x.ticker+' '+(x.title||'')).toLowerCase().indexOf(q)>=0});
+ if(!v.length){list.innerHTML='<div class="ir-empty">찾는 회사가 아직 서재에 없습니다.</div>';return}
+ v.forEach(function(x,i){list.appendChild(card(x,i))});
+ if(v.length>5){requestAnimationFrame(function(){var cs=list.children,c=cs[4];var h=c.offsetTop-list.offsetTop+c.offsetHeight*0.5;list.style.setProperty('--irh',Math.round(h)+'px');
+  var m=document.createElement('button');m.type='button';m.className='ir-more';m.textContent='▼ 아래로 '+(v.length-4)+'권 더 · 전체 펼치기';m.onclick=function(){var o=list.classList.toggle('open');m.textContent=o?'▲ 접기':'▼ 아래로 '+(v.length-4)+'권 더 · 전체 펼치기'};list.after(m)})}}
+function open(tk){tk=String(tk||'').toUpperCase();cur='전체';q='';var qi=document.querySelector('#irlib .ir-q');if(qi)qi.value='';pills();render();
+ var c=[].slice.call(document.querySelectorAll('#irlib .ir-c')).find(function(x){return x.dataset.tk===tk});var s=document.getElementById('irlib');if(!s)return;
+ if(c){document.querySelector('#irlib .ir-list').classList.add('open');if(!c.classList.contains('on'))c.querySelector('.ir-row').click();c.classList.remove('flash');void c.offsetWidth;c.classList.add('flash')}
+ var el=c||s;requestAnimationFrame(function(){scrollTo(0,el.getBoundingClientRect().top+scrollY-70)})}
+window.mmIrOpen=open;
+// 실적 결과 카드에 IR 알약
+function badges(){if(!DATA.length)return;var by={};DATA.forEach(function(x){by[String(x.name).replace(/\s/g,'')]=x.ticker});
+ document.querySelectorAll('article .mk-l>b').forEach(function(b){if(b.querySelector('.ir-go'))return;var a=b.closest('article');var nm=((a&&a.dataset.name)||'').split(' ')[0].replace(/\s/g,'');var tk=by[nm];if(!tk)return;
+  var g=document.createElement('button');g.type='button';g.className='ir-go';g.textContent='IR';g.addEventListener('click',function(e){e.stopPropagation();e.preventDefault();open(tk)},true);b.appendChild(g)})}
+function jump(){var hero=document.querySelector('header.mm-hero');if(!hero||document.querySelector('.ir-jump')||!DATA.length)return;var j=document.createElement('button');j.type='button';j.className='ir-jump';j.textContent='📚 IR 서재 '+DATA.length+'권 ›';j.onclick=function(){var s=document.getElementById('irlib');if(s)scrollTo(0,s.getBoundingClientRect().top+scrollY-70)};hero.after(j)}
+function load(){fetch('d/ir/ir.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){DATA=(j.items||[]).filter(function(x){return x&&x.name}).map(function(x){x._l=layer(x.ticker);return x});
+ DATA.sort(function(a,b){return String(b.date||'').localeCompare(String(a.date||''))});pills();render();jump();
+ var k=0;(function bg(){try{badges()}catch(e){}if(++k<16)setTimeout(bg,500)})();
+ if(location.hash==='#ir')setTimeout(function(){var s=document.getElementById('irlib');if(s)scrollTo(0,s.getBoundingClientRect().top+scrollY-70)},300)}).catch(function(){render()})}
+var n=0;(function go(){if(build())load();else if(++n<30)setTimeout(go,300)})();
+})();

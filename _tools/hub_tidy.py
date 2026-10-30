@@ -164,6 +164,7 @@ def tidy_hits(s):
     s = tidy_ups(s)
     s = tidy_sumrow(s)
     s = tidy_earnui(s)
+    s = tidy_irlib(s)
     if 'data-hits' in s or 'id="hits"' not in s:
         return s
     return s.replace('</body>', HITS + '</body>', 1) if '</body>' in s else s + HITS
@@ -342,6 +343,16 @@ def tidy_earnui(s):
         return s
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-earnui>' + open(os.path.join(d, 'earnui.css'), encoding='utf-8').read() + '</style><script data-earnui>' + open(os.path.join(d, 'earnui.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+# 실적 결과 > IR 서재(사용자 2026-10-30) — CSS·JS는 _tools/irlib.css·irlib.js, 데이터는 d/ir/ir.json
+def tidy_irlib(s):
+    s = re.sub(r'<(style|script) data-irlib>.*?</\1>', '', s, flags=re.S)
+    if 'id="hits"' not in s:
+        return s
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-irlib>' + open(os.path.join(d, 'irlib.css'), encoding='utf-8').read() + '</style><script data-irlib>' + open(os.path.join(d, 'irlib.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
 

@@ -1,0 +1,48 @@
+/* 실적 결과 > IR 서재 (사용자 2026-10-30) — 시세 보드 양식: 알약 분류 + 한 줄 카드 + 누르면 펼침 */
+#irlib{margin:14px 0 0;padding:16px 14px 14px;background:#fff;border:1px solid rgba(11,11,11,.08);border-radius:18px;box-shadow:0 2px 0 rgba(30,22,8,.05),0 8px 20px rgba(30,22,8,.05)}
+#irlib .ir-h{display:flex;align-items:center;gap:8px;margin:0 0 4px}
+#irlib .ir-h h2{margin:0;font:800 22px/1.25 -apple-system,"Apple SD Gothic Neo",sans-serif;letter-spacing:-.03em;color:#0b0b0b}
+#irlib .ir-h .ir-n{margin-left:auto;font:700 12.5px/1 -apple-system,sans-serif;color:#9a6200;background:rgba(154,98,0,.09);border-radius:999px;padding:5px 9px;white-space:nowrap}
+#irlib .ir-sub{margin:0 0 10px;font-size:14px;color:#6f6d68;line-height:1.5}
+#irlib details.ir-how{margin:0 0 10px;border:1px solid rgba(154,98,0,.28);border-radius:12px;background:#fffdf7}
+#irlib details.ir-how summary{cursor:pointer;list-style:none;padding:9px 12px;font:700 14px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200}
+#irlib details.ir-how summary::-webkit-details-marker{display:none}
+#irlib details.ir-how[open] summary{border-bottom:1px dashed rgba(154,98,0,.25)}
+#irlib details.ir-how p{margin:0;padding:9px 12px 11px;font-size:14.5px;line-height:1.6;color:#33322f}
+#irlib .ir-tool{display:flex;gap:8px;align-items:center;margin:0 0 8px}
+#irlib .ir-q{flex:1;min-width:0;border-radius:12px;padding:9px 12px;font-size:15px;border:1px solid rgba(11,11,11,.1);background:#fff;box-shadow:inset 0 1px 2px rgba(0,0,0,.05);font-family:inherit;color:#0b0b0b}
+#irlib .ir-pills{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 8px;margin:0 -2px}
+#irlib .ir-pills::-webkit-scrollbar{display:none}
+#irlib .ir-pills button{all:unset;flex:none;cursor:pointer;white-space:nowrap;font:600 13.5px/1.55 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:4px 12px;border:1px solid rgba(11,11,11,.1);border-radius:999px;background:#f9f9f7;color:#0b0b0b;box-shadow:0 3px 0 rgba(30,22,8,.16),0 4px 8px rgba(30,22,8,.1)}
+#irlib .ir-pills button[aria-pressed=true]{background:#0b0b0b;color:#f9f9f7;border-color:#0b0b0b}
+#irlib .ir-pills button:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(30,22,8,.16)}
+#irlib .ir-list{display:flex;flex-direction:column;gap:8px;max-height:var(--irh,none);overflow-y:auto;overscroll-behavior:contain;padding:2px 2px 4px}
+#irlib .ir-list.open{max-height:none}
+#irlib .ir-c{border:1px solid rgba(154,98,0,.3);border-radius:14px;background:#fff;box-shadow:0 3px 0 rgba(30,22,8,.08),0 5px 12px rgba(30,22,8,.06)}
+#irlib .ir-row{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:10px;padding:12px 12px 12px 14px;cursor:pointer}
+#irlib .ir-row:active{background:rgba(154,98,0,.05);border-radius:14px}
+#irlib .ir-l{flex:1;min-width:0}
+#irlib .ir-l b{display:flex;align-items:center;gap:6px;font:800 17px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b}
+#irlib .ir-l b i{font-style:normal;font:700 11px/1 -apple-system,sans-serif;color:#fff;background:#d6434e;border-radius:6px;padding:3px 5px}
+#irlib .ir-l small{display:block;margin-top:2px;font-size:12.5px;color:#6f6d68}
+#irlib .ir-l .ir-t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:5px;font-size:14.5px;line-height:1.5;color:#33322f}
+#irlib .ir-c.on .ir-t{-webkit-line-clamp:unset;display:block}
+#irlib .ir-r{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+#irlib .ir-r em{font-style:normal;font:700 12px/1 -apple-system,sans-serif;color:#9a6200;background:rgba(154,98,0,.09);border-radius:999px;padding:4px 8px;white-space:nowrap}
+#irlib .ir-r .ar{color:#b9b6ae;font:700 20px/1 -apple-system,sans-serif;transition:transform .15s}
+#irlib .ir-c.on .ir-r .ar{transform:rotate(90deg)}
+#irlib .ir-body{display:none;padding:0 14px 14px}
+#irlib .ir-c.on .ir-body{display:block}
+#irlib .ir-txt{margin:0;padding:12px 0 0;border-top:1px dashed rgba(154,98,0,.25);white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;font:400 15.5px/1.7 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1c1a}
+#irlib .ir-foot{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:12px}
+#irlib .ir-foot a,#irlib .ir-foot button{all:unset;cursor:pointer;font:700 13px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:5px 11px;border-radius:999px;border:1px solid rgba(11,11,11,.12);background:#f9f9f7;color:#0b0b0b;box-shadow:0 2px 0 rgba(30,22,8,.14)}
+#irlib .ir-foot span{margin-left:auto;font-size:12px;color:#8a877f}
+#irlib .ir-more{all:unset;display:block;cursor:pointer;margin:8px auto 0;font:700 13.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;text-align:center}
+#irlib .ir-empty{padding:18px 12px;border:1px dashed rgba(154,98,0,.35);border-radius:14px;background:#fffdf7;text-align:center;font-size:14.5px;line-height:1.6;color:#6f6d68}
+#irlib .ir-empty b{display:block;font-size:16px;color:#0b0b0b;margin-bottom:2px}
+#irlib .ir-c.flash{animation:irf 1.4s ease}
+@keyframes irf{0%,40%{box-shadow:0 0 0 3px rgba(219,147,0,.55)}100%{box-shadow:0 3px 0 rgba(30,22,8,.08)}}
+/* 실적 결과 카드 이름 옆 'IR' 알약 → 서재로 */
+.mk-l .ir-go{all:unset;cursor:pointer;margin-left:6px;font:700 11px/1 -apple-system,sans-serif;color:#9a6200;border:1px solid rgba(154,98,0,.4);background:#fffdf7;border-radius:999px;padding:3px 7px;vertical-align:2px;box-shadow:0 1px 0 rgba(30,22,8,.12)}
+/* 맨 위 바로가기 칩 */
+.ir-jump{all:unset;cursor:pointer;display:inline-flex;align-self:flex-start;width:max-content;align-items:center;gap:4px;margin:10px 0 0;font:700 13.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid rgba(154,98,0,.35);color:#9a6200;box-shadow:0 3px 0 rgba(30,22,8,.12)}
