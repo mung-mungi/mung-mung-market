@@ -35,10 +35,22 @@ function draw(OS){if(!card)return;
  if(!can){  card.className='mm-push off';card.innerHTML='<i>🔔</i><span><b>실적·속보 알림</b><small>'+(inApp?'카톡 안에서는 알림을 받을 수 없습니다. 사파리·크롬에서 열어 홈 화면에 추가하면 켤 수 있습니다.':'홈 화면에 추가한 멍뭉 터미널 앱에서 켤 수 있습니다.')+'</small></span>';return}
  if(on(OS)){try{localStorage.setItem('mm-push-on','1')}catch(e){}card.className='mm-push done';place(true);card.innerHTML='<i>✓</i><span><b>실적 알림 켜짐</b><small>새 실적 노트와 중요한 속보가 오면 알려 드립니다.</small></span>';return}
  try{localStorage.removeItem('mm-push-on')}catch(e){}place(false);card.className='mm-push';card.innerHTML='<i>📈</i><span><b>실적 알림 받기</b><small>새 실적 노트와 중요한 속보만 휴대폰으로 알려 드립니다.</small></span><button type="button" class="mm-push-on">켜기</button>';
- card.querySelector('button').onclick=function(){var b=this;b.textContent='…';if(Notification.permission!=='granted'&&Notification.requestPermission&&!sdk){}setTimeout(function(){draw(null)},9000);load(function(OS){var p=Notification.permission==='granted'?OS.User.PushSubscription.optIn():OS.Notifications.requestPermission();
-  Promise.resolve(p).then(function(){if(Notification.permission==='granted'&&!OS.User.PushSubscription.optedIn)return OS.User.PushSubscription.optIn()}).catch(function(){}).then(function(){if(Notification.permission==='granted'){try{localStorage.setItem('mm-push-on','1')}catch(e){}}setTimeout(function(){draw(OS)},800)})})}}
+ card.querySelector('button').onclick=function(){this.textContent='…';sub(function(){draw(null);gate()})}}
+// 알림 켜기(사용자 2026-10-30): 아이폰은 '누른 그 순간'에 허용 창을 띄워야 해서 휴대폰 기본 허용 창을 먼저 부르고, 허용되면 원시그널 등록
+function sub(done){var pr;try{pr=Notification.permission==='granted'?Promise.resolve('granted'):Notification.requestPermission()}catch(e){pr=Promise.resolve(Notification.permission)}
+ Promise.resolve(pr).then(function(r){if(Notification.permission!=='granted'){done(false);return}try{localStorage.setItem('mm-push-on','1')}catch(e){}
+  load(function(OS){try{Promise.resolve(OS.User.PushSubscription.optIn()).catch(function(){}).then(function(){done(true,OS);setTimeout(function(){draw(OS)},800)})}catch(e){done(true)}});setTimeout(function(){done(true)},4000)})}
+// 앱으로 열었는데 알림이 꺼져 있으면 아래에서 올라오는 배너(나중에 = 오늘만 숨김, 켜면 다시 안 뜸, 거절했으면 설정 안내 한 번만)
+function gate(){var g=document.getElementById('mmpg');if(g)g.remove();if(!can||!standalone||Notification.permission==='granted')return;
+ var today=new Date().toISOString().slice(0,10),den=Notification.permission==='denied';
+ try{if(den?localStorage.getItem('mm-gate-den'):localStorage.getItem('mm-gate-day')===today)return}catch(e){}
+ g=document.createElement('div');g.id='mmpg';
+ g.innerHTML='<div class="bx"><img class="ic" src="img/icon192.png?v=2" alt=""><h3>'+(den?'알림이 꺼져 있습니다':'🔔 실적 알림을 켜 주세요')+'</h3>'+(den?'<p>아이폰 <b>설정 → 알림 → 멍뭉 터미널</b>에서<br>‘알림 허용’을 켜 주세요.</p><button type="button" class="go">알겠습니다</button>':'<p>새 실적과 정말 중요한 속보만<br>휴대폰으로 바로 알려 드립니다.</p><div class="ex">예) <b>🔔 새 실적 · 캐터필러</b><br>AI 관점 호재 · 데이터센터 발전 +30% · 프리마켓 −10%</div><button type="button" class="go">알림 켜기</button><button type="button" class="ltr">나중에</button>')+'</div>';
+ document.body.appendChild(g);var go=g.querySelector('.go'),lt=g.querySelector('.ltr');
+ go.onclick=function(){if(den){try{localStorage.setItem('mm-gate-den','1')}catch(e){}g.remove();return}go.textContent='…';sub(function(ok){g.remove();if(!ok)gate()})};
+ if(lt)lt.onclick=function(){try{localStorage.setItem('mm-gate-day',today)}catch(e){}g.remove()}}
 function mount(){if(document.querySelector('.mm-push'))return true;var sh=document.querySelector('p.sh');if(!sh)return false;var box=sh.parentElement;
  card=document.createElement('div');var was=false;try{was=localStorage.getItem('mm-push-on')==='1'||Notification.permission==='granted'}catch(e){}if(was&&can)box.parentElement.appendChild(card);else box.parentElement.insertBefore(card,box);draw(null);
- if(can&&Notification.permission==='granted')load(draw);return true}
+ if(can&&(Notification.permission==='granted'||standalone))load(draw);setTimeout(gate,1200);return true}
 var n=0;(function go(){if(!mount()&&++n<40)setTimeout(go,250)})();
 }catch(e){}})();
