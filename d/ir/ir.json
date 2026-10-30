@@ -350,8 +350,24 @@
    "by": "그록봇",
    "id": "20261015_TSM_3Q26",
    "pdf_kr_site": "d/ir/pdf/20261015_TSM_3Q26_kr.pdf"
+  },
+  {
+   "name": "ASML",
+   "ticker": "ASML",
+   "q": "3Q26",
+   "date": "2026-10-14",
+   "time": "장전",
+   "title": "AI 투자로 노광장비 수요가 넘쳐 분기 매출이 사상 최대(117억 유로)를 기록했고, 회사는 2027~2028년 공급이 고객 수요를 다 채우지 못할 것으로 봅니다.",
+   "body": "【 ASML 2026년 3분기 IR 정리 】\n★ 한 줄 핵심: AI 투자로 노광장비 수요가 넘쳐 분기 매출이 사상 최대(117억 유로)를 기록했고, 회사는 2027~2028년 공급이 고객 수요를 다 채우지 못할 것으로 봅니다.\n\n▶ 회사가 강조한 것\n　▪ 매출: 116.6억 유로로 사상 최대이며, 가이던스 상단에 가까웠습니다.\n　▪ 매출총이익률(gross margin): 57.5%로 가이던스보다 높았습니다.\n　▪ 일부 고객이 2029년, 2030년 물량까지 미리 주문하려 한다고 밝혔습니다.\n　▪ 2027년과 2028년 계획된 생산량이 고객 수요를 다 채우지 못할 것으로 예상합니다.\n　▪ 2026년 연간 매출 가이던스: 440억~450억 유로(약 +36%)입니다.\n\n▶ 분기 숫자 (보도자료는 전 분기와 비교, 전년 동기 수치는 원문 미확인)\n　▪ 매출: 93.3억 유로(2분기) → 116.6억 유로(3분기)(+25%)\n　▪ 설치 기반 관리(Installed Base Management, 서비스·업그레이드) 매출: 27.6억 → 32.9억 유로(+19%)\n　▪ 매출총이익률: 54.0% → 57.5%\n　▪ 순이익: 29.2억 → 49.6억 유로(+70%), 미스트랄 AI(Mistral AI) 지분 평가이익 약 5억 유로 포함\n　▪ 주당순이익(EPS): 7.59 → 12.95유로(+71%)\n　▪ 신규 노광장비 판매: 86대 → 113대\n　▪ 장비 매출 중 EUV 41억 유로(High-NA EUV 1대 포함), 비EUV 43억 유로\n\n▶ 가이던스\n　▪ 4분기 매출: 142억~152억 유로\n　▪ 4분기 매출총이익률: 약 57%\n　▪ 2026년 연간 매출: 440억~450억 유로, 매출총이익률 약 56%\n　▪ 2026년 장비 매출 중 메모리용 약 +75%, 로직용 약 +10% 예상\n\n▶ AI 인프라 관점\n　▪ 최첨단 AI 칩과 HBM 메모리를 만들 때 꼭 필요한 EUV 노광장비를 사실상 혼자 만드는 회사입니다.\n　▪ 고객들이 AI 투자 규모와 기간을 크게 보고 장비 수요 전망을 계속 올리고 있다고 밝혔습니다.\n　▪ D램(DRAM) 첨단 공정에서 EUV 사용이 늘어 메모리 쪽 수요가 특히 강합니다.\n\n▶ 다음에 볼 것\n　▪ 2028년 생산능력을 기존 계획(+30%)보다 더 늘리는 방안 발표 여부\n　▪ 회사가 내놓을 2027년 매출 전망\n\n[IR서재]\n회사: ASML\n티커: ASML\n분기: 2026 3Q\n발표일: 2026-10-14\n한줄: AI 투자로 노광장비 수요가 넘쳐 분기 매출이 사상 최대(117억 유로)를 기록했고, 회사는 2027~2028년 공급이 고객 수요를 다 채우지 못할 것으로 봅니다.\nIR링크: https://www.sec.gov/Archives/edgar/data/937966/000162828026065813/pressreleasefinancialresul.htm\n[/IR서재]",
+   "src": "https://www.sec.gov/Archives/edgar/data/937966/000162828026065813/pressreleasefinancialresul.htm",
+   "pdf_kr": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261014/ASML_3Q26_kr.pdf",
+   "pdf_orig": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261014/ASML_3Q26_orig.pdf",
+   "pdf_slides": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261014/ASML_3Q26_slides.pdf",
+   "by": "그록봇",
+   "id": "20261014_ASML_3Q26",
+   "pdf_kr_site": "d/ir/pdf/20261014_ASML_3Q26_kr.pdf"
   }
  ],
  "skipped": [],
- "updated": "2026-10-30T08:16Z"
+ "updated": "2026-10-30T08:17Z"
 }
