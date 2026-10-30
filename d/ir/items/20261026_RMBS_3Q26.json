@@ -1,0 +1,14 @@
+{
+ "name": "램버스",
+ "ticker": "RMBS",
+ "q": "3Q26",
+ "date": "2026-10-26",
+ "time": "장후",
+ "title": "AI 서버용 메모리 칩 수요로 매출·제품 매출·영업현금흐름이 모두 사상 최대를 기록했고, 4분기는 더 좋아질 것으로 예상합니다.",
+ "body": "【 램버스 2026년 3분기 IR 정리 】\n★ 한 줄 핵심: AI 서버용 메모리 칩 수요로 매출·제품 매출·영업현금흐름이 모두 사상 최대를 기록했고, 4분기는 더 좋아질 것으로 예상합니다.\n\n▶ 회사가 강조한 것\n　▪ 분기 매출이 사상 최대인 2.18억 달러로 회사 전망치를 넘었습니다.\n　▪ 제품 매출(product revenue)도 1.14억 달러로 사상 최대입니다.\n　▪ 영업활동 현금흐름(cash from operations)도 1.025억 달러로 사상 최대입니다.\n　▪ LPDDR6 SOCAMM2용 전력관리칩(PMIC)과 데이터센터용 보안 IP(Root of Trust)를 새로 내놓았습니다.\n　▪ 4분기에는 더 강한 실적을 예상한다고 밝혔습니다.\n\n▶ 분기 숫자\n　▪ 매출: 1.785억 달러 → 2.183억 달러(+22%)\n　▪ 제품 매출: 0.933억 달러 → 1.143억 달러(+22%)\n　▪ 로열티 매출(royalties): 0.651억 달러 → 0.770억 달러(+18%)\n　▪ 영업이익률(GAAP operating margin): 35% → 38%(+3%p)\n　▪ 순이익: 0.484억 달러 → 0.746억 달러(+54%)\n　▪ 주당순이익(GAAP 희석 EPS): 0.44달러 → 0.69달러(+57%)\n　▪ 조정 주당순이익(non-GAAP EPS): 0.62달러 → 0.84달러(+35%)\n\n▶ 가이던스\n　▪ 4분기 매출: 2.27억~2.33억 달러\n　▪ 4분기 제품 매출: 1.27억~1.33억 달러\n　▪ 4분기 조정 주당순이익(non-GAAP EPS): 0.84~0.92달러\n\n▶ AI 인프라 관점\n　▪ 램버스는 서버 메모리(DDR5)가 빠르고 안정적으로 작동하도록 돕는 칩(RCD 등)을 만듭니다.\n　▪ AI 에이전트가 늘면서 CPU 사용이 많아지고, 데이터센터 전체에서 메모리 대역폭·용량 수요가 커진다고 밝혔습니다(어닝콜).\n　▪ DDR5 9600을 지원하는 6세대 RCD를 고객에게 폭넓게 샘플 공급 중입니다(어닝콜).\n\n▶ 다음에 볼 것\n　▪ 4분기 제품 매출 1.3억 달러 안팎 달성 여부\n　▪ 공급 부족과 원가 상승, 차세대 메모리 모듈(MRDIMM) 도입 속도(어닝콜)\n\n[IR서재]\n회사: 램버스\n티커: RMBS\n분기: 2026년 3분기\n발표일: 2026-10-26\n한줄: AI 서버용 메모리 칩 수요로 매출·제품 매출·영업현금흐름이 모두 사상 최대를 기록했고, 4분기는 더 좋아질 것으로 예상합니다.\nIR링크: https://www.sec.gov/Archives/edgar/data/917273/000119312526431918/rmbs-ex99_1.htm\n[/IR서재]\n",
+ "src": "https://www.sec.gov/Archives/edgar/data/917273/000119312526431918/rmbs-ex99_1.htm",
+ "pdf_kr": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261026/RMBS_3Q26_kr.pdf",
+ "pdf_orig": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261026/RMBS_3Q26_orig.pdf",
+ "pdf_slides": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261026/RMBS_3Q26_slides.pdf",
+ "by": "그록봇"
+}
