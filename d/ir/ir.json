@@ -240,6 +240,22 @@
    "pdf_kr_site": "d/ir/pdf/20261028_EQIX_3Q26_kr.pdf"
   },
   {
+   "name": "폼팩터",
+   "ticker": "FORM",
+   "q": "3Q26",
+   "date": "2026-10-28",
+   "time": "장후",
+   "title": "4분기 연속 사상 최대 매출(2.81억 달러, +38%)을 냈고, 매출·이익률·EPS 모두 회사 전망 상단을 넘었습니다.",
+   "body": "【 폼팩터 2026년 3분기 IR 정리 】\n★ 한 줄 핵심: 4분기 연속 사상 최대 매출(2.81억 달러, +38%)을 냈고, 매출·이익률·EPS 모두 회사 전망 상단을 넘었습니다.\n\n▶ 회사가 강조한 것\n　▪ 4분기 연속으로 분기 매출 사상 최대(record)를 기록했습니다.\n　▪ 매출, 매출총이익률, 주당순이익이 모두 회사 전망(가이던스) 상단을 넘었습니다.\n　▪ 파운드리·로직(Foundry & Logic) 매출이 직전 분기보다 10% 늘었습니다.\n　▪ 시스템(Systems) 부문 매출은 CPO(공동 패키징 광학) 수요로 직전 분기보다 20% 넘게 늘었습니다.\n　▪ 분기 종료 후 테라다인과의 협력 확대를 발표했습니다.\n\n▶ 분기 숫자\n　▪ 매출: 2.03억 달러 → 2.81억 달러(+38%)\n　▪ 영업이익(GAAP 기준): 0.18억 달러 → 0.82억 달러(+353%)\n　▪ 주당순이익(GAAP EPS): 0.20달러 → 0.93달러(+365%)\n　▪ 조정 주당순이익(non-GAAP EPS): 0.33달러 → 1.04달러(+215%)\n　▪ 조정 매출총이익률(non-GAAP gross margin): 41.0% → 56.5%\n　▪ 잉여현금흐름(FCF): 0.20억 달러 → 0.65억 달러(+229%)\n\n▶ 가이던스\n　▪ 4분기 매출: 2.85억 달러(±0.1억 달러)\n　▪ 4분기 조정 매출총이익률: 54.0%(±1.5%p)\n　▪ 4분기 조정 주당순이익(non-GAAP EPS): 0.95달러(±0.09달러)\n\n▶ AI 인프라 관점\n　▪ 폼팩터는 웨이퍼 상태의 칩을 검사하는 프로브 카드(probe card)를 만듭니다.\n　▪ 고성능 컴퓨팅(HPC)과 첨단 패키징이 만나는 영역에서 강점이 있다고 했습니다.\n　▪ D램 프로브 카드 매출은 직전 분기 최대 수준을 유지했고, HBM은 줄고 DDR5는 늘었다고 했습니다(어닝콜).\n　▪ 기존 공장의 생산성 향상은 한계에 가까워져, 새 파머스브랜치(Farmers Branch) 공장을 가동하고 있습니다.\n　▪ 2027년 말 파머스브랜치 공장이 연 약 4억 달러 규모의 프로브 카드를 생산할 수 있을 것으로 봤습니다(어닝콜).\n\n▶ 다음에 볼 것\n　▪ 파머스브랜치 공장 가동 속도\n　▪ HBM과 DDR5 사이 고객 주문 비중 변화\n\n[IR서재]\n회사: 폼팩터\n티커: FORM\n분기: 2026년 3분기\n발표일: 2026-10-28\n한줄: 4분기 연속 사상 최대 매출(2.81억 달러, +38%)을 냈고, 매출·이익률·EPS 모두 회사 전망 상단을 넘었습니다.\nIR링크: https://www.sec.gov/Archives/edgar/data/1039399/000103939926000040/ex9901-earningsreleasexq326.htm\n[/IR서재]",
+   "src": "https://www.sec.gov/Archives/edgar/data/1039399/000103939926000040/ex9901-earningsreleasexq326.htm",
+   "pdf_kr": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261028/FORM_3Q26_kr.pdf",
+   "pdf_orig": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261028/FORM_3Q26_orig.pdf",
+   "pdf_slides": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261028/FORM_3Q26_slides.pdf",
+   "by": "그록봇",
+   "id": "20261028_FORM_3Q26",
+   "pdf_kr_site": "d/ir/pdf/20261028_FORM_3Q26_kr.pdf"
+  },
+  {
    "name": "알파벳",
    "ticker": "GOOGL",
    "q": "3Q26",
@@ -561,5 +577,5 @@
   }
  ],
  "skipped": [],
- "updated": "2026-10-30T08:41Z"
+ "updated": "2026-10-30T08:43Z"
 }
