@@ -320,6 +320,22 @@
    "pdf_kr_site": "d/ir/pdf/20261028_SIMO_3Q26_kr.pdf"
   },
   {
+   "name": "코닝",
+   "ticker": "GLW",
+   "q": "3Q26",
+   "date": "2026-10-27",
+   "time": "장전",
+   "title": "광통신·AI 데이터센터 수요로 핵심 매출이 19%, 핵심 주당순이익이 36% 늘었고, 4분기에도 비슷한 성장을 예상했습니다.",
+   "body": "【 코닝 2026년 3분기 IR 정리 】\n★ 한 줄 핵심: 광통신·AI 데이터센터 수요로 핵심 매출이 19%, 핵심 주당순이익이 36% 늘었고, 4분기에도 비슷한 성장을 예상했습니다.\n\n▶ 회사가 강조한 것\n　▪ 핵심 매출(core sales) 증가율 19%는 성장계획 '스프링보드(Springboard)' 시작 이후 가장 높습니다.\n　▪ 광통신(Optical Communications) 매출이 44% 늘며 성장을 이끌었습니다.\n　▪ 생성형 AI(Gen AI) 관련 제품 매출이 1년 새 2배 넘게 늘었습니다.\n　▪ 버라이즌·AT&T 등과 수십억 달러 규모의 장기 공급 계약 4건을 새로 맺었습니다.\n　▪ 2030년 말까지 연 매출 규모를 200억 달러에서 400억 달러로 2배로 키우는 목표를 유지했습니다.\n\n▶ 분기 숫자\n　▪ 매출(GAAP 기준): 41.0억 달러 → 48.6억 달러(+18%)\n　▪ 핵심 매출(non-GAAP): 42.7억 달러 → 50.8억 달러(+19%)\n　▪ 주당순이익(GAAP EPS): 0.50달러 → 0.78달러(+56%)\n　▪ 핵심 주당순이익(core EPS): 0.67달러 → 0.91달러(+36%)\n　▪ 핵심 영업이익률(core operating margin): 22.7%로 3.1%p 올랐습니다.\n　▪ 광통신 매출: 16.5억 달러 → 23.8억 달러(+44%)\n　▪ 태양광(Solar) 매출: 3.2억 달러 → 4.4억 달러(+37%)\n　▪ 유리 사업(Glass Innovations) 매출: 15.6억 달러 → 15.1억 달러(-3%)\n　▪ 조정 잉여현금흐름(adjusted free cash flow): 6.61억 달러\n\n▶ 가이던스\n　▪ 4분기 핵심 매출: 52억~53억 달러(약 +19%)\n　▪ 4분기 핵심 주당순이익(EPS): 0.96~1.00달러(약 +36%)\n\n▶ AI 인프라 관점\n　▪ 코닝은 데이터센터 안팎을 잇는 광섬유(fiber)와 광케이블·연결 제품을 만듭니다.\n　▪ 기업용 네트워크(Enterprise) 매출이 84% 늘었는데, AI 데이터센터용 제품이 중심입니다.\n　▪ 고객은 주로 대형 클라우드 기업(하이퍼스케일러)이며, 이들이 증설 비용을 함께 부담합니다(어닝콜).\n　▪ 지금은 GPU끼리 묶는 연결(scale-up)이 모두 구리선인데, 여기에 광이 들어가면 기회가 크게 커진다고 했습니다(어닝콜).\n\n▶ 다음에 볼 것\n　▪ 태양광 공장 생산 속도가 예상보다 늦은 문제가 언제 풀리는지\n　▪ GPU 연결(scale-up)에 광섬유가 실제로 채택되는 시점\n\n[IR서재]\n회사: 코닝\n티커: GLW\n분기: 2026년 3분기\n발표일: 2026-10-27\n한줄: 광통신·AI 데이터센터 수요로 핵심 매출이 19%, 핵심 주당순이익이 36% 늘었고, 4분기에도 비슷한 성장을 예상했습니다.\nIR링크: https://www.sec.gov/Archives/edgar/data/24741/000002474126000273/glw-20261027xex99xq32026.htm\n[/IR서재]",
+   "src": "https://www.sec.gov/Archives/edgar/data/24741/000002474126000273/glw-20261027xex99xq32026.htm",
+   "pdf_kr": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261027/GLW_3Q26_kr.pdf",
+   "pdf_orig": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261027/GLW_3Q26_orig.pdf",
+   "pdf_slides": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261027/GLW_3Q26_slides.pdf",
+   "by": "그록봇",
+   "id": "20261027_GLW_3Q26",
+   "pdf_kr_site": "d/ir/pdf/20261027_GLW_3Q26_kr.pdf"
+  },
+  {
    "name": "시게이트",
    "ticker": "STX",
    "q": "1Q27",
@@ -513,5 +529,5 @@
   }
  ],
  "skipped": [],
- "updated": "2026-10-30T08:34Z"
+ "updated": "2026-10-30T08:37Z"
 }
