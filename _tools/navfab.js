@@ -94,6 +94,6 @@ function paint(nw,un){
   var names=nw.slice(0,3).map(function(x){return x.name}).join(' · ')+(nw.length>3?' 외 '+(nw.length-3)+'곳':'');
   if(!un)a.classList.add('seen');
   a.innerHTML='<i></i><span class="t"><b>'+(un?'새 실적 '+nw.length+'곳':'✓ 최근 나온 실적 '+nw.length+'곳')+'</b><small></small></span><em>›</em>';a.querySelector('small').textContent=names;
-  var pc=document.querySelector('.mm-push');(pc||box).parentElement.insertBefore(a,pc||box);
+  var pc=document.querySelector('.mm-push:not(.bot)');if(pc&&pc.nextElementSibling!==box)pc=null;box.parentElement.insertBefore(a,pc||box);
 }
 }catch(e){}})();
