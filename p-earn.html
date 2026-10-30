@@ -1019,6 +1019,30 @@ var k=0;(function go(){try{stepHint();var h=document.getElementById('hits'),u=do
 
 #irlib .ir-list:not(.open) .ir-hid{display:none}
 #irlib .ir-more{display:block;margin:10px auto 0;padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6dcc6;box-shadow:0 2px 0 #ece4d2;font-weight:800;font-size:14px;color:#5a554c}
+
+#irlib .ir-top{display:flex;flex-wrap:wrap;gap:6px;padding:12px 0 2px;border-top:1px dashed rgba(154,98,0,.25)}
+#irlib .ir-top+.ir-txt{border-top:0}
+#irlib .ir-top a,#irlib .ir-top button{all:unset;cursor:pointer;font:800 14px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:8px 14px;border-radius:999px;background:#fff7e6;border:1px solid #e9c98a;color:#7a4c00;box-shadow:0 2px 0 #efdcb4;-webkit-tap-highlight-color:transparent}
+#irlib .ir-top a:active,#irlib .ir-top button:active{transform:translateY(1px);box-shadow:none}
+html.ir-vopen,html.ir-vopen body{overflow:hidden}
+#ir-view{position:fixed;inset:0;z-index:2147483000;background:#efece6;display:flex;flex-direction:column}
+#ir-view .iv-bar{display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px;background:#fff;border-bottom:1px solid #e6dcc6;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+#ir-view .iv-back{all:unset;cursor:pointer;font:800 15px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:10px 14px;border-radius:999px;background:#1d1c1a;color:#fff}
+#ir-view .iv-bar b{flex:1;min-width:0;font:800 14px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#1d1c1a}
+#ir-view .iv-bar a{font:700 13px/1 -apple-system,sans-serif;color:#9a6200;text-decoration:none}
+#ir-view .iv-pages{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding:10px 8px calc(20px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;gap:10px}
+#ir-view canvas{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12);max-width:100%;height:auto}
+#ir-view .iv-msg{font:600 14px/1.6 -apple-system,sans-serif;color:#6b675f;padding:30px 12px;text-align:center}
+#irlib .ir-rest{margin-top:8px}#irlib .ir-rest summary{list-style:none;cursor:pointer;display:inline-block;font:800 13.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;padding:7px 12px;border-radius:999px;background:#fff;border:1px solid #e6dcc6;box-shadow:0 2px 0 #ece4d2}#irlib .ir-rest summary::-webkit-details-marker{display:none}#irlib .ir-rest[open] summary{margin-bottom:4px}#irlib .ir-rest .ir-txt{border-top:0;padding-top:4px}
+#irlib .ir-txt{white-space:normal}
+#irlib .ir-key{margin:4px 0 10px;padding:10px 12px;border-radius:10px;background:#fff6dc;border-left:4px solid #e0a400;font:800 15.5px/1.6 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1c1a}
+#irlib .ir-h5{margin:14px 0 6px;font:900 16px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1c1a}
+#irlib .ir-ul{margin:0;padding:0 0 0 2px;list-style:none;display:flex;flex-direction:column;gap:7px}
+#irlib .ir-ul li{position:relative;padding-left:14px;font:400 15px/1.65 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1c1a}
+#irlib .ir-ul li::before{content:"";position:absolute;left:2px;top:.72em;width:5px;height:5px;border-radius:50%;background:#c79a3c}
+#irlib .ir-ul li small{display:block;margin-top:2px;font-size:13.5px;line-height:1.55;color:#6b675f}
+#irlib .ir-p{margin:6px 0;font:400 15px/1.65 -apple-system,"Apple SD Gothic Neo",sans-serif}
+#irlib .ir-c.on .ir-row .ir-t{display:none}
 </style><script data-irlib>// 실적 결과 > IR 서재 (사용자 2026-10-30) — 데이터는 d/ir/ir.json(새 정리는 items 맨 앞에 추가)
 (function(){
 var L={'연산칩':'NVDA AMD INTC','맞춤형 칩':'AVGO MRVL 2454','메모리·저장':'MU 000660 005930 SNDK WDC STX 285A SIMO 8299','파운드리':'TSM TSMC TSEM GFS','설계 SW':'CDNS SNPS',
@@ -1046,12 +1070,42 @@ function pills(){var box=document.querySelector('#irlib .ir-pills');var have={};
  box.innerHTML='';ks.forEach(function(k){var b=document.createElement('button');b.type='button';b.textContent=k+(k==='전체'?' '+DATA.length:' '+have[k]);b.setAttribute('aria-pressed',k===cur);b.onclick=function(){cur=k;pills();render()};box.appendChild(b)});
  box.style.display=DATA.length?'':'none';document.querySelector('#irlib .ir-tool').style.display=DATA.length>4?'':'none'}
 function lk(u,t){u=String(u||'');return /^https:\/\//.test(u)?'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+t+'</a>':''}
+
+// 정리 글을 읽기 좋게(사용자 2026-10-30): 【제목】·━ 줄은 빼고, ★ 한 줄 핵심은 노란 상자, ▶는 소제목, ▪는 점 목록, 들여쓴 줄은 작은 보충 설명.
+// 펼치면 '한 줄 핵심 + 첫 소제목(회사가 강조한 것)'까지만 먼저, 나머지(분기 숫자 등)는 '숫자·세부 전체 보기'로 접음
+function fmt(ls){var o='',ul=false;function cl(){if(ul){o+='</ul>';ul=false}}
+ ls.forEach(function(l){var t=l.replace(/\s+$/,''),u=t.replace(/^[\s　]+/,'');if(!u||/^[━─=]{3,}$/.test(u)||/^【.*】$/.test(u))return;
+  if(/^★/.test(u)){cl();o+='<p class="ir-key">'+esc(u.replace(/^★\s*(한\s*줄\s*핵심\s*[:：]\s*)?/,''))+'</p>';return}
+  if(/^▶/.test(u)){cl();o+='<h5 class="ir-h5">'+esc(u.replace(/^▶\s*/,''))+'</h5>';return}
+  if(/^[▪•·\-]/.test(u)){if(!ul){o+='<ul class="ir-ul">';ul=true}o+='<li>'+esc(u.replace(/^[▪•·\-]\s*/,''))+'</li>';return}
+  if(ul&&/^[\s　]{2,}/.test(t)){o=o.replace(/<\/li>$/,'<small>'+esc(u)+'</small></li>');return}
+  cl();o+='<p class="ir-p">'+esc(u)+'</p>'});cl();return o}
+function txt(b){b=String(b||'');var ls=b.split('\n'),hd=[],i,cut=-1;for(i=0;i<ls.length;i++){if(/^\s*▶/.test(ls[i]))hd.push(i);if(hd.length===2){cut=i;break}}
+ if(cut<0||b.length<900)return '<div class="ir-txt">'+fmt(ls)+'</div>';
+ return '<div class="ir-txt">'+fmt(ls.slice(0,cut))+'</div><details class="ir-rest"><summary>▾ 숫자·세부 전체 보기</summary><div class="ir-txt">'+fmt(ls.slice(cut))+'</div></details>'}
 function card(x,i){var c=document.createElement('div');c.className='ir-c';c.id='ir-'+esc(x.id||i);c.dataset.tk=String(x.ticker||'').toUpperCase();
  var fresh=(Date.now()-new Date(x.date||0).getTime())<3*864e5;
  c.innerHTML='<button type="button" class="ir-row" aria-expanded="false"><div class="ir-l"><b>'+(fresh?'<i>최신</i>':'')+esc(x.name)+'</b><small>'+esc(x.ticker||'')+(x.q?' · '+esc(x.q):'')+(x.time?' · '+esc(x.time):'')+'</small>'+(x.title?'<span class="ir-t">'+esc(x.title)+'</span>':'')+'</div><div class="ir-r"><em>'+esc(x._l)+'</em><span class="ar">›</span></div></button>'+
- '<div class="ir-body"><p class="ir-txt">'+esc(x.body||'')+'</p><div class="ir-foot">'+lk(x.pdf_kr,'📄 번역본')+lk(x.pdf_orig,'원문 PDF')+lk(x.pdf_slides,'슬라이드')+lk(x.src,'IR 원문 ↗')+'<button type="button" class="ir-up">접기 ▴</button><span>'+(x.by?'정리 · '+esc(x.by):'')+'</span></div></div>';
+ '<div class="ir-body"><div class="ir-top">'+(x.pdf_kr_site?'<button type="button" class="ir-pdf" data-u="'+esc(x.pdf_kr_site)+'" data-t="'+esc(x.name+' '+(x.q||'')+' 번역본')+'">📄 번역본 보기</button>':lk(x.pdf_kr,'📄 번역본'))+(x.src?lk(x.src,'🔗 IR 원문 ↗'):lk(x.pdf_orig,'🔗 원문 PDF'))+'</div>'+txt(x.body)+'<div class="ir-foot">'+(x.src?lk(x.pdf_orig,'원문 PDF 받기'):'')+lk(x.pdf_slides,'슬라이드 받기')+'<button type="button" class="ir-up">접기 ▴</button><span>'+(x.by?'정리 · '+esc(x.by):'')+'</span></div></div>';
  var row=c.querySelector('.ir-row');function tog(){var on=c.classList.toggle('on');row.setAttribute('aria-expanded',on)}
- row.onclick=tog;c.querySelector('.ir-up').onclick=function(){tog();var y=c.getBoundingClientRect().top+scrollY-80;if(c.getBoundingClientRect().top<0)scrollTo(0,y)};return c}
+ row.onclick=tog;var pb=c.querySelector('.ir-pdf');if(pb)pb.onclick=function(){view(pb.dataset.u,pb.dataset.t)};c.querySelector('.ir-up').onclick=function(){tog();var y=c.getBoundingClientRect().top+scrollY-80;if(c.getBoundingClientRect().top<0)scrollTo(0,y)};return c}
+
+// PDF 보기 화면(사용자 2026-10-30): 사이트 안 번역본을 페이지 안에서 열고, 맨 위 '← 돌아가기'(휴대폰 뒤로가기로도 닫힘)
+var PJ=null;function pdfjs(cb){if(window.pdfjsLib)return cb(window.pdfjsLib);if(PJ)return PJ.push(cb);PJ=[cb];var sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+ sc.onload=function(){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';PJ.forEach(function(f){f(pdfjsLib)});PJ=null};sc.onerror=function(){PJ.forEach(function(f){f(null)});PJ=null};document.head.appendChild(sc)}
+function closeV(){var o=document.getElementById('ir-view');if(!o)return;o.remove();document.documentElement.classList.remove('ir-vopen')}
+addEventListener('popstate',function(){if(document.getElementById('ir-view'))closeV()});
+function view(u,t){closeV();var o=document.createElement('div');o.id='ir-view';
+ o.innerHTML='<div class="iv-bar"><button type="button" class="iv-back">← 돌아가기</button><b></b><a target="_blank" rel="noopener">새 창 ↗</a></div><div class="iv-pages"><p class="iv-msg">불러오는 중…</p></div>';
+ o.querySelector('b').textContent=t||'';o.querySelector('a').href=u;document.body.appendChild(o);document.documentElement.classList.add('ir-vopen');
+ try{history.pushState({irv:1},'',location.href)}catch(e){}
+ o.querySelector('.iv-back').onclick=function(){if(history.state&&history.state.irv)history.back();else closeV()};
+ var box=o.querySelector('.iv-pages');
+ pdfjs(function(L){if(!L){box.innerHTML='<p class="iv-msg">보기 화면을 못 불러왔습니다. 위 \'새 창\'으로 열어 주세요.</p>';return}
+  L.getDocument(u).promise.then(function(doc){box.innerHTML='';var W=Math.min(box.clientWidth||innerWidth,900),dpr=Math.min(devicePixelRatio||1,2),n=0;
+   (function next(){if(++n>doc.numPages||!document.getElementById('ir-view'))return;doc.getPage(n).then(function(pg){var v1=pg.getViewport({scale:1}),sc=W/v1.width,vp=pg.getViewport({scale:sc*dpr});
+    var cv=document.createElement('canvas');cv.width=vp.width;cv.height=vp.height;cv.style.width=W+'px';box.appendChild(cv);pg.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise.then(next)})})()
+  }).catch(function(){box.innerHTML='<p class="iv-msg">PDF를 열지 못했습니다. 위 \'새 창\'으로 열어 주세요.</p>'})})}
 function render(){var list=document.querySelector('#irlib .ir-list');if(!list)return;list.innerHTML='';list.classList.remove('open');list.style.removeProperty('--irh');var old=document.querySelector('#irlib .ir-more');if(old)old.remove();
  document.querySelector('#irlib .ir-n').textContent=DATA.length+'권';
  if(!DATA.length){list.innerHTML='<div class="ir-empty"><b>아직 꽂힌 자료가 없습니다</b>첫 IR 정리가 들어오면 최신순으로 여기에 쌓입니다.</div>';return}

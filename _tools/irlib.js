@@ -25,12 +25,42 @@ function pills(){var box=document.querySelector('#irlib .ir-pills');var have={};
  box.innerHTML='';ks.forEach(function(k){var b=document.createElement('button');b.type='button';b.textContent=k+(k==='전체'?' '+DATA.length:' '+have[k]);b.setAttribute('aria-pressed',k===cur);b.onclick=function(){cur=k;pills();render()};box.appendChild(b)});
  box.style.display=DATA.length?'':'none';document.querySelector('#irlib .ir-tool').style.display=DATA.length>4?'':'none'}
 function lk(u,t){u=String(u||'');return /^https:\/\//.test(u)?'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+t+'</a>':''}
+
+// 정리 글을 읽기 좋게(사용자 2026-10-30): 【제목】·━ 줄은 빼고, ★ 한 줄 핵심은 노란 상자, ▶는 소제목, ▪는 점 목록, 들여쓴 줄은 작은 보충 설명.
+// 펼치면 '한 줄 핵심 + 첫 소제목(회사가 강조한 것)'까지만 먼저, 나머지(분기 숫자 등)는 '숫자·세부 전체 보기'로 접음
+function fmt(ls){var o='',ul=false;function cl(){if(ul){o+='</ul>';ul=false}}
+ ls.forEach(function(l){var t=l.replace(/\s+$/,''),u=t.replace(/^[\s　]+/,'');if(!u||/^[━─=]{3,}$/.test(u)||/^【.*】$/.test(u))return;
+  if(/^★/.test(u)){cl();o+='<p class="ir-key">'+esc(u.replace(/^★\s*(한\s*줄\s*핵심\s*[:：]\s*)?/,''))+'</p>';return}
+  if(/^▶/.test(u)){cl();o+='<h5 class="ir-h5">'+esc(u.replace(/^▶\s*/,''))+'</h5>';return}
+  if(/^[▪•·\-]/.test(u)){if(!ul){o+='<ul class="ir-ul">';ul=true}o+='<li>'+esc(u.replace(/^[▪•·\-]\s*/,''))+'</li>';return}
+  if(ul&&/^[\s　]{2,}/.test(t)){o=o.replace(/<\/li>$/,'<small>'+esc(u)+'</small></li>');return}
+  cl();o+='<p class="ir-p">'+esc(u)+'</p>'});cl();return o}
+function txt(b){b=String(b||'');var ls=b.split('\n'),hd=[],i,cut=-1;for(i=0;i<ls.length;i++){if(/^\s*▶/.test(ls[i]))hd.push(i);if(hd.length===2){cut=i;break}}
+ if(cut<0||b.length<900)return '<div class="ir-txt">'+fmt(ls)+'</div>';
+ return '<div class="ir-txt">'+fmt(ls.slice(0,cut))+'</div><details class="ir-rest"><summary>▾ 숫자·세부 전체 보기</summary><div class="ir-txt">'+fmt(ls.slice(cut))+'</div></details>'}
 function card(x,i){var c=document.createElement('div');c.className='ir-c';c.id='ir-'+esc(x.id||i);c.dataset.tk=String(x.ticker||'').toUpperCase();
  var fresh=(Date.now()-new Date(x.date||0).getTime())<3*864e5;
  c.innerHTML='<button type="button" class="ir-row" aria-expanded="false"><div class="ir-l"><b>'+(fresh?'<i>최신</i>':'')+esc(x.name)+'</b><small>'+esc(x.ticker||'')+(x.q?' · '+esc(x.q):'')+(x.time?' · '+esc(x.time):'')+'</small>'+(x.title?'<span class="ir-t">'+esc(x.title)+'</span>':'')+'</div><div class="ir-r"><em>'+esc(x._l)+'</em><span class="ar">›</span></div></button>'+
- '<div class="ir-body"><p class="ir-txt">'+esc(x.body||'')+'</p><div class="ir-foot">'+lk(x.pdf_kr,'📄 번역본')+lk(x.pdf_orig,'원문 PDF')+lk(x.pdf_slides,'슬라이드')+lk(x.src,'IR 원문 ↗')+'<button type="button" class="ir-up">접기 ▴</button><span>'+(x.by?'정리 · '+esc(x.by):'')+'</span></div></div>';
+ '<div class="ir-body"><div class="ir-top">'+(x.pdf_kr_site?'<button type="button" class="ir-pdf" data-u="'+esc(x.pdf_kr_site)+'" data-t="'+esc(x.name+' '+(x.q||'')+' 번역본')+'">📄 번역본 보기</button>':lk(x.pdf_kr,'📄 번역본'))+(x.src?lk(x.src,'🔗 IR 원문 ↗'):lk(x.pdf_orig,'🔗 원문 PDF'))+'</div>'+txt(x.body)+'<div class="ir-foot">'+(x.src?lk(x.pdf_orig,'원문 PDF 받기'):'')+lk(x.pdf_slides,'슬라이드 받기')+'<button type="button" class="ir-up">접기 ▴</button><span>'+(x.by?'정리 · '+esc(x.by):'')+'</span></div></div>';
  var row=c.querySelector('.ir-row');function tog(){var on=c.classList.toggle('on');row.setAttribute('aria-expanded',on)}
- row.onclick=tog;c.querySelector('.ir-up').onclick=function(){tog();var y=c.getBoundingClientRect().top+scrollY-80;if(c.getBoundingClientRect().top<0)scrollTo(0,y)};return c}
+ row.onclick=tog;var pb=c.querySelector('.ir-pdf');if(pb)pb.onclick=function(){view(pb.dataset.u,pb.dataset.t)};c.querySelector('.ir-up').onclick=function(){tog();var y=c.getBoundingClientRect().top+scrollY-80;if(c.getBoundingClientRect().top<0)scrollTo(0,y)};return c}
+
+// PDF 보기 화면(사용자 2026-10-30): 사이트 안 번역본을 페이지 안에서 열고, 맨 위 '← 돌아가기'(휴대폰 뒤로가기로도 닫힘)
+var PJ=null;function pdfjs(cb){if(window.pdfjsLib)return cb(window.pdfjsLib);if(PJ)return PJ.push(cb);PJ=[cb];var sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+ sc.onload=function(){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';PJ.forEach(function(f){f(pdfjsLib)});PJ=null};sc.onerror=function(){PJ.forEach(function(f){f(null)});PJ=null};document.head.appendChild(sc)}
+function closeV(){var o=document.getElementById('ir-view');if(!o)return;o.remove();document.documentElement.classList.remove('ir-vopen')}
+addEventListener('popstate',function(){if(document.getElementById('ir-view'))closeV()});
+function view(u,t){closeV();var o=document.createElement('div');o.id='ir-view';
+ o.innerHTML='<div class="iv-bar"><button type="button" class="iv-back">← 돌아가기</button><b></b><a target="_blank" rel="noopener">새 창 ↗</a></div><div class="iv-pages"><p class="iv-msg">불러오는 중…</p></div>';
+ o.querySelector('b').textContent=t||'';o.querySelector('a').href=u;document.body.appendChild(o);document.documentElement.classList.add('ir-vopen');
+ try{history.pushState({irv:1},'',location.href)}catch(e){}
+ o.querySelector('.iv-back').onclick=function(){if(history.state&&history.state.irv)history.back();else closeV()};
+ var box=o.querySelector('.iv-pages');
+ pdfjs(function(L){if(!L){box.innerHTML='<p class="iv-msg">보기 화면을 못 불러왔습니다. 위 \'새 창\'으로 열어 주세요.</p>';return}
+  L.getDocument(u).promise.then(function(doc){box.innerHTML='';var W=Math.min(box.clientWidth||innerWidth,900),dpr=Math.min(devicePixelRatio||1,2),n=0;
+   (function next(){if(++n>doc.numPages||!document.getElementById('ir-view'))return;doc.getPage(n).then(function(pg){var v1=pg.getViewport({scale:1}),sc=W/v1.width,vp=pg.getViewport({scale:sc*dpr});
+    var cv=document.createElement('canvas');cv.width=vp.width;cv.height=vp.height;cv.style.width=W+'px';box.appendChild(cv);pg.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise.then(next)})})()
+  }).catch(function(){box.innerHTML='<p class="iv-msg">PDF를 열지 못했습니다. 위 \'새 창\'으로 열어 주세요.</p>'})})}
 function render(){var list=document.querySelector('#irlib .ir-list');if(!list)return;list.innerHTML='';list.classList.remove('open');list.style.removeProperty('--irh');var old=document.querySelector('#irlib .ir-more');if(old)old.remove();
  document.querySelector('#irlib .ir-n').textContent=DATA.length+'권';
  if(!DATA.length){list.innerHTML='<div class="ir-empty"><b>아직 꽂힌 자료가 없습니다</b>첫 IR 정리가 들어오면 최신순으로 여기에 쌓입니다.</div>';return}
