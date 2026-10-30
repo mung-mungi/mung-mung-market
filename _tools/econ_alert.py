@@ -10,6 +10,7 @@ from zoneinfo import ZoneInfo
 R = sys.argv[1] if len(sys.argv) > 1 else '.'
 CAL = os.path.join(R, 'd/econ/calendar.json')
 SP = os.path.join(R, 'd/econ/alert_state.json')
+EXTRA = os.path.join(R, 'd/econ/alert_extra.json')  # 경제지표 일정에 없는 알림 지표(ADP 등) — 일정이 다시 만들어져도 알림은 유지
 APP = os.environ.get('ONESIGNAL_APP_ID', '').strip() or 'b81f8268-5aef-4a29-b2b8-2173248136a3'
 KEY = os.environ.get('ONESIGNAL_API_KEY', '').strip()
 DRY = os.environ.get('DRY', '').strip() == '1'
@@ -24,7 +25,7 @@ def want(x):
     i = x.get('id', '')
     if i.startswith('fomc-pc'):  # 의장 기자회견은 알림 안 보냄(사용자 2026-10-30, 알림 너무 많음)
         return False
-    return x.get('stars') == 3 or i.startswith('jolts-') or i.startswith('ahe-')
+    return x.get('stars') == 3 or i.startswith('jolts-') or i.startswith('ahe-') or i.startswith('adp-')
 
 
 def when_utc(x):
@@ -46,6 +47,7 @@ SPEC = {
     'cpi': ('CUUR0000SA0', 'CPIAUCNS', 'yoy'),
     'core-cpi': ('CUUR0000SA0L1E', 'CPILFENS', 'yoy'),
     'nfp': ('CES0000000001', 'PAYEMS', 'diff'),
+    'adp': (None, 'ADPMNUSNERSA', 'diff'),
     'ur': ('LNS14000000', 'UNRATE', 'level'),
     'ahe': ('CES0500000003', 'CES0500000003', 'yoy'),
     'jolts': ('JTS000000000000000JOL', 'JTSJOL', 'jolts'),
@@ -108,9 +110,12 @@ def calc(k, s, tp):
     if k in ('cpi', 'core-cpi', 'ahe', 'core-pce'):
         prev = s.get((y - 1, m))
         return round((s[tp] / prev - 1) * 100, 1) if prev else None
-    if k == 'nfp':
+    if k in ('nfp', 'adp'):
         pm = (y, m - 1) if m > 1 else (y - 1, 12)
-        return round(s[tp] - s[pm]) if pm in s else None
+        if pm not in s:
+            return None
+        d = s[tp] - s[pm]
+        return round(d / 1000 if abs(s[tp]) > 1e6 else d)  # ADP(FRED)는 사람 단위 → 천 명
     if k == 'jolts':
         return round(s[tp] / 1000, 3)
     return round(s[tp], 1)
@@ -172,9 +177,9 @@ def cmp(x, v):
     return ' (예상 %s) %s' % (fmt(x, c), sign)
 
 
-SHORT = {'cpi': '소비자물가(CPI) 전년비', 'core-cpi': '근원 CPI 전년비', 'nfp': '비농업 고용', 'ur': '실업률', 'ahe': '시간당 임금 전년비',
+SHORT = {'cpi': '소비자물가(CPI) 전년비', 'core-cpi': '근원 CPI 전년비', 'nfp': '비농업 고용', 'adp': 'ADP 민간 고용', 'ur': '실업률', 'ahe': '시간당 임금 전년비',
          'jolts': '졸트 구인 건수', 'gdp': 'GDP 속보치(연율)', 'core-pce': '근원 PCE 전년비'}
-ORDER = ['nfp', 'ur', 'ahe', 'cpi', 'core-cpi', 'gdp', 'core-pce', 'jolts']
+ORDER = ['adp', 'nfp', 'ur', 'ahe', 'cpi', 'core-cpi', 'gdp', 'core-pce', 'jolts']
 
 
 def build(group):
@@ -199,6 +204,9 @@ def build(group):
         if r is None:
             miss.append(x); continue
         v, src = r
+        if x.get('consensus') is None and x.get('previous') is None and kind(x) in ('adp', 'nfp'):
+            tp = target_period(x); pv = value(dict(x, period='%d년 %d월' % ((tp[0], tp[1] - 1) if tp[1] > 1 else (tp[0] - 1, 12))))
+            if pv: x = dict(x, previous=pv[0])
         lines.append('%s %s%s' % (SHORT.get(k, x['event']), fmt(x, v), cmp(x, v)))
         got[x['id']] = ('val', v)
     return lines, got, miss
@@ -212,6 +220,8 @@ def title(group):
         return '🏦 FOMC 금리 결정'
     if ks == {'fomc-pc'}:
         return '🎤 연준 의장 기자회견 시작'
+    if ks == {'adp'}:
+        return '🔔 %sADP 민간 고용' % mm
     if 'nfp' in ks or 'ur' in ks:
         return '🔔 %s고용 보고서' % mm
     if 'cpi' in ks or 'core-cpi' in ks:
@@ -243,16 +253,22 @@ def push(head, body):
 def main():
     cal = json.load(open(CAL, encoding='utf-8'))
     try:
+        extra = json.load(open(EXTRA, encoding='utf-8'))
+    except Exception:
+        extra = []
+    have = {x['id'] for x in cal}
+    cal_all = cal + [x for x in extra if x['id'] not in have]
+    try:
         st = json.load(open(SP, encoding='utf-8'))
     except Exception:
         st = {'sent': []}
     sent = set(st.get('sent', []))
     now = dt.datetime.now(dt.timezone.utc)
     groups = {}
-    for x in cal:
+    for x in cal_all:
         if not want(x) or x['id'] in sent or kind(x) is None:
             continue
-        if ONLY and x['id'] != ONLY and not any(y['id'] == ONLY and y['date_et'] == x['date_et'] and y['time_et'] == x['time_et'] for y in cal):
+        if ONLY and x['id'] != ONLY and not any(y['id'] == ONLY and y['date_et'] == x['date_et'] and y['time_et'] == x['time_et'] for y in cal_all):
             continue
         t = when_utc(x)
         if not ONLY and not (-LATE_MIN <= (t - now).total_seconds() / 60 <= AHEAD_MIN):
@@ -285,7 +301,7 @@ def main():
             if push(title(g), body):
                 ids = [x['id'] for x in g] if not miss else list(got)
                 sent |= set(ids)
-                for x in cal:
+                for x in cal + extra:
                     if x['id'] in got and got[x['id']][0] == 'val' and x.get('actual') is None:
                         x['actual'] = got[x['id']][1]; x['status'] = '발표'; changed = True
         else:
@@ -295,6 +311,8 @@ def main():
         json.dump(st, open(SP, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
         if changed:
             json.dump(cal, open(CAL, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+            if extra:
+                json.dump(extra, open(EXTRA, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 
 
 main()
