@@ -222,6 +222,17 @@ function paint(nw,un){
 .mm-push.bot{margin:18px 0 8px;padding:8px 12px;box-shadow:none;background:#faf7f0}.mm-push.bot i{font-size:16px}.mm-push.bot b{font-size:14px}.mm-push.bot small{display:none}
 .mm-push.bot{border:0;border-left:0;background:transparent;justify-content:center;opacity:.75}.mm-push.bot span{flex:none}.mm-push.bot b{font-size:12.5px;font-weight:700;color:#8a877f}.mm-push.bot i{font-size:12px;color:#8a877f}
 .mm-push.bot .mm-push-off{padding:2px 4px;background:none;border:0;font-size:12px;font-weight:600;color:#aaa59a;text-decoration:underline}
+
+.mm-push.inst{border-left:4px solid #e8343b}.mm-push.inst i img{width:34px;height:34px;border-radius:9px;display:block;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.mm-push.inst .mm-push-x{padding:4px 2px 4px 6px}
+.mm-guide{position:fixed;inset:0;z-index:2147483000;background:rgba(20,18,14,.55);display:flex;align-items:center;justify-content:center;padding:20px}
+.mm-guide .g-box{background:#fff;border-radius:18px;padding:18px 18px 14px;max-width:340px;width:100%;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.mm-guide .g-t{display:block;font-size:17px;font-weight:900;margin-bottom:8px;color:#1d1c1a}
+.mm-guide ol{margin:0;padding-left:20px;font-size:15px;line-height:1.75;color:#1d1c1a}.mm-guide ol b{color:#d0342c}.mm-guide ol em{font-style:normal;display:inline-block;padding:0 6px;border:1px solid #d9d2c3;border-radius:6px;color:#2e6be6}
+.mm-guide button{all:unset;cursor:pointer;display:block;margin:12px auto 0;padding:9px 22px;border-radius:999px;background:#1d1c1a;color:#fff;font-weight:800;font-size:14px}
+.mm-guide .g-arrow{position:fixed;left:50%;bottom:calc(6px + env(safe-area-inset-bottom));transform:translateX(-50%);font-size:46px;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.5);animation:mmBob 1s ease-in-out infinite}
+.mm-guide .g-arrow.top{bottom:auto;top:calc(6px + env(safe-area-inset-top));left:auto;right:70px;transform:rotate(180deg)}
+@keyframes mmBob{0%,100%{margin-bottom:0}50%{margin-bottom:-10px}}
 </style><script data-push>// 휴대폰 알림 받기(사용자 2026-10-30) — 원시그널 웹 푸시. 메인 화면에만 '📈 실적 알림 받기' 카드
 // 아이폰은 홈 화면에 추가한 앱에서만 됨(애플 규칙) → 그 밖에선 안내만. SDK는 버튼을 쓸 수 있는 기기에서만 불러옴(가볍게)
 (function(){try{
@@ -231,7 +242,21 @@ var iOS=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPo
 var standalone=(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
 var inApp=/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\//i.test(ua);
 var can='serviceWorker' in navigator&&'PushManager' in window&&'Notification' in window&&!inApp&&(!iOS||standalone);
-var card,sdk=null;
+var card,sdk=null,mobile=/Android|iPhone|iPad|iPod/.test(ua)||iOS,android=/Android/.test(ua),BIP=null;
+addEventListener('beforeinstallprompt',function(e){e.preventDefault();BIP=e;if(card&&card.classList.contains('inst'))inst()});
+// ── 앱 설치 카드(사용자 2026-10-30): 카톡 → 사파리·크롬으로 넘김 / 안드로이드 → 설치 창 / 아이폰 사파리 → 화살표 안내
+var HOME='https://mung-mungi.github.io/mung-mung-market/';
+function inst(){if(!card)return; var kakao=/KAKAOTALK/i.test(ua),how=kakao?(iOS?'사파리로 열어 설치합니다':'크롬으로 열어 설치합니다'):inApp?'사파리·크롬에서 열면 설치할 수 있습니다':(iOS?'공유 → 홈 화면에 추가, 두 번이면 끝':(BIP?'버튼 한 번이면 홈 화면에 앱이 생깁니다':'메뉴 ⋮ → 홈 화면에 추가'));
+ card.className='mm-push inst';card.innerHTML='<i><img src="img/icon192.png?v=2" alt=""></i><span><b>멍뭉 터미널 앱 설치</b><small>'+how+' · 설치하면 실적 알림도 받을 수 있습니다.</small></span><button type="button" class="mm-push-on">설치</button>';
+ var bs=card.querySelectorAll('button');
+ bs[0].onclick=function(){
+  if(kakao){location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(HOME);return}
+  if(BIP){BIP.prompt();BIP.userChoice.then(function(){BIP=null;inst()});return}
+  guide(inApp?'app':iOS?'ios':'and')}}
+function guide(k){var o=document.createElement('div');o.className='mm-guide '+k;var ipad=/iPad/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
+ var st=k==='ios'?['아래 <b>공유</b> 버튼 <em>⬆︎</em> 을 누르고','목록을 내려 <b>홈 화면에 추가</b>를 누른 뒤','오른쪽 위 <b>추가</b>를 누르면 끝입니다']:k==='and'?['오른쪽 위 <b>⋮ 메뉴</b>를 누르고','<b>홈 화면에 추가</b>(또는 앱 설치)를 누른 뒤','<b>설치</b>를 누르면 끝입니다']:['오른쪽 위(또는 아래) <b>⋯ 메뉴</b>에서','<b>다른 브라우저로 열기</b>(사파리·크롬)를 누른 뒤','거기서 <b>앱 설치</b>를 다시 누릅니다'];
+ o.innerHTML='<div class="g-box"><b class="g-t">홈 화면에 앱으로 설치하기</b><ol>'+st.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ol><button type="button">알겠습니다</button></div>'+(k==='ios'?'<div class="g-arrow'+(ipad?' top':'')+'">⬇︎</div>':'');
+ o.onclick=function(e){if(e.target===o||e.target.tagName==='BUTTON')o.remove()};document.body.appendChild(o)}
 function load(cb){if(sdk)return sdk.then(cb);sdk=new Promise(function(ok){window.OneSignalDeferred=window.OneSignalDeferred||[];
   var s=document.createElement('script');s.src='https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js';s.defer=true;document.head.appendChild(s);
   OneSignalDeferred.push(async function(OS){try{await OS.init({appId:APP,serviceWorkerPath:'mung-mung-market/OneSignalSDKWorker.js',serviceWorkerUpdaterPath:'mung-mung-market/OneSignalSDKUpdaterWorker.js',serviceWorkerParam:{scope:'/mung-mung-market/'},notifyButton:{enable:false}})}catch(e){}
@@ -241,11 +266,9 @@ function on(OS){try{if(Notification.permission!=='granted')return false;if(!OS||
 function place(bottom){var sh=document.querySelector('p.sh');if(!sh||!card)return;var box=sh.parentElement,par=box.parentElement;
  if(bottom){if(card.parentElement!==par||card.nextElementSibling){par.appendChild(card)}card.classList.add('bot')}else if(card.nextElementSibling!==box&&!card.classList.contains('bot')){par.insertBefore(card,box)}}
 function draw(OS){if(!card)return;
- if(!can){try{if(localStorage.getItem('mm-push-x')){card.remove();card=null;return}}catch(e){}
-  card.className='mm-push off';card.innerHTML='<i>🔔</i><span><b>실적·속보 알림</b><small>'+(inApp?'카톡 안에서는 알림을 받을 수 없습니다. 사파리·크롬에서 열어 홈 화면에 추가하면 켤 수 있습니다.':'홈 화면에 추가한 멍뭉 터미널 앱에서 켤 수 있습니다.')+'</small></span><button type="button" class="mm-push-x" aria-label="닫기">✕</button>';
-  card.querySelector('button').onclick=function(){try{localStorage.setItem('mm-push-x','1')}catch(e){}card.remove();card=null};return}
- if(on(OS)){try{localStorage.setItem('mm-push-on','1')}catch(e){}card.className='mm-push done';place(true);card.innerHTML='<i>✓</i><span><b>실적 알림 켜짐</b><small>새 실적 노트와 중요한 속보가 오면 알려 드립니다.</small></span><button type="button" class="mm-push-off">끄기</button>';
-  card.querySelector('button').onclick=function(){if(!OS){load(function(O){O.User.PushSubscription.optOut().then(function(){draw(O)})});return}OS.User.PushSubscription.optOut().then(function(){draw(OS)})};return}
+ if(mobile&&!standalone){inst();return}
+ if(!can){  card.className='mm-push off';card.innerHTML='<i>🔔</i><span><b>실적·속보 알림</b><small>'+(inApp?'카톡 안에서는 알림을 받을 수 없습니다. 사파리·크롬에서 열어 홈 화면에 추가하면 켤 수 있습니다.':'홈 화면에 추가한 멍뭉 터미널 앱에서 켤 수 있습니다.')+'</small></span>';return}
+ if(on(OS)){try{localStorage.setItem('mm-push-on','1')}catch(e){}card.className='mm-push done';place(true);card.innerHTML='<i>✓</i><span><b>실적 알림 켜짐</b><small>새 실적 노트와 중요한 속보가 오면 알려 드립니다.</small></span>';return}
  try{localStorage.removeItem('mm-push-on')}catch(e){}place(false);card.className='mm-push';card.innerHTML='<i>📈</i><span><b>실적 알림 받기</b><small>새 실적 노트와 중요한 속보만 휴대폰으로 알려 드립니다.</small></span><button type="button" class="mm-push-on">켜기</button>';
  card.querySelector('button').onclick=function(){var b=this;b.textContent='…';if(Notification.permission!=='granted'&&Notification.requestPermission&&!sdk){}setTimeout(function(){draw(null)},9000);load(function(OS){var p=Notification.permission==='granted'?OS.User.PushSubscription.optIn():OS.Notifications.requestPermission();
   Promise.resolve(p).then(function(){if(Notification.permission==='granted'&&!OS.User.PushSubscription.optedIn)return OS.User.PushSubscription.optIn()}).catch(function(){}).then(function(){if(Notification.permission==='granted'){try{localStorage.setItem('mm-push-on','1')}catch(e){}}setTimeout(function(){draw(OS)},800)})})}}
@@ -274,7 +297,7 @@ function add(){(document.body||document.documentElement).appendChild(d);var v=d.
 if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
 d.addEventListener('click',close);setTimeout(close,6500)})();
-</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="채권·금리 보드"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-bond.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610301747">(function(){var me="202610301747";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>채권·금리 보드</title><style>:root{color-scheme:light;
+</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="채권·금리 보드"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-bond.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610301748">(function(){var me="202610301748";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>채권·금리 보드</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
