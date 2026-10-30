@@ -1,4 +1,4 @@
-# 주요 경제지표 발표 알림(사용자 2026-10-30) — 별 3개 + 졸트 + 시간당 임금(고용과 같이)
+# 주요 경제지표 발표 알림(사용자 2026-10-30) — 별 3개 + 졸트 + 시간당 임금 (의장 기자회견 제외)(고용과 같이)
 # 발표 1시간 전쯤 깨어나 기다렸다가 발표 1분 뒤 공식 숫자(노동통계국·연준, 안 되면 FRED)를 읽어 원시그널 알림 한 번.
 # 같은 시각 지표는 한 알림으로 묶음. 숫자는 경제지표 일정(d/econ/calendar.json)의 '실제' 칸에도 채움. 보낸 것은 d/econ/alert_state.json
 # Claude 크레딧 없음(GitHub 자동 작업 econ-alert). 사용: python3 -I _tools/econ_alert.py <사이트 폴더>
@@ -22,6 +22,8 @@ AHEAD_MIN, LATE_MIN, POLL_MIN = 75, 120, (1 if os.environ.get("ONLY") else 15)  
 
 def want(x):
     i = x.get('id', '')
+    if i.startswith('fomc-pc'):  # 의장 기자회견은 알림 안 보냄(사용자 2026-10-30, 알림 너무 많음)
+        return False
     return x.get('stars') == 3 or i.startswith('jolts-') or i.startswith('ahe-')
 
 
