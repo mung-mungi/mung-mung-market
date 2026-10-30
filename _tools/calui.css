@@ -14,3 +14,6 @@ body #next .cn-as .d{font:700 13px/1 -apple-system,sans-serif;color:#9a6200}body
 body #next .cn-as b{font:800 15px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b}
 body #next .cn-as i{font-style:normal;font:700 11px/1 sans-serif;padding:3px 7px;border-radius:999px;background:#f1efe8;color:#6f6d68}
 body #next .cn-as li.past b{color:#6f6d68;font-weight:700}body #next .cn-as li.past i{background:rgba(26,127,55,.1);color:#1a7f37}
+
+body #next .cn-as li.go{cursor:pointer;border-radius:10px;-webkit-tap-highlight-color:transparent}body #next .cn-as li.go:active{background:rgba(154,98,0,.07)}body #next .cn-as li.go i{box-shadow:0 1px 0 rgba(26,127,55,.25),0 2px 4px rgba(0,0,0,.06);border:1px solid rgba(26,127,55,.25)}
+body #next .cn-as i{white-space:nowrap}body #next .cn-as b{min-width:0;overflow-wrap:anywhere}
