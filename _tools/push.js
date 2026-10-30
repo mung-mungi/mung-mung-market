@@ -12,7 +12,7 @@ function load(cb){if(sdk)return sdk.then(cb);sdk=new Promise(function(ok){window
   var s=document.createElement('script');s.src='https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js';s.defer=true;document.head.appendChild(s);
   OneSignalDeferred.push(async function(OS){try{await OS.init({appId:APP,serviceWorkerPath:'mung-mung-market/OneSignalSDKWorker.js',serviceWorkerUpdaterPath:'mung-mung-market/OneSignalSDKUpdaterWorker.js',serviceWorkerParam:{scope:'/mung-mung-market/'},notifyButton:{enable:false}})}catch(e){}
    ok(OS);OS.User&&OS.User.PushSubscription&&OS.User.PushSubscription.addEventListener('change',function(){draw(OS)})})});return sdk.then(cb)}
-function on(OS){try{if(Notification.permission!=='granted')return false;if(!OS){return localStorage.getItem('mm-push-on')==='1'}return OS.User.PushSubscription.optedIn}catch(e){return false}}
+function on(OS){try{if(Notification.permission!=='granted')return false;if(!OS||!OS.User||!OS.User.PushSubscription){return true}var o=OS.User.PushSubscription.optedIn;return o!==false||localStorage.getItem('mm-push-on')==='1'}catch(e){return false}}
 // 켠 사람은 메인 맨 아래로(사용자 2026-10-30), 아직 안 켠 사람은 '새 실적' 띠 아래(위쪽)
 function place(bottom){var sh=document.querySelector('p.sh');if(!sh||!card)return;var box=sh.parentElement,par=box.parentElement;
  if(bottom){if(card.parentElement!==par||card.nextElementSibling){par.appendChild(card)}card.classList.add('bot')}else if(card.nextElementSibling!==box&&!card.classList.contains('bot')){par.insertBefore(card,box)}}
@@ -23,10 +23,10 @@ function draw(OS){if(!card)return;
  if(on(OS)){try{localStorage.setItem('mm-push-on','1')}catch(e){}card.className='mm-push done';place(true);card.innerHTML='<i>✓</i><span><b>실적 알림 켜짐</b><small>새 실적 노트와 중요한 속보가 오면 알려 드립니다.</small></span><button type="button" class="mm-push-off">끄기</button>';
   card.querySelector('button').onclick=function(){if(!OS){load(function(O){O.User.PushSubscription.optOut().then(function(){draw(O)})});return}OS.User.PushSubscription.optOut().then(function(){draw(OS)})};return}
  try{localStorage.removeItem('mm-push-on')}catch(e){}place(false);card.className='mm-push';card.innerHTML='<i>📈</i><span><b>실적 알림 받기</b><small>새 실적 노트와 중요한 속보만 휴대폰으로 알려 드립니다.</small></span><button type="button" class="mm-push-on">켜기</button>';
- card.querySelector('button').onclick=function(){var b=this;b.textContent='…';load(function(OS){var p=Notification.permission==='granted'?OS.User.PushSubscription.optIn():OS.Notifications.requestPermission();
-  Promise.resolve(p).then(function(){if(Notification.permission==='granted'&&!OS.User.PushSubscription.optedIn)return OS.User.PushSubscription.optIn()}).catch(function(){}).then(function(){setTimeout(function(){draw(OS)},800)})})}}
+ card.querySelector('button').onclick=function(){var b=this;b.textContent='…';if(Notification.permission!=='granted'&&Notification.requestPermission&&!sdk){}setTimeout(function(){draw(null)},9000);load(function(OS){var p=Notification.permission==='granted'?OS.User.PushSubscription.optIn():OS.Notifications.requestPermission();
+  Promise.resolve(p).then(function(){if(Notification.permission==='granted'&&!OS.User.PushSubscription.optedIn)return OS.User.PushSubscription.optIn()}).catch(function(){}).then(function(){if(Notification.permission==='granted'){try{localStorage.setItem('mm-push-on','1')}catch(e){}}setTimeout(function(){draw(OS)},800)})})}}
 function mount(){if(document.querySelector('.mm-push'))return true;var sh=document.querySelector('p.sh');if(!sh)return false;var box=sh.parentElement;
- card=document.createElement('div');var was=false;try{was=localStorage.getItem('mm-push-on')==='1'}catch(e){}if(was&&can)box.parentElement.appendChild(card);else box.parentElement.insertBefore(card,box);draw(null);
+ card=document.createElement('div');var was=false;try{was=localStorage.getItem('mm-push-on')==='1'||Notification.permission==='granted'}catch(e){}if(was&&can)box.parentElement.appendChild(card);else box.parentElement.insertBefore(card,box);draw(null);
  if(can&&Notification.permission==='granted')load(draw);return true}
 var n=0;(function go(){if(!mount()&&++n<40)setTimeout(go,250)})();
 }catch(e){}})();
