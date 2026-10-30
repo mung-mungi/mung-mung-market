@@ -1,0 +1,43 @@
+# 주요 경제지표 발표 알림(사용자 2026-10-30) — 별 3개 + 졸트 + 시간당 임금. 20분마다 깨어나 75분 안에 발표가 있으면
+# 그 자리에서 기다렸다가 발표 1분 뒤 공식 숫자를 읽어 휴대폰 알림(원시그널)을 보내고, 경제지표 일정의 '실제' 칸도 채움.
+# 발표가 없으면 몇 초 만에 끝남. Claude 크레딧 없음. 시험: 수동 실행에서 dry=1, only=<지표 id>
+name: econ-alert
+on:
+  schedule:
+    - cron: '3,23,43 * * * *'
+  workflow_dispatch:
+    inputs:
+      dry:
+        description: '1이면 알림을 보내지 않고 출력만(시험)'
+        required: false
+        default: '0'
+      only:
+        description: '이 지표 id 묶음만 바로 처리(시험, 예: gdp-2026q3a)'
+        required: false
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: econ-alert
+  cancel-in-progress: false
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: alert
+        env:
+          ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          DRY: ${{ github.event.inputs.dry }}
+          ONLY: ${{ github.event.inputs.only }}
+        run: python3 -I _tools/econ_alert.py .
+      - name: commit
+        if: ${{ github.event.inputs.dry != '1' }}
+        run: |
+          git config user.name 'github-actions[bot]'; git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add d/econ/alert_state.json d/econ/calendar.json 2>/dev/null || true
+          if git diff --cached --quiet; then echo 'no change'; exit 0; fi
+          git commit -m "경제지표 발표 알림 $(TZ=Asia/Seoul date +%m.%d\ %H:%M)"
+          for i in 1 2 3 4 5; do git pull --rebase -X theirs origin main && git push && exit 0; sleep $((i*7)); done; exit 1
