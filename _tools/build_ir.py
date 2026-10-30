@@ -88,12 +88,13 @@ def mirror(items):
     os.makedirs(PDFDIR, exist_ok=True)
     want = set()
     for x in items:
-        a = rel_asset(x.get('pdf_kr'))
-        if not a:
+        # 번역본이 없는 회사(한국 회사 — 원문이 한글)는 원문 PDF를 사이트 안에 둠(사용자 2026-10-30, 릴리스로 열면 느림)
+        src = x.get('pdf_kr') if rel_asset(x.get('pdf_kr')) else (x.get('pdf_orig') if not x.get('pdf_kr') and rel_asset(x.get('pdf_orig')) else '')
+        if not src:
             continue
-        fn = x['id'] + '_kr.pdf'; dst = os.path.join(PDFDIR, fn); want.add(fn)
+        fn = x['id'] + ('_kr.pdf' if src == x.get('pdf_kr') else '_ko.pdf'); dst = os.path.join(PDFDIR, fn); want.add(fn)
         if not os.path.exists(dst):
-            r = subprocess.run(['curl', '-sSLf', '-m', '60', '-o', dst, x['pdf_kr']], capture_output=True, text=True)  # 공개 저장소라 주소로 바로 받음
+            r = subprocess.run(['curl', '-sSLf', '-m', '60', '-o', dst, src], capture_output=True, text=True)  # 공개 저장소라 주소로 바로 받음
             print('mirror', fn, 'ok' if r.returncode == 0 else 'fail: ' + (r.stderr or '').strip()[:120])
         if os.path.exists(dst):
             x['pdf_kr_site'] = 'd/ir/pdf/' + fn
@@ -110,8 +111,8 @@ def main():
         mirror(items)
     else:
         for x in items:
-            f = os.path.join(PDFDIR, x['id'] + '_kr.pdf')
-            if os.path.exists(f): x['pdf_kr_site'] = 'd/ir/pdf/' + x['id'] + '_kr.pdf'
+            for sfx in ('_kr.pdf', '_ko.pdf'):
+                if os.path.exists(os.path.join(PDFDIR, x['id'] + sfx)): x['pdf_kr_site'] = 'd/ir/pdf/' + x['id'] + sfx; break
     items.sort(key=lambda x: (x['date'], -TIME_ORDER.get(x['time'], 9)), reverse=True)
     for x in items:
         x.pop('_file', None)

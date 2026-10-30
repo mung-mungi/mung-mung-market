@@ -14,7 +14,8 @@
    "pdf_orig": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261029/005930_3Q26_orig.pdf",
    "pdf_slides": "",
    "by": "그록봇",
-   "id": "20261029_005930_3Q26"
+   "id": "20261029_005930_3Q26",
+   "pdf_kr_site": "d/ir/pdf/20261029_005930_3Q26_ko.pdf"
   },
   {
    "name": "캐터필러",
@@ -157,7 +158,8 @@
    "pdf_orig": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261028/000660_3Q26_orig.pdf",
    "pdf_slides": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261028/000660_3Q26_slides.pdf",
    "by": "그록봇",
-   "id": "20261028_000660_3Q26"
+   "id": "20261028_000660_3Q26",
+   "pdf_kr_site": "d/ir/pdf/20261028_000660_3Q26_ko.pdf"
   },
   {
    "name": "암페놀",
@@ -577,5 +579,5 @@
   }
  ],
  "skipped": [],
- "updated": "2026-10-30T08:43Z"
+ "updated": "2026-10-30T08:46Z"
 }

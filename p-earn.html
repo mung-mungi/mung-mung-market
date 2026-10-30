@@ -26,7 +26,7 @@ html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
   });
 })();
 </script>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610301744">(function(){var me="202610301744";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 결과</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610301747">(function(){var me="202610301747";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 결과</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
@@ -1010,178 +1010,6 @@ var k=0;(function go(){try{stepHint();var h=document.getElementById('hits'),u=do
  stepCards()}catch(e){}
  if(++k<16)setTimeout(go,400)})();
 })();
-</script><style data-irlib>/* 실적 결과 > IR 서재 (사용자 2026-10-30) — 시세 보드 양식: 알약 분류 + 한 줄 카드 + 누르면 펼침 */
-#irlib{margin:14px 0 0;padding:16px 14px 14px;background:#fff;border:1px solid rgba(11,11,11,.08);border-radius:18px;box-shadow:0 2px 0 rgba(30,22,8,.05),0 8px 20px rgba(30,22,8,.05)}
-#irlib .ir-h{display:flex;align-items:center;gap:8px;margin:0 0 4px}
-#irlib .ir-h h2{margin:0;font:800 22px/1.25 -apple-system,"Apple SD Gothic Neo",sans-serif;letter-spacing:-.03em;color:#0b0b0b}
-#irlib .ir-h .ir-n{margin-left:auto;font:700 12.5px/1 -apple-system,sans-serif;color:#9a6200;background:rgba(154,98,0,.09);border-radius:999px;padding:5px 9px;white-space:nowrap}
-#irlib .ir-sub{margin:0 0 10px;font-size:14px;color:#6f6d68;line-height:1.5}
-#irlib details.ir-how{margin:0 0 10px;border:1px solid rgba(154,98,0,.28);border-radius:12px;background:#fffdf7}
-#irlib details.ir-how summary{cursor:pointer;list-style:none;padding:9px 12px;font:700 14px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200}
-#irlib details.ir-how summary::-webkit-details-marker{display:none}
-#irlib details.ir-how[open] summary{border-bottom:1px dashed rgba(154,98,0,.25)}
-#irlib details.ir-how p{margin:0;padding:9px 12px 11px;font-size:14.5px;line-height:1.6;color:#33322f}
-#irlib .ir-tool{display:flex;gap:8px;align-items:center;margin:0 0 8px}
-#irlib .ir-q{flex:1;min-width:0;border-radius:12px;padding:9px 12px;font-size:15px;border:1px solid rgba(11,11,11,.1);background:#fff;box-shadow:inset 0 1px 2px rgba(0,0,0,.05);font-family:inherit;color:#0b0b0b}
-#irlib .ir-pills{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 8px;margin:0 -2px}
-#irlib .ir-pills::-webkit-scrollbar{display:none}
-#irlib .ir-pills button{all:unset;flex:none;cursor:pointer;white-space:nowrap;font:600 13.5px/1.55 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:4px 12px;border:1px solid rgba(11,11,11,.1);border-radius:999px;background:#f9f9f7;color:#0b0b0b;box-shadow:0 3px 0 rgba(30,22,8,.16),0 4px 8px rgba(30,22,8,.1)}
-#irlib .ir-pills button[aria-pressed=true]{background:#0b0b0b;color:#f9f9f7;border-color:#0b0b0b}
-#irlib .ir-pills button:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(30,22,8,.16)}
-#irlib .ir-list{display:flex;flex-direction:column;gap:8px;padding:2px 2px 4px}
-#irlib .ir-list.open{max-height:none}
-#irlib .ir-c{border:1px solid rgba(154,98,0,.3);border-radius:14px;background:#fff;box-shadow:0 3px 0 rgba(30,22,8,.08),0 5px 12px rgba(30,22,8,.06)}
-#irlib .ir-row{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:10px;padding:12px 12px 12px 14px;cursor:pointer}
-#irlib .ir-row:active{background:rgba(154,98,0,.05);border-radius:14px}
-#irlib .ir-l{flex:1;min-width:0}
-#irlib .ir-l b{display:flex;align-items:center;gap:6px;font:800 17px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b}
-#irlib .ir-l b i{font-style:normal;font:700 11px/1 -apple-system,sans-serif;color:#fff;background:#d6434e;border-radius:6px;padding:3px 5px}
-#irlib .ir-l small{display:block;margin-top:2px;font-size:12.5px;color:#6f6d68}
-#irlib .ir-l .ir-t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:5px;font-size:14.5px;line-height:1.5;color:#33322f}
-#irlib .ir-c.on .ir-t{-webkit-line-clamp:unset;display:block}
-#irlib .ir-r{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
-#irlib .ir-r em{font-style:normal;font:700 12px/1 -apple-system,sans-serif;color:#9a6200;background:rgba(154,98,0,.09);border-radius:999px;padding:4px 8px;white-space:nowrap}
-#irlib .ir-r .ar{color:#b9b6ae;font:700 20px/1 -apple-system,sans-serif;transition:transform .15s}
-#irlib .ir-c.on .ir-r .ar{transform:rotate(90deg)}
-#irlib .ir-body{display:none;padding:0 14px 14px}
-#irlib .ir-c.on .ir-body{display:block}
-#irlib .ir-txt{margin:0;padding:12px 0 0;border-top:1px dashed rgba(154,98,0,.25);white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;font:400 15.5px/1.7 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1c1a}
-#irlib .ir-foot{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:12px}
-#irlib .ir-foot a,#irlib .ir-foot button{all:unset;cursor:pointer;font:700 13px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:5px 11px;border-radius:999px;border:1px solid rgba(11,11,11,.12);background:#f9f9f7;color:#0b0b0b;box-shadow:0 2px 0 rgba(30,22,8,.14)}
-#irlib .ir-foot span{margin-left:auto;font-size:12px;color:#8a877f}
-#irlib .ir-more{all:unset;display:block;cursor:pointer;margin:8px auto 0;font:700 13.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;text-align:center}
-#irlib .ir-empty{padding:18px 12px;border:1px dashed rgba(154,98,0,.35);border-radius:14px;background:#fffdf7;text-align:center;font-size:14.5px;line-height:1.6;color:#6f6d68}
-#irlib .ir-empty b{display:block;font-size:16px;color:#0b0b0b;margin-bottom:2px}
-#irlib .ir-c.flash{animation:irf 1.4s ease}
-@keyframes irf{0%,40%{box-shadow:0 0 0 3px rgba(219,147,0,.55)}100%{box-shadow:0 3px 0 rgba(30,22,8,.08)}}
-/* 실적 결과 카드 이름 옆 'IR' 알약 → 서재로 */
-.mk-l .ir-go{all:unset;cursor:pointer;margin-left:6px;font:700 11px/1 -apple-system,sans-serif;color:#9a6200;border:1px solid rgba(154,98,0,.4);background:#fffdf7;border-radius:999px;padding:3px 7px;vertical-align:2px;box-shadow:0 1px 0 rgba(30,22,8,.12)}
-/* 맨 위 바로가기 칩 */
-.ir-jump{all:unset;cursor:pointer;display:inline-flex;align-self:flex-start;width:max-content;align-items:center;gap:4px;margin:10px 0 0;font:700 13.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid rgba(154,98,0,.35);color:#9a6200;box-shadow:0 3px 0 rgba(30,22,8,.12)}
-#irlib .ir-day{margin:6px 2px -2px;display:inline-flex;align-self:flex-start;font:800 13px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;background:rgba(154,98,0,.1);border-radius:999px;padding:6px 10px}
-#irlib .ir-day:first-child{margin-top:0}
-
-#irlib .ir-list:not(.open) .ir-hid{display:none}
-#irlib .ir-more{display:block;margin:10px auto 0;padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6dcc6;box-shadow:0 2px 0 #ece4d2;font-weight:800;font-size:14px;color:#5a554c}
-
-#irlib .ir-top{display:flex;flex-wrap:wrap;gap:6px;padding:12px 0 2px;border-top:1px dashed rgba(154,98,0,.25)}
-#irlib .ir-top+.ir-txt{border-top:0}
-#irlib .ir-top a,#irlib .ir-top button{all:unset;cursor:pointer;font:800 14px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:8px 14px;border-radius:999px;background:#fff7e6;border:1px solid #e9c98a;color:#7a4c00;box-shadow:0 2px 0 #efdcb4;-webkit-tap-highlight-color:transparent}
-#irlib .ir-top a:active,#irlib .ir-top button:active{transform:translateY(1px);box-shadow:none}
-html.ir-vopen,html.ir-vopen body{overflow:hidden}
-#ir-view{position:fixed;inset:0;z-index:2147483000;background:#efece6;display:flex;flex-direction:column}
-#ir-view .iv-bar{display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px;background:#fff;border-bottom:1px solid #e6dcc6;box-shadow:0 2px 6px rgba(0,0,0,.06)}
-#ir-view .iv-back{all:unset;cursor:pointer;font:800 15px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:10px 14px;border-radius:999px;background:#1d1c1a;color:#fff}
-#ir-view .iv-bar b{flex:1;min-width:0;font:800 14px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#1d1c1a}
-#ir-view .iv-bar a{font:700 13px/1 -apple-system,sans-serif;color:#9a6200;text-decoration:none}
-#ir-view .iv-pages{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding:10px 8px calc(20px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;gap:10px}
-#ir-view canvas{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12);max-width:100%;height:auto}
-#ir-view .iv-msg{font:600 14px/1.6 -apple-system,sans-serif;color:#6b675f;padding:30px 12px;text-align:center}
-#irlib .ir-rest{margin-top:8px}#irlib .ir-rest summary{list-style:none;cursor:pointer;display:inline-block;font:800 13.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;padding:7px 12px;border-radius:999px;background:#fff;border:1px solid #e6dcc6;box-shadow:0 2px 0 #ece4d2}#irlib .ir-rest summary::-webkit-details-marker{display:none}#irlib .ir-rest[open] summary{margin-bottom:4px}#irlib .ir-rest .ir-txt{border-top:0;padding-top:4px}
-#irlib .ir-txt{white-space:normal}
-#irlib .ir-key{margin:4px 0 10px;padding:10px 12px;border-radius:10px;background:#fff6dc;border-left:4px solid #e0a400;font:800 15.5px/1.6 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1c1a}
-#irlib .ir-h5{margin:14px 0 6px;font:900 16px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1c1a}
-#irlib .ir-ul{margin:0;padding:0 0 0 2px;list-style:none;display:flex;flex-direction:column;gap:7px}
-#irlib .ir-ul li{position:relative;padding-left:14px;font:400 15px/1.65 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1c1a}
-#irlib .ir-ul li::before{content:"";position:absolute;left:2px;top:.72em;width:5px;height:5px;border-radius:50%;background:#c79a3c}
-#irlib .ir-ul li small{display:block;margin-top:2px;font-size:13.5px;line-height:1.55;color:#6b675f}
-#irlib .ir-p{margin:6px 0;font:400 15px/1.65 -apple-system,"Apple SD Gothic Neo",sans-serif}
-#irlib .ir-c.on .ir-row .ir-t{display:none}
-/* 알약 전부 위 한 줄로(사용자 2026-10-30): 번역본이 맨 앞·진하게, 나머지는 흰 알약, 넘치면 옆으로 밀기 */
-#irlib .ir-top{display:flex!important;flex-wrap:nowrap!important;gap:5px!important;overflow-x:auto;scrollbar-width:none;padding-bottom:6px!important}
-#irlib .ir-top::-webkit-scrollbar{display:none}
-#irlib .ir-top a,#irlib .ir-top button{flex:none;text-align:center;white-space:nowrap;font-size:12.5px!important;line-height:1.3!important;padding:5px 10px!important;background:#fff!important;border-color:rgba(11,11,11,.12)!important;color:#1d1c1a!important;box-shadow:0 2px 0 rgba(30,22,8,.14)!important}
-#irlib .ir-top .ir-main{background:#9a6200!important;border-color:#9a6200!important;color:#fff!important;box-shadow:0 2px 0 #6e4600!important}
-</style><script data-irlib>// 실적 결과 > IR 서재 (사용자 2026-10-30) — 데이터는 d/ir/ir.json(새 정리는 items 맨 앞에 추가)
-(function(){
-var L={'연산칩':'NVDA AMD INTC','맞춤형 칩':'AVGO MRVL 2454','메모리·저장':'MU 000660 005930 SNDK WDC STX 285A SIMO 8299','파운드리':'TSM TSMC TSEM GFS','설계 SW':'CDNS SNPS',
-'장비·후공정':'AMAT LRCX KLAC ASML TER CAMT FORM MKSI UCTT AMKR 8150','광통신':'LITE COHR AAOI AXTI FN GLW VIAV','연결·네트워크':'ALAB SMTC CRDO RMBS APH TEL ANET CSCO LUMN',
-'서버':'CLS SMCI DELL','전력·냉각':'VRT GEV BE CAT','전력반도체':'NVTS ON MPWR TXN','전력 시공':'PWR FLR','네오클라우드':'CRWV NBIS IREN APLD CIFR','데이터센터 리츠':'EQIX DLR GDS',
-'빅테크':'MSFT GOOGL GOOG AMZN META ORCL AAPL TSLA IBM','SW·보안':'NET PLTR PANW NOW'};
-var T2L={};Object.keys(L).forEach(function(k){L[k].split(' ').forEach(function(t){T2L[t]=k})});
-function layer(t){t=String(t||'').toUpperCase().replace(/\..*$/,'');return T2L[t]||'기타'}
-function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-function md(d){var m=String(d||'').match(/\d{4}-(\d\d)-(\d\d)/);return m?(+m[1])+'/'+(+m[2]):''}
-var DATA=[],cur='전체',q='';
-function build(){var main=document.querySelector('main');var find=document.getElementById('find');if(!main||!find||document.getElementById('irlib'))return false;
- var s=document.createElement('section');s.id='irlib';
- s.innerHTML='<div class="ir-h"><h2>📚 IR 서재</h2><span class="ir-n">0권</span></div>'+
- '<p class="ir-sub">회사가 직접 낸 실적 발표자료·어닝콜을 정리해 꽂아 둡니다 · 누르면 펼쳐집니다</p>'+
- '<details class="ir-how"><summary>▸ 이렇게 읽습니다 · 눌러서 펼치기</summary><p>위 실적 결과가 시장이 본 \'숫자 성적표\'라면, IR 서재는 회사가 그 숫자를 어떻게 설명했는지 모아 둔 곳입니다.<br>실적 결과 카드 이름 옆 <b>IR</b> 알약을 누르면 그 회사 정리로 바로 넘어옵니다.<br>분야 알약으로 같은 층 회사들의 설명을 나란히 비교해 볼 수 있습니다.</p></details>'+
- '<div class="ir-tool"><input class="ir-q" type="search" placeholder="회사·티커 찾기" aria-label="IR 서재 검색"></div>'+
- '<div class="ir-pills" role="group" aria-label="분야"></div><div class="ir-list"></div>';
- var anchor=(find.closest('section')&&find.closest('section').parentNode===main)?find.closest('section'):find;
- main.insertBefore(s,anchor);
- s.querySelector('.ir-q').addEventListener('input',function(e){q=e.target.value.trim().toLowerCase();render()});
- return true}
-function pills(){var box=document.querySelector('#irlib .ir-pills');var have={};DATA.forEach(function(x){have[x._l]=(have[x._l]||0)+1});
- var ks=['전체'].concat(Object.keys(L).filter(function(k){return have[k]}),have['기타']?['기타']:[]);
- box.innerHTML='';ks.forEach(function(k){var b=document.createElement('button');b.type='button';b.textContent=k+(k==='전체'?' '+DATA.length:' '+have[k]);b.setAttribute('aria-pressed',k===cur);b.onclick=function(){cur=k;pills();render()};box.appendChild(b)});
- box.style.display=DATA.length?'':'none';document.querySelector('#irlib .ir-tool').style.display=DATA.length>4?'':'none'}
-function lk(u,t,c){u=String(u||'');return /^https:\/\//.test(u)?'<a'+(c?' class="'+c+'"':'')+' href="'+esc(u)+'" target="_blank" rel="noopener">'+t+'</a>':''}
-
-// 정리 글을 읽기 좋게(사용자 2026-10-30): 【제목】·━ 줄은 빼고, ★ 한 줄 핵심은 노란 상자, ▶는 소제목, ▪는 점 목록, 들여쓴 줄은 작은 보충 설명.
-// 펼치면 '한 줄 핵심 + 첫 소제목(회사가 강조한 것)'까지만 먼저, 나머지(분기 숫자 등)는 '숫자·세부 전체 보기'로 접음
-function fmt(ls){var o='',ul=false;function cl(){if(ul){o+='</ul>';ul=false}}
- ls.forEach(function(l){var t=l.replace(/\s+$/,''),u=t.replace(/^[\s　]+/,'');if(!u||/^[━─=]{3,}$/.test(u)||/^【.*】$/.test(u))return;
-  if(/^★/.test(u)){cl();o+='<p class="ir-key">'+esc(u.replace(/^★\s*(한\s*줄\s*핵심\s*[:：]\s*)?/,''))+'</p>';return}
-  if(/^▶/.test(u)){cl();o+='<h5 class="ir-h5">'+esc(u.replace(/^▶\s*/,''))+'</h5>';return}
-  if(/^[▪•·\-]/.test(u)){if(!ul){o+='<ul class="ir-ul">';ul=true}o+='<li>'+esc(u.replace(/^[▪•·\-]\s*/,''))+'</li>';return}
-  if(ul&&/^[\s　]{2,}/.test(t)){o=o.replace(/<\/li>$/,'<small>'+esc(u)+'</small></li>');return}
-  cl();o+='<p class="ir-p">'+esc(u)+'</p>'});cl();return o}
-function txt(b){b=String(b||'');var ls=b.split('\n'),hd=[],i,cut=-1;for(i=0;i<ls.length;i++){if(/^\s*▶/.test(ls[i]))hd.push(i);if(hd.length===2){cut=i;break}}
- if(cut<0||b.length<900)return '<div class="ir-txt">'+fmt(ls)+'</div>';
- return '<div class="ir-txt">'+fmt(ls.slice(0,cut))+'</div><details class="ir-rest"><summary>▾ 숫자·세부 전체 보기</summary><div class="ir-txt">'+fmt(ls.slice(cut))+'</div></details>'}
-function card(x,i){var c=document.createElement('div');c.className='ir-c';c.id='ir-'+esc(x.id||i);c.dataset.tk=String(x.ticker||'').toUpperCase();
- var fresh=(Date.now()-new Date(x.date||0).getTime())<3*864e5;
- c.innerHTML='<button type="button" class="ir-row" aria-expanded="false"><div class="ir-l"><b>'+(fresh?'<i>최신</i>':'')+esc(x.name)+'</b><small>'+esc(x.ticker||'')+(x.q?' · '+esc(x.q):'')+(x.time?' · '+esc(x.time):'')+'</small>'+(x.title?'<span class="ir-t">'+esc(x.title)+'</span>':'')+'</div><div class="ir-r"><em>'+esc(x._l)+'</em><span class="ar">›</span></div></button>'+
- '<div class="ir-body"><div class="ir-top">'+(x.pdf_kr_site?'<button type="button" class="ir-pdf ir-main" data-u="'+esc(x.pdf_kr_site)+'" data-t="'+esc(x.name+' '+(x.q||'')+' 번역본')+'">📄 번역본</button>':x.pdf_kr?lk(x.pdf_kr,'📄 번역본','ir-main'):lk(x.pdf_orig,'📄 원문(한글)','ir-main'))+((x.pdf_kr_site||x.pdf_kr)?lk(x.pdf_orig,'원문'):'')+lk(x.pdf_slides,'슬라이드')+lk(x.src,'IR ↗')+'</div>'+txt(x.body)+'<div class="ir-foot"><button type="button" class="ir-up">접기 ▴</button><span>'+(x.by?'정리 · '+esc(x.by):'')+'</span></div></div>';
- var row=c.querySelector('.ir-row');function tog(){var on=c.classList.toggle('on');row.setAttribute('aria-expanded',on)}
- row.onclick=tog;var pb=c.querySelector('.ir-pdf');if(pb)pb.onclick=function(){view(pb.dataset.u,pb.dataset.t)};c.querySelector('.ir-up').onclick=function(){tog();var y=c.getBoundingClientRect().top+scrollY-80;if(c.getBoundingClientRect().top<0)scrollTo(0,y)};return c}
-
-// PDF 보기 화면(사용자 2026-10-30): 사이트 안 번역본을 페이지 안에서 열고, 맨 위 '← 돌아가기'(휴대폰 뒤로가기로도 닫힘)
-var PJ=null;function pdfjs(cb){if(window.pdfjsLib)return cb(window.pdfjsLib);if(PJ)return PJ.push(cb);PJ=[cb];var sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
- sc.onload=function(){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';PJ.forEach(function(f){f(pdfjsLib)});PJ=null};sc.onerror=function(){PJ.forEach(function(f){f(null)});PJ=null};document.head.appendChild(sc)}
-function closeV(){var o=document.getElementById('ir-view');if(!o)return;o.remove();document.documentElement.classList.remove('ir-vopen')}
-addEventListener('popstate',function(){if(document.getElementById('ir-view'))closeV()});
-function view(u,t){closeV();var o=document.createElement('div');o.id='ir-view';
- o.innerHTML='<div class="iv-bar"><button type="button" class="iv-back">← 돌아가기</button><b></b><a target="_blank" rel="noopener">새 창 ↗</a></div><div class="iv-pages"><p class="iv-msg">불러오는 중…</p></div>';
- o.querySelector('b').textContent=t||'';o.querySelector('a').href=u;document.body.appendChild(o);document.documentElement.classList.add('ir-vopen');
- try{history.pushState({irv:1},'',location.href)}catch(e){}
- o.querySelector('.iv-back').onclick=function(){if(history.state&&history.state.irv)history.back();else closeV()};
- var box=o.querySelector('.iv-pages');
- pdfjs(function(L){if(!L){box.innerHTML='<p class="iv-msg">보기 화면을 못 불러왔습니다. 위 \'새 창\'으로 열어 주세요.</p>';return}
-  L.getDocument(u).promise.then(function(doc){box.innerHTML='';var W=Math.min(box.clientWidth||innerWidth,900),dpr=Math.min(devicePixelRatio||1,2),n=0;
-   (function next(){if(++n>doc.numPages||!document.getElementById('ir-view'))return;doc.getPage(n).then(function(pg){var v1=pg.getViewport({scale:1}),sc=W/v1.width,vp=pg.getViewport({scale:sc*dpr});
-    var cv=document.createElement('canvas');cv.width=vp.width;cv.height=vp.height;cv.style.width=W+'px';box.appendChild(cv);pg.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise.then(next)})})()
-  }).catch(function(){box.innerHTML='<p class="iv-msg">PDF를 열지 못했습니다. 위 \'새 창\'으로 열어 주세요.</p>'})})}
-function render(){var list=document.querySelector('#irlib .ir-list');if(!list)return;list.innerHTML='';list.classList.remove('open');list.style.removeProperty('--irh');var old=document.querySelector('#irlib .ir-more');if(old)old.remove();
- document.querySelector('#irlib .ir-n').textContent=DATA.length+'권';
- if(!DATA.length){list.innerHTML='<div class="ir-empty"><b>아직 꽂힌 자료가 없습니다</b>첫 IR 정리가 들어오면 최신순으로 여기에 쌓입니다.</div>';return}
- var v=DATA.filter(function(x){if(cur!=='전체'&&x._l!==cur)return false;if(!q)return true;return (x.name+' '+x.ticker+' '+(x.title||'')).toLowerCase().indexOf(q)>=0});
- if(!v.length){list.innerHTML='<div class="ir-empty">찾는 회사가 아직 서재에 없습니다.</div>';return}
- var lastD=null;v.forEach(function(x,i){if(x.date!==lastD){lastD=x.date;var h=document.createElement('div');h.className='ir-day';h.textContent=(md(x.date)||'날짜 미상')+' 발표';list.appendChild(h)}list.appendChild(card(x,i))});
- // 처음엔 4권만, 나머지는 펼치기(사용자 2026-10-30 — 스크롤 압박 줄이기)
- if(v.length>4){var cs=list.children,seen=0;[].forEach.call(cs,function(e){if(e.classList.contains('ir-c')){if(++seen>4)e.classList.add('ir-hid')}});
-  [].forEach.call(cs,function(e){if(e.classList.contains('ir-day')){var nx=e.nextElementSibling;if(nx&&nx.classList.contains('ir-hid'))e.classList.add('ir-hid')}});
-  var m=document.createElement('button');m.type='button';m.className='ir-more';var lb='▼ '+(v.length-4)+'권 더 펼치기';m.textContent=lb;
-  m.onclick=function(){var o=list.classList.toggle('open');m.textContent=o?'▲ 접기':lb;if(!o){var s=document.getElementById('irlib');if(s&&s.getBoundingClientRect().top<0)scrollTo(0,s.getBoundingClientRect().top+scrollY-70)}};list.after(m)}}
-function open(tk){tk=String(tk||'').toUpperCase();cur='전체';q='';var qi=document.querySelector('#irlib .ir-q');if(qi)qi.value='';pills();render();
- var c=[].slice.call(document.querySelectorAll('#irlib .ir-c')).find(function(x){return x.dataset.tk===tk});var s=document.getElementById('irlib');if(!s)return;
- if(c){document.querySelector('#irlib .ir-list').classList.add('open');if(!c.classList.contains('on'))c.querySelector('.ir-row').click();c.classList.remove('flash');void c.offsetWidth;c.classList.add('flash')}
- if(c&&c.classList.contains('ir-hid')){var li=document.querySelector('#irlib .ir-list');li.classList.add('open');var mb=document.querySelector('#irlib .ir-more');if(mb)mb.textContent='▲ 접기'}var el=c||s;requestAnimationFrame(function(){scrollTo(0,el.getBoundingClientRect().top+scrollY-70)})}
-window.mmIrOpen=open;
-// 실적 결과 카드에 IR 알약
-function badges(){if(!DATA.length)return;var by={};DATA.forEach(function(x){by[String(x.name).replace(/\s/g,'')]=x.ticker});
- document.querySelectorAll('article .mk-l>b').forEach(function(b){if(b.querySelector('.ir-go'))return;var a=b.closest('article');var nm=((a&&a.dataset.name)||'').split(' ')[0].replace(/\s/g,'');var tk=by[nm];if(!tk)return;
-  var g=document.createElement('button');g.type='button';g.className='ir-go';g.textContent='IR';g.addEventListener('click',function(e){e.stopPropagation();e.preventDefault();open(tk)},true);b.appendChild(g)})}
-function jump(){var hero=document.querySelector('header.mm-hero');if(!hero||document.querySelector('.ir-jump')||!DATA.length)return;var j=document.createElement('button');j.type='button';j.className='ir-jump';j.textContent='📚 IR 서재 '+DATA.length+'권 ›';j.onclick=function(){var s=document.getElementById('irlib');if(s)scrollTo(0,s.getBoundingClientRect().top+scrollY-70)};hero.after(j)}
-function load(){fetch('d/ir/ir.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){DATA=(j.items||[]).filter(function(x){return x&&x.name}).map(function(x){x._l=layer(x.ticker);return x});
- var TO={'아시아':0,'장전':1,'장후':2};DATA.sort(function(a,b){return String(b.date||'').localeCompare(String(a.date||''))||((TO[a.time]==null?9:TO[a.time])-(TO[b.time]==null?9:TO[b.time]))});pills();render();jump();
- var k=0;(function bg(){try{badges()}catch(e){}if(++k<16)setTimeout(bg,500)})();
- if(location.hash==='#ir')setTimeout(function(){var s=document.getElementById('irlib');if(s)scrollTo(0,s.getBoundingClientRect().top+scrollY-70)},300)}).catch(function(){render()})}
-var n=0;(function go(){if(build())load();else if(++n<30)setTimeout(go,300)})();
-})();
 </script><style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
 body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
 body .mm-take.hu b:not(.mm-chipx){font-weight:800}
@@ -1359,7 +1187,179 @@ function tidy(){
   var html='<p class="t">점수 보는 법</p><p><span class="bd">실적</span>시장이 본 성적표 — 매출·EPS가 예상보다 잘 나왔나, 가이던스, 주가 반응</p><p><span class="bd ai">AI 관점</span>AI 사슬에서 본 성적표 — AI 매출·수주·설비투자가 커졌나 (AI와 무관한 부진은 빼고 봄)</p><p class="sc">A+ 아주 좋음 · A 좋음 · B 보통 · C 아쉬움 · D 나쁨</p><p class="tot">'+cur.length+'곳 중 실적 A 이상 '+nP+'곳 · AI 관점 A 이상 '+nA+'곳</p>';
   if(h.innerHTML!==html)h.innerHTML=html}
 
-(function(){var q=0,n=0,t0=0,busy=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(busy)return;var now=Date.now();if(now-t0>300){t0=now;n=0}if(++n>8){if(!q){q=1;setTimeout(function(){q=0;go()},120)}return}busy=1;try{go()}finally{busy=0}}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();</script></body></html>
+(function(){var q=0,n=0,t0=0,busy=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(busy)return;var now=Date.now();if(now-t0>300){t0=now;n=0}if(++n>8){if(!q){q=1;setTimeout(function(){q=0;go()},120)}return}busy=1;try{go()}finally{busy=0}}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();</script><style data-irlib>/* 실적 결과 > IR 서재 (사용자 2026-10-30) — 시세 보드 양식: 알약 분류 + 한 줄 카드 + 누르면 펼침 */
+#irlib{margin:14px 0 0;padding:16px 14px 14px;background:#fff;border:1px solid rgba(11,11,11,.08);border-radius:18px;box-shadow:0 2px 0 rgba(30,22,8,.05),0 8px 20px rgba(30,22,8,.05)}
+#irlib .ir-h{display:flex;align-items:center;gap:8px;margin:0 0 4px}
+#irlib .ir-h h2{margin:0;font:800 22px/1.25 -apple-system,"Apple SD Gothic Neo",sans-serif;letter-spacing:-.03em;color:#0b0b0b}
+#irlib .ir-h .ir-n{margin-left:auto;font:700 12.5px/1 -apple-system,sans-serif;color:#9a6200;background:rgba(154,98,0,.09);border-radius:999px;padding:5px 9px;white-space:nowrap}
+#irlib .ir-sub{margin:0 0 10px;font-size:14px;color:#6f6d68;line-height:1.5}
+#irlib details.ir-how{margin:0 0 10px;border:1px solid rgba(154,98,0,.28);border-radius:12px;background:#fffdf7}
+#irlib details.ir-how summary{cursor:pointer;list-style:none;padding:9px 12px;font:700 14px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200}
+#irlib details.ir-how summary::-webkit-details-marker{display:none}
+#irlib details.ir-how[open] summary{border-bottom:1px dashed rgba(154,98,0,.25)}
+#irlib details.ir-how p{margin:0;padding:9px 12px 11px;font-size:14.5px;line-height:1.6;color:#33322f}
+#irlib .ir-tool{display:flex;gap:8px;align-items:center;margin:0 0 8px}
+#irlib .ir-q{flex:1;min-width:0;border-radius:12px;padding:9px 12px;font-size:15px;border:1px solid rgba(11,11,11,.1);background:#fff;box-shadow:inset 0 1px 2px rgba(0,0,0,.05);font-family:inherit;color:#0b0b0b}
+#irlib .ir-pills{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 8px;margin:0 -2px}
+#irlib .ir-pills::-webkit-scrollbar{display:none}
+#irlib .ir-pills button{all:unset;flex:none;cursor:pointer;white-space:nowrap;font:600 13.5px/1.55 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:4px 12px;border:1px solid rgba(11,11,11,.1);border-radius:999px;background:#f9f9f7;color:#0b0b0b;box-shadow:0 3px 0 rgba(30,22,8,.16),0 4px 8px rgba(30,22,8,.1)}
+#irlib .ir-pills button[aria-pressed=true]{background:#0b0b0b;color:#f9f9f7;border-color:#0b0b0b}
+#irlib .ir-pills button:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(30,22,8,.16)}
+#irlib .ir-list{display:flex;flex-direction:column;gap:8px;padding:2px 2px 4px}
+#irlib .ir-list.open{max-height:none}
+#irlib .ir-c{border:1px solid rgba(154,98,0,.3);border-radius:14px;background:#fff;box-shadow:0 3px 0 rgba(30,22,8,.08),0 5px 12px rgba(30,22,8,.06)}
+#irlib .ir-row{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:10px;padding:12px 12px 12px 14px;cursor:pointer}
+#irlib .ir-row:active{background:rgba(154,98,0,.05);border-radius:14px}
+#irlib .ir-l{flex:1;min-width:0}
+#irlib .ir-l b{display:flex;align-items:center;gap:6px;font:800 17px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b}
+#irlib .ir-l b i{font-style:normal;font:700 11px/1 -apple-system,sans-serif;color:#fff;background:#d6434e;border-radius:6px;padding:3px 5px}
+#irlib .ir-l small{display:block;margin-top:2px;font-size:12.5px;color:#6f6d68}
+#irlib .ir-l .ir-t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:5px;font-size:14.5px;line-height:1.5;color:#33322f}
+#irlib .ir-c.on .ir-t{-webkit-line-clamp:unset;display:block}
+#irlib .ir-r{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+#irlib .ir-r em{font-style:normal;font:700 12px/1 -apple-system,sans-serif;color:#9a6200;background:rgba(154,98,0,.09);border-radius:999px;padding:4px 8px;white-space:nowrap}
+#irlib .ir-r .ar{color:#b9b6ae;font:700 20px/1 -apple-system,sans-serif;transition:transform .15s}
+#irlib .ir-c.on .ir-r .ar{transform:rotate(90deg)}
+#irlib .ir-body{display:none;padding:0 14px 14px}
+#irlib .ir-c.on .ir-body{display:block}
+#irlib .ir-txt{margin:0;padding:12px 0 0;border-top:1px dashed rgba(154,98,0,.25);white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;font:400 15.5px/1.7 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1c1a}
+#irlib .ir-foot{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:12px}
+#irlib .ir-foot a,#irlib .ir-foot button{all:unset;cursor:pointer;font:700 13px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:5px 11px;border-radius:999px;border:1px solid rgba(11,11,11,.12);background:#f9f9f7;color:#0b0b0b;box-shadow:0 2px 0 rgba(30,22,8,.14)}
+#irlib .ir-foot span{margin-left:auto;font-size:12px;color:#8a877f}
+#irlib .ir-more{all:unset;display:block;cursor:pointer;margin:8px auto 0;font:700 13.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;text-align:center}
+#irlib .ir-empty{padding:18px 12px;border:1px dashed rgba(154,98,0,.35);border-radius:14px;background:#fffdf7;text-align:center;font-size:14.5px;line-height:1.6;color:#6f6d68}
+#irlib .ir-empty b{display:block;font-size:16px;color:#0b0b0b;margin-bottom:2px}
+#irlib .ir-c.flash{animation:irf 1.4s ease}
+@keyframes irf{0%,40%{box-shadow:0 0 0 3px rgba(219,147,0,.55)}100%{box-shadow:0 3px 0 rgba(30,22,8,.08)}}
+/* 실적 결과 카드 이름 옆 'IR' 알약 → 서재로 */
+.mk-l .ir-go{all:unset;cursor:pointer;margin-left:6px;font:700 11px/1 -apple-system,sans-serif;color:#9a6200;border:1px solid rgba(154,98,0,.4);background:#fffdf7;border-radius:999px;padding:3px 7px;vertical-align:2px;box-shadow:0 1px 0 rgba(30,22,8,.12)}
+/* 맨 위 바로가기 칩 */
+.ir-jump{all:unset;cursor:pointer;display:inline-flex;align-self:flex-start;width:max-content;align-items:center;gap:4px;margin:10px 0 0;font:700 13.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid rgba(154,98,0,.35);color:#9a6200;box-shadow:0 3px 0 rgba(30,22,8,.12)}
+#irlib .ir-day{margin:6px 2px -2px;display:inline-flex;align-self:flex-start;font:800 13px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;background:rgba(154,98,0,.1);border-radius:999px;padding:6px 10px}
+#irlib .ir-day:first-child{margin-top:0}
+
+#irlib .ir-list:not(.open) .ir-hid{display:none}
+#irlib .ir-more{display:block;margin:10px auto 0;padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6dcc6;box-shadow:0 2px 0 #ece4d2;font-weight:800;font-size:14px;color:#5a554c}
+
+#irlib .ir-top{display:flex;flex-wrap:wrap;gap:6px;padding:12px 0 2px;border-top:1px dashed rgba(154,98,0,.25)}
+#irlib .ir-top+.ir-txt{border-top:0}
+#irlib .ir-top a,#irlib .ir-top button{all:unset;cursor:pointer;font:800 14px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:8px 14px;border-radius:999px;background:#fff7e6;border:1px solid #e9c98a;color:#7a4c00;box-shadow:0 2px 0 #efdcb4;-webkit-tap-highlight-color:transparent}
+#irlib .ir-top a:active,#irlib .ir-top button:active{transform:translateY(1px);box-shadow:none}
+html.ir-vopen,html.ir-vopen body{overflow:hidden}
+#ir-view{position:fixed;inset:0;z-index:2147483000;background:#efece6;display:flex;flex-direction:column}
+#ir-view .iv-bar{display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px;background:#fff;border-bottom:1px solid #e6dcc6;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+#ir-view .iv-back{all:unset;cursor:pointer;font:800 15px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:10px 14px;border-radius:999px;background:#1d1c1a;color:#fff}
+#ir-view .iv-bar b{flex:1;min-width:0;font:800 14px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#1d1c1a}
+#ir-view .iv-bar a{font:700 13px/1 -apple-system,sans-serif;color:#9a6200;text-decoration:none}
+#ir-view .iv-pages{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding:10px 8px calc(20px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center;gap:10px}
+#ir-view canvas{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.12);max-width:100%;height:auto}
+#ir-view .iv-msg{font:600 14px/1.6 -apple-system,sans-serif;color:#6b675f;padding:30px 12px;text-align:center}
+#irlib .ir-rest{margin-top:8px}#irlib .ir-rest summary{list-style:none;cursor:pointer;display:inline-block;font:800 13.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;padding:7px 12px;border-radius:999px;background:#fff;border:1px solid #e6dcc6;box-shadow:0 2px 0 #ece4d2}#irlib .ir-rest summary::-webkit-details-marker{display:none}#irlib .ir-rest[open] summary{margin-bottom:4px}#irlib .ir-rest .ir-txt{border-top:0;padding-top:4px}
+#irlib .ir-txt{white-space:normal}
+#irlib .ir-key{margin:4px 0 10px;padding:10px 12px;border-radius:10px;background:#fff6dc;border-left:4px solid #e0a400;font:800 15.5px/1.6 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1c1a}
+#irlib .ir-h5{margin:14px 0 6px;font:900 16px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1c1a}
+#irlib .ir-ul{margin:0;padding:0 0 0 2px;list-style:none;display:flex;flex-direction:column;gap:7px}
+#irlib .ir-ul li{position:relative;padding-left:14px;font:400 15px/1.65 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1c1a}
+#irlib .ir-ul li::before{content:"";position:absolute;left:2px;top:.72em;width:5px;height:5px;border-radius:50%;background:#c79a3c}
+#irlib .ir-ul li small{display:block;margin-top:2px;font-size:13.5px;line-height:1.55;color:#6b675f}
+#irlib .ir-p{margin:6px 0;font:400 15px/1.65 -apple-system,"Apple SD Gothic Neo",sans-serif}
+#irlib .ir-c.on .ir-row .ir-t{display:none}
+/* 알약 전부 위 한 줄로(사용자 2026-10-30): 번역본이 맨 앞·진하게, 나머지는 흰 알약, 넘치면 옆으로 밀기 */
+#irlib .ir-top{display:flex!important;flex-wrap:nowrap!important;gap:5px!important;overflow-x:auto;scrollbar-width:none;padding-bottom:6px!important}
+#irlib .ir-top::-webkit-scrollbar{display:none}
+#irlib .ir-top a,#irlib .ir-top button{flex:none;text-align:center;white-space:nowrap;font-size:12.5px!important;line-height:1.3!important;padding:5px 10px!important;background:#fff!important;border-color:rgba(11,11,11,.12)!important;color:#1d1c1a!important;box-shadow:0 2px 0 rgba(30,22,8,.14)!important}
+#irlib .ir-top .ir-main{background:#9a6200!important;border-color:#9a6200!important;color:#fff!important;box-shadow:0 2px 0 #6e4600!important}
+</style><script data-irlib>// 실적 결과 > IR 서재 (사용자 2026-10-30) — 데이터는 d/ir/ir.json(새 정리는 items 맨 앞에 추가)
+(function(){
+var L={'연산칩':'NVDA AMD INTC','맞춤형 칩':'AVGO MRVL 2454','메모리·저장':'MU 000660 005930 SNDK WDC STX 285A SIMO 8299','파운드리':'TSM TSMC TSEM GFS','설계 SW':'CDNS SNPS',
+'장비·후공정':'AMAT LRCX KLAC ASML TER CAMT FORM MKSI UCTT AMKR 8150','광통신':'LITE COHR AAOI AXTI FN GLW VIAV','연결·네트워크':'ALAB SMTC CRDO RMBS APH TEL ANET CSCO LUMN',
+'서버':'CLS SMCI DELL','전력·냉각':'VRT GEV BE CAT','전력반도체':'NVTS ON MPWR TXN','전력 시공':'PWR FLR','네오클라우드':'CRWV NBIS IREN APLD CIFR','데이터센터 리츠':'EQIX DLR GDS',
+'빅테크':'MSFT GOOGL GOOG AMZN META ORCL AAPL TSLA IBM','SW·보안':'NET PLTR PANW NOW'};
+var T2L={};Object.keys(L).forEach(function(k){L[k].split(' ').forEach(function(t){T2L[t]=k})});
+function layer(t){t=String(t||'').toUpperCase().replace(/\..*$/,'');return T2L[t]||'기타'}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function md(d){var m=String(d||'').match(/\d{4}-(\d\d)-(\d\d)/);return m?(+m[1])+'/'+(+m[2]):''}
+var DATA=[],cur='전체',q='';
+function build(){var main=document.querySelector('main');var find=document.getElementById('find');if(!main||!find||document.getElementById('irlib'))return false;
+ var s=document.createElement('section');s.id='irlib';
+ s.innerHTML='<div class="ir-h"><h2>📚 IR 서재</h2><span class="ir-n">0권</span></div>'+
+ '<p class="ir-sub">회사가 직접 낸 실적 발표자료·어닝콜을 정리해 꽂아 둡니다 · 누르면 펼쳐집니다</p>'+
+ '<details class="ir-how"><summary>▸ 이렇게 읽습니다 · 눌러서 펼치기</summary><p>위 실적 결과가 시장이 본 \'숫자 성적표\'라면, IR 서재는 회사가 그 숫자를 어떻게 설명했는지 모아 둔 곳입니다.<br>실적 결과 카드 이름 옆 <b>IR</b> 알약을 누르면 그 회사 정리로 바로 넘어옵니다.<br>분야 알약으로 같은 층 회사들의 설명을 나란히 비교해 볼 수 있습니다.</p></details>'+
+ '<div class="ir-tool"><input class="ir-q" type="search" placeholder="회사·티커 찾기" aria-label="IR 서재 검색"></div>'+
+ '<div class="ir-pills" role="group" aria-label="분야"></div><div class="ir-list"></div>';
+ var anchor=(find.closest('section')&&find.closest('section').parentNode===main)?find.closest('section'):find;
+ main.insertBefore(s,anchor);
+ s.querySelector('.ir-q').addEventListener('input',function(e){q=e.target.value.trim().toLowerCase();render()});
+ return true}
+function pills(){var box=document.querySelector('#irlib .ir-pills');var have={};DATA.forEach(function(x){have[x._l]=(have[x._l]||0)+1});
+ var ks=['전체'].concat(Object.keys(L).filter(function(k){return have[k]}),have['기타']?['기타']:[]);
+ box.innerHTML='';ks.forEach(function(k){var b=document.createElement('button');b.type='button';b.textContent=k+(k==='전체'?' '+DATA.length:' '+have[k]);b.setAttribute('aria-pressed',k===cur);b.onclick=function(){cur=k;pills();render()};box.appendChild(b)});
+ box.style.display=DATA.length?'':'none';document.querySelector('#irlib .ir-tool').style.display=DATA.length>4?'':'none'}
+function lk(u,t,c){u=String(u||'');return /^https:\/\//.test(u)?'<a'+(c?' class="'+c+'"':'')+' href="'+esc(u)+'" target="_blank" rel="noopener">'+t+'</a>':''}
+
+// 정리 글을 읽기 좋게(사용자 2026-10-30): 【제목】·━ 줄은 빼고, ★ 한 줄 핵심은 노란 상자, ▶는 소제목, ▪는 점 목록, 들여쓴 줄은 작은 보충 설명.
+// 펼치면 '한 줄 핵심 + 첫 소제목(회사가 강조한 것)'까지만 먼저, 나머지(분기 숫자 등)는 '숫자·세부 전체 보기'로 접음
+function fmt(ls){var o='',ul=false;function cl(){if(ul){o+='</ul>';ul=false}}
+ ls.forEach(function(l){var t=l.replace(/\s+$/,''),u=t.replace(/^[\s　]+/,'');if(!u||/^[━─=]{3,}$/.test(u)||/^【.*】$/.test(u))return;
+  if(/^★/.test(u)){cl();o+='<p class="ir-key">'+esc(u.replace(/^★\s*(한\s*줄\s*핵심\s*[:：]\s*)?/,''))+'</p>';return}
+  if(/^▶/.test(u)){cl();o+='<h5 class="ir-h5">'+esc(u.replace(/^▶\s*/,''))+'</h5>';return}
+  if(/^[▪•·\-]/.test(u)){if(!ul){o+='<ul class="ir-ul">';ul=true}o+='<li>'+esc(u.replace(/^[▪•·\-]\s*/,''))+'</li>';return}
+  if(ul&&/^[\s　]{2,}/.test(t)){o=o.replace(/<\/li>$/,'<small>'+esc(u)+'</small></li>');return}
+  cl();o+='<p class="ir-p">'+esc(u)+'</p>'});cl();return o}
+function txt(b){b=String(b||'');var ls=b.split('\n'),hd=[],i,cut=-1;for(i=0;i<ls.length;i++){if(/^\s*▶/.test(ls[i]))hd.push(i);if(hd.length===2){cut=i;break}}
+ if(cut<0||b.length<900)return '<div class="ir-txt">'+fmt(ls)+'</div>';
+ return '<div class="ir-txt">'+fmt(ls.slice(0,cut))+'</div><details class="ir-rest"><summary>▾ 숫자·세부 전체 보기</summary><div class="ir-txt">'+fmt(ls.slice(cut))+'</div></details>'}
+function card(x,i){var c=document.createElement('div');c.className='ir-c';c.id='ir-'+esc(x.id||i);c.dataset.tk=String(x.ticker||'').toUpperCase();
+ var fresh=(Date.now()-new Date(x.date||0).getTime())<3*864e5;
+ c.innerHTML='<button type="button" class="ir-row" aria-expanded="false"><div class="ir-l"><b>'+(fresh?'<i>최신</i>':'')+esc(x.name)+'</b><small>'+esc(x.ticker||'')+(x.q?' · '+esc(x.q):'')+(x.time?' · '+esc(x.time):'')+'</small>'+(x.title?'<span class="ir-t">'+esc(x.title)+'</span>':'')+'</div><div class="ir-r"><em>'+esc(x._l)+'</em><span class="ar">›</span></div></button>'+
+ '<div class="ir-body"><div class="ir-top">'+(x.pdf_kr_site?'<button type="button" class="ir-pdf ir-main" data-u="'+esc(x.pdf_kr_site)+'" data-t="'+esc(x.name+' '+(x.q||'')+(x.pdf_kr?' 번역본':' 원문'))+'">'+(x.pdf_kr?'📄 번역본':'📄 원문(한글)')+'</button>':x.pdf_kr?lk(x.pdf_kr,'📄 번역본','ir-main'):lk(x.pdf_orig,'📄 원문(한글)','ir-main'))+(x.pdf_kr?lk(x.pdf_orig,'원문'):'')+lk(x.pdf_slides,'슬라이드')+lk(x.src,'IR ↗')+'</div>'+txt(x.body)+'<div class="ir-foot"><button type="button" class="ir-up">접기 ▴</button><span>'+(x.by?'정리 · '+esc(x.by):'')+'</span></div></div>';
+ var row=c.querySelector('.ir-row');function tog(){var on=c.classList.toggle('on');row.setAttribute('aria-expanded',on)}
+ row.onclick=tog;var pb=c.querySelector('.ir-pdf');if(pb)pb.onclick=function(){view(pb.dataset.u,pb.dataset.t)};c.querySelector('.ir-up').onclick=function(){tog();var y=c.getBoundingClientRect().top+scrollY-80;if(c.getBoundingClientRect().top<0)scrollTo(0,y)};return c}
+
+// PDF 보기 화면(사용자 2026-10-30): 사이트 안 번역본을 페이지 안에서 열고, 맨 위 '← 돌아가기'(휴대폰 뒤로가기로도 닫힘)
+var PJ=null;function pdfjs(cb){if(window.pdfjsLib)return cb(window.pdfjsLib);if(PJ)return PJ.push(cb);PJ=[cb];var sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+ sc.onload=function(){pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';PJ.forEach(function(f){f(pdfjsLib)});PJ=null};sc.onerror=function(){PJ.forEach(function(f){f(null)});PJ=null};document.head.appendChild(sc)}
+function closeV(){var o=document.getElementById('ir-view');if(!o)return;o.remove();document.documentElement.classList.remove('ir-vopen')}
+addEventListener('popstate',function(){if(document.getElementById('ir-view'))closeV()});
+function view(u,t){closeV();var o=document.createElement('div');o.id='ir-view';
+ o.innerHTML='<div class="iv-bar"><button type="button" class="iv-back">← 돌아가기</button><b></b><a target="_blank" rel="noopener">새 창 ↗</a></div><div class="iv-pages"><p class="iv-msg">불러오는 중…</p></div>';
+ o.querySelector('b').textContent=t||'';o.querySelector('a').href=u;document.body.appendChild(o);document.documentElement.classList.add('ir-vopen');
+ try{history.pushState({irv:1},'',location.href)}catch(e){}
+ o.querySelector('.iv-back').onclick=function(){if(history.state&&history.state.irv)history.back();else closeV()};
+ var box=o.querySelector('.iv-pages');
+ pdfjs(function(L){if(!L){box.innerHTML='<p class="iv-msg">보기 화면을 못 불러왔습니다. 위 \'새 창\'으로 열어 주세요.</p>';return}
+  L.getDocument(u).promise.then(function(doc){box.innerHTML='';var W=Math.min(box.clientWidth||innerWidth,900),dpr=Math.min(devicePixelRatio||1,2),n=0;
+   (function next(){if(++n>doc.numPages||!document.getElementById('ir-view'))return;doc.getPage(n).then(function(pg){var v1=pg.getViewport({scale:1}),sc=W/v1.width,vp=pg.getViewport({scale:sc*dpr});
+    var cv=document.createElement('canvas');cv.width=vp.width;cv.height=vp.height;cv.style.width=W+'px';box.appendChild(cv);pg.render({canvasContext:cv.getContext('2d'),viewport:vp}).promise.then(next)})})()
+  }).catch(function(){box.innerHTML='<p class="iv-msg">PDF를 열지 못했습니다. 위 \'새 창\'으로 열어 주세요.</p>'})})}
+function render(){var list=document.querySelector('#irlib .ir-list');if(!list)return;list.innerHTML='';list.classList.remove('open');list.style.removeProperty('--irh');var old=document.querySelector('#irlib .ir-more');if(old)old.remove();
+ document.querySelector('#irlib .ir-n').textContent=DATA.length+'권';
+ if(!DATA.length){list.innerHTML='<div class="ir-empty"><b>아직 꽂힌 자료가 없습니다</b>첫 IR 정리가 들어오면 최신순으로 여기에 쌓입니다.</div>';return}
+ var v=DATA.filter(function(x){if(cur!=='전체'&&x._l!==cur)return false;if(!q)return true;return (x.name+' '+x.ticker+' '+(x.title||'')).toLowerCase().indexOf(q)>=0});
+ if(!v.length){list.innerHTML='<div class="ir-empty">찾는 회사가 아직 서재에 없습니다.</div>';return}
+ var lastD=null;v.forEach(function(x,i){if(x.date!==lastD){lastD=x.date;var h=document.createElement('div');h.className='ir-day';h.textContent=(md(x.date)||'날짜 미상')+' 발표';list.appendChild(h)}list.appendChild(card(x,i))});
+ // 처음엔 4권만, 나머지는 펼치기(사용자 2026-10-30 — 스크롤 압박 줄이기)
+ if(v.length>4){var cs=list.children,seen=0;[].forEach.call(cs,function(e){if(e.classList.contains('ir-c')){if(++seen>4)e.classList.add('ir-hid')}});
+  [].forEach.call(cs,function(e){if(e.classList.contains('ir-day')){var nx=e.nextElementSibling;if(nx&&nx.classList.contains('ir-hid'))e.classList.add('ir-hid')}});
+  var m=document.createElement('button');m.type='button';m.className='ir-more';var lb='▼ '+(v.length-4)+'권 더 펼치기';m.textContent=lb;
+  m.onclick=function(){var o=list.classList.toggle('open');m.textContent=o?'▲ 접기':lb;if(!o){var s=document.getElementById('irlib');if(s&&s.getBoundingClientRect().top<0)scrollTo(0,s.getBoundingClientRect().top+scrollY-70)}};list.after(m)}}
+function open(tk){tk=String(tk||'').toUpperCase();cur='전체';q='';var qi=document.querySelector('#irlib .ir-q');if(qi)qi.value='';pills();render();
+ var c=[].slice.call(document.querySelectorAll('#irlib .ir-c')).find(function(x){return x.dataset.tk===tk});var s=document.getElementById('irlib');if(!s)return;
+ if(c){document.querySelector('#irlib .ir-list').classList.add('open');if(!c.classList.contains('on'))c.querySelector('.ir-row').click();c.classList.remove('flash');void c.offsetWidth;c.classList.add('flash')}
+ if(c&&c.classList.contains('ir-hid')){var li=document.querySelector('#irlib .ir-list');li.classList.add('open');var mb=document.querySelector('#irlib .ir-more');if(mb)mb.textContent='▲ 접기'}var el=c||s;requestAnimationFrame(function(){scrollTo(0,el.getBoundingClientRect().top+scrollY-70)})}
+window.mmIrOpen=open;
+// 실적 결과 카드에 IR 알약
+function badges(){if(!DATA.length)return;var by={};DATA.forEach(function(x){by[String(x.name).replace(/\s/g,'')]=x.ticker});
+ document.querySelectorAll('article .mk-l>b').forEach(function(b){if(b.querySelector('.ir-go'))return;var a=b.closest('article');var nm=((a&&a.dataset.name)||'').split(' ')[0].replace(/\s/g,'');var tk=by[nm];if(!tk)return;
+  var g=document.createElement('button');g.type='button';g.className='ir-go';g.textContent='IR';g.addEventListener('click',function(e){e.stopPropagation();e.preventDefault();open(tk)},true);b.appendChild(g)})}
+function jump(){var hero=document.querySelector('header.mm-hero');if(!hero||document.querySelector('.ir-jump')||!DATA.length)return;var j=document.createElement('button');j.type='button';j.className='ir-jump';j.textContent='📚 IR 서재 '+DATA.length+'권 ›';j.onclick=function(){var s=document.getElementById('irlib');if(s)scrollTo(0,s.getBoundingClientRect().top+scrollY-70)};hero.after(j)}
+function load(){fetch('d/ir/ir.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){DATA=(j.items||[]).filter(function(x){return x&&x.name}).map(function(x){x._l=layer(x.ticker);return x});
+ var TO={'아시아':0,'장전':1,'장후':2};DATA.sort(function(a,b){return String(b.date||'').localeCompare(String(a.date||''))||((TO[a.time]==null?9:TO[a.time])-(TO[b.time]==null?9:TO[b.time]))});pills();render();jump();
+ var k=0;(function bg(){try{badges()}catch(e){}if(++k<16)setTimeout(bg,500)})();
+ if(location.hash==='#ir')setTimeout(function(){var s=document.getElementById('irlib');if(s)scrollTo(0,s.getBoundingClientRect().top+scrollY-70)},300)}).catch(function(){render()})}
+var n=0;(function go(){if(build())load();else if(++n<30)setTimeout(go,300)})();
+})();
+</script></body></html>
 <script>
 /* 가독성: 한 덩어리에 ①②③이 이어 붙은 문단은 번호마다 줄을 바꿔 보여 줍니다(내용은 그대로). */
 (function () {
