@@ -79,10 +79,39 @@ def prune(items):
     return keep
 
 
+PDFDIR = os.path.join(D, 'pdf')
+
+
+def mirror(items):
+    # 번역본 PDF를 사이트 안(d/ir/pdf/)에도 둠(사용자 2026-10-30) — 릴리스 PDF는 '내려받기'로만 열려 휴대폰·카톡에서 안 열림.
+    # 사이트 안 파일은 사이트 PDF 보기 화면(돌아가기 버튼)으로 바로 열림. 용량 때문에 번역본만, 목록에서 빠진 건 같이 지움
+    os.makedirs(PDFDIR, exist_ok=True)
+    want = set()
+    for x in items:
+        a = rel_asset(x.get('pdf_kr'))
+        if not a:
+            continue
+        fn = x['id'] + '_kr.pdf'; dst = os.path.join(PDFDIR, fn); want.add(fn)
+        if not os.path.exists(dst):
+            r = subprocess.run(['curl', '-sSLf', '-m', '60', '-o', dst, x['pdf_kr']], capture_output=True, text=True)  # 공개 저장소라 주소로 바로 받음
+            print('mirror', fn, 'ok' if r.returncode == 0 else 'fail: ' + (r.stderr or '').strip()[:120])
+        if os.path.exists(dst):
+            x['pdf_kr_site'] = 'd/ir/pdf/' + fn
+    for f in os.listdir(PDFDIR):
+        if f.endswith('.pdf') and f not in want:
+            os.remove(os.path.join(PDFDIR, f)); print('mirror del', f)
+
+
 def main():
     items, bad = load_items()
     if PRUNE:
         items = prune(items)
+    if os.environ.get('GH_TOKEN') or os.environ.get('MIRROR'):
+        mirror(items)
+    else:
+        for x in items:
+            f = os.path.join(PDFDIR, x['id'] + '_kr.pdf')
+            if os.path.exists(f): x['pdf_kr_site'] = 'd/ir/pdf/' + x['id'] + '_kr.pdf'
     items.sort(key=lambda x: (x['date'], -TIME_ORDER.get(x['time'], 9)), reverse=True)
     for x in items:
         x.pop('_file', None)
