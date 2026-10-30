@@ -24,7 +24,7 @@ function pills(){var box=document.querySelector('#irlib .ir-pills');var have={};
  var ks=['전체'].concat(Object.keys(L).filter(function(k){return have[k]}),have['기타']?['기타']:[]);
  box.innerHTML='';ks.forEach(function(k){var b=document.createElement('button');b.type='button';b.textContent=k+(k==='전체'?' '+DATA.length:' '+have[k]);b.setAttribute('aria-pressed',k===cur);b.onclick=function(){cur=k;pills();render()};box.appendChild(b)});
  box.style.display=DATA.length?'':'none';document.querySelector('#irlib .ir-tool').style.display=DATA.length>4?'':'none'}
-function lk(u,t){u=String(u||'');return /^https:\/\//.test(u)?'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+t+'</a>':''}
+function lk(u,t,c){u=String(u||'');return /^https:\/\//.test(u)?'<a'+(c?' class="'+c+'"':'')+' href="'+esc(u)+'" target="_blank" rel="noopener">'+t+'</a>':''}
 
 // 정리 글을 읽기 좋게(사용자 2026-10-30): 【제목】·━ 줄은 빼고, ★ 한 줄 핵심은 노란 상자, ▶는 소제목, ▪는 점 목록, 들여쓴 줄은 작은 보충 설명.
 // 펼치면 '한 줄 핵심 + 첫 소제목(회사가 강조한 것)'까지만 먼저, 나머지(분기 숫자 등)는 '숫자·세부 전체 보기'로 접음
@@ -41,7 +41,7 @@ function txt(b){b=String(b||'');var ls=b.split('\n'),hd=[],i,cut=-1;for(i=0;i<ls
 function card(x,i){var c=document.createElement('div');c.className='ir-c';c.id='ir-'+esc(x.id||i);c.dataset.tk=String(x.ticker||'').toUpperCase();
  var fresh=(Date.now()-new Date(x.date||0).getTime())<3*864e5;
  c.innerHTML='<button type="button" class="ir-row" aria-expanded="false"><div class="ir-l"><b>'+(fresh?'<i>최신</i>':'')+esc(x.name)+'</b><small>'+esc(x.ticker||'')+(x.q?' · '+esc(x.q):'')+(x.time?' · '+esc(x.time):'')+'</small>'+(x.title?'<span class="ir-t">'+esc(x.title)+'</span>':'')+'</div><div class="ir-r"><em>'+esc(x._l)+'</em><span class="ar">›</span></div></button>'+
- '<div class="ir-body"><div class="ir-top">'+(x.pdf_kr_site?'<button type="button" class="ir-pdf" data-u="'+esc(x.pdf_kr_site)+'" data-t="'+esc(x.name+' '+(x.q||'')+' 번역본')+'">📄 번역본 보기</button>':lk(x.pdf_kr,'📄 번역본'))+(x.src?lk(x.src,'🔗 IR 원문 ↗'):lk(x.pdf_orig,'🔗 원문 PDF'))+'</div>'+txt(x.body)+'<div class="ir-foot">'+(x.src?lk(x.pdf_orig,'원문 PDF 받기'):'')+lk(x.pdf_slides,'슬라이드 받기')+'<button type="button" class="ir-up">접기 ▴</button><span>'+(x.by?'정리 · '+esc(x.by):'')+'</span></div></div>';
+ '<div class="ir-body"><div class="ir-top">'+(x.pdf_kr_site?'<button type="button" class="ir-pdf ir-main" data-u="'+esc(x.pdf_kr_site)+'" data-t="'+esc(x.name+' '+(x.q||'')+' 번역본')+'">📄 번역본</button>':x.pdf_kr?lk(x.pdf_kr,'📄 번역본','ir-main'):lk(x.pdf_orig,'📄 원문 PDF(한글)','ir-main'))+((x.pdf_kr_site||x.pdf_kr)?lk(x.pdf_orig,'원문 PDF'):'')+lk(x.pdf_slides,'슬라이드')+lk(x.src,'IR 원문 ↗')+'</div>'+txt(x.body)+'<div class="ir-foot"><button type="button" class="ir-up">접기 ▴</button><span>'+(x.by?'정리 · '+esc(x.by):'')+'</span></div></div>';
  var row=c.querySelector('.ir-row');function tog(){var on=c.classList.toggle('on');row.setAttribute('aria-expanded',on)}
  row.onclick=tog;var pb=c.querySelector('.ir-pdf');if(pb)pb.onclick=function(){view(pb.dataset.u,pb.dataset.t)};c.querySelector('.ir-up').onclick=function(){tog();var y=c.getBoundingClientRect().top+scrollY-80;if(c.getBoundingClientRect().top<0)scrollTo(0,y)};return c}
 

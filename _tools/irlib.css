@@ -75,3 +75,8 @@ html.ir-vopen,html.ir-vopen body{overflow:hidden}
 #irlib .ir-ul li small{display:block;margin-top:2px;font-size:13.5px;line-height:1.55;color:#6b675f}
 #irlib .ir-p{margin:6px 0;font:400 15px/1.65 -apple-system,"Apple SD Gothic Neo",sans-serif}
 #irlib .ir-c.on .ir-row .ir-t{display:none}
+/* 알약 전부 위 한 줄로(사용자 2026-10-30): 번역본이 맨 앞·진하게, 나머지는 흰 알약, 넘치면 옆으로 밀기 */
+#irlib .ir-top{display:grid!important;grid-template-columns:1fr 1fr;gap:7px!important;padding-bottom:6px!important}
+#irlib .ir-top::-webkit-scrollbar{display:none}
+#irlib .ir-top a,#irlib .ir-top button{text-align:center;white-space:nowrap;font-size:13.5px!important;padding:8px 12px!important;background:#fff!important;border-color:rgba(11,11,11,.12)!important;color:#1d1c1a!important;box-shadow:0 2px 0 rgba(30,22,8,.14)!important}
+#irlib .ir-top .ir-main{background:#9a6200!important;border-color:#9a6200!important;color:#fff!important;box-shadow:0 2px 0 #6e4600!important}
