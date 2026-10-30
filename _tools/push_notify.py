@@ -11,8 +11,8 @@ if TEST and APP and KEY:
     req = urllib.request.Request('https://api.onesignal.com/notifications', method='POST', headers={'Content-Type': 'application/json', 'Authorization': 'Key ' + KEY},
         data=json.dumps({'app_id': APP, 'included_segments': ['Total Subscriptions'], 'target_channel': 'push', 'headings': {'en': '🔔 멍뭉 터미널 시험 알림', 'ko': '🔔 멍뭉 터미널 시험 알림'},
                          'contents': {'en': TEST, 'ko': TEST}, 'url': SITE + 'p-earn.html'}).encode())
-    try: print('시험 알림', urllib.request.urlopen(req, timeout=20).read().decode()[:300])
-    except Exception as e: print('시험 실패', e, getattr(e, 'read', lambda: b'')().decode()[:300])
+    try: print('::notice::시험 알림 ' + urllib.request.urlopen(req, timeout=20).read().decode()[:300])
+    except Exception as e: print('::notice::시험 실패 %s %s' % (e, getattr(e, 'read', lambda: b'')().decode()[:300]))
     sys.exit(0)
 feed = json.load(open(os.path.join(R, 'd/earn_feed.json'), encoding='utf-8'))
 try: st = json.load(open(SP, encoding='utf-8'))
@@ -28,7 +28,7 @@ if first or not new:
     st['sent'] = sorted(sent | {x['id'] for x in feed.get('items', [])})[-300:]
     json.dump(st, open(SP, 'w', encoding='utf-8'), ensure_ascii=False); print('push: 보낼 것 없음' + (' (처음 켬)' if first else '')); sys.exit(0)
 if not (APP and KEY):
-    print('push: 원시그널 키 없음 — 건너뜀(보낸 것으로 표시하지 않음)'); sys.exit(0)
+    print('::notice::push: 원시그널 키 없음 — 건너뜀(보낸 것으로 표시하지 않음) 새 노트 %s' % ','.join(x['id'] for x in new)); sys.exit(0)
 if len(new) == 1:
     x = new[0]; head = '🔔 새 실적 · ' + x['name']; body = (x.get('sum') or '실적 결과 노트가 올라왔습니다.')[:160]; url = SITE + 'p-earn.html#' + x['id']
 else:
@@ -39,8 +39,8 @@ req = urllib.request.Request('https://api.onesignal.com/notifications', method='
     data=json.dumps({'app_id': APP, 'included_segments': ['Total Subscriptions'], 'target_channel': 'push',
                      'headings': {'en': head, 'ko': head}, 'contents': {'en': body, 'ko': body}, 'url': url}).encode())
 try:
-    r = json.load(urllib.request.urlopen(req, timeout=20)); print('push 보냄', head, r.get('id'), r.get('errors'))
+    r = json.load(urllib.request.urlopen(req, timeout=20)); print('::notice::push 보냄 %s %s %s' % (head, r.get('id'), r.get('errors')))
     st['sent'] = sorted(sent | {x['id'] for x in new})[-300:]; st['last'] = now.isoformat(timespec='minutes')
     json.dump(st, open(SP, 'w', encoding='utf-8'), ensure_ascii=False)
 except Exception as e:
-    print('push 실패', e)
+    print('::notice::push 실패 %s %s' % (e, getattr(e, 'read', lambda: b'')().decode()[:300]))
