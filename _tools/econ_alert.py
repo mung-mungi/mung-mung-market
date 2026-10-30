@@ -275,7 +275,7 @@ def main():
                 print('  아직 안 나온 숫자', [x['id'] for x in miss], '— 20초 뒤 다시'); time.sleep(20)
         late = (dt.datetime.now(dt.timezone.utc) - t).total_seconds() / 60
         if lines or got:
-            body = '\n'.join(lines) if lines else ('지금 시작합니다 · 실시간 해석은 경제지표 페이지에서' if 'fomc-pc' in {kind(x) for x in g} else '')
+            body = '\n'.join(lines) if lines else ('기자회견이 지금 시작합니다' if 'fomc-pc' in {kind(x) for x in g} else '')
             if miss:
                 body += ('\n' if body else '') + '나머지(%s)는 확인되는 대로 페이지에 반영합니다' % ', '.join(SHORT.get(kind(x), x['event']) for x in miss)
             if late > 20:
