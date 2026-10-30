@@ -17,7 +17,7 @@ ONLY = os.environ.get('ONLY', '').strip()
 SITE = 'https://mung-mungi.github.io/mung-mung-market/'
 NY = ZoneInfo('America/New_York')
 UA = {'User-Agent': 'Mozilla/5.0 (mung-terminal econ alert; contact mung-mungi@users.noreply.github.com)'}
-AHEAD_MIN, LATE_MIN, POLL_MIN = 75, 120, 15   # 몇 분 앞까지 기다리나 / 몇 분 늦어도 보내나 / 숫자 기다리는 최대 시간
+AHEAD_MIN, LATE_MIN, POLL_MIN = 75, 120, (1 if os.environ.get("ONLY") else 15)   # 몇 분 앞까지 기다리나 / 몇 분 늦어도 보내나 / 숫자 기다리는 최대 시간
 
 
 def want(x):
@@ -128,7 +128,7 @@ def value(x):
             if v is not None:
                 return v, src
         except Exception as e:
-            print('  읽기 실패', src, sid, str(e)[:120])
+            print('::notice::읽기 실패 %s %s %s' % (src, sid, str(e)[:120]))
     return None
 
 
@@ -186,7 +186,7 @@ def build(group):
             try:
                 r = fomc(x)
             except Exception as e:
-                r = None; print('  연준 읽기 실패', str(e)[:120])
+                r = None; print('::notice::연준 읽기 실패 ' + str(e)[:120])
             if not r:
                 miss.append(x); continue
             lo, hi, dis = r; prev = x.get('previous')
@@ -225,7 +225,7 @@ def title(group):
 
 def push(head, body):
     if DRY:
-        print('[DRY] 알림 →', head, '|', body.replace('\n', ' / ')); return True
+        print('::notice::[DRY] ' + head + ' | ' + body.replace('\n', ' / ')); return True
     if not KEY:
         print('원시그널 키 없음 — 건너뜀'); return False
     req = urllib.request.Request('https://api.onesignal.com/notifications', method='POST',
@@ -287,7 +287,7 @@ def main():
                     if x['id'] in got and got[x['id']][0] == 'val' and x.get('actual') is None:
                         x['actual'] = got[x['id']][1]; x['status'] = '발표'; changed = True
         else:
-            print('숫자를 못 읽음 — 다음 실행에서 다시', [x['id'] for x in g])
+            print('::notice::숫자를 못 읽음 ' + ','.join(x['id'] for x in g))
     if not DRY:
         st['sent'] = sorted(sent)[-400:]; st['last'] = now.isoformat(timespec='minutes')
         json.dump(st, open(SP, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
