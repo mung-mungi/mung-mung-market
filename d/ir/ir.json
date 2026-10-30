@@ -336,6 +336,22 @@
    "pdf_kr_site": "d/ir/pdf/20261027_STX_1Q27_kr.pdf"
   },
   {
+   "name": "웨스턴디지털",
+   "ticker": "WDC",
+   "q": "1Q27",
+   "date": "2026-10-22",
+   "time": "장후",
+   "title": "AI·클라우드용 대용량 하드디스크(HDD) 수요와 가격 상승으로 매출이 55%, 조정 주당순이익이 161% 늘었고, 다음 분기 매출은 66~72% 성장을 예상합니다.",
+   "body": "【 웨스턴디지털 FY2027 1Q IR 정리 】\n★ 한 줄 핵심: AI·클라우드용 대용량 하드디스크(HDD) 수요와 가격 상승으로 매출이 55%, 조정 주당순이익이 161% 늘었고, 다음 분기 매출은 66~72% 성장을 예상합니다.\n\n▶ 회사가 강조한 것\n　▪ 매출이 1년 전보다 55% 늘어 기대를 웃돌았습니다.\n　▪ 조정 매출총이익률(non-GAAP gross margin) 58.1%, 조정 영업이익률 49.1%로 높아졌습니다.\n　▪ 분기 배당을 17% 올려 주당 0.175달러로 정했습니다.\n　▪ 대형 클라우드 기업 외에 일반 기업, 네오클라우드(NeoCloud), AI 연구소로 고객이 넓어지고 있다고 밝혔습니다(어닝콜).\n　▪ 차세대 HAMR 하드디스크는 2027년 상반기 대량 출하를 시작할 예정입니다(어닝콜).\n\n▶ 분기 숫자\n　▪ 매출: 28.2억 달러 → 43.8억 달러(+55%)\n　▪ 매출총이익률(GAAP gross margin): 43.5% → 57.8%(+14.3%p)\n　▪ 영업이익: 7.9억 달러 → 20.5억 달러(+158%)\n　▪ 순이익: 11.5억 달러 → 17.8억 달러(+54%)\n　▪ 주당순이익(GAAP 희석 EPS): 3.07달러 → 4.63달러(+51%)\n　▪ 조정 주당순이익(non-GAAP EPS): 1.78달러 → 4.64달러(+161%)\n　▪ 잉여현금흐름(free cash flow): 13.8억 달러\n　▪ 클라우드(Cloud) 매출 39억 달러(+54%), 전체 매출의 88%(어닝콜)\n\n▶ 가이던스\n　▪ 다음 분기(FY27 2분기) 매출: 51억 달러 ± 1억 달러(전년 대비 +66~72%)\n　▪ 조정 매출총이익률: 60~61%\n　▪ 조정 주당순이익(EPS): 5.80달러 ± 0.20달러\n\n▶ AI 인프라 관점\n　▪ AI가 만드는 데이터를 저장할 대용량 니어라인(Nearline) 하드디스크가 성장을 이끕니다.\n　▪ 이번 분기 출하 용량은 248엑사바이트(EB)로 1년 새 22% 늘었습니다(어닝콜).\n　▪ 테라바이트당 평균 가격 상승률이 28%로 커졌다고 밝혔습니다(어닝콜).\n\n▶ 다음에 볼 것\n　▪ HAMR 제품의 고객 인증 완료(2027년 1분기 예정)와 대량 출하 시작\n　▪ 다음 분기 매출 51억 달러와 이익률 60%대 달성 여부\n\n[IR서재]\n회사: 웨스턴디지털\n티커: WDC\n분기: FY2027 1Q\n발표일: 2026-10-22\n한줄: AI·클라우드용 대용량 하드디스크(HDD) 수요와 가격 상승으로 매출이 55%, 조정 주당순이익이 161% 늘었고, 다음 분기 매출은 66~72% 성장을 예상합니다.\nIR링크: https://www.sec.gov/Archives/edgar/data/106040/000162828026066882/a4ex991-pressreleaseq127.htm\n[/IR서재]",
+   "src": "https://www.sec.gov/Archives/edgar/data/106040/000162828026066882/a4ex991-pressreleaseq127.htm",
+   "pdf_kr": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261022/WDC_1Q27_kr.pdf",
+   "pdf_orig": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261022/WDC_1Q27_orig.pdf",
+   "pdf_slides": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261022/WDC_1Q27_slides.pdf",
+   "by": "그록봇",
+   "id": "20261022_WDC_1Q27",
+   "pdf_kr_site": "d/ir/pdf/20261022_WDC_1Q27_kr.pdf"
+  },
+  {
    "name": "IBM",
    "ticker": "IBM",
    "q": "3Q26",
@@ -433,5 +449,5 @@
   }
  ],
  "skipped": [],
- "updated": "2026-10-30T08:24Z"
+ "updated": "2026-10-30T08:26Z"
 }
