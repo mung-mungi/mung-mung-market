@@ -15,11 +15,11 @@ function inst(){if(!card)return;try{if(sessionStorage.getItem('mm-inst-x')){card
  card.className='mm-push inst';card.innerHTML='<i><img src="img/icon192.png?v=2" alt=""></i><span><b>멍뭉 터미널 앱 설치</b><small>'+how+' · 설치하면 실적 알림도 받을 수 있습니다.</small></span><button type="button" class="mm-push-on">설치</button><button type="button" class="mm-push-x" aria-label="닫기">✕</button>';
  var bs=card.querySelectorAll('button');bs[1].onclick=function(){try{sessionStorage.setItem('mm-inst-x','1')}catch(e){}card.remove();card=null};
  bs[0].onclick=function(){
-  if(kakao){location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(HOME);return}
+  if(kakao){if(android){location.href='intent://mung-mungi.github.io/mung-mung-market/#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent(HOME)+';end';setTimeout(function(){guide('app')},1500)}else{location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(HOME)}return}
   if(BIP){BIP.prompt();BIP.userChoice.then(function(){BIP=null;inst()});return}
-  guide(inApp?'app':iOS?'ios':'and')}}
+  guide(inApp?'app':iOS?'ios':/SamsungBrowser/.test(ua)?'sam':'and')}}
 function guide(k){var o=document.createElement('div');o.className='mm-guide '+k;var ipad=/iPad/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
- var st=k==='ios'?['아래 <b>공유</b> 버튼 <em>⬆︎</em> 을 누르고','목록을 내려 <b>홈 화면에 추가</b>를 누른 뒤','오른쪽 위 <b>추가</b>를 누르면 끝입니다']:k==='and'?['오른쪽 위 <b>⋮ 메뉴</b>를 누르고','<b>홈 화면에 추가</b>(또는 앱 설치)를 누른 뒤','<b>설치</b>를 누르면 끝입니다']:['오른쪽 위(또는 아래) <b>⋯ 메뉴</b>에서','<b>다른 브라우저로 열기</b>(사파리·크롬)를 누른 뒤','거기서 <b>앱 설치</b>를 다시 누릅니다'];
+ var st=k==='ios'?['아래 <b>공유</b> 버튼 <em>⬆︎</em> 을 누르고','목록을 내려 <b>홈 화면에 추가</b>를 누른 뒤','오른쪽 위 <b>추가</b>를 누르면 끝입니다']:k==='and'?['오른쪽 위 <b>⋮ 메뉴</b>를 누르고','<b>홈 화면에 추가</b>(또는 앱 설치)를 누른 뒤','<b>설치</b>를 누르면 끝입니다']:k==='sam'?['아래 <b>≡ 메뉴</b>를 누르고','<b>현재 페이지 추가 → 홈 화면</b>을 누른 뒤','<b>추가</b>를 누르면 끝입니다']:['오른쪽 위(또는 아래) <b>⋮ 메뉴</b>에서','<b>다른 브라우저로 열기</b>(크롬·사파리·삼성 인터넷)를 누른 뒤','거기서 <b>앱 설치</b>를 다시 누릅니다'];
  o.innerHTML='<div class="g-box"><b class="g-t">홈 화면에 앱으로 설치하기</b><ol>'+st.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ol><button type="button">알겠습니다</button></div>'+(k==='ios'?'<div class="g-arrow'+(ipad?' top':'')+'">⬇︎</div>':'');
  o.onclick=function(e){if(e.target===o||e.target.tagName==='BUTTON')o.remove()};document.body.appendChild(o)}
 function load(cb){if(sdk)return sdk.then(cb);sdk=new Promise(function(ok){window.OneSignalDeferred=window.OneSignalDeferred||[];
