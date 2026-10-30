@@ -11,9 +11,9 @@ var card,sdk=null,mobile=/Android|iPhone|iPad|iPod/.test(ua)||iOS,android=/Andro
 addEventListener('beforeinstallprompt',function(e){e.preventDefault();BIP=e;if(card&&card.classList.contains('inst'))inst()});
 // ── 앱 설치 카드(사용자 2026-10-30): 카톡 → 사파리·크롬으로 넘김 / 안드로이드 → 설치 창 / 아이폰 사파리 → 화살표 안내
 var HOME='https://mung-mungi.github.io/mung-mung-market/';
-function inst(){if(!card)return; var kakao=/KAKAOTALK/i.test(ua),how=kakao?(iOS?'사파리로 열어 설치합니다':'크롬으로 열어 설치합니다'):inApp?'사파리·크롬에서 열면 설치할 수 있습니다':(iOS?'공유 → 홈 화면에 추가, 두 번이면 끝':(BIP?'버튼 한 번이면 홈 화면에 앱이 생깁니다':'메뉴 ⋮ → 홈 화면에 추가'));
- card.className='mm-push inst';card.innerHTML='<i><img src="img/icon192.png?v=2" alt=""></i><span><b>멍뭉 터미널 앱 설치</b><small>'+how+' · 설치하면 실적 알림도 받을 수 있습니다.</small></span><button type="button" class="mm-push-on">설치</button>';
- var bs=card.querySelectorAll('button');
+function inst(){if(!card)return;try{if(sessionStorage.getItem('mm-inst-x')){card.remove();card=null;return}}catch(e){} var kakao=/KAKAOTALK/i.test(ua),how=kakao?(iOS?'사파리로 열어 설치합니다':'크롬으로 열어 설치합니다'):inApp?'사파리·크롬에서 열면 설치할 수 있습니다':(iOS?'공유 → 홈 화면에 추가, 두 번이면 끝':(BIP?'버튼 한 번이면 홈 화면에 앱이 생깁니다':'메뉴 ⋮ → 홈 화면에 추가'));
+ card.className='mm-push inst';card.innerHTML='<i><img src="img/icon192.png?v=2" alt=""></i><span><b>멍뭉 터미널 앱 설치</b><small>'+how+' · 설치하면 실적 알림도 받을 수 있습니다.</small></span><button type="button" class="mm-push-on">설치</button><button type="button" class="mm-push-x" aria-label="닫기">✕</button>';
+ var bs=card.querySelectorAll('button');bs[1].onclick=function(){try{sessionStorage.setItem('mm-inst-x','1')}catch(e){}card.remove();card=null};
  bs[0].onclick=function(){
   if(kakao){location.href='kakaotalk://web/openExternal?url='+encodeURIComponent(HOME);return}
   if(BIP){BIP.prompt();BIP.userChoice.then(function(){BIP=null;inst()});return}
