@@ -16,7 +16,7 @@
 #irlib .ir-pills button{all:unset;flex:none;cursor:pointer;white-space:nowrap;font:600 13.5px/1.55 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:4px 12px;border:1px solid rgba(11,11,11,.1);border-radius:999px;background:#f9f9f7;color:#0b0b0b;box-shadow:0 3px 0 rgba(30,22,8,.16),0 4px 8px rgba(30,22,8,.1)}
 #irlib .ir-pills button[aria-pressed=true]{background:#0b0b0b;color:#f9f9f7;border-color:#0b0b0b}
 #irlib .ir-pills button:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(30,22,8,.16)}
-#irlib .ir-list{display:flex;flex-direction:column;gap:8px;max-height:var(--irh,none);overflow-y:auto;overscroll-behavior:contain;padding:2px 2px 4px}
+#irlib .ir-list{display:flex;flex-direction:column;gap:8px;padding:2px 2px 4px}
 #irlib .ir-list.open{max-height:none}
 #irlib .ir-c{border:1px solid rgba(154,98,0,.3);border-radius:14px;background:#fff;box-shadow:0 3px 0 rgba(30,22,8,.08),0 5px 12px rgba(30,22,8,.06)}
 #irlib .ir-row{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:10px;padding:12px 12px 12px 14px;cursor:pointer}
@@ -48,3 +48,6 @@
 .ir-jump{all:unset;cursor:pointer;display:inline-flex;align-self:flex-start;width:max-content;align-items:center;gap:4px;margin:10px 0 0;font:700 13.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid rgba(154,98,0,.35);color:#9a6200;box-shadow:0 3px 0 rgba(30,22,8,.12)}
 #irlib .ir-day{margin:6px 2px -2px;display:inline-flex;align-self:flex-start;font:800 13px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;background:rgba(154,98,0,.1);border-radius:999px;padding:6px 10px}
 #irlib .ir-day:first-child{margin-top:0}
+
+#irlib .ir-list:not(.open) .ir-hid{display:none}
+#irlib .ir-more{display:block;margin:10px auto 0;padding:9px 18px;border-radius:999px;background:#fff;border:1px solid #e6dcc6;box-shadow:0 2px 0 #ece4d2;font-weight:800;font-size:14px;color:#5a554c}
