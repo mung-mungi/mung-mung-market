@@ -1,0 +1,32 @@
+# IR 서재 자동 정리(사용자 2026-10-30) — 그록봇이 d/ir/items/에 올리면 목록(d/ir/ir.json)을 다시 만들고,
+# 회사별 최근 4분기만 남김(오래된 목록 파일·릴리스 PDF 삭제). 매일 한국시간 09:47에도 한 번 확인. Claude 크레딧 없음
+name: ir-library
+on:
+  push:
+    branches: [main]
+    paths: ['d/ir/items/**']
+  schedule:
+    - cron: '47 0 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ir-library
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 -I _tools/build_ir.py . --prune
+      - name: commit
+        run: |
+          git config user.name 'github-actions[bot]'; git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add -A d/ir
+          if git diff --cached --quiet; then echo 'no change'; exit 0; fi
+          git commit -m "IR 서재 자동 정리 $(TZ=Asia/Seoul date +%m.%d\ %H:%M)"
+          for i in 1 2 3 4 5; do git pull --rebase -X theirs origin main && git push && exit 0; sleep $((i*7)); done; exit 1

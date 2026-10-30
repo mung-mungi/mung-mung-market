@@ -46,3 +46,5 @@
 .mk-l .ir-go{all:unset;cursor:pointer;margin-left:6px;font:700 11px/1 -apple-system,sans-serif;color:#9a6200;border:1px solid rgba(154,98,0,.4);background:#fffdf7;border-radius:999px;padding:3px 7px;vertical-align:2px;box-shadow:0 1px 0 rgba(30,22,8,.12)}
 /* 맨 위 바로가기 칩 */
 .ir-jump{all:unset;cursor:pointer;display:inline-flex;align-self:flex-start;width:max-content;align-items:center;gap:4px;margin:10px 0 0;font:700 13.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid rgba(154,98,0,.35);color:#9a6200;box-shadow:0 3px 0 rgba(30,22,8,.12)}
+#irlib .ir-day{margin:6px 2px -2px;display:inline-flex;align-self:flex-start;font:800 13px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;background:rgba(154,98,0,.1);border-radius:999px;padding:6px 10px}
+#irlib .ir-day:first-child{margin-top:0}

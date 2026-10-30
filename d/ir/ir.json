@@ -1,5 +1,6 @@
 {
-  "note": "IR 서재 — 회사 IR 발표자료(실적 슬라이드·어닝콜) 정리. 새 정리는 items 맨 앞에 추가. 키: id, name(한글 사명), ticker, q(분기, 예 3Q26), date(발표일 YYYY-MM-DD), title(한 줄 핵심), body(정리 본문, 줄바꿈 그대로 보임), src(IR 원문 링크, 선택), by(정리한 곳, 예 그록봇)",
-  "updated": "2026-10-30",
-  "items": []
+ "note": "IR 서재 — 자동 생성 파일(손대지 말 것). 원본은 d/ir/items/*.json(한 건당 파일 하나), 정리는 _tools/build_ir.py·.github/workflows/ir.yml",
+ "items": [],
+ "skipped": [],
+ "updated": "2026-10-30T05:31Z"
 }

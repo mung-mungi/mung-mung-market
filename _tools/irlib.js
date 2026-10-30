@@ -24,10 +24,11 @@ function pills(){var box=document.querySelector('#irlib .ir-pills');var have={};
  var ks=['전체'].concat(Object.keys(L).filter(function(k){return have[k]}),have['기타']?['기타']:[]);
  box.innerHTML='';ks.forEach(function(k){var b=document.createElement('button');b.type='button';b.textContent=k+(k==='전체'?' '+DATA.length:' '+have[k]);b.setAttribute('aria-pressed',k===cur);b.onclick=function(){cur=k;pills();render()};box.appendChild(b)});
  box.style.display=DATA.length?'':'none';document.querySelector('#irlib .ir-tool').style.display=DATA.length>4?'':'none'}
+function lk(u,t){u=String(u||'');return /^https:\/\//.test(u)?'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+t+'</a>':''}
 function card(x,i){var c=document.createElement('div');c.className='ir-c';c.id='ir-'+esc(x.id||i);c.dataset.tk=String(x.ticker||'').toUpperCase();
  var fresh=(Date.now()-new Date(x.date||0).getTime())<3*864e5;
- c.innerHTML='<button type="button" class="ir-row" aria-expanded="false"><div class="ir-l"><b>'+(fresh?'<i>최신</i>':'')+esc(x.name)+'</b><small>'+esc(x.ticker||'')+(x.q?' · '+esc(x.q):'')+(x.date?' · '+md(x.date)+' 발표':'')+'</small>'+(x.title?'<span class="ir-t">'+esc(x.title)+'</span>':'')+'</div><div class="ir-r"><em>'+esc(x._l)+'</em><span class="ar">›</span></div></button>'+
- '<div class="ir-body"><p class="ir-txt">'+esc(x.body||'')+'</p><div class="ir-foot">'+(x.src?'<a href="'+esc(x.src)+'" target="_blank" rel="noopener">IR 원문 ↗</a>':'')+'<button type="button" class="ir-up">접기 ▴</button><span>'+(x.by?'정리 · '+esc(x.by):'')+'</span></div></div>';
+ c.innerHTML='<button type="button" class="ir-row" aria-expanded="false"><div class="ir-l"><b>'+(fresh?'<i>최신</i>':'')+esc(x.name)+'</b><small>'+esc(x.ticker||'')+(x.q?' · '+esc(x.q):'')+(x.time?' · '+esc(x.time):'')+'</small>'+(x.title?'<span class="ir-t">'+esc(x.title)+'</span>':'')+'</div><div class="ir-r"><em>'+esc(x._l)+'</em><span class="ar">›</span></div></button>'+
+ '<div class="ir-body"><p class="ir-txt">'+esc(x.body||'')+'</p><div class="ir-foot">'+lk(x.pdf_kr,'📄 번역본')+lk(x.pdf_orig,'원문 PDF')+lk(x.pdf_slides,'슬라이드')+lk(x.src,'IR 원문 ↗')+'<button type="button" class="ir-up">접기 ▴</button><span>'+(x.by?'정리 · '+esc(x.by):'')+'</span></div></div>';
  var row=c.querySelector('.ir-row');function tog(){var on=c.classList.toggle('on');row.setAttribute('aria-expanded',on)}
  row.onclick=tog;c.querySelector('.ir-up').onclick=function(){tog();var y=c.getBoundingClientRect().top+scrollY-80;if(c.getBoundingClientRect().top<0)scrollTo(0,y)};return c}
 function render(){var list=document.querySelector('#irlib .ir-list');if(!list)return;list.innerHTML='';list.classList.remove('open');list.style.removeProperty('--irh');var old=document.querySelector('#irlib .ir-more');if(old)old.remove();
@@ -35,8 +36,8 @@ function render(){var list=document.querySelector('#irlib .ir-list');if(!list)re
  if(!DATA.length){list.innerHTML='<div class="ir-empty"><b>아직 꽂힌 자료가 없습니다</b>첫 IR 정리가 들어오면 최신순으로 여기에 쌓입니다.</div>';return}
  var v=DATA.filter(function(x){if(cur!=='전체'&&x._l!==cur)return false;if(!q)return true;return (x.name+' '+x.ticker+' '+(x.title||'')).toLowerCase().indexOf(q)>=0});
  if(!v.length){list.innerHTML='<div class="ir-empty">찾는 회사가 아직 서재에 없습니다.</div>';return}
- v.forEach(function(x,i){list.appendChild(card(x,i))});
- if(v.length>5){requestAnimationFrame(function(){var cs=list.children,c=cs[4];var h=c.offsetTop-list.offsetTop+c.offsetHeight*0.5;list.style.setProperty('--irh',Math.round(h)+'px');
+ var lastD=null;v.forEach(function(x,i){if(x.date!==lastD){lastD=x.date;var h=document.createElement('div');h.className='ir-day';h.textContent=(md(x.date)||'날짜 미상')+' 발표';list.appendChild(h)}list.appendChild(card(x,i))});
+ if(v.length>5){requestAnimationFrame(function(){var c=list.querySelectorAll('.ir-c')[4];var h=c.offsetTop-list.offsetTop+c.offsetHeight*0.5;list.style.setProperty('--irh',Math.round(h)+'px');
   var m=document.createElement('button');m.type='button';m.className='ir-more';m.textContent='▼ 아래로 '+(v.length-4)+'권 더 · 전체 펼치기';m.onclick=function(){var o=list.classList.toggle('open');m.textContent=o?'▲ 접기':'▼ 아래로 '+(v.length-4)+'권 더 · 전체 펼치기'};list.after(m)})}}
 function open(tk){tk=String(tk||'').toUpperCase();cur='전체';q='';var qi=document.querySelector('#irlib .ir-q');if(qi)qi.value='';pills();render();
  var c=[].slice.call(document.querySelectorAll('#irlib .ir-c')).find(function(x){return x.dataset.tk===tk});var s=document.getElementById('irlib');if(!s)return;
@@ -49,7 +50,7 @@ function badges(){if(!DATA.length)return;var by={};DATA.forEach(function(x){by[S
   var g=document.createElement('button');g.type='button';g.className='ir-go';g.textContent='IR';g.addEventListener('click',function(e){e.stopPropagation();e.preventDefault();open(tk)},true);b.appendChild(g)})}
 function jump(){var hero=document.querySelector('header.mm-hero');if(!hero||document.querySelector('.ir-jump')||!DATA.length)return;var j=document.createElement('button');j.type='button';j.className='ir-jump';j.textContent='📚 IR 서재 '+DATA.length+'권 ›';j.onclick=function(){var s=document.getElementById('irlib');if(s)scrollTo(0,s.getBoundingClientRect().top+scrollY-70)};hero.after(j)}
 function load(){fetch('d/ir/ir.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){DATA=(j.items||[]).filter(function(x){return x&&x.name}).map(function(x){x._l=layer(x.ticker);return x});
- DATA.sort(function(a,b){return String(b.date||'').localeCompare(String(a.date||''))});pills();render();jump();
+ var TO={'아시아':0,'장전':1,'장후':2};DATA.sort(function(a,b){return String(b.date||'').localeCompare(String(a.date||''))||((TO[a.time]==null?9:TO[a.time])-(TO[b.time]==null?9:TO[b.time]))});pills();render();jump();
  var k=0;(function bg(){try{badges()}catch(e){}if(++k<16)setTimeout(bg,500)})();
  if(location.hash==='#ir')setTimeout(function(){var s=document.getElementById('irlib');if(s)scrollTo(0,s.getBoundingClientRect().top+scrollY-70)},300)}).catch(function(){render()})}
 var n=0;(function go(){if(build())load();else if(++n<30)setTimeout(go,300)})();
