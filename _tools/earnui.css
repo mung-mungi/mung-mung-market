@@ -71,3 +71,5 @@ body #spot .sl-hint{color:#9a6200!important;font-weight:700!important}
 
 /* 형광펜 옅게(사용자 2026-10-29: 너무 진함) */
 article mark,.note mark,mark{background:linear-gradient(transparent 62%, color-mix(in srgb,var(--accent) 16%,transparent) 62%)!important}
+
+.mk-r small .mk-ago{font-style:normal;color:#9a6b00;font-weight:700}

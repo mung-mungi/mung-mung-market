@@ -31,11 +31,17 @@ var u=document.getElementById('ups');if(u&&!f.querySelector('.nx')){var now=new 
 // 검색창 → 돋보기
 var q=document.getElementById('fq');if(q&&!f.querySelector('.qbtn')){q.classList.add('qhide');var qb=document.createElement('button');qb.type='button';qb.className='qbtn';qb.textContent='🔍';qb.onclick=function(){q.classList.toggle('qhide');if(!q.classList.contains('qhide'))q.focus()};var et=f.querySelector('.etab');et.parentNode.insertBefore(qb,et.nextSibling);var w=document.createElement('div');w.className='etw';et.parentNode.insertBefore(w,et);w.appendChild(et);w.appendChild(qb)}
 })();}
+
+// 올라온 시각 → '3시간 전·어제' (노트의 '한국시간 MM.DD(요일) HH:MM' 기준)
+var KT=null;function ktMap(){if(KT)return KT;KT={};try{JSON.parse(document.getElementById('seed').textContent).notes.forEach(function(n){var m=(n.run||'').match(/한국시간\s*(\d{1,2})\.(\d{1,2})\([^)]*\)\s*(\d{1,2}):(\d{2})/);if(m&&n.id)KT[n.id]=Date.UTC(+(n.date||'2026').slice(0,4),+m[1]-1,+m[2],+m[3]-9,+m[4])})}catch(e){}return KT}
+function agoTxt(k){var now=Date.now(),d=now-k;if(d<0)return '곧';var day=function(t){return Math.floor((t+9*36e5)/864e5)};var dd=day(now)-day(k);if(d<36e5)return '방금';if(dd===0)return Math.floor(d/36e5)+'시간 전';if(dd===1)return '어제';if(dd<7)return dd+'일 전';var x=new Date(k+9*36e5);return (x.getUTCMonth()+1)+'/'+x.getUTCDate()}
+function agoOf(a){var k=ktMap()[a.id];return k?{k:k,t:agoTxt(k)}:null}
+setInterval(function(){document.querySelectorAll('.mk-ago').forEach(function(e){e.textContent=agoTxt(+e.dataset.k)})},6e5);
 window.mmStepCards=function(){try{stepCards()}catch(e){}};function stepCards(){(function(){document.querySelectorAll('article>.sumrow').forEach(function(b){var a=b.parentElement;if(b.querySelector('.mk-row'))return;var sm=b.querySelector('.sm.sx');if(!sm)return;a.dataset.mk=1;
 var nm=b.querySelector('.nm');var lt=nm.querySelector('.lt'),gr=nm.querySelector('.gr');var name=[...nm.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent).join('').trim();
 var ai=sm.querySelector('.sx-ai'),ck=sm.querySelector('.sx-ck'),et=sm.querySelector('.sx-et');var mv=ck?ck.querySelector('i.m'):null;var mt=mv?mv.textContent:'';var mm=mt.match(/^(\S+)\s*(.*)$/)||['','',''];
 var pct=(mm[2].match(/[+\-−~\d.]+%/)||[mm[2]])[0];var lab=mm[1]+(mm[2].replace(pct,'').trim()?' '+mm[2].replace(pct,'').trim():'');
-if(mv)mv.remove();var dt=(a.dataset.date||'').slice(5).replace('-','/');
+if(mv)mv.remove();var dt=(a.dataset.date||'').slice(5).replace('-','/');var ag=agoOf(a);if(ag)dt='<em class="mk-ago" data-k="'+ag.k+'">'+ag.t+'</em>';
 var row=document.createElement('div');row.className='mk-row';
 row.innerHTML='<div class="mk-l"><b>'+(lt?'<i class="mk-new">최신</i>':'')+name+'</b><small>'+(ai?ai.innerHTML:'')+'</small></div><div class="mk-r '+(mv&&mv.classList.contains('dn')?'dn':'up')+'"><b>'+(pct||'')+'</b><small>'+(mv?lab+' · ':'')+dt+'</small></div>';
 var inner=b.firstElementChild;inner.textContent='';inner.appendChild(row);if(ck&&ck.children.length){ck.className='mk-ck';inner.appendChild(ck)}if(et){et.className='mk-et';inner.appendChild(et)}
