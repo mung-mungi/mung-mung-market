@@ -26,7 +26,7 @@ html.mm-back::view-transition-new(root){animation-name:mm-vt-in-back;z-index:1}
   });
 })();
 </script>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610302215">(function(){var me="202610302215";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>차트 길잡이</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202610310842">(function(){var me="202610310842";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>차트 길잡이</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 /* layout: 왼쪽 종목 목록(찾기·분야) + 오른쪽 큰 추세 그래프, 휴대폰은 그래프 먼저 */
@@ -1142,6 +1142,61 @@ run();document.addEventListener('DOMContentLoaded',run);window.addEventListener(
   document.addEventListener('DOMContentLoaded', scan); window.addEventListener('load', scan); setTimeout(scan, 1500);
   var st = document.createElement('style'); st.textContent = '.mm-fh{color:#1f7a3f!important}'; (document.head || document.documentElement).appendChild(st);
 })();
+</script><style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y}.ib .tg{display:none!important}</style><script data-ibdrag>(function(){function on(n){if(!n||n.__drag)return;n.__drag=1;var x0,y0,s0,mode=null;n.addEventListener('touchstart',function(e){var t=e.touches[0];x0=t.clientX;y0=t.clientY;s0=n.scrollLeft;mode=null},{passive:true});n.addEventListener('touchmove',function(e){var t=e.touches[0],dx=t.clientX-x0,dy=t.clientY-y0;if(mode===null&&(Math.abs(dx)>6||Math.abs(dy)>6))mode=Math.abs(dx)>Math.abs(dy)?'x':'y';if(mode==='x'){var before=n.scrollLeft;n.scrollLeft=s0-dx;if(n.scrollLeft!==before||Math.abs(dx)>10){e.preventDefault()}}},{passive:false});n.addEventListener('touchend',function(){if(mode==='x'){var a=n.querySelectorAll('a');a.forEach(function(l){l.__noclick=Date.now()})}mode=null},{passive:true});n.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a');if(l&&l.__noclick&&Date.now()-l.__noclick<350){e.preventDefault();e.stopPropagation()}},true)}function go(){document.querySelectorAll('.ib').forEach(on)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();setTimeout(go,1500)})();</script><script data-pergo>(function(){var m=(location.search||'').match(/per=(1d|1w|1m|3m|1y|5y|10y)/);if(!m)return;var L={'1d':'1일','1w':'1주','1m':'1달','3m':'3달','1y':'1년','5y':'5년','10y':'10년'}[m[1]];try{window.__mmT=window.__mmT||{};window.__mmT.per=m[1]}catch(e){}var k=0;(function go(){var b=[...document.querySelectorAll('button')].find(function(x){return x.textContent.trim()===L&&x.offsetParent});if(b){if(b.getAttribute('aria-pressed')!=='true'&&!b.classList.contains('on'))b.click();if(++k<4)setTimeout(go,500);return}if(++k<30)setTimeout(go,300)})()})();</script><style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
+body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
+body .mm-take.hu b:not(.mm-chipx){font-weight:800}
+body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
+body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}
+/* 형광펜은 더 옅게(사용자 2026-10-29) */
+body .mm-take :is(b,mark,[class*="hlt"]):not(.mm-chipx):not(.mm-take>b:first-child):not(:is(.o-new,.tk-new,.sh3,.tg3) *){background:linear-gradient(transparent 62%,rgba(233,196,120,.38) 62%)!important;box-shadow:none!important;text-decoration:none!important;border-bottom:0!important}
+/* 공매도 오늘 한마디: 3줄 */
+body #take.sh-rows>:not(.sh3){display:none!important}
+body #take .sh3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+body #take .sh3 li{display:grid;grid-template-columns:5.6em 1fr;gap:8px;align-items:baseline;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif}
+body #take .sh3 li i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center}
+body #take .sh3 li b{font-weight:800;background:none!important}
+body #take .sh3 .up{color:#c62828;font-weight:800}body #take .sh3 .dn{color:#1a7f37;font-weight:800}
+body .mm-take>b:first-child{background:none!important}
+/* 테크 행사 '오늘 한눈에' 줄 나눔 */
+body #take.tg-rows>:not(b:first-child):not(.tg3){display:none!important}body #take.tg-rows{font-size:0!important}body #take.tg-rows>b:first-child{font-size:12px!important}
+body #take .tg3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14.5px}
+body #take .tg3 li{display:grid;grid-template-columns:4.6em 1fr;gap:8px;align-items:start;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1f1e1b}
+body #take .tg3 li>i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center;margin-top:1px}
+body #take .tg3 .chips{display:flex;flex-wrap:wrap;gap:4px}
+body #take .tg3 .chips span{font:700 12.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:2px 8px;border-radius:999px;background:#f6f4ee;color:#0b0b0b}
+body #take .tg3 .chips span em{font-style:normal;color:#9a6200;margin-right:4px}
+body #take .tg3 b.k{all:unset;font:800 15px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b}
+</style><script data-headui>// 페이지 맨 위 '오늘 한눈에' 양식 통일(사용자 2026-10-29): 날짜 칩 모양, 본문 글자, 바로가기 줄은 배너 아래로
+(function(){function fx(){
+ document.querySelectorAll('.mm-take').forEach(function(t){if(t.classList.contains('np')||t.classList.contains('tk-on')||t.classList.contains('o-on'))return;t.classList.add('hu');
+  var f=t.firstElementChild;if(f&&f.tagName==='B'&&!f.classList.contains('mm-chipx')&&/\d/.test(f.textContent)&&/(기준|집계|마감|잠정|월|일)/.test(f.textContent)&&f.textContent.length<40)f.classList.add('mm-chipx');
+});
+ var hero=document.querySelector('.mm-hero');if(hero){document.querySelectorAll('nav[class$="-nav"]:not(.ib)').forEach(function(n){if(n.dataset.hu)return;if(n.compareDocumentPosition(hero)&Node.DOCUMENT_POSITION_FOLLOWING){n.dataset.hu=1;var t=document.querySelector('.mm-take');(t&&t.nextElementSibling&&t.nextElementSibling.classList.contains('hu-more')?t.nextElementSibling:(t||hero)).after(n)}})}}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
+
+// 테크 행사 '오늘 한눈에': 이번 주 · 한 줄 평 · 다음 행사 3줄(사용자 2026-10-29)
+(function(){function fx(){var t=document.querySelector('#take.pg-take');if(!t||t.querySelector('.tg3'))return;var chip=t.querySelector(':scope>b:first-child');var tx=t.textContent.replace(chip?chip.textContent:'','').replace(/\s+/g,' ').trim();
+ var nx=(tx.match(/다음 큰 행사는\s*(.+?)입니다/)||[])[1];var m=tx.match(/^이번 주\s*(.+?)(?:이|가)? 열리는 가운데\s*(.+?)(?:이|가) 한꺼번에 나와\s*(.+?)\./);if(!nx||!m)return;
+ function split(s){return s.split(/,\s*|과\s+|와\s+/).map(function(x){return x.trim()}).filter(Boolean)}
+ function chips(l,date){return '<span class="chips">'+l.map(function(x){var d=date&&x.match(/^(\d+\/\d+)\s+(.+)$/);return '<span>'+(d?'<em>'+d[1]+'</em>'+d[2]:x)+'</span>'}).join('')+'</span>'}
+ var ul=document.createElement('ul');ul.className='tg3';ul.innerHTML='<li><i>이번 주</i><span>'+chips([m[1]].concat(split(m[2])))+'</span></li><li><i>한 줄 평</i><span><b class="k">'+m[3]+'</b></span></li><li><i>다음 행사</i><span>'+chips(split(nx),1)+'</span></li>';t.appendChild(ul);t.classList.add('tg-rows')}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})()})();
+</script><style data-rdbox>body .rd-btn{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:8px;width:100%;margin:10px 0 0;padding:8px 12px;border:1px solid rgba(11,11,11,.1);border-radius:10px;cursor:pointer;font:700 15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b;background:#fff}
+body .rd-btn::before{content:"▸";color:#9a6200;font-size:13px}body .rd-btn.op::before{content:"▾"}
+body .rd-btn span{font:500 12.5px/1.4 -apple-system,sans-serif;color:#6f6d68}
+body .rd-btn.op{border-radius:10px 10px 0 0;border-bottom-style:dashed}
+body .rd-body:not(.op){display:none!important}
+body .rd-body.op{display:block!important;-webkit-line-clamp:unset!important;margin:0!important;padding:8px 12px 10px!important;border:1px solid rgba(11,11,11,.1);border-top:0;border-radius:0 0 10px 10px;font-size:14px!important;line-height:1.65!important}
+</style><script data-rdbox>// '읽는 법'은 모든 페이지에서 공매도 '이렇게 읽습니다' 상자 모양으로 통일(사용자 2026-10-29)
+(function(){function mk(p){if(p.dataset.rd||p.closest('details')||p.closest('.u-fold')||p.closest('.o-fold'))return;p.dataset.rd=1;
+ var b0=p.firstElementChild;if(b0&&/^읽는 법/.test(b0.textContent.trim())&&p.firstChild===b0)b0.remove();p.innerHTML=p.innerHTML.replace(/^\s*읽는 법\s*[:·—-]?\s*/,'');
+ var old=p.nextElementSibling;if(old&&/(u-more|o-more)/.test(old.className))old.remove();p.classList.remove('u-clamp','o-clamp','op');
+ var b=document.createElement('button');b.type='button';b.className='rd-btn';b.innerHTML='이렇게 읽습니다 <span>눌러서 펼치기</span>';p.parentNode.insertBefore(b,p);p.classList.add('rd-body');
+ b.onclick=function(){var o=!b.classList.contains('op');b.classList.toggle('op',o);p.classList.toggle('op',o);b.querySelector('span').textContent=o?'접기':'눌러서 펼치기'}}
+function fx(){document.querySelectorAll('p.how,p[class$="-how"],.ot-card .how,p.sp-how').forEach(mk);
+ document.querySelectorAll('p,div.note').forEach(function(p){if(p.dataset.rd||p.children.length>12)return;var t=p.textContent.trim();if(/^읽는 법\s*[:·—]/.test(t)||(p.firstElementChild&&p.firstElementChild.tagName==='B'&&p.firstElementChild.textContent.trim()==='읽는 법'&&p.firstChild===p.firstElementChild))mk(p)})}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})();
+try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}catch(e){}})();
 </script><style data-dock>/* 아래 메뉴: 자주 쓰는 칸 + ☰ 전체 메뉴판(사용자 2026-10-29) */
 body.mmd-on nav.ib{display:none!important}
 body.mmd-on{padding-bottom:calc(80px + env(safe-area-inset-bottom))!important}
@@ -1204,62 +1259,7 @@ function build(){var n=document.querySelector('nav.ib');if(!n||document.querySel
  rw.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&a.__nc&&Date.now()-a.__nc<350){e.preventDefault()}},true);sh.querySelector('.mmd-dim').onclick=function(){open(false)};
  var y0=null;var pan=sh.querySelector('.mmd-pan');pan.addEventListener('touchstart',function(e){y0=e.touches[0].clientY},{passive:true});pan.addEventListener('touchend',function(e){if(y0!=null&&e.changedTouches[0].clientY-y0>60&&pan.scrollTop<=0)open(false);y0=null},{passive:true})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();setTimeout(build,800)})();
-</script><style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
-body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
-body .mm-take.hu b:not(.mm-chipx){font-weight:800}
-body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
-body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}
-/* 형광펜은 더 옅게(사용자 2026-10-29) */
-body .mm-take :is(b,mark,[class*="hlt"]):not(.mm-chipx):not(.mm-take>b:first-child):not(:is(.o-new,.tk-new,.sh3,.tg3) *){background:linear-gradient(transparent 62%,rgba(233,196,120,.38) 62%)!important;box-shadow:none!important;text-decoration:none!important;border-bottom:0!important}
-/* 공매도 오늘 한마디: 3줄 */
-body #take.sh-rows>:not(.sh3){display:none!important}
-body #take .sh3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
-body #take .sh3 li{display:grid;grid-template-columns:5.6em 1fr;gap:8px;align-items:baseline;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif}
-body #take .sh3 li i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center}
-body #take .sh3 li b{font-weight:800;background:none!important}
-body #take .sh3 .up{color:#c62828;font-weight:800}body #take .sh3 .dn{color:#1a7f37;font-weight:800}
-body .mm-take>b:first-child{background:none!important}
-/* 테크 행사 '오늘 한눈에' 줄 나눔 */
-body #take.tg-rows>:not(b:first-child):not(.tg3){display:none!important}body #take.tg-rows{font-size:0!important}body #take.tg-rows>b:first-child{font-size:12px!important}
-body #take .tg3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14.5px}
-body #take .tg3 li{display:grid;grid-template-columns:4.6em 1fr;gap:8px;align-items:start;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1f1e1b}
-body #take .tg3 li>i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center;margin-top:1px}
-body #take .tg3 .chips{display:flex;flex-wrap:wrap;gap:4px}
-body #take .tg3 .chips span{font:700 12.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:2px 8px;border-radius:999px;background:#f6f4ee;color:#0b0b0b}
-body #take .tg3 .chips span em{font-style:normal;color:#9a6200;margin-right:4px}
-body #take .tg3 b.k{all:unset;font:800 15px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b}
-</style><script data-headui>// 페이지 맨 위 '오늘 한눈에' 양식 통일(사용자 2026-10-29): 날짜 칩 모양, 본문 글자, 바로가기 줄은 배너 아래로
-(function(){function fx(){
- document.querySelectorAll('.mm-take').forEach(function(t){if(t.classList.contains('np')||t.classList.contains('tk-on')||t.classList.contains('o-on'))return;t.classList.add('hu');
-  var f=t.firstElementChild;if(f&&f.tagName==='B'&&!f.classList.contains('mm-chipx')&&/\d/.test(f.textContent)&&/(기준|집계|마감|잠정|월|일)/.test(f.textContent)&&f.textContent.length<40)f.classList.add('mm-chipx');
-});
- var hero=document.querySelector('.mm-hero');if(hero){document.querySelectorAll('nav[class$="-nav"]:not(.ib)').forEach(function(n){if(n.dataset.hu)return;if(n.compareDocumentPosition(hero)&Node.DOCUMENT_POSITION_FOLLOWING){n.dataset.hu=1;var t=document.querySelector('.mm-take');(t&&t.nextElementSibling&&t.nextElementSibling.classList.contains('hu-more')?t.nextElementSibling:(t||hero)).after(n)}})}}
-var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
-
-// 테크 행사 '오늘 한눈에': 이번 주 · 한 줄 평 · 다음 행사 3줄(사용자 2026-10-29)
-(function(){function fx(){var t=document.querySelector('#take.pg-take');if(!t||t.querySelector('.tg3'))return;var chip=t.querySelector(':scope>b:first-child');var tx=t.textContent.replace(chip?chip.textContent:'','').replace(/\s+/g,' ').trim();
- var nx=(tx.match(/다음 큰 행사는\s*(.+?)입니다/)||[])[1];var m=tx.match(/^이번 주\s*(.+?)(?:이|가)? 열리는 가운데\s*(.+?)(?:이|가) 한꺼번에 나와\s*(.+?)\./);if(!nx||!m)return;
- function split(s){return s.split(/,\s*|과\s+|와\s+/).map(function(x){return x.trim()}).filter(Boolean)}
- function chips(l,date){return '<span class="chips">'+l.map(function(x){var d=date&&x.match(/^(\d+\/\d+)\s+(.+)$/);return '<span>'+(d?'<em>'+d[1]+'</em>'+d[2]:x)+'</span>'}).join('')+'</span>'}
- var ul=document.createElement('ul');ul.className='tg3';ul.innerHTML='<li><i>이번 주</i><span>'+chips([m[1]].concat(split(m[2])))+'</span></li><li><i>한 줄 평</i><span><b class="k">'+m[3]+'</b></span></li><li><i>다음 행사</i><span>'+chips(split(nx),1)+'</span></li>';t.appendChild(ul);t.classList.add('tg-rows')}
-var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})()})();
-</script><style data-rdbox>body .rd-btn{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:8px;width:100%;margin:10px 0 0;padding:8px 12px;border:1px solid rgba(11,11,11,.1);border-radius:10px;cursor:pointer;font:700 15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b;background:#fff}
-body .rd-btn::before{content:"▸";color:#9a6200;font-size:13px}body .rd-btn.op::before{content:"▾"}
-body .rd-btn span{font:500 12.5px/1.4 -apple-system,sans-serif;color:#6f6d68}
-body .rd-btn.op{border-radius:10px 10px 0 0;border-bottom-style:dashed}
-body .rd-body:not(.op){display:none!important}
-body .rd-body.op{display:block!important;-webkit-line-clamp:unset!important;margin:0!important;padding:8px 12px 10px!important;border:1px solid rgba(11,11,11,.1);border-top:0;border-radius:0 0 10px 10px;font-size:14px!important;line-height:1.65!important}
-</style><script data-rdbox>// '읽는 법'은 모든 페이지에서 공매도 '이렇게 읽습니다' 상자 모양으로 통일(사용자 2026-10-29)
-(function(){function mk(p){if(p.dataset.rd||p.closest('details')||p.closest('.u-fold')||p.closest('.o-fold'))return;p.dataset.rd=1;
- var b0=p.firstElementChild;if(b0&&/^읽는 법/.test(b0.textContent.trim())&&p.firstChild===b0)b0.remove();p.innerHTML=p.innerHTML.replace(/^\s*읽는 법\s*[:·—-]?\s*/,'');
- var old=p.nextElementSibling;if(old&&/(u-more|o-more)/.test(old.className))old.remove();p.classList.remove('u-clamp','o-clamp','op');
- var b=document.createElement('button');b.type='button';b.className='rd-btn';b.innerHTML='이렇게 읽습니다 <span>눌러서 펼치기</span>';p.parentNode.insertBefore(b,p);p.classList.add('rd-body');
- b.onclick=function(){var o=!b.classList.contains('op');b.classList.toggle('op',o);p.classList.toggle('op',o);b.querySelector('span').textContent=o?'접기':'눌러서 펼치기'}}
-function fx(){document.querySelectorAll('p.how,p[class$="-how"],.ot-card .how,p.sp-how').forEach(mk);
- document.querySelectorAll('p,div.note').forEach(function(p){if(p.dataset.rd||p.children.length>12)return;var t=p.textContent.trim();if(/^읽는 법\s*[:·—]/.test(t)||(p.firstElementChild&&p.firstElementChild.tagName==='B'&&p.firstElementChild.textContent.trim()==='읽는 법'&&p.firstChild===p.firstElementChild))mk(p)})}
-var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})();
-try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}catch(e){}})();
-</script><style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y}.ib .tg{display:none!important}</style><script data-ibdrag>(function(){function on(n){if(!n||n.__drag)return;n.__drag=1;var x0,y0,s0,mode=null;n.addEventListener('touchstart',function(e){var t=e.touches[0];x0=t.clientX;y0=t.clientY;s0=n.scrollLeft;mode=null},{passive:true});n.addEventListener('touchmove',function(e){var t=e.touches[0],dx=t.clientX-x0,dy=t.clientY-y0;if(mode===null&&(Math.abs(dx)>6||Math.abs(dy)>6))mode=Math.abs(dx)>Math.abs(dy)?'x':'y';if(mode==='x'){var before=n.scrollLeft;n.scrollLeft=s0-dx;if(n.scrollLeft!==before||Math.abs(dx)>10){e.preventDefault()}}},{passive:false});n.addEventListener('touchend',function(){if(mode==='x'){var a=n.querySelectorAll('a');a.forEach(function(l){l.__noclick=Date.now()})}mode=null},{passive:true});n.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a');if(l&&l.__noclick&&Date.now()-l.__noclick<350){e.preventDefault();e.stopPropagation()}},true)}function go(){document.querySelectorAll('.ib').forEach(on)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();setTimeout(go,1500)})();</script><style data-ptidy>
+</script><style data-ptidy>
 details.mm-fold{margin-top:8px;border-top:1px dashed rgba(0,0,0,.12)}
 details.mm-fold>summary{list-style:none;cursor:pointer;padding:9px 2px 2px;font:700 14px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:#9a6200}
 details.mm-fold>summary::-webkit-details-marker{display:none}
@@ -1355,6 +1355,7 @@ html body .mm-take,html body .hx-card{display:none!important}
 html body header.mm-hero.mm-hx{position:fixed!important;z-index:9000;background-color:#fbf5ea!important;top:max(6px,env(safe-area-inset-top));left:8px;right:8px;margin:0!important;box-shadow:0 10px 30px rgba(30,22,8,.22)!important;transition:opacity .7s ease,transform .7s ease;opacity:1;transform:none}
 html.mm-hx-off body header.mm-hero.mm-hx{opacity:0;transform:translateY(-8px);pointer-events:none}
 html.mm-land body header.mm-hero.mm-hx,html.mm-full body header.mm-hero.mm-hx{display:none!important}
+#main .mmt-box{position:relative}.mmt-bub{display:none;position:absolute;z-index:5;pointer-events:none;background:#141210;color:#fff;border-radius:9px;padding:5px 9px 6px;box-shadow:0 4px 12px rgba(0,0,0,.18);white-space:nowrap;line-height:1.25}.mmt-bub small{display:block;font-size:11.5px;color:#cfcac0;font-weight:600}.mmt-bub b{display:block;font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
 .mm-asof2{margin:2px 4px 8px;font-size:12px;color:#8a877f;text-align:right}
 #main .rg .zm{display:none!important}
 #main .rg{background:#f3f1ec;padding:3px!important;border-radius:12px;gap:4px!important;overflow:hidden!important}
@@ -1592,14 +1593,18 @@ function mmtChart(box, pts, base, cur, intra, opt){ opt=opt||{}; var OV=opt.ov||
   s+=''
    +(CD?'':'<circle cx="'+sx(last[0])+'" cy="'+sy(last[1])+'" r="4.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>')
    +'<line class="cx" x1="0" x2="0" y1="'+m.t+'" y2="'+(H-m.b)+'" stroke="#141210" stroke-width="1" opacity="0"/><circle class="cd" r="4.5" fill="#141210" opacity="0"/></svg>';
-  box.innerHTML=s;
+  box.innerHTML=s; var bub=document.createElement('div'); bub.className='mmt-bub'; box.appendChild(bub);
+  function bubAt(b,t1s,t2s){ var R=box.getBoundingClientRect(), r=el.getBoundingClientRect(), x=r.left-R.left+sx(b[0])/W*r.width, y=r.top-R.top+sy(b[1])/H*r.height;
+    bub.innerHTML='<small></small><b></b>'; bub.firstChild.textContent=t1s; bub.lastChild.textContent=t2s; bub.style.display='block';
+    var bw=bub.offsetWidth, bh=bub.offsetHeight, L=x+12; if(L+bw>R.width-4) L=x-12-bw; var T=y-bh-10; if(T<2) T=y+12; bub.style.left=Math.max(2,L)+'px'; bub.style.top=T+'px'; }
   var el=box.querySelector('svg'), chgEl=document.querySelector('#main .mmt-chg'), tip={set textContent(v){ if(!chgEl)return; if(!chgEl.dataset.sc){ chgEl.dataset.sc=1; chgEl.dataset.o=chgEl.innerHTML; } chgEl.innerHTML='<b class="sc"></b>'; chgEl.firstChild.textContent=v; }};
   function mv(e){ var r=el.getBoundingClientRect(), t=t0+((e.clientX-r.left)/r.width*W-m.l)/(W-m.l-m.r)*(t1-t0), b=pts[0];
     pts.forEach(function(a){ if(Math.abs(a[0]-t)<Math.abs(b[0]-t))b=a; });
     var cx=el.querySelector('.cx'), cd=el.querySelector('.cd'); cx.setAttribute('x1',sx(b[0]));cx.setAttribute('x2',sx(b[0]));cx.setAttribute('opacity','.3'); cd.setAttribute('cx',sx(b[0]));cd.setAttribute('cy',sy(b[1]));cd.setAttribute('opacity','1');
     var cc=CD&&CD.filter(function(c){return c[0]===b[0]})[0];
-    if(cc){ tip.textContent=(intra?mmtKst(b[0]):mmtKst(b[0],true))+'  시 '+mmtTick(cc[1],cur,(hi-lo)/40)+' 고 '+mmtTick(cc[2],cur,(hi-lo)/40)+' 저 '+mmtTick(cc[3],cur,(hi-lo)/40)+' 종 '+mmtFmt(cc[4],cur); return; }
-    tip.textContent=(intra?mmtKst(b[0]):mmtKst(b[0],true))+'  '+mmtFmt(b[1],cur)+(base?'  ('+((b[1]/base-1)*100>=0?'+':'−')+Math.abs((b[1]/base-1)*100).toFixed(2)+'%)':''); }
+    var tm=intra?mmtKst(b[0]):mmtKst(b[0],true), pc=base?' '+((b[1]/base-1)*100>=0?'+':'−')+Math.abs((b[1]/base-1)*100).toFixed(2)+'%':'';
+    if(cc){ tip.textContent=tm+'  시 '+mmtTick(cc[1],cur,(hi-lo)/40)+' 고 '+mmtTick(cc[2],cur,(hi-lo)/40)+' 저 '+mmtTick(cc[3],cur,(hi-lo)/40)+' 종 '+mmtFmt(cc[4],cur); bubAt(b,tm,'종 '+mmtFmt(cc[4],cur)+pc); return; }
+    tip.textContent=tm+'  '+mmtFmt(b[1],cur)+(base?'  ('+pc.trim()+')':''); bubAt(b,tm,mmtFmt(b[1],cur)+pc); }
   // 내 선 그리기(사용자 2026-10-29): '✎ 선'을 켜고 차트 위를 끌면 직선, 종목별로 이 기기에 저장
   var NS='http://www.w3.org/2000/svg', tk=mmTk(), inv=function(e){ var r=el.getBoundingClientRect(), x=(e.clientX-r.left)/r.width*W, y=(e.clientY-r.top)/r.height*H; return [t0+(x-m.l)/(W-m.l-m.r)*(t1-t0), hi-(y-m.t)/(H-m.t-m.b)*(hi-lo)]; };
   // 선 종류: tr 추세선(두 점) · h 수평선(한 가격) · par 평행 채널(선 긋고 한 번 더 누른 곳에 평행선) / 색 4가지
@@ -1626,7 +1631,7 @@ function mmtChart(box, pts, base, cur, intra, opt){ opt=opt||{}; var OV=opt.ov||
     if(l.k==='par'){ window.__mmPend={tk:tk,l:l}; drawL(l,true); mmToolsSync(); return; }
     var Ls=mmLines(tk); Ls.push(l); mmLines(tk,Ls); drawL(l); mmToolsSync(); },true);
   el.addEventListener('pointermove',function(e){ if(!(window.__mmT&&window.__mmT.draw)) mv(e); }); el.addEventListener('pointerdown',function(e){ if(!(window.__mmT&&window.__mmT.draw)) mv(e); });
-  el.addEventListener('pointerleave',function(){ el.querySelector('.cx').setAttribute('opacity','0'); el.querySelector('.cd').setAttribute('opacity','0'); if(chgEl&&chgEl.dataset.sc){ chgEl.innerHTML=chgEl.dataset.o||''; delete chgEl.dataset.sc; } });
+  el.addEventListener('pointerleave',function(){ bub.style.display='none'; el.querySelector('.cx').setAttribute('opacity','0'); el.querySelector('.cd').setAttribute('opacity','0'); if(chgEl&&chgEl.dataset.sc){ chgEl.innerHTML=chgEl.dataset.o||''; delete chgEl.dataset.sc; } });
   return {up:up, last:last, RG:RG};
 }
 var __mmO={};
@@ -1862,9 +1867,10 @@ function mmGuide(main,gl){ if(!gl||main.querySelector('.mm-sum'))return; var t=g
 function mmAsof(){ var main=document.getElementById('main'), a=document.getElementById('asof'); if(!main||!a||!a.textContent.trim())return; var old=document.querySelector('.mm-asof2'); if(old) old.remove(); var kd=main.querySelector('.hd .kind'), pr=main.querySelector('.hd .pr'); var m=a.textContent.match(/(\d{1,2}:\d{2})\s*기준/); if(!kd||!m||(pr&&pr.classList.contains('mm-fh'))) return; var t=' · '+m[1]+' 기준'; if(kd.textContent.indexOf(t)<0) kd.textContent=kd.textContent.replace(/ · \d{1,2}:\d{2} 기준$/,'')+t; return; var e=document.querySelector('.mm-asof2'); var card=main.closest('section,.card,.panel')||main; if(!e){ e=document.createElement('p'); e.className='mm-asof2'; card.parentNode.insertBefore(e,card); } var t='● '+a.textContent.trim(); if(e.textContent!==t) e.textContent=t; }
 (function(){ var h=document.documentElement, t=null, idle=null;
   function off(){ h.classList.add('mm-hx-off'); setTimeout(function(){ window.__mmFitN=0; try{mmFitCard()}catch(e){} if(h.classList.contains('mm-lock')) scrollTo(0,0); },480); } function on(){ if(h.classList.contains('mm-land')||h.classList.contains('mm-full')) return; h.classList.remove('mm-hx-off'); }
-  function act(){ clearTimeout(idle); if(!h.classList.contains('mm-hx-off')){ clearTimeout(t); t=setTimeout(off,2500); } idle=setTimeout(on,20000); }
-  t=setTimeout(off,3000); idle=setTimeout(on,23000);
-  ['pointerdown','keydown','wheel','touchstart'].forEach(function(e){ addEventListener(e,act,{passive:true,capture:true}); }); })();
+  var big=matchMedia('(min-width:768px)').matches; /* 사용자 2026-10-31: 2.5초 뒤 사라짐, 마우스 움직임도 활동, 아이패드·PC는 다시 안 내려옴 */
+  function act(){ clearTimeout(idle); if(!h.classList.contains('mm-hx-off')){ clearTimeout(t); t=setTimeout(off,1200); } if(!big) idle=setTimeout(on,20000); }
+  t=setTimeout(off,2500); if(!big) idle=setTimeout(on,22500);
+  ['pointerdown','pointermove','keydown','wheel','touchstart'].forEach(function(e){ addEventListener(e,act,{passive:true,capture:true}); }); })();
 // 종목 찾기 목록을 시세 보드 '종목별 시세' 한 줄 카드로(사용자 2026-10-29): 이름+티커·층위 / 가격+52주 막대 / 1일 등락 크게·고점 대비 / ›, 목록은 상자 안 스크롤
 function mmList(){ var L=document.getElementById('list'); if(!L)return; var byT={}; try{ DATA.P.forEach(function(r){ byT[r.ticker.replace('^','')]=r; }); }catch(e){ return; }
   L.querySelectorAll('button.row').forEach(function(b){ if(b.dataset.mm)return; var sm=b.querySelector('small'), tk=sm&&sm.textContent.trim(), r=byT[tk]; if(!r)return; b.dataset.mm=1;
@@ -1933,4 +1939,4 @@ function tidy(){
   if(gl&&!gl.closest('details')){ var nt=main.querySelector('p.nt'); var d=document.createElement('details'); d.className='mm-fold'; d.innerHTML='<summary><span>추세 한눈에</span></summary>'; gl.before(d); d.appendChild(gl); if(nt)d.appendChild(nt); }
 }
 
-(function(){var q=0,n=0,t0=0,busy=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(busy)return;var now=Date.now();if(now-t0>300){t0=now;n=0}if(++n>8){if(!q){q=1;setTimeout(function(){q=0;go()},120)}return}busy=1;try{go()}finally{busy=0}}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();</script><script data-pergo>(function(){var m=(location.search||'').match(/per=(1d|1w|1m|3m|1y|5y|10y)/);if(!m)return;var L={'1d':'1일','1w':'1주','1m':'1달','3m':'3달','1y':'1년','5y':'5년','10y':'10년'}[m[1]];try{window.__mmT=window.__mmT||{};window.__mmT.per=m[1]}catch(e){}var k=0;(function go(){var b=[...document.querySelectorAll('button')].find(function(x){return x.textContent.trim()===L&&x.offsetParent});if(b){if(b.getAttribute('aria-pressed')!=='true'&&!b.classList.contains('on'))b.click();if(++k<4)setTimeout(go,500);return}if(++k<30)setTimeout(go,300)})()})();</script>
+(function(){var q=0,n=0,t0=0,busy=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(busy)return;var now=Date.now();if(now-t0>300){t0=now;n=0}if(++n>8){if(!q){q=1;setTimeout(function(){q=0;go()},120)}return}busy=1;try{go()}finally{busy=0}}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();</script>

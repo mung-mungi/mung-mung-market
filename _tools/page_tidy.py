@@ -224,6 +224,7 @@ html body .mm-take,html body .hx-card{display:none!important}
 html body header.mm-hero.mm-hx{position:fixed!important;z-index:9000;background-color:#fbf5ea!important;top:max(6px,env(safe-area-inset-top));left:8px;right:8px;margin:0!important;box-shadow:0 10px 30px rgba(30,22,8,.22)!important;transition:opacity .7s ease,transform .7s ease;opacity:1;transform:none}
 html.mm-hx-off body header.mm-hero.mm-hx{opacity:0;transform:translateY(-8px);pointer-events:none}
 html.mm-land body header.mm-hero.mm-hx,html.mm-full body header.mm-hero.mm-hx{display:none!important}
+#main .mmt-box{position:relative}.mmt-bub{display:none;position:absolute;z-index:5;pointer-events:none;background:#141210;color:#fff;border-radius:9px;padding:5px 9px 6px;box-shadow:0 4px 12px rgba(0,0,0,.18);white-space:nowrap;line-height:1.25}.mmt-bub small{display:block;font-size:11.5px;color:#cfcac0;font-weight:600}.mmt-bub b{display:block;font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
 .mm-asof2{margin:2px 4px 8px;font-size:12px;color:#8a877f;text-align:right}
 #main .rg .zm{display:none!important}
 #main .rg{background:#f3f1ec;padding:3px!important;border-radius:12px;gap:4px!important;overflow:hidden!important}
@@ -455,14 +456,18 @@ function mmtChart(box, pts, base, cur, intra, opt){ opt=opt||{}; var OV=opt.ov||
   s+=''
    +(CD?'':'<circle cx="'+sx(last[0])+'" cy="'+sy(last[1])+'" r="4.5" fill="'+col+'" stroke="#fff" stroke-width="2"/>')
    +'<line class="cx" x1="0" x2="0" y1="'+m.t+'" y2="'+(H-m.b)+'" stroke="#141210" stroke-width="1" opacity="0"/><circle class="cd" r="4.5" fill="#141210" opacity="0"/></svg>';
-  box.innerHTML=s;
+  box.innerHTML=s; var bub=document.createElement('div'); bub.className='mmt-bub'; box.appendChild(bub);
+  function bubAt(b,t1s,t2s){ var R=box.getBoundingClientRect(), r=el.getBoundingClientRect(), x=r.left-R.left+sx(b[0])/W*r.width, y=r.top-R.top+sy(b[1])/H*r.height;
+    bub.innerHTML='<small></small><b></b>'; bub.firstChild.textContent=t1s; bub.lastChild.textContent=t2s; bub.style.display='block';
+    var bw=bub.offsetWidth, bh=bub.offsetHeight, L=x+12; if(L+bw>R.width-4) L=x-12-bw; var T=y-bh-10; if(T<2) T=y+12; bub.style.left=Math.max(2,L)+'px'; bub.style.top=T+'px'; }
   var el=box.querySelector('svg'), chgEl=document.querySelector('#main .mmt-chg'), tip={set textContent(v){ if(!chgEl)return; if(!chgEl.dataset.sc){ chgEl.dataset.sc=1; chgEl.dataset.o=chgEl.innerHTML; } chgEl.innerHTML='<b class="sc"></b>'; chgEl.firstChild.textContent=v; }};
   function mv(e){ var r=el.getBoundingClientRect(), t=t0+((e.clientX-r.left)/r.width*W-m.l)/(W-m.l-m.r)*(t1-t0), b=pts[0];
     pts.forEach(function(a){ if(Math.abs(a[0]-t)<Math.abs(b[0]-t))b=a; });
     var cx=el.querySelector('.cx'), cd=el.querySelector('.cd'); cx.setAttribute('x1',sx(b[0]));cx.setAttribute('x2',sx(b[0]));cx.setAttribute('opacity','.3'); cd.setAttribute('cx',sx(b[0]));cd.setAttribute('cy',sy(b[1]));cd.setAttribute('opacity','1');
     var cc=CD&&CD.filter(function(c){return c[0]===b[0]})[0];
-    if(cc){ tip.textContent=(intra?mmtKst(b[0]):mmtKst(b[0],true))+'  시 '+mmtTick(cc[1],cur,(hi-lo)/40)+' 고 '+mmtTick(cc[2],cur,(hi-lo)/40)+' 저 '+mmtTick(cc[3],cur,(hi-lo)/40)+' 종 '+mmtFmt(cc[4],cur); return; }
-    tip.textContent=(intra?mmtKst(b[0]):mmtKst(b[0],true))+'  '+mmtFmt(b[1],cur)+(base?'  ('+((b[1]/base-1)*100>=0?'+':'−')+Math.abs((b[1]/base-1)*100).toFixed(2)+'%)':''); }
+    var tm=intra?mmtKst(b[0]):mmtKst(b[0],true), pc=base?' '+((b[1]/base-1)*100>=0?'+':'−')+Math.abs((b[1]/base-1)*100).toFixed(2)+'%':'';
+    if(cc){ tip.textContent=tm+'  시 '+mmtTick(cc[1],cur,(hi-lo)/40)+' 고 '+mmtTick(cc[2],cur,(hi-lo)/40)+' 저 '+mmtTick(cc[3],cur,(hi-lo)/40)+' 종 '+mmtFmt(cc[4],cur); bubAt(b,tm,'종 '+mmtFmt(cc[4],cur)+pc); return; }
+    tip.textContent=tm+'  '+mmtFmt(b[1],cur)+(base?'  ('+pc.trim()+')':''); bubAt(b,tm,mmtFmt(b[1],cur)+pc); }
   // 내 선 그리기(사용자 2026-10-29): '✎ 선'을 켜고 차트 위를 끌면 직선, 종목별로 이 기기에 저장
   var NS='http://www.w3.org/2000/svg', tk=mmTk(), inv=function(e){ var r=el.getBoundingClientRect(), x=(e.clientX-r.left)/r.width*W, y=(e.clientY-r.top)/r.height*H; return [t0+(x-m.l)/(W-m.l-m.r)*(t1-t0), hi-(y-m.t)/(H-m.t-m.b)*(hi-lo)]; };
   // 선 종류: tr 추세선(두 점) · h 수평선(한 가격) · par 평행 채널(선 긋고 한 번 더 누른 곳에 평행선) / 색 4가지
@@ -489,7 +494,7 @@ function mmtChart(box, pts, base, cur, intra, opt){ opt=opt||{}; var OV=opt.ov||
     if(l.k==='par'){ window.__mmPend={tk:tk,l:l}; drawL(l,true); mmToolsSync(); return; }
     var Ls=mmLines(tk); Ls.push(l); mmLines(tk,Ls); drawL(l); mmToolsSync(); },true);
   el.addEventListener('pointermove',function(e){ if(!(window.__mmT&&window.__mmT.draw)) mv(e); }); el.addEventListener('pointerdown',function(e){ if(!(window.__mmT&&window.__mmT.draw)) mv(e); });
-  el.addEventListener('pointerleave',function(){ el.querySelector('.cx').setAttribute('opacity','0'); el.querySelector('.cd').setAttribute('opacity','0'); if(chgEl&&chgEl.dataset.sc){ chgEl.innerHTML=chgEl.dataset.o||''; delete chgEl.dataset.sc; } });
+  el.addEventListener('pointerleave',function(){ bub.style.display='none'; el.querySelector('.cx').setAttribute('opacity','0'); el.querySelector('.cd').setAttribute('opacity','0'); if(chgEl&&chgEl.dataset.sc){ chgEl.innerHTML=chgEl.dataset.o||''; delete chgEl.dataset.sc; } });
   return {up:up, last:last, RG:RG};
 }
 var __mmO={};
@@ -725,9 +730,10 @@ function mmGuide(main,gl){ if(!gl||main.querySelector('.mm-sum'))return; var t=g
 function mmAsof(){ var main=document.getElementById('main'), a=document.getElementById('asof'); if(!main||!a||!a.textContent.trim())return; var old=document.querySelector('.mm-asof2'); if(old) old.remove(); var kd=main.querySelector('.hd .kind'), pr=main.querySelector('.hd .pr'); var m=a.textContent.match(/(\d{1,2}:\d{2})\s*기준/); if(!kd||!m||(pr&&pr.classList.contains('mm-fh'))) return; var t=' · '+m[1]+' 기준'; if(kd.textContent.indexOf(t)<0) kd.textContent=kd.textContent.replace(/ · \d{1,2}:\d{2} 기준$/,'')+t; return; var e=document.querySelector('.mm-asof2'); var card=main.closest('section,.card,.panel')||main; if(!e){ e=document.createElement('p'); e.className='mm-asof2'; card.parentNode.insertBefore(e,card); } var t='● '+a.textContent.trim(); if(e.textContent!==t) e.textContent=t; }
 (function(){ var h=document.documentElement, t=null, idle=null;
   function off(){ h.classList.add('mm-hx-off'); setTimeout(function(){ window.__mmFitN=0; try{mmFitCard()}catch(e){} if(h.classList.contains('mm-lock')) scrollTo(0,0); },480); } function on(){ if(h.classList.contains('mm-land')||h.classList.contains('mm-full')) return; h.classList.remove('mm-hx-off'); }
-  function act(){ clearTimeout(idle); if(!h.classList.contains('mm-hx-off')){ clearTimeout(t); t=setTimeout(off,2500); } idle=setTimeout(on,20000); }
-  t=setTimeout(off,3000); idle=setTimeout(on,23000);
-  ['pointerdown','keydown','wheel','touchstart'].forEach(function(e){ addEventListener(e,act,{passive:true,capture:true}); }); })();
+  var big=matchMedia('(min-width:768px)').matches; /* 사용자 2026-10-31: 2.5초 뒤 사라짐, 마우스 움직임도 활동, 아이패드·PC는 다시 안 내려옴 */
+  function act(){ clearTimeout(idle); if(!h.classList.contains('mm-hx-off')){ clearTimeout(t); t=setTimeout(off,1200); } if(!big) idle=setTimeout(on,20000); }
+  t=setTimeout(off,2500); if(!big) idle=setTimeout(on,22500);
+  ['pointerdown','pointermove','keydown','wheel','touchstart'].forEach(function(e){ addEventListener(e,act,{passive:true,capture:true}); }); })();
 // 종목 찾기 목록을 시세 보드 '종목별 시세' 한 줄 카드로(사용자 2026-10-29): 이름+티커·층위 / 가격+52주 막대 / 1일 등락 크게·고점 대비 / ›, 목록은 상자 안 스크롤
 function mmList(){ var L=document.getElementById('list'); if(!L)return; var byT={}; try{ DATA.P.forEach(function(r){ byT[r.ticker.replace('^','')]=r; }); }catch(e){ return; }
   L.querySelectorAll('button.row').forEach(function(b){ if(b.dataset.mm)return; var sm=b.querySelector('small'), tk=sm&&sm.textContent.trim(), r=byT[tk]; if(!r)return; b.dataset.mm=1;
