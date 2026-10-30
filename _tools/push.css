@@ -6,3 +6,7 @@
 .mm-push .mm-push-off{background:#f4efe4;color:#6b675f;border:1px solid #e6dcc6}
 .mm-push.done{border-left:4px solid #2f9e5a}.mm-push.done i{color:#2f9e5a;font-weight:900}
 .mm-push.off{background:#faf7f0;box-shadow:none}.mm-push.off b{font-size:14px}
+.mm-push .mm-push-x{padding:6px 8px;color:#9a958a;font-size:15px;font-weight:700}
+.mm-push.bot{margin:18px 0 8px;padding:8px 12px;box-shadow:none;background:#faf7f0}.mm-push.bot i{font-size:16px}.mm-push.bot b{font-size:14px}.mm-push.bot small{display:none}
+.mm-push.bot{border:0;border-left:0;background:transparent;justify-content:center;opacity:.75}.mm-push.bot span{flex:none}.mm-push.bot b{font-size:12.5px;font-weight:700;color:#8a877f}.mm-push.bot i{font-size:12px;color:#8a877f}
+.mm-push.bot .mm-push-off{padding:2px 4px;background:none;border:0;font-size:12px;font-weight:600;color:#aaa59a;text-decoration:underline}
