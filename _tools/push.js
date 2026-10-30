@@ -1,6 +1,9 @@
 // 휴대폰 알림 받기(사용자 2026-10-30) — 원시그널 웹 푸시. 메인 화면에만 '📈 실적 알림 받기' 카드
 // 아이폰은 홈 화면에 추가한 앱에서만 됨(애플 규칙) → 그 밖에선 안내만. SDK는 버튼을 쓸 수 있는 기기에서만 불러옴(가볍게)
 (function(){try{
+// 홈 화면 아이콘 배지(사용자 2026-10-30) — 앱을 열면 숫자 지우기(서비스 워커가 알림마다 +1)
+function clrBadge(){try{if(document.visibilityState!=='visible')return;navigator.clearAppBadge&&navigator.clearAppBadge().catch(function(){});window.caches&&caches.delete('mm-badge').catch(function(){})}catch(e){}}
+clrBadge();document.addEventListener('visibilitychange',clrBadge);
 if(!/\/(index\.html)?$/.test(location.pathname))return;
 var APP='b81f8268-5aef-4a29-b2b8-2173248136a3',ua=navigator.userAgent;
 var iOS=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
