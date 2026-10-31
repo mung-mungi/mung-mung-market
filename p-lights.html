@@ -1123,7 +1123,7 @@ if(window.MutationObserver){var r4=document.querySelector('.lw-take');if(r4)new 
 .lt-auto .lt-k{display:block;font-size:12px;font-weight:800;color:#8a5a00;margin-bottom:3px}
 .lt-auto b{display:block;font-size:15.5px;font-weight:800;color:#1d1a16;word-break:keep-all}
 .lt-auto small{display:block;margin-top:6px;font-size:13px;color:#b4231b;font-weight:700}
-.lt-stale{display:inline-block;margin-left:6px;font-size:11.5px;font-weight:800;color:#b4231b;background:#fbe7e5;border:1px solid #f1c4bf;border-radius:999px;padding:0 7px;line-height:1.6;white-space:nowrap}
+body #area-card #areas .lt-stale,.lt-stale{display:inline-block!important;width:auto!important;white-space:nowrap!important;vertical-align:2px;margin-left:6px;font-size:11.5px;font-weight:800;color:#b4231b;background:#fbe7e5;border:1px solid #f1c4bf;border-radius:999px;padding:0 7px;line-height:1.6;white-space:nowrap}
 </style><script data-ltui>// 시장 경고등: 자동 한 줄(숫자로 매 갱신마다 다시 씀) + 멈춘 값 날짜 칩(사용자 2026-10-31). 자료 d/lights/fresh.json
 (function(){try{
 fetch('d/lights/fresh.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(F){
@@ -1145,7 +1145,7 @@ fetch('d/lights/fresh.json?t='+Date.now(),{cache:'no-store'}).then(function(r){r
       [].forEach.call(document.querySelectorAll('#areas li'),function(li){var n=li.querySelector('b');
         if(!n||n.textContent.trim()!==x.name||li.querySelector('.lt-stale'))return;
         var c=document.createElement('span');c.className='lt-stale';c.textContent='⚠ '+md(x.src)+' 값';
-        var now=li.querySelector('.l-now');(now||n).insertAdjacentElement('afterend',c)})});
+        n.appendChild(c)})});
   }
   var n=0,t=setInterval(function(){paint();if(++n>20)clearInterval(t)},500);paint();
 }).catch(function(){});

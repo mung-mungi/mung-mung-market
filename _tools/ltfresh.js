@@ -19,7 +19,7 @@ fetch('d/lights/fresh.json?t='+Date.now(),{cache:'no-store'}).then(function(r){r
       [].forEach.call(document.querySelectorAll('#areas li'),function(li){var n=li.querySelector('b');
         if(!n||n.textContent.trim()!==x.name||li.querySelector('.lt-stale'))return;
         var c=document.createElement('span');c.className='lt-stale';c.textContent='⚠ '+md(x.src)+' 값';
-        var now=li.querySelector('.l-now');(now||n).insertAdjacentElement('afterend',c)})});
+        n.appendChild(c)})});
   }
   var n=0,t=setInterval(function(){paint();if(++n>20)clearInterval(t)},500);paint();
 }).catch(function(){});
