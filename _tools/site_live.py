@@ -169,7 +169,7 @@ def fix_hub(root):
                   '.bn img{position:absolute;right:4px;bottom:-34px;height:148px;width:auto;max-width:none;pointer-events:none;filter:drop-shadow(0 4px 8px rgba(80,50,10,.16))}\n.bn .tx{padding-right:118px!important}')
     s = s.replace(' 기준 · 하루 6~8회 갱신', ' 기준 · 80종목 한눈에')
     s = s.replace('원본 대시보드의 화면과 자료를 하루 네 번(06:37 · 08:37 · 13:37 · 22:37) 옮겨 옵니다.', '실적·브리핑은 나오는 대로, 시세는 장중 5분마다 바뀝니다.')  # 사용자 2026-10-29
-    sys.path.insert(0, T); import hub_tidy; s = hub_tidy.tidy(s)  # 첫 화면 정리(사용자 2026-10-29)
+    sys.path.insert(0, T); import hub_tidy; s = hub_tidy.tidy_notice(hub_tidy.tidy(s))  # 첫 화면 정리(사용자 2026-10-29) + 전달사항(10-31)
     MJ = '<script data-mkt>' + open(os.path.join(T, 'market.js'), encoding='utf-8').read() + '</script>'
     MJ += '<script data-mkt>' + open(os.path.join(T, 'home_order.js'), encoding='utf-8').read() + '</script>'
     s = re.sub(r'<script data-mkt>[\s\S]*?</script>', '', s)

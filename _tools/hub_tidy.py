@@ -502,3 +502,11 @@ def tidy_splash(s):
     add += '<link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>' + open(os.path.join(d, 'splash.css'), encoding='utf-8').read() + '</style><script data-splash>' + open(os.path.join(d, 'splash.js'), encoding='utf-8').read() + '</script>'
     m = re.search(r'<script data-perf>.*?</script>', s, re.S) or re.search(r'<head[^>]*>', s)
     return s[:m.end()] + add + s[m.end():] if m else add + s
+
+
+# 메인 전달사항(사용자 2026-10-31) — 들어오면 전체 화면 공지, 닫으면 접힌 한 줄. 내용은 d/notice.html(_tools/notice.*)
+def tidy_notice(s):
+    s = re.sub(r'<(style|script) data-notice>.*?</\1>', '', s, flags=re.S)
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-notice>' + open(os.path.join(d, 'notice.css'), encoding='utf-8').read() + '</style><script data-notice>' + open(os.path.join(d, 'notice.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add

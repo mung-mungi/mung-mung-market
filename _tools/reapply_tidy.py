@@ -2,7 +2,7 @@
 import os, sys
 R = sys.argv[1] if len(sys.argv) > 1 else '.'
 sys.path.insert(0, os.path.join(R, '_tools')); import hub_tidy as h
-M = {'index.html': lambda x: h.tidy_splash(h.tidy(x)), 'p-brief.html': h.tidy_brief, 'p-earn.html': h.tidy_hits, 'p-targets.html': h.tidy_targets,
+M = {'index.html': lambda x: h.tidy_notice(h.tidy_splash(h.tidy(x))), 'p-brief.html': h.tidy_brief, 'p-earn.html': h.tidy_hits, 'p-targets.html': h.tidy_targets,
      'p-lights.html': h.tidy_lights, 'p-trend.html': h.tidy_pergo, 'p-opt.html': h.tidy_opt, 'p-cal.html': h.tidy_cal}
 for f, fn in M.items():
     p = os.path.join(R, f)
