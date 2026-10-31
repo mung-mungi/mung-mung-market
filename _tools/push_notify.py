@@ -14,10 +14,13 @@ if TEST == 'STAT' and KEY:  # 최근 알림 5개가 몇 대에 도착했는지(�
             print('::notice::%s | %s | 성공 %s 실패 %s 오류 %s 남음 %s 클릭 %s' % (dt.datetime.fromtimestamp(n.get('completed_at') or n.get('queued_at') or 0).isoformat(timespec='minutes'), (n.get('headings') or {}).get('en', '')[:30], n.get('successful'), n.get('failed'), n.get('errored'), n.get('remaining'), n.get('converted')))
     except Exception as e: print('::notice::STAT 실패 %s %s' % (e, getattr(e, 'read', lambda: b'')().decode()[:300]))
     sys.exit(0)
+# 전달사항 등 수동 알림(사용자 2026-10-31): PUSH_TITLE·PUSH_PATH를 주면 그 제목·주소로 보냄(없으면 예전 시험 알림)
+HEAD = os.environ.get('PUSH_TITLE', '').strip() or '🔔 멍뭉 터미널 시험 알림'
+PATH = os.environ.get('PUSH_PATH', '').strip() or 'p-earn.html'
 if TEST and APP and KEY:
     req = urllib.request.Request('https://api.onesignal.com/notifications', method='POST', headers={'Content-Type': 'application/json', 'Authorization': 'Key ' + KEY},
-        data=json.dumps({'app_id': APP, 'included_segments': ['Total Subscriptions'], 'target_channel': 'push', 'headings': {'en': '🔔 멍뭉 터미널 시험 알림', 'ko': '🔔 멍뭉 터미널 시험 알림'},
-                         'contents': {'en': TEST, 'ko': TEST}, 'url': SITE + 'p-earn.html'}).encode())
+        data=json.dumps({'app_id': APP, 'included_segments': ['Total Subscriptions'], 'target_channel': 'push', 'headings': {'en': HEAD, 'ko': HEAD},
+                         'contents': {'en': TEST, 'ko': TEST}, 'url': SITE + PATH}).encode())
     try: print('::notice::시험 알림 ' + urllib.request.urlopen(req, timeout=20).read().decode()[:300])
     except Exception as e: print('::notice::시험 실패 %s %s' % (e, getattr(e, 'read', lambda: b'')().decode()[:300]))
     sys.exit(0)
