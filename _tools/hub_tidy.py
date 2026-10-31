@@ -388,6 +388,8 @@ def tidy_lights(s):
         return s
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-ltui>' + open(os.path.join(d, 'ltui.css'), encoding='utf-8').read() + '</style><script data-ltui>' + open(os.path.join(d, 'ltui.js'), encoding='utf-8').read() + '</script>'
+    # 자동 한 줄·멈춘 값 칩(사용자 2026-10-31) — _tools/ltfresh.*, 자료 d/lights/fresh.json
+    add += '<style data-ltui>' + open(os.path.join(d, 'ltfresh.css'), encoding='utf-8').read() + '</style><script data-ltui>' + open(os.path.join(d, 'ltfresh.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
 

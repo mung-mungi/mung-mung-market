@@ -36,7 +36,10 @@ except Exception as e: VIX, V3 = {}, {}; print('VIX 실패', e)
 # ③ 하이일드 스프레드(FRED, 하루 늦게 나옴)
 try:
     H = {r['date']: r for r in hy}
-    for r in csv.DictReader(io.StringIO(get('https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2&cosd=' + (dt.date.today() - dt.timedelta(days=60)).isoformat()))):
+    # 한 번 더 시도(사용자 2026-10-31 — 하이일드가 10/28 값에 사흘 멈춘 일이 있었음)
+    try: _t = get('https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2&cosd=' + (dt.date.today() - dt.timedelta(days=60)).isoformat())
+    except Exception: _t = get('https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2')
+    for r in csv.DictReader(io.StringIO(_t)):
         k = r.get('observation_date') or r.get('DATE'); v = r.get('BAMLH0A0HYM2')
         if k and v not in (None, '', '.'): H[k] = {'date': k, 'hy': float(v)}
     hy = [H[k] for k in sorted(H)]; got.append('하이일드')
@@ -106,3 +109,9 @@ dump('d/lights/lights_log.json', log); dump('d/bond/yields_daily.json', yd); dum
 dump('d/lights/oil.json', oil); dump('d/lights/qqq_px.json', qqq)
 L = log[-len(TH):]
 print('경고등', L[-1]['date'], '| 받은 것', got, '| 켜진 불', [r['id'] for r in L if r['on']])
+# 멈춘 값 표시·자동 한 줄(사용자 2026-10-31) — 실패해도 경고등 계산에는 영향 없음
+try:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import lights_fresh
+    _D = L[-1]['date']; _ld = lambda m: max([k for k in m if k <= _D] or [None], key=lambda x: x or '')
+    lights_fresh.run(R, {'vix': _ld(VIX), 'term': _ld(VIX), 'pc': _ld(pcv)})
+except Exception as e: print('fresh 실패', e)

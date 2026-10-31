@@ -327,7 +327,7 @@ function add(){(document.body||document.documentElement).appendChild(d);var v=d.
 if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
 d.addEventListener('click',close);setTimeout(close,6500)})();
-</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="시장 경고등"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-lights.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610310813">(function(){var me="202610310813";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>시장 경고등</title><style>:root{color-scheme:light;
+</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="시장 경고등"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-lights.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202610311959">(function(){var me="202610311959";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>시장 경고등</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
@@ -1118,4 +1118,36 @@ function tk(){var box=document.querySelector('.lw-take');if(!box)return;var t1=b
  box.classList.add('tk-on')}
 var k4=0;(function g4(){try{tk()}catch(e){}if(++k4<14)setTimeout(g4,400)})();
 if(window.MutationObserver){var r4=document.querySelector('.lw-take');if(r4)new MutationObserver(function(){try{tk()}catch(e){}}).observe(r4,{childList:true,subtree:true,characterData:true})}
+</script><style data-ltui>/* 시장 경고등 자동 한 줄·멈춘 값 칩(사용자 2026-10-31) */
+.lt-auto{display:block;margin:0 0 12px;padding:12px 14px;background:#fff;border:1px solid #e6d7b8;border-left:5px solid #b07a1a;border-radius:14px;box-shadow:0 2px 0 #efe4cc;line-height:1.5}
+.lt-auto .lt-k{display:block;font-size:12px;font-weight:800;color:#8a5a00;margin-bottom:3px}
+.lt-auto b{display:block;font-size:15.5px;font-weight:800;color:#1d1a16;word-break:keep-all}
+.lt-auto small{display:block;margin-top:6px;font-size:13px;color:#b4231b;font-weight:700}
+.lt-stale{display:inline-block;margin-left:6px;font-size:11.5px;font-weight:800;color:#b4231b;background:#fbe7e5;border:1px solid #f1c4bf;border-radius:999px;padding:0 7px;line-height:1.6;white-space:nowrap}
+</style><script data-ltui>// 시장 경고등: 자동 한 줄(숫자로 매 갱신마다 다시 씀) + 멈춘 값 날짜 칩(사용자 2026-10-31). 자료 d/lights/fresh.json
+(function(){try{
+fetch('d/lights/fresh.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(F){
+  if(!F||!F.line)return;
+  var md=function(s){return s?(+s.slice(5,7))+'/'+(+s.slice(8,10)):''};
+  function paint(){
+    var v=document.getElementById('view');
+    if(v&&!document.getElementById('lt-auto')){
+      var b=document.createElement('div');b.id='lt-auto';b.className='lt-auto';
+      b.innerHTML='<span class="lt-k">자동 한 줄 · 숫자 기준</span><b></b>'+(F.stale&&F.stale.length?'<small></small>':'');
+      b.querySelector('b').textContent=F.line;
+      if(F.stale&&F.stale.length)b.querySelector('small').textContent='⚠ 받지 못해 이전 값을 쓰는 지표: '+F.stale.join(' · ');
+      v.parentElement.insertBefore(b,v);
+      // 손으로 쓴 관점에는 쓴 날짜가 이미 있음 → 자동 줄과 구분되게 표시만
+      v.classList.add('lt-hand');
+    }
+    var it=F.items||{};
+    Object.keys(it).forEach(function(k){var x=it[k];if(!x.stale)return;
+      [].forEach.call(document.querySelectorAll('#areas li'),function(li){var n=li.querySelector('b');
+        if(!n||n.textContent.trim()!==x.name||li.querySelector('.lt-stale'))return;
+        var c=document.createElement('span');c.className='lt-stale';c.textContent='⚠ '+md(x.src)+' 값';
+        var now=li.querySelector('.l-now');(now||n).insertAdjacentElement('afterend',c)})});
+  }
+  var n=0,t=setInterval(function(){paint();if(++n>20)clearInterval(t)},500);paint();
+}).catch(function(){});
+}catch(e){}})();
 </script></body></html>
