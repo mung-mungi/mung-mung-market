@@ -1,0 +1,11 @@
+/* 시황 날짜 카드 머리 날짜 줄(사용자 2026-11-02) — 날짜를 크게, 요일 알약, 한국 기준 '오늘·어제' 꼬리표 */
+body #days .bf-dh>.bf-date{display:none!important}
+body #days .bf-dh>.mm-dd{flex:0 0 100%;display:flex;align-items:center;gap:8px;margin:0 0 4px;padding:0 0 8px;border-bottom:3px double #cfc6b2}
+body #days .mm-dd-n{flex:none;white-space:nowrap;font:800 26px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#1d1b17;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+body #days .mm-dd-w{flex:none;font:800 15px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#fff;background:#3a362e;border-radius:7px;padding:5px 7px}
+body #days .mm-dd-w.sat{background:#2f6fd1}
+body #days .mm-dd-w.sun{background:#d93036}
+body #days .mm-dd-s{font:600 12.5px/1.25 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#7d776b;min-width:0}
+body #days .mm-dd-r{margin-left:auto;flex:none;font:800 13px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#7a5a12;background:#f6e7b8;border-radius:999px;padding:6px 10px}
+body #days .mm-dd-r.now{color:#fff;background:#b8860b}
+body #days .mm-dd-r.old{color:#8a8478;background:#ecebe6}

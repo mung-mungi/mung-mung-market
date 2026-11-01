@@ -32,7 +32,8 @@
   "mm-yt": "유튜브 새 영상 배너",
   "btscore": "옵션·채권 경고등 흐름 점수 양식(2026-11-02)",
   "fngbar": "시황 공포탐욕 막대 방향 통일 + 기사 경고등 알약 점수화",
-  "todaybtn": "메인 오늘 카드 → 시황 버튼"
+  "todaybtn": "메인 오늘 카드 → 시황 버튼",
+  "mm-dd-r": "시황 날짜 카드 큰 날짜·요일·오늘/어제 꼬리표(2026-11-02)"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -90,7 +91,8 @@
   "'chlog'",
   "ltjump",
   "def tidy_easy",
-  "'todaybtn'"
+  "'todaybtn'",
+  "def tidy_ddate"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -137,5 +139,8 @@
  "_tools/todaybtn.js": [
   "mm-tb-go"
  ],
- "_tools/lights_fresh.py": []
+ "_tools/lights_fresh.py": [],
+ "_tools/ddate.js": [
+  "mm-dd-r"
+ ]
 }

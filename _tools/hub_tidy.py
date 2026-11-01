@@ -57,6 +57,7 @@ def tidy_brief(s):
     s = tidy_units(s)
     s = tidy_fng(s)
     s = tidy_dend(s)
+    s = tidy_ddate(s)
     if "'더 보기 ▾ ('" in s or BRIEF_ANCHOR not in s:
         return s
     s = s.replace(BRIEF_ANCHOR, "s.appendChild(ul);" + BRIEF_ADD + ";if(kind==='eco'", 1)
@@ -703,7 +704,7 @@ DEND = (r"""<style data-dend>body #days .bf-day+.bf-day{margin-top:30px!importan
         r"""body #days .bf-day+.bf-day::before{content:"";position:absolute;left:12%;right:12%;top:-16px;border-top:2px dashed #cfc6b2;pointer-events:none}"""
         r"""body #days .mm-dend{display:flex;align-items:center;gap:10px;margin:14px 0 2px;font:800 13.5px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#7a5a12;letter-spacing:.02em}"""
         r"""body #days .mm-dend::before,body #days .mm-dend::after{content:"";flex:1;border-top:3px double #8f8a7e}</style>"""
-        r"""<script data-dend>(function(){function md(id){var a=id.replace('day-','').split('-');return (+a[1])+'.'+(+a[2])}"""
+        r"""<script data-dend>(function(){function md(id){var a=id.replace('day-','').split('-');return (+a[1])+'.'+(+a[2])+' '+'일월화수목금토'[new Date(Date.UTC(+a[0],a[1]-1,+a[2])).getUTCDay()]}"""
         r"""function fix(){document.querySelectorAll('#days .bf-day').forEach(function(c){var m=c.querySelector(':scope>.bf-more');var e=c.querySelector(':scope>.mm-dend');if(!m){if(e)e.remove();return}if(e&&e===c.lastElementChild)return;if(e)e.remove();e=document.createElement('div');e.className='mm-dend';e.textContent='■ '+md(c.id)+' 기사 끝';c.appendChild(e)})}"""
         r"""var k=0;(function go(){fix();var d=document.getElementById('days');if(d&&!d.__dend){d.__dend=1;new MutationObserver(fix).observe(d,{childList:true,subtree:true})}if(++k<10)setTimeout(go,500)})()})();</script>""")
 
@@ -713,6 +714,16 @@ def tidy_dend(s):
     if 'id="days"' not in s:
         return s
     return s.replace('</body>', DEND + '</body>', 1) if '</body>' in s else s + DEND
+
+
+# 시황 날짜 카드 날짜 크게 + 요일 + 한국 기준 '오늘·어제'(사용자 2026-11-02) — _tools/ddate.*
+def tidy_ddate(s):
+    s = re.sub(r'<(style|script) data-ddate>.*?</\1>', '', s, flags=re.S)
+    if 'id="days"' not in s:
+        return s
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-ddate>' + open(os.path.join(d, 'ddate.css'), encoding='utf-8').read() + '</style><script data-ddate>' + open(os.path.join(d, 'ddate.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
 
 # 채권·금리 페이지 '채권 경고등'도 시장 경고등과 같은 '지금' 양식(사용자 2026-11-01) — _tools/bdnear.*
