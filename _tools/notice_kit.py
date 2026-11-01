@@ -8,6 +8,7 @@
 #   python3 -I _tools/notice_kit.py cand    후보.json <저장소> <비번>     # 5~6점 '후보' 한 줄만 남김
 #   python3 -I _tools/notice_kit.py drop    <저장소> <비번> <id>         # 초안·후보에서 빼기
 #   python3 -I _tools/notice_kit.py clear   <저장소>                      # 검수 칸 비우기
+#   python3 -I _tools/notice_kit.py auto    판정.json <저장소>            # ★비번 없이(예약 작업용)★ 점수로 초안/후보/기록만을 정해 받은편지함(d/notice_inbox.json, 공개키 잠금)에 넣음 — 주인장 칸이 비번으로 풀어 합쳐 보여 줌
 # 초안·후보 JSON에는 score:{time,turn,ai,mkt,conf(각 0~2), force:'무조건 사유', why:{항목:이유}}를 넣음 → 주인장 칸에 점수·이유가 보임
 # 비번은 인자 대신 환경변수 OWNER_PIN으로 줘도 됨(GitHub Actions 비밀값용). 비번·평문 초안은 저장소에 절대 올리지 않음.
 #
@@ -127,6 +128,38 @@ def save_bundle(repo, p, b):
     # 잠그지 않는 건 개수와 시각뿐(제목·내용·점수는 잠금 안에만)
     json.dump({'n': len(b['drafts']), 'c': len(b['cands']), 'at': kst()}, open(os.path.join(repo, 'd', 'notice_draft.json'), 'w'))
 
+
+# ── 받은편지함(2026-11-02): 예약 작업은 비번 없이 공개키(d/notice_pub.pem)로만 잠가 d/notice_inbox.json에 넣음
+#    주인장 칸(owner.js)이 비번으로 개인키(d/notice_key.enc.json)를 풀어 합쳐 보여 줌. 비번은 저장소·예약 지시문 어디에도 없음
+def keygen(repo, p):
+    from cryptography.hazmat.primitives.asymmetric import rsa
+    from cryptography.hazmat.primitives import serialization
+    k = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+    der = k.private_bytes(serialization.Encoding.DER, serialization.PrivateFormat.PKCS8, serialization.NoEncryption())
+    json.dump(enc(base64.b64encode(der).decode(), p), open(os.path.join(repo, 'd', 'notice_key.enc.json'), 'w'), separators=(',', ':'))
+    open(os.path.join(repo, 'd', 'notice_pub.pem'), 'wb').write(k.public_key().public_bytes(serialization.Encoding.PEM, serialization.PublicFormat.SubjectPublicKeyInfo))
+
+def inbox_add(repo, kind, x):
+    from cryptography.hazmat.primitives import serialization, hashes
+    from cryptography.hazmat.primitives.asymmetric import padding
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    pub = serialization.load_pem_public_key(open(os.path.join(repo, 'd', 'notice_pub.pem'), 'rb').read())
+    t, lv = grade(x.get('score')); x['total'], x['level'] = t, lv
+    msg = {'kind': kind, 'item': x, 'log': {'at': kst(), 'title': x['title'], 'total': t, 'level': lv, 'act': {'draft': '초안', 'cand': '후보'}.get(kind, '기록만') + '(자동)', 'note': x.get('note', '')}}
+    key, iv = AESGCM.generate_key(256), os.urandom(12)
+    wk = pub.encrypt(key, padding.OAEP(mgf=padding.MGF1(hashes.SHA256()), algorithm=hashes.SHA256(), label=None))
+    b = lambda v: base64.b64encode(v).decode()
+    f = os.path.join(repo, 'd', 'notice_inbox.json')
+    L = json.load(open(f)) if os.path.exists(f) else []
+    L.insert(0, {'k': b(wk), 'iv': b(iv), 'ct': b(AESGCM(key).encrypt(iv, json.dumps(msg, ensure_ascii=False).encode(), None))})
+    json.dump(L[:40], open(f, 'w'), separators=(',', ':'))
+    mf = os.path.join(repo, 'd', 'notice_draft.json')
+    m = json.load(open(mf)) if os.path.exists(mf) else {'n': 0, 'c': 0}
+    if kind == 'draft': m['n'] = m.get('n', 0) + 1
+    if kind == 'cand': m['c'] = m.get('c', 0) + 1
+    m['at'] = kst(); json.dump(m, open(mf, 'w'))
+    print('📥 받은편지함', kind, x['title'], f'{t}/10 · {lv}')
+
 def kst(): return (datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None) + datetime.timedelta(hours=9)).strftime('%m.%d %H:%M')
 
 def main(a):
@@ -146,6 +179,16 @@ def main(a):
         addlog(b, x, '초안' if cmd == 'draft' else '후보')
         save_bundle(repo, p, b); t, lv = grade(x['score'])
         print('🧪', '검수 대기' if cmd == 'draft' else '후보', x['title'], f'{t}/10 · {lv}')
+    elif cmd == 'auto':
+        # auto 판정.json <저장소> — 비번 없이(예약 작업용). 점수로 초안/후보/기록만을 정해 받은편지함에 넣음. 7점↑·무조건 = 초안(배너 html 포함), 5~6 = 후보, 그 아래 = 기록만
+        d = json.load(open(a[1], encoding='utf-8')); repo = a[2]
+        t, lv = grade(d.get('score'))
+        kind = 'draft' if lv in ('초안', '무조건') else ('cand' if lv == '후보' else 'log')
+        x = {'id': d['id'], 'title': d['title'], 'date': d.get('date', ''), 'at': kst(), 'score': d.get('score', {}), 'note': d.get('note', '')}
+        if kind == 'draft': x['html'] = render(d, repo)
+        inbox_add(repo, kind, x)
+    elif cmd == 'keygen':
+        repo = a[1]; p = pin(2); assert re.fullmatch(r'\d{4}', p or ''), '비번(4자리)이 필요합니다'; keygen(repo, p); print('열쇠 만듦')
     elif cmd == 'log':
         # log 판정.json <저장소> <비번> — 배너로 안 만든 판정(4점 이하 등)도 기록만 남김. 시험 기간에 '쓸데없이 울리나'를 보려는 것
         d = json.load(open(a[1], encoding='utf-8')); repo = a[2]; p = pin(3)

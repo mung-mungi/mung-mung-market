@@ -53,7 +53,14 @@ function popup(tt,dt,inner){var p=document.createElement('div');p.className='mm-
  function shut(){p.classList.remove('on');document.documentElement.classList.remove('mm-ntc-lock');setTimeout(function(){p.remove()},300)}
  p.querySelector('.x').onclick=shut;p.querySelector('.c').onclick=shut;p.addEventListener('click',function(e){if(e.target===p)shut()});
  document.body.appendChild(p);document.documentElement.classList.add('mm-ntc-lock');requestAnimationFrame(function(){p.classList.add('on')})}
-function draft(pin){fetch('d/notice_draft.enc.json?t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){return decJ(j,pin)}).then(function(t){
+// 자동 초안 받은편지함(2026-11-02): 예약 작업은 비번 없이 공개키로만 잠가 d/notice_inbox.json에 넣고, 여기서 비번으로 개인키를 풀어 합침
+function inbox(pin,t){var C=crypto.subtle;return Promise.all([fetch('d/notice_inbox.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():[]}).catch(function(){return []}),fetch('d/notice_key.enc.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})]).then(function(a){var L=a[0]||[],K=a[1];if(!L.length||!K)return t;
+ return decJ(K,pin).then(function(pk){return C.importKey('pkcs8',ub(pk),{name:'RSA-OAEP',hash:'SHA-256'},false,['decrypt'])}).then(function(rk){
+  return Promise.all(L.map(function(e){return C.decrypt({name:'RSA-OAEP'},rk,ub(e.k)).then(function(raw){return C.importKey('raw',raw,'AES-GCM',false,['decrypt'])}).then(function(ak){return C.decrypt({name:'AES-GCM',iv:ub(e.iv)},ak,ub(e.ct))}).then(function(b){return JSON.parse(new TextDecoder().decode(b))}).catch(function(){return null})}))}).then(function(M){
+  var B;try{B=JSON.parse(t)}catch(e){B={drafts:[],cands:[]}}B.drafts=B.drafts||[];B.cands=B.cands||[];B.log=B.log||[];
+  M.filter(Boolean).reverse().forEach(function(m){var x=m.item,k=m.kind;B.drafts=B.drafts.filter(function(y){return y.id!==x.id});B.cands=B.cands.filter(function(y){return y.id!==x.id});
+   if(k==='draft')B.drafts.unshift(x);else if(k==='cand')B.cands.unshift(x);if(m.log)B.log.unshift(m.log)});B.log=B.log.slice(0,30);B.cands=B.cands.slice(0,8);return JSON.stringify(B)})}).catch(function(){return t})}
+function draft(pin){fetch('d/notice_draft.enc.json?t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){return decJ(j,pin)}).then(function(t){return inbox(pin,t)}).then(function(t){
  var body=document.querySelector('.mm-own-body');if(!body||body.querySelector('.own-draft'))return;
  var B;try{B=JSON.parse(t)}catch(e){B={drafts:[{title:'',html:t}],cands:[]}}
  var R=B.rubric||[],box=document.createElement('div');box.className='own-drafts';

@@ -99,7 +99,8 @@
  ],
  "_tools/owner.js": [
   "own-draft",
-  "decJ"
+  "decJ",
+  "function inbox("
  ],
  "_tools/search_ko.js": [
   "__mmq"
@@ -154,5 +155,8 @@
   "mm-src",
   "mm-fgx",
   "mm-td"
+ ],
+ "_tools/notice_kit.py": [
+  "def inbox_add"
  ]
 }
