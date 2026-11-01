@@ -387,7 +387,8 @@
   "source_url": "https://finance.yahoo.com/economy/articles/september-2026-jobs-report-payrolls-123334753.html",
   "media": "야후파이낸스",
   "tier": "big",
-  "thread": "연준 금리"
+  "thread": "연준 금리",
+  "time": "08:30"
  },
  {
   "id": "e56",
@@ -492,7 +493,8 @@
   "source_url": "https://www.timesofisrael.com/liveblog_entry/trump-says-iran-war-will-be-over-soon-one-way-or-the-other/",
   "media": "타임스오브이스라엘",
   "tier": "small",
-  "thread": "이란 해협 협상"
+  "thread": "이란 해협 협상",
+  "time": "11:53"
  },
  {
   "id": "e53",
@@ -582,7 +584,8 @@
   "source_url": "https://virginiabusiness.com/us-consumer-price-index-september-rate-hike-bets/",
   "media": "로이터(버지니아비즈니스) · 스탁트위츠",
   "tier": "big",
-  "thread": "연준 금리"
+  "thread": "연준 금리",
+  "time": "08:30"
  },
  {
   "id": "e41",
@@ -837,7 +840,8 @@
   "source_url": "https://www.timesofisrael.com/liveblog_entry/trump-says-us-wont-strike-iran-today-amid-ris",
   "media": "타임스오브이스라엘",
   "tier": "small",
-  "thread": "호르무즈 해상 충돌"
+  "thread": "호르무즈 해상 충돌",
+  "time": "12:47"
  },
  {
   "id": "e20",
@@ -912,7 +916,8 @@
   "source_url": "https://www.timesofisrael.com/with-all-votes-counted-netanyahus-bloc-at-53-seats-eisenkots-48-arab-parties-19/",
   "media": "타임스오브이스라엘",
   "tier": "big",
-  "thread": "이스라엘 정치"
+  "thread": "이스라엘 정치",
+  "time": "16:00"
  },
  {
   "id": "e76",
@@ -927,7 +932,8 @@
   "source_url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-october-27-dow-sp-500-nasdaq-081901995.html",
   "media": "야후파이낸스",
   "tier": "small",
-  "thread": "이란 해협 협상"
+  "thread": "이란 해협 협상",
+  "time": "12:10"
  },
  {
   "id": "e77",
@@ -957,7 +963,8 @@
   "source_url": "https://fortune.com/2026/10/28/fed-rates-steady-midterms-october-3-75-to-4-percent-cook-hammack-dissent/",
   "media": "포천",
   "tier": "big",
-  "thread": "연준 금리"
+  "thread": "연준 금리",
+  "time": "14:00"
  },
  {
   "id": "e46",
@@ -1002,7 +1009,8 @@
   "source_url": "https://finance.yahoo.com/energy/articles/oil-prices-rise-attack-saudi-021422891.html",
   "media": "야후파이낸스(로이터)",
   "tier": "small",
-  "thread": "후티-사우디 전선"
+  "thread": "후티-사우디 전선",
+  "time": "01:17"
  },
  {
   "id": "e79",
@@ -1062,7 +1070,8 @@
   "source_url": "https://www.timesofisrael.com/liveblog_entry/report-us-warns-gulf-allies-of-possible-iran-strikes-as-early-as-november-4/",
   "media": "타임스오브이스라엘(MSNOW 인용)",
   "tier": "big",
-  "thread": "미국 공습 옵션"
+  "thread": "미국 공습 옵션",
+  "time": "02:41"
  },
  {
   "id": "e82",
