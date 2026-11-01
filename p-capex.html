@@ -41,7 +41,17 @@ a.mm-earnnew em{font-style:normal;font-size:22px;font-weight:700;color:#e8343b}
 
 a.mm-earnnew.seen{border-color:#e6dcc6;border-left-color:#b08a3e;box-shadow:0 2px 0 #ece3cf}a.mm-earnnew.seen i{background:#b08a3e;animation:none}a.mm-earnnew.seen b{color:#8a6a2c}a.mm-earnnew.seen em{color:#b08a3e}
 
-/* 차트에서 페이지 넘기는 중에는 가격 말풍선·십자선 숨김(사용자 2026-11-01) */html.mm-swiping #main .mmt-bub,html.mm-swiping #main .mmt-box svg .cx,html.mm-swiping #main .mmt-box svg .cy{display:none!important}
+/* 숨은 손잡이를 아이폰 홈 막대 위로 띄우고 넓은 알약으로(사용자 2026-11-01)
+   — 맨 아래 가장자리는 아이폰이 '홈으로 가기' 제스처로 먼저 가로채서 밀어 올리기가 잘 안 먹음 */
+body .mmd #mm-pull{transition:top .45s cubic-bezier(.33,.9,.3,1),width .25s,height .25s,border-radius .25s,margin .25s}
+body .mmd #mm-pull:before{content:'';position:absolute;left:-18px;right:-18px;top:-12px;bottom:-10px}
+body.mmd-hide .mmd #mm-pull{top:calc(-46px - max(env(safe-area-inset-bottom),14px));width:128px;height:38px;margin-left:-64px;border:1.5px solid #c9a24a;border-radius:999px;gap:6px;background:#fff;box-shadow:0 4px 12px rgba(11,11,11,.18),0 1px 0 rgba(255,255,255,.9) inset;font:800 14px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#7a5a12}
+body.mmd-hide .mmd #mm-pull:active{transform:scale(.96);background:#f3efe4}
+body .mmd #mm-pull b{display:none;font:inherit}
+body.mmd-hide .mmd #mm-pull b{display:inline;order:2}
+body.mmd-hide .mmd #mm-pull:after{order:1;margin-top:6px}
+body.mmd-hide.mmd-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))!important}
+body.mmd-hide.mmd-on #mm-snd{bottom:calc(14px + max(env(safe-area-inset-bottom),14px))!important}
 </style><script data-navfab>// 아래 메뉴 위 왼쪽 '이전·홈' 버튼(사용자 2026-10-29)
 (function(){try{
 if(/\/(index\.html)?$/.test(location.pathname))return;
@@ -63,19 +73,17 @@ function show(){B.classList.remove('mmd-hide');arm()}
 function init(){B=document.body;if(!document.querySelector('.mmd'))return setTimeout(init,500);
 // 손잡이는 독 박스 위 가운데에 붙어 함께 움직임(일체형) — 독이 내려가면 손잡이만 바닥에 남음
 var dk=document.querySelector('.mmd');
-var p=document.createElement('button');p.id='mm-pull';p.setAttribute('aria-label','아래 메뉴 올리기·내리기');dk.appendChild(p);
+var p=document.createElement('button');p.id='mm-pull';p.setAttribute('aria-label','아래 메뉴 올리기·내리기');p.innerHTML='<b>메뉴</b>';dk.appendChild(p);
 function hide(){if(sheetOpen())return;B.classList.add('mmd-hide');clearTimeout(t)}
 var y0=0,moved=0;
 p.addEventListener('touchstart',function(e){y0=e.touches[0].clientY;moved=0;e.stopPropagation()},{passive:true});
 p.addEventListener('touchmove',function(e){var d=e.touches[0].clientY-y0;e.preventDefault();e.stopPropagation();if(moved)return;
 if(d<-12){moved=1;show()}else if(d>12){moved=1;hide()}},{passive:false});
-p.addEventListener('touchend',function(e){e.stopPropagation()},{passive:true});
+p.addEventListener('touchend',function(e){e.stopPropagation();if(!moved&&B.classList.contains('mmd-hide')){moved=1;show()}},{passive:true});
 p.addEventListener('click',function(e){e.stopPropagation();if(moved){moved=0;return}B.classList.contains('mmd-hide')?show():hide()});
 ['touchstart','click'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest('.mmd,#mm-fab,.mmd-sheet')&&!e.target.closest('#mm-pull'))show()},{passive:true})});
-var ly=scrollY,up=0,dn=0,sq=0;addEventListener('scroll',function(){if(sq)return;sq=1;requestAnimationFrame(function(){sq=0;var y=scrollY;
-if(y<ly){dn=0;up+=ly-y;if(up>48||y<40)show()}else{up=0;dn+=y-ly;if(dn>14&&y>60&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}}ly=y})},{passive:true}); /* 반응 속도(사용자 2026-11-01): 스크롤 1픽셀마다가 아니라 화면 그릴 때 한 번 */
-// 아이패드 트랙패드·마우스(사용자 2026-11-01): 커서를 화면 아래 끝 가까이 내리면 숨었던 아래 메뉴가 올라옴(아이패드 독처럼)
-addEventListener('pointermove',function(e){if(e.pointerType==='mouse'&&e.clientY>innerHeight-36&&B.classList.contains('mmd-hide'))show()},{passive:true});
+var ly=scrollY,up=0,dn=0;addEventListener('scroll',function(){var y=scrollY;
+if(y<ly){dn=0;up+=ly-y;if(up>160||y<40)show()}else{up=0;dn+=y-ly;if(dn>14&&y>60&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}}ly=y},{passive:true});
 // 독을 아래로 쓸어내리면 바로 숨김(위로 올리는 동작의 반대)
 var dy=0;
 dk.addEventListener('touchstart',function(e){dy=e.touches[0].clientY},{passive:true});
@@ -86,19 +94,18 @@ if(document.body)init();else document.addEventListener('DOMContentLoaded',init);
 // 좌우로 크게 밀면 옆 페이지로(사용자 2026-10-29) — 왼쪽으로 밀면 다음, 오른쪽으로 밀면 이전 페이지(아래 메뉴 순서)
 // 옆으로 스크롤되는 줄·표·차트 위, 화면 가장자리(브라우저 뒤로가기 몸짓), 메뉴판 열림 중에는 동작 안 함
 (function(){try{
-var TH=0.3,box=null,x0,y0,dx=0,on=0,tgt=null,fl=0,flm=0; /* fl: 차트 가운데에서 시작 — 손가락이 처음부터 바로 옆으로 움직이면(0.16초 안 24px, 초당 약 150px 이상) 페이지 넘김, 잠깐 멈췄다 움직이면 가격 추적(사용자 2026-11-01) */
+var TH=0.3,box=null,x0,y0,dx=0,on=0,tgt=null;
 function list(){return [].slice.call(document.querySelectorAll('.mmd .row>a[href]'))}
 function cur(){var a=list();for(var i=0;i<a.length;i++)if(a[i].classList.contains('on'))return i;return -1}
 function scrollX(el){for(;el&&el!==document.body;el=el.parentElement){var c=getComputedStyle(el);if(/(auto|scroll)/.test(c.overflowX)&&el.scrollWidth>el.clientWidth+4)return 1}return 0}
 document.addEventListener('touchstart',function(e){on=0;if(e.touches.length>1)return;var t=e.touches[0],w=innerWidth;
-var SA=(window.navigator.standalone===true)||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches),EG=SA?0:26; if(t.clientX<EG||t.clientX>w-EG)return;var g=e.target;fl=0;
+if(t.clientX<26||t.clientX>w-26)return;var g=e.target;
 if(g.closest&&g.closest('canvas,input,textarea,select,.mmd,.mmd-sheet,#mm-fab,[data-noswipe]'))return;
 var sv=g.closest&&g.closest('svg');while(sv&&sv.parentElement&&sv.parentElement.closest('svg'))sv=sv.parentElement.closest('svg');
-if(sv&&sv.getBoundingClientRect().width>140){ /* 큰 차트 위(사용자 2026-11-01): 좌우 가장자리(차트 폭 22%, 최소 72px)는 넘김 전용 — 가격 추적 안 함. 가운데는 처음부터 옆으로 밀면 넘김, 멈췄다 움직이면 추적 */ var rb=sv.getBoundingClientRect(),H=document.documentElement; if(H.classList.contains('mm-full')||H.classList.contains('mm-land')||(window.__mmT&&window.__mmT.draw))return; var EZ=Math.max(72,rb.width*0.22); if(!(t.clientX-rb.left<EZ||rb.right-t.clientX<EZ)){ fl=Date.now(); flm=0; } }
-else{ /* 넘기면 안 되는 곳(사용자 2026-11-01): 차트 영역(칩·기간·도구·작은 그래프), 작은 버튼·알약·칩·탭 줄 — 누르다 손가락이 미끄러져 페이지가 넘어가지 않게. 화면 폭 절반 넘는 큰 카드·글은 그대로 넘김 */ if(g.closest&&g.closest('.mmt,.mmt-nav,.mmt-per,[role=tablist],[class*="pill"],[class*="chip"],[class*="seg"],[class$="-tabs"],[class~="tabs"]'))return; var bt=g.closest&&g.closest('button,[role=button],[role=tab],[aria-pressed],label'); if(bt&&bt.getBoundingClientRect().width<w*0.5)return; for(var el=g;el&&el!==document.body;el=el.parentElement){ var cs=getComputedStyle(el); if(/(auto|scroll)/.test(cs.overflowX)&&el.getBoundingClientRect().height<90)return; } }if(scrollX(g))return;var s=document.querySelector('.mmd-sheet');if(s&&!s.hidden)return;
+if(sv&&sv.getBoundingClientRect().width>140)return;
+if(scrollX(g))return;var s=document.querySelector('.mmd-sheet');if(s&&!s.hidden)return;
 if(cur()<0)return;x0=t.clientX;y0=t.clientY;dx=0;on=1;tgt=null},{passive:true,capture:true});
 document.addEventListener('touchmove',function(e){if(!on)return;var t=e.touches[0];dx=t.clientX-x0;var dy=t.clientY-y0;
-if(fl&&!flm){ var el=Date.now()-fl; if(Math.abs(dx)>=24&&Math.abs(dx)>Math.abs(dy)*1.5&&el<=160){ flm=1; document.documentElement.classList.add('mm-swiping'); } else if(el>160){ on=0; fl=0; return; } else return; }
 if(!tgt){if(Math.abs(dx)+Math.abs(dy)<16)return;if(Math.abs(dx)<Math.abs(dy)*1.2){on=0;return}
 var a=list(),i=cur(),j=dx<0?i+1:i-1;if(j<0||j>=a.length){on=0;return}tgt=a[j];
 box=document.getElementById('mm-swp')||document.body.appendChild(Object.assign(document.createElement('div'),{id:'mm-swp'}));
@@ -108,37 +115,11 @@ var w=innerWidth,f=Math.min(Math.abs(dx)/(w*TH),1),pos=-120+f*136;
 box.style.opacity=Math.min(1,f*1.6);box.style.transform='translateY(-50%)';
 if(dx<0){box.style.right=pos+'px';box.style.left='auto'}else{box.style.left=pos+'px';box.style.right='auto'}
 box.classList.toggle('ready',f>=1)},{passive:true,capture:true});
-function hideBox(){document.documentElement.classList.remove('mm-swiping');if(box){box.style.opacity=0;box.classList.remove('ready')}}
+function hideBox(){if(box){box.style.opacity=0;box.classList.remove('ready')}}
 document.addEventListener('touchend',function(){if(!on)return;on=0;
-fl=0;flm=0;
 if(tgt&&Math.abs(dx)>=innerWidth*TH){var h=tgt.getAttribute('href');document.documentElement.classList.add('mm-leave');setTimeout(function(){location.href=h},140)}else hideBox()},{passive:true,capture:true});
 document.addEventListener('touchcancel',function(){on=0;hideBox()},{passive:true,capture:true});
 addEventListener('pageshow',function(){document.documentElement.classList.remove('mm-leave');hideBox()});
-// 아이패드 트랙패드·마우스 두 손가락 좌우 밀기 = 옆 페이지(사용자 2026-11-01) — 사파리 '뒤로 가기' 몸짓 대신 아래 메뉴 순서로. 옆으로 넘기는 표·띠·차트·작은 그래프 위에서는 그 칸이 움직임
-var wx=0,wt=0,wgo=0,wtg=null;
-function wscroll(el){for(;el&&el!==document.body;el=el.parentElement){if(el.closest&&el.closest('#main .mmt-box,.mmt-nav,canvas,input,textarea,select,.mmd,.mmd-sheet,[data-noswipe]'))return 1;var c=getComputedStyle(el);if(/(auto|scroll)/.test(c.overflowX)&&el.scrollWidth>el.clientWidth+4)return 1}return 0}
-addEventListener('wheel',function(e){ if(wgo||e.ctrlKey)return; var ax=Math.abs(e.deltaX),ay=Math.abs(e.deltaY);
-  if(ax<=ay*1.5||ax<2){ if(ay>ax*1.5){wx=0;hideBox();} return; }
-  if(wscroll(e.target))return; var s=document.querySelector('.mmd-sheet');if(s&&!s.hidden)return;
-  var a=list(),i=cur();if(i<0)return; var now=Date.now(); if(now-wt>300)wx=0; wt=now; wx+=e.deltaX; e.preventDefault();
-  var j=wx>0?i+1:i-1; if(j<0||j>=a.length){hideBox();return} wtg=a[j];
-  box=document.getElementById('mm-swp')||document.body.appendChild(Object.assign(document.createElement('div'),{id:'mm-swp'}));
-  box.textContent=wx>0?(wtg.textContent.trim()+' ›'):('‹ '+wtg.textContent.trim());
-  var f=Math.min(Math.abs(wx)/160,1),pos=-120+f*136; box.style.opacity=Math.min(1,f*1.6);box.style.transform='translateY(-50%)';
-  if(wx>0){box.style.right=pos+'px';box.style.left='auto'}else{box.style.left=pos+'px';box.style.right='auto'} box.classList.toggle('ready',f>=1);
-  clearTimeout(window.__mmWt); window.__mmWt=setTimeout(function(){ if(Math.abs(wx)>=160&&wtg){ wgo=1; var h=wtg.getAttribute('href'); document.documentElement.classList.add('mm-leave'); setTimeout(function(){location.href=h},140); } else { wx=0; hideBox(); } },140);
-},{passive:false});
-}catch(e){}})();
-// 차트 가장자리 = 넘김 전용(사용자 2026-11-01): 여기서 시작한 손가락·마우스는 차트 가격 추적으로 보내지 않음
-(function(){try{
-function edge(x,g){ if(!g||!g.closest)return 0; var H=document.documentElement; if(H.classList.contains('mm-full')||H.classList.contains('mm-land')||(window.__mmT&&window.__mmT.draw))return 0;
-  var sv=g.closest('#main .mmt-box > svg'); if(!sv)return 0; var rb=sv.getBoundingClientRect(), EZ=Math.max(72,rb.width*0.22); return (x-rb.left<EZ||rb.right-x<EZ)?1:0; }
-var hold=0;
-function stop(e){ if(hold) e.stopPropagation(); }
-document.addEventListener('pointerdown',function(e){ hold=e.pointerType!=='mouse'&&edge(e.clientX,e.target); if(hold) e.stopPropagation(); },true);
-document.addEventListener('touchstart',function(e){ var t=e.touches[0]; hold=e.touches.length===1&&edge(t.clientX,e.target); if(hold) e.stopPropagation(); },{capture:true,passive:true});
-['pointermove','touchmove'].forEach(function(n){ document.addEventListener(n,stop,{capture:true,passive:true}); });
-['pointerup','pointercancel','touchend','touchcancel'].forEach(function(n){ document.addEventListener(n,function(e){ if(hold){ e.stopPropagation(); setTimeout(function(){hold=0},0); } },{capture:true,passive:true}); });
 }catch(e){}})();
 // 새 실적 알림(사용자 2026-10-29, 실적 시즌) — d/earn_feed.json의 최신 실적이 내가 마지막으로 본 것보다 새로우면
 // 메인 화면 위에 '🔔 새 실적 n곳' 띠 + 실적 결과 카드에 NEW, 독의 실적 결과 아이콘에 빨간 점. 실적 결과 페이지를 열면 '봤음'으로 꺼짐
@@ -267,7 +248,7 @@ function mount(){if(document.querySelector('.mm-push'))return true;var sh=docume
  if(can&&(Notification.permission==='granted'||standalone))load(function(OS){draw(OS);setTimeout(gate,600)});setTimeout(gate,1200);return true}
 var n=0;(function go(){if(!mount()&&++n<40)setTimeout(go,250)})();
 }catch(e){}})();
-</script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><link data-splash rel="stylesheet" href="_tools/splash.css?v=6299f372"><script data-splash src="_tools/splash.js?v=dea59561"></script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="빅테크 설비투자 트래커"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-capex.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202611011909">(function(){var me="202611011909";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>빅테크 설비투자 트래커</title><style>:root{color-scheme:light;
+</script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><link data-splash rel="stylesheet" href="_tools/splash.css?v=6299f372"><script data-splash src="_tools/splash.js?v=dea59561"></script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="빅테크 설비투자 트래커"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-capex.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202611011916">(function(){var me="202611011916";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>빅테크 설비투자 트래커</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;

@@ -41,4 +41,14 @@ a.mm-earnnew em{font-style:normal;font-size:22px;font-weight:700;color:#e8343b}
 
 a.mm-earnnew.seen{border-color:#e6dcc6;border-left-color:#b08a3e;box-shadow:0 2px 0 #ece3cf}a.mm-earnnew.seen i{background:#b08a3e;animation:none}a.mm-earnnew.seen b{color:#8a6a2c}a.mm-earnnew.seen em{color:#b08a3e}
 
-/* 차트에서 페이지 넘기는 중에는 가격 말풍선·십자선 숨김(사용자 2026-11-01) */html.mm-swiping #main .mmt-bub,html.mm-swiping #main .mmt-box svg .cx,html.mm-swiping #main .mmt-box svg .cy{display:none!important}
+/* 숨은 손잡이를 아이폰 홈 막대 위로 띄우고 넓은 알약으로(사용자 2026-11-01)
+   — 맨 아래 가장자리는 아이폰이 '홈으로 가기' 제스처로 먼저 가로채서 밀어 올리기가 잘 안 먹음 */
+body .mmd #mm-pull{transition:top .45s cubic-bezier(.33,.9,.3,1),width .25s,height .25s,border-radius .25s,margin .25s}
+body .mmd #mm-pull:before{content:'';position:absolute;left:-18px;right:-18px;top:-12px;bottom:-10px}
+body.mmd-hide .mmd #mm-pull{top:calc(-46px - max(env(safe-area-inset-bottom),14px));width:128px;height:38px;margin-left:-64px;border:1.5px solid #c9a24a;border-radius:999px;gap:6px;background:#fff;box-shadow:0 4px 12px rgba(11,11,11,.18),0 1px 0 rgba(255,255,255,.9) inset;font:800 14px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#7a5a12}
+body.mmd-hide .mmd #mm-pull:active{transform:scale(.96);background:#f3efe4}
+body .mmd #mm-pull b{display:none;font:inherit}
+body.mmd-hide .mmd #mm-pull b{display:inline;order:2}
+body.mmd-hide .mmd #mm-pull:after{order:1;margin-top:6px}
+body.mmd-hide.mmd-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))!important}
+body.mmd-hide.mmd-on #mm-snd{bottom:calc(14px + max(env(safe-area-inset-bottom),14px))!important}
