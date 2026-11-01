@@ -17,7 +17,8 @@
   "data-tlx": "정책·테크 페이지에 헤드라인 모드 입히기",
   "core_ref('navfab'": "정리 3일차: 메뉴·양식 부품은 통째 대신 공용 파일 참조",
   "own-draft": "주인장 자료 🧪 검수 대기 배너 초안",
-  "core_ref('names'": "평소 부르는 이름(알파벳→구글)"
+  "core_ref('names'": "평소 부르는 이름(알파벳→구글)",
+  "if(s.textContent!==n+'건')": "주요 뉴스 반복 고리 끊기(같은 글자면 안 씀)"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -51,7 +52,8 @@
   "OPEN[e.id]",
   "resetTop",
   "catN",
-  "relabel"
+  "relabel",
+  "if(s.textContent!==n+'건')"
  ],
  "_tools/tlx.css": [
   "tlx-open",
