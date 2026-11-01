@@ -526,6 +526,14 @@ def tidy_notice(s):
     add = '<style data-notice>' + open(os.path.join(d, 'notice.css'), encoding='utf-8').read() + '</style><script data-notice>' + open(os.path.join(d, 'notice.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
+
+# 주인장 자료(사용자 2026-11-01) — 메인 맨 아래 비번 잠금 검토함, 내용은 d/owner.enc.json(암호문)
+def tidy_owner(s):
+    s = re.sub(r'<(style|script) data-owner>.*?</\1>', '', s, flags=re.S)
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-owner>' + open(os.path.join(d, 'owner.css'), encoding='utf-8').read() + '</style><script data-owner>' + open(os.path.join(d, 'owner.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
 # 공포·탐욕 지수·VIX는 CNN·CBOE 원본(d/fng.json, Actions 6시간)을 우선 씀(사용자 2026-11-01) — 브리핑 기사값이 하루~이틀 밀리는 일이 있었음
 FNG = (r"""<script data-fng>(function(){var F=null;var Z=[[0,25,'극단적 공포','#e5484d'],[25,45,'공포','#f08a4b'],[45,55,'중립','#8b8d98'],[55,75,'탐욕','#7cc47f'],[75,101,'극단적 탐욕','#2fa36b']];"""
        r"""function md(d){var a=String(d).split('-');return (+a[1])+'.'+(+a[2])}"""
