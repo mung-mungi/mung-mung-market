@@ -1,9 +1,7 @@
 /* 버전업 표시 + 바뀐 점 설명서(사용자 2026-11-02) — _tools/chlog.js */
-.mm-cl-row{margin:-14px 0 -10px;position:relative;z-index:2}
-header.bn:has(+ .mm-cl-row) #mm-ver{display:none}
 .mm-cl-pill,.mm-cl-new{-webkit-appearance:none;appearance:none;cursor:pointer;-webkit-tap-highlight-color:transparent;font-family:-apple-system,"Apple SD Gothic Neo",sans-serif}
-.mm-cl-pill{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:13px;line-height:1;color:#7a5200;background:#fff;border:1px solid #e6dfcf;border-radius:999px;padding:8px 12px;box-shadow:0 2px 0 #ece4d2}
-.mm-cl-pill i{width:8px;height:8px;border-radius:50%;background:#d0451b;display:inline-block;box-shadow:0 0 0 3px #fbe3da}
+.mm-cl-pill{position:relative;z-index:2;align-self:flex-start;width:auto;display:inline-flex;align-items:center;gap:6px;margin:2px 0 0;font-weight:800;font-size:12px;line-height:1.2;color:#7a5200;background:#fff;border:1px solid #e3cf9f;border-radius:999px;padding:2px 9px;box-shadow:0 1px 0 #e3cf9f;white-space:nowrap}
+.mm-cl-pill i{width:7px;height:7px;border-radius:50%;background:#d0451b;display:inline-block;box-shadow:0 0 0 3px #fbe3da}
 .mm-cl-pill:active,.mm-cl-new:active{transform:translateY(1px);box-shadow:none}
 .mm-cl-new{display:inline-flex;align-items:center;margin:4px 0 4px 6px;vertical-align:middle;font-weight:800;font-size:12.5px;line-height:1.5;color:#fff;background:#d0451b;border:0;border-radius:999px;padding:2px 10px;box-shadow:0 2px 0 #f0c2b2}
 .mm-cl-new.seen{background:#fff;color:#c8501c;border:1px solid #f0c2b2;box-shadow:0 2px 0 #f6dfd5}

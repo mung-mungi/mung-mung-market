@@ -27,8 +27,8 @@ function open(only){close();var R=C.releases,r=R[0];dim=el('div','mm-cl-dim');va
  dim.appendChild(sh);dim.onclick=function(e){if(e.target===dim)close()};document.body.appendChild(dim);document.documentElement.classList.add('mm-cl-lock');
  ls('mm_cl_seen',r.id);ls('mm_cl_pg_'+FILE,r.id);var dot=document.querySelector('.mm-cl-pill i');if(dot)dot.remove();var np=document.querySelector('.mm-cl-new');if(np)np.classList.add('seen')}
 function mainPill(){var h=document.querySelector('header.bn'),mv=document.getElementById('mm-ver');if(!h||!mv)return false;if(document.querySelector('.mm-cl-pill'))return true;var r=C.releases[0];
- var p=el('button','mm-cl-pill');if(ls('mm_cl_seen')!==r.id&&!r.minor)p.appendChild(el('i'));p.appendChild(document.createTextNode(ver()+' · 새로 바뀐 것 '+r.items.length+' ›'));p.onclick=function(){open(false)};
- var w=el('div','mm-cl-row');w.appendChild(p);h.after(w);return true}
+ var p=el('button','mm-cl-pill');if(ls('mm_cl_seen')!==r.id&&!r.minor)p.appendChild(el('i'));p.appendChild(document.createTextNode(ver()+' · 바뀐 점 '+r.items.length+' ›'));p.onclick=function(){open(false)};
+ mv.style.display='none';mv.after(p);return true}
 function pagePill(){var ex=document.querySelector('.mm-cl-new'),hb=document.querySelector('.mm-st-hero .tp b');if(ex){if(ex.offsetParent!==null&&(!hb||ex.previousElementSibling===hb))return true;ex.remove()}var r=C.releases.filter(function(x){return days(x.date)<=3})[0];if(!r)return true;
  if(!r.items.some(function(i){return i.page===FILE}))return true; // 'all' 항목만 있는 페이지엔 알약을 달지 않음
  var hp=document.querySelector('.mm-st-hero .tp b');if(hp){var q=el('button','mm-cl-new'+(ls('mm_cl_pg_'+FILE)===r.id?' seen':''),'NEW · 바뀐 점 ›');q.onclick=function(e){e.preventDefault();e.stopPropagation();open(true)};hp.after(q);return q.offsetParent!==null}
