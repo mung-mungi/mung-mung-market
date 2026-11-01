@@ -397,6 +397,8 @@ def tidy_lights(s):
     # 자동 한 줄·멈춘 값 칩(사용자 2026-10-31) — _tools/ltfresh.*, 자료 d/lights/fresh.json
     add += '<style data-ltui>' + open(os.path.join(d, 'ltfresh.css'), encoding='utf-8').read() + '</style><script data-ltui>' + open(os.path.join(d, 'ltfresh.js'), encoding='utf-8').read() + '</script>'
     # '지금 시장은' 통일 양식·근접(반불)·반도체·AI 영역(사용자 2026-11-01) — _tools/ltnear.*
+    # 맨 위 '한눈에' — 층위별 신호등·업종 회전 지도(사용자 2026-11-01) — _tools/mmtop.*, 자료 d/stress/stress.json
+    add += '<style data-ltui>' + open(os.path.join(d, 'mmtop.css'), encoding='utf-8').read() + '</style><script data-ltui>' + open(os.path.join(d, 'mmtop.js'), encoding='utf-8').read() + '</script>'
     add += '<style data-ltui>' + open(os.path.join(d, 'ltnear.css'), encoding='utf-8').read() + '</style><script data-ltui>' + open(os.path.join(d, 'ltnear.js'), encoding='utf-8').read() + '</script>'
     s = s.replace(LT_AREAS_OLD, LT_AREAS_NEW, 1)
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add

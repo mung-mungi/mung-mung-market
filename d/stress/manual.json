@@ -1,8 +1,48 @@
 [
- {"id": "bofa_bb", "name": "강세·약세 지표(Bull & Bear)", "org": "BofA", "kind": "sentiment", "freq": "매주(기사)", "date": "2026-10-15", "value": 7.4, "prev": 8.1, "unit": "/10", "pct": 26,
-  "read": "낙관 과열에서 식는 중(8 이상이면 '팔 때' 신호, 2 이하면 '살 때')", "note": "역발상 지표 — 높을수록 낙관 과열. 불안 온도는 10−값을 0~100으로 환산", "src": "https://www.techflowpost.com/en-US/article/34677"},
- {"id": "bofa_fms", "name": "펀드매니저 설문 현금 비중", "org": "BofA", "kind": "sentiment", "freq": "매월(기사)", "date": "2026-10-14", "value": 3.9, "prev": 3.5, "unit": "%", "pct": 30,
-  "read": "현금 3.9% — 4% 아래는 '너무 낙관'(역발상 매도) 구간", "note": "현금이 적을수록 낙관 과열. 주식 순비중 44%(9월 49%), 가장 붐비는 거래 '반도체 매수' 45%", "src": "https://www.tradingview.com/news/macenews:e1f62444f094b:0-bofa-global-research-fund-manager-survey-lower-growth-and-lower-inflation-expectations-lead-to-tweaking-of-asset-allocations-in-october/"},
- {"id": "aaii", "name": "개인투자자 설문(약세 응답)", "org": "AAII", "kind": "sentiment", "freq": "매주(기사)", "date": "2026-10-29", "value": 41.4, "prev": null, "unit": "%", "pct": 80,
-  "read": "약세 41.4%(장기 평균 31.5%) · 강세 37.8%", "note": "약세 응답이 많을수록 개인이 겁먹음", "src": "https://insights.aaii.com/p/aaii-sentiment-survey-pessimism-drops-b21"}
+ {
+  "id": "bofa_bb",
+  "name": "강세·약세 지표(Bull & Bear)",
+  "org": "BofA",
+  "kind": "sentiment",
+  "freq": "매주(기사)",
+  "date": "2026-10-15",
+  "value": 7.4,
+  "prev": 8.1,
+  "unit": "/10",
+  "pct": 26,
+  "read": "낙관 과열에서 식는 중(8 이상이면 '팔 때' 신호, 2 이하면 '살 때')",
+  "note": "역발상 지표 — 높을수록 낙관 과열. 불안 온도는 10−값을 0~100으로 환산",
+  "src": "https://www.techflowpost.com/en-US/article/34677"
+ },
+ {
+  "id": "bofa_fms",
+  "name": "펀드매니저 설문 현금 비중",
+  "org": "BofA",
+  "kind": "sentiment",
+  "freq": "매월(기사)",
+  "date": "2026-10-14",
+  "value": 3.9,
+  "prev": 3.5,
+  "unit": "%",
+  "pct": 30,
+  "read": "현금 3.9% — 4% 아래는 '너무 낙관'(역발상 매도) 구간",
+  "note": "현금이 적을수록 낙관 과열. 주식 순비중 44%(9월 49%), 가장 붐비는 거래 '반도체 매수' 45%",
+  "src": "https://www.tradingview.com/news/macenews:e1f62444f094b:0-bofa-global-research-fund-manager-survey-lower-growth-and-lower-inflation-expectations-lead-to-tweaking-of-asset-allocations-in-october/"
+ },
+ {
+  "id": "aaii",
+  "name": "개인투자자 설문(약세 응답)",
+  "org": "AAII",
+  "kind": "sentiment",
+  "freq": "매주(기사)",
+  "date": "2026-10-29",
+  "value": 41.4,
+  "prev": null,
+  "unit": "%",
+  "pct": 80,
+  "read": "약세 41.4%(장기 평균 31.5%) · 강세 37.8%",
+  "note": "약세 응답이 많을수록 개인이 겁먹음",
+  "src": "https://insights.aaii.com/p/aaii-sentiment-survey-pessimism-drops-b21",
+  "bull": 37.8
+ }
 ]
