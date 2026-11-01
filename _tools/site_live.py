@@ -109,11 +109,12 @@ def run(root):
         sys.path.insert(0, T); import hub_tidy
         o = open(pbd, encoding='utf-8').read(); b = hub_tidy.tidy_bond(o)
         if b != o: open(pbd, 'w', encoding='utf-8').write(b); n.append('p-bond')
-    ppl = os.path.join(root, 'p-policy.html')  # 정책·지정학 순서·일정 3줄(사용자 2026-11-01)
-    if os.path.exists(ppl):
-        sys.path.insert(0, T); import hub_tidy
-        o = open(ppl, encoding='utf-8').read(); b = hub_tidy.tidy_policy(o)
-        if b != o: open(ppl, 'w', encoding='utf-8').write(b); n.append('p-policy')
+    for nm in ('p-policy', 'p-tech'):  # 정책·지정학 / 테크 행사 순서·일정 3건·종합 3줄(사용자 2026-11-01)
+        ppl = os.path.join(root, nm + '.html')
+        if os.path.exists(ppl):
+            sys.path.insert(0, T); import hub_tidy
+            o = open(ppl, encoding='utf-8').read(); b = hub_tidy.tidy_policy(o)
+            if b != o: open(ppl, 'w', encoding='utf-8').write(b); n.append(nm)
     po = os.path.join(root, 'p-opt.html')
     if os.path.exists(po):
         sys.path.insert(0, T); import hub_tidy
