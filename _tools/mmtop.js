@@ -129,9 +129,11 @@ function draw(){var root=document.querySelector('.mm-st:not(.mm-st2)');var mast=
   b.onclick=function(){var tg=t[0]==='lights'?document.getElementById('big'):document.getElementById('mm-'+t[0]);if(tg)tg.scrollIntoView({behavior:'smooth',block:'start'})};gr.appendChild(b)});hero.appendChild(gr);root.appendChild(hero);
  // 순서(사용자 2026-11-01): 한눈에 → 반도체·기술(자주 보는 것) → 시장 경고등(페이지 본문) → 심리 → 금융 시스템
  var d0=sec(root,'semi','반도체·기술 한눈에');panelSemi(d0);
- var root2=document.querySelector('.mm-st2');if(!root2){root2=el('div','mm-st mm-st2')}root2.textContent='';var ac=document.getElementById('area-card');if(ac)ac.after(root2);else root.after(root2);
- // 업종 회전 지도는 시장 경고등 아래로(사용자 2026-11-01)
- var d1=sec(root2,'sector','업종 회전 지도 · 돈은 어디로');panelSector(d1);d1.querySelector('h3').remove();
+ var root2=document.querySelector('.mm-st2:not(.mm-st3)');if(!root2){root2=el('div','mm-st mm-st2')}root2.textContent='';var ac=document.getElementById('area-card');if(ac)ac.after(root2);else root.after(root2);
+ // 업종 회전 지도는 경고등 점수 카드 바로 아래(사용자 2026-11-01: 한눈에 → 반도체·기술 → 점수 → 돈은 어디로 → 관점·영역 상세)
+ var big=document.getElementById('big'),vw=document.getElementById('view');if(big&&vw&&(vw.compareDocumentPosition(big)&Node.DOCUMENT_POSITION_FOLLOWING))vw.before(big);
+ var root3=document.querySelector('.mm-st3');if(!root3){root3=el('div','mm-st mm-st2 mm-st3')}root3.textContent='';if(big)big.after(root3);else root2.before(root3);
+ var d1=sec(root3,'sector','업종 회전 지도 · 돈은 어디로');panelSector(d1);d1.querySelector('h3').remove();
  var d2=sec(root2,'emo','공포 ↔ 환희 · 개인과 기관','왼쪽(파랑) = 겁먹음 · 오른쪽(주황) = 들뜸. 막대마다 같은 방향으로 맞췄습니다. 양 끝은 둘 다 경고 — 너무 겁먹으면 바닥 쪽, 너무 들뜨면 꼭지 쪽 신호로 거꾸로 읽습니다. 가는 눈금 = 기관이 쓰는 신호선, 진한 눈금 = 평소 자리.');
  var vs=el('div','mm-st-vs');[['개인',sc.retail],['기관',sc.inst]].forEach(function(a){var e=emo(a[1]);var c=el('div');c.style.setProperty('--c',e[1]);c.style.setProperty('--b',a[1]<45?'#edf2fa':a[1]>=55?'#fdeee6':'#f1ede4');c.appendChild(el('i','',a[0]));c.appendChild(el('b','',a[1]==null?'—':a[1]+''));c.appendChild(el('small','',e[0]));vs.appendChild(c)});d2.appendChild(vs);
  ['cnn','aaii','bofa_bb','bofa_fms'].forEach(function(k){var x=I(k);if(x)d2.appendChild(cRow(x,true))});d2.appendChild(el('div','mm-st-say',mix(sc)));
