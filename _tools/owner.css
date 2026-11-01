@@ -81,3 +81,31 @@
 .mm-own-body .own-dr-how{font-size:12.5px;color:#8a8172;margin:8px 0 0;line-height:1.5}
 .mm-own-body .own-dr-how b{color:#b03d20}
 .mm-own-body .own-draft .own-hd{flex-wrap:wrap;gap:6px}.mm-own-body .own-draft .own-hd b{flex-basis:100%}
+/* 점수판(2026-11-01) */
+.mm-own-body .own-dr-at{font-size:11.5px;color:#8a8172;font-weight:700}
+.mm-own-body .own-dr-chip.c{background:#8a6a2c}
+.mm-own-body .own-sc{background:#fff;border:1px solid #ecdcbc;border-radius:12px;padding:8px 10px;margin:2px 0 8px}
+.mm-own-body .own-sc-top{display:flex;align-items:baseline;gap:4px;margin-bottom:4px;flex-wrap:wrap}
+.mm-own-body .own-sc-top b{font:900 26px/1 -apple-system,sans-serif;color:#1d1a16}
+.mm-own-body .own-sc-top span{font-size:13px;color:#8a8172;font-weight:700}
+.mm-own-body .own-sc-top em,.mm-own-body .own-cd summary em{font-style:normal;font-size:12px;font-weight:900;color:#fff;border-radius:999px;padding:3px 9px;margin-left:6px;background:#8a8172}
+.mm-own-body em.lv-초안,.mm-own-body em.lv-무조건{background:#d8343f!important}
+.mm-own-body em.lv-후보{background:#c98a1b!important}
+.mm-own-body .own-sc-top i{font-style:normal;font-size:12px;font-weight:800;color:#b03d20;margin-left:4px}
+.mm-own-body .own-sc-r{display:grid;grid-template-columns:7.2em 34px 1fr;gap:8px;align-items:center;padding:3px 0;border-top:1px dashed #f0e6d2;font-size:13px}
+.mm-own-body .own-sc-r span{font-weight:800;color:#3a352d}
+.mm-own-body .own-sc-r s{display:flex;gap:3px;text-decoration:none}
+.mm-own-body .own-sc-r s u{flex:1;height:9px;border-radius:3px;background:#eee6d6}
+.mm-own-body .own-sc-r s.v1 u:first-child,.mm-own-body .own-sc-r s.v2 u{background:#d8343f}
+.mm-own-body .own-sc-r small{font-size:12px;color:#6f675b;line-height:1.4}
+.mm-own-body .own-cd{border-top:1px dashed #efe2c7;padding:6px 0}
+.mm-own-body .own-cd summary{display:flex;align-items:center;gap:8px;list-style:none;cursor:pointer;font-size:14px;font-weight:700;color:#2e2a24}
+.mm-own-body .own-cd summary::-webkit-details-marker{display:none}
+.mm-own-body .own-cd summary em{margin-left:0;flex:none}
+.mm-own-body .own-cd summary span{flex:1;min-width:0}
+.mm-own-body .own-cd summary i{flex:none;font-style:normal;font-size:11px;color:#9a9182}
+.mm-own-body .own-rule{margin:0 0 10px;font-size:13px;color:#5b5246}
+.mm-own-body .own-rule summary{font-weight:800;cursor:pointer;list-style:none;padding:4px 2px;color:#8a6a2c}
+.mm-own-body .own-rule summary::-webkit-details-marker{display:none}
+.mm-own-body .own-rule div{background:#fffaf0;border:1px solid #efd9a8;border-radius:10px;padding:6px 10px}
+.mm-own-body .own-rule p{margin:4px 0;line-height:1.5}

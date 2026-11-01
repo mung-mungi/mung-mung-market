@@ -42,27 +42,47 @@ function mount(){
  inp.addEventListener('input',function(){inp.value=inp.value.replace(/\D/g,'').slice(0,4);paint();msg.textContent='';if(inp.value.length===4){inp.blur();tryPin(inp.value)}});
  var p=sg();if(p)tryPin(p,true);
  return true}
-// 🧪 검수 대기 초안(속보 배너 키트, 2026-11-01) — d/notice_draft.enc.json을 같은 비번으로 풀어 맨 위에 보여 줌. 공개 전 주인장만 봄
-function draft(pin){fetch('d/notice_draft.enc.json?t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){return decJ(j,pin)}).then(function(h){
+// 🧪 검수 대기(속보 배너 키트, 2026-11-01) — d/notice_draft.enc.json(같은 비번)을 풀어 맨 위에: 초안(점수·이유·미리보기) + 후보(5~6점) + 점수 기준
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function scoreHtml(x,R){var sc=x.score||{},why=sc.why||{},h='<div class="own-sc"><div class="own-sc-top"><b>'+(x.total||0)+'</b><span>/10</span><em class="lv-'+esc(x.level)+'">'+esc(x.level)+'</em>'+(sc.force?'<i>⚡ '+esc(sc.force)+'</i>':'')+'</div>';
+ (R||[]).forEach(function(r){var v=+sc[r[0]]||0;h+='<div class="own-sc-r"><span>'+esc(r[1])+'</span><s class="v'+v+'"><u></u><u></u></s><small>'+(why[r[0]]?esc(why[r[0]]):'')+'</small></div>'});
+ return h+'</div>'}
+function popup(tt,dt,inner){var p=document.createElement('div');p.className='mm-ntc-pop';
+ p.innerHTML='<div class="mm-ntc-sheet"><div class="mm-ntc-top"><span class="chip">🧪 검수용 미리보기 · '+esc(dt)+'</span><span class="x" role="button" aria-label="닫기">✕</span></div><div class="mm-ntc-scroll"><h3></h3><div class="mm-ntcb"></div></div><div class="mm-ntc-bot"><button class="c">닫기</button></div></div>';
+ p.querySelector('h3').textContent=tt;p.querySelector('.mm-ntcb').innerHTML=inner;
+ function shut(){p.classList.remove('on');document.documentElement.classList.remove('mm-ntc-lock');setTimeout(function(){p.remove()},300)}
+ p.querySelector('.x').onclick=shut;p.querySelector('.c').onclick=shut;p.addEventListener('click',function(e){if(e.target===p)shut()});
+ document.body.appendChild(p);document.documentElement.classList.add('mm-ntc-lock');requestAnimationFrame(function(){p.classList.add('on')})}
+function draft(pin){fetch('d/notice_draft.enc.json?t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){return decJ(j,pin)}).then(function(t){
  var body=document.querySelector('.mm-own-body');if(!body||body.querySelector('.own-draft'))return;
- var w=document.createElement('div');w.innerHTML=h;var src=w.querySelector('#mm-ntc-src');if(!src)return;
- var tt=src.getAttribute('data-title')||'초안',dt=src.getAttribute('data-date')||'';
- var c=document.createElement('div');c.className='own-card own-test own-draft own-on';
- c.innerHTML='<div class="own-hd" role="button"><span class="own-dr-chip">🧪 검수 대기 · 배너 초안</span><b></b></div><div class="own-b"><div class="own-dr-btns"><button class="own-dr-pop">📱 배너로 띄워 보기</button><button class="own-dr-in">본문 펼치기 ▾</button></div><div class="own-dr-body mm-ntcb" hidden></div><p class="own-dr-how">괜찮으면 대화창에 <b>배너 공개</b>, 고칠 곳은 그대로 말해 주세요. 공개 전에는 주인장만 봅니다.</p></div>';
- c.querySelector('b').textContent=tt+(dt?' · '+dt:'');
- var bd=c.querySelector('.own-dr-body');bd.innerHTML=src.innerHTML;
- c.querySelector('.own-hd').onclick=function(){c.classList.toggle('own-on')};
- c.querySelector('.own-dr-in').onclick=function(){bd.hidden=!bd.hidden;this.textContent=bd.hidden?'본문 펼치기 ▾':'본문 접기 ▴'};
- c.querySelector('.own-dr-pop').onclick=function(){var p=document.createElement('div');p.className='mm-ntc-pop';
-  p.innerHTML='<div class="mm-ntc-sheet"><div class="mm-ntc-top"><span class="chip">🧪 검수용 미리보기 · '+dt+'</span><span class="x" role="button" aria-label="닫기">✕</span></div><div class="mm-ntc-scroll"><h3></h3><div class="mm-ntcb"></div></div><div class="mm-ntc-bot"><button class="c">닫기</button></div></div>';
-  p.querySelector('h3').textContent=tt;p.querySelector('.mm-ntcb').innerHTML=src.innerHTML;
-  function shut(){p.classList.remove('on');document.documentElement.classList.remove('mm-ntc-lock');setTimeout(function(){p.remove()},300)}
-  p.querySelector('.x').onclick=shut;p.querySelector('.c').onclick=shut;p.addEventListener('click',function(e){if(e.target===p)shut()});
-  document.body.appendChild(p);document.documentElement.classList.add('mm-ntc-lock');requestAnimationFrame(function(){p.classList.add('on')})};
- body.insertBefore(c,body.firstChild)}).catch(function(){})}
+ var B;try{B=JSON.parse(t)}catch(e){B={drafts:[{title:'',html:t}],cands:[]}}
+ var R=B.rubric||[],box=document.createElement('div');box.className='own-drafts';
+ (B.drafts||[]).forEach(function(x){
+  var w=document.createElement('div');w.innerHTML=x.html||'';var src=w.querySelector('#mm-ntc-src');if(!src)return;
+  var tt=x.title||src.getAttribute('data-title')||'초안',dt=x.date||src.getAttribute('data-date')||'';
+  var c=document.createElement('div');c.className='own-card own-test own-draft own-on';
+  c.innerHTML='<div class="own-hd" role="button"><span class="own-dr-chip">🧪 검수 대기 · 배너 초안</span><span class="own-dr-at">'+esc(x.at||'')+' 작성</span><b></b></div><div class="own-b">'+scoreHtml(x,R)+
+   '<div class="own-dr-btns"><button class="own-dr-pop">📱 배너로 띄워 보기</button><button class="own-dr-in">본문 펼치기 ▾</button></div><div class="own-dr-body mm-ntcb" hidden></div>'+
+   '<p class="own-dr-how">괜찮으면 대화창에 <b>배너 공개</b>, 고칠 곳은 그대로 말해 주세요. 공개 전에는 주인장만 봅니다.</p></div>';
+  c.querySelector('b').textContent=tt+(dt?' · '+dt:'');
+  var bd=c.querySelector('.own-dr-body');bd.innerHTML=src.innerHTML;
+  c.querySelector('.own-hd').onclick=function(){c.classList.toggle('own-on')};
+  c.querySelector('.own-dr-in').onclick=function(){bd.hidden=!bd.hidden;this.textContent=bd.hidden?'본문 펼치기 ▾':'본문 접기 ▴'};
+  c.querySelector('.own-dr-pop').onclick=function(){popup(tt,dt,src.innerHTML)};
+  box.appendChild(c)});
+ if((B.cands||[]).length){var c=document.createElement('div');c.className='own-card own-test own-draft own-cands own-on';
+  var h='<div class="own-hd" role="button"><span class="own-dr-chip c">후보 '+B.cands.length+'건 · 5~6점</span><b>보시고 올리라고 하면 배너로 만듭니다</b></div><div class="own-b">';
+  B.cands.forEach(function(x){h+='<details class="own-cd"><summary role="button"><em class="lv-'+esc(x.level)+'">'+(x.total||0)+'</em><span>'+esc(x.title)+'</span><i>'+esc(x.at||'')+'</i></summary>'+scoreHtml(x,R)+(x.note?'<p class="own-dr-how">'+esc(x.note)+'</p>':'')+'</details>'});
+  c.innerHTML=h+'</div>';c.querySelector('.own-hd').onclick=function(){c.classList.toggle('own-on')};box.appendChild(c)}
+ if(!box.children.length)return;
+ var rb=document.createElement('details');rb.className='own-rule';
+ rb.innerHTML='<summary role="button">▸ 배너 올리는 기준 · 점수표</summary><div><p><b>원칙</b> 오늘 안 보면 판단이 틀어질 일만 배너로. 7점 이상 초안, 5~6 후보, 4 이하 타임라인만.</p><p><b>무조건</b> '+(B.force||[]).map(esc).join(' · ')+'</p>'+
+  R.map(function(r){return '<p><b>'+esc(r[1])+'</b> '+esc(r[2])+'</p>'}).join('')+'<p><b>피로 막기</b> 하루 최대 2개 · 같은 주제는 새 배너 대신 갱신 · 실적은 제외(판을 바꿀 때만) · 날짜 지나면 내림</p></div>';
+ box.appendChild(rb);
+ body.insertBefore(box,body.firstChild)}).catch(function(){})}
 // 잠긴 상태에서도 '검수 대기 n건'만 표시(제목·내용은 잠금 안)
 function badge(){fetch('d/notice_draft.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(m){
- var c=document.querySelector('.mm-own');if(!c||!m||!m.n)return;var hd=c.querySelector('.mm-own-hd');if(!hd||hd.querySelector('.own-dr-badge'))return;
- var b=document.createElement('span');b.className='own-dr-badge';b.textContent='🧪 검수 대기 '+m.n+'건 · '+(m.at||'');hd.querySelector('span').appendChild(b)}).catch(function(){})}
+ var c=document.querySelector('.mm-own');if(!c||!m||!(m.n||m.c))return;var hd=c.querySelector('.mm-own-hd');if(!hd||hd.querySelector('.own-dr-badge'))return;
+ var b=document.createElement('span');b.className='own-dr-badge';b.textContent='🧪 검수 대기 '+(m.n||0)+(m.c?' · 후보 '+m.c:'');hd.querySelector('span').appendChild(b)}).catch(function(){})}
 var k=0;(function go(){if(mount()){badge();return}if(++k<20)setTimeout(go,300)})();
 }catch(e){}})();

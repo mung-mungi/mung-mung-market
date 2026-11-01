@@ -5,7 +5,10 @@
 #   python3 -I _tools/notice_kit.py render  초안.json 결과.html          # 배너 HTML만 만들기(미리보기용)
 #   python3 -I _tools/notice_kit.py draft   초안.json <저장소> <비번>     # 🧪 검수 칸에 올림(d/notice_draft.enc.json, 비번으로 잠금)
 #   python3 -I _tools/notice_kit.py publish <저장소> <비번> [--keep-old]  # 검수 칸 초안을 실제 전달사항(d/notice.html)으로 공개, 검수 칸 비움
+#   python3 -I _tools/notice_kit.py cand    후보.json <저장소> <비번>     # 5~6점 '후보' 한 줄만 남김
+#   python3 -I _tools/notice_kit.py drop    <저장소> <비번> <id>         # 초안·후보에서 빼기
 #   python3 -I _tools/notice_kit.py clear   <저장소>                      # 검수 칸 비우기
+# 초안·후보 JSON에는 score:{time,turn,ai,mkt,conf(각 0~2), force:'무조건 사유', why:{항목:이유}}를 넣음 → 주인장 칸에 점수·이유가 보임
 # 비번은 인자 대신 환경변수 OWNER_PIN으로 줘도 됨(GitHub Actions 비밀값용). 비번·평문 초안은 저장소에 절대 올리지 않음.
 #
 # 초안 JSON 칸: id·date·title / new(맨 위 검은 알림 줄, 선택) / cause[2줄] / k(헤드라인 묶음 제목) / hint /
@@ -90,6 +93,35 @@ def dec(j, pin):
     key = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=u(j['salt']), iterations=j['iter']).derive(pin.encode())
     return AESGCM(key).decrypt(u(j['iv']), u(j['ct']), None).decode()
 
+# ── 올릴지 정하는 점수(사용자 2026-11-01 확정): 5항목 × 0~2점 = 10점. 7+ 초안, 5~6 후보, 4 이하 타임라인만. 무조건(force)은 점수와 상관없이 초안
+RUBRIC = [('time', '시간 압박', '48시간 안 날짜=2 · 1주 안=1 · 없음=0'),
+          ('turn', '판이 바뀌나', '흐름 뒤집힘=2 · 세짐=1 · 반복=0'),
+          ('ai', 'AI 밸류체인 연결', '직접=2 · 유가·금리 거쳐=1 · 무관=0'),
+          ('mkt', '시장 충격', '지수·유가·금리 크게=2 · 일부 업종=1 · 없음=0'),
+          ('conf', '확인도', '1차·복수 매체=2 · 한 곳=1 · 미확인=0(보류)')]
+FORCE = ['시장 경고등 단계 상승', '반도체 −5%·나스닥 −3%·유가 ±8% 이상', '무력 충돌 개시·재개·해협 봉쇄', '반도체·AI 수출통제 신규·큰 변경']
+def grade(sc):
+    sc = sc or {}
+    tot = sum(int(sc.get(k, 0)) for k, _, _ in RUBRIC)
+    lv = '무조건' if sc.get('force') else ('초안' if tot >= 7 else ('후보' if tot >= 5 else '타임라인만'))
+    return tot, lv
+
+def load_bundle(repo, p):
+    f = os.path.join(repo, 'd', 'notice_draft.enc.json')
+    if not os.path.exists(f): return {'drafts': [], 'cands': []}
+    t = dec(json.load(open(f)), p)
+    try: b = json.loads(t)
+    except Exception: b = {'drafts': [{'id': 'old', 'title': '', 'html': t}], 'cands': []}
+    b.setdefault('drafts', []); b.setdefault('cands', []); return b
+
+def save_bundle(repo, p, b):
+    for x in b['drafts'] + b['cands']:
+        x['total'], x['level'] = grade(x.get('score'))
+    b['rubric'] = [[k, n, h] for k, n, h in RUBRIC]; b['force'] = FORCE
+    json.dump(enc(json.dumps(b, ensure_ascii=False), p), open(os.path.join(repo, 'd', 'notice_draft.enc.json'), 'w'), separators=(',', ':'))
+    # 잠그지 않는 건 개수와 시각뿐(제목·내용·점수는 잠금 안에만)
+    json.dump({'n': len(b['drafts']), 'c': len(b['cands']), 'at': kst()}, open(os.path.join(repo, 'd', 'notice_draft.json'), 'w'))
+
 def kst(): return (datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None) + datetime.timedelta(hours=9)).strftime('%m.%d %H:%M')
 
 def main(a):
@@ -97,25 +129,36 @@ def main(a):
     pin = lambda i: a[i] if len(a) > i and not a[i].startswith('--') else os.environ.get('OWNER_PIN', '')
     if cmd == 'render':
         d = json.load(open(a[1], encoding='utf-8')); open(a[2], 'w', encoding='utf-8').write(render(d, os.path.dirname(os.path.abspath(a[1]))))
-    elif cmd == 'draft':
+    elif cmd in ('draft', 'cand'):
+        # draft: 초안.json(배너 내용 + score) → 🧪 칸 '검수 대기' / cand: {id,title,date,score,note} → '후보' 한 줄
         d = json.load(open(a[1], encoding='utf-8')); repo = a[2]; p = pin(3)
         assert re.fullmatch(r'\d{4}', p or ''), '비번(4자리)이 필요합니다'
-        out = render(d, repo)
-        json.dump(enc(out, p), open(os.path.join(repo, 'd', 'notice_draft.enc.json'), 'w'), separators=(',', ':'))
-        # 잠그지 않는 건 '초안이 있다'는 표시와 시각뿐(제목·내용은 잠금 안에만)
-        json.dump({'n': 1, 'at': kst()}, open(os.path.join(repo, 'd', 'notice_draft.json'), 'w'))
-        print('🧪 검수 칸에 올림', len(out), 'bytes')
+        b = load_bundle(repo, p); key = 'drafts' if cmd == 'draft' else 'cands'
+        x = {'id': d['id'], 'title': d['title'], 'date': d.get('date', ''), 'at': kst(), 'score': d.get('score', {}), 'note': d.get('note', '')}
+        if cmd == 'draft': x['html'] = render(d, repo)
+        b['drafts'] = [y for y in b['drafts'] if y['id'] != d['id']]; b['cands'] = [y for y in b['cands'] if y['id'] != d['id']]
+        b[key].insert(0, x); b['cands'] = b['cands'][:8]
+        save_bundle(repo, p, b); t, lv = grade(x['score'])
+        print('🧪', '검수 대기' if cmd == 'draft' else '후보', x['title'], f'{t}/10 · {lv}')
     elif cmd == 'publish':
-        repo = a[1]; p = pin(2)
-        j = json.load(open(os.path.join(repo, 'd', 'notice_draft.enc.json')))
-        out = dec(j, p)
-        open(os.path.join(repo, 'd', 'notice.html'), 'w', encoding='utf-8').write(out)
-        main(['clear', repo]); print('📌 전달사항으로 공개함(d/notice.html)')
+        # publish <저장소> <비번> [id] — id를 안 주면 맨 위 초안
+        repo = a[1]; p = pin(2); want = a[3] if len(a) > 3 else ''
+        b = load_bundle(repo, p)
+        x = next((y for y in b['drafts'] if not want or y['id'] == want), None)
+        assert x, '공개할 초안이 없습니다'
+        open(os.path.join(repo, 'd', 'notice.html'), 'w', encoding='utf-8').write(x['html'])
+        b['drafts'] = [y for y in b['drafts'] if y is not x]
+        save_bundle(repo, p, b); print('📌 전달사항으로 공개함:', x['title'])
+    elif cmd == 'drop':
+        # drop <저장소> <비번> <id> — 초안·후보에서 빼기
+        repo = a[1]; p = pin(2); b = load_bundle(repo, p)
+        b['drafts'] = [y for y in b['drafts'] if y['id'] != a[3]]; b['cands'] = [y for y in b['cands'] if y['id'] != a[3]]
+        save_bundle(repo, p, b)
     elif cmd == 'clear':
         repo = a[1]
         f = os.path.join(repo, 'd', 'notice_draft.enc.json')
         if os.path.exists(f): os.remove(f)
-        json.dump({'n': 0, 'at': kst()}, open(os.path.join(repo, 'd', 'notice_draft.json'), 'w'))
+        json.dump({'n': 0, 'c': 0, 'at': kst()}, open(os.path.join(repo, 'd', 'notice_draft.json'), 'w'))
     else:
         print(__doc__ or open(__file__).read()[:900])
 
