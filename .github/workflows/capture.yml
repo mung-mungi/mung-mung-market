@@ -1,0 +1,42 @@
+# 캡처 담당(사용자 2026-11-01) — 웹페이지·PDF를 그림으로 찍어 'capture' 가지에 올림(사이트 본문에는 안 섞임)
+name: capture
+on:
+  workflow_dispatch:
+    inputs:
+      jobs:
+        description: '캡처 목록(JSON 배열)'
+        required: true
+      tag:
+        description: '묶음 이름(폴더명)'
+        required: false
+        default: 'run'
+permissions:
+  contents: write
+concurrency:
+  group: capture
+  cancel-in-progress: false
+jobs:
+  cap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: setup
+        run: |
+          sudo apt-get -qq update && sudo apt-get -qq install -y poppler-utils fonts-noto-cjk >/dev/null
+          pip install -q playwright
+          python3 -m playwright install --with-deps chromium >/dev/null
+      - name: capture
+        env:
+          CAP_JOBS: ${{ github.event.inputs.jobs }}
+        run: python3 _tools/capture.py "/tmp/cap/${{ github.event.inputs.tag }}"
+      - name: publish to capture branch
+        run: |
+          cd /tmp/cap
+          git init -q -b capture
+          git config user.name mung-mungi
+          git config user.email mung-mungi@users.noreply.github.com
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git add -A
+          git commit -qm "capture ${{ github.event.inputs.tag }}" || true
+          git push -q -f origin HEAD:capture
