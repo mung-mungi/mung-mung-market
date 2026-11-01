@@ -46,3 +46,10 @@ for _n, _mk, _c, _j in [('index.html', 'headui', 'headui.css', 'headui.js'), ('p
     if os.path.exists(_p):
         _o = open(_p, encoding='utf-8').read(); _a = h.inline_to_ref(_o, _mk, _c, _j)
         if _a != _o: open(_p, 'w', encoding='utf-8').write(_a); print('tidy', _n)
+
+# 페이지별 '쉽게 읽기'(사용자 2026-11-02)
+for _n in h.EASY:
+    _p = os.path.join(R, _n)
+    if os.path.exists(_p):
+        _o = open(_p, encoding='utf-8').read(); _a = h.tidy_easy(_o, _n)
+        if _a != _o: open(_p, 'w', encoding='utf-8').write(_a); print('tidy', _n)

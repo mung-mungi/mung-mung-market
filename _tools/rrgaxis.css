@@ -9,3 +9,8 @@
 .rx-leg .rx-ex{background:#fff;border:1px solid #ecdcbc;border-radius:10px;padding:7px 10px}
 .rx-leg b{color:#1d1a16}
 .rx-top{display:flex;justify-content:space-between;font:800 12.5px -apple-system,'Apple SD Gothic Neo',sans-serif;color:#5b5246;margin:2px 2px 5px}
+.mm-st-how .rx-leg p{display:block!important;font:500 13.5px/1.6 -apple-system,'Apple SD Gothic Neo',sans-serif!important;color:#3a352d!important;margin:0 0 6px!important}
+.mm-st-how .rx-leg p b{font:800 13.5px/1.6 -apple-system,'Apple SD Gothic Neo',sans-serif!important;color:#1d1a16!important}
+.mm-st-map svg .rx-axl{stroke:#1d1a16;stroke-width:1.6}
+.mm-st-map svg .rx-axt{font-size:11px;font-weight:800;fill:#1d1a16;paint-order:stroke;stroke:#fff;stroke-width:3px}
+.mm-st-map svg .rx-o{font-size:12px;font-weight:900;fill:#1d1a16;paint-order:stroke;stroke:#fff;stroke-width:3px}

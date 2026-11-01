@@ -754,3 +754,16 @@ def inline_to_ref(s, marker, css=None, js=None):
             ref = (core_ref(marker, css) if css and '<style' in m.group(0) else '') + (core_ref(marker, js) if js and '<script' in m.group(0) else '')
             return s[:m.start()] + ref + s[m.end():]
     return s
+
+
+# 페이지별 '쉽게 읽기' 덧입힘(사용자 2026-11-02): 옵션 온도계 기간구조(optterm) · 시장 경고등 업종 회전 지도 축 설명(rrgaxis)
+EASY = {'p-opt.html': 'optterm', 'p-lights.html': 'rrgaxis'}
+def tidy_easy(s, name):
+    mk = EASY.get(name)
+    if not mk:
+        return s
+    add = core_ref(mk, mk + '.css') + core_ref(mk, mk + '.js')
+    if add in s:  # 이미 최신 참조가 있으면 자리를 옮기지 않음(다시 입힐 때마다 바뀌지 않게)
+        return s
+    s = core_strip(s, mk)
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add

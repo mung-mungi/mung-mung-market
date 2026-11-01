@@ -17,3 +17,5 @@ svg .ott-3{fill:var(--dc2,#b08a2e)}
 .ott-now .ott-q{background:#fff;border:1px solid #ecdcbc;border-radius:10px;padding:7px 10px;font-size:13.5px;line-height:1.55}
 .ott-now li{line-height:1.6}
 .ott-now details.ott-q summary{list-style:none;cursor:pointer;font-size:13.5px}.ott-now details.ott-q summary::-webkit-details-marker{display:none}
+.ott-now details.ott-more{margin-top:6px}.ott-now details.ott-more>summary{list-style:none;cursor:pointer;font-size:13px;font-weight:800;color:#8a6a2c;padding:2px 0}.ott-now details.ott-more>summary::-webkit-details-marker{display:none}.ott-now details.ott-more[open]>summary{margin-bottom:6px}
+.ott-now .ott-read{font-size:13.5px;line-height:1.6;margin:0 0 8px}

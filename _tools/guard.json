@@ -27,7 +27,8 @@
   "mm-band": "경고등 바로가기·주제 구분띠",
   "mm-bd-steps": "채권 경고등 점수 단계 상자",
   "'chlog'": "설명서·경고 칩 전 페이지 연결",
-  "ltjump": "경고등 바로가기 연결"
+  "ltjump": "경고등 바로가기 연결",
+  "def tidy_easy": "옵션 온도계·업종 회전 지도 쉽게 읽기 연결"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -83,7 +84,8 @@
   "core_ref('names'",
   "def inline_to_ref",
   "'chlog'",
-  "ltjump"
+  "ltjump",
+  "def tidy_easy"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -109,5 +111,11 @@
  ],
  "_tools/bdnear.js": [
   "mm-bd-steps"
+ ],
+ "_tools/optterm.js": [
+  "ott-more"
+ ],
+ "_tools/rrgaxis.js": [
+  "mm-st-how"
  ]
 }
