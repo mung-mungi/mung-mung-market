@@ -1,0 +1,38 @@
+# 매일 점검(사용자 2026-11-01) — 한국 매일 08:37에 페이지 오류·무게·자료 신선도·게시 간격을 재서 'health' 가지에 올림. Claude 크레딧 없음
+# 사이트 본문(main)에는 아무것도 안 올리므로 사이트 다시 만들기(시간당 한도)를 쓰지 않음
+name: health
+on:
+  schedule:
+    - cron: '37 23 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: health
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 300
+      - name: setup
+        run: |
+          pip install -q playwright
+          python3 -m playwright install --with-deps chromium >/dev/null
+      - name: previous results
+        run: |
+          mkdir -p /tmp/health
+          if git fetch -q origin health 2>/dev/null; then git archive FETCH_HEAD | tar -x -C /tmp/health; fi
+      - name: check
+        run: python3 -I _tools/health_check.py . /tmp/health
+      - name: publish to health branch
+        run: |
+          cd /tmp/health
+          rm -rf .git; git init -q -b health
+          git config user.name 'github-actions[bot]'; git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git add -A; git commit -qm "매일 점검 $(TZ=Asia/Seoul date +%m.%d\ %H:%M)"
+          git push -q -f origin health
