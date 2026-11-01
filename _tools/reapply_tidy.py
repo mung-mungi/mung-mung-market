@@ -18,6 +18,11 @@ for f in h.UNI_PAGES:
     if os.path.exists(p):
         o = open(p, encoding='utf-8').read(); a = h.tidy_uni(o)
         if a != o: open(p, 'w', encoding='utf-8').write(a)
+# 종목 차트 자료를 페이지 밖 예비본으로(2026-11-01)
+_pt2 = os.path.join(R, 'p-trend.html')
+if os.path.exists(_pt2):
+    _o = open(_pt2, encoding='utf-8').read(); _a = h.tidy_trend(_o, R)
+    if _a != _o: open(_pt2, 'w', encoding='utf-8').write(_a); print('tidy trend')
 # 종목 차트 등 page_tidy 정리도 다시(충돌 뒤 빠지지 않게, 2026-10-29)
 try:
     import page_tidy as _pt; _pt.run(R)

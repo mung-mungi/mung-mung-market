@@ -1,3 +1,4 @@
+import json
 import os
 import re
 # 첫 화면 정리(사용자 2026-10-29 지시): '오늘 한눈에' 제목·날짜 칩 빼기, 묶음 제목 줄이기, 펼친 설명 글꼴을 본문과 맞추고 문장마다 줄바꿈
@@ -534,6 +535,40 @@ def tidy_hero(s):
         else:
             s = re.sub(r'<script data-%s src="_tools/%s\?v=\w+"></script>' % (m, re.escape(n)), lambda x: ref, s)
     return s
+
+
+# 종목 차트 자료(사용자 2026-11-01 '열 때 무거움'): 페이지 안에 통째로 넣던 546KB 자료를 d/trend_embed.json(예비본)으로 빼고,
+# 열 때는 5분 갱신 자료(live/trend.json) 하나만 받음. 그게 없거나 예비본보다 오래되면 그때만 예비본을 받음. 5분 안에 다시 열면 휴대폰에 남은 것을 씀
+TREND_STUB_MARK = 'd/trend_embed.json'
+def tidy_trend(s, root=None):
+    i = s.find('const DATA = ')
+    if i < 0: return s
+    j = s.find('\n', i); line = s[i:j]
+    if TREND_STUB_MARK in line: return s
+    body = line[len('const DATA = '):].rstrip()
+    if body.endswith(';'): body = body[:-1]
+    if body.startswith('(function(d){'):
+        k = body.find('})(')
+        if k < 0 or not body.endswith(')'): return s
+        js = body[k + 3:-1]
+    else:
+        js = body
+    try:
+        D = json.loads(js.replace('<\\/', '</'))
+    except Exception:
+        return s
+    import hashlib
+    raw = json.dumps(D, ensure_ascii=False, separators=(',', ':'))
+    v = hashlib.md5(raw.encode()).hexdigest()[:8]
+    if root:
+        os.makedirs(os.path.join(root, 'd'), exist_ok=True)
+        open(os.path.join(root, 'd', 'trend_embed.json'), 'w', encoding='utf-8').write(raw)
+    meta = json.dumps({'asof': D.get('asof', ''), 'at': D.get('at', ''), 'label': D.get('label', '')}, ensure_ascii=False)
+    stub = ("const DATA = (function(m){function g(u){try{var x=new XMLHttpRequest();x.open('GET',u,false);x.send();if(x.status===200)return JSON.parse(x.responseText)}catch(e){}return null}"
+            "var j=g('live/trend.json?t='+Math.floor(Date.now()/300000));"
+            "if(j&&j.P&&j.P.length&&j.asof>=m.asof&&(j.at||'')>(m.at||'')){window.__LIVE_TREND__=j.label;return j}"
+            "var d=g('" + TREND_STUB_MARK + "?v=" + v + "');if(d&&d.P)return d;if(j&&j.P)return j;return {asof:m.asof,label:m.label,P:[],H:{}}})(" + meta.replace('</', '<\\/') + ");")
+    return s[:i] + stub + s[j:]
 
 
 # 휴대폰 버벅임 줄이기 — _tools/perf.js를 <head> 맨 앞에(사용자 2026-10-29)
