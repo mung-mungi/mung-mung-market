@@ -29,7 +29,7 @@ p.addEventListener('touchend',function(e){e.stopPropagation()},{passive:true});
 p.addEventListener('click',function(e){e.stopPropagation();if(moved){moved=0;return}B.classList.contains('mmd-hide')?show():hide()});
 ['touchstart','click'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest('.mmd,#mm-fab,.mmd-sheet')&&!e.target.closest('#mm-pull'))show()},{passive:true})});
 var ly=scrollY,up=0,dn=0,sq=0;addEventListener('scroll',function(){if(sq)return;sq=1;requestAnimationFrame(function(){sq=0;var y=scrollY;
-if(y<ly){dn=0;up+=ly-y;if(up>160||y<40)show()}else{up=0;dn+=y-ly;if(dn>14&&y>60&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}}ly=y})},{passive:true}); /* 반응 속도(사용자 2026-11-01): 스크롤 1픽셀마다가 아니라 화면 그릴 때 한 번 */
+if(y<ly){dn=0;up+=ly-y;if(up>48||y<40)show()}else{up=0;dn+=y-ly;if(dn>14&&y>60&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}}ly=y})},{passive:true}); /* 반응 속도(사용자 2026-11-01): 스크롤 1픽셀마다가 아니라 화면 그릴 때 한 번 */
 // 아이패드 트랙패드·마우스(사용자 2026-11-01): 커서를 화면 아래 끝 가까이 내리면 숨었던 아래 메뉴가 올라옴(아이패드 독처럼)
 addEventListener('pointermove',function(e){if(e.pointerType==='mouse'&&e.clientY>innerHeight-36&&B.classList.contains('mmd-hide'))show()},{passive:true});
 // 독을 아래로 쓸어내리면 바로 숨김(위로 올리는 동작의 반대)

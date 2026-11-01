@@ -2,8 +2,8 @@
   // 홈 정리 — 사용자 2026-10-29 지시
   // ① '매일 아침 핵심' 버튼 순서(자주 쓰는 순) ② 경고등·차트 길잡이는 맨 위 가로 슬림 2줄 ③ 카드는 아래 버튼 없이 제목 옆 › (여백은 조금)
   // 사용자 2026-11-01: 주요 뉴스(정책·지정학)·AI·테크 뉴스를 '매일 아침 핵심'으로(옵션 온도계 자리), 옵션 온도계는 '흐름 확인'으로
-  var ORDER = ['p-brief', 'p-prices', 'p-earn', 'p-cal', 'p-econ', 'p-bond', 'p-policy', 'p-tech', 'p-targets'];
-  var TO_CORE = ['p-policy', 'p-tech'], TO_FLOW = ['p-opt'];
+  var ORDER = ['p-brief', 'p-prices', 'p-earn', 'p-cal', 'p-econ', 'p-bond', 'p-policy', 'p-tech'];
+  var TO_CORE = ['p-policy', 'p-tech'], TO_FLOW = ['p-opt', 'p-targets']; // 사용자 2026-11-01 19:04: 목표주가도 '흐름 확인'으로
   function key(a){ var m = (a.getAttribute('href') || '').match(/(p-[a-z]+)\.html/); return m ? m[1] : ''; }
   function bar(item, label, mid){
     var a = document.createElement('a'); a.className = 'mm-bar'; a.href = item.getAttribute('href');
@@ -57,7 +57,7 @@
         cnt(list, moved); cnt(flow, -moved);
       }
       [].slice.call(list.querySelectorAll(':scope > a.item')).sort(function(a, b){ var i = ORDER.indexOf(key(a)), j = ORDER.indexOf(key(b)); return (i < 0 ? 99 : i) - (j < 0 ? 99 : j); }).forEach(function(a){ list.appendChild(a); });
-      var SHORT = {'p-cal': '실적 일정', 'p-opt': '옵션 온도계', 'p-neo': '네오클라우드', 'p-supply': '한국·대만 실적', 'p-qtr': '분기 실적 추이', 'p-insider': '내부자·기관', 'p-capex': '설비투자', 'p-econ': '경제지표', 'p-policy': '주요 뉴스', 'p-tech': 'AI·테크 뉴스'};
+      var SHORT = {'p-cal': '실적 일정', 'p-opt': '옵션 온도계', 'p-neo': '네오클라우드', 'p-supply': '한국·대만 실적', 'p-qtr': '분기 실적 추이', 'p-insider': '내부자·기관', 'p-capex': '설비투자', 'p-econ': '경제지표', 'p-policy': '주요 뉴스', 'p-tech': 'AI·테크 뉴스', 'p-targets': '목표주가'};
       document.querySelectorAll('a.item .ttl').forEach(function(t){ var k = key(t.closest('a.item')); if (SHORT[k]) t.textContent = SHORT[k]; });
       document.documentElement.classList.add('mm-compact');
     } finally { busy = false; }
