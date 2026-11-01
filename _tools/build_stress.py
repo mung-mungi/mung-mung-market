@@ -34,18 +34,30 @@ def tryit(fn, id_):
         errs.append(id_ + ': ' + str(e)[:80])
         if id_ in oldi: items.append(oldi[id_])
 # FRED 묶음
-def fred(ids):
-    t = get('https://fred.stlouisfed.org/graph/fredgraph.csv?id=' + ','.join(ids) + '&cosd=' + START)
-    rows = list(csv.DictReader(io.StringIO(t))); out = {i: [] for i in ids}
-    for r in rows:
-        d = r.get('observation_date') or r.get('DATE')
-        for i in ids:
-            v = r.get(i)
-            if v not in (None, '', '.'): out[i].append((d, float(v)))
-    return out
+def fred1(i):
+    last = None
+    for u in ('https://fred.stlouisfed.org/graph/fredgraph.csv?id=%s' % i, 'https://fred.stlouisfed.org/data/%s.txt' % i, 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=%s&cosd=%s' % (i, START)):
+        for _ in range(2):
+            try:
+                t = get(u); out = []
+                if u.endswith('.txt'):
+                    for ln in t.splitlines():
+                        a = ln.split()
+                        if len(a) == 2 and a[0][:2] in ('19', '20') and a[1] not in ('.',):
+                            try: out.append((a[0], float(a[1])))
+                            except Exception: pass
+                else:
+                    for r in csv.DictReader(io.StringIO(t)):
+                        d = r.get('observation_date') or r.get('DATE'); v = r.get(i)
+                        if d and v not in (None, '', '.'): out.append((d, float(v)))
+                if out: return out
+            except Exception as e: last = e
+            subprocess.run(['sleep', '3'])
+    raise RuntimeError('FRED %s 실패 %s' % (i, str(last)[:40]))
 F = {}
-try: F = fred(['NFCI', 'ANFCI', 'NFCIRISK', 'NFCICREDIT', 'NFCILEVERAGE', 'STLFSI4', 'KCFSI'])
-except Exception as e: errs.append('FRED: ' + str(e)[:80])
+for _i in ['NFCI', 'ANFCI', 'NFCIRISK', 'NFCICREDIT', 'NFCILEVERAGE', 'STLFSI4', 'KCFSI']:
+    try: F[_i] = fred1(_i)
+    except Exception as e: errs.append(str(e)[:90])
 z = lambda v: '평균보다 긴장' if v > 0.5 else '평균보다 약간 긴장' if v > 0 else '평균보다 느슨' if v > -0.5 else '평균보다 많이 느슨'
 tryit(lambda: pack('nfci', '금융여건지수(NFCI)', '시카고 연은', 'official', '매주', F['NFCI'], '', z), 'nfci')
 tryit(lambda: pack('anfci', '조정 금융여건지수(ANFCI)', '시카고 연은', 'official', '매주', F['ANFCI'], '', z), 'anfci')
@@ -75,7 +87,13 @@ def vix():
     return pack('vix', 'VIX(주식 변동성)', 'CBOE', 'sentiment', '매일', ser, '', lambda v: '불안 큼' if v >= 25 else '불안 커짐' if v >= 20 else '보통' if v >= 15 else '차분')
 tryit(vix, 'vix')
 def move():
-    j = json.loads(get('https://query1.finance.yahoo.com/v8/finance/chart/%5EMOVE?range=10y&interval=1d'))['chart']['result'][0]
+    j = None
+    for rg in ('10y', '5y', '2y'):
+        for host in ('query1', 'query2'):
+            try: j = json.loads(get('https://%s.finance.yahoo.com/v8/finance/chart/%%5EMOVE?range=%s&interval=1d' % (host, rg)))['chart']['result'][0]; break
+            except Exception: subprocess.run(['sleep', '2'])
+        if j: break
+    if not j: raise RuntimeError('MOVE 실패')
     ser = [(dt.datetime.fromtimestamp(a, dt.timezone.utc).date().isoformat(), c) for a, c in zip(j['timestamp'], j['indicators']['quote'][0]['close']) if c]
     return pack('move', 'MOVE(채권 변동성)', 'ICE BofA', 'sentiment', '매일', ser, '', lambda v: '불안 큼' if v >= 120 else '불안 커짐' if v >= 100 else '보통' if v >= 80 else '차분', nd=1)
 tryit(move, 'move')
