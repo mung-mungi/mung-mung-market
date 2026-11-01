@@ -786,6 +786,9 @@ def inline_to_ref(s, marker, css=None, js=None):
 # 쉽게 읽기·보는 법 통일 덧입힘(2026-11-02): 페이지 → 부품 이름 목록(각각 _tools/<이름>.css·.js)
 EASY = {'p-opt.html': ['optterm', 'btscore'], 'p-lights.html': ['rrgaxis'], 'p-bond.html': ['btscore', 'bdopt'],
         'p-brief.html': ['fngbar'], 'index.html': ['todaybtn'], 'p-policy.html': ['chipfold'], 'p-tech.html': ['chipfold']}
+# 분류·필터 알약 줄 통일을 사이트 전체로(사용자 2026-11-02) — 넘치는 필터 줄이 있는 페이지만(목표주가 위쪽 고정 목차는 제외)
+for _p in ['p-prices.html', 'p-trend.html', 'p-short.html', 'p-targets.html', 'p-earn.html', 'p-qtr.html']:
+    EASY[_p] = (EASY.get(_p) or []) + ['chipfold']
 # 단계 옆 '왜 이 단계?' 한 줄(사용자 2026-11-02) — 단계는 점수 그대로, 코멘트로 풀어 줌
 EASY['p-opt.html'] = EASY['p-opt.html'] + ['stwhy']; EASY['p-bond.html'] = EASY['p-bond.html'] + ['stwhy']
 def tidy_easy(s, name):

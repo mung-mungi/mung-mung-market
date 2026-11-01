@@ -1,4 +1,4 @@
-(function(){var O=['p-lights','p-brief','p-prices','p-trend','p-earn','p-cal','p-econ','p-policy','p-tech','p-targets','p-opt','p-bond']; /* 사용자 2026-11-01: 주요 뉴스·AI·테크 뉴스를 옵션 온도계 자리로 / 2026-11-02: 채권·금리 → '채권 온도계', 옵션 온도계 옆으로 */
+(function(){var O=['p-lights','p-brief','p-prices','p-trend','p-earn','p-cal','p-policy','p-tech','p-econ','p-targets','p-opt','p-bond']; /* 사용자 2026-11-01: 주요 뉴스·AI·테크 뉴스를 옵션 온도계 자리로 / 2026-11-02: 채권·금리 → '채권 온도계', 옵션 온도계 옆으로 */
 var NM={'p-bond':'채권 온도계'};
 function key(a){var m=(a.getAttribute('href')||'').match(/(p-[a-z]+)\.html/);return m?m[1]:''}
 function fx(){document.querySelectorAll('nav.ib').forEach(function(n){n.querySelectorAll(':scope>a').forEach(function(a){var k=NM[key(a)];if(k&&a.textContent!==k)a.textContent=k});if(n.dataset.ord)return;var as=[].slice.call(n.querySelectorAll(':scope>a')).filter(function(a){return O.indexOf(key(a))>=0});if(as.length<3)return;

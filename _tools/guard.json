@@ -40,7 +40,9 @@
   "'bdopt'": "채권 온도계 덧입힘 연결",
   "mm-thc": "메인 온도계 두 칸 단계 칩",
   "def judge": "금리 움직인 이유 판정(피난형 등)",
-  "bond_why": "경고등 점수에 금리 움직인 이유 연결"
+  "bond_why": "경고등 점수에 금리 움직인 이유 연결",
+  "mx-sub": "위(상위)·아래(하위) 알약 줄 모양 구별",
+  "'p-tech', 'p-econ'": "메인: 경제지표를 AI·테크 뉴스 뒤로"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -57,7 +59,8 @@
  ],
  "_tools/home_order.js": [
   "'p-targets']",
-  "mm-thc"
+  "mm-thc",
+  "'p-tech', 'p-econ'"
  ],
  "_tools/herofix.js": [
   "rel("
@@ -173,7 +176,8 @@
   "mm-bo-rows"
  ],
  "_tools/chipfold.js": [
-  "mx-more"
+  "mx-more",
+  "mx-sub"
  ],
  "_tools/bond_why.py": [
   "def judge"

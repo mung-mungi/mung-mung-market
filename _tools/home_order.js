@@ -2,7 +2,7 @@
   // 홈 정리 — 사용자 2026-10-29 지시
   // ① '매일 아침 핵심' 버튼 순서(자주 쓰는 순) ② 경고등·차트 길잡이는 맨 위 가로 슬림 2줄 ③ 카드는 아래 버튼 없이 제목 옆 › (여백은 조금)
   // 사용자 2026-11-01: 주요 뉴스(정책·지정학)·AI·테크 뉴스를 '매일 아침 핵심'으로(옵션 온도계 자리), 옵션 온도계는 '흐름 확인'으로
-  var ORDER = ['p-brief', 'p-prices', 'p-earn', 'p-cal', 'p-econ', 'p-policy', 'p-tech']; // 2026-11-02: 채권 온도계는 '흐름 확인'으로
+  var ORDER = ['p-brief', 'p-prices', 'p-earn', 'p-cal', 'p-policy', 'p-tech', 'p-econ']; // 2026-11-02: 경제지표는 AI·테크 뉴스 뒤(짝 맞춤) // 2026-11-02: 채권 온도계는 '흐름 확인'으로
   var TO_CORE = ['p-policy', 'p-tech'], TO_FLOW = ['p-opt', 'p-bond', 'p-targets']; // 사용자 2026-11-01 19:04: 목표주가도 '흐름 확인'으로
   function key(a){ var m = (a.getAttribute('href') || '').match(/(p-[a-z]+)\.html/); return m ? m[1] : ''; }
   function bar(item, label, mid){

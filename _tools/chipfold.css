@@ -1,13 +1,31 @@
-/* 분류 알약 줄: 한 줄 밀기 + 숫자 배지는 오른쪽 위 + 오른쪽 흐림 + '전체 n ▾' 펼치기(사용자 2026-11-02 확정 시안) */
-html body .mx-wrap{position:relative}
-html body .mx-wrap>#catf{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:6px!important;padding:9px 72px 4px 2px!important;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 104px),transparent calc(100% - 60px))!important;mask-image:linear-gradient(90deg,#000 calc(100% - 104px),transparent calc(100% - 60px))!important}
-html body .mx-wrap>#catf::-webkit-scrollbar{display:none}
-html body .mx-wrap>#catf button{position:relative;overflow:visible!important;flex:none;padding:5px 14px 5px 11px!important;gap:5px!important}
-html body .mx-wrap>#catf .tlx-cn{position:absolute;top:-9px;right:-9px;margin:0!important;padding:0 5px!important;min-width:18px;text-align:center;font-size:10.5px!important;font-weight:800!important;line-height:17px!important;border-radius:999px;box-shadow:0 0 0 2px #fff;background:#d9480f!important;color:#fff!important;z-index:1}
-html body .mx-wrap>#catf button[aria-pressed=true] .tlx-cn{background:#ff7a45!important}
+/* 분류·필터 알약 줄: 한 줄 밀기 + 숫자 배지는 오른쪽 위 + 오른쪽 흐림 + '전체 n ▾' 펼치기(사용자 2026-11-02 확정 → 사이트 전체) — 대상 줄에 .mx-row(chipfold.js) · :not(#mx-z)는 페이지의 #id 규칙을 이기기 위한 특이도 */
+html body .mx-wrap{position:relative;min-width:0;max-width:100%;flex:1 1 auto}
+html body .mx-wrap>.mx-row:not(#mx-z){display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:6px!important;padding:9px 72px 4px 2px!important;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 104px),transparent calc(100% - 60px))!important;mask-image:linear-gradient(90deg,#000 calc(100% - 104px),transparent calc(100% - 60px))!important}
+html body .mx-wrap>.mx-row:not(#mx-z)::-webkit-scrollbar{display:none}
+html body .mx-wrap>.mx-row:not(#mx-z)>button,html body .mx-wrap>.mx-row:not(#mx-z)>a{position:relative;overflow:visible!important;flex:none;padding:5px 14px 5px 11px!important;gap:5px!important;margin:0!important}
+html body .mx-wrap>.mx-row:not(#mx-z) .tlx-cn{position:absolute;top:-9px;right:-9px;margin:0!important;padding:0 5px!important;min-width:18px;text-align:center;font-size:10.5px!important;font-weight:800!important;line-height:17px!important;border-radius:999px;box-shadow:0 0 0 2px #fff;background:#d9480f!important;color:#fff!important;z-index:1}
+html body .mx-wrap>.mx-row:not(#mx-z) .tlx-cn:empty{display:none!important}
+html body .mx-wrap>.mx-row:not(#mx-z) button[aria-pressed=true] .tlx-cn{background:#ff7a45!important}
 html body .mx-more{position:absolute;right:0;top:9px;z-index:3;font:800 13px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:9px 10px;border-radius:999px;border:1px solid #e3cf9f;background:#fffaf0;color:#8a5a00;box-shadow:0 2px 0 #ecd6a6;cursor:pointer}
 html body .mx-more:active{transform:translateY(1px);box-shadow:none}
-html body .mx-wrap.mx-open>#catf{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;row-gap:12px!important;overflow:visible!important;-webkit-mask-image:none!important;mask-image:none!important;padding:9px 2px 4px!important}
-html body .mx-wrap.mx-open>#catf button{justify-content:center;border-radius:12px!important;font-size:13.5px!important;padding:7px 4px!important;min-width:0;white-space:nowrap}
+html body .mx-wrap.mx-open>.mx-row:not(#mx-z){display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;row-gap:12px!important;overflow:visible!important;-webkit-mask-image:none!important;mask-image:none!important;padding:9px 2px 4px!important}
+html body .mx-wrap.mx-open>.mx-row:not(#mx-z)>button,html body .mx-wrap.mx-open>.mx-row:not(#mx-z)>a{justify-content:center;text-align:center;border-radius:12px!important;font-size:13.5px!important;padding:7px 4px!important;min-width:0;white-space:normal!important;line-height:1.25!important;word-break:keep-all}
+/* 15개 이상이면 펼친 칸 안에서만 스크롤(페이지가 길어지지 않게) */
+html body .mx-wrap.mx-open.mx-long>.mx-row:not(#mx-z){max-height:300px;overflow-y:auto!important;overscroll-behavior:contain;padding-top:11px!important}
 html body .mx-wrap.mx-open .mx-more{position:static;display:block;margin:8px 0 0 auto}
-html body .mx-wrap>#catf button i{flex:none}
+html body .mx-wrap>.mx-row:not(#mx-z) button i{flex:none}
+/* 화면 폭 안에 다 들어가는 짧은 줄: 흐림·'전체' 없음 */
+html body .mx-wrap.mx-fit:not(.mx-open)>.mx-row:not(#mx-z){padding-right:2px!important;-webkit-mask-image:none!important;mask-image:none!important}
+html body .mx-wrap.mx-fit:not(.mx-open)>.mx-more{display:none!important}
+/* 위·아래 알약 줄 구별(사용자 2026-11-02 "위가 상위, 아래가 하위인데 같은 양식이라 구분이 안 감")
+   상위 줄 = 그림자 있는 알약(그대로) · 하위 줄 = 회색 홈 안에서 고른 칸만 하얗게 뜨는 탭(시세 보드 보기 전환과 같은 모양), 조금 작게 */
+html body #stf.pg-ctrl{display:inline-flex!important;flex-wrap:nowrap!important;gap:2px!important;margin:6px 0 0 2px!important;padding:3px!important;background:#ece8df!important;border-radius:12px!important;border:0!important;box-shadow:inset 0 1px 2px rgba(0,0,0,.06)!important;max-width:100%;overflow-x:auto}
+html body #stf.pg-ctrl::before{content:'상태';align-self:center;font:700 12px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#8a857a;padding:0 6px 0 7px}
+html body #stf.pg-ctrl>button{background:transparent!important;border:0!important;box-shadow:none!important;color:#5f5a50!important;font:700 13.5px/1 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:7px 12px!important;border-radius:9px!important;min-height:0!important}
+html body #stf.pg-ctrl>button[aria-pressed=true]{background:#fff!important;color:#1f1c17!important;box-shadow:0 1px 3px rgba(0,0,0,.14)!important}
+html body .mx-wrap.mx-sub{margin-top:2px}
+html body .mx-wrap.mx-sub>.mx-row:not(#mx-z){background:#f1eee7;border-radius:12px;padding:7px 72px 7px 7px!important;gap:4px!important}
+html body .mx-wrap.mx-sub>.mx-row:not(#mx-z)>button{background:transparent!important;border:0!important;box-shadow:none!important;color:#5f5a50!important;font-size:13px!important;font-weight:700!important;padding:6px 10px!important;border-radius:9px!important}
+html body .mx-wrap.mx-sub>.mx-row:not(#mx-z)>button[aria-pressed=true]{background:#fff!important;color:#1f1c17!important;box-shadow:0 1px 3px rgba(0,0,0,.14)!important}
+html body .mx-wrap.mx-sub.mx-open>.mx-row:not(#mx-z){padding:7px!important}
+html body .mx-wrap.mx-sub>.mx-more{top:5px}
