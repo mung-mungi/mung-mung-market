@@ -327,7 +327,7 @@ function add(){(document.body||document.documentElement).appendChild(d);var v=d.
 if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
 d.addEventListener('click',close);setTimeout(close,6500)})();
-</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="멍뭉 터미널 · AI 밸류체인 레이더"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset=utf8><script data-ver="202611011359">(function(){var me="202611011359";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><style data-vt>
+</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="멍뭉 터미널 · AI 밸류체인 레이더"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset=utf8><script data-ver="202611011524">(function(){var me="202611011524";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><style data-vt>
 /* 페이지 넘길 때 아이폰 기본 앱처럼 옆으로 밀려 들어오는 전환(지원하는 브라우저만, 아니면 그냥 바로 넘어감) */
 @view-transition{navigation:auto}
 ::view-transition-group(root){animation-duration:.34s;animation-timing-function:cubic-bezier(.22,.8,.24,1)}
@@ -1088,6 +1088,23 @@ fetch('d/notice.html?t='+Date.now(),{cache:'no-store'}).then(function(r){return 
 .mm-own-body .own-so{font-size:13.5px;line-height:1.55;color:#8a8172;border-top:1px dashed #e6d7b8;padding-top:7px;margin-top:4px}
 .mm-own-body .own-so a{color:#3e556a;text-decoration:underline;text-underline-offset:2px}
 .mm-own-body .own-end{font-size:12.5px;color:#a39a8a;text-align:center;margin-top:6px}
+.mm-own-body .own-col{background:#fffdf8;border:1px solid #e6d7b8;border-left:5px solid #1d1a16;border-radius:14px;box-shadow:0 3px 0 #efe4cc;padding:13px 13px 10px;margin:0 0 12px}
+.mm-own-body .own-col-chip{display:inline-block;font-size:12.5px;font-weight:800;color:#fff;background:#1d1a16;border-radius:999px;padding:3px 10px}
+.mm-own-body .own-col-chip+.own-col-chip{background:#fbf1dc;color:#8a5a00;border:1px solid #e8cf9c;margin-left:4px}
+.mm-own-body .own-col h3{font-size:20px;font-weight:900;line-height:1.38;margin:9px 0 8px;color:#1d1a16}
+.mm-own-body .own-col-txt{position:relative;max-height:206px;overflow:hidden}
+.mm-own-body .own-col-txt::after{content:"";position:absolute;left:0;right:0;bottom:0;height:52px;background:linear-gradient(rgba(255,253,248,0),#fffdf8);pointer-events:none}
+.mm-own-body .own-col.own-col-open .own-col-txt{max-height:none}
+.mm-own-body .own-col.own-col-open .own-col-txt::after{display:none}
+.mm-own-body .own-col-txt p{font-size:15.5px;line-height:1.65;color:#2e2a24;margin:0 0 2px}
+.mm-own-body .own-col-txt h4{font-size:17px;font-weight:900;color:#1d1a16;margin:16px 0 5px}
+.mm-own-body .own-col-txt b{color:#b03d20}
+.mm-own-body .own-col-bear{background:#fff4f2;border:1px solid #f1d2cc;border-radius:12px;padding:9px 12px;margin:6px 0 4px}
+.mm-own-body .own-col-bear p{font-size:14.5px;margin:0 0 6px}
+.mm-own-body .own-col-bear p:last-child{margin:0}
+.mm-own-body .own-col-one{background:#fff6d6;border:1px solid #efd98c;border-radius:12px;padding:10px 12px;margin:14px 0 4px;font-size:15.5px;font-weight:800;line-height:1.55}
+.mm-own-body .own-col-more{display:block;margin:10px auto 2px;font-size:14px;font-weight:800;color:#5b5246;background:#f3eee4;border:1px solid #e1d6c1;border-radius:999px;padding:7px 16px;box-shadow:0 2px 0 #e4dccb;text-align:center;width:max-content;cursor:pointer}
+.mm-own-body .own-col-more:active{transform:translateY(1px);box-shadow:none}
 </style><script data-owner>// 메인 맨 아래 '주인장 자료'(사용자 2026-11-01) — 비번(4자리)으로 여는 개인 검토함. 내용은 d/owner.enc.json(암호문)만 올라가 있고,
 // 브라우저에서 비번으로 풀어 보여 줌. 주인장이 보고 골라서 전달사항 등으로 올리는 용도.
 (function(){try{
@@ -1116,7 +1133,9 @@ function mount(){
  function show(html){var w=document.createElement('div');w.innerHTML=html;var src=w.querySelector('#mm-own-src');
   body.innerHTML=src?src.innerHTML:html;c.className='mm-own open unl';
   hd.querySelector('i').textContent='🔓';hd.querySelector('small').textContent=(src&&src.getAttribute('data-date')?src.getAttribute('data-date')+' 정리 · ':'')+'보고 골라서 올립니다';hd.querySelector('em').textContent='잠그기';
-  body.querySelectorAll('.own-card .own-hd').forEach(function(h){h.setAttribute('role','button');h.onclick=function(){h.parentNode.classList.toggle('own-on')}})}
+  body.querySelectorAll('.own-card .own-hd').forEach(function(h){h.setAttribute('role','button');h.onclick=function(){h.parentNode.classList.toggle('own-on')}});
+  body.querySelectorAll('.own-col').forEach(function(col){var m=col.querySelector('.own-col-more');if(!m)return;m.setAttribute('role','button');
+   m.onclick=function(){var o=col.classList.toggle('own-col-open');m.textContent=o?'▲ 칼럼 접기':'▼ 칼럼 전체 펼치기';if(!o)col.scrollIntoView({block:'start',behavior:'smooth'})}})}
  function lock(){ss('');body.innerHTML='';c.className='mm-own';hd.querySelector('i').textContent='🔒';hd.querySelector('small').textContent='비밀번호로 열립니다';hd.querySelector('em').textContent='열기 ›';inp.value='';paint()}
  function tryPin(p,quiet){msg.textContent='여는 중…';return dec(p).then(function(h){ss(p);msg.textContent='';show(h)}).catch(function(e){
    if(quiet){ss('');msg.textContent='';return}

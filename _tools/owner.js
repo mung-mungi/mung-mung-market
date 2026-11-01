@@ -26,7 +26,9 @@ function mount(){
  function show(html){var w=document.createElement('div');w.innerHTML=html;var src=w.querySelector('#mm-own-src');
   body.innerHTML=src?src.innerHTML:html;c.className='mm-own open unl';
   hd.querySelector('i').textContent='🔓';hd.querySelector('small').textContent=(src&&src.getAttribute('data-date')?src.getAttribute('data-date')+' 정리 · ':'')+'보고 골라서 올립니다';hd.querySelector('em').textContent='잠그기';
-  body.querySelectorAll('.own-card .own-hd').forEach(function(h){h.setAttribute('role','button');h.onclick=function(){h.parentNode.classList.toggle('own-on')}})}
+  body.querySelectorAll('.own-card .own-hd').forEach(function(h){h.setAttribute('role','button');h.onclick=function(){h.parentNode.classList.toggle('own-on')}});
+  body.querySelectorAll('.own-col').forEach(function(col){var m=col.querySelector('.own-col-more');if(!m)return;m.setAttribute('role','button');
+   m.onclick=function(){var o=col.classList.toggle('own-col-open');m.textContent=o?'▲ 칼럼 접기':'▼ 칼럼 전체 펼치기';if(!o)col.scrollIntoView({block:'start',behavior:'smooth'})}})}
  function lock(){ss('');body.innerHTML='';c.className='mm-own';hd.querySelector('i').textContent='🔒';hd.querySelector('small').textContent='비밀번호로 열립니다';hd.querySelector('em').textContent='열기 ›';inp.value='';paint()}
  function tryPin(p,quiet){msg.textContent='여는 중…';return dec(p).then(function(h){ss(p);msg.textContent='';show(h)}).catch(function(e){
    if(quiet){ss('');msg.textContent='';return}

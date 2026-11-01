@@ -40,3 +40,20 @@
 .mm-own-body .own-so{font-size:13.5px;line-height:1.55;color:#8a8172;border-top:1px dashed #e6d7b8;padding-top:7px;margin-top:4px}
 .mm-own-body .own-so a{color:#3e556a;text-decoration:underline;text-underline-offset:2px}
 .mm-own-body .own-end{font-size:12.5px;color:#a39a8a;text-align:center;margin-top:6px}
+.mm-own-body .own-col{background:#fffdf8;border:1px solid #e6d7b8;border-left:5px solid #1d1a16;border-radius:14px;box-shadow:0 3px 0 #efe4cc;padding:13px 13px 10px;margin:0 0 12px}
+.mm-own-body .own-col-chip{display:inline-block;font-size:12.5px;font-weight:800;color:#fff;background:#1d1a16;border-radius:999px;padding:3px 10px}
+.mm-own-body .own-col-chip+.own-col-chip{background:#fbf1dc;color:#8a5a00;border:1px solid #e8cf9c;margin-left:4px}
+.mm-own-body .own-col h3{font-size:20px;font-weight:900;line-height:1.38;margin:9px 0 8px;color:#1d1a16}
+.mm-own-body .own-col-txt{position:relative;max-height:206px;overflow:hidden}
+.mm-own-body .own-col-txt::after{content:"";position:absolute;left:0;right:0;bottom:0;height:52px;background:linear-gradient(rgba(255,253,248,0),#fffdf8);pointer-events:none}
+.mm-own-body .own-col.own-col-open .own-col-txt{max-height:none}
+.mm-own-body .own-col.own-col-open .own-col-txt::after{display:none}
+.mm-own-body .own-col-txt p{font-size:15.5px;line-height:1.65;color:#2e2a24;margin:0 0 2px}
+.mm-own-body .own-col-txt h4{font-size:17px;font-weight:900;color:#1d1a16;margin:16px 0 5px}
+.mm-own-body .own-col-txt b{color:#b03d20}
+.mm-own-body .own-col-bear{background:#fff4f2;border:1px solid #f1d2cc;border-radius:12px;padding:9px 12px;margin:6px 0 4px}
+.mm-own-body .own-col-bear p{font-size:14.5px;margin:0 0 6px}
+.mm-own-body .own-col-bear p:last-child{margin:0}
+.mm-own-body .own-col-one{background:#fff6d6;border:1px solid #efd98c;border-radius:12px;padding:10px 12px;margin:14px 0 4px;font-size:15.5px;font-weight:800;line-height:1.55}
+.mm-own-body .own-col-more{display:block;margin:10px auto 2px;font-size:14px;font-weight:800;color:#5b5246;background:#f3eee4;border:1px solid #e1d6c1;border-radius:999px;padding:7px 16px;box-shadow:0 2px 0 #e4dccb;text-align:center;width:max-content;cursor:pointer}
+.mm-own-body .own-col-more:active{transform:translateY(1px);box-shadow:none}
