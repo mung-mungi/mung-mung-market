@@ -23,3 +23,5 @@
 .mm-bs-now b{flex:none;background:#9a6200;color:#fff;border-radius:999px;padding:0 8px;font-size:12.5px;line-height:21px;margin-top:1px}
 .mm-bs-all{display:inline-block;margin:9px 0 0;padding:6px 12px;border-radius:999px;background:#fff8ea;border:1px solid #ecd6a6;box-shadow:0 2px 0 #ecd6a6;font:800 13px/1.2 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#8a5a00!important;text-decoration:none!important}
 .mm-bs-all:active{transform:translateY(1px);box-shadow:none}
+#bt-card.mm-bs-hide{display:none!important}
+.mm-bs-tr.mm-bs-in{margin:8px 0 10px}

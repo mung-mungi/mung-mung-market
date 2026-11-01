@@ -760,11 +760,14 @@ def inline_to_ref(s, marker, css=None, js=None):
 
 
 # 페이지별 '쉽게 읽기' 덧입힘(사용자 2026-11-02): 옵션 온도계 기간구조(optterm) · 시장 경고등 업종 회전 지도 축 설명(rrgaxis)
-EASY = {'p-opt.html': 'optterm', 'p-lights.html': 'rrgaxis'}
+# 쉽게 읽기·보는 법 통일 덧입힘(2026-11-02): 페이지 → 부품 이름 목록(각각 _tools/<이름>.css·.js)
+EASY = {'p-opt.html': ['optterm', 'btscore'], 'p-lights.html': ['rrgaxis'], 'p-bond.html': ['btscore'],
+        'p-brief.html': ['fngbar'], 'index.html': ['todaybtn']}
 def tidy_easy(s, name):
-    mk = EASY.get(name)
-    if not mk:
-        return s
+    for mk in EASY.get(name) or []:
+        s = _easy_one(s, mk)
+    return s
+def _easy_one(s, mk):
     add = core_ref(mk, mk + '.css') + core_ref(mk, mk + '.js')
     if add in s:  # 이미 최신 참조가 있으면 자리를 옮기지 않음(다시 입힐 때마다 바뀌지 않게)
         return s

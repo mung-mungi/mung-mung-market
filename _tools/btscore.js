@@ -23,6 +23,7 @@ function calc(){var TH={};T.forEach(function(t){TH[t.id]=t});var by={};
 function draw(){var card=document.getElementById('bt-card');if(!card||!L||!T)return;
  var C=calc();if(C.days.length<2)return;var now=C.days[C.days.length-1],pv=C.days[C.days.length-2],g=stg(now.s,C.mx);
  if(P==='opt')top(now,C.mx,g);
+ if(P==='bond'){bond(C,now,pv);return}
  var key=now.d+':'+now.s;var w=card.querySelector('.mm-bs');if(w&&w.dataset.k===key)return;
  card.classList.add('mm-bs-on');card.style.setProperty('--btc',g[2]);
  if(!w){w=el('div','mm-bs');card.appendChild(w)}w.dataset.k=key;w.textContent='';
@@ -46,6 +47,13 @@ function draw(){var card=document.getElementById('bt-card');if(!card||!L||!T)ret
 function top(now,mx,g){var o=document.querySelector('.o-top');if(!o)return;var s=o.querySelector('.o-st'),c=o.querySelector('.o-sc');
  var em={'평온':'🟢','주의':'🟡','경계':'🟠','긴장':'🟠','위험':'🔴'}[g[1]];var t=em+' '+g[1];if(s&&s.textContent!==t){s.textContent=t;s.style.color=g[2]}
  if(c&&!c.querySelector('.mm-bs-x')){c.innerHTML='점수 <b class="mm-bs-x">'+f1(now.s)+'</b> / '+mx}}
+// 채권: 바로 아래 '채권 경고등' 카드(bdnear)에 같은 점수가 이미 있으므로 흐름 카드는 숨기고, 15거래일 점수 막대만 그 카드 단계 칸 아래로 합침(사용자 2026-11-02 '진행')
+function bond(C,now,pv){var lc=document.getElementById('lights-card');if(!lc)return;var anc=lc.querySelector('.mm-bd-steps')||lc.querySelector('.mm-bd-sc');if(!anc)return;
+ var bc=document.getElementById('bt-card');if(bc)bc.classList.add('mm-bs-hide');
+ var key=now.d+':'+now.s,tr=lc.querySelector('.mm-bs-tr');if(tr&&tr.dataset.k===key&&tr.previousElementSibling===anc)return;if(tr)tr.remove();
+ tr=el('div','mm-bs-tr mm-bs-in');tr.dataset.k=key;tr.appendChild(el('span','k','최근 15거래일'));var bx=el('div','bars');var D=C.days.slice(-15);
+ D.forEach(function(x,i){var b=el('i');b.style.height=Math.max(10,x.s/C.mx*100)+'%';b.style.background=stg(x.s,C.mx)[2];b.title=md(x.d)+' '+f1(x.s)+'점';if(i===D.length-1)b.className='last';bx.appendChild(b)});tr.appendChild(bx);
+ var dd=Math.round((now.s-pv.s)*10)/10;tr.appendChild(el('span','dt',dd>0?'▲ '+f1(dd)+'점':dd<0?'▼ '+f1(-dd)+'점':'전날과 같음'));anc.after(tr)}
 Promise.all([j('d/lights/lights_log.json'),j('d/lights/thresholds.json'),j('d/lights/fresh.json')]).then(function(a){L=a[0];T=a[1];F=a[2];if(!L||!T)return;
  var k=0;(function t(){try{draw()}catch(e){}if(++k<25)setTimeout(t,400)})()});
 }catch(e){}})();

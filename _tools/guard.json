@@ -29,7 +29,10 @@
   "'chlog'": "설명서·경고 칩 전 페이지 연결",
   "ltjump": "경고등 바로가기 연결",
   "def tidy_easy": "옵션 온도계·업종 회전 지도 쉽게 읽기 연결",
-  "mm-yt": "유튜브 새 영상 배너"
+  "mm-yt": "유튜브 새 영상 배너",
+  "btscore": "옵션·채권 경고등 흐름 점수 양식(2026-11-02)",
+  "fngbar": "시황 공포탐욕 막대 방향 통일 + 기사 경고등 알약 점수화",
+  "todaybtn": "메인 오늘 카드 → 시황 버튼"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -86,7 +89,8 @@
   "def inline_to_ref",
   "'chlog'",
   "ltjump",
-  "def tidy_easy"
+  "def tidy_easy",
+  "'todaybtn'"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -121,5 +125,16 @@
  ],
  "_tools/ytban.js": [
   "mm-yt"
+ ],
+ "_tools/btscore.js": [
+  "mm-bs-tr",
+  "function bond("
+ ],
+ "_tools/fngbar.js": [
+  "mm-fg-t",
+  "score_hist"
+ ],
+ "_tools/todaybtn.js": [
+  "mm-tb-go"
  ]
 }
