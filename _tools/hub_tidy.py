@@ -53,6 +53,7 @@ def tidy_brief(s):
     s = tidy_paper(s)
     s = tidy_tiles(s)
     s = tidy_units(s)
+    s = tidy_fng(s)
     if "'더 보기 ▾ ('" in s or BRIEF_ANCHOR not in s:
         return s
     s = s.replace(BRIEF_ANCHOR, "s.appendChild(ul);" + BRIEF_ADD + ";if(kind==='eco'", 1)
@@ -280,9 +281,13 @@ NP2 = (r"""<style data-np2>body #days .bf-more{gap:0!important;row-gap:0!importa
        r"""body #days .bf-more .bf-sec.npf{border:0!important;border-top:1px solid #cfccc4!important;background:none!important;border-radius:0!important;padding:0!important;margin:0!important}"""
        r"""body #days .bf-more .bf-sec.npf>.k{display:flex!important;justify-content:space-between;align-items:center;cursor:pointer;padding:9px 2px!important;margin:0!important;font:800 16.5px/1.35 "Noto Serif KR","Nanum Myeongjo",serif!important;color:#222!important;border:0!important;background:none!important}"""
        r"""body #days .bf-more .bf-sec.npf>.k::after{content:"▾";font:400 13px sans-serif;color:#7a766d}body #days .bf-more .bf-sec.npf.op>.k::after{content:"▴"}"""
-       r"""body #days .bf-more .bf-sec.npf:not(.op)>:not(.k){display:none!important}body #days .bf-more .bf-sec.npf.op{padding-bottom:10px!important}</style>"""
+       r"""body #days .bf-more .bf-sec.npf.op{padding-bottom:10px!important}"""
+       # 접힌 칸도 앞 3~4줄은 미리 보이고 아래는 옅게 흐려지며 '펼쳐서 더 보기'(사용자 2026-11-01) — 짧은 칸(npx)은 그대로 다 보임
+       r"""body #days .bf-more .bf-sec.npf:not(.op):not(.npx){max-height:156px;overflow:hidden;position:relative;cursor:pointer}"""
+       r"""body #days .bf-more .bf-sec.npf:not(.op):not(.npx)::after{content:"펼쳐서 더 보기 ▾";position:absolute;left:0;right:0;bottom:0;height:60px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:7px;font:700 13.5px/1 -apple-system,\"Apple SD Gothic Neo\",sans-serif;color:#8a6410;background:linear-gradient(to bottom,rgba(243,242,238,0),#f3f2ee 62%);pointer-events:none}"""
+       r"""body #days .bf-more .bf-sec.npf.npx>.k{cursor:default}body #days .bf-more .bf-sec.npf.npx>.k::after{content:none}</style>"""
        r"""<script data-np2>(function(){function fix(){document.querySelectorAll('#days .bf-more').forEach(function(m){if(m.dataset.np2)return;m.dataset.np2=1;var st=m.querySelector('.bf-story');if(st){st.classList.add('np-lead');var aft=m.querySelector(':scope>.bf-sec[id$="-changes"]')||m.querySelector(':scope>.bf-sec.iss');if(aft)aft.after(st);var ps=st.querySelectorAll('p');if(ps.length>2){for(var i=2;i<ps.length;i++)ps[i].classList.add('np-x');var rb=document.createElement('button');rb.type='button';rb.className='np-rd';rb.textContent='기사 이어 읽기 ▾ ('+(ps.length-2)+'단락)';if((window.__npop||{})['lead'+(st.id||'')]){st.classList.add('op');rb.textContent='접기 ▴'}rb.onclick=function(e){e.stopPropagation();st.classList.toggle('op');(window.__npop=window.__npop||{})['lead'+(st.id||'')]=st.classList.contains('op');rb.textContent=st.classList.contains('op')?'접기 ▴':'기사 이어 읽기 ▾ ('+(ps.length-2)+'단락)'};st.appendChild(rb)}}var ex=[m.querySelector(':scope>.bf-macro'),m.querySelector(':scope>.bf-src')].filter(Boolean);if(ex.length){var w=document.createElement('div');w.className='bf-sec';var kk=document.createElement('span');kk.className='k';kk.textContent='수치 · 출처';w.appendChild(kk);ex.forEach(function(e){w.appendChild(e)});m.appendChild(w)}"""
-       r"""m.querySelectorAll('.bf-sec').forEach(function(c){if(c.classList.contains('np-lead'))return;c.classList.add('npf');var OP=window.__npop||(window.__npop={});var key=c.id||c.querySelector(':scope>.k')&&c.querySelector(':scope>.k').textContent;if(key in OP?OP[key]:c.classList.contains('iss'))c.classList.add('op');var k=c.querySelector(':scope>.k');if(k)k.addEventListener('click',function(e){e.stopPropagation();c.classList.toggle('op');OP[key]=c.classList.contains('op')})})})}"""
+       r"""m.querySelectorAll('.bf-sec').forEach(function(c){if(c.classList.contains('np-lead'))return;c.classList.add('npf');var OP=window.__npop||(window.__npop={});var key=c.id||c.querySelector(':scope>.k')&&c.querySelector(':scope>.k').textContent;if(key in OP?OP[key]:c.classList.contains('iss'))c.classList.add('op');var k=c.querySelector(':scope>.k');if(k)k.addEventListener('click',function(e){e.stopPropagation();if(c.classList.contains('npx'))return;c.classList.toggle('op');OP[key]=c.classList.contains('op')});c.addEventListener('click',function(e){if(c.classList.contains('op')||c.classList.contains('npx')||e.target.closest('a'))return;e.stopPropagation();c.classList.add('op');OP[key]=true});requestAnimationFrame(function(){if(c.scrollHeight<=172)c.classList.add('npx')})})})}"""
        r"""var k=0;(function go(){fix();if(!document.__np2){var d=document.getElementById('days');if(d){document.__np2=1;new MutationObserver(fix).observe(d,{childList:true,subtree:true})}}if(++k<10)setTimeout(go,500)})()})();</script>""")
 
 
@@ -512,3 +517,26 @@ def tidy_notice(s):
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-notice>' + open(os.path.join(d, 'notice.css'), encoding='utf-8').read() + '</style><script data-notice>' + open(os.path.join(d, 'notice.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+# 공포·탐욕 지수·VIX는 CNN·CBOE 원본(d/fng.json, Actions 6시간)을 우선 씀(사용자 2026-11-01) — 브리핑 기사값이 하루~이틀 밀리는 일이 있었음
+FNG = (r"""<script data-fng>(function(){var F=null;var Z=[[0,25,'극단적 공포','#e5484d'],[25,45,'공포','#f08a4b'],[45,55,'중립','#8b8d98'],[55,75,'탐욕','#7cc47f'],[75,101,'극단적 탐욕','#2fa36b']];"""
+       r"""function md(d){var a=String(d).split('-');return (+a[1])+'.'+(+a[2])}"""
+       r"""function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}"""
+       r"""function mood(){var f=F&&F.fng;var box=document.getElementById('mood'),card=document.getElementById('mood-card');if(!f||!box)return;var v=Math.round(f.score);var key=f.date+':'+v;if(box.dataset.fng===key&&box.firstChild)return;"""
+       r"""var z=Z.filter(function(q){return v>=q[0]&&v<q[1]})[0]||Z[2];if(card)card.style.display='';box.textContent='';box.dataset.fng=key;"""
+       r"""var top=el('div','mt');top.appendChild(el('span','mk','공포·탐욕 지수'));var b=el('b','mv',v+' '+z[2]);b.style.color='color-mix(in srgb,'+z[3]+' 78%,var(--color-fg))';top.appendChild(b);"""
+       r"""var a=el('a','ms',md(f.date)+' 마감'+(f.prev_close!=null?' · 전일 '+Math.round(f.prev_close):'')+' · CNN');a.href=f.src||'https://edition.cnn.com/markets/fear-and-greed';a.target='_blank';a.rel='noopener';top.appendChild(a);box.appendChild(top);"""
+       r"""var bar=el('div','mb');Z.forEach(function(q){var i=el('i');i.style.flex=String(Math.min(q[1],100)-q[0]);i.style.background=q[3];bar.appendChild(i)});var m=el('em');m.style.left=Math.max(0,Math.min(100,f.score))+'%';bar.appendChild(m);box.appendChild(bar);"""
+       r"""var lb=el('div','ml');['0 극단적 공포','50 중립','100 극단적 탐욕'].forEach(function(t){lb.appendChild(el('span','',t))});box.appendChild(lb)}"""
+       r"""function vix(){var x=F&&F.vix;var v=document.getElementById('t-vix');if(!x||!v)return;var u=v.querySelector('.u');var t=x.close.toFixed(2);if(v.firstChild&&v.firstChild.nodeType===3){if(v.firstChild.nodeValue!==t)v.firstChild.nodeValue=t}else if(v.textContent!==t){v.textContent=t;if(u)v.appendChild(u)}"""
+       r"""var sx=v.parentNode.querySelector('.s');if(sx){var d=x.chg;var s2=Math.abs(d)<0.05?'보합':(d>0?'+':'')+d.toFixed(1)+'%';if(sx.textContent!==s2){sx.textContent=s2;sx.removeAttribute('id');sx.style.visibility='';sx.className='s '+(Math.abs(d)<0.05?'mu':d>0?'up':'dn')}}}"""
+       r"""function ap(){try{mood()}catch(e){}try{vix()}catch(e){}}"""
+       r"""fetch('d/fng.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j)return;F=j;ap();var k=0;(function go(){ap();if(++k<12)setTimeout(go,500)})();"""
+       r"""['mood-card','tiles'].forEach(function(id){var n=document.getElementById(id);if(n)new MutationObserver(ap).observe(n,{childList:true,subtree:true,characterData:true})})}).catch(function(){})})();</script>""")
+
+
+def tidy_fng(s):
+    s = re.sub(r'<script data-fng>.*?</script>', '', s, flags=re.S)
+    if 'id="mood-card"' not in s:
+        return s
+    return s.replace('</body>', FNG + '</body>', 1) if '</body>' in s else s + FNG
