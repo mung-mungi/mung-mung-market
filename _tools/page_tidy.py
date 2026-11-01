@@ -224,6 +224,7 @@ html body .mm-take,html body .hx-card{display:none!important}
 html body header.mm-hero.mm-hx{position:fixed!important;z-index:9000;background-color:#fbf5ea!important;top:max(6px,env(safe-area-inset-top));left:8px;right:8px;margin:0!important;box-shadow:0 10px 30px rgba(30,22,8,.22)!important;transition:opacity .7s ease,transform .7s ease;opacity:1;transform:none}
 html.mm-hx-off body header.mm-hero.mm-hx{opacity:0;transform:translateY(-8px);pointer-events:none}
 html.mm-land body header.mm-hero.mm-hx,html.mm-full body header.mm-hero.mm-hx{display:none!important}
+.mmt-nav{position:relative;margin:6px 0 2px;height:46px;border-radius:10px;background:#f3f1ec;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}.mmt-nav[hidden]{display:none}.mmt-nav svg{position:absolute;inset:3px 0;width:100%;height:40px;display:block}.mmt-nav .nv-ln{fill:none;stroke:#8a877f;stroke-width:1.2;vector-effect:non-scaling-stroke}.mmt-nav .nv-ar{fill:#8a877f;opacity:.08}.mmt-nav .nv-dim{fill:#f3f1ec;opacity:.55}.mmt-nav .nv-win{fill:rgba(154,98,0,.10);stroke:#9a6200;stroke-width:1.6;vector-effect:non-scaling-stroke}.mmt-nav-lab{position:absolute;left:8px;bottom:-19px;font-size:12px;font-weight:700;color:#8a877f;pointer-events:none}.mmt-nav.past .mmt-nav-lab{color:#9a6200}.mmt-nav-now{display:none;position:absolute;right:0;bottom:-24px;font:700 12.5px/1 -apple-system,sans-serif;padding:5px 9px;border-radius:999px;border:0;background:#9a6200;color:#fff;box-shadow:0 2px 6px rgba(154,98,0,.25)}.mmt-nav.past .mmt-nav-now{display:block}.mmt-nav{margin-bottom:24px}html.mm-land .mmt-nav,html.mm-full .mmt-nav{display:none}
 #main .mmt-box{position:relative}.mmt-bub{display:none;position:absolute;z-index:5;pointer-events:none;background:#141210;color:#fff;border-radius:9px;padding:5px 9px 6px;box-shadow:0 4px 12px rgba(0,0,0,.18);white-space:nowrap;line-height:1.25}.mmt-bub small{display:block;font-size:11.5px;color:#cfcac0;font-weight:600}.mmt-bub b{display:block;font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
 .mm-asof2{margin:2px 4px 8px;font-size:12px;color:#8a877f;text-align:right}
 #main .rg .zm{display:none!important}
@@ -542,7 +543,7 @@ function mmtDraw(){
   var main=document.getElementById('main'); if(!main)return; var T=window.__mmT, r=mmtRow(); if(!r)return;
   var wrap=main.querySelector('.mmt'); if(!wrap){ wrap=document.createElement('div'); wrap.className='mmt'; wrap.innerHTML='<div class="mmt-ttl"></div><div class="mmt-top"><p class="mmt-chg"></p></div><div class="mmt-tools"><button type="button" class="mmt-tg mmt-trd">추세</button><button type="button" class="mmt-tg mmt-zn">매물대</button><button type="button" class="mmt-tg mmt-drw">✎ 선</button><label class="mmt-det mmt-tg"><input type="checkbox">자세히</label><button type="button" class="mmt-tg mmt-fs" aria-label="전체 화면"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button><button type="button" class="mmt-tg mmt-q" aria-label="종목 찾기">🔍</button><a class="mmt-tg mmt-ext" href="#">사파리로 크게 ↗</a><button type="button" class="mmt-tg mmt-x" aria-label="닫기">✕</button></div><div class="mmt-pen"><button type="button" data-k="tr" class="on">／추세</button><button type="button" data-k="h">―수평</button><button type="button" data-k="par">▱평행</button><i></i><button type="button" class="pc on" data-c="#9a6200" style="--c:#9a6200"></button><button type="button" class="pc" data-c="#c4453a" style="--c:#c4453a"></button><button type="button" class="pc" data-c="#2f6fd6" style="--c:#2f6fd6"></button><button type="button" class="pc" data-c="#141210" style="--c:#141210"></button><button type="button" class="mmt-clr">지우기</button><p class="mmt-hint"></p></div><div class="mmt-find"><input type="search" placeholder="종목 이름·티커" autocomplete="off"><div class="mmt-res"></div></div><div class="mmt-stage"><div class="mmt-box"></div></div><div class="mmt-per"></div>';
     var hd=main.querySelector('.hd'); hd.after(wrap);
-    var pr=wrap.querySelector('.mmt-per'); MMT_PER.forEach(function(p){ var b=document.createElement('button'); b.type='button'; b.textContent=p[1]; b.dataset.p=p[0]; b.addEventListener('click',function(){ T.per=p[0]; mmtDraw(); }); pr.appendChild(b); });
+    var pr=wrap.querySelector('.mmt-per'); MMT_PER.forEach(function(p){ var b=document.createElement('button'); b.type='button'; b.textContent=p[1]; b.dataset.p=p[0]; b.addEventListener('click',function(){ T.per=p[0]; T.off=0; mmtDraw(); }); pr.appendChild(b); });
     wrap.querySelector('.mmt-trd').addEventListener('click',function(){ T.tr=!T.tr; mmtDraw(); });
     wrap.querySelector('.mmt-zn').addEventListener('click',function(){ T.zn=!T.zn; mmtDraw(); });
     wrap.querySelector('.mmt-drw').addEventListener('click',function(){ T.draw=!T.draw; mmToolsSync(); var b=main.querySelector('.mmt-box'); if(b) b.classList.toggle('drawing',T.draw); });
@@ -573,7 +574,7 @@ function mmtDraw(){
   var opt0={ov:OV, zones:ZN, lt:LT};
   var RG3=(function(){ var d=mmtDaily(r.ticker), from=Date.now()/1000-92*86400; var p=d.filter(function(a){return a[0]>=from}); p.push([Date.now()/1000,now]); return mmRG(p); })();
   var done=function(res,base){ if(DET) mmFacts(main,r,now,ZN,LT,RG3,cur); else mmFacts(main,null); };
-  if(T.per==='1d'){
+  if(T.per==='1d'){ var nv0=wrap.querySelector('.mmt-nav'); if(nv0) nv0.hidden=true;
     mmIntra(function(D){ var x=D&&D.d&&D.d[r.ticker]; if(!x||!x.p||x.p.length<2){ box.innerHTML='<p class="mmt-empty">오늘 흐름 자료가 아직 없습니다 · 장 시작 후 5분마다 채워집니다</p>'; setChg(r.prev_close,'어제보다'); done(null); return; }
       var pts=x.p.map(function(a){return [x.s+a[0]*60,a[1]]}); if(Math.abs(pts[pts.length-1][1]-now)>1e-9 && pe&&pe.classList.contains('mm-fh')) pts.push([Date.now()/1000,now]);
       var cd=null; if(DET){ cd=[]; var bk=null; pts.forEach(function(p){ var k=Math.floor(p[0]/900)*900; if(!bk||bk[0]!==k){ bk=[k,p[1],p[1],p[1],p[1]]; cd.push(bk); } else { bk[2]=Math.max(bk[2],p[1]); bk[3]=Math.min(bk[3],p[1]); bk[4]=p[1]; } }); cd.forEach(function(c){ c[0]+=450; }); }
@@ -581,17 +582,43 @@ function mmtDraw(){
     return; }
   // 1주~10년: 캔들 자료(일봉 1년·주봉 10년)를 받아서 — 기본은 그 종가로 선, 자세히는 캔들. 둘 다 고가·저가로 눈금을 잡아 모양이 같음
   var tkNow=r.ticker; mmOhlc(tkNow,function(O){ if(mmTk()!==tkNow||T.per==='1d')return;
-    var YRS={'1w':7/365,'1m':31/365,'3m':92/365,'1y':366/365,'5y':5,'10y':10}[T.per], from=Date.now()/1000-YRS*365.25*86400;
+    var YRS={'1w':7/365,'1m':31/365,'3m':92/365,'1y':366/365,'5y':5,'10y':10}[T.per], SPAN=YRS*365.25*86400;
     var src=(T.per==='5y'||T.per==='10y')?O.w:O.d; var cd=(src||[]).map(function(a){return [mmTs(a[0]),a[1],a[2],a[3],a[4]]});
-    if(cd.length>=2){ var prevC=cd.filter(function(c){return c[0]<from}); cd=cd.filter(function(c){return c[0]>=from});
-      var pd=r.price_date, lc=cd[cd.length-1]; if(lc&&pd){ var ld=new Date(lc[0]*1000).toISOString().slice(0,10); if(ld===pd||T.per==='5y'||T.per==='10y'){ lc[4]=now; lc[2]=Math.max(lc[2],now); lc[3]=Math.min(lc[3],now); } else if(pd>ld){ cd.push([mmTs(pd),lc[4],Math.max(lc[4],now),Math.min(lc[4],now),now]); } }
+    // 과거로 넘겨 보기(사용자 2026-11-01): 아래 작은 전체 그래프에서 창을 끌면 T.off(초)만큼 과거 구간을 그림. 0이면 지금까지(예전과 같음)
+    var tEnd=Date.now()/1000, OFFMAX=cd.length?Math.max(0,tEnd-SPAN-cd[0][0]):0; T.off=Math.max(0,Math.min(T.off||0,OFFMAX)); var OFF=T.off, to=tEnd-OFF, from=to-SPAN, cdAll=cd;
+    if(cd.length>=2){ var prevC=cd.filter(function(c){return c[0]<from}); cd=cd.filter(function(c){return c[0]>=from&&(!OFF||c[0]<=to)});
+      try{ mmtNav(wrap,cdAll,from,to,OFFMAX); }catch(e){}
+      var pd=r.price_date, lc=cd[cd.length-1]; if(OFF&&lc){ now=lc[4]; } else if(lc&&pd){ var ld=new Date(lc[0]*1000).toISOString().slice(0,10); if(ld===pd||T.per==='5y'||T.per==='10y'){ lc[4]=now; lc[2]=Math.max(lc[2],now); lc[3]=Math.min(lc[3],now); } else if(pd>ld){ cd.push([mmTs(pd),lc[4],Math.max(lc[4],now),Math.min(lc[4],now),now]); } }
       if(cd.length>=2){ var pts=cd.map(function(c){return [c[0],c[4]]}), base=prevC.length?prevC[prevC.length-1][4]:cd[0][1];
         var res=mmtChart(box,pts,base,cur,null,{ov:OV,zones:ZN,lt:LT,cdl:DET?cd:null,rng:cd,noTr:(T.per==='5y'||T.per==='10y')});
         var lab=MMT_PER.filter(function(p){return p[0]===T.per})[0][2]; if((T.per==='5y'||T.per==='10y')&&!prevC.length&&cd[0][0]>Date.now()/1000-(YRS-0.5)*365*86400) lab='상장 이후';
+        if(OFF){ var f2=function(t){ var d=new Date(t*1000); return (d.getFullYear()%100)+'.'+(d.getMonth()+1)+'.'+d.getDate(); }; lab=f2(cd[0][0])+'~'+f2(cd[cd.length-1][0]); }
         setChg(base,lab); done(res); return; } }
     mmtDrawOld(); });
   return;
 }
+// 차트 아래 작은 전체 그래프(사용자 2026-11-01) — 회색 선 = 받을 수 있는 전체 기간, 밝은 창 = 지금 보는 구간. 창을 끌거나 원하는 곳을 누르면 그 구간으로
+function mmtNav(wrap,all,from,to,offMax){ var T=window.__mmT; var nv=wrap.querySelector('.mmt-nav');
+  if(!nv){ nv=document.createElement('div'); nv.className='mmt-nav'; nv.setAttribute('data-noswipe',''); nv.innerHTML='<svg preserveAspectRatio="none"></svg><span class="mmt-nav-lab"></span><button type="button" class="mmt-nav-now">오늘로 ›</button>'; var st=wrap.querySelector('.mmt-stage'); st.after(nv);
+    nv.querySelector('.mmt-nav-now').addEventListener('click',function(){ T.off=0; mmtDraw(); });
+    var drag=null, tq=0;
+    function at(e){ var R=nv.querySelector('svg').getBoundingClientRect(), g=nv.__g; if(!g)return null; var x=Math.max(0,Math.min(R.width,e.clientX-R.left)); return g.t0+(g.t1-g.t0)*x/R.width; }
+    function move(e,first){ var g=nv.__g; if(!g)return; var t=at(e); if(t==null)return; if(first){ drag={d:(t>=g.from&&t<=g.to)?t-(g.from+g.to)/2:0}; } var mid=t-drag.d, span=g.to-g.from;
+      var off=Math.max(0,Math.min(g.max,g.t1now-(mid+span/2))); T.off=off; mmtNavPaint(nv, g.t1now-off-span, g.t1now-off);
+      var nw=Date.now(); if(nw-tq>110){ tq=nw; mmtDraw(); } else { clearTimeout(nv.__tm); nv.__tm=setTimeout(mmtDraw,120); } }
+    nv.addEventListener('pointerdown',function(e){ if(e.target.closest('.mmt-nav-now'))return; e.preventDefault(); try{nv.setPointerCapture(e.pointerId)}catch(x){} move(e,true); });
+    nv.addEventListener('pointermove',function(e){ if(drag) move(e,false); });
+    ['pointerup','pointercancel'].forEach(function(n){ nv.addEventListener(n,function(){ if(drag){ drag=null; clearTimeout(nv.__tm); mmtDraw(); } }); });
+  }
+  nv.hidden=false; var t0=all[0][0], t1now=Date.now()/1000; nv.__g={t0:t0,t1:t1now,t1now:t1now,from:from,to:to,max:offMax,all:all};
+  var svg=nv.querySelector('svg'), W=300, H=40, lo=Infinity, hi=-Infinity; all.forEach(function(c){ lo=Math.min(lo,c[4]); hi=Math.max(hi,c[4]); }); if(hi<=lo) hi=lo+1;
+  var d=''; all.forEach(function(c,i){ var x=(c[0]-t0)/(t1now-t0)*W, y=H-3-(c[4]-lo)/(hi-lo)*(H-8); d+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1); });
+  svg.setAttribute('viewBox','0 0 '+W+' '+H); svg.innerHTML='<path class="nv-ln" d="'+d+'"/><path class="nv-ar" d="'+d+'L'+W+' '+H+'L0 '+H+'Z"/><rect class="nv-dim nv-l" y="0" height="'+H+'"/><rect class="nv-dim nv-r" y="0" height="'+H+'"/><rect class="nv-win" y="1" height="'+(H-2)+'" rx="5"/>';
+  mmtNavPaint(nv,from,to); }
+function mmtNavPaint(nv,from,to){ var g=nv.__g; if(!g)return; g.from=from; g.to=to; var W=300, x0=(from-g.t0)/(g.t1-g.t0)*W, x1=(to-g.t0)/(g.t1-g.t0)*W; var mw=16; if(x1-x0<mw){ var c=(x0+x1)/2; x0=c-mw/2; x1=c+mw/2; } x0=Math.max(0,x0); x1=Math.min(W,x1);
+  var s=nv.querySelector('svg'); var L=s.querySelector('.nv-l'), Rr=s.querySelector('.nv-r'), w=s.querySelector('.nv-win'); L.setAttribute('x',0); L.setAttribute('width',Math.max(0,x0)); Rr.setAttribute('x',x1); Rr.setAttribute('width',Math.max(0,W-x1)); w.setAttribute('x',x0); w.setAttribute('width',Math.max(2,x1-x0));
+  var past=(g.t1now-to)>86400*1.5; nv.classList.toggle('past',past);
+  var f=function(t){ var d=new Date(t*1000); return d.getFullYear()+'.'+(d.getMonth()+1)+'.'+d.getDate(); }; nv.querySelector('.mmt-nav-lab').textContent=past?(f(from)+' ~ '+f(to)):'← 끌어서 지난 구간 보기'; }
 function mmtDrawOld(){ var main=document.getElementById('main'), T=window.__mmT, r=mmtRow(); if(!r)return; var wrap=main.querySelector('.mmt'), box=wrap.querySelector('.mmt-box'), chg=wrap.querySelector('.mmt-chg'), cur=r.currency, now=Number(r.price);
   var pe=main.querySelector('.hd .pr'); var lv=pe&&pe.textContent.match(/[\d,]+\.?\d*/); if(pe&&pe.classList.contains('mm-fh')&&lv) now=Number(lv[0].replace(/,/g,''));
   function setChg(base,label){ delete chg.dataset.sc; if(base==null){chg.textContent='';return} var dv=now-base, dp=dv/base*100, c=dv>=0?'#e0423a':'#3a6fe0'; chg.innerHTML='<span></span> <b style="color:'+c+'"></b>'; chg.firstChild.textContent=label; chg.lastChild.textContent=(cur==='%')?((dv>=0?'+':'−')+Math.round(Math.abs(dv)*100)+'bp'):((dv>=0?'+':'−')+mmtFmt(Math.abs(dv),cur)+' ('+Math.abs(dp).toFixed(1)+'%)'); }

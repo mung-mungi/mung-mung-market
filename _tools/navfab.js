@@ -48,8 +48,8 @@ document.addEventListener('touchstart',function(e){on=0;if(e.touches.length>1)re
 if(t.clientX<26||t.clientX>w-26)return;var g=e.target;
 if(g.closest&&g.closest('canvas,input,textarea,select,.mmd,.mmd-sheet,#mm-fab,[data-noswipe]'))return;
 var sv=g.closest&&g.closest('svg');while(sv&&sv.parentElement&&sv.parentElement.closest('svg'))sv=sv.parentElement.closest('svg');
-if(sv&&sv.getBoundingClientRect().width>140)return;
-if(scrollX(g))return;var s=document.querySelector('.mmd-sheet');if(s&&!s.hidden)return;
+if(sv&&sv.getBoundingClientRect().width>140){ /* 큰 차트 위: 차트 좌우 가장자리 52px 안에서 시작한 밀기만 페이지 넘김(사용자 2026-11-01). 가운데는 가격 추적 그대로 */ var rb=sv.getBoundingClientRect(),H=document.documentElement; if(H.classList.contains('mm-full')||H.classList.contains('mm-land')||(window.__mmT&&window.__mmT.draw))return; if(!(t.clientX-rb.left<52||rb.right-t.clientX<52))return; }
+else{ /* 넘기면 안 되는 곳(사용자 2026-11-01): 차트 영역(칩·기간·도구·작은 그래프), 작은 버튼·알약·칩·탭 줄 — 누르다 손가락이 미끄러져 페이지가 넘어가지 않게. 화면 폭 절반 넘는 큰 카드·글은 그대로 넘김 */ if(g.closest&&g.closest('.mmt,.mmt-nav,.mmt-per,[role=tablist],[class*="pill"],[class*="chip"],[class*="seg"],[class$="-tabs"],[class~="tabs"]'))return; var bt=g.closest&&g.closest('button,[role=button],[role=tab],[aria-pressed],label'); if(bt&&bt.getBoundingClientRect().width<w*0.5)return; for(var el=g;el&&el!==document.body;el=el.parentElement){ var cs=getComputedStyle(el); if(/(auto|scroll)/.test(cs.overflowX)&&el.getBoundingClientRect().height<90)return; } }if(scrollX(g))return;var s=document.querySelector('.mmd-sheet');if(s&&!s.hidden)return;
 if(cur()<0)return;x0=t.clientX;y0=t.clientY;dx=0;on=1;tgt=null},{passive:true,capture:true});
 document.addEventListener('touchmove',function(e){if(!on)return;var t=e.touches[0];dx=t.clientX-x0;var dy=t.clientY-y0;
 if(!tgt){if(Math.abs(dx)+Math.abs(dy)<16)return;if(Math.abs(dx)<Math.abs(dy)*1.2){on=0;return}
