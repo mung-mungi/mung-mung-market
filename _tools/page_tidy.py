@@ -758,8 +758,8 @@ function mmAsof(){ var main=document.getElementById('main'), a=document.getEleme
 (function(){ var h=document.documentElement, t=null, idle=null;
   function off(){ h.classList.add('mm-hx-off'); setTimeout(function(){ window.__mmFitN=0; try{mmFitCard()}catch(e){} if(h.classList.contains('mm-lock')) scrollTo(0,0); },480); } function on(){ if(h.classList.contains('mm-land')||h.classList.contains('mm-full')) return; h.classList.remove('mm-hx-off'); clearTimeout(t); t=setTimeout(off,2000); } /* 사용자 2026-11-01: 다시 내려와도 2초 뒤 스스로 올라감 */
   var big=matchMedia('(min-width:768px)').matches; /* 사용자 2026-10-31: 2.5초 뒤 사라짐, 마우스 움직임도 활동, 아이패드·PC는 다시 안 내려옴 */
-  function act(){ clearTimeout(idle); if(!h.classList.contains('mm-hx-off')){ clearTimeout(t); t=setTimeout(off,1200); } if(!big) idle=setTimeout(on,20000); }
-  t=setTimeout(off,2000); if(!big) idle=setTimeout(on,22000); /* 사용자 2026-11-01: 처음 2초 뒤 사라짐 */
+  function act(){ if(!h.classList.contains('mm-hx-off')){ clearTimeout(t); t=setTimeout(off,1200); } }
+  t=setTimeout(off,2000); /* 사용자 2026-11-01: 처음 2초 뒤 사라지고, 한 번 사라지면 다시 안 내려옴(페이지를 새로 열면 처음 2초만 다시 보임) */
   ['pointerdown','pointermove','keydown','wheel','touchstart'].forEach(function(e){ addEventListener(e,act,{passive:true,capture:true}); }); })();
 // 종목 찾기 목록을 시세 보드 '종목별 시세' 한 줄 카드로(사용자 2026-10-29): 이름+티커·층위 / 가격+52주 막대 / 1일 등락 크게·고점 대비 / ›, 목록은 상자 안 스크롤
 function mmList(){ var L=document.getElementById('list'); if(!L)return; var byT={}; try{ DATA.P.forEach(function(r){ byT[r.ticker.replace('^','')]=r; }); }catch(e){ return; }

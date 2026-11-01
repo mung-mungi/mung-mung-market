@@ -48,7 +48,7 @@ document.addEventListener('touchstart',function(e){on=0;if(e.touches.length>1)re
 var SA=(window.navigator.standalone===true)||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches),EG=SA?0:26; if(t.clientX<EG||t.clientX>w-EG)return;var g=e.target;fl=0;
 if(g.closest&&g.closest('canvas,input,textarea,select,.mmd,.mmd-sheet,#mm-fab,[data-noswipe]'))return;
 var sv=g.closest&&g.closest('svg');while(sv&&sv.parentElement&&sv.parentElement.closest('svg'))sv=sv.parentElement.closest('svg');
-if(sv&&sv.getBoundingClientRect().width>140){ /* 큰 차트 위(사용자 2026-11-01): 좌우 가장자리 64px에서 시작하면 보통 넘김, 가운데는 휙 튕길 때만 넘김(천천히 밀면 가격 추적) */ var rb=sv.getBoundingClientRect(),H=document.documentElement; if(H.classList.contains('mm-full')||H.classList.contains('mm-land')||(window.__mmT&&window.__mmT.draw))return; if(!(t.clientX-rb.left<64||rb.right-t.clientX<64)){ fl=Date.now(); flm=0; } }
+if(sv&&sv.getBoundingClientRect().width>140){ /* 큰 차트 위(사용자 2026-11-01): 좌우 가장자리(차트 폭 22%, 최소 72px)는 넘김 전용 — 가격 추적 안 함. 가운데는 처음부터 옆으로 밀면 넘김, 멈췄다 움직이면 추적 */ var rb=sv.getBoundingClientRect(),H=document.documentElement; if(H.classList.contains('mm-full')||H.classList.contains('mm-land')||(window.__mmT&&window.__mmT.draw))return; var EZ=Math.max(72,rb.width*0.22); if(!(t.clientX-rb.left<EZ||rb.right-t.clientX<EZ)){ fl=Date.now(); flm=0; } }
 else{ /* 넘기면 안 되는 곳(사용자 2026-11-01): 차트 영역(칩·기간·도구·작은 그래프), 작은 버튼·알약·칩·탭 줄 — 누르다 손가락이 미끄러져 페이지가 넘어가지 않게. 화면 폭 절반 넘는 큰 카드·글은 그대로 넘김 */ if(g.closest&&g.closest('.mmt,.mmt-nav,.mmt-per,[role=tablist],[class*="pill"],[class*="chip"],[class*="seg"],[class$="-tabs"],[class~="tabs"]'))return; var bt=g.closest&&g.closest('button,[role=button],[role=tab],[aria-pressed],label'); if(bt&&bt.getBoundingClientRect().width<w*0.5)return; for(var el=g;el&&el!==document.body;el=el.parentElement){ var cs=getComputedStyle(el); if(/(auto|scroll)/.test(cs.overflowX)&&el.getBoundingClientRect().height<90)return; } }if(scrollX(g))return;var s=document.querySelector('.mmd-sheet');if(s&&!s.hidden)return;
 if(cur()<0)return;x0=t.clientX;y0=t.clientY;dx=0;on=1;tgt=null},{passive:true,capture:true});
 document.addEventListener('touchmove',function(e){if(!on)return;var t=e.touches[0];dx=t.clientX-x0;var dy=t.clientY-y0;
@@ -68,6 +68,17 @@ fl=0;flm=0;
 if(tgt&&Math.abs(dx)>=innerWidth*TH){var h=tgt.getAttribute('href');document.documentElement.classList.add('mm-leave');setTimeout(function(){location.href=h},140)}else hideBox()},{passive:true,capture:true});
 document.addEventListener('touchcancel',function(){on=0;hideBox()},{passive:true,capture:true});
 addEventListener('pageshow',function(){document.documentElement.classList.remove('mm-leave');hideBox()});
+}catch(e){}})();
+// 차트 가장자리 = 넘김 전용(사용자 2026-11-01): 여기서 시작한 손가락·마우스는 차트 가격 추적으로 보내지 않음
+(function(){try{
+function edge(x,g){ if(!g||!g.closest)return 0; var H=document.documentElement; if(H.classList.contains('mm-full')||H.classList.contains('mm-land')||(window.__mmT&&window.__mmT.draw))return 0;
+  var sv=g.closest('#main .mmt-box > svg'); if(!sv)return 0; var rb=sv.getBoundingClientRect(), EZ=Math.max(72,rb.width*0.22); return (x-rb.left<EZ||rb.right-x<EZ)?1:0; }
+var hold=0;
+function stop(e){ if(hold) e.stopPropagation(); }
+document.addEventListener('pointerdown',function(e){ hold=e.pointerType!=='mouse'&&edge(e.clientX,e.target); if(hold) e.stopPropagation(); },true);
+document.addEventListener('touchstart',function(e){ var t=e.touches[0]; hold=e.touches.length===1&&edge(t.clientX,e.target); if(hold) e.stopPropagation(); },{capture:true,passive:true});
+['pointermove','touchmove'].forEach(function(n){ document.addEventListener(n,stop,{capture:true,passive:true}); });
+['pointerup','pointercancel','touchend','touchcancel'].forEach(function(n){ document.addEventListener(n,function(e){ if(hold){ e.stopPropagation(); setTimeout(function(){hold=0},0); } },{capture:true,passive:true}); });
 }catch(e){}})();
 // 새 실적 알림(사용자 2026-10-29, 실적 시즌) — d/earn_feed.json의 최신 실적이 내가 마지막으로 본 것보다 새로우면
 // 메인 화면 위에 '🔔 새 실적 n곳' 띠 + 실적 결과 카드에 NEW, 독의 실적 결과 아이콘에 빨간 점. 실적 결과 페이지를 열면 '봤음'으로 꺼짐

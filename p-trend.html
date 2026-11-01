@@ -1,4 +1,4 @@
-<!doctype html><link data-vt rel="stylesheet" href="_tools/vt.css?v=e48f675d"><script data-vt src="_tools/vt.js?v=2e774d50"></script><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202611011739">(function(){var me="202611011739";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>차트 길잡이</title>
+<!doctype html><link data-vt rel="stylesheet" href="_tools/vt.css?v=e48f675d"><script data-vt src="_tools/vt.js?v=2e774d50"></script><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202611011753">(function(){var me="202611011753";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>차트 길잡이</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 /* layout: 왼쪽 종목 목록(찾기·분야) + 오른쪽 큰 추세 그래프, 휴대폰은 그래프 먼저 */
@@ -199,7 +199,7 @@ document.addEventListener('touchstart',function(e){on=0;if(e.touches.length>1)re
 var SA=(window.navigator.standalone===true)||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches),EG=SA?0:26; if(t.clientX<EG||t.clientX>w-EG)return;var g=e.target;fl=0;
 if(g.closest&&g.closest('canvas,input,textarea,select,.mmd,.mmd-sheet,#mm-fab,[data-noswipe]'))return;
 var sv=g.closest&&g.closest('svg');while(sv&&sv.parentElement&&sv.parentElement.closest('svg'))sv=sv.parentElement.closest('svg');
-if(sv&&sv.getBoundingClientRect().width>140){ /* 큰 차트 위(사용자 2026-11-01): 좌우 가장자리 64px에서 시작하면 보통 넘김, 가운데는 휙 튕길 때만 넘김(천천히 밀면 가격 추적) */ var rb=sv.getBoundingClientRect(),H=document.documentElement; if(H.classList.contains('mm-full')||H.classList.contains('mm-land')||(window.__mmT&&window.__mmT.draw))return; if(!(t.clientX-rb.left<64||rb.right-t.clientX<64)){ fl=Date.now(); flm=0; } }
+if(sv&&sv.getBoundingClientRect().width>140){ /* 큰 차트 위(사용자 2026-11-01): 좌우 가장자리(차트 폭 22%, 최소 72px)는 넘김 전용 — 가격 추적 안 함. 가운데는 처음부터 옆으로 밀면 넘김, 멈췄다 움직이면 추적 */ var rb=sv.getBoundingClientRect(),H=document.documentElement; if(H.classList.contains('mm-full')||H.classList.contains('mm-land')||(window.__mmT&&window.__mmT.draw))return; var EZ=Math.max(72,rb.width*0.22); if(!(t.clientX-rb.left<EZ||rb.right-t.clientX<EZ)){ fl=Date.now(); flm=0; } }
 else{ /* 넘기면 안 되는 곳(사용자 2026-11-01): 차트 영역(칩·기간·도구·작은 그래프), 작은 버튼·알약·칩·탭 줄 — 누르다 손가락이 미끄러져 페이지가 넘어가지 않게. 화면 폭 절반 넘는 큰 카드·글은 그대로 넘김 */ if(g.closest&&g.closest('.mmt,.mmt-nav,.mmt-per,[role=tablist],[class*="pill"],[class*="chip"],[class*="seg"],[class$="-tabs"],[class~="tabs"]'))return; var bt=g.closest&&g.closest('button,[role=button],[role=tab],[aria-pressed],label'); if(bt&&bt.getBoundingClientRect().width<w*0.5)return; for(var el=g;el&&el!==document.body;el=el.parentElement){ var cs=getComputedStyle(el); if(/(auto|scroll)/.test(cs.overflowX)&&el.getBoundingClientRect().height<90)return; } }if(scrollX(g))return;var s=document.querySelector('.mmd-sheet');if(s&&!s.hidden)return;
 if(cur()<0)return;x0=t.clientX;y0=t.clientY;dx=0;on=1;tgt=null},{passive:true,capture:true});
 document.addEventListener('touchmove',function(e){if(!on)return;var t=e.touches[0];dx=t.clientX-x0;var dy=t.clientY-y0;
@@ -219,6 +219,17 @@ fl=0;flm=0;
 if(tgt&&Math.abs(dx)>=innerWidth*TH){var h=tgt.getAttribute('href');document.documentElement.classList.add('mm-leave');setTimeout(function(){location.href=h},140)}else hideBox()},{passive:true,capture:true});
 document.addEventListener('touchcancel',function(){on=0;hideBox()},{passive:true,capture:true});
 addEventListener('pageshow',function(){document.documentElement.classList.remove('mm-leave');hideBox()});
+}catch(e){}})();
+// 차트 가장자리 = 넘김 전용(사용자 2026-11-01): 여기서 시작한 손가락·마우스는 차트 가격 추적으로 보내지 않음
+(function(){try{
+function edge(x,g){ if(!g||!g.closest)return 0; var H=document.documentElement; if(H.classList.contains('mm-full')||H.classList.contains('mm-land')||(window.__mmT&&window.__mmT.draw))return 0;
+  var sv=g.closest('#main .mmt-box > svg'); if(!sv)return 0; var rb=sv.getBoundingClientRect(), EZ=Math.max(72,rb.width*0.22); return (x-rb.left<EZ||rb.right-x<EZ)?1:0; }
+var hold=0;
+function stop(e){ if(hold) e.stopPropagation(); }
+document.addEventListener('pointerdown',function(e){ hold=e.pointerType!=='mouse'&&edge(e.clientX,e.target); if(hold) e.stopPropagation(); },true);
+document.addEventListener('touchstart',function(e){ var t=e.touches[0]; hold=e.touches.length===1&&edge(t.clientX,e.target); if(hold) e.stopPropagation(); },{capture:true,passive:true});
+['pointermove','touchmove'].forEach(function(n){ document.addEventListener(n,stop,{capture:true,passive:true}); });
+['pointerup','pointercancel','touchend','touchcancel'].forEach(function(n){ document.addEventListener(n,function(e){ if(hold){ e.stopPropagation(); setTimeout(function(){hold=0},0); } },{capture:true,passive:true}); });
 }catch(e){}})();
 // 새 실적 알림(사용자 2026-10-29, 실적 시즌) — d/earn_feed.json의 최신 실적이 내가 마지막으로 본 것보다 새로우면
 // 메인 화면 위에 '🔔 새 실적 n곳' 띠 + 실적 결과 카드에 NEW, 독의 실적 결과 아이콘에 빨간 점. 실적 결과 페이지를 열면 '봤음'으로 꺼짐
@@ -1585,8 +1596,8 @@ function mmAsof(){ var main=document.getElementById('main'), a=document.getEleme
 (function(){ var h=document.documentElement, t=null, idle=null;
   function off(){ h.classList.add('mm-hx-off'); setTimeout(function(){ window.__mmFitN=0; try{mmFitCard()}catch(e){} if(h.classList.contains('mm-lock')) scrollTo(0,0); },480); } function on(){ if(h.classList.contains('mm-land')||h.classList.contains('mm-full')) return; h.classList.remove('mm-hx-off'); clearTimeout(t); t=setTimeout(off,2000); } /* 사용자 2026-11-01: 다시 내려와도 2초 뒤 스스로 올라감 */
   var big=matchMedia('(min-width:768px)').matches; /* 사용자 2026-10-31: 2.5초 뒤 사라짐, 마우스 움직임도 활동, 아이패드·PC는 다시 안 내려옴 */
-  function act(){ clearTimeout(idle); if(!h.classList.contains('mm-hx-off')){ clearTimeout(t); t=setTimeout(off,1200); } if(!big) idle=setTimeout(on,20000); }
-  t=setTimeout(off,2000); if(!big) idle=setTimeout(on,22000); /* 사용자 2026-11-01: 처음 2초 뒤 사라짐 */
+  function act(){ if(!h.classList.contains('mm-hx-off')){ clearTimeout(t); t=setTimeout(off,1200); } }
+  t=setTimeout(off,2000); /* 사용자 2026-11-01: 처음 2초 뒤 사라지고, 한 번 사라지면 다시 안 내려옴(페이지를 새로 열면 처음 2초만 다시 보임) */
   ['pointerdown','pointermove','keydown','wheel','touchstart'].forEach(function(e){ addEventListener(e,act,{passive:true,capture:true}); }); })();
 // 종목 찾기 목록을 시세 보드 '종목별 시세' 한 줄 카드로(사용자 2026-10-29): 이름+티커·층위 / 가격+52주 막대 / 1일 등락 크게·고점 대비 / ›, 목록은 상자 안 스크롤
 function mmList(){ var L=document.getElementById('list'); if(!L)return; var byT={}; try{ DATA.P.forEach(function(r){ byT[r.ticker.replace('^','')]=r; }); }catch(e){ return; }
