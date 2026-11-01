@@ -375,6 +375,21 @@
   "thread": "유가·공급 대응"
  },
  {
+  "id": "e56",
+  "date": "2026-10-02",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "G7, 비축유·경유 최대 1억 배럴 방출 합의",
+  "summary": "주요 7개국이 넉 달에 걸쳐 비축유와 경유를 최대 1억 배럴 풀기로 했습니다. 브렌트는 100달러 안팎에서 등락했습니다.",
+  "nasdaq_pct": 1.19,
+  "mkt_note": "나스닥 +1.19%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "유가·공급 대응"
+ },
+ {
   "id": "e38",
   "date": "2026-10-02",
   "month": "2026-10",
@@ -389,21 +404,6 @@
   "tier": "big",
   "thread": "연준 금리",
   "time": "08:30"
- },
- {
-  "id": "e56",
-  "date": "2026-10-02",
-  "month": "2026-10",
-  "category": "이란 전쟁·유가",
-  "title": "G7, 비축유·경유 최대 1억 배럴 방출 합의",
-  "summary": "주요 7개국이 넉 달에 걸쳐 비축유와 경유를 최대 1억 배럴 풀기로 했습니다. 브렌트는 100달러 안팎에서 등락했습니다.",
-  "nasdaq_pct": 1.19,
-  "mkt_note": "나스닥 +1.19%",
-  "status": "발생",
-  "source_url": null,
-  "media": "새벽 브리핑 기록",
-  "tier": "small",
-  "thread": "유가·공급 대응"
  },
  {
   "id": "e39",
@@ -466,6 +466,21 @@
   "thread": "유가·공급 대응"
  },
  {
+  "id": "e40",
+  "date": "2026-10-09",
+  "month": "2026-10",
+  "category": "AI·전력 정책",
+  "title": "FERC, PJM 대형부하(데이터센터) 접속안 핵심 기각 — 등록제만 승인",
+  "summary": "10/9 명령으로 PJM의 대형부하 정의와 등록제(위치·증설 일정·용량 추적)는 승인했지만, 신규 용량 없이 접속하는 대신 비상 전 차단에 동의하는 \"임시 자원적정성 서비스(IRAS)\"와 \"자기 용량 지참\" 규정은 주 관할 침해·차별 소지로 기각했습니다. 제프리스는 주 주도로 축소 부활 가능성을 봤습니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "자료 없음",
+  "status": "발생",
+  "source_url": "https://www.utilitydive.com/news/ferc-pjm-large-load-interconnection-iras-byonc/832716/",
+  "media": "유틸리티다이브",
+  "tier": "big",
+  "thread": "데이터센터 정치"
+ },
+ {
   "id": "e52",
   "date": "2026-10-09",
   "month": "2026-10",
@@ -480,21 +495,6 @@
   "tier": "small",
   "thread": "이란 해협 협상",
   "time": "11:53"
- },
- {
-  "id": "e40",
-  "date": "2026-10-09",
-  "month": "2026-10",
-  "category": "AI·전력 정책",
-  "title": "FERC, PJM 대형부하(데이터센터) 접속안 핵심 기각 — 등록제만 승인",
-  "summary": "10/9 명령으로 PJM의 대형부하 정의와 등록제(위치·증설 일정·용량 추적)는 승인했지만, 신규 용량 없이 접속하는 대신 비상 전 차단에 동의하는 \"임시 자원적정성 서비스(IRAS)\"와 \"자기 용량 지참\" 규정은 주 관할 침해·차별 소지로 기각했습니다. 제프리스는 주 주도로 축소 부활 가능성을 봤습니다.",
-  "nasdaq_pct": null,
-  "mkt_note": "자료 없음",
-  "status": "발생",
-  "source_url": "https://www.utilitydive.com/news/ferc-pjm-large-load-interconnection-iras-byonc/832716/",
-  "media": "유틸리티다이브",
-  "tier": "big",
-  "thread": "데이터센터 정치"
  },
  {
   "id": "e53",
@@ -572,6 +572,21 @@
   "thread": "호르무즈 해상 충돌"
  },
  {
+  "id": "e41",
+  "date": "2026-10-14",
+  "month": "2026-10",
+  "category": "한국 관련",
+  "title": "로이터 \"SK하이닉스, 미국 공장 투자 조건으로 다롄 공장 장비 반입 허가 요청\"",
+  "summary": "미국 자회사 솔리다임이 다롄 Mod B 공장에 낸드 생산장비를 설치할 허가와 추가 장비 구매 허가를 신청했다는 보도. 상무부는 아직 허가를 내지 않았습니다. SK하이닉스는 \"Mod B 증설은 검토하지 않는다\"며 장비 반입은 미 정부 협의·승인 아래 진행 중이라고 밝혔습니다. 지난해 VEU 포괄허가가 철회돼 기존 공장 유지용만 허용되는 상황입니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "자료 없음",
+  "status": "진행중",
+  "source_url": "https://www.mt.co.kr/world/2026/10/15/2026101514265939431",
+  "media": "머니투데이(로이터 인용)",
+  "tier": "big",
+  "thread": "한국 대미 투자"
+ },
+ {
   "id": "e15",
   "date": "2026-10-14",
   "month": "2026-10",
@@ -586,21 +601,6 @@
   "tier": "big",
   "thread": "연준 금리",
   "time": "08:30"
- },
- {
-  "id": "e41",
-  "date": "2026-10-14",
-  "month": "2026-10",
-  "category": "한국 관련",
-  "title": "로이터 \"SK하이닉스, 미국 공장 투자 조건으로 다롄 공장 장비 반입 허가 요청\"",
-  "summary": "미국 자회사 솔리다임이 다롄 Mod B 공장에 낸드 생산장비를 설치할 허가와 추가 장비 구매 허가를 신청했다는 보도. 상무부는 아직 허가를 내지 않았습니다. SK하이닉스는 \"Mod B 증설은 검토하지 않는다\"며 장비 반입은 미 정부 협의·승인 아래 진행 중이라고 밝혔습니다. 지난해 VEU 포괄허가가 철회돼 기존 공장 유지용만 허용되는 상황입니다.",
-  "nasdaq_pct": null,
-  "mkt_note": "자료 없음",
-  "status": "진행중",
-  "source_url": "https://www.mt.co.kr/world/2026/10/15/2026101514265939431",
-  "media": "머니투데이(로이터 인용)",
-  "tier": "big",
-  "thread": "한국 대미 투자"
  },
  {
   "id": "e63",
@@ -813,6 +813,21 @@
   "thread": "관세·무역"
  },
  {
+  "id": "e43",
+  "date": "2026-10-25",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "카타르 중재단 테헤란 도착 — 이란, 미국과의 합의에 엇갈린 신호",
+  "summary": "미·이란 재충돌을 막기 위한 외교가 속도를 냈습니다. 네타냐후는 총선 전 선제타격에 반대하는 것으로 전해졌고, 미군은 중간선거 이후 추가 타격 옵션을 준비해 둔 상태입니다. 해상 봉쇄와 해협 재개방 문제는 미해결입니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "자료 없음",
+  "status": "진행중",
+  "source_url": "https://www.iranintl.com/en/202610250633",
+  "media": "이란인터내셔널",
+  "tier": "big",
+  "thread": "이란 해협 협상"
+ },
+ {
   "id": "e73",
   "date": "2026-10-25",
   "month": "2026-10",
@@ -827,21 +842,6 @@
   "tier": "small",
   "thread": "호르무즈 해상 충돌",
   "time": "12:47"
- },
- {
-  "id": "e43",
-  "date": "2026-10-25",
-  "month": "2026-10",
-  "category": "이란 전쟁·유가",
-  "title": "카타르 중재단 테헤란 도착 — 이란, 미국과의 합의에 엇갈린 신호",
-  "summary": "미·이란 재충돌을 막기 위한 외교가 속도를 냈습니다. 네타냐후는 총선 전 선제타격에 반대하는 것으로 전해졌고, 미군은 중간선거 이후 추가 타격 옵션을 준비해 둔 상태입니다. 해상 봉쇄와 해협 재개방 문제는 미해결입니다.",
-  "nasdaq_pct": null,
-  "mkt_note": "자료 없음",
-  "status": "진행중",
-  "source_url": "https://www.iranintl.com/en/202610250633",
-  "media": "이란인터내셔널",
-  "tier": "big",
-  "thread": "이란 해협 협상"
  },
  {
   "id": "e20",
@@ -904,6 +904,21 @@
   "thread": "후티-사우디 전선"
  },
  {
+  "id": "e77",
+  "date": "2026-10-27",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "후티, 라스타누라 정유시설 공격 주장 — 이집트 지원은 \"선전포고\"",
+  "summary": "후티가 사우디 라스타누라 정유시설에 미사일을 쐈다고 주장했고(화재), 이집트의 사우디 군사지원을 선전포고로 규정했습니다. 홍해 전선이 넓어지고 있습니다.",
+  "nasdaq_pct": 1.18,
+  "mkt_note": "나스닥 +1.18%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "후티-사우디 전선"
+ },
+ {
   "id": "e76",
   "date": "2026-10-27",
   "month": "2026-10",
@@ -936,19 +951,19 @@
   "time": "16:00"
  },
  {
-  "id": "e77",
-  "date": "2026-10-27",
+  "id": "e54",
+  "date": "2026-10-28",
   "month": "2026-10",
   "category": "이란 전쟁·유가",
-  "title": "후티, 라스타누라 정유시설 공격 주장 — 이집트 지원은 \"선전포고\"",
-  "summary": "후티가 사우디 라스타누라 정유시설에 미사일을 쐈다고 주장했고(화재), 이집트의 사우디 군사지원을 선전포고로 규정했습니다. 홍해 전선이 넓어지고 있습니다.",
-  "nasdaq_pct": 1.18,
-  "mkt_note": "나스닥 +1.18%",
+  "title": "사우디 \"전쟁 서두르지 말고 시간 달라\" — 미국은 농축우라늄 포기 요구",
+  "summary": "테헤란을 다녀온 사우디 관리들이 백악관에 이란이 선거 뒤 대규모 공습을 두려워한다며 협상에 시간을 더 달라고 요청했습니다. 튀르키예·파키스탄 안보 관계자도 동행했습니다. 미국은 농축우라늄 포기를, 이란은 봉쇄 해제와 동결 자금 해제를 먼저 요구하고 있고, 이스라엘 참모총장은 중부사령관과 1주일가량의 공습 가능성을 조율한 것으로 전해졌습니다.",
+  "nasdaq_pct": 0.27,
+  "mkt_note": "나스닥 +0.27%(같은 날 연준 동결)",
   "status": "발생",
-  "source_url": null,
-  "media": "새벽 브리핑 기록",
-  "tier": "small",
-  "thread": "후티-사우디 전선"
+  "source_url": "https://dailybeirut.com/en/world/axios-saudi-arabia-asked-trump-not-to-rush-into-war-with-iran-and-give-more-time/",
+  "media": "데일리베이루트(악시오스 인용)",
+  "tier": "big",
+  "thread": "이란 해협 협상"
  },
  {
   "id": "e78",
@@ -967,22 +982,6 @@
   "time": "01:17"
  },
  {
-  "id": "e23",
-  "date": "2026-10-28",
-  "month": "2026-10",
-  "category": "연준·정책",
-  "title": "연준 3.75~4.00% 동결 — 10대 2, 쿡·해맥은 인상 주장",
-  "summary": "중간선거 닷새 전 회의에서 금리를 그대로 뒀습니다. 리사 쿡 이사와 베스 해맥 클리블랜드 연은 총재가 0.25%p 인상을 주장해 반대표를 냈고, 쿡의 반대는 예상 밖이었습니다. 시장은 12월 인상에 계속 무게를 두고 있습니다.",
-  "nasdaq_pct": 0.27,
-  "mkt_note": "나스닥 +0.27%, 10년물 5.05%",
-  "status": "발생",
-  "source_url": "https://fortune.com/2026/10/28/fed-rates-steady-midterms-october-3-75-to-4-percent-cook-hammack-dissent/",
-  "media": "포천",
-  "tier": "big",
-  "thread": "연준 금리",
-  "time": "14:00"
- },
- {
   "id": "e46",
   "date": "2026-10-28",
   "month": "2026-10",
@@ -999,19 +998,20 @@
   "time": "07:25"
  },
  {
-  "id": "e54",
+  "id": "e23",
   "date": "2026-10-28",
   "month": "2026-10",
-  "category": "이란 전쟁·유가",
-  "title": "사우디 \"전쟁 서두르지 말고 시간 달라\" — 미국은 농축우라늄 포기 요구",
-  "summary": "테헤란을 다녀온 사우디 관리들이 백악관에 이란이 선거 뒤 대규모 공습을 두려워한다며 협상에 시간을 더 달라고 요청했습니다. 튀르키예·파키스탄 안보 관계자도 동행했습니다. 미국은 농축우라늄 포기를, 이란은 봉쇄 해제와 동결 자금 해제를 먼저 요구하고 있고, 이스라엘 참모총장은 중부사령관과 1주일가량의 공습 가능성을 조율한 것으로 전해졌습니다.",
+  "category": "연준·정책",
+  "title": "연준 3.75~4.00% 동결 — 10대 2, 쿡·해맥은 인상 주장",
+  "summary": "중간선거 닷새 전 회의에서 금리를 그대로 뒀습니다. 리사 쿡 이사와 베스 해맥 클리블랜드 연은 총재가 0.25%p 인상을 주장해 반대표를 냈고, 쿡의 반대는 예상 밖이었습니다. 시장은 12월 인상에 계속 무게를 두고 있습니다.",
   "nasdaq_pct": 0.27,
-  "mkt_note": "나스닥 +0.27%(같은 날 연준 동결)",
+  "mkt_note": "나스닥 +0.27%, 10년물 5.05%",
   "status": "발생",
-  "source_url": "https://dailybeirut.com/en/world/axios-saudi-arabia-asked-trump-not-to-rush-into-war-with-iran-and-give-more-time/",
-  "media": "데일리베이루트(악시오스 인용)",
+  "source_url": "https://fortune.com/2026/10/28/fed-rates-steady-midterms-october-3-75-to-4-percent-cook-hammack-dissent/",
+  "media": "포천",
   "tier": "big",
-  "thread": "이란 해협 협상"
+  "thread": "연준 금리",
+  "time": "14:00"
  },
  {
   "id": "e79",
@@ -1059,6 +1059,36 @@
   "thread": "이란 해협 협상"
  },
  {
+  "id": "e82",
+  "date": "2026-10-31",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "무산담 앞바다 유조선 화재, 선원 25명 구조 — 미군 \"통과 선박 95% 이상 안전\"",
+  "summary": "혁명수비대는 유조선 4척이 기뢰에 맞았다고 주장했고 오만이 선원 25명을 구조했습니다. 미 중부사령부는 주요 항로 기뢰를 제거했고 최근 몇 달 통과 선박의 95% 이상이 안전했다고 반박했습니다. 10월 해협 선박 공격은 전쟁 이후 최다였습니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "source_url": "https://gulfnews.com/world/mena/middle-east-war-saudi-intercepts-drone-iran-claims-3-tankers-hit-mines-in-hormuz-1.500730393",
+  "media": "걸프뉴스",
+  "tier": "small",
+  "thread": "호르무즈 해상 충돌"
+ },
+ {
+  "id": "e83",
+  "date": "2026-10-31",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "하메네이 \"다시 공격받으면 끝낼 시점은 이란이 정한다\"",
+  "summary": "아락치는 미국의 대화 시도를 긍정적이라면서도 당장 회담 계획은 없다고 했고, 최고지도자는 재공격 시 대응 수위를 이란이 정하겠다고 경고했습니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "source_url": "https://www.aljazeera.com/news/liveblog/2026/10/31/iran-war-live-oil-tankers-hit-in-hormuz-trump-says-conflict-will-end-soon",
+  "media": "알자지라",
+  "tier": "small",
+  "thread": "이란 해협 협상"
+ },
+ {
   "id": "e47",
   "date": "2026-10-31",
   "month": "2026-10",
@@ -1091,36 +1121,6 @@
   "time": "23:54"
  },
  {
-  "id": "e82",
-  "date": "2026-10-31",
-  "month": "2026-10",
-  "category": "이란 전쟁·유가",
-  "title": "무산담 앞바다 유조선 화재, 선원 25명 구조 — 미군 \"통과 선박 95% 이상 안전\"",
-  "summary": "혁명수비대는 유조선 4척이 기뢰에 맞았다고 주장했고 오만이 선원 25명을 구조했습니다. 미 중부사령부는 주요 항로 기뢰를 제거했고 최근 몇 달 통과 선박의 95% 이상이 안전했다고 반박했습니다. 10월 해협 선박 공격은 전쟁 이후 최다였습니다.",
-  "nasdaq_pct": null,
-  "mkt_note": "주말 — 장 없음",
-  "status": "발생",
-  "source_url": "https://gulfnews.com/world/mena/middle-east-war-saudi-intercepts-drone-iran-claims-3-tankers-hit-mines-in-hormuz-1.500730393",
-  "media": "걸프뉴스",
-  "tier": "small",
-  "thread": "호르무즈 해상 충돌"
- },
- {
-  "id": "e83",
-  "date": "2026-10-31",
-  "month": "2026-10",
-  "category": "이란 전쟁·유가",
-  "title": "하메네이 \"다시 공격받으면 끝낼 시점은 이란이 정한다\"",
-  "summary": "아락치는 미국의 대화 시도를 긍정적이라면서도 당장 회담 계획은 없다고 했고, 최고지도자는 재공격 시 대응 수위를 이란이 정하겠다고 경고했습니다.",
-  "nasdaq_pct": null,
-  "mkt_note": "주말 — 장 없음",
-  "status": "발생",
-  "source_url": "https://www.aljazeera.com/news/liveblog/2026/10/31/iran-war-live-oil-tankers-hit-in-hormuz-trump-says-conflict-will-end-soon",
-  "media": "알자지라",
-  "tier": "small",
-  "thread": "이란 해협 협상"
- },
- {
   "id": "e48",
   "date": "2026-11-01",
   "month": "2026-11",
@@ -1135,6 +1135,38 @@
   "tier": "big",
   "thread": "이란 해협 협상",
   "has_detail": true
+ },
+ {
+  "month": "2026-11",
+  "category": "이란 전쟁·유가",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "tier": "small",
+  "has_detail": false,
+  "id": "e86",
+  "date": "2026-11-01",
+  "thread": "이란 해협 협상",
+  "title": "미 국무부 \"협상의 손 내밀었다, 다른 길도 준비\" — 도하 협상 사흘째",
+  "summary": "도널드 블롬 국무부 근동 담당 차관보는 바레인 마나마 대화에서 협상 채널이 열려 있고 활발하다고 말했습니다. 동시에 \"다른 방향으로 갈 준비도 돼 있다\"며 이란이 지역과 세계 경제를 인질로 잡게 둘 수 없다고 했습니다. 로이터는 이란 협상단이 도하에서 카타르 중재단과 사흘째 협상 중이라고 전했습니다. 이란의 2일안에 대한 미국 공식 답변은 아직 없습니다.",
+  "source_url": "https://www.timesofisrael.com/liveblog_entry/us-state-dept-official-says-hand-of-negotiation-extended-to-iran-but-all-options-on-table",
+  "media": "타임스오브이스라엘(AP)"
+ },
+ {
+  "month": "2026-11",
+  "category": "이란 전쟁·유가",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "tier": "small",
+  "has_detail": false,
+  "id": "e87",
+  "date": "2026-11-01",
+  "thread": "이란-영국 대립",
+  "title": "이란, 영국 해군·공군 \"테러 조직\" 지정 — MI6는 \"적대 단체\"",
+  "summary": "이란 외무부는 최고국가안보회의 결의에 따라 영국 해군과 공군을 테러 조직으로, MI6를 적대 단체로 지정했다고 밝혔습니다. 영국이 7월 13일 혁명수비대를 국가위협법으로 지정한 데 대한 맞대응이라고 했습니다. 영국이 기지와 시설을 내줘 미국-이스라엘 전쟁에 가담했다고도 비난했습니다. 해협을 지나는 영국 관련 선박과 군함에 대한 위험이 커질 수 있습니다.",
+  "source_url": "https://www.aa.com.tr/en/middle-east/iran-designates-british-navy-air-force-as-terrorist-organizations/4107764",
+  "media": "아나돌루"
  },
  {
   "id": "e85",

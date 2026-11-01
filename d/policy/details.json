@@ -1,6 +1,6 @@
 {
  "e48": {
-  "updated": "11.01 21:40",
+  "updated": "11.01 23:40",
   "lead": "이란이 해협 재개 시간을 7일에서 2일로 줄였습니다. 공은 미국으로 넘어갔고, 트럼프의 '선거 전 공습 유예'는 11/3에 끝납니다.",
   "blocks": [
    {
@@ -34,6 +34,10 @@
      [
       "11.1",
       "트럼프 '핵시설 한두 곳 남았다', 카타르 LNG선 피격 — 협상과 압박이 함께 진행"
+     ],
+     [
+      "11.1",
+      "미 국무부 \"협상의 손 내밀었다, 다른 길도 준비\" — 이란은 영국 해·공군을 테러 조직 지정"
      ]
     ]
    },
@@ -119,6 +123,13 @@
       "say": "핵은 없앴다. 한두 곳이 남았는데 10분이면 처리할 수 있다. 협상은 잘 되지만 그들은 믿을 만하지 않다",
       "media": "CBS",
       "src": "https://www.cbsnews.com/live-updates/iran-war-us-trump-diplomacy-threat-resume-attacks/"
+     },
+     {
+      "who": "도널드 블롬",
+      "role": "미 국무부 근동 담당 차관보",
+      "say": "협상의 손은 내밀어졌고 채널은 열려 있다. 다른 방향으로 갈 준비도 돼 있다. 이란이 지역과 세계 경제를 인질로 잡게 둘 수 없다",
+      "media": "타임스오브이스라엘(AP)",
+      "src": "https://www.timesofisrael.com/liveblog_entry/us-state-dept-official-says-hand-of-negotiation-extended-to-iran-but-all-options-on-table"
      }
     ]
    },
@@ -175,6 +186,11 @@
     "media": "하우스오브사우드",
     "t": "10/26 폐쇄 선언·통항 수",
     "u": "https://houseofsaud.com/iran-hormuz-ceasefire-conditions-oct28/"
+   },
+   {
+    "media": "타임스오브이스라엘(AP)",
+    "t": "미 국무부 \"협상의 손 내밀었다\"",
+    "u": "https://www.timesofisrael.com/liveblog_entry/us-state-dept-official-says-hand-of-negotiation-extended-to-iran-but-all-options-on-table"
    }
   ]
  }
