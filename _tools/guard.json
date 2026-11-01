@@ -9,11 +9,45 @@
   "<b>메뉴</b>": "숨은 메뉴 알약",
   "'p-targets']": "목표주가 흐름 확인으로",
   "rel(": "표 보정 가볍게",
-  "mmtNav": "차트 아래 작은 전체 그래프"
+  "mmtNav": "차트 아래 작은 전체 그래프",
+  "sortDay": "타임라인 같은 날은 시각 순",
+  "tlx-tm": "날짜 칸 아래 시각",
+  "tlx-th": "흐름 이어 보기 알약",
+  "tlx-open": "헤드라인 누르면 펼침",
+  "data-tlx": "정책·테크 페이지에 헤드라인 모드 입히기"
  },
- "_tools/navfab.js": ["up>48", "pointermove", "mm-swiping", "wx", "EZ=", "<b>메뉴</b>"],
- "_tools/navfab.css": ["mm-swiping", "#mm-pull b"],
- "_tools/home_order.js": ["'p-targets']"],
- "_tools/herofix.js": ["rel("],
- "_tools/page_tidy.py": ["mmtNav"]
+ "_tools/navfab.js": [
+  "up>48",
+  "pointermove",
+  "mm-swiping",
+  "wx",
+  "EZ=",
+  "<b>메뉴</b>"
+ ],
+ "_tools/navfab.css": [
+  "mm-swiping",
+  "#mm-pull b"
+ ],
+ "_tools/home_order.js": [
+  "'p-targets']"
+ ],
+ "_tools/herofix.js": [
+  "rel("
+ ],
+ "_tools/page_tidy.py": [
+  "mmtNav"
+ ],
+ "_tools/tlx.js": [
+  "sortDay",
+  "tlx-tm",
+  "tlx-th",
+  "OPEN[e.id]"
+ ],
+ "_tools/tlx.css": [
+  "tlx-open",
+  "tlx-wd"
+ ],
+ "_tools/hub_tidy.py": [
+  "data-tlx"
+ ]
 }

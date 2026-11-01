@@ -50,6 +50,11 @@
 .tlx-on #tl .pg-ev.tlx .l-more,.tlx-on #tl .pg-ev.tlx .u-more{display:none!important}
 .tlx-on #tl .pg-ev.tlx .u-clamp{-webkit-line-clamp:unset!important;max-height:none!important;display:block!important;overflow:visible!important}
 .tlx-on #tl .pg-ev.tlx .m{-webkit-line-clamp:unset!important}
-.tlx-on #tl .pg-ev.tlx.tlx-open .pd{margin-left:calc(-3.6em - 34px);width:calc(100% + 3.6em + 34px);box-sizing:border-box;position:relative;z-index:1}
+.tlx-on #tl .pg-ev.tlx.tlx-open .pd{margin-left:calc(-4.7em - 34px);width:calc(100% + 4.7em + 34px);box-sizing:border-box;position:relative;z-index:1}
 .pd .sc{grid-template-columns:1fr}
 .tlx-nb{all:unset;cursor:pointer;font:700 13px -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;padding:2px 0 8px}
+/* 날짜 칸: '10.31 토' 한 줄 + 아래 시각(사용자 2026-11-01) */
+.tlx-on #tl article.pg-ev.tlx{grid-template-columns:4.7em 22px minmax(0,1fr)}
+.tlx-on #tl .pg-ev.tlx .d{white-space:nowrap;line-height:1.35}
+.tlx-on #tl .pg-ev.tlx .d .tlx-wd{display:inline;margin-left:3px;font-size:12.5px}
+.tlx-on #tl .pg-ev.tlx .d .tlx-tm{display:block;font-size:12px;color:#9a978f;font-variant-numeric:tabular-nums;margin-top:1px}
