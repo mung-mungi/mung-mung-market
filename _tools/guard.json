@@ -44,7 +44,9 @@
   "mx-sub": "위(상위)·아래(하위) 알약 줄 모양 구별",
   "'p-tech', 'p-econ'": "메인: 경제지표를 AI·테크 뉴스 뒤로",
   "df-b": "설명 문단 접기(설명 보기)",
-  "'descfold'": "설명 접기 전 페이지 연결"
+  "'descfold'": "설명 접기 전 페이지 연결",
+  "mm-sh-rows": "공매도 오늘 한눈에(확인용 보조지표)",
+  "'shtop'": "공매도 오늘 한눈에 연결"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -109,7 +111,8 @@
   "def tidy_briefui",
   "'bdopt'",
   "'chipfold'",
-  "'descfold'"
+  "'descfold'",
+  "'shtop'"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -187,5 +190,8 @@
  ],
  "_tools/descfold.js": [
   "df-b"
+ ],
+ "_tools/shtop.js": [
+  "mm-sh-rows"
  ]
 }
