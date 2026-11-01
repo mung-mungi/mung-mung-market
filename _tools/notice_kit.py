@@ -1,0 +1,123 @@
+# 속보 배너 키트(사용자 2026-11-01) — 중요한 일이 터졌을 때 11.1 '과한 공포 속, 기관들이 짚은 네 가지' 양식 배너를 빨리 만들고,
+# 바로 공개하지 않고 주인장 자료의 🧪 검수 칸에 먼저 올려 주인장이 앱에서 보고 '공개'를 정함.
+#
+# 내용은 짧은 JSON 하나만 쓰면 됨(예: _tools/notice_kit_sample.json). 모양·CSS는 _tools/notice_tpl_1101.html에서 그대로 가져옴.
+#   python3 -I _tools/notice_kit.py render  초안.json 결과.html          # 배너 HTML만 만들기(미리보기용)
+#   python3 -I _tools/notice_kit.py draft   초안.json <저장소> <비번>     # 🧪 검수 칸에 올림(d/notice_draft.enc.json, 비번으로 잠금)
+#   python3 -I _tools/notice_kit.py publish <저장소> <비번> [--keep-old]  # 검수 칸 초안을 실제 전달사항(d/notice.html)으로 공개, 검수 칸 비움
+#   python3 -I _tools/notice_kit.py clear   <저장소>                      # 검수 칸 비우기
+# 비번은 인자 대신 환경변수 OWNER_PIN으로 줘도 됨(GitHub Actions 비밀값용). 비번·평문 초안은 저장소에 절대 올리지 않음.
+#
+# 초안 JSON 칸: id·date·title / new(맨 위 검은 알림 줄, 선택) / cause[2줄] / k(헤드라인 묶음 제목) / hint /
+#   items[{av,color,who,head(*강조*),tag,tagc,body[문단, **굵게**],links[[이름,주소]],figs[{src,cap}]}] /
+#   our(🐾 해석 한 줄) / warn(⚠️ 반대 한 줄) / pills[시험대] / end(마무리 한 줄) / src[[이름,주소]](출처 접기)
+#   figs.src는 저장소 안 그림 경로 또는 이미 data: 주소 — 공개할 때 휴대폰에서 깨지지 않게 data URI(폭 960·JPEG 78)로 넣음
+import sys, os, re, json, html, base64, io, datetime
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+TAGC = {'경고': '#d8343f', '위험': '#d8343f', '판 쪽': '#d8343f', '완화': '#2fa36b', '산 쪽': '#2fa36b', '호재': '#2fa36b',
+        '수요': '#3b78e7', '확인': '#6b4fa0', '일정': '#8a6a2c'}
+
+def esc(t): return html.escape(str(t), quote=False)
+def rich(t):  # *강조* → em(빨강), **굵게** → b
+    t = esc(t)
+    t = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', t)
+    return re.sub(r'\*(.+?)\*', r'<em>\1</em>', t)
+
+def style():
+    s = open(os.path.join(HERE, 'notice_tpl_1101.html'), encoding='utf-8').read()
+    i = s.find('<style>'); j = s.find('</style>', i)
+    # 키트가 쓰는 *강조*를 원인 줄·해석·속보 줄에서도 빨강 굵게(기울임 대신)
+    return s[i:j] + '.ntc-c em,.ns-our em,.ntc-p em{font-style:normal;font-weight:800;color:#b03d20}.nc-new em{font-style:normal;font-weight:900;color:#f3d48a}' + s[j:j + 8]
+
+def img_uri(src, root):
+    if src.startswith('data:'): return src
+    p = src if os.path.isabs(src) else os.path.join(root, src)
+    from PIL import Image
+    im = Image.open(p).convert('RGB')
+    if im.width > 960: im = im.resize((960, round(im.height * 960 / im.width)))
+    b = io.BytesIO(); im.save(b, 'JPEG', quality=78, optimize=True)
+    return 'data:image/jpeg;base64,' + base64.b64encode(b.getvalue()).decode()
+
+def render(d, root='.'):
+    o = ['<!-- 메인 전달사항 — notice_kit.py로 만든 것(%s). 바꿀 때: data-id를 새로(새로 띄움), data-on="0"이면 내림 -->' % datetime.date.today()]
+    o.append('<div id="mm-ntc-src" data-on="1" data-id="%s" data-date="%s" data-title="%s">' % (esc(d['id']), esc(d['date']), html.escape(d['title'])))
+    o.append(style())
+    if d.get('new'):
+        o.append('<div class="nc-new"><span>⚡ 속보</span><b>%s</b></div>' % rich(d['new']))
+    if d.get('cause'):
+        o.append('<div class="ntc-cause">' + ''.join('<div class="ntc-c"><span class="b">%s</span>%s</div>' % ('①②③④'[i], rich(c)) for i, c in enumerate(d['cause'])) + '</div>')
+    if d.get('items'):
+        o.append('<div class="ntc-k">%s</div>' % rich(d.get('k', '짚어 볼 것')))
+        o.append('<div class="ns-hint">%s</div>' % esc(d.get('hint', '누르면 근거와 원문이 펼쳐집니다')))
+        for it in d['items']:
+            tc = it.get('tagc') or TAGC.get(it.get('tag', ''), '#6b4fa0')
+            b = ''.join('<p>%s</p>' % rich(p) for p in it.get('body', []))
+            figs = it.get('figs') or []
+            if figs:
+                b += '<div class="nq-sw%s">' % (' m' if len(figs) > 1 else '') + ''.join(
+                    '<figure class="nq-f"><img src="%s" alt=""><figcaption>%s</figcaption></figure>' % (img_uri(f['src'], root), esc(f.get('cap', ''))) for f in figs) + '</div>'
+            if it.get('links'):
+                b += '<span class="nq-ln">' + ''.join('<a href="%s" target="_blank" rel="noopener">%s ↗</a>' % (html.escape(u), esc(n)) for n, u in it['links']) + '</span>'
+            o.append('<details class="nq"><summary role="button"><span class="nq-av" style="background:%s">%s</span><span class="nq-h"><b>%s</b> — %s</span>'
+                     '<span class="nq-r"><span class="nq-tag" style="background:%s">%s</span><span class="nq-ar">자세히 ▾</span></span></summary><div class="nq-b">%s</div></details>'
+                     % (it.get('color', '#3e556a'), esc(it.get('av', it['who'][:2])), esc(it['who']), rich(it['head']), tc, esc(it.get('tag', '확인')), b))
+    if d.get('our'): o.append('<div class="ns-our">🐾 %s</div>' % rich(d['our']))
+    if d.get('warn'): o.append('<div class="ntc-warn"><div class="ntc-p">⚠️ %s</div></div>' % rich(d['warn']))
+    if d.get('pills'): o.append('<div class="ntc-pills">' + ''.join('<span class="ntc-pill">%s</span>' % esc(p) for p in d['pills']) + '</div>')
+    if d.get('end'): o.append('<div class="ntc-end">%s</div>' % rich(d['end']))
+    if d.get('src'):
+        o.append('<details class="ns-src"><summary role="button">📎 출처 %d곳 ▾</summary><div>%s</div></details>' % (len(d['src']), ' · '.join('<a href="%s" target="_blank" rel="noopener">%s</a>' % (html.escape(u), esc(n)) for n, u in d['src'])))
+    o.append('<div class="ntc-end" style="font-size:12px;font-weight:600;color:#9a9182">투자 권유가 아닌 참고 자료입니다.</div>')
+    o.append('</div>')
+    return '\n'.join(o) + '\n'
+
+# ── 잠금(주인장 자료와 같은 방식: PBKDF2-SHA256 310000회 + AES-GCM, 브라우저 owner.js가 같은 비번으로 풂)
+def enc(plain, pin):
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+    from cryptography.hazmat.primitives import hashes
+    salt, iv = os.urandom(16), os.urandom(12)
+    key = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=salt, iterations=310000).derive(pin.encode())
+    b = lambda x: base64.b64encode(x).decode()
+    return {'v': 1, 'iter': 310000, 'salt': b(salt), 'iv': b(iv), 'ct': b(AESGCM(key).encrypt(iv, plain.encode(), None))}
+
+def dec(j, pin):
+    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+    from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+    from cryptography.hazmat.primitives import hashes
+    u = lambda x: base64.b64decode(x)
+    key = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt=u(j['salt']), iterations=j['iter']).derive(pin.encode())
+    return AESGCM(key).decrypt(u(j['iv']), u(j['ct']), None).decode()
+
+def kst(): return (datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None) + datetime.timedelta(hours=9)).strftime('%m.%d %H:%M')
+
+def main(a):
+    cmd = a[0]
+    pin = lambda i: a[i] if len(a) > i and not a[i].startswith('--') else os.environ.get('OWNER_PIN', '')
+    if cmd == 'render':
+        d = json.load(open(a[1], encoding='utf-8')); open(a[2], 'w', encoding='utf-8').write(render(d, os.path.dirname(os.path.abspath(a[1]))))
+    elif cmd == 'draft':
+        d = json.load(open(a[1], encoding='utf-8')); repo = a[2]; p = pin(3)
+        assert re.fullmatch(r'\d{4}', p or ''), '비번(4자리)이 필요합니다'
+        out = render(d, repo)
+        json.dump(enc(out, p), open(os.path.join(repo, 'd', 'notice_draft.enc.json'), 'w'), separators=(',', ':'))
+        # 잠그지 않는 건 '초안이 있다'는 표시와 시각뿐(제목·내용은 잠금 안에만)
+        json.dump({'n': 1, 'at': kst()}, open(os.path.join(repo, 'd', 'notice_draft.json'), 'w'))
+        print('🧪 검수 칸에 올림', len(out), 'bytes')
+    elif cmd == 'publish':
+        repo = a[1]; p = pin(2)
+        j = json.load(open(os.path.join(repo, 'd', 'notice_draft.enc.json')))
+        out = dec(j, p)
+        open(os.path.join(repo, 'd', 'notice.html'), 'w', encoding='utf-8').write(out)
+        main(['clear', repo]); print('📌 전달사항으로 공개함(d/notice.html)')
+    elif cmd == 'clear':
+        repo = a[1]
+        f = os.path.join(repo, 'd', 'notice_draft.enc.json')
+        if os.path.exists(f): os.remove(f)
+        json.dump({'n': 0, 'at': kst()}, open(os.path.join(repo, 'd', 'notice_draft.json'), 'w'))
+    else:
+        print(__doc__ or open(__file__).read()[:900])
+
+if __name__ == '__main__':
+    main(sys.argv[1:])

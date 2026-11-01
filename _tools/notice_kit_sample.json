@@ -1,0 +1,34 @@
+{
+ "id": "1101g",
+ "date": "11.1",
+ "title": "협상은 앞으로, 날짜는 뒤에서 — 호르무즈 주말 신호 네 가지",
+ "new": "선거 전 이란 공습 유예가 *11/3*로 끝납니다",
+ "cause": [
+  "이란은 '2일 안에 해협 재개' 안을 냈고, 도하 협상은 사흘째입니다.",
+  "그런데 미국은 걸프 동맹에 *11/4부터 공습이 가능하다*고 알린 것으로 보도됐습니다."
+ ],
+ "k": "주말에 나온 네 가지 신호",
+ "items": [
+  {"av": "IR", "color": "#1f6f50", "who": "이란 외무장관", "head": "해협 재개 7일안을 *2일*로 줄였다", "tag": "완화",
+   "body": ["카타르 중재로 미국이 첫날 조건을 지키면 **둘째 날 통항 재개**하는 순서입니다.",
+            "조건은 제재 해제·동결 자금 해제·석유 면제 복원·역내 미군 축소 등이고, 핵 문제는 2단계로 미뤘습니다."],
+   "links": [["인베스팅닷컴", "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"]]},
+  {"av": "US", "color": "#1d2b53", "who": "미 국무부", "head": "\"협상의 손 내밀었다, *다른 길도 준비*\"", "tag": "경고",
+   "body": ["근동 담당 차관보가 바레인 마나마 대화에서 협상 채널은 열려 있다면서도 이란이 세계 경제를 **인질로 잡게 둘 수 없다**고 했습니다.",
+            "이란의 2일안에 대한 미국 공식 답변은 아직 없습니다."],
+   "links": [["타임스오브이스라엘(AP)", "https://www.timesofisrael.com/liveblog_entry/us-state-dept-official-says-hand-of-negotiation-extended-to-iran-but-all-options-on-table"]]},
+  {"av": "DT", "color": "#b03d20", "who": "트럼프", "head": "\"핵시설 한두 곳 남았다, *10분이면 처리*\"", "tag": "경고",
+   "body": ["남은 곳으로 '곡괭이산'을 지목했습니다. 이란은 그곳의 핵 활동을 부인합니다.",
+            "\"협상은 잘 되고 있다\"면서도 **선거 뒤 공습 재개 가능성**을 다시 열어 둔 발언입니다."],
+   "links": [["CBS", "https://www.cbsnews.com/live-updates/iran-war-us-trump-diplomacy-threat-resume-attacks/"]]},
+  {"av": "⚓", "color": "#6b4fa0", "who": "걸프 바다", "head": "카타르 LNG선 피격, 이란은 *영국 해·공군 테러 지정*", "tag": "위험",
+   "body": ["중재국 카타르의 LNG선이 걸프에서 '정체불명 물체'에 맞았습니다. 다친 사람은 없고 누가 쐈는지는 밝히지 않았습니다.",
+            "이란은 영국 해군·공군을 테러 조직으로 지정했습니다. 해협을 지나는 **영국 관련 선박 위험**이 커질 수 있습니다."],
+   "links": [["카타르 LNG선", "https://www.timesofisrael.com/liveblog_entry/qatari-gas-tanker-struck-in-gulf-on-friday-evening-state-media-says"], ["영국 지정", "https://www.aa.com.tr/en/middle-east/iran-designates-british-navy-air-force-as-terrorist-organizations/4107764"]]}
+ ],
+ "our": "협상은 진전됐지만 *공습 유예 종료(11/3)*와 같은 주에 겹쳐 있습니다. 월요일 장에서는 **유가가 먼저 답할** 가능성이 큽니다.",
+ "warn": "2일안이 곧 개방은 아닙니다. 이란은 조건이 채워지기 전엔 열지 않는다고 했고, 미국 답변은 아직 없습니다.",
+ "pills": ["11/3 선거·공습 유예 종료", "11/4 공습 가능 통보", "월요일 유가", "도하 협상 결과"],
+ "end": "협상은 앞으로 가고, 날짜는 뒤에서 조여 옵니다.",
+ "src": [["주요 뉴스 타임라인", "p-policy.html"], ["벤징가(11/4 통보 보도)", "https://www.benzinga.com/news/politics/26/10/62581355/trump-iran-strike-oil-prices"]]
+}

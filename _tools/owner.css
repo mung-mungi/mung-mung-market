@@ -68,3 +68,16 @@
 .mm-own-body .own-card.own-test{border-color:#e0c27a;background:#fffcf3}
 .mm-own-body .own-test .own-b{padding:0 10px 12px}
 .mm-own-body .own-prev{font-size:15px;color:#1d1a16}
+
+/* 🧪 검수 대기 초안(속보 배너 키트, 2026-11-01) */
+.mm-own-hd .own-dr-badge{display:inline-block;margin-left:6px;font-size:11.5px;font-weight:800;color:#fff;background:#d8343f;border-radius:999px;padding:2px 8px;vertical-align:1px}
+.mm-own-body .own-draft{border-color:#d8343f;border-width:1.5px;background:#fff8f6}
+.mm-own-body .own-dr-chip{flex:none;font-size:11.5px;font-weight:900;color:#fff;background:#d8343f;border-radius:999px;padding:3px 9px;margin-right:6px}
+.mm-own-body .own-draft .own-hd b{font-size:15px;font-weight:900;color:#1d1a16;line-height:1.35}
+.mm-own-body .own-dr-btns{display:flex;gap:8px;margin:4px 0 8px}
+.mm-own-body .own-dr-btns button{flex:1;font:800 13.5px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:10px 8px;border-radius:999px;border:1px solid #e1d6c1;background:#fff;color:#1d1a16;box-shadow:0 2px 0 #e4dccb}
+.mm-own-body .own-dr-btns .own-dr-pop{background:#1d1a16;color:#fff;border-color:#1d1a16;box-shadow:0 2px 0 #000}
+.mm-own-body .own-dr-btns button:active{transform:translateY(1px);box-shadow:none}
+.mm-own-body .own-dr-how{font-size:12.5px;color:#8a8172;margin:8px 0 0;line-height:1.5}
+.mm-own-body .own-dr-how b{color:#b03d20}
+.mm-own-body .own-draft .own-hd{flex-wrap:wrap;gap:6px}.mm-own-body .own-draft .own-hd b{flex-basis:100%}

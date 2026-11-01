@@ -15,7 +15,8 @@
   "tlx-th": "흐름 이어 보기 알약",
   "tlx-open": "헤드라인 누르면 펼침",
   "data-tlx": "정책·테크 페이지에 헤드라인 모드 입히기",
-  "core_ref('navfab'": "정리 3일차: 메뉴·양식 부품은 통째 대신 공용 파일 참조"
+  "core_ref('navfab'": "정리 3일차: 메뉴·양식 부품은 통째 대신 공용 파일 참조",
+  "own-draft": "주인장 자료 🧪 검수 대기 배너 초안"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -56,5 +57,9 @@
   "core_ref('headui'",
   "core_ref('rdbox'",
   "core_ref('uniui'"
+ ],
+ "_tools/owner.js": [
+  "own-draft",
+  "decJ"
  ]
 }
