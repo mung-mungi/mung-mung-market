@@ -100,7 +100,8 @@
   "'todaybtn'",
   "def tidy_ddate",
   "def tidy_briefui",
-  "'bdopt'"
+  "'bdopt'",
+  "'chipfold'"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -166,5 +167,8 @@
  ],
  "_tools/bdopt.js": [
   "mm-bo-rows"
+ ],
+ "_tools/chipfold.js": [
+  "mx-more"
  ]
 }
