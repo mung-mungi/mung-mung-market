@@ -626,6 +626,7 @@ def tidy_splash(s):
     s = core_strip(s, 'wrapfix')
     s = core_strip(s, 'navfab')
     s = core_strip(s, 'push')
+    s = core_strip(s, 'names')
     # 홈 화면 앱 다시 시작 → 메인부터 (_tools/homestart.js, 사용자 2026-10-29)
     add = '<link data-hsicon rel="manifest" href="manifest.webmanifest"><meta data-hsicon name="mobile-web-app-capable" content="yes"><meta data-hsicon name="apple-mobile-web-app-capable" content="yes">' + core_ref('hshome', 'homestart.js')
     # 줄바꿈 다듬기 — _tools/wrapfix.* (사용자 2026-10-29, 전 페이지)
@@ -634,6 +635,8 @@ def tidy_splash(s):
     add += core_ref('navfab', 'navfab.css') + core_ref('navfab', 'navfab.js')  # 정리 3일차: 공용 파일 참조
     # 휴대폰 알림 받기 카드(원시그널) — _tools/push.* (사용자 2026-10-30, 메인에서만 동작)
     add += core_ref('push', 'push.css') + core_ref('push', 'push.js')
+    # 평소 부르는 이름으로(알파벳 → 구글) — _tools/names.js (사용자 2026-11-02)
+    add += core_ref('names', 'names.js')
     add += '<link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널">' + core_ref('splash', 'splash.css') + core_ref('splash', 'splash.js')
     m = re.search(r'<script data-perf(?:\s[^>]*)?>.*?</script>', s, re.S) or re.search(r'<head[^>]*>', s)
     s = s[:m.end()] + add + s[m.end():] if m else add + s
