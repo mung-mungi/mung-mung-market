@@ -42,7 +42,8 @@
   "mmtNav"
  ],
  "_tools/prep_site.py": [
-  "visibilitychange"
+  "visibilitychange",
+  "mm-ver"
  ],
  "_tools/tlx.js": [
   "tlx-hint",

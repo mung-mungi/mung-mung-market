@@ -73,7 +73,10 @@ open(os.path.join(src, 'version.json'), 'w').write('{"v":"' + STAMP + '"}')
 VS = ('<script data-ver="' + STAMP + '">(function(){var me="' + STAMP + '",last=0;function chk(){var n=Date.now();if(n-last<20000)return;last=n;try{fetch("version.json?t="+n,{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){'
       'if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}'
       'var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}}'
-      'chk();document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")chk()});addEventListener("pageshow",function(e){if(e.persisted)chk()})})();</script>')
+      'chk();document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")chk()});addEventListener("pageshow",function(e){if(e.persisted)chk()});'
+      # 메인 머리에 판 번호(사용자 2026-11-02)
+      'function ver(){if(!/\\/(index\\.html)?$/.test(location.pathname))return;var t=document.querySelector("header.bn .tx");if(!t||document.getElementById("mm-ver"))return;var p=document.createElement("p");p.id="mm-ver";p.textContent="버전 "+me.slice(2,4)+"."+me.slice(4,6)+"."+me.slice(6,8)+"-"+me.slice(8,10)+":"+me.slice(10,12);p.style.cssText="margin:3px 0 0;font-size:12px;color:#9a978f;font-variant-numeric:tabular-nums;letter-spacing:.2px";t.appendChild(p)}'
+      'document.readyState!=="loading"?ver():document.addEventListener("DOMContentLoaded",ver)})();</script>')
 for f in glob.glob(os.path.join(src, '*.html')):
     s2 = open(f, encoding='utf-8').read()
     s3 = re.sub(r'<script data-ver="\d+">[\s\S]*?</script>', '', s2)
