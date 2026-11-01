@@ -124,7 +124,8 @@
   "ott-more"
  ],
  "_tools/rrgaxis.js": [
-  "mm-st-how"
+  "mm-st-how",
+  "function watch("
  ],
  "_tools/ytban.js": [
   "mm-yt"

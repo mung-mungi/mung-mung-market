@@ -18,3 +18,12 @@
 .mm-st-map svg .rx-axt.rx-p{fill:#1d1a16}
 .mm-st-map svg .rx-axt.rx-m{fill:#6b6355}
 .mm-st-map svg .rx-axt{font-size:10.5px}
+.rx-chips{display:flex;gap:6px;flex-wrap:wrap;margin:7px 2px 8px}
+.rx-chips span{font:800 12.5px/1.2 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#5b5246;background:#faf5ea;border:1px solid #efd9a8;border-radius:999px;padding:4px 9px}
+.rx-wa{display:flex;flex-direction:column;gap:6px;margin:0 0 8px}
+.rx-wr{display:flex;flex-wrap:wrap;align-items:center;gap:3px 6px;background:#fff;border:1px solid #ecdcbc;border-left:4px solid var(--c);border-radius:10px;padding:7px 10px;box-shadow:0 2px 0 rgba(154,98,0,.12);font:500 13.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3a352d}
+.rx-wr .rx-wn{color:var(--c);font-weight:900}
+.rx-wr .rx-wq{font:800 12px/1 -apple-system,sans-serif;padding:4px 7px;border-radius:999px;background:#f3eee4;color:#5b5246;white-space:nowrap}
+.rx-wr .rx-ww{white-space:nowrap}.rx-wr .rx-ww b{color:#1d1a16;font-weight:800}
+.rx-wr>*{display:inline!important}.rx-wr .rx-wq{display:inline-block!important}.rx-wr b{display:inline!important}
+.rx-wr .rx-nb{font-style:normal}.rx-wr .rx-nb::before{content:attr(data-n);margin-right:3px}
