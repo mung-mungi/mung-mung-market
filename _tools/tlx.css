@@ -66,3 +66,5 @@
 /* 흐름 알약 줄은 상자 밖(위)에 — 상자 스크롤에 가려지지 않게(사용자 2026-11-01) */
 .tlx-th{padding:4px 0 12px;margin:0}
 .tlx-empty{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:18px 4px;font-size:15px;color:#6f6a60;font-weight:600}
+/* 흐름 알약 '전체'는 옆으로 밀어도 항상 왼쪽 맨 앞에 고정(사용자 2026-11-02) */
+.tlx-th .tlx-c:first-of-type{position:sticky;left:2px;margin-left:2px;z-index:2;box-shadow:0 2px 0 #ece4d2,10px 0 10px -4px var(--color-bg,#f7f6f2)}
