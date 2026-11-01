@@ -34,8 +34,18 @@ def tryit(fn, id_):
         errs.append(id_ + ': ' + str(e)[:80])
         if id_ in oldi: items.append(oldi[id_])
 # FRED 묶음
+def equi(i):
+    # FRED 거울 사이트(equibles) — GitHub에서 FRED가 막힐 때 예비. 최신이 맨 위
+    t = get('https://equibles.com/economicdata/%s.csv' % i.lower()); out = []
+    for r in csv.DictReader(io.StringIO(t)):
+        try: out.append((r['Date'][:10], float(r['Value'])))
+        except Exception: pass
+    if not out: raise RuntimeError('equibles %s 빈 자료' % i)
+    return sorted(out)
 def fred1(i):
     last = None
+    try: return equi(i)
+    except Exception as e: last = e
     for u in ('https://fred.stlouisfed.org/graph/fredgraph.csv?id=%s' % i, 'https://fred.stlouisfed.org/data/%s.txt' % i, 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=%s&cosd=%s' % (i, START)):
         for _ in range(2):
             try:
@@ -56,7 +66,6 @@ def fred1(i):
     raise RuntimeError('FRED %s 실패 %s' % (i, str(last)[:40]))
 def chifed():
     t = get('https://www.chicagofed.org/-/media/publications/nfci/nfci-data-series-csv.csv'); rows = list(csv.DictReader(io.StringIO(t))); out = {}
-    print('chifed cols', list(rows[0].keys())[:8], 'first', list(rows[0].values())[:2], 'last', list(rows[-1].values())[:2], len(rows))
     for r in rows:
         ks = {k.strip().upper(): v for k, v in r.items() if k}
         d = ks.get('FRIDAY_OF_WEEK') or ks.get('DATE') or ''
