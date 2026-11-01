@@ -15,20 +15,21 @@ function deco(){var mp=document.querySelector('.mm-st-map');if(!mp)return;var sv
  var hl=[].slice.call(svg.querySelectorAll('line')).find(function(l){return l.getAttribute('y1')===l.getAttribute('y2')});
  if(vl&&hl){var cy=+hl.getAttribute('y1');tx(svg,+vl.getAttribute('x1')+4,cy-4,'S&P 500 = 가운데','start','rx-c')}
  // 가로축 글자와 꼬리 읽는 법
- if(MODE==='math'){[].forEach.call(svg.querySelectorAll('.rx-sub,.rx-c'),function(e){e.remove()});
+ if(MODE==='math'||MODE==='cross'){[].forEach.call(svg.querySelectorAll(MODE==='math'?'.rx-sub,.rx-c':'.rx-c'),function(e){e.remove()});
   var df=document.createElementNS(NS,'defs');df.innerHTML='<marker id="rxar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#1d1a16"/></marker>';svg.appendChild(df);
   if(vl&&hl){var X=+vl.getAttribute('x1'),Y=+hl.getAttribute('y1');
    var l1=document.createElementNS(NS,'line');[['x1',10],['y1',Y],['x2',W-6],['y2',Y],['class','rx-axl'],['marker-end','url(#rxar)']].forEach(function(a){l1.setAttribute(a[0],a[1])});svg.appendChild(l1);
    var l2=document.createElementNS(NS,'line');[['x1',X],['y1',H-8],['x2',X],['y2',6],['class','rx-axl'],['marker-end','url(#rxar)']].forEach(function(a){l2.setAttribute(a[0],a[1])});svg.appendChild(l2);
-   tx(svg,W-8,Y+15,'x','end','rx-axt');tx(svg,X+7,15,'y','start','rx-axt');tx(svg,X-4,Y+14,'0','end','rx-o')}
+   if(MODE==='cross'){tx(svg,W-8,Y-6,'+x 3달 동안 강함','end','rx-axt rx-p');tx(svg,12,Y-6,'−x 3달 동안 약함','start','rx-axt rx-m');tx(svg,X+9,13,'+y 최근 1달 힘 붙음','start','rx-axt rx-p');tx(svg,X+9,H-11,'−y 힘 빠짐','start','rx-axt rx-m');tx(svg,X-5,Y+15,'0','end','rx-o')}
+   else{tx(svg,W-8,Y+15,'x','end','rx-axt');tx(svg,X+7,15,'y','start','rx-axt');tx(svg,X-4,Y+14,'0','end','rx-o')}}
   var NUM={'선도':'① ','살아나는 중':'② ','소외':'③ ','약해지는 중':'④ '};
   [].forEach.call(svg.querySelectorAll('text'),function(t){var k=t.textContent.trim();if(NUM[k])t.textContent=NUM[k]+k})}
  // 세로축 이름은 지도 바로 위 한 줄(지도 안에 넣으면 업종 이름과 겹침)
- if(!mp.previousElementSibling||!mp.previousElementSibling.classList.contains('rx-top')){var tp=document.createElement('div');tp.className='rx-top';tp.innerHTML=MODE==='math'?'<span><b>x축</b> 3달 성적 · <b>y축</b> 최근 1달 힘 · <b>0</b> = S&P 500</span>':'<span>▲ 위 = 최근 1달 S&P보다 강함</span><span>▼ 아래 = 약함</span>';mp.parentNode.insertBefore(tp,mp)}
+ if(!mp.previousElementSibling||!mp.previousElementSibling.classList.contains('rx-top')){var tp=document.createElement('div');tp.className='rx-top';tp.innerHTML=MODE==='cross'?'<span><b>가운데 0</b> = S&P 500 · <b>오른쪽 위</b>로 갈수록 강한 업종</span>':MODE==='math'?'<span><b>x축</b> 3달 성적 · <b>y축</b> 최근 1달 힘 · <b>0</b> = S&P 500</span>':'<span>▲ 위 = 최근 1달 S&P보다 강함</span><span>▼ 아래 = 약함</span>';mp.parentNode.insertBefore(tp,mp)}
  var ax=mp.parentNode.querySelector('.mm-st-ax');
- if(ax&&!ax.dataset.rx){ax.dataset.rx=1;var sp=ax.querySelectorAll('span');if(sp[0])sp[0].textContent=MODE==='math'?'x < 0 : 3달 동안 S&P보다 약함':'◀ 3달 동안 S&P보다 약했음';if(sp[1])sp[1].textContent=MODE==='math'?'x > 0 : 강함':'3달 동안 S&P보다 강했음 ▶';
+ if(ax&&!ax.dataset.rx){ax.dataset.rx=1;var sp=ax.querySelectorAll('span');if(MODE==='cross'){ax.style.display='none'}if(sp[0])sp[0].textContent=MODE==='math'?'x < 0 : 3달 동안 S&P보다 약함':'◀ 3달 동안 S&P보다 약했음';if(sp[1])sp[1].textContent=MODE==='math'?'x > 0 : 강함':'3달 동안 S&P보다 강했음 ▶';
   var lg=document.createElement('div');lg.className='rx-leg';
-  lg.innerHTML=(MODE==='math'?'<p><b>수학 그래프처럼 보면 됩니다</b> — 원점 0이 S&P 500입니다. x는 3달 성적(시장보다 강하면 +), y는 최근 1달 힘(붙으면 +). <b>① x+·y+ 선도</b>(돈이 몰리는 곳) · <b>② x−·y+ 살아나는 중</b> · <b>③ x−·y− 소외</b> · <b>④ x+·y− 약해지는 중</b>.</p><p>업종은 보통 2사분면 → 1 → 4 → 3 순서로, 시계 방향으로 돕니다. 선은 지난 4주 동안 지나온 길(작은 점 1주씩), 큰 점이 지금 자리입니다.</p>':'')+(MODE==='math'?'':'<p><b>이렇게 보면 됩니다</b> — 가운데 십자선이 S&P 500입니다. <b>오른쪽</b>에 있을수록 지난 3달 동안 시장보다 많이 올랐고, <b>위쪽</b>에 있을수록 최근 1달 힘이 붙고 있다는 뜻입니다.</p>'+
+  lg.innerHTML=(MODE==='cross'?'<p><b>수학 그래프처럼 보면 됩니다</b> — 가운데 0이 S&P 500입니다.</p><p><b>x축(가로)</b> = 지난 3달 성적. 오른쪽(+)일수록 시장보다 많이 올랐습니다.<br><b>y축(세로)</b> = 최근 1달 힘. 위쪽(+)일수록 요즘 힘이 붙고 있습니다.</p><p><b>① 오른쪽 위 · 선도</b> — 돈이 몰리는 곳 <b>② 왼쪽 위 · 살아나는 중</b> — 돈이 돌아오기 시작한 곳 <b>③ 왼쪽 아래 · 소외</b> — 돈이 빠져나간 곳 <b>④ 오른쪽 아래 · 약해지는 중</b> — 잘 나가다 힘 빠지는 곳</p><p>업종은 보통 <b>시계 방향</b>으로 돕니다(왼쪽 위 → 오른쪽 위 → 오른쪽 아래 → 왼쪽 아래). 선은 지난 4주 동안 지나온 길(작은 점 1주씩), 큰 점이 지금 자리입니다.</p>':MODE==='math'?'<p><b>수학 그래프처럼 보면 됩니다</b> — 원점 0이 S&P 500입니다. x는 3달 성적(시장보다 강하면 +), y는 최근 1달 힘(붙으면 +). <b>① x+·y+ 선도</b>(돈이 몰리는 곳) · <b>② x−·y+ 살아나는 중</b> · <b>③ x−·y− 소외</b> · <b>④ x+·y− 약해지는 중</b>.</p><p>업종은 보통 2사분면 → 1 → 4 → 3 순서로, 시계 방향으로 돕니다. 선은 지난 4주 동안 지나온 길(작은 점 1주씩), 큰 점이 지금 자리입니다.</p>':'')+(MODE!=='plain'?'':'<p><b>이렇게 보면 됩니다</b> — 가운데 십자선이 S&P 500입니다. <b>오른쪽</b>에 있을수록 지난 3달 동안 시장보다 많이 올랐고, <b>위쪽</b>에 있을수록 최근 1달 힘이 붙고 있다는 뜻입니다.</p>'+
    '<p><b>선</b>은 지난 4주 동안 지나온 길(작은 점이 1주씩), <b>큰 점</b>이 지금 자리입니다. 업종은 보통 <b>시계 방향</b>으로 돕니다: 돌아오기 시작 → 몰림 → 힘 빠짐 → 빠져나감 → 다시 돌아옴.</p>')+ex();
   // 긴 설명은 접어 둠(사용자 2026-11-02 — 알고 싶은 사람만 펼쳐 보게, 스크롤 압박 줄이기): 기존 '이 지도 이렇게 읽습니다' 안 맨 위에 넣음
   var hw=mp.parentNode.querySelector('details.mm-st-how');

@@ -14,3 +14,7 @@
 .mm-st-map svg .rx-axl{stroke:#1d1a16;stroke-width:1.6}
 .mm-st-map svg .rx-axt{font-size:11px;font-weight:800;fill:#1d1a16;paint-order:stroke;stroke:#fff;stroke-width:3px}
 .mm-st-map svg .rx-o{font-size:12px;font-weight:900;fill:#1d1a16;paint-order:stroke;stroke:#fff;stroke-width:3px}
+.mm-st-how .rx-leg p b{display:inline!important}
+.mm-st-map svg .rx-axt.rx-p{fill:#1d1a16}
+.mm-st-map svg .rx-axt.rx-m{fill:#6b6355}
+.mm-st-map svg .rx-axt{font-size:10.5px}
