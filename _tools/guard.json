@@ -48,7 +48,8 @@
   "sortDay",
   "tlx-tm",
   "tlx-th",
-  "OPEN[e.id]"
+  "OPEN[e.id]",
+  "resetTop"
  ],
  "_tools/tlx.css": [
   "tlx-open",
