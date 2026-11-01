@@ -3,3 +3,18 @@
 #up.mm-pfc:not(.mm-pfo)::after{content:'';position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(rgba(255,255,255,0),#fff);pointer-events:none}
 .mm-pf{all:unset;cursor:pointer;display:block;margin:6px auto 2px;padding:8px 18px;border-radius:999px;background:#fff;border:1px solid #e6dfcf;box-shadow:0 2px 0 #ece4d2;font:800 13.5px -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;text-align:center}
 .mm-pf:active{transform:translateY(1px);box-shadow:0 1px 0 #ece4d2}
+/* 맨 위 종합 3줄 */
+.pg3{list-style:none;margin:10px 0 0;padding:0}
+.pg3 li{display:grid;grid-template-columns:62px 1fr;gap:8px;padding:9px 0;border-top:1px dashed #ece6d8;font:500 15px/1.55 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1f1e1b}
+.pg3 li:first-child{border-top:0;padding-top:4px}
+.pg3 li>i{font:800 13px/1.9 -apple-system,sans-serif;font-style:normal;color:#9a6200}
+.pg3 .mk>span{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center}
+.pg3 .mk b{font:700 14px/1.5 sans-serif;color:#262626;background:#f4f1ea;border-radius:8px;padding:1px 8px}
+.pg3 .mk b.hot{color:#b3261e;background:#fbe8e5}.pg3 .mk b.cold{color:#2f5fa8;background:#edf2fa}
+.pg3 .mk em{display:none}
+.pg3 .mk a{font:800 13.5px/1.5 sans-serif;color:#c8501c;background:#fdeee6;border-radius:8px;padding:1px 8px;text-decoration:none;box-shadow:0 1px 0 #f0d6c8}
+.pg3 .gate{cursor:pointer}
+.pg3 .gate>span{display:flex;flex-direction:column;gap:4px}
+.pg3 .gt{display:block;font:600 14px/1.45 sans-serif;color:#262626}
+.pg3 .gt em{display:inline-block;min-width:38px;margin-right:6px;font:800 12px/1.6 sans-serif;font-style:normal;text-align:center;color:#9a6200;background:#fbf4dc;border-radius:6px;padding:0 5px}
+.pg3 .gt em.soon{color:#fff;background:#c8501c}
