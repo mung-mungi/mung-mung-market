@@ -53,7 +53,8 @@
   "resetTop",
   "catN",
   "relabel",
-  "if(s.textContent!==n+'건')"
+  "if(s.textContent!==n+'건')",
+  "catNote"
  ],
  "_tools/tlx.css": [
   "tlx-open",
