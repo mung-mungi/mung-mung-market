@@ -21,8 +21,9 @@ def tidy(s):
     s = s.replace('매일 아침 핵심 · 하루 한 번 이상 갱신<span>', '매일 아침 핵심<span>')
     s = s.replace('흐름 확인 · 며칠~몇 주 흐름과 소식<span>', '흐름 확인<span>')
     s = s.replace(CSS_SH_OLD, CSS_SH_NEW)
-    if '/* hub_tidy */' not in s and '</style>' in s:
-        s = s.replace('</style>', CSS_ADD + '\n</style>', 1)
+    # CSS_ADD는 메인 첫 </style>에 넣던 규칙인데, 그 자리가 늘 '이전·홈 버튼'(navfab) 통째 부품 안이라 다시 입힐 때마다 지워져
+    # 실제로는 한 번도 적용되지 않았음. 정리 3일차(2026-11-01)에 그 부품이 공용 파일로 빠지면서 처음 적용될 뻔 → 지금 화면 그대로 두려고 끔
+    s = s.replace(CSS_ADD + '\n</style>', '</style>')
     s = s.replace(JS_OLD, JS_NEW)
     return s
 
@@ -191,9 +192,19 @@ def tidy_ibdrag(s):
     s = tidy_dock(s)
     s = tidy_headui(s)
     s = tidy_rdbox(s)
-    if 'data-ibdrag' in s or 'class="ib"' not in s:
+    return ibdrag_place(s)
+
+
+def ibdrag_place(s):
+    if 'class="ib"' not in s:
         return s
-    return s.replace('</body>', IBDRAG + '</body>', 1) if '</body>' in s else s + IBDRAG
+    # 정리 3일차: _tools/ibdrag.* 공용 파일(IBDRAG 글은 기록용으로 남김). 이미 있으면 그 자리 그대로 바꿔 끼움(순서 유지)
+    add = core_ref('ibdrag', 'ibdrag.css') + core_ref('ibdrag', 'ibdrag.js')
+    m = re.search(r'(?:<style data-ibdrag>.*?</style>|<link data-ibdrag[^>]*>)\s*(?:<script data-ibdrag(?:\s[^>]*)?>.*?</script>)', s, re.S)
+    if m:
+        return s[:m.start()] + add + s[m.end():]
+    s = core_strip(s, 'ibdrag')
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
 
 # 실적 결과 '이번 주 발표 예정': 날짜 아래 구간(새벽 장후·아시아·저녁 장전)마다 한 줄씩, 글자 모양 하나로 통일(사용자 2026-10-29 — 산만함 정리)
@@ -425,34 +436,31 @@ def tidy_pergo(s):
 
 # 맨 위 페이지 줄 '핵심' 순서를 홈 '매일 아침 핵심'과 같게 — _tools/navorder.js (사용자 2026-10-29)
 def tidy_navorder(s):
-    s = re.sub(r'<script data-navorder>.*?</script>', '', s, flags=re.S)
+    s = core_strip(s, 'navorder')  # 정리 3일차(2026-11-01): 통째 대신 공용 파일 참조, 자리는 그대로
     if 'class="ib"' not in s:
         return s
     i = s.find('</nav>', s.find('class="ib"'))
     if i < 0:
         return s
-    js = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'navorder.js'), encoding='utf-8').read()
-    return s[:i + 6] + '<script data-navorder>' + js + '</script>' + s[i + 6:]
+    return s[:i + 6] + core_ref('navorder', 'navorder.js') + s[i + 6:]
 
 
 # 실적 일정 맨 위 요약 — _tools/calui.css·calui.js (사용자 2026-10-29)
 def tidy_cal(s):
-    s = re.sub(r'<(style|script) data-calui>.*?</\1>', '', s, flags=re.S)
+    s = core_strip(s, 'calui')
     if 'id="next"' not in s:
         return s
-    d = os.path.dirname(os.path.abspath(__file__))
-    add = '<style data-calui>' + open(os.path.join(d, 'calui.css'), encoding='utf-8').read() + '</style><script data-calui>' + open(os.path.join(d, 'calui.js'), encoding='utf-8').read() + '</script>'
+    add = core_ref('calui', 'calui.css') + core_ref('calui', 'calui.js')
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
 
 # 페이지 맨 위 '오늘 한눈에' 양식 통일 — _tools/headui.css·headui.js (사용자 2026-10-29)
 def tidy_headui(s):
-    s = re.sub(r'<(style|script) data-headui>.*?</\1>', '', s, flags=re.S)
+    s = core_strip(s, 'headui')
     # 머리 부품이 공용 파일로 옮겨 가 'mm-hero' 글자가 페이지에 없어도, 머리 참조(data-hero)가 있으면 머리가 있는 페이지(2026-11-01)
     if 'mm-take' not in s and 'mm-hero' not in s and 'data-hero' not in s:
         return s
-    d = os.path.dirname(os.path.abspath(__file__))
-    add = '<style data-headui>' + open(os.path.join(d, 'headui.css'), encoding='utf-8').read() + '</style><script data-headui>' + open(os.path.join(d, 'headui.js'), encoding='utf-8').read() + '</script>'
+    add = core_ref('headui', 'headui.css') + core_ref('headui', 'headui.js')
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
 
@@ -461,34 +469,32 @@ UNI_PAGES = ['p-bond.html', 'p-econ.html', 'p-cal.html', 'p-short.html', 'p-fx.h
 
 
 def tidy_uni(s):
-    s = re.sub(r'<(style|script) data-uniui>.*?</\1>', '', s, flags=re.S)
-    s = re.sub(r'<(style|script) data-krtable>.*?</\1>', '', s, flags=re.S)
-    d = os.path.dirname(os.path.abspath(__file__))
+    s = core_strip(s, 'uniui')
+    s = core_strip(s, 'krtable')
     if 'id="tw-table-card"' in s:
-        k = '<style data-krtable>' + open(os.path.join(d, 'krtable.css'), encoding='utf-8').read() + '</style><script data-krtable>' + open(os.path.join(d, 'krtable.js'), encoding='utf-8').read() + '</script>'
+        k = core_ref('krtable', 'krtable.css') + core_ref('krtable', 'krtable.js')
         s = s.replace('</body>', k + '</body>', 1) if '</body>' in s else s + k
-    add = '<style data-uniui>' + open(os.path.join(d, 'uniui.css'), encoding='utf-8').read() + '</style><script data-uniui>' + open(os.path.join(d, 'uniui.js'), encoding='utf-8').read() + '</script>'
+    add = core_ref('uniui', 'uniui.css') + core_ref('uniui', 'uniui.js')
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
 
 # '읽는 법' 상자 통일 — _tools/rdbox.css·rdbox.js (사용자 2026-10-29)
 def tidy_rdbox(s):
-    s = re.sub(r'<(style|script) data-rdbox>.*?</\1>', '', s, flags=re.S)
+    s = core_strip(s, 'rdbox')
     if 'class="ib"' not in s:
         return s
-    d = os.path.dirname(os.path.abspath(__file__))
-    add = '<style data-rdbox>' + open(os.path.join(d, 'rdbox.css'), encoding='utf-8').read() + '</style><script data-rdbox>' + open(os.path.join(d, 'rdbox.js'), encoding='utf-8').read() + '</script>'
+    add = core_ref('rdbox', 'rdbox.css') + core_ref('rdbox', 'rdbox.js')
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
 
 # 페이지 줄을 화면 아래 아이콘 독으로 — _tools/dock.css (사용자 2026-10-29)
 def tidy_dock(s):
     s = re.sub(r'<style data-dock>.*?</style>', '', s, flags=re.S)
+    s = re.sub(r'<link data-dock(?:\s[^>]*)?>', '', s)
     if 'class="ib"' not in s:
         return s
-    s = re.sub(r'<script data-dock>.*?</script>', '', s, flags=re.S)
-    d = os.path.dirname(os.path.abspath(__file__))
-    add = '<style data-dock>' + open(os.path.join(d, 'dock.css'), encoding='utf-8').read() + '</style><script data-dock>' + open(os.path.join(d, 'dock.js'), encoding='utf-8').read() + '</script>'
+    s = core_strip(s, 'dock')
+    add = core_ref('dock', 'dock.css') + core_ref('dock', 'dock.js')
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
 
@@ -618,16 +624,16 @@ def tidy_splash(s):
     s = re.sub(r'<link data-hsicon[^>]*>|<meta data-hsicon[^>]*>', '', s)
     s = core_strip(s, 'hshome')
     s = core_strip(s, 'wrapfix')
-    s = re.sub(r'<(style|script) data-navfab>.*?</\1>', '', s, flags=re.S)
-    s = re.sub(r'<(style|script) data-push>.*?</\1>', '', s, flags=re.S)
+    s = core_strip(s, 'navfab')
+    s = core_strip(s, 'push')
     # 홈 화면 앱 다시 시작 → 메인부터 (_tools/homestart.js, 사용자 2026-10-29)
     add = '<link data-hsicon rel="manifest" href="manifest.webmanifest"><meta data-hsicon name="mobile-web-app-capable" content="yes"><meta data-hsicon name="apple-mobile-web-app-capable" content="yes">' + core_ref('hshome', 'homestart.js')
     # 줄바꿈 다듬기 — _tools/wrapfix.* (사용자 2026-10-29, 전 페이지)
     add += core_ref('wrapfix', 'wrapfix.css') + core_ref('wrapfix', 'wrapfix.js')
     # 이전·홈 동그란 버튼 — _tools/navfab.* (사용자 2026-10-29)
-    add += '<style data-navfab>' + open(os.path.join(d, 'navfab.css'), encoding='utf-8').read() + '</style><script data-navfab>' + open(os.path.join(d, 'navfab.js'), encoding='utf-8').read() + '</script>'
+    add += core_ref('navfab', 'navfab.css') + core_ref('navfab', 'navfab.js')  # 정리 3일차: 공용 파일 참조
     # 휴대폰 알림 받기 카드(원시그널) — _tools/push.* (사용자 2026-10-30, 메인에서만 동작)
-    add += '<style data-push>' + open(os.path.join(d, 'push.css'), encoding='utf-8').read() + '</style><script data-push>' + open(os.path.join(d, 'push.js'), encoding='utf-8').read() + '</script>'
+    add += core_ref('push', 'push.css') + core_ref('push', 'push.js')
     add += '<link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널">' + core_ref('splash', 'splash.css') + core_ref('splash', 'splash.js')
     m = re.search(r'<script data-perf(?:\s[^>]*)?>.*?</script>', s, re.S) or re.search(r'<head[^>]*>', s)
     s = s[:m.end()] + add + s[m.end():] if m else add + s
