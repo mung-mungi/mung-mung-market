@@ -10,15 +10,12 @@
   "'p-targets']": "목표주가 흐름 확인으로",
   "rel(": "표 보정 가볍게",
   "mmtNav": "차트 아래 작은 전체 그래프",
-<<<<<<< Updated upstream
   "sortDay": "타임라인 같은 날은 시각 순",
   "tlx-tm": "날짜 칸 아래 시각",
   "tlx-th": "흐름 이어 보기 알약",
   "tlx-open": "헤드라인 누르면 펼침",
-  "data-tlx": "정책·테크 페이지에 헤드라인 모드 입히기"
-=======
+  "data-tlx": "정책·테크 페이지에 헤드라인 모드 입히기",
   "core_ref('navfab'": "정리 3일차: 메뉴·양식 부품은 통째 대신 공용 파일 참조"
->>>>>>> Stashed changes
  },
  "_tools/navfab.js": [
   "up>48",
@@ -41,7 +38,6 @@
  "_tools/page_tidy.py": [
   "mmtNav"
  ],
-<<<<<<< Updated upstream
  "_tools/tlx.js": [
   "sortDay",
   "tlx-tm",
@@ -53,14 +49,11 @@
   "tlx-wd"
  ],
  "_tools/hub_tidy.py": [
-  "data-tlx"
-=======
- "_tools/hub_tidy.py": [
+  "data-tlx",
   "core_ref('navfab'",
   "core_ref('dock'",
   "core_ref('headui'",
   "core_ref('rdbox'",
   "core_ref('uniui'"
->>>>>>> Stashed changes
  ]
 }
