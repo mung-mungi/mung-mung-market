@@ -27,7 +27,7 @@ jobs:
           mkdir -p /tmp/health
           if git fetch -q origin health 2>/dev/null; then git archive FETCH_HEAD | tar -x -C /tmp/health; fi
       - name: check
-        run: python3 -I _tools/health_check.py . /tmp/health
+        run: python3 _tools/health_check.py . /tmp/health  # -I를 빼야 방금 설치한 playwright가 보임
       - name: publish to health branch
         run: |
           cd /tmp/health
