@@ -26,7 +26,10 @@ function toggle(row,e,force){var open=force!=null?force:!row.classList.contains(
  if(open&&e&&e.has_detail&&!row.querySelector('.pd')){var bd=row.querySelector('.bd');var w=el('p','tlx-ld','정리본 불러오는 중…');bd.appendChild(w);
   dt().then(function(D){w.remove();var x=D[e.id];if(x)bd.appendChild(build(x))}).catch(function(){w.textContent='정리본을 불러오지 못했습니다'})}}
 function chips(){var sec=document.getElementById('tl');if(!sec||!EV)return;var bar=document.getElementById('tlx-th');
- var c={};EV.forEach(function(e){if(e.thread)c[e.thread]=(c[e.thread]||0)+1});var ks=Object.keys(c).sort(function(a,b){return c[b]-c[a]});if(!ks.length)return;
+ var c={},rc={},lt={},td=new Date(Date.now()-5*3600e3).toISOString().slice(0,10),fr=new Date(Date.now()-5*3600e3-14*864e5).toISOString().slice(0,10);
+ // 알약 순서: 최근 2주 새 소식이 많은 흐름 먼저 → 가장 최근 소식 날짜 → 전체 건수(사용자 2026-11-02)
+ EV.forEach(function(e){if(!e.thread)return;var t=e.thread;c[t]=(c[t]||0)+1;if(e.date<=td){if(e.date>=fr)rc[t]=(rc[t]||0)+1;if(!lt[t]||e.date+(e.time||'')>lt[t])lt[t]=e.date+(e.time||'')}});
+ var ks=Object.keys(c).sort(function(a,b){return (rc[b]||0)-(rc[a]||0)||((lt[b]||'')>(lt[a]||'')?1:(lt[b]||'')<(lt[a]||'')?-1:0)||c[b]-c[a]});if(!ks.length)return;
  if(!bar){bar=el('div','tlx-th');bar.id='tlx-th';bar.setAttribute('data-noswipe','');var box=sec.closest('.pg-card')||sec;box.parentElement.insertBefore(bar,box)}
  if(bar.dataset.n==ks.join('|')+TH)return;bar.dataset.n=ks.join('|')+TH;bar.textContent='';
  bar.appendChild(el('span','tlx-tl','흐름 이어 보기'));
