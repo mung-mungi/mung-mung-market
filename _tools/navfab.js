@@ -28,8 +28,10 @@ if(d<-12){moved=1;show()}else if(d>12){moved=1;hide()}},{passive:false});
 p.addEventListener('touchend',function(e){e.stopPropagation()},{passive:true});
 p.addEventListener('click',function(e){e.stopPropagation();if(moved){moved=0;return}B.classList.contains('mmd-hide')?show():hide()});
 ['touchstart','click'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest('.mmd,#mm-fab,.mmd-sheet')&&!e.target.closest('#mm-pull'))show()},{passive:true})});
-var ly=scrollY,up=0,dn=0;addEventListener('scroll',function(){var y=scrollY;
-if(y<ly){dn=0;up+=ly-y;if(up>160||y<40)show()}else{up=0;dn+=y-ly;if(dn>14&&y>60&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}}ly=y},{passive:true});
+var ly=scrollY,up=0,dn=0,sq=0;addEventListener('scroll',function(){if(sq)return;sq=1;requestAnimationFrame(function(){sq=0;var y=scrollY;
+if(y<ly){dn=0;up+=ly-y;if(up>160||y<40)show()}else{up=0;dn+=y-ly;if(dn>14&&y>60&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}}ly=y})},{passive:true}); /* 반응 속도(사용자 2026-11-01): 스크롤 1픽셀마다가 아니라 화면 그릴 때 한 번 */
+// 아이패드 트랙패드·마우스(사용자 2026-11-01): 커서를 화면 아래 끝 가까이 내리면 숨었던 아래 메뉴가 올라옴(아이패드 독처럼)
+addEventListener('pointermove',function(e){if(e.pointerType==='mouse'&&e.clientY>innerHeight-36&&B.classList.contains('mmd-hide'))show()},{passive:true});
 // 독을 아래로 쓸어내리면 바로 숨김(위로 올리는 동작의 반대)
 var dy=0;
 dk.addEventListener('touchstart',function(e){dy=e.touches[0].clientY},{passive:true});
@@ -68,6 +70,20 @@ fl=0;flm=0;
 if(tgt&&Math.abs(dx)>=innerWidth*TH){var h=tgt.getAttribute('href');document.documentElement.classList.add('mm-leave');setTimeout(function(){location.href=h},140)}else hideBox()},{passive:true,capture:true});
 document.addEventListener('touchcancel',function(){on=0;hideBox()},{passive:true,capture:true});
 addEventListener('pageshow',function(){document.documentElement.classList.remove('mm-leave');hideBox()});
+// 아이패드 트랙패드·마우스 두 손가락 좌우 밀기 = 옆 페이지(사용자 2026-11-01) — 사파리 '뒤로 가기' 몸짓 대신 아래 메뉴 순서로. 옆으로 넘기는 표·띠·차트·작은 그래프 위에서는 그 칸이 움직임
+var wx=0,wt=0,wgo=0,wtg=null;
+function wscroll(el){for(;el&&el!==document.body;el=el.parentElement){if(el.closest&&el.closest('#main .mmt-box,.mmt-nav,canvas,input,textarea,select,.mmd,.mmd-sheet,[data-noswipe]'))return 1;var c=getComputedStyle(el);if(/(auto|scroll)/.test(c.overflowX)&&el.scrollWidth>el.clientWidth+4)return 1}return 0}
+addEventListener('wheel',function(e){ if(wgo||e.ctrlKey)return; var ax=Math.abs(e.deltaX),ay=Math.abs(e.deltaY);
+  if(ax<=ay*1.5||ax<2){ if(ay>ax*1.5){wx=0;hideBox();} return; }
+  if(wscroll(e.target))return; var s=document.querySelector('.mmd-sheet');if(s&&!s.hidden)return;
+  var a=list(),i=cur();if(i<0)return; var now=Date.now(); if(now-wt>300)wx=0; wt=now; wx+=e.deltaX; e.preventDefault();
+  var j=wx>0?i+1:i-1; if(j<0||j>=a.length){hideBox();return} wtg=a[j];
+  box=document.getElementById('mm-swp')||document.body.appendChild(Object.assign(document.createElement('div'),{id:'mm-swp'}));
+  box.textContent=wx>0?(wtg.textContent.trim()+' ›'):('‹ '+wtg.textContent.trim());
+  var f=Math.min(Math.abs(wx)/160,1),pos=-120+f*136; box.style.opacity=Math.min(1,f*1.6);box.style.transform='translateY(-50%)';
+  if(wx>0){box.style.right=pos+'px';box.style.left='auto'}else{box.style.left=pos+'px';box.style.right='auto'} box.classList.toggle('ready',f>=1);
+  clearTimeout(window.__mmWt); window.__mmWt=setTimeout(function(){ if(Math.abs(wx)>=160&&wtg){ wgo=1; var h=wtg.getAttribute('href'); document.documentElement.classList.add('mm-leave'); setTimeout(function(){location.href=h},140); } else { wx=0; hideBox(); } },140);
+},{passive:false});
 }catch(e){}})();
 // 차트 가장자리 = 넘김 전용(사용자 2026-11-01): 여기서 시작한 손가락·마우스는 차트 가격 추적으로 보내지 않음
 (function(){try{

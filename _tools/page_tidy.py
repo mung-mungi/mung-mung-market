@@ -462,8 +462,12 @@ function mmtChart(box, pts, base, cur, intra, opt){ opt=opt||{}; var OV=opt.ov||
     bub.innerHTML='<small></small><b></b>'; bub.firstChild.textContent=t1s; bub.lastChild.textContent=t2s; bub.style.display='block';
     var bw=bub.offsetWidth, bh=bub.offsetHeight, L=x+12; if(L+bw>R.width-4) L=x-12-bw; var T=y-bh-10; if(T<2) T=y+12; bub.style.left=Math.max(2,L)+'px'; bub.style.top=T+'px'; }
   var el=box.querySelector('svg'), chgEl=document.querySelector('#main .mmt-chg'), tip={set textContent(v){ if(!chgEl)return; if(!chgEl.dataset.sc){ chgEl.dataset.sc=1; chgEl.dataset.o=chgEl.innerHTML; } chgEl.innerHTML='<b class="sc"></b>'; chgEl.firstChild.textContent=v; }};
-  function mv(e){ var r=el.getBoundingClientRect(), t=t0+((e.clientX-r.left)/r.width*W-m.l)/(W-m.l-m.r)*(t1-t0), b=pts[0];
+  // 반응 속도(사용자 2026-11-01): 손가락이 움직일 때마다가 아니라 화면 그릴 때 한 번만, 같은 날(점) 위면 다시 그리지 않음
+  var mvX=null, mvR=0, mvB=null;
+  function mv(e){ mvX=e.clientX; if(mvR)return; mvR=requestAnimationFrame(function(){ mvR=0; mv0(mvX); }); }
+  function mv0(cX){ var r=el.getBoundingClientRect(), t=t0+((cX-r.left)/r.width*W-m.l)/(W-m.l-m.r)*(t1-t0), b=pts[0];
     pts.forEach(function(a){ if(Math.abs(a[0]-t)<Math.abs(b[0]-t))b=a; });
+    if(b===mvB&&bub.style.display==='block')return; mvB=b;
     var cx=el.querySelector('.cx'), cd=el.querySelector('.cd'); cx.setAttribute('x1',sx(b[0]));cx.setAttribute('x2',sx(b[0]));cx.setAttribute('opacity','.3'); cd.setAttribute('cx',sx(b[0]));cd.setAttribute('cy',sy(b[1]));cd.setAttribute('opacity','1');
     var cc=CD&&CD.filter(function(c){return c[0]===b[0]})[0];
     var tm=intra?mmtKst(b[0]):mmtKst(b[0],true), pc=base?' '+((b[1]/base-1)*100>=0?'+':'−')+Math.abs((b[1]/base-1)*100).toFixed(2)+'%':'';

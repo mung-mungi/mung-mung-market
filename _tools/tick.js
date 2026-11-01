@@ -48,7 +48,8 @@
     }
   }
   document.addEventListener('click', onTap, true);
-  ['touchend', 'pointerdown', 'keydown'].forEach(function(ev){ document.addEventListener(ev, function(){ try { if (!off) ac(); } catch (e) {} }, { capture: true, passive: true }); });
+  // 소리 장치 깨우기(사용자 2026-11-01 반응 속도): 예전엔 손가락이 닿을 때마다(밀기·스크롤 포함) 매번 깨웠음 → 누를 수 있는 곳을 눌렀고 아직 안 깨어 있을 때만
+  ['touchend', 'pointerdown', 'keydown'].forEach(function(ev){ document.addEventListener(ev, function(e){ try { if (off || (ctx && ctx.state === 'running')) return; var el = e.target && e.target.closest ? e.target.closest(SEL) : null; if (el) ac(); } catch (x) {} }, { capture: true, passive: true }); });
   // 누를 때 살짝 눌리는 느낌(움직임 줄이기 설정이면 생략)
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reduce) {
