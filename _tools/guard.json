@@ -48,7 +48,8 @@
   "mm-sh-rows": "공매도 오늘 한눈에(확인용 보조지표)",
   "'shtop'": "공매도 오늘 한눈에 연결",
   ".pg-ev.tlx.tlx-open{": "펼친 뉴스 칸 날짜 위로·본문 넓게",
-  "function flip(": "뉴스 칸 펼침 모션(FLIP)"
+  "function flip(": "뉴스 칸 펼침 모션(FLIP)",
+  "tlx-pdb": "정리본은 버튼으로 따로 펼침"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -90,7 +91,8 @@
   "relabel",
   "if(s.textContent!==n+'건')",
   "catNote",
-  "function flip("
+  "function flip(",
+  "tlx-pdb"
  ],
  "_tools/tlx.css": [
   "tlx-open",

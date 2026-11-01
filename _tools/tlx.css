@@ -92,3 +92,6 @@
 @keyframes tlxIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .pg-ev.tlx.tlx-open>.bd>:not(.x):not(.t){animation:tlxIn .3s ease-out both}
 @media (prefers-reduced-motion:reduce){.pg-ev.tlx.tlx-open>.bd>*{animation:none!important}}
+/* 정리본 따로 펼치기 버튼(2026-11-02) */
+.tlx-pdb{display:block;margin:10px 0 2px;padding:8px 12px;border:1px solid #e3cf9f;border-radius:999px;background:#fffaf0;color:#8a5a00;font:800 13px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;box-shadow:0 2px 0 #ecd6a6;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tlx-pdb:active{transform:translateY(1px);box-shadow:none}

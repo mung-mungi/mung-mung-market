@@ -29,8 +29,10 @@ function flip(row,fn){var bd=row.querySelector(':scope>.bd'),d=row.querySelector
   el.style.transition='none';el.style.transform='translate('+dx+'px,'+dy+'px)';el.getBoundingClientRect();
   el.style.transition='transform .32s cubic-bezier(.2,.8,.2,1)';el.style.transform='';setTimeout(function(){el.style.transition=''},360)})}
 function toggle(row,e,force){var open=force!=null?force:!row.classList.contains('tlx-open');flip(row,function(){row.classList.toggle('tlx-open',open)});if(e)OPEN[e.id]=open;
- if(open&&e&&e.has_detail&&!row.querySelector('.pd')){var bd=row.querySelector('.bd');var w=el('p','tlx-ld','정리본 불러오는 중…');bd.appendChild(w);
-  dt().then(function(D){w.remove();var x=D[e.id];if(x)bd.appendChild(build(x))}).catch(function(){w.textContent='정리본을 불러오지 못했습니다'})}}
+ // 정리본은 누르면 바로 다 열지 않고 '정리본 펼치기' 버튼으로 따로(사용자 2026-11-02 "누르면 아랫단까지 다 열림 — 연 부분만")
+ if(open&&e&&e.has_detail&&!row.querySelector('.tlx-pdb')){var bd=row.querySelector('.bd');var bt=el('button','tlx-pdb','📄 정리본 펼치기 ▾');bt.type='button';bt.setAttribute('role','button');bd.appendChild(bt);
+  bt.addEventListener('click',function(ev){ev.stopPropagation();var pd=bd.querySelector('.pd');if(pd){var o=pd.hidden;pd.hidden=!o;bt.textContent=o?'정리본 접기 ▴':'📄 정리본 펼치기 ▾';return}
+   bt.textContent='정리본 불러오는 중…';dt().then(function(D){var x=D[e.id];if(x){var b2=build(x);bd.insertBefore(b2,bt.nextSibling);bt.textContent='정리본 접기 ▴'}else bt.textContent='정리본이 없습니다'}).catch(function(){bt.textContent='정리본을 불러오지 못했습니다'})})}}
 var FLOWBAR=false; // 흐름 알약 줄은 끔 — 위쪽 분류 알약이 큰 묶음 역할(사용자 2026-11-02 '세션 많으면 복잡')
 function chips(){var sec=document.getElementById('tl');if(!sec||!EV)return;if(!FLOWBAR){var ob=document.getElementById('tlx-th');if(ob)ob.remove();TH='';return}var bar=document.getElementById('tlx-th');
  var c={},rc={},lt={},td=new Date(Date.now()-5*3600e3).toISOString().slice(0,10),fr=new Date(Date.now()-5*3600e3-14*864e5).toISOString().slice(0,10);
