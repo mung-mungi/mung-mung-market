@@ -69,6 +69,19 @@ try:
 except Exception as e:
     drift = ['검사 실패: ' + str(e)[:80]]
 
+# ⑥ 사이트 내보내기 막힘(2026-11-01) — 실제 사이트의 판 번호가 저장소보다 30분 넘게 뒤처져 있으면 알림(11.01 17:13~18:2x 내보내기가 멈춰 있었음)
+live_lag = None
+try:
+    import urllib.request
+    repo_v = json.load(open(os.path.join(R, 'version.json'), encoding='utf-8')).get('v')
+    with urllib.request.urlopen('https://mung-mungi.github.io/mung-mung-market/version.json?t=' + str(int(now.timestamp())), timeout=20) as r:
+        site_v = json.loads(r.read().decode()).get('v')
+    vt = git('log', '-1', '--format=%ct', '--', 'version.json')
+    if site_v != repo_v and vt and now.timestamp() - int(vt) > 1800:
+        live_lag = {'site': site_v, 'repo': repo_v}
+except Exception as e:
+    live_lag = None
+
 # ① 페이지 — 무게·통째 부품·공용 참조
 CORE = ['perf', 'hshome', 'wrapfix', 'splash', 'vt', 'tick']
 pages = {}
@@ -119,6 +132,7 @@ for n, p in pages.items():
 for x in fresh:
     if x['state'] == 'late': problems.append(f'{x["name"]}: {x["age_h"]}시간 갱신 없음(마지막 {x["last"]})')
 if drift: problems.append(f'옛 코드로 덮인 페이지 {len(drift)}개(정리 다시 입히면 바뀜): ' + ', '.join(drift[:6]))
+if live_lag: problems.append(f"실제 사이트가 옛 판({live_lag['site']})에 멈춰 있음 — 저장소는 {live_lag['repo']}, 사이트 내보내기 막힘 확인 필요")
 if posts['bot_under_5min']: problems.append(f'시세 게시 5분 안 연속 {posts["bot_under_5min"]}번')
 if posts['hours_over_10']: problems.append(f'시간당 게시 10번 넘은 시간 {posts["hours_over_10"]}개(사이트 빌드 한도)')
 
@@ -126,7 +140,7 @@ res = {'at': now.astimezone(KST).strftime('%Y-%m-%d %H:%M'), 'weekend': weekend,
        'total_kb': sum(p['kb'] for p in pages.values()), 'total_inline': sum(p['inline'] for p in pages.values()),
        'prev_total_kb': prev.get('total_kb'), 'prev_total_inline': prev.get('total_inline'),
        'heaviest': sorted(((p['kb'], n) for n, p in pages.items()), reverse=True)[:3],
-       'fresh': fresh, 'posts': posts, 'drift': drift, 'pages': pages}
+       'fresh': fresh, 'posts': posts, 'drift': drift, 'live_lag': live_lag, 'pages': pages}
 json.dump(res, open(os.path.join(OUT, 'health.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 hist = os.path.join(OUT, 'history.jsonl')
 with open(hist, 'a', encoding='utf-8') as h:
