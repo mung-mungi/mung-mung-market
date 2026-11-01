@@ -2,8 +2,8 @@
   // 홈 정리 — 사용자 2026-10-29 지시
   // ① '매일 아침 핵심' 버튼 순서(자주 쓰는 순) ② 경고등·차트 길잡이는 맨 위 가로 슬림 2줄 ③ 카드는 아래 버튼 없이 제목 옆 › (여백은 조금)
   // 사용자 2026-11-01: 주요 뉴스(정책·지정학)·AI·테크 뉴스를 '매일 아침 핵심'으로(옵션 온도계 자리), 옵션 온도계는 '흐름 확인'으로
-  var ORDER = ['p-brief', 'p-prices', 'p-earn', 'p-cal', 'p-econ', 'p-bond', 'p-policy', 'p-tech'];
-  var TO_CORE = ['p-policy', 'p-tech'], TO_FLOW = ['p-opt', 'p-targets']; // 사용자 2026-11-01 19:04: 목표주가도 '흐름 확인'으로
+  var ORDER = ['p-brief', 'p-prices', 'p-earn', 'p-cal', 'p-econ', 'p-policy', 'p-tech']; // 2026-11-02: 채권 온도계는 '흐름 확인'으로
+  var TO_CORE = ['p-policy', 'p-tech'], TO_FLOW = ['p-opt', 'p-bond', 'p-targets']; // 사용자 2026-11-01 19:04: 목표주가도 '흐름 확인'으로
   function key(a){ var m = (a.getAttribute('href') || '').match(/(p-[a-z]+)\.html/); return m ? m[1] : ''; }
   function bar(item, label, mid){
     var a = document.createElement('a'); a.className = 'mm-bar'; a.href = item.getAttribute('href');
@@ -19,6 +19,23 @@
     var n = t.match(/불\s*(\d+)\s*\/\s*(\d+)/), st = t.match(/(평온|주의|경계|긴장|위험)/);
     var col = !st ? '#2f9a4c' : /주의/.test(st[1]) ? '#b08a00' : /경계|긴장/.test(st[1]) ? '#d9822b' : /위험/.test(st[1]) ? '#c4453a' : '#2f9a4c';
     return (n ? '불 ' + n[1] + '/' + n[2] : '') + (st ? ' · <em style="color:' + col + '">● ' + st[1] + '</em>' : '');
+  }
+
+  // 온도계 두 칸(옵션·채권)에 지금 단계 칩 — 흐름 확인으로 내려도 필요한 날 눈에 띄게(사용자 2026-11-02). 자료 d/lights/fresh.json(9KB)
+  function thermo(){ if (document.querySelector('.mm-thc')) return;
+    fetch('d/lights/fresh.json?t=' + Math.floor(Date.now() / 3e5)).then(function(r){ return r.ok ? r.json() : null; }).then(function(F){ if (!F || !F.area_scores) return;
+      var M = {}; Object.keys(F.area_scores).forEach(function(a){ F.area_scores[a].items.forEach(function(i){ M[i.id] = i; }); });
+      var BR = [[0,'평온','#2e9d5b'],[.25,'주의','#c99a06'],[.375,'경계','#e07b16'],[.5,'긴장','#c8501c'],[.625,'위험','#b3261e']];
+      [['p-opt', ['vix','term','pc'], 'vix', 'VIX ', ''], ['p-bond', ['inv','y10','jump','y30','hy'], 'y10', '10년물 ', '%']].forEach(function(c){
+        var a = document.querySelector('a.item[href*="' + c[0] + '.html"]'); if (!a || a.querySelector('.mm-thc')) return;
+        var sc = 0, mx = 0; c[1].forEach(function(id){ var i = M[id]; if (i) { sc += Number(i.pt || 0); mx += Number(i.w || 1); } }); if (!mx) return;
+        var g = BR[0]; BR.forEach(function(b){ if (sc >= b[0] * mx - 1e-9) g = b; });
+        var v = M[c[2]], w = a.querySelector('.hl') || a.querySelector('.when'); if (!w) return;
+        var e = document.createElement('span'); e.className = 'mm-thc'; e.style.cssText = 'display:inline-block;margin-right:6px;padding:1px 8px;border-radius:999px;font-weight:800;color:#fff;background:' + g[2];
+        e.textContent = g[1] + ' ' + (Math.round(sc * 10) / 10).toFixed(1) + '/' + mx;
+        w.textContent = v ? c[3] + Number(v.val).toFixed(2) + c[4] : w.textContent; w.prepend(e);
+      });
+    }).catch(function(){});
   }
   var busy = false;
   // 아이디어 페이지 묶음(공사중) — 메인 화면 맨 아래에 붙임(사용자 2026-10-29)
@@ -54,12 +71,12 @@
         var moved = 0;
         TO_CORE.forEach(function(k){ var a = flow.querySelector('a.item[href*="' + k + '.html"]'); if (a) { list.appendChild(a); moved++; } });
         TO_FLOW.forEach(function(k){ var a = list.querySelector('a.item[href*="' + k + '.html"]'); if (a) { flow.appendChild(a); moved--; } });
-        cnt(list, moved); cnt(flow, -moved);
+        [list, flow].forEach(function(n){ var sh2 = n.previousElementSibling, sp = sh2 && sh2.querySelector('span'); if (sp) sp.textContent = sp.textContent.replace(/\d+/, String(n.querySelectorAll(':scope > a.item').length)); }); // 실제 개수로(2026-11-02)
       }
       [].slice.call(list.querySelectorAll(':scope > a.item')).sort(function(a, b){ var i = ORDER.indexOf(key(a)), j = ORDER.indexOf(key(b)); return (i < 0 ? 99 : i) - (j < 0 ? 99 : j); }).forEach(function(a){ list.appendChild(a); });
-      var SHORT = {'p-cal': '실적 일정', 'p-opt': '옵션 온도계', 'p-neo': '네오클라우드', 'p-supply': '한국·대만 실적', 'p-qtr': '분기 실적 추이', 'p-insider': '내부자·기관', 'p-capex': '설비투자', 'p-econ': '경제지표', 'p-policy': '주요 뉴스', 'p-tech': 'AI·테크 뉴스', 'p-targets': '목표주가'};
+      var SHORT = {'p-cal': '실적 일정', 'p-opt': '옵션 온도계', 'p-neo': '네오클라우드', 'p-supply': '한국·대만 실적', 'p-qtr': '분기 실적 추이', 'p-insider': '내부자·기관', 'p-capex': '설비투자', 'p-econ': '경제지표', 'p-policy': '주요 뉴스', 'p-tech': 'AI·테크 뉴스', 'p-targets': '목표주가', 'p-bond': '채권 온도계'};
       document.querySelectorAll('a.item .ttl').forEach(function(t){ var k = key(t.closest('a.item')); if (SHORT[k]) t.textContent = SHORT[k]; });
-      document.documentElement.classList.add('mm-compact');
+      document.documentElement.classList.add('mm-compact'); thermo();
     } finally { busy = false; }
   }
   var st = document.createElement('style');

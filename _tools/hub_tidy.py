@@ -644,7 +644,8 @@ def tidy_splash(s):
     # 평소 부르는 이름으로(알파벳 → 구글) — _tools/names.js (사용자 2026-11-02)
     add += core_ref('names', 'names.js')
     # 버전업 표시 + 바뀐 점 설명서, 오래된 자료 경고 칩(사용자 2026-11-02) — _tools/chlog.*, stale.js
-    add += core_ref('chlog', 'chlog.css') + core_ref('chlog', 'chlog.js') + core_ref('stale', 'stale.js')
+    # 'NEW · 바뀐 점'·'새로 바뀐 것' 알약(chlog)은 사용자 요청으로 내림(2026-11-02 "짜친다") — 위 core_strip이 지우고 다시 넣지 않음. 버전 표기(v1.9)는 prep_site가 따로 붙임
+    add += core_ref('stale', 'stale.js')
     add += '<link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널">' + core_ref('splash', 'splash.css') + core_ref('splash', 'splash.js')
     m = re.search(r'<script data-perf(?:\s[^>]*)?>.*?</script>', s, re.S) or re.search(r'<head[^>]*>', s)
     s = s[:m.end()] + add + s[m.end():] if m else add + s
@@ -783,7 +784,7 @@ def inline_to_ref(s, marker, css=None, js=None):
 
 # 페이지별 '쉽게 읽기' 덧입힘(사용자 2026-11-02): 옵션 온도계 기간구조(optterm) · 시장 경고등 업종 회전 지도 축 설명(rrgaxis)
 # 쉽게 읽기·보는 법 통일 덧입힘(2026-11-02): 페이지 → 부품 이름 목록(각각 _tools/<이름>.css·.js)
-EASY = {'p-opt.html': ['optterm', 'btscore'], 'p-lights.html': ['rrgaxis'], 'p-bond.html': ['btscore'],
+EASY = {'p-opt.html': ['optterm', 'btscore'], 'p-lights.html': ['rrgaxis'], 'p-bond.html': ['btscore', 'bdopt'],
         'p-brief.html': ['fngbar'], 'index.html': ['todaybtn']}
 # 단계 옆 '왜 이 단계?' 한 줄(사용자 2026-11-02) — 단계는 점수 그대로, 코멘트로 풀어 줌
 EASY['p-opt.html'] = EASY['p-opt.html'] + ['stwhy']; EASY['p-bond.html'] = EASY['p-bond.html'] + ['stwhy']

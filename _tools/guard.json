@@ -35,7 +35,10 @@
   "todaybtn": "메인 오늘 카드 → 시황 버튼",
   "mm-dd-r": "시황 날짜 카드 큰 날짜·요일·오늘/어제 꼬리표(2026-11-02)",
   "mm-why": "단계 옆 '왜 이 단계?' 한 줄",
-  "mm-src": "시황 통일 양식: 출처 매체 알약·맨 위 날짜 줄·공포탐욕 설명 접기(2026-11-02)"
+  "mm-src": "시황 통일 양식: 출처 매체 알약·맨 위 날짜 줄·공포탐욕 설명 접기(2026-11-02)",
+  "mm-bo-rows": "채권 온도계 오늘 한눈에 5줄(옵션 온도계 양식)",
+  "'bdopt'": "채권 온도계 덧입힘 연결",
+  "mm-thc": "메인 온도계 두 칸 단계 칩"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -51,7 +54,8 @@
   "#mm-pull b"
  ],
  "_tools/home_order.js": [
-  "'p-targets']"
+  "'p-targets']",
+  "mm-thc"
  ],
  "_tools/herofix.js": [
   "rel("
@@ -95,7 +99,8 @@
   "def tidy_easy",
   "'todaybtn'",
   "def tidy_ddate",
-  "def tidy_briefui"
+  "def tidy_briefui",
+  "'bdopt'"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -158,5 +163,8 @@
  ],
  "_tools/notice_kit.py": [
   "def inbox_add"
+ ],
+ "_tools/bdopt.js": [
+  "mm-bo-rows"
  ]
 }

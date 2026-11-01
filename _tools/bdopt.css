@@ -1,0 +1,26 @@
+/* 채권 온도계 — 옵션 온도계 '오늘 한눈에' 양식(사용자 2026-11-02) */
+#take.mm-bo-src{display:none!important}
+.mm-bo{margin-top:8px;font-family:-apple-system,"Apple SD Gothic Neo",sans-serif}
+.mm-bo-top{display:flex!important;flex-direction:row!important;align-items:baseline;justify-content:space-between}
+.mm-bo-top .st{font:900 22px/1.25 -apple-system,"Apple SD Gothic Neo",sans-serif}
+.mm-bo-top .sc{font:600 14px/1 -apple-system,sans-serif;color:#6f6d68}
+.mm-bo-top .sc .n{font:900 20px/1 -apple-system,sans-serif;color:#0b0b0b}
+.mm-bo-why{margin:8px 0 0!important;padding:8px 10px;border-radius:10px;background:#fbf3dc;font:500 14px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3b3934}
+.mm-bo-why .q{color:#9a6200;font-weight:800}
+.mm-bo-rows{list-style:none;margin:10px 0 0!important;padding:9px 0 0!important;border-top:1px dashed rgba(11,11,11,.1);display:flex;flex-direction:column;gap:8px}
+.mm-bo-rows li{display:grid;grid-template-columns:1fr auto;grid-template-areas:"k v" "k m";column-gap:10px;align-items:center;margin:0!important;padding:0!important}
+.mm-bo-rows li::before{display:none!important}
+.mm-bo-rows .k{grid-area:k;display:flex;flex-direction:column;min-width:0}
+.mm-bo-rows .k .nm{font:800 15px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1f1c17}
+.mm-bo-rows .k .ds{font:500 11.5px/1.35 sans-serif;color:#6f6d68}
+.mm-bo-rows .v{grid-area:v;text-align:right;font:800 17px/1.2 -apple-system,sans-serif;color:var(--lc);white-space:nowrap}
+.mm-bo-rows .v .cg{font:600 11.5px/1 sans-serif;color:#6f6d68;margin-left:4px}
+.mm-bo-rows .lv{grid-area:m;justify-self:end;display:flex;align-items:center;gap:2px}
+.mm-bo-rows .lv i{width:9px;height:5px;border-radius:2px;background:#e4e1d8}
+.mm-bo-rows .lv em{font-style:normal;font:700 10.5px/1 -apple-system,sans-serif;margin-left:4px;color:var(--lc)}
+.mm-bo [data-lv="1"]{--lc:#1a7f37}.mm-bo [data-lv="2"]{--lc:#6aa84f}.mm-bo [data-lv="3"]{--lc:#c9a20a}.mm-bo [data-lv="4"]{--lc:#e07b16}.mm-bo [data-lv="5"]{--lc:#c62828}
+.mm-bo .lv[data-lv="1"] i:nth-child(-n+1),.mm-bo .lv[data-lv="2"] i:nth-child(-n+2),.mm-bo .lv[data-lv="3"] i:nth-child(-n+3),.mm-bo .lv[data-lv="4"] i:nth-child(-n+4),.mm-bo .lv[data-lv="5"] i:nth-child(-n+5){background:var(--lc)}
+.mm-bo-ft{margin:8px 0 0!important;font:500 11.5px/1.4 sans-serif;color:#8a857a}
+/* 겹치는 옛 칸 숨김: '불 n개 그대로' 카드, 경고등 카드 안 글 목록(위 5줄과 같음) */
+html body #bt-card.bt-card{display:none!important}
+html body #lights-card #lights{display:none!important}
