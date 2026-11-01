@@ -45,7 +45,8 @@
  ],
  "_tools/prep_site.py": [
   "visibilitychange",
-  "mm-ver"
+  "mm-ver",
+  "ver_label"
  ],
  "_tools/tlx.js": [
   "tlx-hint",
