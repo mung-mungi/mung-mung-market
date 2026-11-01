@@ -107,3 +107,7 @@
 .mm-st-cr2.mkr .nm{grid-column:1;grid-row:1}.mm-st-cr2.mkr .v{grid-column:2;grid-row:1;align-self:start}
 .mm-st-cr2.mkr .rd{grid-column:1/3}
 .mm-st-cr2.mkr .v small{display:inline;margin-left:4px}
+/* 지표별 '지금' 해석(사용자 2026-11-01) */
+.mm-st-cr2 .now{grid-column:1/-1;margin:2px 0 0;display:flex;gap:7px;align-items:flex-start;font:600 13px/1.45 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3f3b35;background:#faf6ec;border-radius:10px;padding:7px 9px}
+.mm-st-cr2 .now b{flex:0 0 auto;font:800 11px/1 sans-serif;color:#fff;background:#9a6200;border-radius:99px;padding:4px 7px;margin-top:1px}
+.mm-st-cr2 .rd{font-size:11.5px;color:#9a948a}

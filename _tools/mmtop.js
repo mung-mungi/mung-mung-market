@@ -96,10 +96,24 @@ function sec(root,id,title,sub){var d=el('section','mm-st-d on');d.id='mm-'+id;v
 // 심리 막대 눈금(사용자 2026-11-01): 기관이 쓰는 신호선·평소 자리. 위치는 화면 점수(0 공포~100 환희) 기준
 // CNN = 값 그대로 · AAII = 50+(강세−약세)×1.25(장기 평균 강세 37.5%·약세 31% → +6.5%p) · BofA 강세약세 = 값×10(2 이하 매수·8 이상 매도 신호) · FMS 현금 = 50+(4.5−현금)×40(5% 이상 매수·4% 아래 매도 신호, 장기 평균 약 4.8%)
 var MK={cnn:[[25,'극단 공포'],[50,'중립','avg'],[75,'극단 탐욕']],aaii:[[25,'약세 20%p 많음'],[58,'평소(강세 +6.5%p)','avg up'],[75,'강세 20%p 많음']],bofa_bb:[[20,'2 매수 신호'],[50,'5 중간','avg'],[80,'8 매도 신호']],bofa_fms:[[30,'5% 매수 신호'],[38,'평균 4.8%','avg up'],[70,'4% 매도 신호']]};
+// 지표 위치별 '지금' 해석(사용자 2026-11-01) — 자료가 바뀌면(하루 1번 이상 자동 갱신) 문장도 같이 바뀜
+function f1(v){return Math.round(v*10)/10}
+function chg(x,unit,up,dn){if(x.prev==null||x.value==null)return'';var d=f1(x.value-x.prev);if(!d)return' 직전과 같습니다.';return' 직전 '+x.prev+unit+' → '+x.value+unit+(d>0?', '+up:', '+dn)+'.'}
+function NOW(x){var v=x.value;if(v==null)return'';var id=x.id,st=x.manual?' ('+md(x.date)+' 발표 기준)':'';
+ if(id==='cnn'){var t=v<25?'극단 공포 구간입니다. 다들 팔고 숨는 자리라 과거엔 바닥 근처였던 때가 많지만, 하락이 끝났다는 뜻은 아닙니다.':v<45?'공포 쪽입니다. 중립(50)보다 '+Math.round(50-v)+'점 아래, 극단 공포(25)까지는 '+Math.round(v-25)+'점 남았습니다.':v<55?'중립입니다. 겁도 들뜸도 크지 않습니다.':v<75?'탐욕 쪽입니다. 낙관이 퍼지는 중입니다.':'극단 탐욕입니다. 과열 — 작은 악재에도 차익 실현이 몰릴 수 있습니다.';return t+chg(x,'',(v<50?'덜 겁먹었습니다':'더 들떴습니다'),(v<50?'더 겁먹었습니다':'열기가 식었습니다'))}
+ if(id==='aaii'){var b=x.bull;if(b==null)return'약세 응답 '+v+'%'+st+'.';var sp=f1(b-v);var t='강세 '+b+'% vs 약세 '+v+'% → '+(sp<0?'약세가 '+Math.abs(sp)+'%p 많습니다. ':'강세가 '+sp+'%p 많습니다. ');t+=sp<=-20?'극단 비관 — 역발상으로는 바닥 쪽 신호입니다.':sp<6.5-10?'평소(강세가 6.5%p 많음)보다 확실히 겁먹었지만 극단(약세 20%p↑)은 아닙니다.':sp<6.5+8?'평소 수준입니다.':sp<20?'평소보다 들떠 있습니다.':'극단 낙관 — 역발상으로는 꼭지 쪽 신호입니다.';return t+st}
+ if(id==='bofa_bb'){var t=v>=8?'매도 신호 구간(8 이상)입니다. 기관이 너무 들떠 있어 조정 위험이 커진 자리입니다.':v>=6?'낙관 구간입니다. 매도 신호선(8)까지 '+f1(8-v)+' 남았습니다.':v>4?'중간(5) 근처입니다.':v>2?'비관 쪽입니다. 매수 신호선(2)까지 '+f1(v-2)+' 남았습니다.':'매수 신호 구간(2 이하)입니다. 기관이 지나치게 겁먹은 자리입니다.';return t+(x.prev!=null?' 직전 '+x.prev+' → '+v+(v<x.prev?', 열기가 조금 식었습니다':v>x.prev?', 더 들떴습니다':'')+'.':'')+st}
+ if(id==='bofa_fms'){var t=v<4?'현금 '+v+'%로 매도 신호선(4%) 아래입니다. 펀드매니저들이 돈을 거의 다 주식에 넣어, 더 살 돈이 적고 작은 악재에도 흔들리기 쉬운 자리입니다.':v<4.6?'현금 '+v+'%로 평균(약 4.8%)보다 적습니다. 낙관 쪽입니다.':v<5?'현금 '+v+'%로 평균(약 4.8%) 근처입니다.':'현금 '+v+'%로 매수 신호선(5%) 위입니다. 겁먹고 현금을 쌓아 둔 자리라 반등 연료가 됩니다.';return t+(x.prev!=null?' 지난달 '+x.prev+'% → '+v+'%'+(v>x.prev?', 조금 늘었습니다':v<x.prev?', 더 줄었습니다':'')+'.':'')+st}
+ if(id==='ofr'||id==='stlfsi'){var t=(v<0?'0(평소)보다 낮습니다 — 금융 스트레스가 평소보다 적습니다.':v<1?'0(평소)보다 조금 높습니다 — 긴장이 올라오는 중입니다.':'평소보다 확실히 높습니다 — 돈이 도는 길에 스트레스가 쌓였습니다.');if(id==='ofr'&&x.parts){var hot=Object.keys(x.parts).filter(function(k){return x.parts[k]>0});t+=hot.length?' 영역 중 '+hot.join('·')+'만 0 위입니다.':' 다섯 영역 모두 0 아래입니다.'}return t+chg(x,'','조금 더 긴장했습니다','조금 풀렸습니다')}
+ if(id==='nfci'||id==='anfci'){return(v<0?'0보다 낮아 돈 빌리기 쉬운(느슨한) 여건입니다. 금융 쪽에서 막힌 곳은 안 보입니다.':'0보다 높아 평소보다 돈줄이 조이는 여건입니다.')+chg(x,'','조금 조였습니다','조금 풀렸습니다')}
+ if(id==='vix'){var t=v<15?'아주 조용합니다(15 아래).':v<20?'보통 범위지만 경고등 문턱 20에 '+f1(20-v)+' 남았습니다.':v<30?'20을 넘어 긴장 구간입니다. 30 위면 공포입니다.':'30 위 공포 구간입니다.';return t+chg(x,'','하루 새 불안이 커졌습니다','진정됐습니다')}
+ if(id==='move'){var t=v<80?'채권 시장이 조용합니다(80 아래).':v<100?'채권 변동성이 보통 범위입니다. 100을 넘으면 불안 신호입니다.':v<120?'100을 넘어 채권 쪽 불안이 커졌습니다. 금리가 크게 흔들릴 수 있다는 뜻이라 성장주에 부담입니다.':'120 위 — 채권 시장 스트레스 구간입니다.';return t+chg(x,'','하루 새 더 흔들렸습니다','진정됐습니다')}
+ return''}
 function cRow(x,isEmo){var r=el('div','mm-st-cr2');var nm=el('div','nm');nm.appendChild(el('b','',NM[x.id]||x.name));var c=CH[x.id];var sm=el('small','',(c?c[0]+' · ':'')+(x.freq||'').replace('(기사)','')+' · '+md(x.date));nm.appendChild(sm);r.appendChild(nm);
  var p=isEmo?x.emo:x.pct;var col=isEmo?emo(p)[1]:risk(p)[1];var b=el('div','mm-st-bar sm'+(isEmo?' emo':''));b.style.setProperty('--c',col);var mk=isEmo&&MK[x.id];if(mk){b.classList.add('mk');r.classList.add('mkr');mk.forEach(function(m){var t=el('span','tk'+(m[2]?' '+m[2]:''));t.style.left=m[0]+'%';t.appendChild(el('small','',m[1]));b.appendChild(t)})}
  var i=el('i');i.style.left=Math.max(3,Math.min(97,p||0))+'%';b.appendChild(i);r.appendChild(b);
  var v=el('div','v',val(x));v.style.color=col;v.appendChild(el('small','',isEmo?emo(p)[0]:p+'점'));r.appendChild(v);
+ var nw=NOW(x);if(nw){var q=el('p','now');q.appendChild(el('b','','지금'));var t=el('span');t.textContent=nw;q.appendChild(t);r.appendChild(q)}
  var e=ENDS[x.id];var rd=el('p','rd',(HOW[x.id]?HOW[x.id]+' · ':'')+(e?e[0]+' ↔ '+e[2]:(x.read||'')));r.appendChild(rd);return r}
 function draw(){var root=document.querySelector('.mm-st:not(.mm-st2)');var mast=document.querySelector('.lw-mast');if(!S||!mast)return;if(!root){root=el('div','mm-st');mast.after(root)}root.textContent='';
  var sc=S.scores||{};var date=(I('vix')||{}).date||'';var cv=comp(sc),cl=compLbl(cv);
