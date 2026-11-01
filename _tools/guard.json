@@ -49,7 +49,8 @@
   "tlx-tm",
   "tlx-th",
   "OPEN[e.id]",
-  "resetTop"
+  "resetTop",
+  "catN"
  ],
  "_tools/tlx.css": [
   "tlx-open",

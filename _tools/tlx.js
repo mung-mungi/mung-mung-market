@@ -25,7 +25,8 @@ function build(d){var w=el('div','pd');if(d.lead)w.appendChild(el('p','ld',d.lea
 function toggle(row,e,force){var open=force!=null?force:!row.classList.contains('tlx-open');row.classList.toggle('tlx-open',open);if(e)OPEN[e.id]=open;
  if(open&&e&&e.has_detail&&!row.querySelector('.pd')){var bd=row.querySelector('.bd');var w=el('p','tlx-ld','정리본 불러오는 중…');bd.appendChild(w);
   dt().then(function(D){w.remove();var x=D[e.id];if(x)bd.appendChild(build(x))}).catch(function(){w.textContent='정리본을 불러오지 못했습니다'})}}
-function chips(){var sec=document.getElementById('tl');if(!sec||!EV)return;var bar=document.getElementById('tlx-th');
+var FLOWBAR=false; // 흐름 알약 줄은 끔 — 위쪽 분류 알약이 큰 묶음 역할(사용자 2026-11-02 '세션 많으면 복잡')
+function chips(){var sec=document.getElementById('tl');if(!sec||!EV)return;if(!FLOWBAR){var ob=document.getElementById('tlx-th');if(ob)ob.remove();TH='';return}var bar=document.getElementById('tlx-th');
  var c={},rc={},lt={},td=new Date(Date.now()-5*3600e3).toISOString().slice(0,10),fr=new Date(Date.now()-5*3600e3-14*864e5).toISOString().slice(0,10);
  // 알약 순서: 최근 2주 새 소식이 많은 흐름 먼저 → 가장 최근 소식 날짜 → 전체 건수(사용자 2026-11-02)
  EV.forEach(function(e){if(!e.thread)return;var t=e.thread;c[t]=(c[t]||0)+1;if(e.date<=td){if(e.date>=fr)rc[t]=(rc[t]||0)+1;if(!lt[t]||e.date+(e.time||'')>lt[t])lt[t]=e.date+(e.time||'')}});
@@ -43,19 +44,23 @@ function apply(){var rows=document.querySelectorAll('#tl article.pg-ev');setTime
  [].forEach.call(document.querySelectorAll('#tl .pg-mon'),function(m){var vis=[].some.call(m.querySelectorAll('article.pg-ev'),function(r){return r.style.display!=='none'});m.style.display=vis?'':'none';var s=m.querySelector('.mh span');if(s){var n=[].filter.call(m.querySelectorAll('article.pg-ev'),function(r){return r.style.display!=='none'}).length;s.textContent=n+'건'}})}
 function empty(){var tl=document.getElementById('tl');if(!tl)return;var vis=[].some.call(tl.querySelectorAll('article.pg-ev'),function(r){return r.style.display!=='none'});var m=document.getElementById('tlx-empty');
  if(vis){if(m)m.remove();return}if(m)return;m=el('div','tlx-empty');m.id='tlx-empty';var b=el('button','tlx-c','전체 보기');b.type='button';b.onclick=function(){TH='';resetTop();var bar=document.getElementById('tlx-th');if(bar)bar.dataset.n='';chips();apply()};m.appendChild(b);m.appendChild(el('span',null,'이 조건에 맞는 소식이 없습니다'));tl.prepend(m)}
+// 위쪽 분류 알약에 최근 7일 새 소식 수(사용자 2026-11-02 — 흐름 알약 대신)
+function catN(){var box=document.getElementById('catf');if(!box||!EV)return;var td=new Date(Date.now()-5*3600e3).toISOString().slice(0,10),fr=new Date(Date.now()-5*3600e3-6*864e5).toISOString().slice(0,10),n={},all=0;
+ EV.forEach(function(e){if(e.date>=fr&&e.date<=td){n[e.category]=(n[e.category]||0)+1;all++}});
+ [].forEach.call(box.querySelectorAll('button'),function(b){var v=b.dataset.c,k=v?(n[v]||0):all,x=b.querySelector('.tlx-cn');if(!x){x=el('span','tlx-cn');b.appendChild(x)}x.textContent=k?String(k):'';x.style.display=k?'':'none'})}
 function sortDay(){[].forEach.call(document.querySelectorAll('#tl .pg-mon'),function(m){var rows=[].slice.call(m.querySelectorAll(':scope>article.pg-ev'));if(rows.length<2)return;
  var desc=true,p=m.previousElementSibling;while(p&&!p.classList.contains('pg-div'))p=p.previousElementSibling;if(p&&/가까운 날|오래된/.test(p.textContent))desc=false;
  var tm=function(r){return (r.__tlx&&r.__tlx.time)||''};
  var sorted=rows.slice().sort(function(a,b){var da=a.__tlx?a.__tlx.date:'',db=b.__tlx?b.__tlx.date:'';if(da!==db)return rows.indexOf(a)-rows.indexOf(b);var ta=tm(a),tb=tm(b);if(!ta||!tb||ta===tb)return rows.indexOf(a)-rows.indexOf(b);return desc?(ta<tb?1:-1):(ta<tb?-1:1)});
  if(sorted.every(function(r,i){return r===rows[i]}))return;var anchor=rows[rows.length-1].nextSibling;sorted.forEach(function(r){m.insertBefore(r,anchor)})})}
 function mark(){var rows=document.querySelectorAll('#tl article.pg-ev');if(!rows.length)return;
- ev().then(function(){chips();
+ ev().then(function(){chips();catN();
   [].forEach.call(rows,function(row){if(row.dataset.tlx)return;row.dataset.tlx='1';row.classList.add('tlx');var e=key(row);row.__tlx=e;
    var dc=row.querySelector('.d');if(dc&&!dc.dataset.tlx){dc.dataset.tlx='1';var sm=dc.querySelector('small');if(sm)sm.className='tlx-wd';}
    if(e&&e.time&&dc&&!dc.querySelector('.tlx-tm')){dc.appendChild(el('span','tlx-tm',e.time))}
    [].forEach.call(row.querySelectorAll('.bd .x span'),function(sp){if(/반응 자료 없음|^자료 없음$/.test(sp.textContent.trim()))sp.remove()});
    if(e){if(e.tier==='small')row.classList.add('tlx-s');if(e.has_detail)row.classList.add('tlx-d');
-    var t=row.querySelector('.t');if(t&&e.thread&&!t.querySelector('.tlx-tn')){t.appendChild(el('span','tlx-tn',e.thread))}}
+    var t=row.querySelector('.t');if(t&&e.has_detail&&!t.querySelector('.tlx-tn')){t.appendChild(el('span','tlx-tn tlx-pd','정리본'))}}
    row.addEventListener('click',function(ev2){if(ev2.target.closest('a,button,.pd'))return;toggle(row,row.__tlx)});
    if(e&&OPEN[e.id])toggle(row,e,true)});
   try{sortDay()}catch(x){}apply()}).catch(function(){})}

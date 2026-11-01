@@ -68,3 +68,9 @@
 .tlx-empty{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:18px 4px;font-size:15px;color:#6f6a60;font-weight:600}
 /* 흐름 알약 '전체'는 옆으로 밀어도 항상 왼쪽 맨 앞에 고정(사용자 2026-11-02) */
 .tlx-th .tlx-c:first-of-type{position:sticky;left:2px;margin-left:2px;z-index:2;box-shadow:0 2px 0 #ece4d2,10px 0 10px -4px var(--color-bg,#f7f6f2)}
+/* 흐름 꼬리표 끔 — 정리본 표시만(사용자 2026-11-02) */
+.tlx-on #tl .pg-ev.tlx.tlx-d .t>.tlx-tn::after{content:none}
+.tlx-on #tl .pg-ev.tlx .tlx-tn.tlx-pd{color:#9a6200;background:#f6efe0}
+/* 분류 알약 새 소식 수 */
+#catf .tlx-cn{margin-left:6px;font-weight:800;color:#9a6200;font-variant-numeric:tabular-nums}
+#catf button[aria-pressed=true] .tlx-cn{color:#e8c98a}
