@@ -45,7 +45,7 @@ function mapSvg(){var SE=S.sectors||[];var W=358,H=330,m=8;var xs=[],ys=[];SE.fo
  s+='<line x1="'+cx+'" y1="'+m+'" x2="'+cx+'" y2="'+(H-m)+'" stroke="#b9b1a2" stroke-dasharray="3 3"/><line x1="'+m+'" y1="'+cy+'" x2="'+(W-m)+'" y2="'+cy+'" stroke="#b9b1a2" stroke-dasharray="3 3"/>';
  var on=function(t){return HL.indexOf(t)>=0||SEL===t};
  SE.slice().sort(function(a,b){return (on(a.t)?1:0)-(on(b.t)?1:0)}).forEach(function(se){var p=se.trail,l=p[p.length-1],c=secCol(l[0],l[1]),b=on(se.t);var pts=p.map(function(q){return X(q[0]).toFixed(1)+','+Y(q[1]).toFixed(1)}).join(' ');
-  s+='<polyline points="'+pts+'" fill="none" stroke="'+(b?c:'#b9b1a2')+'" stroke-width="'+(b?3.2:1.2)+'" stroke-opacity="'+(b?.85:.35)+'" stroke-linecap="round" stroke-linejoin="round"/>';
+  s+='<polyline points="'+pts+'" fill="none" stroke="'+c+'" stroke-width="'+(b?3.2:1.6)+'" stroke-opacity="'+(b?.85:.42)+'" stroke-linecap="round" stroke-linejoin="round"/>';
   if(b)p.slice(0,-1).forEach(function(q,i){s+='<circle cx="'+X(q[0]).toFixed(1)+'" cy="'+Y(q[1]).toFixed(1)+'" r="'+(2+i*0.5)+'" fill="'+c+'" opacity=".7"/>'})});
  var placed=[];function hit(a){return placed.some(function(b){return a.x0<b.x1&&a.x1>b.x0&&a.y0<b.y1&&a.y1>b.y0})}
  var pts=SE.map(function(se){var l=se.trail[se.trail.length-1];return {se:se,c:secCol(l[0],l[1]),px:X(l[0]),py:Y(l[1]),big:on(se.t)}});
@@ -129,8 +129,9 @@ function draw(){var root=document.querySelector('.mm-st:not(.mm-st2)');var mast=
   b.onclick=function(){var tg=t[0]==='lights'?document.getElementById('big'):document.getElementById('mm-'+t[0]);if(tg)tg.scrollIntoView({behavior:'smooth',block:'start'})};gr.appendChild(b)});hero.appendChild(gr);root.appendChild(hero);
  // 순서(사용자 2026-11-01): 한눈에 → 반도체·기술(자주 보는 것) → 시장 경고등(페이지 본문) → 심리 → 금융 시스템
  var d0=sec(root,'semi','반도체·기술 한눈에');panelSemi(d0);
- var d1=sec(root,'sector','업종 회전 지도 · 돈은 어디로');panelSector(d1);d1.querySelector('h3').remove();
  var root2=document.querySelector('.mm-st2');if(!root2){root2=el('div','mm-st mm-st2')}root2.textContent='';var ac=document.getElementById('area-card');if(ac)ac.after(root2);else root.after(root2);
+ // 업종 회전 지도는 시장 경고등 아래로(사용자 2026-11-01)
+ var d1=sec(root2,'sector','업종 회전 지도 · 돈은 어디로');panelSector(d1);d1.querySelector('h3').remove();
  var d2=sec(root2,'emo','공포 ↔ 환희 · 개인과 기관','왼쪽(파랑) = 겁먹음 · 오른쪽(주황) = 들뜸. 막대마다 같은 방향으로 맞췄습니다. 양 끝은 둘 다 경고 — 너무 겁먹으면 바닥 쪽, 너무 들뜨면 꼭지 쪽 신호로 거꾸로 읽습니다. 가는 눈금 = 기관이 쓰는 신호선, 진한 눈금 = 평소 자리.');
  var vs=el('div','mm-st-vs');[['개인',sc.retail],['기관',sc.inst]].forEach(function(a){var e=emo(a[1]);var c=el('div');c.style.setProperty('--c',e[1]);c.style.setProperty('--b',a[1]<45?'#edf2fa':a[1]>=55?'#fdeee6':'#f1ede4');c.appendChild(el('i','',a[0]));c.appendChild(el('b','',a[1]==null?'—':a[1]+''));c.appendChild(el('small','',e[0]));vs.appendChild(c)});d2.appendChild(vs);
  ['cnn','aaii','bofa_bb','bofa_fms'].forEach(function(k){var x=I(k);if(x)d2.appendChild(cRow(x,true))});d2.appendChild(el('div','mm-st-say',mix(sc)));
