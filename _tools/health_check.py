@@ -83,8 +83,8 @@ except Exception as e:
     live_lag = None
 
 # ⑦ 기능 되돌림 감지(2026-11-01) — 다른 세션이 옛 복사본으로 공용 부품을 덮어쓰면 오늘 넣은 기능이 조용히 사라짐(19:16 navfab.js 사례). 꼭 있어야 할 표시를 확인
-MUST = {'_tools/navfab.js': ['up>48', 'pointermove', 'mm-swiping', 'wx'], '_tools/navfab.css': ['mm-swiping'],
-        '_tools/home_order.js': ["'p-targets']"], '_tools/herofix.js': ['rel(']}
+try: MUST = {k: v for k, v in json.load(open(os.path.join(R, '_tools', 'guard.json'), encoding='utf-8')).items() if '/' in k}
+except Exception: MUST = {}
 lost = []
 for f, keys in MUST.items():
     try: t = open(os.path.join(R, f), encoding='utf-8').read()

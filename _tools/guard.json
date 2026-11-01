@@ -1,0 +1,19 @@
+{
+ "_about": "올리기 전에 꼭 있어야 하는 기능 표시(guard_check.py·매일 점검이 확인). 공용 부품에 새 기능을 넣으면 그 기능만의 글자 하나를 여기에 추가. 일부러 없앨 때만 여기서도 지움",
+ "_why": {
+  "up>48": "위로 조금만 올려도 아래 메뉴 나옴",
+  "pointermove": "아이패드 커서 아래로 → 메뉴",
+  "mm-swiping": "차트에서 넘길 때 말풍선 숨김",
+  "wx": "아이패드 두 손가락 넘김",
+  "EZ=": "차트 좌우 끝 = 넘김 전용",
+  "<b>메뉴</b>": "숨은 메뉴 알약",
+  "'p-targets']": "목표주가 흐름 확인으로",
+  "rel(": "표 보정 가볍게",
+  "mmtNav": "차트 아래 작은 전체 그래프"
+ },
+ "_tools/navfab.js": ["up>48", "pointermove", "mm-swiping", "wx", "EZ=", "<b>메뉴</b>"],
+ "_tools/navfab.css": ["mm-swiping", "#mm-pull b"],
+ "_tools/home_order.js": ["'p-targets']"],
+ "_tools/herofix.js": ["rel("],
+ "_tools/page_tidy.py": ["mmtNav"]
+}
