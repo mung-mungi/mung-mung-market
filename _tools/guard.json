@@ -42,7 +42,9 @@
   "def judge": "금리 움직인 이유 판정(피난형 등)",
   "bond_why": "경고등 점수에 금리 움직인 이유 연결",
   "mx-sub": "위(상위)·아래(하위) 알약 줄 모양 구별",
-  "'p-tech', 'p-econ'": "메인: 경제지표를 AI·테크 뉴스 뒤로"
+  "'p-tech', 'p-econ'": "메인: 경제지표를 AI·테크 뉴스 뒤로",
+  "df-b": "설명 문단 접기(설명 보기)",
+  "'descfold'": "설명 접기 전 페이지 연결"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -106,7 +108,8 @@
   "def tidy_ddate",
   "def tidy_briefui",
   "'bdopt'",
-  "'chipfold'"
+  "'chipfold'",
+  "'descfold'"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -181,5 +184,8 @@
  ],
  "_tools/bond_why.py": [
   "def judge"
+ ],
+ "_tools/descfold.js": [
+  "df-b"
  ]
 }

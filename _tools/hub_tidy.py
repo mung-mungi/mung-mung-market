@@ -633,6 +633,7 @@ def tidy_splash(s):
     s = core_strip(s, 'names')
     s = core_strip(s, 'chlog')
     s = core_strip(s, 'stale')
+    s = core_strip(s, 'descfold')
     # 홈 화면 앱 다시 시작 → 메인부터 (_tools/homestart.js, 사용자 2026-10-29)
     add = '<link data-hsicon rel="manifest" href="manifest.webmanifest"><meta data-hsicon name="mobile-web-app-capable" content="yes"><meta data-hsicon name="apple-mobile-web-app-capable" content="yes">' + core_ref('hshome', 'homestart.js')
     # 줄바꿈 다듬기 — _tools/wrapfix.* (사용자 2026-10-29, 전 페이지)
@@ -646,6 +647,8 @@ def tidy_splash(s):
     # 버전업 표시 + 바뀐 점 설명서, 오래된 자료 경고 칩(사용자 2026-11-02) — _tools/chlog.*, stale.js
     # 'NEW · 바뀐 점'·'새로 바뀐 것' 알약(chlog)은 사용자 요청으로 내림(2026-11-02 "짜친다") — 위 core_strip이 지우고 다시 넣지 않음. 버전 표기(v1.9)는 prep_site가 따로 붙임
     add += core_ref('stale', 'stale.js')
+    # 설명 문단 접기 — 첫 줄 + '설명 보기 ▾'(사용자 2026-11-02, 전 페이지 · 메인·데일리 시황 제외는 js에서)
+    add += core_ref('descfold', 'descfold.css') + core_ref('descfold', 'descfold.js')
     add += '<link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널">' + core_ref('splash', 'splash.css') + core_ref('splash', 'splash.js')
     m = re.search(r'<script data-perf(?:\s[^>]*)?>.*?</script>', s, re.S) or re.search(r'<head[^>]*>', s)
     s = s[:m.end()] + add + s[m.end():] if m else add + s

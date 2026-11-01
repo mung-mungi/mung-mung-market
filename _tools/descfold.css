@@ -1,0 +1,5 @@
+/* 설명 문단 접기(사용자 2026-11-02) — _tools/descfold.js. 첫 줄만 보이고 오른쪽 끝에 '설명 보기 ▾' */
+html body p.df-c:not(.df-o){display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:1!important;line-clamp:1;overflow:hidden!important;max-height:none!important;padding-right:84px!important;margin-bottom:0!important}
+html body p.df-h:not(.df-o){display:none!important}
+html body .df-b{display:block;position:relative;z-index:1;margin:-25px 0 6px auto;padding:4px 0 4px 18px;border:0;background:linear-gradient(90deg,rgba(255,255,255,0),#fff 16px);font:800 12.5px/1.2 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;cursor:pointer;-webkit-tap-highlight-color:transparent}
+html body .df-b[aria-expanded=true]{margin:2px 0 8px auto;background:none}
