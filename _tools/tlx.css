@@ -83,3 +83,8 @@
 .tlx-cm-d{font-size:14.5px;font-weight:700;color:#2a2620;margin-bottom:4px!important}
 .tlx-cm-l{font-size:13.5px;color:#5a554b;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .tlx-cm-l b{color:#9a6200;margin-right:6px;font-variant-numeric:tabular-nums}
+/* 펼친 칸은 날짜를 위로 올리고 본문을 넓게(사용자 2026-11-02 "펼치면 날짜를 좌측으로 비켜 주고 글을 넓게 — 스크롤 압박") — 주요 뉴스·AI·테크 뉴스 공통 */
+.pg-ev.tlx.tlx-open{grid-template-columns:14px minmax(0,1fr)!important;grid-template-areas:"ln d" "ln bd";column-gap:6px!important}
+.pg-ev.tlx.tlx-open>.ln{grid-area:ln}
+.pg-ev.tlx.tlx-open>.d{grid-area:d;font-size:13px!important;line-height:1.2!important;margin:0 0 5px!important;padding:0!important;text-align:left!important;color:#8a857a}
+.pg-ev.tlx.tlx-open>.bd{grid-area:bd;margin-left:-4px}
