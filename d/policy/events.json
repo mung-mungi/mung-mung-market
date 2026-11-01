@@ -438,6 +438,22 @@
   "thread": "유가·공급 대응"
  },
  {
+  "id": "e92",
+  "date": "2026-10-02",
+  "month": "2026-10",
+  "category": "한국 관련",
+  "title": "이재용·최태원·정의선 워싱턴행 — 베선트·그리어 만나 대미 투자 논의",
+  "summary": "삼성·SK·현대차 총수와 한경협 회장이 워싱턴 한미일 경영자 대화에서 베선트 재무장관, 그리어 무역대표, 라이트 에너지장관을 만났습니다. 트럼프 행정부는 중간선거 전에 한국 기업의 미국 투자 발표를 서두르라고 압박하고 있습니다. 러트닉 상무장관은 알래스카 유세에서 한국의 투자 약속을 501억 달러로 언급했습니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "",
+  "status": "발생",
+  "source_url": "https://en.sedaily.com/finance/2026/10/30/korean-business-chiefs-court-washington-amid-trump",
+  "media": "서울경제",
+  "tier": "small",
+  "thread": "한국 대미 투자",
+  "has_detail": false
+ },
+ {
   "id": "e39",
   "date": "2026-10-07",
   "month": "2026-10",
@@ -664,6 +680,22 @@
   "media": "새벽 브리핑 기록",
   "tier": "small",
   "thread": "데이터센터 정치"
+ },
+ {
+  "id": "e93",
+  "date": "2026-10-15",
+  "month": "2026-10",
+  "category": "한국 관련",
+  "title": "미셸 스틸 주한미국대사 \"약속은 지켜진다\" — 한국 비관세 장벽 해소 요구",
+  "summary": "한미재계회의 총회에서 스틸 대사가 2025년 11월 정상 합의에 담긴 미국 기업의 한국 시장 접근과 공정한 대우가 진전되길 기대한다고 밝혔습니다. 사실상 한국의 비관세 장벽을 풀라는 요구로 읽힙니다. 미국 측 재계 대표는 3500억 달러 대미 투자 가운데 1500억 달러가 조선 분야라고 설명했습니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "",
+  "status": "발생",
+  "source_url": "https://www.newspim.com/news/view/20261015000302",
+  "media": "뉴스핌",
+  "tier": "small",
+  "thread": "한국 대미 투자",
+  "has_detail": false
  },
  {
   "id": "e16",

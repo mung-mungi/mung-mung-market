@@ -47,7 +47,10 @@ function empty(){var tl=document.getElementById('tl');if(!tl)return;var vis=[].s
 // 위쪽 분류 알약에 최근 7일 새 소식 수(사용자 2026-11-02 — 흐름 알약 대신)
 function catN(){var box=document.getElementById('catf');if(!box||!EV)return;var td=new Date(Date.now()-5*3600e3).toISOString().slice(0,10),fr=new Date(Date.now()-5*3600e3-6*864e5).toISOString().slice(0,10),n={},all=0;
  EV.forEach(function(e){if(e.date>=fr&&e.date<=td){n[e.category]=(n[e.category]||0)+1;all++}});
- [].forEach.call(box.querySelectorAll('button'),function(b){var v=b.dataset.c,k=v?(n[v]||0):all,x=b.querySelector('.tlx-cn');if(!x){x=el('span','tlx-cn');b.appendChild(x)}x.textContent=k?'새 '+k:'';x.title='최근 7일 새 소식';x.style.display=k?'':'none'})}
+ var bs=[].slice.call(box.querySelectorAll('button'));bs.forEach(function(b,i){if(b.dataset.o==null)b.dataset.o=i});
+ // 새 소식 많은 분류를 앞으로(전체는 항상 맨 앞, 사용자 2026-11-02)
+ bs.slice().sort(function(a,b){var ka=a.dataset.c?(n[a.dataset.c]||0):1e9,kb=b.dataset.c?(n[b.dataset.c]||0):1e9;return kb-ka||a.dataset.o-b.dataset.o}).forEach(function(b){box.appendChild(b)});
+ bs.forEach(function(b){var v=b.dataset.c,k=v?(n[v]||0):all,x=b.querySelector('.tlx-cn');if(!x){x=el('span','tlx-cn');b.appendChild(x)}x.textContent=k?'새 '+k:'';x.title='최근 7일 새 소식';x.style.display=k?'':'none'})}
 function relabel(){if(P!=='policy')return;var root=document.querySelector('main')||document.body,w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),n;while(n=w.nextNode()){if(n.nodeValue.indexOf('AI·전력 정책')>=0)n.nodeValue=n.nodeValue.split('AI·전력 정책').join('AI 정책')}}
 function sortDay(){[].forEach.call(document.querySelectorAll('#tl .pg-mon'),function(m){var rows=[].slice.call(m.querySelectorAll(':scope>article.pg-ev'));if(rows.length<2)return;
  var desc=true,p=m.previousElementSibling;while(p&&!p.classList.contains('pg-div'))p=p.previousElementSibling;if(p&&/가까운 날|오래된/.test(p.textContent))desc=false;
