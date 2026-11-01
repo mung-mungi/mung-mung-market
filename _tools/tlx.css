@@ -58,3 +58,8 @@
 .tlx-on #tl .pg-ev.tlx .d{white-space:nowrap;line-height:1.35}
 .tlx-on #tl .pg-ev.tlx .d .tlx-wd{display:inline;margin-left:3px;font-size:12.5px}
 .tlx-on #tl .pg-ev.tlx .d .tlx-tm{display:block;font-size:12px;color:#9a978f;font-variant-numeric:tabular-nums;margin-top:1px}
+/* 정렬 알약 옆 안내(사용자 2026-11-01) */
+#ordbtn+.tlx-hint{display:inline-flex;align-items:center;margin-left:10px;font-size:13px;font-weight:600;color:#9a6200;white-space:nowrap}
+#ordbtn+.tlx-hint::before{content:"›";display:inline-block;transform:rotate(90deg);margin-right:5px;font-size:15px;font-weight:700}
+.pg-ctrl:has(>#ordbtn){flex-wrap:wrap!important;overflow:visible!important;row-gap:6px}
+@media (max-width:520px){#ordbtn+.tlx-hint{flex-basis:100%;margin:2px 0 0 6px}}

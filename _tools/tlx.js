@@ -53,6 +53,7 @@ function mark(){var rows=document.querySelectorAll('#tl article.pg-ev');if(!rows
   try{sortDay()}catch(x){}apply()}).catch(function(){})}
 var mo=new MutationObserver(function(){clearTimeout(window.__tlxT);window.__tlxT=setTimeout(mark,120)});
 function note(){var n=document.getElementById('tl-note');if(!n||n.dataset.tlx)return;n.dataset.tlx='1';n.style.display='none';var b=el('button','tlx-nb','읽는 법 ▾');b.type='button';b.onclick=function(){var o=n.style.display==='none';n.style.display=o?'':'none';b.textContent=o?'접기 ▴':'읽는 법 ▾'};n.before(b)}
-function init(){var tl=document.getElementById('tl');if(!tl)return setTimeout(init,400);note();document.documentElement.classList.add('tlx-on');mo.observe(tl,{childList:true,subtree:true});mark()}
+function hint(){var o=document.getElementById('ordbtn');if(!o||document.getElementById('tlx-hint'))return;var h=el('span','tlx-hint','제목을 누르면 요약이 펼쳐집니다');h.id='tlx-hint';o.after(h)}
+function init(){var tl=document.getElementById('tl');if(!tl)return setTimeout(init,400);note();hint();document.documentElement.classList.add('tlx-on');mo.observe(tl,{childList:true,subtree:true});mark()}
 init();
 })();

@@ -39,6 +39,7 @@
   "mmtNav"
  ],
  "_tools/tlx.js": [
+  "tlx-hint",
   "sortDay",
   "tlx-tm",
   "tlx-th",
