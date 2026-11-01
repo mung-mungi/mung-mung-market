@@ -526,7 +526,25 @@ def tidy_tick(s):
 # 주의 ②: 조각 사이 줄바꿈을 지우면 일부 페이지가 1~3px 달라짐 → 줄바꿈은 그대로 둠.
 HERO_PARTS = [('style', 'hero', 'hero.css'), ('script', 'hero', 'hero.js'), ('script', 'hero-fix', 'herofix.js'),
               ('style', 'hero2', 'hero2.css'), ('script', 'hero2', 'hero2.js')]
+# 머리 부품의 원본은 hero.html·hero2.html 하나 — 공용 파일(hero*.css/js, herofix.js)은 여기서 자동으로 맞춤(2026-11-01: 두 곳이 어긋나 이름 변경이 안 먹던 문제)
+_HERO_SYNCED = []
+def _sync_hero_parts():
+    if _HERO_SYNCED: return
+    _HERO_SYNCED.append(1)
+    d = os.path.dirname(os.path.abspath(__file__))
+    for src, parts in (('hero.html', (('style', 'data-hero', 'hero.css'), ('script', 'data-hero', 'hero.js'), ('script', 'data-hero-fix', 'herofix.js'))),
+                       ('hero2.html', (('style', 'data-hero2', 'hero2.css'), ('script', 'data-hero2', 'hero2.js')))):
+        try: h = open(os.path.join(d, src), encoding='utf-8').read()
+        except Exception: continue
+        for tag, mk, out in parts:
+            m = re.search(r'<%s %s>(.*?)</%s>' % (tag, mk, tag), h, re.S)
+            if not m: continue
+            fp = os.path.join(d, out)
+            try: cur = open(fp, encoding='utf-8').read()
+            except Exception: cur = None
+            if cur != m.group(1): open(fp, 'w', encoding='utf-8').write(m.group(1))
 def tidy_hero(s):
+    _sync_hero_parts()
     for tag, m, n in HERO_PARTS:
         ref = core_ref(m, n)
         s = re.sub(r'<%s data-%s>[\s\S]*?</%s>' % (tag, m, tag), lambda x: ref, s, count=1)  # 통째 → 참조
@@ -569,6 +587,17 @@ def tidy_trend(s, root=None):
             "if(j&&j.P&&j.P.length&&j.asof>=m.asof&&(j.at||'')>(m.at||'')){window.__LIVE_TREND__=j.label;return j}"
             "var d=g('" + TREND_STUB_MARK + "?v=" + v + "');if(d&&d.P)return d;if(j&&j.P)return j;return {asof:m.asof,label:m.label,P:[],H:{}}})(" + meta.replace('</', '<\\/') + ");")
     return s[:i] + stub + s[j:]
+
+
+# 메인 화면 순서·이름(home_order.js)과 시장 띠(market.js)를 최신 파일로(2026-11-01) — 예전엔 동기화 때만 다시 넣었음
+def tidy_mkt(s):
+    if 'data-mkt' not in s: return s
+    d = os.path.dirname(os.path.abspath(__file__))
+    MJ = '<script data-mkt>' + open(os.path.join(d, 'market.js'), encoding='utf-8').read() + '</script>'
+    MJ += '<script data-mkt>' + open(os.path.join(d, 'home_order.js'), encoding='utf-8').read() + '</script>'
+    m = re.search(r'<script data-mkt>[\s\S]*?</script>', s)
+    s2 = re.sub(r'<script data-mkt>[\s\S]*?</script>', '', s)
+    return s2[:m.start()] + MJ + s2[m.start():] if m else s
 
 
 # 휴대폰 버벅임 줄이기 — _tools/perf.js를 <head> 맨 앞에(사용자 2026-10-29)

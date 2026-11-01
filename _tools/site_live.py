@@ -205,6 +205,8 @@ def rename_cal(root):
         s = o = open(f, encoding='utf-8').read()
         s = re.sub(r'(<a href="p-cal\.html[^"]*"[^>]*>)실적 캘린더(</a>)', r'\1실적 일정\2', s)
         s = re.sub(r'(<a href="p-trend\.html[^"]*"[^>]*>)차트 길잡이(</a>)', r'\1종목 차트\2', s)  # 사용자 2026-10-29: 보통 쓰는 말로
+        s = re.sub(r'(<a href="p-policy\.html[^"]*"[^>]*>)정책·지정학(</a>)', r'\1주요 뉴스\2', s)  # 사용자 2026-11-01
+        s = re.sub(r'(<a href="p-tech\.html[^"]*"[^>]*>)(?:AI·)?테크 행사(</a>)', r'\1AI·테크 뉴스\2', s)  # 사용자 2026-11-01
         if s != o: open(f, 'w', encoding='utf-8').write(s); done.append(os.path.basename(f))
     return ['rename_cal:%d' % len(done)] if done else []
 
