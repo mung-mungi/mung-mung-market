@@ -124,6 +124,14 @@ def run(root):
         sys.path.insert(0, T); import hub_tidy
         o = open(pb, encoding='utf-8').read(); b = hub_tidy.tidy_brief(o)
         if b != o: open(pb, 'w', encoding='utf-8').write(b); n.append('p-brief')
+    # 마지막에 '화면 정리 다시 입히기'를 한 번 더(2026-11-01) — 허브 동기화가 새로 만든 페이지에도 공용 파일 참조·최신 넘김 규칙이 그대로 들어가게.
+    # (11.01 17:13 동기화가 머리 부품을 통째로 다시 붙이고 예전 넘김 코드를 올려 차트 넘김 개선이 되돌려졌던 문제)
+    try:
+        import subprocess as _sp
+        _sp.run([sys.executable, '-I', os.path.join(T, 'reapply_tidy.py'), root], check=False, stdout=_sp.DEVNULL)
+        n.append('reapply')
+    except Exception as _e:
+        print('reapply fail', _e)
     print('site_live', n)
 
 

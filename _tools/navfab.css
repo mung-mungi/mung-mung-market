@@ -40,3 +40,5 @@ a.mm-earnnew small{display:block;font-size:13px;color:#5a554c;margin-top:2px;whi
 a.mm-earnnew em{font-style:normal;font-size:22px;font-weight:700;color:#e8343b}
 
 a.mm-earnnew.seen{border-color:#e6dcc6;border-left-color:#b08a3e;box-shadow:0 2px 0 #ece3cf}a.mm-earnnew.seen i{background:#b08a3e;animation:none}a.mm-earnnew.seen b{color:#8a6a2c}a.mm-earnnew.seen em{color:#b08a3e}
+
+/* 차트에서 페이지 넘기는 중에는 가격 말풍선·십자선 숨김(사용자 2026-11-01) */html.mm-swiping #main .mmt-bub,html.mm-swiping #main .mmt-box svg .cx,html.mm-swiping #main .mmt-box svg .cy{display:none!important}

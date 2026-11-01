@@ -55,6 +55,20 @@ for t, _ in rows:
 posts['busiest_hour_posts'] = max(hours.values()) if hours else 0
 posts['hours_over_10'] = sum(1 for v in hours.values() if v > 10)
 
+# ⑤ 되돌림 감지(2026-11-01) — 복사본에 '화면 정리 다시 입히기'를 돌려 바뀌는 페이지가 있으면, 누군가 옛 코드로 페이지를 덮어쓴 것
+import shutil, tempfile
+drift = []
+try:
+    tmp = tempfile.mkdtemp(); cp = os.path.join(tmp, 'site')
+    shutil.copytree(R, cp, ignore=shutil.ignore_patterns('.git', '_health', 'node_modules'))
+    subprocess.run([sys.executable, '-I', os.path.join(cp, '_tools', 'reapply_tidy.py'), cp], capture_output=True, timeout=300)
+    for f in sorted(glob.glob(os.path.join(R, '*.html'))):
+        a = open(f, encoding='utf-8').read(); b = open(os.path.join(cp, os.path.basename(f)), encoding='utf-8').read()
+        if a != b: drift.append(os.path.basename(f))
+    shutil.rmtree(tmp, ignore_errors=True)
+except Exception as e:
+    drift = ['검사 실패: ' + str(e)[:80]]
+
 # ① 페이지 — 무게·통째 부품·공용 참조
 CORE = ['perf', 'hshome', 'wrapfix', 'splash', 'vt', 'tick']
 pages = {}
@@ -104,6 +118,7 @@ for n, p in pages.items():
     if not p['doctype_first']: problems.append(f'{n}: 문서 선언이 맨 앞이 아님')
 for x in fresh:
     if x['state'] == 'late': problems.append(f'{x["name"]}: {x["age_h"]}시간 갱신 없음(마지막 {x["last"]})')
+if drift: problems.append(f'옛 코드로 덮인 페이지 {len(drift)}개(정리 다시 입히면 바뀜): ' + ', '.join(drift[:6]))
 if posts['bot_under_5min']: problems.append(f'시세 게시 5분 안 연속 {posts["bot_under_5min"]}번')
 if posts['hours_over_10']: problems.append(f'시간당 게시 10번 넘은 시간 {posts["hours_over_10"]}개(사이트 빌드 한도)')
 
@@ -111,7 +126,7 @@ res = {'at': now.astimezone(KST).strftime('%Y-%m-%d %H:%M'), 'weekend': weekend,
        'total_kb': sum(p['kb'] for p in pages.values()), 'total_inline': sum(p['inline'] for p in pages.values()),
        'prev_total_kb': prev.get('total_kb'), 'prev_total_inline': prev.get('total_inline'),
        'heaviest': sorted(((p['kb'], n) for n, p in pages.items()), reverse=True)[:3],
-       'fresh': fresh, 'posts': posts, 'pages': pages}
+       'fresh': fresh, 'posts': posts, 'drift': drift, 'pages': pages}
 json.dump(res, open(os.path.join(OUT, 'health.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 hist = os.path.join(OUT, 'history.jsonl')
 with open(hist, 'a', encoding='utf-8') as h:
