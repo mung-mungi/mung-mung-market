@@ -21,7 +21,13 @@
   "if(s.textContent!==n+'건')": "주요 뉴스 반복 고리 끊기(같은 글자면 안 씀)",
   "function setH(": "메뉴 숨김 표시는 body 말고 메뉴에만(버벅임)",
   "idle_changes": "매일 점검: 쉬는 동안 화면 변경 횟수",
-  "def inline_to_ref": "메인·아이디어 페이지 남은 통째 부품 → 공용 파일"
+  "def inline_to_ref": "메인·아이디어 페이지 남은 통째 부품 → 공용 파일",
+  "mm-cl-sheet": "바뀐 점 설명서(버전업 표시)",
+  "mm-stale": "오래된 자료 경고 칩",
+  "mm-band": "경고등 바로가기·주제 구분띠",
+  "mm-bd-steps": "채권 경고등 점수 단계 상자",
+  "'chlog'": "설명서·경고 칩 전 페이지 연결",
+  "ltjump": "경고등 바로가기 연결"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -75,7 +81,9 @@
   "core_ref('uniui'",
   "tidy_search",
   "core_ref('names'",
-  "def inline_to_ref"
+  "def inline_to_ref",
+  "'chlog'",
+  "ltjump"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -89,5 +97,17 @@
  ],
  "_tools/health_check.py": [
   "idle_changes"
+ ],
+ "_tools/chlog.js": [
+  "mm-cl-sheet"
+ ],
+ "_tools/stale.js": [
+  "mm-stale"
+ ],
+ "_tools/ltjump.js": [
+  "mm-band"
+ ],
+ "_tools/bdnear.js": [
+  "mm-bd-steps"
  ]
 }
