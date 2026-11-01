@@ -16,7 +16,9 @@ var tc=document.getElementById('today-chg');if(tc)tc.classList.add('l-clamp2');
 var k=0;(function go(){try{fx()}catch(e){}if(!document.__ltmo){var r=document.querySelector('.lw');if(r){document.__ltmo=1;new MutationObserver(function(){try{fx()}catch(e){}}).observe(r,{childList:true,subtree:true})}}if(++k<12)setTimeout(go,400)})()})();
 
 // 경고등 '~란?' 설명(누르면 펼침)·영역 링크 문구(사용자 2026-10-29)
-var LX=[[/유가/,'유가 급등이란?','유가가 짧은 기간에 크게 오르는 것입니다. 물가와 금리를 함께 밀어 올려 주식에 부담이 됩니다.'],
+var LX=[[/반도체 고점/,'반도체 고점 대비 낙폭이란?','필라델피아 반도체 지수가 최근 1년 가장 높았던 날보다 얼마나 빠졌는지입니다. 15%를 넘으면 단순 조정이 아니라 AI 투자 기대를 다시 따지는 구간으로 봅니다.'],
+[/반도체 하루/,'반도체 하루 급락이란?','최근 5거래일 중 반도체 지수가 하루에 가장 크게 빠진 폭입니다. -5% 넘는 날은 레버리지 청산·투매가 몰린 날이라 며칠 여진이 이어지기 쉽습니다.'],
+[/유가/,'유가 급등이란?','유가가 짧은 기간에 크게 오르는 것입니다. 물가와 금리를 함께 밀어 올려 주식에 부담이 됩니다.'],
 [/장단기/,'장단기 금리 역전이란?','짧은 만기(2년) 국채 금리가 긴 만기(10년)보다 높아지는 것입니다. 시장이 경기 둔화를 예상할 때 나타납니다.'],
 [/10년물 5%/,'10년물 5%가 왜 중요?','장기 금리가 5%를 넘으면 미래 이익의 현재 가치가 낮아져 성장주·중소형주에 특히 부담이 큽니다.'],
 [/30년물/,'30년물 금리란?','30년 만기 국채 금리입니다. 높을수록 정부 빚과 물가에 대한 걱정이 크다는 뜻입니다.'],
@@ -28,7 +30,7 @@ var LX=[[/유가/,'유가 급등이란?','유가가 짧은 기간에 크게 오�
 [/풋콜/,'풋콜 비율이란?','하락에 거는 풋옵션이 상승에 거는 콜옵션보다 얼마나 많이 거래되는지입니다. 높을수록 겁이 많다는 뜻입니다.']];
 function lx(){var A=document.getElementById('areas');if(!A)return;A.querySelectorAll('li[data-lt]:not([data-lx])').forEach(function(li){var nm=(li.querySelector('b')||{}).textContent||'';var hit=LX.find(function(x){return x[0].test(nm)});if(!hit)return;li.dataset.lx=1;
  var q=document.createElement('span');q.className='l-q';q.textContent=hit[1];li.appendChild(q);var d=document.createElement('span');d.className='l-ex';d.textContent=hit[2];li.appendChild(d);li.addEventListener('click',function(){li.classList.toggle('lxo')})});
- var AD={'유가':'기름값이 급하게 오르면 물가와 금리를 자극해 주식에 부담이 됩니다.','채권·금리':'금리가 높거나 빨리 오르면 주식, 특히 성장주·중소형주에 부담입니다.','신용':'회사들이 돈을 빌리기 어려워지는지, 부도 걱정이 커지는지 봅니다.','옵션·공포':'투자자들이 얼마나 겁먹었는지 옵션 시장 가격으로 봅니다.'};
+ var AD={'반도체·AI':'우리 기조(AI 밸류체인)의 체온입니다. 시장 전체는 버텨도 반도체에 공포가 몰리는 날을 잡습니다.','유가':'기름값이 급하게 오르면 물가와 금리를 자극해 주식에 부담이 됩니다.','채권·금리':'금리가 높거나 빨리 오르면 주식, 특히 성장주·중소형주에 부담입니다.','신용':'회사들이 돈을 빌리기 어려워지는지, 부도 걱정이 커지는지 봅니다.','옵션·공포':'투자자들이 얼마나 겁먹었는지 옵션 시장 가격으로 봅니다.'};
  A.querySelectorAll('.area:not([data-ad])').forEach(function(ar){var h=ar.querySelector('.hd');var t=(h&&h.querySelector('b')||{}).textContent||'';if(!h||!AD[t])return;ar.dataset.ad=1;var p=document.createElement('p');p.className='a-desc';p.textContent=AD[t];h.after(p)});
  A.querySelectorAll('.area>a:not([data-lx])').forEach(function(a){a.dataset.lx=1;var h=(a.closest('.area').querySelector('.hd b')||{}).textContent||'';a.textContent=h+' 차트로 보기 →'})}
 var k2=0;(function g2(){try{lx()}catch(e){}if(++k2<14)setTimeout(g2,400)})();

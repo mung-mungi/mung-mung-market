@@ -1,0 +1,23 @@
+/* 시장 경고등 '지금 시장은' 통일 양식(사용자 2026-11-01): 근접(반불)·영역별 '지금' 한 줄·맨 위 총평 */
+#big-dots .dot.mm-half{background:linear-gradient(90deg,#e07b16 50%,transparent 50%)!important;border-color:#e07b16!important;box-shadow:0 0 0 3px rgba(224,123,22,.18)}
+.mm-ln-near{display:block;margin:6px 0 2px;font:700 15px/1.45 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a4f00}
+.mm-ln-near b{display:inline-block;padding:2px 9px;border-radius:999px;background:#fdebd6;color:#a14d00;margin-right:6px}
+.mm-ln-leg{display:flex;gap:12px;margin:8px 0 0;font:600 12.5px/1 -apple-system,sans-serif;color:#6f6d68}
+.mm-ln-leg i{display:inline-block;width:12px;height:12px;border-radius:50%;border:2px solid #bbb;vertical-align:-2px;margin-right:4px}
+#areas .cnt.mm-ln-nc{background:#fdebd6!important;color:#a14d00!important;border:1px solid #f0b273}
+.mm-ln-now{display:flex;gap:8px;align-items:flex-start;margin:8px 0 4px;padding:9px 11px;border-radius:11px;font:700 14.5px/1.45 -apple-system,"Apple SD Gothic Neo",sans-serif;background:var(--nb);color:var(--nc)}
+.mm-ln-now b{flex:none;font-size:12px;padding:2px 7px;border-radius:999px;background:var(--nc);color:#fff;margin-top:1px}
+.mm-ln-head{margin:4px 0 12px;padding:12px 14px;border-radius:14px;background:#2f2a24;color:#fff;font:800 17px/1.45 -apple-system,"Apple SD Gothic Neo",sans-serif}
+.mm-ln-head small{display:block;font-size:12px;color:#e9c46a;letter-spacing:.06em;margin-bottom:4px}
+.mm-ln-head span{display:block;font-weight:600;font-size:14px;color:#d8d2c6;margin-top:4px}
+/* 동그라미는 영역별로 나누지 않고 한 줄로 '전체 몇 개 중 몇 개'(켜짐 → 근접 → 꺼짐 순) (사용자 2026-11-01) */
+#big-dots.mm-ln-one>.grp{display:none!important}
+.mm-ln-row{display:flex;flex-wrap:nowrap;gap:5px;align-items:center;margin:4px 0 2px}
+.mm-ln-row i{flex:none;width:21px;height:21px;border-radius:50%;border:2.5px solid #cfcac0;background:#fff;box-sizing:border-box}
+.mm-ln-row i.on{background:#b3261e;border-color:#b3261e;box-shadow:0 0 0 3px rgba(179,38,30,.18)}
+.mm-ln-row i.nr{background:linear-gradient(90deg,#e07b16 50%,#fff 50%);border-color:#e07b16}
+.mm-ln-cap{display:block;margin:6px 0 0;font:700 14px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#4a463f}
+.mm-ln-cap em{font-style:normal;color:#b3261e}.mm-ln-cap u{text-decoration:none;color:#c76a0c}
+.mm-ln-leg{display:none!important}
+
+.mm-ln-cap i{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid #cfcac0;vertical-align:-1px;margin-right:3px;box-sizing:border-box}.mm-ln-cap i.on{background:#b3261e;border-color:#b3261e}.mm-ln-cap i.nr{background:linear-gradient(90deg,#e07b16 50%,#fff 50%);border-color:#e07b16}

@@ -396,7 +396,14 @@ def tidy_lights(s):
     add = '<style data-ltui>' + open(os.path.join(d, 'ltui.css'), encoding='utf-8').read() + '</style><script data-ltui>' + open(os.path.join(d, 'ltui.js'), encoding='utf-8').read() + '</script>'
     # 자동 한 줄·멈춘 값 칩(사용자 2026-10-31) — _tools/ltfresh.*, 자료 d/lights/fresh.json
     add += '<style data-ltui>' + open(os.path.join(d, 'ltfresh.css'), encoding='utf-8').read() + '</style><script data-ltui>' + open(os.path.join(d, 'ltfresh.js'), encoding='utf-8').read() + '</script>'
+    # '지금 시장은' 통일 양식·근접(반불)·반도체·AI 영역(사용자 2026-11-01) — _tools/ltnear.*
+    add += '<style data-ltui>' + open(os.path.join(d, 'ltnear.css'), encoding='utf-8').read() + '</style><script data-ltui>' + open(os.path.join(d, 'ltnear.js'), encoding='utf-8').read() + '</script>'
+    s = s.replace(LT_AREAS_OLD, LT_AREAS_NEW, 1)
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+LT_AREAS_OLD = "const AREAS=[['유가','p-policy.html','p-policy.html']"
+LT_AREAS_NEW = "const AREAS=[['반도체·AI','p-trend.html','p-trend.html'],['유가','p-policy.html','p-policy.html']"
 
 
 # 종목 차트: 주소에 ?per=1y 등이 있으면 그 기간 알약을 눌러 둠(홈 숫자 칸 → 1년 기본, 사용자 2026-10-29)
@@ -557,3 +564,13 @@ def tidy_dend(s):
     if 'id="days"' not in s:
         return s
     return s.replace('</body>', DEND + '</body>', 1) if '</body>' in s else s + DEND
+
+
+# 채권·금리 페이지 '채권 경고등'도 시장 경고등과 같은 '지금' 양식(사용자 2026-11-01) — _tools/bdnear.*
+def tidy_bond(s):
+    s = re.sub(r'<(style|script) data-bdnear>.*?</\1>', '', s, flags=re.S)
+    if 'id="lights-card"' not in s:
+        return s
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-bdnear>' + open(os.path.join(d, 'bdnear.css'), encoding='utf-8').read() + '</style><script data-bdnear>' + open(os.path.join(d, 'bdnear.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add

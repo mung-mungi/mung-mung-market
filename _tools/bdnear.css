@@ -1,0 +1,6 @@
+/* 채권·금리 페이지 경고등도 시장 경고등과 같은 '지금' 양식(사용자 2026-11-01) */
+#lights-card #b-dots .dot.mm-nr{background:linear-gradient(90deg,#e07b16 50%,#fff 50%)!important;border-color:#e07b16!important}
+#lights-card #lights li.mm-nr{color:#a14d00;font-weight:700}
+.mm-bd-now{display:flex;gap:8px;align-items:flex-start;margin:10px 0 8px;padding:9px 11px;border-radius:11px;font:700 14.5px/1.45 -apple-system,"Apple SD Gothic Neo",sans-serif;background:var(--nb);color:var(--nc)}
+.mm-bd-now b{flex:none;font-size:12px;padding:2px 7px;border-radius:999px;background:var(--nc);color:#fff;margin-top:1px}
+.mm-bd-all{display:inline-flex;align-items:center;gap:6px;margin:2px 0 10px;padding:7px 12px;border-radius:999px;background:#fff8ea;border:1px solid #e3cf9d;box-shadow:0 2px 0 #eadcb8;font:700 13.5px/1 -apple-system,sans-serif;color:#7a5a12;text-decoration:none}

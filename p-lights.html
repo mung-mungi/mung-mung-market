@@ -327,7 +327,7 @@ function add(){(document.body||document.documentElement).appendChild(d);var v=d.
 if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
 d.addEventListener('click',close);setTimeout(close,6500)})();
-</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="시장 경고등"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-lights.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202611011045">(function(){var me="202611011045";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>시장 경고등</title><style>:root{color-scheme:light;
+</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="시장 경고등"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-lights.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202611011111">(function(){var me="202611011111";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>시장 경고등</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
@@ -527,7 +527,7 @@ const $=id=>document.getElementById(id);
 const STAGES=['평온','주의','경계','긴장','위험'],SC=['var(--color-ok)','#c99a06','#e07b16','#c8501c','var(--color-bad)'],EMO=['🟢','🟡','🟠','🟠','🔴'];
 const stg=(n,a)=>n<=0?0:(n>=5||a>=3)?4:n>=3?3:(n>=2||a>=2)?2:1;
 const stageOf=n=>stg(n,1);
-const AREAS=[['유가','p-policy.html','p-policy.html'],['채권·금리','p-bond.html','p-bond.html'],['신용','p-bond.html','p-bond.html'],['옵션·공포','p-opt.html','p-opt.html']];
+const AREAS=[['반도체·AI','p-trend.html','p-trend.html'],['유가','p-policy.html','p-policy.html'],['채권·금리','p-bond.html','p-bond.html'],['신용','p-bond.html','p-bond.html'],['옵션·공포','p-opt.html','p-opt.html']];
 dash.calc('daily',{inputs:['lights_log'],title:'날짜별 켜진 불 개수',description:'날짜마다 켜진 경고등 수(on=1)를 더한 값과 자료가 있는 경고등 수.',
   fn:(lights_log)=>{const o={};lights_log.forEach(r=>{const d=String(r.date).slice(0,10);o[d]=o[d]||{date:d,on:0,n:0,s:0,A:{}};if(r.on!=null&&r.on!==''){o[d].n++;if(Number(r.on)===1){o[d].on++;o[d].s+=Number(r.w||1);o[d].A[r.board]=1}}});return Object.values(o).map(x=>({date:x.date,on:x.on,n:x.n,s:x.s,a:Object.keys(x.A).length,st:stg(x.s,Object.keys(x.A).length)})).sort((a,b)=>a.date<b.date?-1:1)}});
 
@@ -838,172 +838,7 @@ function run(){
 }
 run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);[300,900,1600,2600,4000].forEach(function(t){setTimeout(run,t)});
 })();</script>
-<style data-dock>/* 아래 메뉴: 자주 쓰는 칸 + ☰ 전체 메뉴판(사용자 2026-10-29) */
-body.mmd-on nav.ib{display:none!important}
-body.mmd-on{padding-bottom:calc(80px + env(safe-area-inset-bottom))!important}
-body.mmd-on #mm-snd{bottom:calc(90px + env(safe-area-inset-bottom))!important}
-body .mmd{position:fixed;left:0;right:0;bottom:0;z-index:9000;padding:0 0 calc(6px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e8e6df;box-shadow:0 -4px 14px rgba(11,11,11,.06);touch-action:none}
-body .mmd .grab{all:unset;display:block;width:100%;height:14px;cursor:pointer}body .mmd .grab em{display:block;width:38px;height:4px;border-radius:3px;background:#cfccc4;margin:5px auto 0}
-body .mmd .row{display:flex;flex-wrap:nowrap!important;justify-content:flex-start;border-bottom:0;gap:2px;overflow-x:auto;scrollbar-width:none;padding:0 6px}body .mmd .row::-webkit-scrollbar{display:none}
-body .mmd .row>a{all:unset;flex:none;width:60px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px 0;border-radius:10px;cursor:pointer;font:600 10.5px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#8a877f;-webkit-tap-highlight-color:transparent}
-body .mmd .row>a i{font-style:normal;font-size:21px;line-height:1.2}body .mmd .row>a span{white-space:nowrap;max-width:58px;overflow:hidden;text-overflow:ellipsis}
-body .mmd .row>a.on{color:#0b0b0b;font-weight:800;background:#f3efe4}
-body .mmd .row>.sep{flex:none;width:1px;margin:6px 3px;background:#e8e6df}
-body .mmd-sheet[hidden]{display:none!important}
-body .mmd-dim{position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.35)}
-body .mmd-pan{position:fixed;left:0;right:0;bottom:0;z-index:9999;max-height:82vh;overflow-y:auto;background:#fff;border-radius:18px 18px 0 0;padding:8px 14px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(0,0,0,.15);animation:mmdup .18s ease-out}
-@keyframes mmdup{from{transform:translateY(30px);opacity:.6}to{transform:none;opacity:1}}
-body .mmd-grab{width:40px;height:5px;border-radius:3px;background:#ddd;margin:2px auto 6px}
-body .mmd-g{margin:10px 2px 6px!important;font:800 13px/1 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:#9a6200!important}
-body .mmd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-body .mmd-grid a{all:unset;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 2px;border-radius:12px;background:#f6f4ee;font:600 11.5px/1.2 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3a3833;cursor:pointer;box-shadow:0 2px 0 rgba(30,22,8,.08)}
-body .mmd-grid a i{font-style:normal;font-size:22px}
-body .mmd-grid a span{white-space:nowrap;max-width:76px;overflow:hidden;text-overflow:ellipsis}
-body .mmd-grid a.on{background:#0b0b0b;color:#fff}
-/* 선 아이콘 + 금색 네모(사용자 2026-10-29) */
-body .mmd .row>a i,body .mmd-grid a i{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;color:#9a6200;background:#fbf3e3;font-size:0!important}
-body .mmd .row>a i svg,body .mmd-grid a i svg{width:19px;height:19px}
-body .mmd .row>a.on{background:none!important}body .mmd .row>a.on i{background:#9a6200;color:#fff}
-body .mmd-grid a.on i{background:#fff;color:#0b0b0b}
-body .mmd .row>a{gap:3px!important}
-
-/* 아래 메뉴 바탕 반투명(사용자 2026-10-29) — 흐림 효과 없이 */
-body .mmd{background:rgba(255,255,255,.6)!important;border-top-color:rgba(11,11,11,.06)!important;box-shadow:0 -2px 10px rgba(11,11,11,.04)!important}
-body .mmd .row>a i{background:rgba(251,243,227,.82)}
-
-/* 공사중 표시(아이디어 페이지, 사용자 2026-10-29) */
-body .mmd a.wip i,body .mmd-sheet a.wip i{position:relative}
-body .mmd a.wip i:after,body .mmd-sheet a.wip i:after{content:'공사중';position:absolute;top:-6px;right:-14px;font:800 8.5px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#fff;background:#e07a12;border-radius:6px;padding:2px 4px;letter-spacing:-.02em;white-space:nowrap}
-</style><script data-dock>// 아래 메뉴: 자주 쓰는 칸 + ☰ 전체 메뉴판(사용자 2026-10-29) — 링크는 기존 페이지 줄(nav.ib)에서 읽음
-(function(){var IC={"p-value": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m21 21-4.3-4.3\"/><path d=\"M8 13l2-2 2 1.5L14.5 9\"/></svg>", "p-pros": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8 21h8\"/><path d=\"M12 17v4\"/><path d=\"M7 4h10v5a5 5 0 0 1-10 0z\"/><path d=\"M17 5h3v2a3 3 0 0 1-3 3\"/><path d=\"M7 5H4v2a3 3 0 0 0 3 3\"/></svg>", "home": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\" /> <path d=\"M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\" /> </svg>", "p-lights": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M7 18v-6a5 5 0 1 1 10 0v6\" /> <path d=\"M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z\" /> <path d=\"M21 12h1\" /> <path d=\"M18.5 4.5 18 5\" /> <path d=\"M2 12h1\" /> <path d=\"M12 2v1\" /> <path d=\"m4.929 4.929.707.707\" /> <path d=\"M12 12v6\" /> </svg>", "p-brief": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2\" /> <path d=\"M18 14h-8\" /> <path d=\"M15 18h-5\" /> <path d=\"M10 6h8v4h-8V6Z\" /> </svg>", "p-prices": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M9 5v4\" /> <rect width=\"4\" height=\"6\" x=\"7\" y=\"9\" rx=\"1\" /> <path d=\"M9 15v2\" /> <path d=\"M17 3v2\" /> <rect width=\"4\" height=\"8\" x=\"15\" y=\"5\" rx=\"1\" /> <path d=\"M17 13v3\" /> <path d=\"M3 3v16a2 2 0 0 0 2 2h16\" /> </svg>", "p-trend": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M3 3v16a2 2 0 0 0 2 2h16\" /> <path d=\"M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7\" /> </svg>", "p-earn": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4\" /> <path d=\"M14 2v4a2 2 0 0 0 2 2h4\" /> <path d=\"m3 15 2 2 4-4\" /> </svg>", "p-cal": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M8 2v4\" /> <path d=\"M16 2v4\" /> <rect width=\"18\" height=\"18\" x=\"3\" y=\"4\" rx=\"2\" /> <path d=\"M3 10h18\" /> <path d=\"M8 14h.01\" /> <path d=\"M12 14h.01\" /> <path d=\"M16 14h.01\" /> <path d=\"M8 18h.01\" /> <path d=\"M12 18h.01\" /> <path d=\"M16 18h.01\" /> </svg>", "p-econ": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <line x1=\"3\" x2=\"21\" y1=\"22\" y2=\"22\" /> <line x1=\"6\" x2=\"6\" y1=\"18\" y2=\"11\" /> <line x1=\"10\" x2=\"10\" y1=\"18\" y2=\"11\" /> <line x1=\"14\" x2=\"14\" y1=\"18\" y2=\"11\" /> <line x1=\"18\" x2=\"18\" y1=\"18\" y2=\"11\" /> <polygon points=\"12 2 20 7 4 7\" /> </svg>", "p-bond": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <line x1=\"19\" x2=\"5\" y1=\"5\" y2=\"19\" /> <circle cx=\"6.5\" cy=\"6.5\" r=\"2.5\" /> <circle cx=\"17.5\" cy=\"17.5\" r=\"2.5\" /> </svg>", "p-opt": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z\" /> </svg>", "p-targets": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <circle cx=\"12\" cy=\"12\" r=\"10\" /> <circle cx=\"12\" cy=\"12\" r=\"6\" /> <circle cx=\"12\" cy=\"12\" r=\"2\" /> </svg>", "p-short": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <polyline points=\"22 17 13.5 8.5 8.5 13.5 2 7\" /> <polyline points=\"16 17 22 17 22 11\" /> </svg>", "p-fx": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M8 3 4 7l4 4\" /> <path d=\"M4 7h16\" /> <path d=\"m16 21 4-4-4-4\" /> <path d=\"M20 17H4\" /> </svg>", "p-capex": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z\" /> <path d=\"M17 18h1\" /> <path d=\"M12 18h1\" /> <path d=\"M7 18h1\" /> </svg>", "p-policy": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20\" /> <path d=\"M2 12h20\" /> </svg>", "p-tech": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z\" /> <path d=\"M19 10v2a7 7 0 0 1-14 0v-2\" /> <line x1=\"12\" x2=\"12\" y1=\"19\" y2=\"22\" /> </svg>", "p-supply": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 .6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1\" /> <path d=\"M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76\" /> <path d=\"M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6\" /> <path d=\"M12 10v4\" /> <path d=\"M12 2v3\" /> </svg>", "p-neo": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <rect width=\"20\" height=\"8\" x=\"2\" y=\"2\" rx=\"2\" ry=\"2\" /> <rect width=\"20\" height=\"8\" x=\"2\" y=\"14\" rx=\"2\" ry=\"2\" /> <line x1=\"6\" x2=\"6.01\" y1=\"6\" y2=\"6\" /> <line x1=\"6\" x2=\"6.01\" y1=\"18\" y2=\"18\" /> </svg>", "p-qtr": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M3 3v16a2 2 0 0 0 2 2h16\" /> <path d=\"M18 17V9\" /> <path d=\"M13 17V5\" /> <path d=\"M8 17v-3\" /> </svg>", "p-insider": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <circle cx=\"10\" cy=\"7\" r=\"4\" /> <path d=\"M10.3 15H7a4 4 0 0 0-4 4v2\" /> <circle cx=\"17\" cy=\"17\" r=\"3\" /> <path d=\"m21 21-1.9-1.9\" /> </svg>"};
-function key(a){var m=(a.getAttribute('href')||'').match(/(p-[a-z]+)\.html/);return m?m[1]:''}
-function build(){var n=document.querySelector('nav.ib');if(!n||document.querySelector('.mmd'))return;var home=n.querySelector('a.home');var cur=n.querySelector('[aria-current=page]');var ck=cur?key(cur):'';
- var groups=[],g=null;[].forEach.call(n.children,function(c){if(c.classList.contains('tg')){g={t:c.textContent.trim(),l:[]};groups.push(g);return}if(c.tagName==='A'&&!c.classList.contains('home')&&g)g.l.push(c)});
- var by={};[].forEach.call(n.querySelectorAll('a'),function(a){by[key(a)]=a});
- // 아이디어 페이지(공사중) — 페이지 줄에 아직 없으면 맨 끝 묶음으로 붙임(사용자 2026-10-29)
- if(!by['p-value']){var vq=((home&&home.getAttribute('href'))||'').match(/\?v=\d+/);vq=vq?vq[0]:'';var ig={t:'아이디어',l:[]};[['p-value','저평가 서치'],['p-pros','고수 성적표']].forEach(function(x){var a=document.createElement('a');a.setAttribute('href',x[0]+'.html'+vq);a.textContent=x[1];ig.l.push(a);by[x[0]]=a});groups.push(ig)}
- function lab(a){return (a.textContent||'').trim().replace('데일리 ','')}
- var d=document.createElement('nav');d.className='mmd';
- var row=(home?'<a href="'+home.getAttribute('href')+'"><i>'+IC.home+'</i><span>홈</span></a>':'')+groups.map(function(g,gi){return (gi?'<b class="sep"></b>':'')+g.l.map(function(a){var k=key(a);return '<a href="'+a.getAttribute('href')+'"'+(k===ck?' class="on"':'')+'><i>'+(IC[k]||'•')+'</i><span>'+lab(a)+'</span></a>'}).join('')}).join('');
- d.innerHTML='<button type="button" class="grab" aria-label="전체 메뉴"><em></em></button><div class="row">'+row+'</div>';
- var sh=document.createElement('div');sh.className='mmd-sheet';sh.hidden=true;
- sh.innerHTML='<div class="mmd-dim"></div><div class="mmd-pan"><div class="mmd-grab"></div>'+groups.map(function(g){return '<p class="mmd-g">'+g.t+'</p><div class="mmd-grid">'+g.l.map(function(a){var k=key(a);return '<a href="'+a.getAttribute('href')+'"'+(k===ck?' class="on"':'')+'><i>'+(IC[k]||'•')+'</i><span>'+lab(a)+'</span></a>'}).join('')+'</div>'}).join('')+'</div>';
- [].forEach.call(d.querySelectorAll('a[href^="p-value"],a[href^="p-pros"]'),function(a){a.classList.add('wip')});[].forEach.call(sh.querySelectorAll('a[href^="p-value"],a[href^="p-pros"]'),function(a){a.classList.add('wip')});
- [].forEach.call(sh.querySelectorAll('.mmd-g'),function(g){if(g.textContent==='아이디어')g.textContent='아이디어 · 공사중'});
- document.body.appendChild(d);document.body.appendChild(sh);document.body.classList.add('mmd-on');
- function open(o){sh.hidden=!o;document.documentElement.style.overflow=o?'hidden':''}
- d.querySelector('.grab').onclick=function(){open(sh.hidden)};
- var rw=d.querySelector('.row');var c0=rw.querySelector('.on');if(c0)rw.scrollLeft=c0.offsetLeft-rw.clientWidth/2+c0.offsetWidth/2;
- var sx=0,sy=0,s0=0,md=null;d.addEventListener('touchstart',function(e){var t=e.touches[0];sx=t.clientX;sy=t.clientY;s0=rw.scrollLeft;md=null},{passive:true});
- d.addEventListener('touchmove',function(e){var t=e.touches[0],dx=t.clientX-sx,dy=t.clientY-sy;if(md===null&&(Math.abs(dx)>6||Math.abs(dy)>6))md=Math.abs(dx)>Math.abs(dy)?'x':'y';if(md==='x'){rw.scrollLeft=s0-dx}e.preventDefault()},{passive:false});
- d.addEventListener('touchend',function(e){var dy=e.changedTouches[0].clientY-sy;if(md==='y'&&dy<-25)open(true);if(md==='x'){rw.querySelectorAll('a').forEach(function(a){a.__nc=Date.now()})}md=null},{passive:true});
- rw.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&a.__nc&&Date.now()-a.__nc<350){e.preventDefault()}},true);sh.querySelector('.mmd-dim').onclick=function(){open(false)};
- var y0=null;var pan=sh.querySelector('.mmd-pan');pan.addEventListener('touchstart',function(e){y0=e.touches[0].clientY},{passive:true});pan.addEventListener('touchend',function(e){if(y0!=null&&e.changedTouches[0].clientY-y0>60&&pan.scrollTop<=0)open(false);y0=null},{passive:true})}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();setTimeout(build,800)})();
-</script><style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
-body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
-body .mm-take.hu b:not(.mm-chipx){font-weight:800}
-body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
-body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}
-/* 형광펜은 더 옅게(사용자 2026-10-29) */
-body .mm-take :is(b,mark,[class*="hlt"]):not(.mm-chipx):not(.mm-take>b:first-child):not(:is(.o-new,.tk-new,.sh3,.tg3) *){background:linear-gradient(transparent 62%,rgba(233,196,120,.38) 62%)!important;box-shadow:none!important;text-decoration:none!important;border-bottom:0!important}
-/* 공매도 오늘 한마디: 3줄 */
-body #take.sh-rows>:not(.sh3){display:none!important}
-body #take .sh3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
-body #take .sh3 li{display:grid;grid-template-columns:5.6em 1fr;gap:8px;align-items:baseline;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif}
-body #take .sh3 li i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center}
-body #take .sh3 li b{font-weight:800;background:none!important}
-body #take .sh3 .up{color:#c62828;font-weight:800}body #take .sh3 .dn{color:#1a7f37;font-weight:800}
-body .mm-take>b:first-child{background:none!important}
-/* 테크 행사 '오늘 한눈에' 줄 나눔 */
-body #take.tg-rows>:not(b:first-child):not(.tg3){display:none!important}body #take.tg-rows{font-size:0!important}body #take.tg-rows>b:first-child{font-size:12px!important}
-body #take .tg3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14.5px}
-body #take .tg3 li{display:grid;grid-template-columns:4.6em 1fr;gap:8px;align-items:start;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1f1e1b}
-body #take .tg3 li>i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center;margin-top:1px}
-body #take .tg3 .chips{display:flex;flex-wrap:wrap;gap:4px}
-body #take .tg3 .chips span{font:700 12.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:2px 8px;border-radius:999px;background:#f6f4ee;color:#0b0b0b}
-body #take .tg3 .chips span em{font-style:normal;color:#9a6200;margin-right:4px}
-body #take .tg3 b.k{all:unset;font:800 15px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b}
-</style><script data-headui>// 페이지 맨 위 '오늘 한눈에' 양식 통일(사용자 2026-10-29): 날짜 칩 모양, 본문 글자, 바로가기 줄은 배너 아래로
-(function(){function fx(){
- document.querySelectorAll('.mm-take').forEach(function(t){if(t.classList.contains('np')||t.classList.contains('tk-on')||t.classList.contains('o-on'))return;t.classList.add('hu');
-  var f=t.firstElementChild;if(f&&f.tagName==='B'&&!f.classList.contains('mm-chipx')&&/\d/.test(f.textContent)&&/(기준|집계|마감|잠정|월|일)/.test(f.textContent)&&f.textContent.length<40)f.classList.add('mm-chipx');
-});
- var hero=document.querySelector('.mm-hero');if(hero){document.querySelectorAll('nav[class$="-nav"]:not(.ib)').forEach(function(n){if(n.dataset.hu)return;if(n.compareDocumentPosition(hero)&Node.DOCUMENT_POSITION_FOLLOWING){n.dataset.hu=1;var t=document.querySelector('.mm-take');(t&&t.nextElementSibling&&t.nextElementSibling.classList.contains('hu-more')?t.nextElementSibling:(t||hero)).after(n)}})}}
-var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
-
-// 테크 행사 '오늘 한눈에': 이번 주 · 한 줄 평 · 다음 행사 3줄(사용자 2026-10-29)
-(function(){function fx(){var t=document.querySelector('#take.pg-take');if(!t||t.querySelector('.tg3'))return;var chip=t.querySelector(':scope>b:first-child');var tx=t.textContent.replace(chip?chip.textContent:'','').replace(/\s+/g,' ').trim();
- var nx=(tx.match(/다음 큰 행사는\s*(.+?)입니다/)||[])[1];var m=tx.match(/^이번 주\s*(.+?)(?:이|가)? 열리는 가운데\s*(.+?)(?:이|가) 한꺼번에 나와\s*(.+?)\./);if(!nx||!m)return;
- function split(s){return s.split(/,\s*|과\s+|와\s+/).map(function(x){return x.trim()}).filter(Boolean)}
- function chips(l,date){return '<span class="chips">'+l.map(function(x){var d=date&&x.match(/^(\d+\/\d+)\s+(.+)$/);return '<span>'+(d?'<em>'+d[1]+'</em>'+d[2]:x)+'</span>'}).join('')+'</span>'}
- var ul=document.createElement('ul');ul.className='tg3';ul.innerHTML='<li><i>이번 주</i><span>'+chips([m[1]].concat(split(m[2])))+'</span></li><li><i>한 줄 평</i><span><b class="k">'+m[3]+'</b></span></li><li><i>다음 행사</i><span>'+chips(split(nx),1)+'</span></li>';t.appendChild(ul);t.classList.add('tg-rows')}
-var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})()})();
-</script><style data-rdbox>body .rd-btn{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:8px;width:100%;margin:10px 0 0;padding:8px 12px;border:1px solid rgba(11,11,11,.1);border-radius:10px;cursor:pointer;font:700 15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b;background:#fff}
-body .rd-btn::before{content:"▸";color:#9a6200;font-size:13px}body .rd-btn.op::before{content:"▾"}
-body .rd-btn span{font:500 12.5px/1.4 -apple-system,sans-serif;color:#6f6d68}
-body .rd-btn.op{border-radius:10px 10px 0 0;border-bottom-style:dashed}
-body .rd-body:not(.op){display:none!important}
-body .rd-body.op{display:block!important;-webkit-line-clamp:unset!important;margin:0!important;padding:8px 12px 10px!important;border:1px solid rgba(11,11,11,.1);border-top:0;border-radius:0 0 10px 10px;font-size:14px!important;line-height:1.65!important}
-</style><script data-rdbox>// '읽는 법'은 모든 페이지에서 공매도 '이렇게 읽습니다' 상자 모양으로 통일(사용자 2026-10-29)
-(function(){function mk(p){if(p.dataset.rd||p.closest('details')||p.closest('.u-fold')||p.closest('.o-fold'))return;p.dataset.rd=1;
- var b0=p.firstElementChild;if(b0&&/^읽는 법/.test(b0.textContent.trim())&&p.firstChild===b0)b0.remove();p.innerHTML=p.innerHTML.replace(/^\s*읽는 법\s*[:·—-]?\s*/,'');
- var old=p.nextElementSibling;if(old&&/(u-more|o-more)/.test(old.className))old.remove();p.classList.remove('u-clamp','o-clamp','op');
- var b=document.createElement('button');b.type='button';b.className='rd-btn';b.innerHTML='이렇게 읽습니다 <span>눌러서 펼치기</span>';p.parentNode.insertBefore(b,p);p.classList.add('rd-body');
- b.onclick=function(){var o=!b.classList.contains('op');b.classList.toggle('op',o);p.classList.toggle('op',o);b.querySelector('span').textContent=o?'접기':'눌러서 펼치기'}}
-function fx(){document.querySelectorAll('p.how,p[class$="-how"],.ot-card .how,p.sp-how').forEach(mk);
- document.querySelectorAll('p,div.note').forEach(function(p){if(p.dataset.rd||p.children.length>12)return;var t=p.textContent.trim();if(/^읽는 법\s*[:·—]/.test(t)||(p.firstElementChild&&p.firstElementChild.tagName==='B'&&p.firstElementChild.textContent.trim()==='읽는 법'&&p.firstChild===p.firstElementChild))mk(p)})}
-var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})();
-try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}catch(e){}})();
-</script><style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y}.ib .tg{display:none!important}</style><script data-ibdrag>(function(){function on(n){if(!n||n.__drag)return;n.__drag=1;var x0,y0,s0,mode=null;n.addEventListener('touchstart',function(e){var t=e.touches[0];x0=t.clientX;y0=t.clientY;s0=n.scrollLeft;mode=null},{passive:true});n.addEventListener('touchmove',function(e){var t=e.touches[0],dx=t.clientX-x0,dy=t.clientY-y0;if(mode===null&&(Math.abs(dx)>6||Math.abs(dy)>6))mode=Math.abs(dx)>Math.abs(dy)?'x':'y';if(mode==='x'){var before=n.scrollLeft;n.scrollLeft=s0-dx;if(n.scrollLeft!==before||Math.abs(dx)>10){e.preventDefault()}}},{passive:false});n.addEventListener('touchend',function(){if(mode==='x'){var a=n.querySelectorAll('a');a.forEach(function(l){l.__noclick=Date.now()})}mode=null},{passive:true});n.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a');if(l&&l.__noclick&&Date.now()-l.__noclick<350){e.preventDefault();e.stopPropagation()}},true)}function go(){document.querySelectorAll('.ib').forEach(on)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();setTimeout(go,1500)})();</script><style data-ptidy>
-details.mm-fold{margin-top:8px;border-top:1px dashed rgba(0,0,0,.12)}
-details.mm-fold>summary{list-style:none;cursor:pointer;padding:9px 2px 2px;font:700 14px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:#9a6200}
-details.mm-fold>summary::-webkit-details-marker{display:none}
-details.mm-fold>summary::after{content:" ▾"}details.mm-fold[open]>summary::after{content:" ▴"}
-details.mm-fold[open]>summary{margin-bottom:8px}
-
-/* 영역별 경고등: 2열 카드, 항목은 이름 한 줄 + 지금·기준 작게 */
-#areas{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
-#areas .area{padding:10px 11px!important;margin:0!important;border-radius:12px!important;min-width:0}
-#areas .area .hd{display:flex;flex-direction:column;gap:1px;margin-bottom:6px}
-#areas .area .hd b{font-size:15px}#areas .area .hd .cnt{font-size:12.5px}
-#areas .area ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px}
-#areas .area li{font-size:12.5px;line-height:1.35;padding-left:12px;position:relative}
-#areas .area li::before{content:"○";position:absolute;left:0;top:0;font-size:10px;color:var(--color-fg-muted,#8a877f)}
-#areas .area li.on::before{content:"●";color:#c4453a}
-#areas .area li b{display:block;font-weight:700;font-size:12.5px}
-#areas .area li small{display:block;color:var(--color-fg-muted,#6b675f);font-size:11.5px}
-#areas .area a{font-size:12px;margin-top:6px;display:inline-block}
-/* 표는 글자 조금 작게, 칸 여백 줄임 */
-#score td,#score th,#chg td,#chg th,#amp td,#amp th{padding:7px 4px!important;font-size:13px!important}
-#score td small,#score td em{font-size:11px!important}
-/* 긴 설명: 3줄만 보이고 누르면 펼침 */
-#hist-one{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;cursor:pointer}
-#hist-one.open{-webkit-line-clamp:unset;display:block}
-.lw-one{font-size:14.5px!important;line-height:1.6!important}
-</style><script data-ptidy>
-window.mmFold=function(card,keep,label,open){ // card 안에서 keep(남길 것) 말고 나머지를 접기
-  if(!card||card.dataset.fold)return; card.dataset.fold=1;
-  var kids=[].slice.call(card.children).filter(function(k){return !k.matches(keep)});
-  if(!kids.length)return; var d=document.createElement('details'); d.className='mm-fold'; if(open)d.open=true;
-  var s=document.createElement('summary'); s.innerHTML='<span>'+label+'</span>'; d.appendChild(s);
-  kids[0].before(d); kids.forEach(function(k){d.appendChild(k)});
-};
-
-function tidy(){
-  document.querySelectorAll('#areas .area li').forEach(function(li){
-    if(li.dataset.t)return; var t=li.textContent; var m=t.split(' — '); if(m.length<2)return; li.dataset.t=1;
-    var on=/켜짐|●/.test(t)||li.className.indexOf('on')>=0;
-    li.innerHTML='<b></b><small></small>'; li.firstChild.textContent=m[0]; li.lastChild.textContent=m.slice(1).join(' — ').replace(/^지금\s*/,'지금 ');
-  });
-  var ho=document.getElementById('hist-one'); if(ho&&!ho.dataset.c){ho.dataset.c=1;ho.title='눌러서 펼치기';ho.addEventListener('click',function(){ho.classList.toggle('open')})}
-  mmFold(document.getElementById('score-card'),'h2,.k,.tbl,#score','표 읽는 법');
-  mmFold(document.getElementById('chg-card'),'h2,.k,.lw-one,#chg-one','바뀐 날 표 보기');
-  mmFold(document.getElementById('amp-card'),'h2,.k,.lw-one,#amp-one','조합별 표 보기');
-  mmFold(document.getElementById('th-card'),'h2,.k','기준표 펼치기 (불마다 왜 이 기준인지)');
-}
-
-(function(){var q=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(q)return;q=1;setTimeout(function(){q=0;go()},150)}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();</script><style data-ltui>/* 시장 경고등: 시세 보드 양식(사용자 2026-10-29) */
+<style data-ibdrag>.ib{-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;touch-action:pan-x pan-y}.ib .tg{display:none!important}</style><script data-ibdrag>(function(){function on(n){if(!n||n.__drag)return;n.__drag=1;var x0,y0,s0,mode=null;n.addEventListener('touchstart',function(e){var t=e.touches[0];x0=t.clientX;y0=t.clientY;s0=n.scrollLeft;mode=null},{passive:true});n.addEventListener('touchmove',function(e){var t=e.touches[0],dx=t.clientX-x0,dy=t.clientY-y0;if(mode===null&&(Math.abs(dx)>6||Math.abs(dy)>6))mode=Math.abs(dx)>Math.abs(dy)?'x':'y';if(mode==='x'){var before=n.scrollLeft;n.scrollLeft=s0-dx;if(n.scrollLeft!==before||Math.abs(dx)>10){e.preventDefault()}}},{passive:false});n.addEventListener('touchend',function(){if(mode==='x'){var a=n.querySelectorAll('a');a.forEach(function(l){l.__noclick=Date.now()})}mode=null},{passive:true});n.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a');if(l&&l.__noclick&&Date.now()-l.__noclick<350){e.preventDefault();e.stopPropagation()}},true)}function go(){document.querySelectorAll('.ib').forEach(on)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();setTimeout(go,1500)})();</script><style data-ltui>/* 시장 경고등: 시세 보드 양식(사용자 2026-10-29) */
 body .lw .lw-card{border-radius:14px!important}
 body #area-card #areas{display:flex!important;flex-direction:column;gap:8px!important;grid-template-columns:none!important}
 body #area-card #areas .area{border:0!important;border-radius:12px!important;background:#fff!important;box-shadow:0 0 0 1px rgba(154,98,0,.12),0 3px 0 rgba(11,11,11,.1),0 6px 14px rgba(11,11,11,.08)!important;padding:9px 11px 6px!important;margin:0!important}
@@ -1074,7 +909,9 @@ var tc=document.getElementById('today-chg');if(tc)tc.classList.add('l-clamp2');
 var k=0;(function go(){try{fx()}catch(e){}if(!document.__ltmo){var r=document.querySelector('.lw');if(r){document.__ltmo=1;new MutationObserver(function(){try{fx()}catch(e){}}).observe(r,{childList:true,subtree:true})}}if(++k<12)setTimeout(go,400)})()})();
 
 // 경고등 '~란?' 설명(누르면 펼침)·영역 링크 문구(사용자 2026-10-29)
-var LX=[[/유가/,'유가 급등이란?','유가가 짧은 기간에 크게 오르는 것입니다. 물가와 금리를 함께 밀어 올려 주식에 부담이 됩니다.'],
+var LX=[[/반도체 고점/,'반도체 고점 대비 낙폭이란?','필라델피아 반도체 지수가 최근 1년 가장 높았던 날보다 얼마나 빠졌는지입니다. 15%를 넘으면 단순 조정이 아니라 AI 투자 기대를 다시 따지는 구간으로 봅니다.'],
+[/반도체 하루/,'반도체 하루 급락이란?','최근 5거래일 중 반도체 지수가 하루에 가장 크게 빠진 폭입니다. -5% 넘는 날은 레버리지 청산·투매가 몰린 날이라 며칠 여진이 이어지기 쉽습니다.'],
+[/유가/,'유가 급등이란?','유가가 짧은 기간에 크게 오르는 것입니다. 물가와 금리를 함께 밀어 올려 주식에 부담이 됩니다.'],
 [/장단기/,'장단기 금리 역전이란?','짧은 만기(2년) 국채 금리가 긴 만기(10년)보다 높아지는 것입니다. 시장이 경기 둔화를 예상할 때 나타납니다.'],
 [/10년물 5%/,'10년물 5%가 왜 중요?','장기 금리가 5%를 넘으면 미래 이익의 현재 가치가 낮아져 성장주·중소형주에 특히 부담이 큽니다.'],
 [/30년물/,'30년물 금리란?','30년 만기 국채 금리입니다. 높을수록 정부 빚과 물가에 대한 걱정이 크다는 뜻입니다.'],
@@ -1086,7 +923,7 @@ var LX=[[/유가/,'유가 급등이란?','유가가 짧은 기간에 크게 오�
 [/풋콜/,'풋콜 비율이란?','하락에 거는 풋옵션이 상승에 거는 콜옵션보다 얼마나 많이 거래되는지입니다. 높을수록 겁이 많다는 뜻입니다.']];
 function lx(){var A=document.getElementById('areas');if(!A)return;A.querySelectorAll('li[data-lt]:not([data-lx])').forEach(function(li){var nm=(li.querySelector('b')||{}).textContent||'';var hit=LX.find(function(x){return x[0].test(nm)});if(!hit)return;li.dataset.lx=1;
  var q=document.createElement('span');q.className='l-q';q.textContent=hit[1];li.appendChild(q);var d=document.createElement('span');d.className='l-ex';d.textContent=hit[2];li.appendChild(d);li.addEventListener('click',function(){li.classList.toggle('lxo')})});
- var AD={'유가':'기름값이 급하게 오르면 물가와 금리를 자극해 주식에 부담이 됩니다.','채권·금리':'금리가 높거나 빨리 오르면 주식, 특히 성장주·중소형주에 부담입니다.','신용':'회사들이 돈을 빌리기 어려워지는지, 부도 걱정이 커지는지 봅니다.','옵션·공포':'투자자들이 얼마나 겁먹었는지 옵션 시장 가격으로 봅니다.'};
+ var AD={'반도체·AI':'우리 기조(AI 밸류체인)의 체온입니다. 시장 전체는 버텨도 반도체에 공포가 몰리는 날을 잡습니다.','유가':'기름값이 급하게 오르면 물가와 금리를 자극해 주식에 부담이 됩니다.','채권·금리':'금리가 높거나 빨리 오르면 주식, 특히 성장주·중소형주에 부담입니다.','신용':'회사들이 돈을 빌리기 어려워지는지, 부도 걱정이 커지는지 봅니다.','옵션·공포':'투자자들이 얼마나 겁먹었는지 옵션 시장 가격으로 봅니다.'};
  A.querySelectorAll('.area:not([data-ad])').forEach(function(ar){var h=ar.querySelector('.hd');var t=(h&&h.querySelector('b')||{}).textContent||'';if(!h||!AD[t])return;ar.dataset.ad=1;var p=document.createElement('p');p.className='a-desc';p.textContent=AD[t];h.after(p)});
  A.querySelectorAll('.area>a:not([data-lx])').forEach(function(a){a.dataset.lx=1;var h=(a.closest('.area').querySelector('.hd b')||{}).textContent||'';a.textContent=h+' 차트로 보기 →'})}
 var k2=0;(function g2(){try{lx()}catch(e){}if(++k2<14)setTimeout(g2,400)})();
@@ -1150,4 +987,238 @@ fetch('d/lights/fresh.json?t='+Date.now(),{cache:'no-store'}).then(function(r){r
   var n=0,t=setInterval(function(){paint();if(++n>20)clearInterval(t)},500);paint();
 }).catch(function(){});
 }catch(e){}})();
-</script></body></html>
+</script><style data-ltui>/* 시장 경고등 '지금 시장은' 통일 양식(사용자 2026-11-01): 근접(반불)·영역별 '지금' 한 줄·맨 위 총평 */
+#big-dots .dot.mm-half{background:linear-gradient(90deg,#e07b16 50%,transparent 50%)!important;border-color:#e07b16!important;box-shadow:0 0 0 3px rgba(224,123,22,.18)}
+.mm-ln-near{display:block;margin:6px 0 2px;font:700 15px/1.45 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a4f00}
+.mm-ln-near b{display:inline-block;padding:2px 9px;border-radius:999px;background:#fdebd6;color:#a14d00;margin-right:6px}
+.mm-ln-leg{display:flex;gap:12px;margin:8px 0 0;font:600 12.5px/1 -apple-system,sans-serif;color:#6f6d68}
+.mm-ln-leg i{display:inline-block;width:12px;height:12px;border-radius:50%;border:2px solid #bbb;vertical-align:-2px;margin-right:4px}
+#areas .cnt.mm-ln-nc{background:#fdebd6!important;color:#a14d00!important;border:1px solid #f0b273}
+.mm-ln-now{display:flex;gap:8px;align-items:flex-start;margin:8px 0 4px;padding:9px 11px;border-radius:11px;font:700 14.5px/1.45 -apple-system,"Apple SD Gothic Neo",sans-serif;background:var(--nb);color:var(--nc)}
+.mm-ln-now b{flex:none;font-size:12px;padding:2px 7px;border-radius:999px;background:var(--nc);color:#fff;margin-top:1px}
+.mm-ln-head{margin:4px 0 12px;padding:12px 14px;border-radius:14px;background:#2f2a24;color:#fff;font:800 17px/1.45 -apple-system,"Apple SD Gothic Neo",sans-serif}
+.mm-ln-head small{display:block;font-size:12px;color:#e9c46a;letter-spacing:.06em;margin-bottom:4px}
+.mm-ln-head span{display:block;font-weight:600;font-size:14px;color:#d8d2c6;margin-top:4px}
+/* 동그라미는 영역별로 나누지 않고 한 줄로 '전체 몇 개 중 몇 개'(켜짐 → 근접 → 꺼짐 순) (사용자 2026-11-01) */
+#big-dots.mm-ln-one>.grp{display:none!important}
+.mm-ln-row{display:flex;flex-wrap:nowrap;gap:5px;align-items:center;margin:4px 0 2px}
+.mm-ln-row i{flex:none;width:21px;height:21px;border-radius:50%;border:2.5px solid #cfcac0;background:#fff;box-sizing:border-box}
+.mm-ln-row i.on{background:#b3261e;border-color:#b3261e;box-shadow:0 0 0 3px rgba(179,38,30,.18)}
+.mm-ln-row i.nr{background:linear-gradient(90deg,#e07b16 50%,#fff 50%);border-color:#e07b16}
+.mm-ln-cap{display:block;margin:6px 0 0;font:700 14px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#4a463f}
+.mm-ln-cap em{font-style:normal;color:#b3261e}.mm-ln-cap u{text-decoration:none;color:#c76a0c}
+.mm-ln-leg{display:none!important}
+
+.mm-ln-cap i{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid #cfcac0;vertical-align:-1px;margin-right:3px;box-sizing:border-box}.mm-ln-cap i.on{background:#b3261e;border-color:#b3261e}.mm-ln-cap i.nr{background:linear-gradient(90deg,#e07b16 50%,#fff 50%);border-color:#e07b16}
+</style><script data-ltui>// 시장 경고등 '지금 시장은' 통일 양식(사용자 2026-11-01)
+// 근접(기준의 90% 이상, ltui의 5단계 색 4 '근접')은 반불(◐)로 보여 주고, 유가는 100달러 이상이면 '높은 자리'로 근접 처리.
+// 영역마다 '지금' 한 줄, 맨 위에 '지금 시장은' 총평을 숫자로 자동 생성. 단계 계산(켜진 불)은 그대로.
+(function(){var WTI=null;try{fetch('d/lights/oil.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.length){WTI=Number(j[j.length-1].wti);run()}}).catch(function(){})}catch(e){}
+var C={r:['#b3261e','#fbe8e5'],o:['#a14d00','#fdf0e1'],y:['#8a6a00','#fbf4dc'],g:['#2e7d4f','#e7f3ec']};
+function nm(li){return ((li.querySelector('b')||{}).textContent||'').trim()}
+function val(li){return ((li.querySelector('.l-now')||{}).textContent||'').trim()}
+function st(li){return li.classList.contains('on')||li.dataset.lv==='5'?'on':li.dataset.lv==='4'?'near':'off'}
+function short(n){return /10년물 5%/.test(n)?'10년물':/30년물/.test(n)?'30년물':/VIX/.test(n)?'VIX':/기간구조/.test(n)?'기간구조':/풋콜/.test(n)?'풋콜 비율':/하이일드/.test(n)?'하이일드':n.replace(/ 이상$/,'').replace(/ 높음$/,'').replace(/\(최근 5일\)/,'').trim()}
+var AN={'반도체·AI':'반도체','옵션·공포':'옵션 시장','채권·금리':'금리','신용':'신용','유가':'유가'};
+function nowTxt(area,L,oilNear){var on=L.filter(function(x){return x.s==='on'}),nr=L.filter(function(x){return x.s==='near'});
+ if(area==='반도체·AI'){if(on.length>=2)return['r','반도체에 공포가 몰렸습니다. 시장 전체보다 먼저 아픈 곳입니다.'];if(on.length)return['o',short(on[0].n)+' '+on[0].v+' — 반도체가 흔들리고 있습니다.'];if(nr.length)return['y','반도체가 문턱에 다가갔습니다. 다음 급락이 오면 켜집니다.'];return['g','반도체는 아직 조용합니다.']}
+ if(area==='유가'){if(on.length)return['r','한 달 새 '+on[0].v+' 급등 — 물가와 금리를 함께 자극합니다.'];if(oilNear)return['o','급등은 아니어도 '+Math.round(WTI)+'달러로 100달러 위에 머물러 물가·금리 부담이 계속됩니다.'];return['g','유가 부담은 크지 않습니다.']}
+ if(area==='채권·금리'){if(on.length)return['r',on.map(function(x){return short(x.n)}).join('·')+' 켜짐 — 성장주에 직접 부담입니다.'];if(nr.length)return['o',nr.map(function(x){return short(x.n)+' '+x.v}).join(' · ')+' — 문턱 바로 아래입니다. 한 번만 밀려도 켜집니다.'];return['g','금리 쪽은 조용합니다.']}
+ if(area==='신용'){if(on.length)return['r','약한 회사의 돈줄이 조이고 있습니다. 위험이 번지는 신호입니다.'];if(nr.length)return['o','스프레드가 문턱에 다가갔습니다.'];return['y','회사채 전체 평균은 조용합니다. AI 빚 기업·사모신용 쪽 쏠림은 따로 확인합니다.']}
+ if(area==='옵션·공포'){var p=[];L.slice().sort(function(a,b){return (a.s==='on'?0:1)-(b.s==='on'?0:1)}).forEach(function(x){if(x.s==='off')return;p.push(/풋콜/.test(x.n)?'하락 보험(풋)을 많이 삽니다':/VIX/.test(x.n)?'VIX '+x.v+(x.s==='on'?'로 20을 넘었습니다':'로 20 문턱입니다'):/기간구조/.test(x.n)?(x.s==='on'?'당장의 불안이 더 큽니다':'단기 불안이 커지는 중입니다'):short(x.n))});if(!p.length)return['g','옵션 시장은 차분합니다.'];return[on.length?'o':'y',p.join(', ')+'.']}
+ return null}
+function run(){var A=document.getElementById('areas'),big=document.getElementById('big');if(!A||!big)return;var areas=[...A.querySelectorAll('.area')];if(!areas.length)return;
+ if(areas.some(function(a){return !a.querySelector('li[data-lt]')||a.querySelector('li[data-lt]:not([data-lv])')})){clearTimeout(run.t);run.t=setTimeout(function(){try{run()}catch(e){}},250);return} // 5단계 색이 다 붙은 뒤(다시 그려지는 중이면 잠시 뒤 재시도)
+ var oilNear=WTI!=null&&WTI>=100,nearAll=[],hot=[],warm=[],status={};
+ areas.forEach(function(a){var t=((a.querySelector('.hd b')||{}).textContent||'').trim();var L=[...a.querySelectorAll('li[data-lt]')].map(function(li){var s=st(li);if(t==='유가'&&s==='off'&&oilNear)s='near';return{n:nm(li),v:val(li),s:s}});
+  var on=L.filter(function(x){return x.s==='on'}).length,nr=L.filter(function(x){return x.s==='near'});status[t]=L;
+  nr.forEach(function(x){nearAll.push(t==='유가'&&x.s==='near'&&oilNear?'유가 '+Math.round(WTI)+'달러(수준)':short(x.n)+' '+x.v)});
+  if(on)hot.push(t);else if(nr.length)warm.push(t);
+  var c=a.querySelector('.cnt');if(c){c.textContent=on+' / '+L.length+' 켜짐'+(nr.length?' · 근접 '+nr.length:'');c.classList.toggle('mm-ln-nc',!on&&nr.length>0);if(!on&&nr.length)a.style.setProperty('--ac','#e07b16')}
+  var old=a.querySelector('.mm-ln-now');if(old)old.remove();var n=nowTxt(t,L,oilNear);if(n){var d=document.createElement('div');d.className='mm-ln-now';d.style.setProperty('--nc',C[n[0]][0]);d.style.setProperty('--nb',C[n[0]][1]);var b=document.createElement('b');b.textContent='지금';var sp=document.createElement('span');sp.textContent=n[1];d.append(b,sp);var after=a.querySelector('.a-desc')||a.querySelector('.hd');after.after(d)}});
+ // 위 동그라미: 근접은 반불
+ var D=[...document.querySelectorAll('#big-dots .dot')];D.forEach(function(i){i.classList.remove('mm-half')});
+ Object.keys(status).forEach(function(t){status[t].forEach(function(x){if(x.s!=='near')return;var i=D.find(function(d){return d.title===x.n&&!d.classList.contains('on')});if(i)i.classList.add('mm-half')})});
+ // 한 줄 동그라미: 켜짐 → 근접 → 꺼짐 순으로 전체를 한 번에
+ var dots=document.getElementById('big-dots');if(dots){dots.classList.add('mm-ln-one');var rw=dots.querySelector('.mm-ln-row');if(rw)rw.remove();var cp=dots.querySelector('.mm-ln-cap');if(cp)cp.remove();
+  var all=[];Object.keys(status).forEach(function(t){status[t].forEach(function(x){all.push({t:t,n:x.n,s:x.s})})});var od={on:0,near:1,off:2};all.sort(function(a,b){return od[a.s]-od[b.s]});
+  rw=document.createElement('div');rw.className='mm-ln-row';all.forEach(function(x){var i=document.createElement('i');i.className=x.s==='on'?'on':x.s==='near'?'nr':'';i.title=x.t+' · '+x.n;rw.appendChild(i)});dots.appendChild(rw);
+  var nOn=all.filter(function(x){return x.s==='on'}).length,nNr=all.filter(function(x){return x.s==='near'}).length;cp=document.createElement('span');cp.className='mm-ln-cap';cp.innerHTML='전체 '+all.length+'개 중 <i class="on"></i><em>켜짐 '+nOn+'</em> · <i class="nr"></i><u>근접 '+nNr+'</u> · <i></i>꺼짐 '+(all.length-nOn-nNr);dots.appendChild(cp)}
+ var row=big.querySelector('.row');var o=big.querySelector('.mm-ln-near');if(o)o.remove();if(nearAll.length&&row){var e=document.createElement('div');e.className='mm-ln-near';var b=document.createElement('b');b.textContent='근접 '+nearAll.length;e.append(b,document.createTextNode(nearAll.join(' · ')));row.after(e)}
+ if(!big.querySelector('.mm-ln-leg')){var dots=document.getElementById('big-dots');if(dots){var lg=document.createElement('div');lg.className='mm-ln-leg';lg.innerHTML='<span><i style="background:var(--color-bad,#b3261e);border-color:var(--color-bad,#b3261e)"></i>켜짐</span><span><i style="background:linear-gradient(90deg,#e07b16 50%,transparent 50%);border-color:#e07b16"></i>근접(반불)</span><span><i></i>꺼짐</span>';dots.after(lg)}}
+ // 맨 위 총평
+ var h=big.querySelector('.mm-ln-head');if(h)h.remove();h=document.createElement('div');h.className='mm-ln-head';
+ var nearNames=[];Object.keys(status).forEach(function(t){status[t].forEach(function(x){if(x.s==='near')nearNames.push(t==='유가'?'유가':/10년물/.test(x.n)?'10년물':/30년물/.test(x.n)?'30년물':/VIX/.test(x.n)?'VIX':/기간구조/.test(x.n)?'기간구조':short(x.n))})});
+ nearNames=nearNames.filter(function(x,i,a){return a.indexOf(x)===i});
+ var l1=hot.length?'공포는 '+hot.map(function(t){return AN[t]||t}).join('·')+'에 몰렸고':'아직 켜진 영역은 없고',l2=nearNames.length?nearNames.slice(0,4).join('·')+'는 문턱 바로 앞입니다':'다른 곳은 조용합니다';
+ var y10=(status['채권·금리']||[]).find(function(x){return/10년물 5%/.test(x.n)});
+ var sub='터진 곳 '+hot.length+'곳, 문턱에서 대기 중 '+warm.length+'곳'+(y10&&y10.s==='near'?' — 10년물이 5%를 넘으면 한 번에 번질 수 있는 자리':y10&&y10.s==='on'?' — 핵심 불(10년물 5%)이 켜져 있습니다':'');
+ var sm=document.createElement('small');sm.textContent='지금 시장은';var sp2=document.createElement('span');sp2.textContent=sub;h.append(sm,document.createTextNode(l1+', '+l2),sp2);big.insertBefore(h,big.firstChild)}
+var k=0;(function go(){try{run()}catch(e){}if(++k<20)setTimeout(go,400)})();
+if(window.MutationObserver){var r=document.getElementById('areas');if(r)new MutationObserver(function(){setTimeout(function(){try{run()}catch(e){}},60)}).observe(r,{childList:true});var bd=document.getElementById('big-dots');if(bd)new MutationObserver(function(m){if(m.some(function(x){return [...x.addedNodes].some(function(n){return n.classList&&n.classList.contains('grp')})}))setTimeout(function(){try{run()}catch(e){}},60)}).observe(bd,{childList:true})}})();
+</script><style data-headui>body .mm-take.hu{font:500 15px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif!important;color:#1f1e1b!important;letter-spacing:-.005em}
+body .mm-take.hu .mm-chipx{display:table!important;margin:0 0 8px!important;font:700 12px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif!important;padding:3px 10px!important;border-radius:999px!important}
+body .mm-take.hu b:not(.mm-chipx){font-weight:800}
+body .mm-take.hu.hu-clamp:not(.op){display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:7;overflow:hidden}
+body .hu-more{all:unset;cursor:pointer;display:block;margin:-6px 0 10px auto;width:max-content;font:700 13px/1.4 -apple-system,sans-serif;color:#9a6200;padding:2px 6px}
+/* 형광펜은 더 옅게(사용자 2026-10-29) */
+body .mm-take :is(b,mark,[class*="hlt"]):not(.mm-chipx):not(.mm-take>b:first-child):not(:is(.o-new,.tk-new,.sh3,.tg3) *){background:linear-gradient(transparent 62%,rgba(233,196,120,.38) 62%)!important;box-shadow:none!important;text-decoration:none!important;border-bottom:0!important}
+/* 공매도 오늘 한마디: 3줄 */
+body #take.sh-rows>:not(.sh3){display:none!important}
+body #take .sh3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+body #take .sh3 li{display:grid;grid-template-columns:5.6em 1fr;gap:8px;align-items:baseline;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif}
+body #take .sh3 li i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center}
+body #take .sh3 li b{font-weight:800;background:none!important}
+body #take .sh3 .up{color:#c62828;font-weight:800}body #take .sh3 .dn{color:#1a7f37;font-weight:800}
+body .mm-take>b:first-child{background:none!important}
+/* 테크 행사 '오늘 한눈에' 줄 나눔 */
+body #take.tg-rows>:not(b:first-child):not(.tg3){display:none!important}body #take.tg-rows{font-size:0!important}body #take.tg-rows>b:first-child{font-size:12px!important}
+body #take .tg3{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14.5px}
+body #take .tg3 li{display:grid;grid-template-columns:4.6em 1fr;gap:8px;align-items:start;font:500 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1f1e1b}
+body #take .tg3 li>i{font-style:normal;font:700 11px/1.7 -apple-system,sans-serif;color:#6f6d68;background:#f1efe8;border-radius:5px;text-align:center;margin-top:1px}
+body #take .tg3 .chips{display:flex;flex-wrap:wrap;gap:4px}
+body #take .tg3 .chips span{font:700 12.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:2px 8px;border-radius:999px;background:#f6f4ee;color:#0b0b0b}
+body #take .tg3 .chips span em{font-style:normal;color:#9a6200;margin-right:4px}
+body #take .tg3 b.k{all:unset;font:800 15px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b}
+</style><script data-headui>// 페이지 맨 위 '오늘 한눈에' 양식 통일(사용자 2026-10-29): 날짜 칩 모양, 본문 글자, 바로가기 줄은 배너 아래로
+(function(){function fx(){
+ document.querySelectorAll('.mm-take').forEach(function(t){if(t.classList.contains('np')||t.classList.contains('tk-on')||t.classList.contains('o-on'))return;t.classList.add('hu');
+  var f=t.firstElementChild;if(f&&f.tagName==='B'&&!f.classList.contains('mm-chipx')&&/\d/.test(f.textContent)&&/(기준|집계|마감|잠정|월|일)/.test(f.textContent)&&f.textContent.length<40)f.classList.add('mm-chipx');
+});
+ var hero=document.querySelector('.mm-hero');if(hero){document.querySelectorAll('nav[class$="-nav"]:not(.ib)').forEach(function(n){if(n.dataset.hu)return;if(n.compareDocumentPosition(hero)&Node.DOCUMENT_POSITION_FOLLOWING){n.dataset.hu=1;var t=document.querySelector('.mm-take');(t&&t.nextElementSibling&&t.nextElementSibling.classList.contains('hu-more')?t.nextElementSibling:(t||hero)).after(n)}})}}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<12)setTimeout(go,500)})()})();
+
+// 테크 행사 '오늘 한눈에': 이번 주 · 한 줄 평 · 다음 행사 3줄(사용자 2026-10-29)
+(function(){function fx(){var t=document.querySelector('#take.pg-take');if(!t||t.querySelector('.tg3'))return;var chip=t.querySelector(':scope>b:first-child');var tx=t.textContent.replace(chip?chip.textContent:'','').replace(/\s+/g,' ').trim();
+ var nx=(tx.match(/다음 큰 행사는\s*(.+?)입니다/)||[])[1];var m=tx.match(/^이번 주\s*(.+?)(?:이|가)? 열리는 가운데\s*(.+?)(?:이|가) 한꺼번에 나와\s*(.+?)\./);if(!nx||!m)return;
+ function split(s){return s.split(/,\s*|과\s+|와\s+/).map(function(x){return x.trim()}).filter(Boolean)}
+ function chips(l,date){return '<span class="chips">'+l.map(function(x){var d=date&&x.match(/^(\d+\/\d+)\s+(.+)$/);return '<span>'+(d?'<em>'+d[1]+'</em>'+d[2]:x)+'</span>'}).join('')+'</span>'}
+ var ul=document.createElement('ul');ul.className='tg3';ul.innerHTML='<li><i>이번 주</i><span>'+chips([m[1]].concat(split(m[2])))+'</span></li><li><i>한 줄 평</i><span><b class="k">'+m[3]+'</b></span></li><li><i>다음 행사</i><span>'+chips(split(nx),1)+'</span></li>';t.appendChild(ul);t.classList.add('tg-rows')}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,500)})()})();
+</script><style data-rdbox>body .rd-btn{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:8px;width:100%;margin:10px 0 0;padding:8px 12px;border:1px solid rgba(11,11,11,.1);border-radius:10px;cursor:pointer;font:700 15px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b;background:#fff}
+body .rd-btn::before{content:"▸";color:#9a6200;font-size:13px}body .rd-btn.op::before{content:"▾"}
+body .rd-btn span{font:500 12.5px/1.4 -apple-system,sans-serif;color:#6f6d68}
+body .rd-btn.op{border-radius:10px 10px 0 0;border-bottom-style:dashed}
+body .rd-body:not(.op){display:none!important}
+body .rd-body.op{display:block!important;-webkit-line-clamp:unset!important;margin:0!important;padding:8px 12px 10px!important;border:1px solid rgba(11,11,11,.1);border-top:0;border-radius:0 0 10px 10px;font-size:14px!important;line-height:1.65!important}
+</style><script data-rdbox>// '읽는 법'은 모든 페이지에서 공매도 '이렇게 읽습니다' 상자 모양으로 통일(사용자 2026-10-29)
+(function(){function mk(p){if(p.dataset.rd||p.closest('details')||p.closest('.u-fold')||p.closest('.o-fold'))return;p.dataset.rd=1;
+ var b0=p.firstElementChild;if(b0&&/^읽는 법/.test(b0.textContent.trim())&&p.firstChild===b0)b0.remove();p.innerHTML=p.innerHTML.replace(/^\s*읽는 법\s*[:·—-]?\s*/,'');
+ var old=p.nextElementSibling;if(old&&/(u-more|o-more)/.test(old.className))old.remove();p.classList.remove('u-clamp','o-clamp','op');
+ var b=document.createElement('button');b.type='button';b.className='rd-btn';b.innerHTML='이렇게 읽습니다 <span>눌러서 펼치기</span>';p.parentNode.insertBefore(b,p);p.classList.add('rd-body');
+ b.onclick=function(){var o=!b.classList.contains('op');b.classList.toggle('op',o);p.classList.toggle('op',o);b.querySelector('span').textContent=o?'접기':'눌러서 펼치기'}}
+function fx(){document.querySelectorAll('p.how,p[class$="-how"],.ot-card .how,p.sp-how').forEach(mk);
+ document.querySelectorAll('p,div.note').forEach(function(p){if(p.dataset.rd||p.children.length>12)return;var t=p.textContent.trim();if(/^읽는 법\s*[:·—]/.test(t)||(p.firstElementChild&&p.firstElementChild.tagName==='B'&&p.firstElementChild.textContent.trim()==='읽는 법'&&p.firstChild===p.firstElementChild))mk(p)})}
+var k=0;(function go(){try{fx()}catch(e){}if(++k<16)setTimeout(go,500)})();
+try{var mo=new MutationObserver(function(){try{fx()}catch(e){}});mo.observe(document.body,{childList:true,subtree:true});setTimeout(function(){mo.disconnect()},20000)}catch(e){}})();
+</script><style data-dock>/* 아래 메뉴: 자주 쓰는 칸 + ☰ 전체 메뉴판(사용자 2026-10-29) */
+body.mmd-on nav.ib{display:none!important}
+body.mmd-on{padding-bottom:calc(80px + env(safe-area-inset-bottom))!important}
+body.mmd-on #mm-snd{bottom:calc(90px + env(safe-area-inset-bottom))!important}
+body .mmd{position:fixed;left:0;right:0;bottom:0;z-index:9000;padding:0 0 calc(6px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e8e6df;box-shadow:0 -4px 14px rgba(11,11,11,.06);touch-action:none}
+body .mmd .grab{all:unset;display:block;width:100%;height:14px;cursor:pointer}body .mmd .grab em{display:block;width:38px;height:4px;border-radius:3px;background:#cfccc4;margin:5px auto 0}
+body .mmd .row{display:flex;flex-wrap:nowrap!important;justify-content:flex-start;border-bottom:0;gap:2px;overflow-x:auto;scrollbar-width:none;padding:0 6px}body .mmd .row::-webkit-scrollbar{display:none}
+body .mmd .row>a{all:unset;flex:none;width:60px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px 0;border-radius:10px;cursor:pointer;font:600 10.5px/1.2 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#8a877f;-webkit-tap-highlight-color:transparent}
+body .mmd .row>a i{font-style:normal;font-size:21px;line-height:1.2}body .mmd .row>a span{white-space:nowrap;max-width:58px;overflow:hidden;text-overflow:ellipsis}
+body .mmd .row>a.on{color:#0b0b0b;font-weight:800;background:#f3efe4}
+body .mmd .row>.sep{flex:none;width:1px;margin:6px 3px;background:#e8e6df}
+body .mmd-sheet[hidden]{display:none!important}
+body .mmd-dim{position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,.35)}
+body .mmd-pan{position:fixed;left:0;right:0;bottom:0;z-index:9999;max-height:82vh;overflow-y:auto;background:#fff;border-radius:18px 18px 0 0;padding:8px 14px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(0,0,0,.15);animation:mmdup .18s ease-out}
+@keyframes mmdup{from{transform:translateY(30px);opacity:.6}to{transform:none;opacity:1}}
+body .mmd-grab{width:40px;height:5px;border-radius:3px;background:#ddd;margin:2px auto 6px}
+body .mmd-g{margin:10px 2px 6px!important;font:800 13px/1 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:#9a6200!important}
+body .mmd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+body .mmd-grid a{all:unset;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 2px;border-radius:12px;background:#f6f4ee;font:600 11.5px/1.2 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3a3833;cursor:pointer;box-shadow:0 2px 0 rgba(30,22,8,.08)}
+body .mmd-grid a i{font-style:normal;font-size:22px}
+body .mmd-grid a span{white-space:nowrap;max-width:76px;overflow:hidden;text-overflow:ellipsis}
+body .mmd-grid a.on{background:#0b0b0b;color:#fff}
+/* 선 아이콘 + 금색 네모(사용자 2026-10-29) */
+body .mmd .row>a i,body .mmd-grid a i{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;color:#9a6200;background:#fbf3e3;font-size:0!important}
+body .mmd .row>a i svg,body .mmd-grid a i svg{width:19px;height:19px}
+body .mmd .row>a.on{background:none!important}body .mmd .row>a.on i{background:#9a6200;color:#fff}
+body .mmd-grid a.on i{background:#fff;color:#0b0b0b}
+body .mmd .row>a{gap:3px!important}
+
+/* 아래 메뉴 바탕 반투명(사용자 2026-10-29) — 흐림 효과 없이 */
+body .mmd{background:rgba(255,255,255,.6)!important;border-top-color:rgba(11,11,11,.06)!important;box-shadow:0 -2px 10px rgba(11,11,11,.04)!important}
+body .mmd .row>a i{background:rgba(251,243,227,.82)}
+
+/* 공사중 표시(아이디어 페이지, 사용자 2026-10-29) */
+body .mmd a.wip i,body .mmd-sheet a.wip i{position:relative}
+body .mmd a.wip i:after,body .mmd-sheet a.wip i:after{content:'공사중';position:absolute;top:-6px;right:-14px;font:800 8.5px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#fff;background:#e07a12;border-radius:6px;padding:2px 4px;letter-spacing:-.02em;white-space:nowrap}
+</style><script data-dock>// 아래 메뉴: 자주 쓰는 칸 + ☰ 전체 메뉴판(사용자 2026-10-29) — 링크는 기존 페이지 줄(nav.ib)에서 읽음
+(function(){var IC={"p-value": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m21 21-4.3-4.3\"/><path d=\"M8 13l2-2 2 1.5L14.5 9\"/></svg>", "p-pros": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8 21h8\"/><path d=\"M12 17v4\"/><path d=\"M7 4h10v5a5 5 0 0 1-10 0z\"/><path d=\"M17 5h3v2a3 3 0 0 1-3 3\"/><path d=\"M7 5H4v2a3 3 0 0 0 3 3\"/></svg>", "home": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\" /> <path d=\"M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\" /> </svg>", "p-lights": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M7 18v-6a5 5 0 1 1 10 0v6\" /> <path d=\"M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z\" /> <path d=\"M21 12h1\" /> <path d=\"M18.5 4.5 18 5\" /> <path d=\"M2 12h1\" /> <path d=\"M12 2v1\" /> <path d=\"m4.929 4.929.707.707\" /> <path d=\"M12 12v6\" /> </svg>", "p-brief": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2\" /> <path d=\"M18 14h-8\" /> <path d=\"M15 18h-5\" /> <path d=\"M10 6h8v4h-8V6Z\" /> </svg>", "p-prices": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M9 5v4\" /> <rect width=\"4\" height=\"6\" x=\"7\" y=\"9\" rx=\"1\" /> <path d=\"M9 15v2\" /> <path d=\"M17 3v2\" /> <rect width=\"4\" height=\"8\" x=\"15\" y=\"5\" rx=\"1\" /> <path d=\"M17 13v3\" /> <path d=\"M3 3v16a2 2 0 0 0 2 2h16\" /> </svg>", "p-trend": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M3 3v16a2 2 0 0 0 2 2h16\" /> <path d=\"M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7\" /> </svg>", "p-earn": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4\" /> <path d=\"M14 2v4a2 2 0 0 0 2 2h4\" /> <path d=\"m3 15 2 2 4-4\" /> </svg>", "p-cal": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M8 2v4\" /> <path d=\"M16 2v4\" /> <rect width=\"18\" height=\"18\" x=\"3\" y=\"4\" rx=\"2\" /> <path d=\"M3 10h18\" /> <path d=\"M8 14h.01\" /> <path d=\"M12 14h.01\" /> <path d=\"M16 14h.01\" /> <path d=\"M8 18h.01\" /> <path d=\"M12 18h.01\" /> <path d=\"M16 18h.01\" /> </svg>", "p-econ": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <line x1=\"3\" x2=\"21\" y1=\"22\" y2=\"22\" /> <line x1=\"6\" x2=\"6\" y1=\"18\" y2=\"11\" /> <line x1=\"10\" x2=\"10\" y1=\"18\" y2=\"11\" /> <line x1=\"14\" x2=\"14\" y1=\"18\" y2=\"11\" /> <line x1=\"18\" x2=\"18\" y1=\"18\" y2=\"11\" /> <polygon points=\"12 2 20 7 4 7\" /> </svg>", "p-bond": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <line x1=\"19\" x2=\"5\" y1=\"5\" y2=\"19\" /> <circle cx=\"6.5\" cy=\"6.5\" r=\"2.5\" /> <circle cx=\"17.5\" cy=\"17.5\" r=\"2.5\" /> </svg>", "p-opt": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z\" /> </svg>", "p-targets": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <circle cx=\"12\" cy=\"12\" r=\"10\" /> <circle cx=\"12\" cy=\"12\" r=\"6\" /> <circle cx=\"12\" cy=\"12\" r=\"2\" /> </svg>", "p-short": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <polyline points=\"22 17 13.5 8.5 8.5 13.5 2 7\" /> <polyline points=\"16 17 22 17 22 11\" /> </svg>", "p-fx": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M8 3 4 7l4 4\" /> <path d=\"M4 7h16\" /> <path d=\"m16 21 4-4-4-4\" /> <path d=\"M20 17H4\" /> </svg>", "p-capex": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z\" /> <path d=\"M17 18h1\" /> <path d=\"M12 18h1\" /> <path d=\"M7 18h1\" /> </svg>", "p-policy": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <circle cx=\"12\" cy=\"12\" r=\"10\" /> <path d=\"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20\" /> <path d=\"M2 12h20\" /> </svg>", "p-tech": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z\" /> <path d=\"M19 10v2a7 7 0 0 1-14 0v-2\" /> <line x1=\"12\" x2=\"12\" y1=\"19\" y2=\"22\" /> </svg>", "p-supply": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 .6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1\" /> <path d=\"M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76\" /> <path d=\"M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6\" /> <path d=\"M12 10v4\" /> <path d=\"M12 2v3\" /> </svg>", "p-neo": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <rect width=\"20\" height=\"8\" x=\"2\" y=\"2\" rx=\"2\" ry=\"2\" /> <rect width=\"20\" height=\"8\" x=\"2\" y=\"14\" rx=\"2\" ry=\"2\" /> <line x1=\"6\" x2=\"6.01\" y1=\"6\" y2=\"6\" /> <line x1=\"6\" x2=\"6.01\" y1=\"18\" y2=\"18\" /> </svg>", "p-qtr": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <path d=\"M3 3v16a2 2 0 0 0 2 2h16\" /> <path d=\"M18 17V9\" /> <path d=\"M13 17V5\" /> <path d=\"M8 17v-3\" /> </svg>", "p-insider": "<svg  xmlns=\"http://www.w3.org/2000/svg\" width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" > <circle cx=\"10\" cy=\"7\" r=\"4\" /> <path d=\"M10.3 15H7a4 4 0 0 0-4 4v2\" /> <circle cx=\"17\" cy=\"17\" r=\"3\" /> <path d=\"m21 21-1.9-1.9\" /> </svg>"};
+function key(a){var m=(a.getAttribute('href')||'').match(/(p-[a-z]+)\.html/);return m?m[1]:''}
+function build(){var n=document.querySelector('nav.ib');if(!n||document.querySelector('.mmd'))return;var home=n.querySelector('a.home');var cur=n.querySelector('[aria-current=page]');var ck=cur?key(cur):'';
+ var groups=[],g=null;[].forEach.call(n.children,function(c){if(c.classList.contains('tg')){g={t:c.textContent.trim(),l:[]};groups.push(g);return}if(c.tagName==='A'&&!c.classList.contains('home')&&g)g.l.push(c)});
+ var by={};[].forEach.call(n.querySelectorAll('a'),function(a){by[key(a)]=a});
+ // 아이디어 페이지(공사중) — 페이지 줄에 아직 없으면 맨 끝 묶음으로 붙임(사용자 2026-10-29)
+ if(!by['p-value']){var vq=((home&&home.getAttribute('href'))||'').match(/\?v=\d+/);vq=vq?vq[0]:'';var ig={t:'아이디어',l:[]};[['p-value','저평가 서치'],['p-pros','고수 성적표']].forEach(function(x){var a=document.createElement('a');a.setAttribute('href',x[0]+'.html'+vq);a.textContent=x[1];ig.l.push(a);by[x[0]]=a});groups.push(ig)}
+ function lab(a){return (a.textContent||'').trim().replace('데일리 ','')}
+ var d=document.createElement('nav');d.className='mmd';
+ var row=(home?'<a href="'+home.getAttribute('href')+'"><i>'+IC.home+'</i><span>홈</span></a>':'')+groups.map(function(g,gi){return (gi?'<b class="sep"></b>':'')+g.l.map(function(a){var k=key(a);return '<a href="'+a.getAttribute('href')+'"'+(k===ck?' class="on"':'')+'><i>'+(IC[k]||'•')+'</i><span>'+lab(a)+'</span></a>'}).join('')}).join('');
+ d.innerHTML='<button type="button" class="grab" aria-label="전체 메뉴"><em></em></button><div class="row">'+row+'</div>';
+ var sh=document.createElement('div');sh.className='mmd-sheet';sh.hidden=true;
+ sh.innerHTML='<div class="mmd-dim"></div><div class="mmd-pan"><div class="mmd-grab"></div>'+groups.map(function(g){return '<p class="mmd-g">'+g.t+'</p><div class="mmd-grid">'+g.l.map(function(a){var k=key(a);return '<a href="'+a.getAttribute('href')+'"'+(k===ck?' class="on"':'')+'><i>'+(IC[k]||'•')+'</i><span>'+lab(a)+'</span></a>'}).join('')+'</div>'}).join('')+'</div>';
+ [].forEach.call(d.querySelectorAll('a[href^="p-value"],a[href^="p-pros"]'),function(a){a.classList.add('wip')});[].forEach.call(sh.querySelectorAll('a[href^="p-value"],a[href^="p-pros"]'),function(a){a.classList.add('wip')});
+ [].forEach.call(sh.querySelectorAll('.mmd-g'),function(g){if(g.textContent==='아이디어')g.textContent='아이디어 · 공사중'});
+ document.body.appendChild(d);document.body.appendChild(sh);document.body.classList.add('mmd-on');
+ function open(o){sh.hidden=!o;document.documentElement.style.overflow=o?'hidden':''}
+ d.querySelector('.grab').onclick=function(){open(sh.hidden)};
+ var rw=d.querySelector('.row');var c0=rw.querySelector('.on');if(c0)rw.scrollLeft=c0.offsetLeft-rw.clientWidth/2+c0.offsetWidth/2;
+ var sx=0,sy=0,s0=0,md=null;d.addEventListener('touchstart',function(e){var t=e.touches[0];sx=t.clientX;sy=t.clientY;s0=rw.scrollLeft;md=null},{passive:true});
+ d.addEventListener('touchmove',function(e){var t=e.touches[0],dx=t.clientX-sx,dy=t.clientY-sy;if(md===null&&(Math.abs(dx)>6||Math.abs(dy)>6))md=Math.abs(dx)>Math.abs(dy)?'x':'y';if(md==='x'){rw.scrollLeft=s0-dx}e.preventDefault()},{passive:false});
+ d.addEventListener('touchend',function(e){var dy=e.changedTouches[0].clientY-sy;if(md==='y'&&dy<-25)open(true);if(md==='x'){rw.querySelectorAll('a').forEach(function(a){a.__nc=Date.now()})}md=null},{passive:true});
+ rw.addEventListener('click',function(e){var a=e.target.closest('a');if(a&&a.__nc&&Date.now()-a.__nc<350){e.preventDefault()}},true);sh.querySelector('.mmd-dim').onclick=function(){open(false)};
+ var y0=null;var pan=sh.querySelector('.mmd-pan');pan.addEventListener('touchstart',function(e){y0=e.touches[0].clientY},{passive:true});pan.addEventListener('touchend',function(e){if(y0!=null&&e.changedTouches[0].clientY-y0>60&&pan.scrollTop<=0)open(false);y0=null},{passive:true})}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',build);else build();setTimeout(build,800)})();
+</script><style data-ptidy>
+details.mm-fold{margin-top:8px;border-top:1px dashed rgba(0,0,0,.12)}
+details.mm-fold>summary{list-style:none;cursor:pointer;padding:9px 2px 2px;font:700 14px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:#9a6200}
+details.mm-fold>summary::-webkit-details-marker{display:none}
+details.mm-fold>summary::after{content:" ▾"}details.mm-fold[open]>summary::after{content:" ▴"}
+details.mm-fold[open]>summary{margin-bottom:8px}
+
+/* 영역별 경고등: 2열 카드, 항목은 이름 한 줄 + 지금·기준 작게 */
+#areas{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+#areas .area{padding:10px 11px!important;margin:0!important;border-radius:12px!important;min-width:0}
+#areas .area .hd{display:flex;flex-direction:column;gap:1px;margin-bottom:6px}
+#areas .area .hd b{font-size:15px}#areas .area .hd .cnt{font-size:12.5px}
+#areas .area ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px}
+#areas .area li{font-size:12.5px;line-height:1.35;padding-left:12px;position:relative}
+#areas .area li::before{content:"○";position:absolute;left:0;top:0;font-size:10px;color:var(--color-fg-muted,#8a877f)}
+#areas .area li.on::before{content:"●";color:#c4453a}
+#areas .area li b{display:block;font-weight:700;font-size:12.5px}
+#areas .area li small{display:block;color:var(--color-fg-muted,#6b675f);font-size:11.5px}
+#areas .area a{font-size:12px;margin-top:6px;display:inline-block}
+/* 표는 글자 조금 작게, 칸 여백 줄임 */
+#score td,#score th,#chg td,#chg th,#amp td,#amp th{padding:7px 4px!important;font-size:13px!important}
+#score td small,#score td em{font-size:11px!important}
+/* 긴 설명: 3줄만 보이고 누르면 펼침 */
+#hist-one{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;cursor:pointer}
+#hist-one.open{-webkit-line-clamp:unset;display:block}
+.lw-one{font-size:14.5px!important;line-height:1.6!important}
+</style><script data-ptidy>
+window.mmFold=function(card,keep,label,open){ // card 안에서 keep(남길 것) 말고 나머지를 접기
+  if(!card||card.dataset.fold)return; card.dataset.fold=1;
+  var kids=[].slice.call(card.children).filter(function(k){return !k.matches(keep)});
+  if(!kids.length)return; var d=document.createElement('details'); d.className='mm-fold'; if(open)d.open=true;
+  var s=document.createElement('summary'); s.innerHTML='<span>'+label+'</span>'; d.appendChild(s);
+  kids[0].before(d); kids.forEach(function(k){d.appendChild(k)});
+};
+
+function tidy(){
+  document.querySelectorAll('#areas .area li').forEach(function(li){
+    if(li.dataset.t)return; var t=li.textContent; var m=t.split(' — '); if(m.length<2)return; li.dataset.t=1;
+    var on=/켜짐|●/.test(t)||li.className.indexOf('on')>=0;
+    li.innerHTML='<b></b><small></small>'; li.firstChild.textContent=m[0]; li.lastChild.textContent=m.slice(1).join(' — ').replace(/^지금\s*/,'지금 ');
+  });
+  var ho=document.getElementById('hist-one'); if(ho&&!ho.dataset.c){ho.dataset.c=1;ho.title='눌러서 펼치기';ho.addEventListener('click',function(){ho.classList.toggle('open')})}
+  mmFold(document.getElementById('score-card'),'h2,.k,.tbl,#score','표 읽는 법');
+  mmFold(document.getElementById('chg-card'),'h2,.k,.lw-one,#chg-one','바뀐 날 표 보기');
+  mmFold(document.getElementById('amp-card'),'h2,.k,.lw-one,#amp-one','조합별 표 보기');
+  mmFold(document.getElementById('th-card'),'h2,.k','기준표 펼치기 (불마다 왜 이 기준인지)');
+}
+
+(function(){var q=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(q)return;q=1;setTimeout(function(){q=0;go()},150)}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();</script></body></html>

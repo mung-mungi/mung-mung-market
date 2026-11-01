@@ -14,6 +14,16 @@ def load(p, d):
     except Exception: return d
 def iso(md): m, d, y = md.split('/'); return '%s-%s-%s' % (y, m.zfill(2), d.zfill(2))
 log = load(P('d/lights/lights_log.json'), []); TH = {t['id']: t for t in load(P('d/lights/thresholds.json'), [])}
+# 반도체·AI 영역(사용자 2026-11-01) — 시장 전체는 버텨도 반도체에 공포가 몰리는 날을 잡음. 허브 동기화로 기준표가 덮여도 다시 넣음
+SOX_TH = [
+    {'id': 'soxdd', 'board': '반도체·AI', 'name': '반도체 고점 대비 낙폭', 'rule': '필라델피아 반도체 지수가 최근 1년 고점보다 15% 이상 낮음', 'op': '>=', 'value': 15, 'unit': '%',
+     'why': '반도체가 고점에서 15% 넘게 빠지면 조정을 넘어 AI 투자 기대 자체를 다시 따지는 구간입니다.', 'since': '2026-11-01', 'history': [], 'weight': 1},
+    {'id': 'soxday', 'board': '반도체·AI', 'name': '반도체 하루 급락(최근 5일)', 'rule': '최근 5거래일 중 반도체 지수가 하루 5% 이상 빠진 날이 있음', 'op': '>=', 'value': 5, 'unit': '%',
+     'why': '하루 -5%는 흔치 않은 투매입니다. 레버리지 청산이 몰리면 나타나고, 며칠 동안 여진이 이어지기 쉽습니다.', 'since': '2026-11-01', 'history': [], 'weight': 1}]
+_tl = load(P('d/lights/thresholds.json'), [])
+if not any(t.get('id') == 'soxdd' for t in _tl):
+    _tl = SOX_TH + _tl; json.dump(_tl, open(P('d/lights/thresholds.json'), 'w', encoding='utf-8'), ensure_ascii=False)
+TH = {t['id']: t for t in _tl}
 yd = load(P('d/bond/yields_daily.json'), []); hy = load(P('d/bond/hy_spread.json'), [])
 oil = load(P('d/lights/oil.json'), []); qqq = load(P('d/lights/qqq_px.json'), [])
 got = []
@@ -66,6 +76,27 @@ try:
     for d, c in yh('QQQ').items(): Q[d] = {'date': d, 'close': c}
     qqq = [Q[k] for k in sorted(Q)][-260:]; got.append('QQQ')
 except Exception as e: print('QQQ 실패', e)
+# ④-2 필라델피아 반도체 지수(야후 1년 일봉, 마감된 날만)
+SOXP = {}
+try:
+    _j = json.loads(get('https://query1.finance.yahoo.com/v8/finance/chart/%5ESOX?range=2y&interval=1d'))['chart']['result'][0]
+    import zoneinfo; _z = zoneinfo.ZoneInfo('America/New_York'); _now = dt.datetime.now(_z)
+    for ts, c in zip(_j['timestamp'], _j['indicators']['quote'][0]['close']):
+        if c is None: continue
+        d0 = dt.datetime.fromtimestamp(ts, _z).date()
+        if d0 == _now.date() and _now.hour < 17: continue
+        SOXP[d0.isoformat()] = c
+    got.append('반도체')
+except Exception as e: print('반도체 실패', e)
+_sk = sorted(SOXP)
+def soxdd(d):
+    ks = [k for k in _sk if k <= d][-252:]
+    if len(ks) < 20: return None
+    return round((1 - SOXP[ks[-1]] / max(SOXP[k] for k in ks)) * 100, 2)
+def soxday(d):
+    ks = [k for k in _sk if k <= d][-6:]
+    if len(ks) < 6: return None
+    return round(max(0.0, max((1 - SOXP[ks[i]] / SOXP[ks[i - 1]]) * 100 for i in range(1, 6))), 2)
 # ⑤ 풋콜(CBOE 일별 통계) — 로그에 없는 최근 날짜만
 pcv = {r['date']: r['val'] for r in log if r['id'] == 'pc'}
 days = [r['date'] for r in yd if r['date'] >= '2026-01-01']
@@ -96,13 +127,23 @@ for d in sorted(set(redo)):
     vals = {'inv': round(y['us10y'] - y['us2y'], 2), 'y10': y['us10y'], 'y30': y['us30y'],
             'jump': round(y['us10y'] - yd[i - 10]['us10y'], 2) if i >= 10 else None,
             'hy': carry(hmap, d), 'vix': VIX.get(d), 'term': round(VIX[d] / V3[d], 2) if d in VIX and d in V3 else None,
-            'pc': pcv.get(d), 'oil': oilchg(d), 'auc': None}
+            'pc': pcv.get(d), 'oil': oilchg(d), 'auc': None,
+            'soxdd': soxdd(d) if SOXP else None, 'soxday': soxday(d) if SOXP else None}
     for k in TH:
         v = vals.get(k)
         if v is None: v = old.get((d, k), prev.get(k))
         if v is None: continue
         t = TH[k]; prev[k] = v
         new.append({'date': d, 'board': t['board'], 'id': k, 'val': v, 'on': int(OP[t['op']](v, t['value'])), 'w': t.get('weight', 1)})
+# 반도체 불이 없던 지난 날짜도 채움(1년 기록 그래프가 끊기지 않게)
+if SOXP:
+    _have = {(r['date'], r['id']) for r in keep + new}
+    for d in sorted({r['date'] for r in keep}):
+        for k, fn in (('soxdd', soxdd), ('soxday', soxday)):
+            if (d, k) in _have or k not in TH: continue
+            v = fn(d)
+            if v is None: continue
+            t = TH[k]; keep.append({'date': d, 'board': t['board'], 'id': k, 'val': v, 'on': int(OP[t['op']](v, t['value'])), 'w': t.get('weight', 1)})
 log = sorted(keep + new, key=lambda r: (r['date'], list(TH).index(r['id']) if r['id'] in TH else 99))
 def dump(p, o): json.dump(o, open(P(p), 'w', encoding='utf-8'), ensure_ascii=False)
 dump('d/lights/lights_log.json', log); dump('d/bond/yields_daily.json', yd); dump('d/bond/hy_spread.json', hy)
