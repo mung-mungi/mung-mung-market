@@ -51,7 +51,7 @@ function catN(){var box=document.getElementById('catf');if(!box||!EV)return;var 
  // 새 소식 많은 분류를 앞으로(전체는 항상 맨 앞, 사용자 2026-11-02)
  bs.slice().sort(function(a,b){var ka=a.dataset.c?(n[a.dataset.c]||0):1e9,kb=b.dataset.c?(n[b.dataset.c]||0):1e9;return kb-ka||a.dataset.o-b.dataset.o}).forEach(function(b){box.appendChild(b)});
  bs.forEach(function(b){var v=b.dataset.c,k=v?(n[v]||0):all,x=b.querySelector('.tlx-cn');if(!x){x=el('span','tlx-cn');b.appendChild(x)}x.textContent=k?'새 '+k:'';x.title='최근 7일 새 소식';x.style.display=k?'':'none'})}
-function relabel(){if(P!=='policy')return;var root=document.querySelector('main')||document.body,w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),n;while(n=w.nextNode()){if(n.nodeValue.indexOf('AI·전력 정책')>=0)n.nodeValue=n.nodeValue.split('AI·전력 정책').join('AI 정책')}}
+function relabel(){if(P!=='policy')return;var root=document.querySelector('main')||document.body,w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),n;var RL=[['AI·전력 정책','AI 정책'],['한국 관련','한미 정책']];while(n=w.nextNode()){RL.forEach(function(r){if(n.nodeValue.indexOf(r[0])>=0)n.nodeValue=n.nodeValue.split(r[0]).join(r[1])})}}
 function sortDay(){[].forEach.call(document.querySelectorAll('#tl .pg-mon'),function(m){var rows=[].slice.call(m.querySelectorAll(':scope>article.pg-ev'));if(rows.length<2)return;
  var desc=true,p=m.previousElementSibling;while(p&&!p.classList.contains('pg-div'))p=p.previousElementSibling;if(p&&/가까운 날|오래된/.test(p.textContent))desc=false;
  var tm=function(r){return (r.__tlx&&r.__tlx.time)||''};
