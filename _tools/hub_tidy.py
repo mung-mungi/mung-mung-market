@@ -488,10 +488,28 @@ def tidy_dock(s):
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
 
+
+# 공용 파일 참조(2026-11-01 정리 1일차) — 페이지마다 통째로 붙이던 부품을 _tools/ 파일 하나로 불러옴.
+# 주소 뒤 ?v= 는 파일 내용으로 만든 값이라, 파일을 고치면 홈 화면 앱도 새 파일을 받음.
+def _core_v(name):
+    import hashlib
+    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), name)
+    return hashlib.md5(open(p, 'rb').read()).hexdigest()[:8]
+def core_ref(marker, name):
+    u = '_tools/' + name + '?v=' + _core_v(name)
+    if name.endswith('.css'):
+        return '<link data-' + marker + ' rel="stylesheet" href="' + u + '">'
+    return '<script data-' + marker + ' src="' + u + '"></script>'
+def core_strip(s, marker):  # 예전 통째 붙인 것과 새 참조 둘 다 지움
+    s = re.sub(r'<(style|script) data-' + marker + r'(?:\s[^>]*)?>.*?</\1>', '', s, flags=re.S)
+    return re.sub(r'<link data-' + marker + r'(?:\s[^>]*)?>', '', s)
+def vt_refs():
+    return core_ref('vt', 'vt.css') + core_ref('vt', 'vt.js')
+
 # 휴대폰 버벅임 줄이기 — _tools/perf.js를 <head> 맨 앞에(사용자 2026-10-29)
 def tidy_perf(s):
-    s = re.sub(r'<script data-perf>.*?</script>', '', s, flags=re.S)
-    js = '<script data-perf>' + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'perf.js'), encoding='utf-8').read() + '</script>'
+    s = core_strip(s, 'perf')
+    js = core_ref('perf', 'perf.js')
     m = re.search(r'<head[^>]*>', s)
     if m:
         return s[:m.end()] + js + s[m.end():]
@@ -501,24 +519,33 @@ def tidy_perf(s):
 
 # 처음 열 때 멍뭉이 로딩 화면 — _tools/splash.* (사용자 2026-10-29)
 def tidy_splash(s):
-    s = re.sub(r'<(style|script) data-splash>.*?</\1>', '', s, flags=re.S)
+    s = core_strip(s, 'splash')
     d = os.path.dirname(os.path.abspath(__file__))
     s = re.sub(r'<link data-hsicon[^>]*>|<meta data-hsicon[^>]*>', '', s)
-    s = re.sub(r'<script data-hshome>.*?</script>', '', s, flags=re.S)
-    s = re.sub(r'<(style|script) data-wrapfix>.*?</\1>', '', s, flags=re.S)
+    s = core_strip(s, 'hshome')
+    s = core_strip(s, 'wrapfix')
     s = re.sub(r'<(style|script) data-navfab>.*?</\1>', '', s, flags=re.S)
     s = re.sub(r'<(style|script) data-push>.*?</\1>', '', s, flags=re.S)
     # 홈 화면 앱 다시 시작 → 메인부터 (_tools/homestart.js, 사용자 2026-10-29)
-    add = '<link data-hsicon rel="manifest" href="manifest.webmanifest"><meta data-hsicon name="mobile-web-app-capable" content="yes"><meta data-hsicon name="apple-mobile-web-app-capable" content="yes"><script data-hshome>' + open(os.path.join(d, 'homestart.js'), encoding='utf-8').read() + '</script>'
+    add = '<link data-hsicon rel="manifest" href="manifest.webmanifest"><meta data-hsicon name="mobile-web-app-capable" content="yes"><meta data-hsicon name="apple-mobile-web-app-capable" content="yes">' + core_ref('hshome', 'homestart.js')
     # 줄바꿈 다듬기 — _tools/wrapfix.* (사용자 2026-10-29, 전 페이지)
-    add += '<style data-wrapfix>' + open(os.path.join(d, 'wrapfix.css'), encoding='utf-8').read() + '</style><script data-wrapfix>' + open(os.path.join(d, 'wrapfix.js'), encoding='utf-8').read() + '</script>'
+    add += core_ref('wrapfix', 'wrapfix.css') + core_ref('wrapfix', 'wrapfix.js')
     # 이전·홈 동그란 버튼 — _tools/navfab.* (사용자 2026-10-29)
     add += '<style data-navfab>' + open(os.path.join(d, 'navfab.css'), encoding='utf-8').read() + '</style><script data-navfab>' + open(os.path.join(d, 'navfab.js'), encoding='utf-8').read() + '</script>'
     # 휴대폰 알림 받기 카드(원시그널) — _tools/push.* (사용자 2026-10-30, 메인에서만 동작)
     add += '<style data-push>' + open(os.path.join(d, 'push.css'), encoding='utf-8').read() + '</style><script data-push>' + open(os.path.join(d, 'push.js'), encoding='utf-8').read() + '</script>'
-    add += '<link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><style data-splash>' + open(os.path.join(d, 'splash.css'), encoding='utf-8').read() + '</style><script data-splash>' + open(os.path.join(d, 'splash.js'), encoding='utf-8').read() + '</script>'
-    m = re.search(r'<script data-perf>.*?</script>', s, re.S) or re.search(r'<head[^>]*>', s)
-    return s[:m.end()] + add + s[m.end():] if m else add + s
+    add += '<link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널">' + core_ref('splash', 'splash.css') + core_ref('splash', 'splash.js')
+    m = re.search(r'<script data-perf(?:\s[^>]*)?>.*?</script>', s, re.S) or re.search(r'<head[^>]*>', s)
+    s = s[:m.end()] + add + s[m.end():] if m else add + s
+    # 페이지 넘김 전환(vt) — 예전처럼 </head> 바로 앞, 공용 파일로
+    if 'data-vt' in s or '</head>' in s:
+        s = core_strip(s, 'vt')
+        if re.search(r'</head>', s, re.I):
+            s = re.sub(r'</head>', lambda x: vt_refs() + x.group(0), s, count=1, flags=re.I)
+        else:  # </head>가 없는 페이지: 예전처럼 <!doctype> 바로 뒤(앞에 두면 화면이 옛 방식으로 그려짐)
+            m = re.match(r'\s*<!doctype[^>]*>', s, re.I)
+            s = s[:m.end()] + vt_refs() + s[m.end():] if m else vt_refs() + s
+    return s
 
 
 # 메인 전달사항(사용자 2026-10-31) — 들어오면 전체 화면 공지, 닫으면 접힌 한 줄. 내용은 d/notice.html(_tools/notice.*)
