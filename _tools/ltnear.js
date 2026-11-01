@@ -44,8 +44,14 @@ function run(){var A=document.getElementById('areas'),big=document.getElementByI
    if(OPEN[t])rw.classList.add('op');rw.addEventListener('click',function(){rw.classList.toggle('op');OPEN[t]=rw.classList.contains('op')});
    box.appendChild(rw);box.appendChild(ex)});
   dots.appendChild(box);
-  var cp=document.createElement('span');cp.className='mm-ln-cap';cp.innerHTML='전체 '+nAll+'개 중 <i class="on"></i><em>켜짐 '+nOn+'</em> · <i class="nr"></i><u>근접 '+nNr+'</u> · <i></i>꺼짐 '+(nAll-nOn-nNr);dots.appendChild(cp);
+  var cp=document.createElement('span');cp.className='mm-ln-cap';var aO=Object.keys(status).filter(function(t){return status[t].some(function(x){return x.s==='on'})}).length,aN=Object.keys(status).filter(function(t){return !status[t].some(function(x){return x.s==='on'})&&status[t].some(function(x){return x.s==='near'})}).length,aT=Object.keys(status).length;cp.innerHTML=aT+'개 영역 중 <i class="on"></i><em>켜짐 '+aO+'</em> · <i class="nr"></i><u>문턱 앞 '+aN+'</u> · <i></i>조용 '+(aT-aO-aN)+' <span style="color:#9a948a;font-weight:600">(불 '+nOn+' · 근접 '+nNr+' / 전체 '+nAll+'개)</span>';dots.appendChild(cp);
   var ky=document.createElement('span');ky.className='mm-ln-key';ky.textContent='영역마다 3칸: 켜진 불 1개 = 빨간 1칸, 근접 1개 = 주황 반 칸 · 줄을 누르면 이유가 펼쳐집니다';dots.appendChild(ky)}
+ // 큰 숫자는 '켜진 영역 n / 전체 영역'(사용자 2026-11-01: 3/12는 직관적이지 않음)
+ var areasAll=Object.keys(status),aOn=areasAll.filter(function(t){return status[t].some(function(x){return x.s==='on'})}),aNr=areasAll.filter(function(t){return aOn.indexOf(t)<0&&status[t].some(function(x){return x.s==='near'})});
+ var bn=document.getElementById('big-n');if(bn){var want=aOn.length+' / '+areasAll.length;if(bn.dataset.mm!==want||bn.textContent.indexOf('영역')<0){bn.dataset.mm=want;bn.innerHTML='';bn.appendChild(document.createTextNode(want));var u=document.createElement('small');u.className='mm-ln-u';u.textContent=' 영역';bn.appendChild(u)}}
+ var bc=document.getElementById('big-chg');if(bc){var nOnL=0;areasAll.forEach(function(t){nOnL+=status[t].filter(function(x){return x.s==='on'}).length});var tx='켜진 영역: '+(aOn.join('·')||'없음')+' · 불 '+nOnL+'개'+(aNr.length?' · 문턱 앞 영역: '+aNr.join('·'):'');if(bc.textContent!==tx)bc.textContent=tx}
+ var bs=document.getElementById('big-st');if(bs&&/무게/.test(bs.textContent))bs.textContent=bs.textContent.replace(/\s*\(무게[^)]*\)/,'');
+ var stp=document.querySelectorAll('#big-steps span small');var LB=['켜진 곳 없음','영역 1곳','영역 2곳','한 곳에 불 몰림','영역 3곳+'];stp.forEach(function(x,i){if(LB[i]&&x.textContent!==LB[i])x.textContent=LB[i]});
  var o=big.querySelector('.mm-ln-near');if(o)o.remove();
  if(!big.querySelector('.mm-ln-leg')){var dots=document.getElementById('big-dots');if(dots){var lg=document.createElement('div');lg.className='mm-ln-leg';lg.innerHTML='<span><i style="background:var(--color-bad,#b3261e);border-color:var(--color-bad,#b3261e)"></i>켜짐</span><span><i style="background:linear-gradient(90deg,#e07b16 50%,transparent 50%);border-color:#e07b16"></i>근접(반불)</span><span><i></i>꺼짐</span>';dots.after(lg)}}
  // 맨 위 총평

@@ -71,11 +71,15 @@ def run(R, src=None):
         elif t['op'] in ('<', '<=') and v - b <= 0.1:
             near.append(t['name'])
     md = '%d/%d' % (int(D[5:7]), int(D[8:10]))
-    line = '%s 마감 · 불 %d개%s → %s %s' % (md, len(on), ('(' + '·'.join(th[k]['name'] for k in on) + ')') if on else '', ic, nm)
+    line = '%s 마감 · 켜진 영역 %d/%d(%s) → %s %s' % (md, len({L[k]['board'] for k in on}), len({r['board'] for r in L.values()}), '·'.join(sorted({L[k]['board'] for k in on})) or '없음', ic, nm)
     if near:
         line += ' · 근접: ' + '·'.join(near)
     stale = [items[k]['name'] + ' ' + '%d/%d' % (int(items[k]['src'][5:7]), int(items[k]['src'][8:10])) for k in items if items[k]['stale']]
-    out = {'date': D, 'line': line, 'stage': nm, 'on': len(on), 'near': near, 'items': items, 'stale': stale}
+    boards = sorted({r['board'] for r in L.values()})
+    a_on = sorted({L[k]['board'] for k in on})
+    a_near = sorted({th[k]['board'] for k in L if k in th and th[k]['name'] in near and th[k]['board'] not in a_on})
+    out = {'date': D, 'line': line, 'stage': nm, 'on': len(on), 'near': near, 'items': items, 'stale': stale,
+           'areas': len(boards), 'areas_on': a_on, 'areas_near': a_near}  # 영역 기준 표시(사용자 2026-11-01: '3/12'보다 '켜진 영역 2/5'가 직관적)
     json.dump(out, open(P('d/lights/fresh.json'), 'w', encoding='utf-8'), ensure_ascii=False)
     for x in stale:  # GitHub 실행 주석에 남겨 멈춘 자료를 바로 알아차리게
         print('::warning::경고등 자료 멈춤 — ' + x + ' 값을 이어 쓰는 중')
