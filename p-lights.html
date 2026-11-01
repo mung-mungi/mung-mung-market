@@ -327,7 +327,7 @@ function add(){(document.body||document.documentElement).appendChild(d);var v=d.
 if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 function close(){if(d.classList.contains('out'))return;d.classList.add('out');setTimeout(function(){d.remove()},420)}
 d.addEventListener('click',close);setTimeout(close,6500)})();
-</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="시장 경고등"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-lights.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202611011111">(function(){var me="202611011111";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>시장 경고등</title><style>:root{color-scheme:light;
+</script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="시장 경고등"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-lights.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202611011116">(function(){var me="202611011116";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>시장 경고등</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
@@ -1010,10 +1010,26 @@ fetch('d/lights/fresh.json?t='+Date.now(),{cache:'no-store'}).then(function(r){r
 .mm-ln-leg{display:none!important}
 
 .mm-ln-cap i{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid #cfcac0;vertical-align:-1px;margin-right:3px;box-sizing:border-box}.mm-ln-cap i.on{background:#b3261e;border-color:#b3261e}.mm-ln-cap i.nr{background:linear-gradient(90deg,#e07b16 50%,#fff 50%);border-color:#e07b16}
+/* 영역별 3칸 줄(사용자 2026-11-01) */
+.mm-ln-ar{display:flex;flex-direction:column;gap:6px;margin:4px 0 2px}
+.mm-ln-r{display:grid;grid-template-columns:86px auto 1fr 14px;align-items:center;gap:10px;padding:9px 12px;border-radius:12px;background:#fff;border:1px solid #e6dfcf;box-shadow:0 2px 0 #ece4d2;cursor:pointer}
+.mm-ln-r::after{content:"▾";font:400 12px sans-serif;color:#9a948a;justify-self:end}.mm-ln-r.op::after{content:"▴"}
+.mm-ln-r b{font:800 15px/1.2 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#262626}
+.mm-ln-r .d3{display:flex;gap:5px}.mm-ln-r .d3 i{width:18px;height:18px;border-radius:50%;border:2.5px solid #d6d0c4;background:#fff;box-sizing:border-box}
+.mm-ln-r .d3 i.on{background:#b3261e;border-color:#b3261e}.mm-ln-r .d3 i.nr{background:linear-gradient(90deg,#e07b16 50%,#fff 50%);border-color:#e07b16}
+.mm-ln-r .st{font:700 13.5px/1.2 -apple-system,sans-serif;color:#8a857a;text-align:right}
+.mm-ln-r.hot{border-color:#e9b7b1;background:#fffafa}.mm-ln-r.hot .st{color:#b3261e}.mm-ln-r.warm .st{color:#c76a0c}
+.mm-ln-ex{display:none;margin:-2px 4px 4px;padding:8px 12px;border-left:3px solid #e6dfcf;font:500 14px/1.55 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3d3a35}
+.mm-ln-r.op+.mm-ln-ex{display:block}
+.mm-ln-ex p{margin:4px 0 8px}.mm-ln-ex p.rest{color:#8a857a;font-size:13px;margin:2px 0}
+.mm-ln-ex .k{display:inline-block;font:800 11.5px/1 sans-serif;color:#fff;padding:3px 7px;border-radius:999px;margin-right:6px;vertical-align:2px}.mm-ln-ex .k.on{background:#b3261e}.mm-ln-ex .k.nr{background:#e07b16}
+.mm-ln-ex b{font-weight:800}.mm-ln-ex .w{display:block;color:#5f5a52;font-size:13.5px;margin-top:2px}
+.mm-ln-key{display:block;margin:4px 0 0;font:500 12.5px/1.4 -apple-system,sans-serif;color:#8a857a}
+.mm-ln-r .d3 i.nf{background:#e07b16;border-color:#e07b16}
 </style><script data-ltui>// 시장 경고등 '지금 시장은' 통일 양식(사용자 2026-11-01)
 // 근접(기준의 90% 이상, ltui의 5단계 색 4 '근접')은 반불(◐)로 보여 주고, 유가는 100달러 이상이면 '높은 자리'로 근접 처리.
 // 영역마다 '지금' 한 줄, 맨 위에 '지금 시장은' 총평을 숫자로 자동 생성. 단계 계산(켜진 불)은 그대로.
-(function(){var WTI=null;try{fetch('d/lights/oil.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.length){WTI=Number(j[j.length-1].wti);run()}}).catch(function(){})}catch(e){}
+(function(){var WTI=null,TW={};try{fetch('d/lights/thresholds.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j){j.forEach(function(t){TW[t.name]=t.why||''});run()}}).catch(function(){})}catch(e){}try{fetch('d/lights/oil.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.length){WTI=Number(j[j.length-1].wti);run()}}).catch(function(){})}catch(e){}
 var C={r:['#b3261e','#fbe8e5'],o:['#a14d00','#fdf0e1'],y:['#8a6a00','#fbf4dc'],g:['#2e7d4f','#e7f3ec']};
 function nm(li){return ((li.querySelector('b')||{}).textContent||'').trim()}
 function val(li){return ((li.querySelector('.l-now')||{}).textContent||'').trim()}
@@ -1039,12 +1055,26 @@ function run(){var A=document.getElementById('areas'),big=document.getElementByI
  // 위 동그라미: 근접은 반불
  var D=[...document.querySelectorAll('#big-dots .dot')];D.forEach(function(i){i.classList.remove('mm-half')});
  Object.keys(status).forEach(function(t){status[t].forEach(function(x){if(x.s!=='near')return;var i=D.find(function(d){return d.title===x.n&&!d.classList.contains('on')});if(i)i.classList.add('mm-half')})});
- // 한 줄 동그라미: 켜짐 → 근접 → 꺼짐 순으로 전체를 한 번에
- var dots=document.getElementById('big-dots');if(dots){dots.classList.add('mm-ln-one');var rw=dots.querySelector('.mm-ln-row');if(rw)rw.remove();var cp=dots.querySelector('.mm-ln-cap');if(cp)cp.remove();
-  var all=[];Object.keys(status).forEach(function(t){status[t].forEach(function(x){all.push({t:t,n:x.n,s:x.s})})});var od={on:0,near:1,off:2};all.sort(function(a,b){return od[a.s]-od[b.s]});
-  rw=document.createElement('div');rw.className='mm-ln-row';all.forEach(function(x){var i=document.createElement('i');i.className=x.s==='on'?'on':x.s==='near'?'nr':'';i.title=x.t+' · '+x.n;rw.appendChild(i)});dots.appendChild(rw);
-  var nOn=all.filter(function(x){return x.s==='on'}).length,nNr=all.filter(function(x){return x.s==='near'}).length;cp=document.createElement('span');cp.className='mm-ln-cap';cp.innerHTML='전체 '+all.length+'개 중 <i class="on"></i><em>켜짐 '+nOn+'</em> · <i class="nr"></i><u>근접 '+nNr+'</u> · <i></i>꺼짐 '+(all.length-nOn-nNr);dots.appendChild(cp)}
- var row=big.querySelector('.row');var o=big.querySelector('.mm-ln-near');if(o)o.remove();if(nearAll.length&&row){var e=document.createElement('div');e.className='mm-ln-near';var b=document.createElement('b');b.textContent='근접 '+nearAll.length;e.append(b,document.createTextNode(nearAll.join(' · ')));row.after(e)}
+ // 영역별 3칸 동그라미(사용자 2026-11-01): 불 1개당 1칸, 근접 1개당 반 칸(최대 3칸). 줄을 누르면 왜 켜졌는지 펼침
+ var dots=document.getElementById('big-dots');if(dots){dots.classList.add('mm-ln-one');[...dots.querySelectorAll('.mm-ln-row,.mm-ln-cap,.mm-ln-ar,.mm-ln-key')].forEach(function(e){e.remove()});
+  var nOn=0,nNr=0,nAll=0,OPEN=window.__mmLnOpen||(window.__mmLnOpen={});
+  var box=document.createElement('div');box.className='mm-ln-ar';
+  Object.keys(status).forEach(function(t){var L=status[t];var on=L.filter(function(x){return x.s==='on'}),nr=L.filter(function(x){return x.s==='near'});nOn+=on.length;nNr+=nr.length;nAll+=L.length;
+   var sc=Math.min(3,on.length+nr.length*0.5);var rw=document.createElement('div');rw.className='mm-ln-r'+(on.length?' hot':nr.length?' warm':'');rw.setAttribute('role','button');
+   var nm=document.createElement('b');nm.textContent=t;rw.appendChild(nm);var dd=document.createElement('span');dd.className='d3';var ro=Math.min(3,on.length),ns=Math.min(3-ro,nr.length*0.5);for(var q=1;q<=3;q++){var i=document.createElement('i');if(q<=ro)i.className='on';else if(q-ro<=ns)i.className='nf';else if(q-ro-0.5<=ns)i.className='nr';dd.appendChild(i)}rw.appendChild(dd);
+   var st=document.createElement('span');st.className='st';st.textContent=on.length?'켜짐 '+on.length+(nr.length?' · 근접 '+nr.length:''):nr.length?'근접 '+nr.length:'조용';rw.appendChild(st);
+   var ex=document.createElement('div');ex.className='mm-ln-ex';var hit=on.concat(nr);
+   if(!hit.length){var p0=document.createElement('p');p0.textContent=L.length+'개 모두 기준에서 멉니다.';ex.appendChild(p0)}
+   hit.forEach(function(x){var p=document.createElement('p');var k=document.createElement('span');k.className=x.s==='on'?'k on':'k nr';k.textContent=x.s==='on'?'켜짐':'근접';p.appendChild(k);var tt=document.createElement('b');tt.textContent=x.n+' '+x.v;p.appendChild(tt);
+    var why=(t==='유가'&&x.s==='near'&&oilNear)?'급등 기준(한 달 +15%)은 아니지만 WTI가 '+Math.round(WTI)+'달러로 100달러 위에 머물러 물가·금리 부담이 이어집니다.':(TW[x.n]||'');if(x.s==='near'&&!(t==='유가'&&oilNear))why='기준의 90% 넘게 다가왔습니다. '+why;
+    if(why){var w=document.createElement('span');w.className='w';w.textContent=why;p.appendChild(w)}ex.appendChild(p)});
+   var rest=L.length-hit.length;if(hit.length&&rest>0){var pr=document.createElement('p');pr.className='rest';pr.textContent='나머지 '+rest+'개는 꺼짐';ex.appendChild(pr)}
+   if(OPEN[t])rw.classList.add('op');rw.addEventListener('click',function(){rw.classList.toggle('op');OPEN[t]=rw.classList.contains('op')});
+   box.appendChild(rw);box.appendChild(ex)});
+  dots.appendChild(box);
+  var cp=document.createElement('span');cp.className='mm-ln-cap';cp.innerHTML='전체 '+nAll+'개 중 <i class="on"></i><em>켜짐 '+nOn+'</em> · <i class="nr"></i><u>근접 '+nNr+'</u> · <i></i>꺼짐 '+(nAll-nOn-nNr);dots.appendChild(cp);
+  var ky=document.createElement('span');ky.className='mm-ln-key';ky.textContent='영역마다 3칸: 켜진 불 1개 = 빨간 1칸, 근접 1개 = 주황 반 칸 · 줄을 누르면 이유가 펼쳐집니다';dots.appendChild(ky)}
+ var o=big.querySelector('.mm-ln-near');if(o)o.remove();
  if(!big.querySelector('.mm-ln-leg')){var dots=document.getElementById('big-dots');if(dots){var lg=document.createElement('div');lg.className='mm-ln-leg';lg.innerHTML='<span><i style="background:var(--color-bad,#b3261e);border-color:var(--color-bad,#b3261e)"></i>켜짐</span><span><i style="background:linear-gradient(90deg,#e07b16 50%,transparent 50%);border-color:#e07b16"></i>근접(반불)</span><span><i></i>꺼짐</span>';dots.after(lg)}}
  // 맨 위 총평
  var h=big.querySelector('.mm-ln-head');if(h)h.remove();h=document.createElement('div');h.className='mm-ln-head';

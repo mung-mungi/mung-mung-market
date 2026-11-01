@@ -21,3 +21,19 @@
 .mm-ln-leg{display:none!important}
 
 .mm-ln-cap i{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid #cfcac0;vertical-align:-1px;margin-right:3px;box-sizing:border-box}.mm-ln-cap i.on{background:#b3261e;border-color:#b3261e}.mm-ln-cap i.nr{background:linear-gradient(90deg,#e07b16 50%,#fff 50%);border-color:#e07b16}
+/* 영역별 3칸 줄(사용자 2026-11-01) */
+.mm-ln-ar{display:flex;flex-direction:column;gap:6px;margin:4px 0 2px}
+.mm-ln-r{display:grid;grid-template-columns:86px auto 1fr 14px;align-items:center;gap:10px;padding:9px 12px;border-radius:12px;background:#fff;border:1px solid #e6dfcf;box-shadow:0 2px 0 #ece4d2;cursor:pointer}
+.mm-ln-r::after{content:"▾";font:400 12px sans-serif;color:#9a948a;justify-self:end}.mm-ln-r.op::after{content:"▴"}
+.mm-ln-r b{font:800 15px/1.2 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#262626}
+.mm-ln-r .d3{display:flex;gap:5px}.mm-ln-r .d3 i{width:18px;height:18px;border-radius:50%;border:2.5px solid #d6d0c4;background:#fff;box-sizing:border-box}
+.mm-ln-r .d3 i.on{background:#b3261e;border-color:#b3261e}.mm-ln-r .d3 i.nr{background:linear-gradient(90deg,#e07b16 50%,#fff 50%);border-color:#e07b16}
+.mm-ln-r .st{font:700 13.5px/1.2 -apple-system,sans-serif;color:#8a857a;text-align:right}
+.mm-ln-r.hot{border-color:#e9b7b1;background:#fffafa}.mm-ln-r.hot .st{color:#b3261e}.mm-ln-r.warm .st{color:#c76a0c}
+.mm-ln-ex{display:none;margin:-2px 4px 4px;padding:8px 12px;border-left:3px solid #e6dfcf;font:500 14px/1.55 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3d3a35}
+.mm-ln-r.op+.mm-ln-ex{display:block}
+.mm-ln-ex p{margin:4px 0 8px}.mm-ln-ex p.rest{color:#8a857a;font-size:13px;margin:2px 0}
+.mm-ln-ex .k{display:inline-block;font:800 11.5px/1 sans-serif;color:#fff;padding:3px 7px;border-radius:999px;margin-right:6px;vertical-align:2px}.mm-ln-ex .k.on{background:#b3261e}.mm-ln-ex .k.nr{background:#e07b16}
+.mm-ln-ex b{font-weight:800}.mm-ln-ex .w{display:block;color:#5f5a52;font-size:13.5px;margin-top:2px}
+.mm-ln-key{display:block;margin:4px 0 0;font:500 12.5px/1.4 -apple-system,sans-serif;color:#8a857a}
+.mm-ln-r .d3 i.nf{background:#e07b16;border-color:#e07b16}

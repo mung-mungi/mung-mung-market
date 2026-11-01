@@ -1,7 +1,7 @@
 // 시장 경고등 '지금 시장은' 통일 양식(사용자 2026-11-01)
 // 근접(기준의 90% 이상, ltui의 5단계 색 4 '근접')은 반불(◐)로 보여 주고, 유가는 100달러 이상이면 '높은 자리'로 근접 처리.
 // 영역마다 '지금' 한 줄, 맨 위에 '지금 시장은' 총평을 숫자로 자동 생성. 단계 계산(켜진 불)은 그대로.
-(function(){var WTI=null;try{fetch('d/lights/oil.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.length){WTI=Number(j[j.length-1].wti);run()}}).catch(function(){})}catch(e){}
+(function(){var WTI=null,TW={};try{fetch('d/lights/thresholds.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j){j.forEach(function(t){TW[t.name]=t.why||''});run()}}).catch(function(){})}catch(e){}try{fetch('d/lights/oil.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&j.length){WTI=Number(j[j.length-1].wti);run()}}).catch(function(){})}catch(e){}
 var C={r:['#b3261e','#fbe8e5'],o:['#a14d00','#fdf0e1'],y:['#8a6a00','#fbf4dc'],g:['#2e7d4f','#e7f3ec']};
 function nm(li){return ((li.querySelector('b')||{}).textContent||'').trim()}
 function val(li){return ((li.querySelector('.l-now')||{}).textContent||'').trim()}
@@ -27,12 +27,26 @@ function run(){var A=document.getElementById('areas'),big=document.getElementByI
  // 위 동그라미: 근접은 반불
  var D=[...document.querySelectorAll('#big-dots .dot')];D.forEach(function(i){i.classList.remove('mm-half')});
  Object.keys(status).forEach(function(t){status[t].forEach(function(x){if(x.s!=='near')return;var i=D.find(function(d){return d.title===x.n&&!d.classList.contains('on')});if(i)i.classList.add('mm-half')})});
- // 한 줄 동그라미: 켜짐 → 근접 → 꺼짐 순으로 전체를 한 번에
- var dots=document.getElementById('big-dots');if(dots){dots.classList.add('mm-ln-one');var rw=dots.querySelector('.mm-ln-row');if(rw)rw.remove();var cp=dots.querySelector('.mm-ln-cap');if(cp)cp.remove();
-  var all=[];Object.keys(status).forEach(function(t){status[t].forEach(function(x){all.push({t:t,n:x.n,s:x.s})})});var od={on:0,near:1,off:2};all.sort(function(a,b){return od[a.s]-od[b.s]});
-  rw=document.createElement('div');rw.className='mm-ln-row';all.forEach(function(x){var i=document.createElement('i');i.className=x.s==='on'?'on':x.s==='near'?'nr':'';i.title=x.t+' · '+x.n;rw.appendChild(i)});dots.appendChild(rw);
-  var nOn=all.filter(function(x){return x.s==='on'}).length,nNr=all.filter(function(x){return x.s==='near'}).length;cp=document.createElement('span');cp.className='mm-ln-cap';cp.innerHTML='전체 '+all.length+'개 중 <i class="on"></i><em>켜짐 '+nOn+'</em> · <i class="nr"></i><u>근접 '+nNr+'</u> · <i></i>꺼짐 '+(all.length-nOn-nNr);dots.appendChild(cp)}
- var row=big.querySelector('.row');var o=big.querySelector('.mm-ln-near');if(o)o.remove();if(nearAll.length&&row){var e=document.createElement('div');e.className='mm-ln-near';var b=document.createElement('b');b.textContent='근접 '+nearAll.length;e.append(b,document.createTextNode(nearAll.join(' · ')));row.after(e)}
+ // 영역별 3칸 동그라미(사용자 2026-11-01): 불 1개당 1칸, 근접 1개당 반 칸(최대 3칸). 줄을 누르면 왜 켜졌는지 펼침
+ var dots=document.getElementById('big-dots');if(dots){dots.classList.add('mm-ln-one');[...dots.querySelectorAll('.mm-ln-row,.mm-ln-cap,.mm-ln-ar,.mm-ln-key')].forEach(function(e){e.remove()});
+  var nOn=0,nNr=0,nAll=0,OPEN=window.__mmLnOpen||(window.__mmLnOpen={});
+  var box=document.createElement('div');box.className='mm-ln-ar';
+  Object.keys(status).forEach(function(t){var L=status[t];var on=L.filter(function(x){return x.s==='on'}),nr=L.filter(function(x){return x.s==='near'});nOn+=on.length;nNr+=nr.length;nAll+=L.length;
+   var sc=Math.min(3,on.length+nr.length*0.5);var rw=document.createElement('div');rw.className='mm-ln-r'+(on.length?' hot':nr.length?' warm':'');rw.setAttribute('role','button');
+   var nm=document.createElement('b');nm.textContent=t;rw.appendChild(nm);var dd=document.createElement('span');dd.className='d3';var ro=Math.min(3,on.length),ns=Math.min(3-ro,nr.length*0.5);for(var q=1;q<=3;q++){var i=document.createElement('i');if(q<=ro)i.className='on';else if(q-ro<=ns)i.className='nf';else if(q-ro-0.5<=ns)i.className='nr';dd.appendChild(i)}rw.appendChild(dd);
+   var st=document.createElement('span');st.className='st';st.textContent=on.length?'켜짐 '+on.length+(nr.length?' · 근접 '+nr.length:''):nr.length?'근접 '+nr.length:'조용';rw.appendChild(st);
+   var ex=document.createElement('div');ex.className='mm-ln-ex';var hit=on.concat(nr);
+   if(!hit.length){var p0=document.createElement('p');p0.textContent=L.length+'개 모두 기준에서 멉니다.';ex.appendChild(p0)}
+   hit.forEach(function(x){var p=document.createElement('p');var k=document.createElement('span');k.className=x.s==='on'?'k on':'k nr';k.textContent=x.s==='on'?'켜짐':'근접';p.appendChild(k);var tt=document.createElement('b');tt.textContent=x.n+' '+x.v;p.appendChild(tt);
+    var why=(t==='유가'&&x.s==='near'&&oilNear)?'급등 기준(한 달 +15%)은 아니지만 WTI가 '+Math.round(WTI)+'달러로 100달러 위에 머물러 물가·금리 부담이 이어집니다.':(TW[x.n]||'');if(x.s==='near'&&!(t==='유가'&&oilNear))why='기준의 90% 넘게 다가왔습니다. '+why;
+    if(why){var w=document.createElement('span');w.className='w';w.textContent=why;p.appendChild(w)}ex.appendChild(p)});
+   var rest=L.length-hit.length;if(hit.length&&rest>0){var pr=document.createElement('p');pr.className='rest';pr.textContent='나머지 '+rest+'개는 꺼짐';ex.appendChild(pr)}
+   if(OPEN[t])rw.classList.add('op');rw.addEventListener('click',function(){rw.classList.toggle('op');OPEN[t]=rw.classList.contains('op')});
+   box.appendChild(rw);box.appendChild(ex)});
+  dots.appendChild(box);
+  var cp=document.createElement('span');cp.className='mm-ln-cap';cp.innerHTML='전체 '+nAll+'개 중 <i class="on"></i><em>켜짐 '+nOn+'</em> · <i class="nr"></i><u>근접 '+nNr+'</u> · <i></i>꺼짐 '+(nAll-nOn-nNr);dots.appendChild(cp);
+  var ky=document.createElement('span');ky.className='mm-ln-key';ky.textContent='영역마다 3칸: 켜진 불 1개 = 빨간 1칸, 근접 1개 = 주황 반 칸 · 줄을 누르면 이유가 펼쳐집니다';dots.appendChild(ky)}
+ var o=big.querySelector('.mm-ln-near');if(o)o.remove();
  if(!big.querySelector('.mm-ln-leg')){var dots=document.getElementById('big-dots');if(dots){var lg=document.createElement('div');lg.className='mm-ln-leg';lg.innerHTML='<span><i style="background:var(--color-bad,#b3261e);border-color:var(--color-bad,#b3261e)"></i>켜짐</span><span><i style="background:linear-gradient(90deg,#e07b16 50%,transparent 50%);border-color:#e07b16"></i>근접(반불)</span><span><i></i>꺼짐</span>';dots.after(lg)}}
  // 맨 위 총평
  var h=big.querySelector('.mm-ln-head');if(h)h.remove();h=document.createElement('div');h.className='mm-ln-head';
