@@ -445,7 +445,8 @@ def tidy_cal(s):
 # 페이지 맨 위 '오늘 한눈에' 양식 통일 — _tools/headui.css·headui.js (사용자 2026-10-29)
 def tidy_headui(s):
     s = re.sub(r'<(style|script) data-headui>.*?</\1>', '', s, flags=re.S)
-    if 'mm-take' not in s and 'mm-hero' not in s:
+    # 머리 부품이 공용 파일로 옮겨 가 'mm-hero' 글자가 페이지에 없어도, 머리 참조(data-hero)가 있으면 머리가 있는 페이지(2026-11-01)
+    if 'mm-take' not in s and 'mm-hero' not in s and 'data-hero' not in s:
         return s
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-headui>' + open(os.path.join(d, 'headui.css'), encoding='utf-8').read() + '</style><script data-headui>' + open(os.path.join(d, 'headui.js'), encoding='utf-8').read() + '</script>'
@@ -515,6 +516,22 @@ def tidy_tick(s):
     ref = core_ref('tick', 'tick.js')
     head, tail = s[:m.start()], s[m.end():]
     return head + ref + re.sub(pat, '', tail)  # 첫 자리에 참조 하나, 혹시 겹친 것은 지움
+
+
+# 페이지 머리 1판·2판 — 2026-11-01 정리 2일차: 통째 부품을 공용 파일 참조로. 조각마다 제자리에서 바꿈.
+# 주의 ①: 1판(hero.js)이 제목·날짜칩·면책 문구에 이름표를 붙이고 2판이 받아 꾸밈 → 1판을 지우면 21페이지가 무너짐(가상 진행으로 확인).
+# 주의 ②: 조각 사이 줄바꿈을 지우면 일부 페이지가 1~3px 달라짐 → 줄바꿈은 그대로 둠.
+HERO_PARTS = [('style', 'hero', 'hero.css'), ('script', 'hero', 'hero.js'), ('script', 'hero-fix', 'herofix.js'),
+              ('style', 'hero2', 'hero2.css'), ('script', 'hero2', 'hero2.js')]
+def tidy_hero(s):
+    for tag, m, n in HERO_PARTS:
+        ref = core_ref(m, n)
+        s = re.sub(r'<%s data-%s>[\s\S]*?</%s>' % (tag, m, tag), lambda x: ref, s, count=1)  # 통째 → 참조
+        if n.endswith('.css'):
+            s = re.sub(r'<link data-%s rel="stylesheet" href="_tools/%s\?v=\w+">' % (m, re.escape(n)), lambda x: ref, s)
+        else:
+            s = re.sub(r'<script data-%s src="_tools/%s\?v=\w+"></script>' % (m, re.escape(n)), lambda x: ref, s)
+    return s
 
 
 # 휴대폰 버벅임 줄이기 — _tools/perf.js를 <head> 맨 앞에(사용자 2026-10-29)

@@ -43,10 +43,12 @@ for f in glob.glob(os.path.join(src, '*.html')):
     # 페이지 머리(제목 영역) 통일 + 정보와 무관한 안내문 숨김 — 사용자 2026-10-28 지시. 판을 바꾸면 예전 것을 지우고 새로 넣음
     HERO = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'hero.html'), encoding='utf-8').read()
     s = re.sub(r'<style data-hero>[\s\S]*?</style>\s*<script data-hero>[\s\S]*?</script>\s*(?:<script data-hero-fix>[\s\S]*?</script>\s*)?', '', s)
+    s = re.sub(r'<link data-hero rel[^>]*>\s*<script data-hero src[^>]*></script>\s*<script data-hero-fix src[^>]*></script>\s*', '', s)  # 공용 파일 참조판(2026-11-01)
     s = s.replace('</body>', HERO + '</body>', 1) if '</body>' in s else s + HERO
     if os.path.basename(f).startswith('p-'):  # 머리 2판(파스텔 배너+멍뭉이) — 사용자 2026-10-28 지시
         H2 = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'hero2.html'), encoding='utf-8').read()
         s = re.sub(r'<style data-hero2>[\s\S]*?</style>\s*<script data-hero2>[\s\S]*?</script>\s*', '', s)
+        s = re.sub(r'<link data-hero2 rel[^>]*>\s*<script data-hero2 src[^>]*></script>\s*', '', s)  # 공용 파일 참조판(2026-11-01)
         s = s.replace('</body>', H2 + '</body>', 1) if '</body>' in s else s + H2
     if not re.match(r'\s*<!doctype', s, re.I):
         s = '<!doctype html>' + s
