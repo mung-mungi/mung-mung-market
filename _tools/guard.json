@@ -19,7 +19,8 @@
   "own-draft": "주인장 자료 🧪 검수 대기 배너 초안",
   "core_ref('names'": "평소 부르는 이름(알파벳→구글)",
   "if(s.textContent!==n+'건')": "주요 뉴스 반복 고리 끊기(같은 글자면 안 씀)",
-  "function setH(": "메뉴 숨김 표시는 body 말고 메뉴에만(버벅임)"
+  "function setH(": "메뉴 숨김 표시는 body 말고 메뉴에만(버벅임)",
+  "idle_changes": "매일 점검: 쉬는 동안 화면 변경 횟수"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -83,5 +84,8 @@
  ],
  "_tools/names.js": [
   "['알파벳','구글']"
+ ],
+ "_tools/health_check.py": [
+  "idle_changes"
  ]
 }

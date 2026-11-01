@@ -111,7 +111,7 @@ async def run_pages():
     async with async_playwright() as p:
         b = await p.chromium.launch()
         ctx = await b.new_context(viewport={'width': 390, 'height': 844})
-        await ctx.add_init_script("try{sessionStorage.setItem('mmSplash','1')}catch(e){}")
+        await ctx.add_init_script("try{sessionStorage.setItem('mmSplash','1')}catch(e){};window.__NMO=window.MutationObserver;")
         for n in pages:
             pg = await ctx.new_page(); errs = []; bad = []
             pg.on('pageerror', lambda e, errs=errs: errs.append(str(e)[:120]))
@@ -119,9 +119,18 @@ async def run_pages():
             try:
                 await pg.goto(f'http://127.0.0.1:8765/{n}', wait_until='load', timeout=30000); await pg.wait_for_timeout(2000)
                 m = await pg.evaluate('({sw:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight,n:document.getElementsByTagName("*").length})')
+                # ⑧ 쉬는 동안 일하는 페이지(2026-11-02) — 다 뜬 뒤(9초) 가만히 둔 3초 동안 화면이 바뀐 횟수. 부품끼리 서로 깨우는 반복 고리를 잡음
+                #    (11.01 주요 뉴스가 1초에 50번 넘게 'n건'을 다시 써서 폰이 쉬지 못했음)
+                await pg.wait_for_timeout(7000)
+                churn = await pg.evaluate('''new Promise(function(res){var o={},n=0;function d(e){return !e||!e.tagName?(e&&e.nodeName):e.tagName+(e.id?'#'+e.id:'')+(typeof e.className=='string'&&e.className?'.'+e.className.trim().split(/\\s+/)[0]:'')}
+                  var mo=new window.__NMO(function(ms){ms.forEach(function(m){n++;var k=m.type+' @'+d(m.target);o[k]=(o[k]||0)+1})});
+                  mo.observe(document.documentElement,{subtree:true,childList:true,attributes:true,characterData:true});
+                  setTimeout(function(){mo.disconnect();var top=Object.keys(o).sort(function(a,b){return o[b]-o[a]}).slice(0,2).map(function(k){return k+' '+o[k]+'번'});res({n:n,top:top})},3000)})''')
+                m['churn'] = churn
             except Exception as e:
                 errs.append('LOAD ' + str(e)[:80]); m = {}
-            pages[n].update({'errors': errs[:5], 'missing_files': bad[:5], 'overflow': (m.get('sw') or 390) > 392,
+            pages[n].update({'idle_changes': (m.get('churn') or {}).get('n'), 'idle_top': (m.get('churn') or {}).get('top'),
+                             'errors': errs[:5], 'missing_files': bad[:5], 'overflow': (m.get('sw') or 390) > 392,
                              'height': m.get('h'), 'elements': m.get('n')})
             await pg.close()
         await b.close()
@@ -136,6 +145,7 @@ for n, p in pages.items():
     if p.get('errors'): problems.append(f'{n}: 페이지 오류 {len(p["errors"])}건')
     if p.get('missing_files'): problems.append(f'{n}: 없는 파일 {len(p["missing_files"])}개')
     if p.get('overflow'): problems.append(f'{n}: 가로 넘침')
+    if (p.get('idle_changes') or 0) > 5: problems.append(f"{n}: 쉬는 동안 화면이 계속 바뀜 3초에 {p['idle_changes']}번(버벅임·배터리) — {', '.join(p.get('idle_top') or [])}")
     if p['missing_core']: problems.append(f'{n}: 공용 부품 참조 빠짐 {p["missing_core"]}')
     if not p['doctype_first']: problems.append(f'{n}: 문서 선언이 맨 앞이 아님')
 for x in fresh:
