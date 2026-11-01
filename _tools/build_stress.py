@@ -8,7 +8,7 @@ R = sys.argv[1] if len(sys.argv) > 1 else '.'
 P = lambda *a: os.path.join(R, *a)
 OUT = P('d/stress/stress.json')
 def get(u):
-    o = subprocess.run(['curl', '-sSL', '-m', '40', '-A', 'Mozilla/5.0 (Macintosh) Chrome/124', u], capture_output=True, text=True)
+    o = subprocess.run(['curl', '-sSL', '-m', '40', '-A', 'Mozilla/5.0', u], capture_output=True, text=True)
     if o.returncode or not o.stdout: raise RuntimeError('fail ' + u[:70])
     return o.stdout
 def load(p, d):
@@ -54,10 +54,27 @@ def fred1(i):
             except Exception as e: last = e
             subprocess.run(['sleep', '3'])
     raise RuntimeError('FRED %s 실패 %s' % (i, str(last)[:40]))
+def chifed():
+    t = get('https://www.chicagofed.org/-/media/publications/nfci/nfci-data-series-csv.csv'); rows = list(csv.DictReader(io.StringIO(t))); out = {}
+    for r in rows:
+        ks = {k.strip().upper(): v for k, v in r.items() if k}
+        d = ks.get('FRIDAY_OF_WEEK') or ks.get('DATE') or ''
+        try: m, dd, y = d.split('/'); d = '%s-%s-%s' % (y, m.zfill(2), dd.zfill(2))
+        except Exception: pass
+        for k in ('NFCI', 'ANFCI', 'RISK', 'CREDIT', 'LEVERAGE'):
+            v = ks.get(k)
+            if v not in (None, ''):
+                try: out.setdefault({'RISK': 'NFCIRISK', 'CREDIT': 'NFCICREDIT', 'LEVERAGE': 'NFCILEVERAGE'}.get(k, k), []).append((d, float(v)))
+                except Exception: pass
+    return out
 F = {}
 for _i in ['NFCI', 'ANFCI', 'NFCIRISK', 'NFCICREDIT', 'NFCILEVERAGE', 'STLFSI4', 'KCFSI']:
     try: F[_i] = fred1(_i)
     except Exception as e: errs.append(str(e)[:90])
+if any(k not in F for k in ('NFCI', 'ANFCI', 'NFCIRISK', 'NFCICREDIT', 'NFCILEVERAGE')):
+    try:
+        for k, v in chifed().items(): F.setdefault(k, sorted(v))
+    except Exception as e: errs.append('시카고 연은 직접: ' + str(e)[:60])
 z = lambda v: '평균보다 긴장' if v > 0.5 else '평균보다 약간 긴장' if v > 0 else '평균보다 느슨' if v > -0.5 else '평균보다 많이 느슨'
 tryit(lambda: pack('nfci', '금융여건지수(NFCI)', '시카고 연은', 'official', '매주', F['NFCI'], '', z), 'nfci')
 tryit(lambda: pack('anfci', '조정 금융여건지수(ANFCI)', '시카고 연은', 'official', '매주', F['ANFCI'], '', z), 'anfci')
