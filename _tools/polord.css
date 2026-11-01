@@ -1,0 +1,5 @@
+/* 정책·지정학 다가오는 일정 3줄 미리보기(사용자 2026-11-01) */
+#up.mm-pfc{overflow:hidden;transition:max-height .35s ease;position:relative}
+#up.mm-pfc:not(.mm-pfo)::after{content:'';position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(rgba(255,255,255,0),#fff);pointer-events:none}
+.mm-pf{all:unset;cursor:pointer;display:block;margin:6px auto 2px;padding:8px 18px;border-radius:999px;background:#fff;border:1px solid #e6dfcf;box-shadow:0 2px 0 #ece4d2;font:800 13.5px -apple-system,"Apple SD Gothic Neo",sans-serif;color:#9a6200;text-align:center}
+.mm-pf:active{transform:translateY(1px);box-shadow:0 1px 0 #ece4d2}

@@ -634,6 +634,16 @@ def tidy_dend(s):
 
 
 # 채권·금리 페이지 '채권 경고등'도 시장 경고등과 같은 '지금' 양식(사용자 2026-11-01) — _tools/bdnear.*
+# 정책·지정학: 타임라인 → 다가오는 일정(3줄 + 펼치기) → 나머지(사용자 2026-11-01) — _tools/polord.*
+def tidy_policy(s):
+    s = re.sub(r'<(style|script) data-polord>.*?</\1>', '', s, flags=re.S)
+    if 'id="up-sec"' not in s or 'id="tl-sec"' not in s:
+        return s
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-polord>' + open(os.path.join(d, 'polord.css'), encoding='utf-8').read() + '</style><script data-polord>' + open(os.path.join(d, 'polord.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
 def tidy_bond(s):
     s = re.sub(r'<(style|script) data-bdnear>.*?</\1>', '', s, flags=re.S)
     if 'id="lights-card"' not in s:
