@@ -662,6 +662,9 @@ def tidy_notice(s):
     s = re.sub(r'<(style|script) data-notice>.*?</\1>', '', s, flags=re.S)
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-notice>' + open(os.path.join(d, 'notice.css'), encoding='utf-8').read() + '</style><script data-notice>' + open(os.path.join(d, 'notice.js'), encoding='utf-8').read() + '</script>'
+    # 유튜브 새 영상 배너(사용자 2026-11-02) — _tools/ytban.*, 자료 d/yt.json(Actions yt.yml)
+    s = core_strip(s, 'ytban')
+    add += core_ref('ytban', 'ytban.css') + core_ref('ytban', 'ytban.js')
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
 

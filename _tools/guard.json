@@ -28,7 +28,8 @@
   "mm-bd-steps": "채권 경고등 점수 단계 상자",
   "'chlog'": "설명서·경고 칩 전 페이지 연결",
   "ltjump": "경고등 바로가기 연결",
-  "def tidy_easy": "옵션 온도계·업종 회전 지도 쉽게 읽기 연결"
+  "def tidy_easy": "옵션 온도계·업종 회전 지도 쉽게 읽기 연결",
+  "mm-yt": "유튜브 새 영상 배너"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -117,5 +118,8 @@
  ],
  "_tools/rrgaxis.js": [
   "mm-st-how"
+ ],
+ "_tools/ytban.js": [
+  "mm-yt"
  ]
 }
