@@ -80,3 +80,6 @@
 .mm-st-d .mm-st-say{margin-top:8px;padding:8px 10px;font-size:13.5px}
 .mm-st-d .mm-st-key{margin-top:6px;font-size:12px}
 .lw>.lw-take,.lw>#lt-auto{display:none!important}
+.mm-st-how{margin:8px 0 2px;padding:8px 11px;border-radius:11px;background:#f6f4ef;border:1px solid #e6dfcf}
+.mm-st-how summary{cursor:pointer;list-style:none;font:800 13px/1.3 -apple-system,sans-serif;color:#7a5a12}.mm-st-how summary::-webkit-details-marker{display:none}
+.mm-st-how[open] summary{margin-bottom:4px}.mm-st-how p{display:grid;grid-template-columns:52px 1fr;gap:6px;margin:4px 0;font:500 13px/1.45 sans-serif;color:#3d3a35}.mm-st-how p b{font:800 12px/1.6 sans-serif;color:#9a6200}
