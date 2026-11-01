@@ -82,6 +82,15 @@ try:
 except Exception as e:
     live_lag = None
 
+# ⑦ 기능 되돌림 감지(2026-11-01) — 다른 세션이 옛 복사본으로 공용 부품을 덮어쓰면 오늘 넣은 기능이 조용히 사라짐(19:16 navfab.js 사례). 꼭 있어야 할 표시를 확인
+MUST = {'_tools/navfab.js': ['up>48', 'pointermove', 'mm-swiping', 'wx'], '_tools/navfab.css': ['mm-swiping'],
+        '_tools/home_order.js': ["'p-targets']"], '_tools/herofix.js': ['rel(']}
+lost = []
+for f, keys in MUST.items():
+    try: t = open(os.path.join(R, f), encoding='utf-8').read()
+    except Exception: lost.append(f + ' 없음'); continue
+    lost += [f'{os.path.basename(f)}: {k}' for k in keys if k not in t]
+
 # ① 페이지 — 무게·통째 부품·공용 참조
 CORE = ['perf', 'hshome', 'wrapfix', 'splash', 'vt', 'tick']
 pages = {}
@@ -133,6 +142,7 @@ for x in fresh:
     if x['state'] == 'late': problems.append(f'{x["name"]}: {x["age_h"]}시간 갱신 없음(마지막 {x["last"]})')
 if drift: problems.append(f'옛 코드로 덮인 페이지 {len(drift)}개(정리 다시 입히면 바뀜): ' + ', '.join(drift[:6]))
 if live_lag: problems.append(f"실제 사이트가 옛 판({live_lag['site']})에 멈춰 있음 — 저장소는 {live_lag['repo']}, 사이트 내보내기 막힘 확인 필요")
+if lost: problems.append('옛 복사본으로 덮여 사라진 기능 표시: ' + ', '.join(lost))
 if posts['bot_under_5min']: problems.append(f'시세 게시 5분 안 연속 {posts["bot_under_5min"]}번')
 if posts['hours_over_10']: problems.append(f'시간당 게시 10번 넘은 시간 {posts["hours_over_10"]}개(사이트 빌드 한도)')
 
@@ -140,7 +150,7 @@ res = {'at': now.astimezone(KST).strftime('%Y-%m-%d %H:%M'), 'weekend': weekend,
        'total_kb': sum(p['kb'] for p in pages.values()), 'total_inline': sum(p['inline'] for p in pages.values()),
        'prev_total_kb': prev.get('total_kb'), 'prev_total_inline': prev.get('total_inline'),
        'heaviest': sorted(((p['kb'], n) for n, p in pages.items()), reverse=True)[:3],
-       'fresh': fresh, 'posts': posts, 'drift': drift, 'live_lag': live_lag, 'pages': pages}
+       'fresh': fresh, 'posts': posts, 'drift': drift, 'lost': lost, 'live_lag': live_lag, 'pages': pages}
 json.dump(res, open(os.path.join(OUT, 'health.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 hist = os.path.join(OUT, 'history.jsonl')
 with open(hist, 'a', encoding='utf-8') as h:

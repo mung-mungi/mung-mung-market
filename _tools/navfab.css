@@ -41,6 +41,7 @@ a.mm-earnnew em{font-style:normal;font-size:22px;font-weight:700;color:#e8343b}
 
 a.mm-earnnew.seen{border-color:#e6dcc6;border-left-color:#b08a3e;box-shadow:0 2px 0 #ece3cf}a.mm-earnnew.seen i{background:#b08a3e;animation:none}a.mm-earnnew.seen b{color:#8a6a2c}a.mm-earnnew.seen em{color:#b08a3e}
 
+/* 차트에서 페이지 넘기는 중에는 가격 말풍선·십자선 숨김(사용자 2026-11-01) */html.mm-swiping #main .mmt-bub,html.mm-swiping #main .mmt-box svg .cx,html.mm-swiping #main .mmt-box svg .cy{display:none!important}
 /* 숨은 손잡이를 아이폰 홈 막대 위로 띄우고 넓은 알약으로(사용자 2026-11-01)
    — 맨 아래 가장자리는 아이폰이 '홈으로 가기' 제스처로 먼저 가로채서 밀어 올리기가 잘 안 먹음 */
 body .mmd #mm-pull{transition:top .45s cubic-bezier(.33,.9,.3,1),width .25s,height .25s,border-radius .25s,margin .25s}
