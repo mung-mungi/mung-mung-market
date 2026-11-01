@@ -17,12 +17,13 @@ log = load(P('d/lights/lights_log.json'), []); TH = {t['id']: t for t in load(P(
 # 반도체·AI 영역(사용자 2026-11-01) — 시장 전체는 버텨도 반도체에 공포가 몰리는 날을 잡음. 허브 동기화로 기준표가 덮여도 다시 넣음
 SOX_TH = [
     {'id': 'soxdd', 'board': '반도체·AI', 'name': '반도체 고점 대비 낙폭', 'rule': '필라델피아 반도체 지수가 최근 1년 고점보다 15% 이상 낮음', 'op': '>=', 'value': 15, 'unit': '%',
-     'why': '반도체가 고점에서 15% 넘게 빠지면 조정을 넘어 AI 투자 기대 자체를 다시 따지는 구간입니다.', 'since': '2026-11-01', 'history': [], 'weight': 1},
+     'why': '반도체가 고점에서 15% 넘게 빠지면 조정을 넘어 AI 투자 기대 자체를 다시 따지는 구간입니다.', 'since': '2026-11-01', 'history': [], 'weight': 0.5},
     {'id': 'soxday', 'board': '반도체·AI', 'name': '반도체 하루 급락(최근 5일)', 'rule': '최근 5거래일 중 반도체 지수가 하루 5% 이상 빠진 날이 있음', 'op': '>=', 'value': 5, 'unit': '%',
-     'why': '하루 -5%는 흔치 않은 투매입니다. 레버리지 청산이 몰리면 나타나고, 며칠 동안 여진이 이어지기 쉽습니다.', 'since': '2026-11-01', 'history': [], 'weight': 1}]
+     'why': '하루 -5%는 흔치 않은 투매입니다. 레버리지 청산이 몰리면 나타나고, 며칠 동안 여진이 이어지기 쉽습니다.', 'since': '2026-11-01', 'history': [], 'weight': 0.5,
+     'weight_why': '반도체·AI 영역은 둘이 함께 켜져도 1개 몫(각 0.5)으로 셉니다 — 반도체 쏠림은 업종 신호가 따로 잡고, 기본 경고등은 시장 전체 온도를 차분하게 유지(사용자 2026-11-01).'}]
 _tl = load(P('d/lights/thresholds.json'), [])
-if not any(t.get('id') == 'soxdd' for t in _tl):
-    _tl = SOX_TH + _tl; json.dump(_tl, open(P('d/lights/thresholds.json'), 'w', encoding='utf-8'), ensure_ascii=False)
+_tl = SOX_TH + [t for t in _tl if t.get('id') not in ('soxdd', 'soxday')]
+json.dump(_tl, open(P('d/lights/thresholds.json'), 'w', encoding='utf-8'), ensure_ascii=False)
 TH = {t['id']: t for t in _tl}
 yd = load(P('d/bond/yields_daily.json'), []); hy = load(P('d/bond/hy_spread.json'), [])
 oil = load(P('d/lights/oil.json'), []); qqq = load(P('d/lights/qqq_px.json'), [])
@@ -144,6 +145,8 @@ if SOXP:
             v = fn(d)
             if v is None: continue
             t = TH[k]; keep.append({'date': d, 'board': t['board'], 'id': k, 'val': v, 'on': int(OP[t['op']](v, t['value'])), 'w': t.get('weight', 1)})
+for r in keep:
+    if r['id'] in ('soxdd', 'soxday'): r['w'] = TH[r['id']].get('weight', 1)
 log = sorted(keep + new, key=lambda r: (r['date'], list(TH).index(r['id']) if r['id'] in TH else 99))
 def dump(p, o): json.dump(o, open(P(p), 'w', encoding='utf-8'), ensure_ascii=False)
 dump('d/lights/lights_log.json', log); dump('d/bond/yields_daily.json', yd); dump('d/bond/hy_spread.json', hy)

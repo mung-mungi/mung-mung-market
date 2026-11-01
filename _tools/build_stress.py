@@ -179,9 +179,9 @@ try:
             if not p or len(p) < 23: continue
             cl.append({'t': ct, 'n': cn, 'r': cr, 'm1': round((p[-1] / p[-22] - 1) * 100, 1), 'd1': round((p[-1] / p[-2] - 1) * 100, 1), 'dd': round((p[-1] / max(p) - 1) * 100, 1)})
         comps[t] = sorted(cl, key=lambda x: x['m1'])
-    spy_m1 = round((spy[-1] / spy[-22] - 1) * 100, 1)
+    spy_m1 = round((spy[-1] / spy[-22] - 1) * 100, 1); spy_d1 = round((spy[-1] / spy[-2] - 1) * 100, 2)
 except Exception as e:
-    errs.append('업종: ' + str(e)[:80]); spy_m1 = None
+    errs.append('업종: ' + str(e)[:80]); spy_m1 = None; spy_d1 = None
     sectors = old.get('sectors', []); comps = old.get('comps', {})
     for x in sectors: atkdef.setdefault(x['g'], []).append(x['m1'])
 mean = lambda xs: round(sum(xs) / len(xs), 1) if xs else None
@@ -205,7 +205,7 @@ ins = [it[k]['emo'] for k in ('bofa_bb', 'bofa_fms') if k in it and 'emo' in it[
 prc = [it[k]['pct'] for k in ('vix', 'move') if k in it and it[k].get('pct') is not None]
 scores = {'system': avg('official'), 'price': round(sum(prc) / len(prc)) if prc else None,
           'retail': round(sum(ret) / len(ret)) if ret else None, 'inst': round(sum(ins) / len(ins)) if ins else None,
-          'atk': mean(atkdef.get('atk', [])), 'def': mean(atkdef.get('def', [])), 'cyc': mean(atkdef.get('cyc', [])), 'spy_m1': spy_m1}
+          'atk': mean(atkdef.get('atk', [])), 'def': mean(atkdef.get('def', [])), 'cyc': mean(atkdef.get('cyc', [])), 'spy_m1': spy_m1, 'spy_d1': spy_d1, 'y10': (load(P('d/bond/yields_daily.json'), [{}]) or [{}])[-1].get('us10y')}
 out = {'updated': dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).strftime('%Y-%m-%d %H:%M KST'), 'window': '최근 10년',
        'avg_official': avg('official'), 'avg_sentiment': avg('sentiment'), 'scores': scores, 'sectors': sectors, 'comps': comps, 'items': items, 'errors': errs}
 os.makedirs(os.path.dirname(OUT), exist_ok=True)

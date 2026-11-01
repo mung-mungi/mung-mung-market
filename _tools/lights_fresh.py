@@ -24,9 +24,9 @@ def stage(s, a):
         return STAGE[4]
     if s >= 3:
         return STAGE[3]
-    if s == 2 or a >= 2:
+    if s >= 2 or a >= 2:
         return STAGE[2]
-    if s == 1:
+    if s > 0:
         return STAGE[1]
     return STAGE[0]
 
