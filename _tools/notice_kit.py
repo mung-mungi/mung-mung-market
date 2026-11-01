@@ -106,6 +106,11 @@ def grade(sc):
     lv = '무조건' if sc.get('force') else ('초안' if tot >= 7 else ('후보' if tot >= 5 else '타임라인만'))
     return tot, lv
 
+def addlog(b, x, act):
+    t, lv = grade(x.get('score'))
+    b.setdefault('log', []).insert(0, {'at': kst(), 'title': x['title'], 'total': t, 'level': lv, 'act': act, 'note': x.get('note', '')})
+    b['log'] = b['log'][:30]
+
 def load_bundle(repo, p):
     f = os.path.join(repo, 'd', 'notice_draft.enc.json')
     if not os.path.exists(f): return {'drafts': [], 'cands': []}
@@ -138,8 +143,15 @@ def main(a):
         if cmd == 'draft': x['html'] = render(d, repo)
         b['drafts'] = [y for y in b['drafts'] if y['id'] != d['id']]; b['cands'] = [y for y in b['cands'] if y['id'] != d['id']]
         b[key].insert(0, x); b['cands'] = b['cands'][:8]
+        addlog(b, x, '초안' if cmd == 'draft' else '후보')
         save_bundle(repo, p, b); t, lv = grade(x['score'])
         print('🧪', '검수 대기' if cmd == 'draft' else '후보', x['title'], f'{t}/10 · {lv}')
+    elif cmd == 'log':
+        # log 판정.json <저장소> <비번> — 배너로 안 만든 판정(4점 이하 등)도 기록만 남김. 시험 기간에 '쓸데없이 울리나'를 보려는 것
+        d = json.load(open(a[1], encoding='utf-8')); repo = a[2]; p = pin(3)
+        assert re.fullmatch(r'\d{4}', p or ''), '비번(4자리)이 필요합니다'
+        b = load_bundle(repo, p); addlog(b, {'id': d['id'], 'title': d['title'], 'score': d.get('score', {}), 'note': d.get('note', '')}, '기록만')
+        save_bundle(repo, p, b)
     elif cmd == 'publish':
         # publish <저장소> <비번> [id] — id를 안 주면 맨 위 초안
         repo = a[1]; p = pin(2); want = a[3] if len(a) > 3 else ''

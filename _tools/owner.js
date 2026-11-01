@@ -74,6 +74,9 @@ function draft(pin){fetch('d/notice_draft.enc.json?t='+Date.now(),{cache:'no-sto
   var h='<div class="own-hd" role="button"><span class="own-dr-chip c">후보 '+B.cands.length+'건 · 5~6점</span><b>보시고 올리라고 하면 배너로 만듭니다</b></div><div class="own-b">';
   B.cands.forEach(function(x){h+='<details class="own-cd"><summary role="button"><em class="lv-'+esc(x.level)+'">'+(x.total||0)+'</em><span>'+esc(x.title)+'</span><i>'+esc(x.at||'')+'</i></summary>'+scoreHtml(x,R)+(x.note?'<p class="own-dr-how">'+esc(x.note)+'</p>':'')+'</details>'});
   c.innerHTML=h+'</div>';c.querySelector('.own-hd').onclick=function(){c.classList.toggle('own-on')};box.appendChild(c)}
+ if((B.log||[]).length){var lg=document.createElement('details');lg.className='own-rule own-log';
+  lg.innerHTML='<summary role="button">▸ 판정 기록 · 최근 '+B.log.length+'건 (시험 기간: 너무 자주 울리는지 보기)</summary><div>'+B.log.map(function(x){return '<p><b>'+esc(x.at)+'</b> '+(x.total||0)+'점 · '+esc(x.act)+' — '+esc(x.title)+(x.note?' <small>('+esc(x.note)+')</small>':'')+'</p>'}).join('')+'</div>';
+  box.appendChild(lg)}
  if(!box.children.length)return;
  var rb=document.createElement('details');rb.className='own-rule';
  rb.innerHTML='<summary role="button">▸ 배너 올리는 기준 · 점수표</summary><div><p><b>원칙</b> 오늘 안 보면 판단이 틀어질 일만 배너로. 7점 이상 초안, 5~6 후보, 4 이하 타임라인만.</p><p><b>무조건</b> '+(B.force||[]).map(esc).join(' · ')+'</p>'+
