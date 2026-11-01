@@ -22,7 +22,13 @@ function build(d){var w=el('div','pd');if(d.lead)w.appendChild(el('p','ld',d.lea
   else s.appendChild(el('p','tx',b.text||''));w.appendChild(s)});
  if(d.links&&d.links.length){var l=el('div','lk');l.appendChild(el('h5',null,'원문'));d.links.forEach(function(i){l.appendChild(lk(i.u,i.media+' · '+i.t))});w.appendChild(l)}
  if(d.updated)w.appendChild(el('p','up2',d.updated+' 정리'));return w}
-function toggle(row,e,force){var open=force!=null?force:!row.classList.contains('tlx-open');row.classList.toggle('tlx-open',open);if(e)OPEN[e.id]=open;
+// 펼침·접힘 때 본문·날짜가 새 자리로 미끄러지듯 이동(FLIP, 사용자 2026-11-02 "모션 자연스럽게")
+function flip(row,fn){var bd=row.querySelector(':scope>.bd'),d=row.querySelector(':scope>.d');var A=bd&&bd.getBoundingClientRect(),B=d&&d.getBoundingClientRect();fn();
+ if(!A||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var A2=bd.getBoundingClientRect(),B2=d&&d.getBoundingClientRect();
+ [[bd,A,A2],[d,B,B2]].forEach(function(z){var el=z[0],o=z[1],n=z[2];if(!el||!o)return;var dx=o.left-n.left,dy=o.top-n.top;if(Math.abs(dx)<1&&Math.abs(dy)<1)return;
+  el.style.transition='none';el.style.transform='translate('+dx+'px,'+dy+'px)';el.getBoundingClientRect();
+  el.style.transition='transform .32s cubic-bezier(.2,.8,.2,1)';el.style.transform='';setTimeout(function(){el.style.transition=''},360)})}
+function toggle(row,e,force){var open=force!=null?force:!row.classList.contains('tlx-open');flip(row,function(){row.classList.toggle('tlx-open',open)});if(e)OPEN[e.id]=open;
  if(open&&e&&e.has_detail&&!row.querySelector('.pd')){var bd=row.querySelector('.bd');var w=el('p','tlx-ld','정리본 불러오는 중…');bd.appendChild(w);
   dt().then(function(D){w.remove();var x=D[e.id];if(x)bd.appendChild(build(x))}).catch(function(){w.textContent='정리본을 불러오지 못했습니다'})}}
 var FLOWBAR=false; // 흐름 알약 줄은 끔 — 위쪽 분류 알약이 큰 묶음 역할(사용자 2026-11-02 '세션 많으면 복잡')

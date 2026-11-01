@@ -88,3 +88,7 @@
 .pg-ev.tlx.tlx-open>.ln{grid-area:ln}
 .pg-ev.tlx.tlx-open>.d{grid-area:d;font-size:13px!important;line-height:1.2!important;margin:0 0 5px!important;padding:0!important;text-align:left!important;color:#8a857a}
 .pg-ev.tlx.tlx-open>.bd{grid-area:bd;margin-left:-4px}
+/* 펼친 요약은 살짝 내려오며 나타남(모션 자연스럽게, 2026-11-02) */
+@keyframes tlxIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.pg-ev.tlx.tlx-open>.bd>:not(.x):not(.t){animation:tlxIn .3s ease-out both}
+@media (prefers-reduced-motion:reduce){.pg-ev.tlx.tlx-open>.bd>*{animation:none!important}}
