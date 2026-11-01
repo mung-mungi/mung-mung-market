@@ -50,7 +50,8 @@
   "tlx-th",
   "OPEN[e.id]",
   "resetTop",
-  "catN"
+  "catN",
+  "relabel"
  ],
  "_tools/tlx.css": [
   "tlx-open",

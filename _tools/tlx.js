@@ -47,14 +47,15 @@ function empty(){var tl=document.getElementById('tl');if(!tl)return;var vis=[].s
 // 위쪽 분류 알약에 최근 7일 새 소식 수(사용자 2026-11-02 — 흐름 알약 대신)
 function catN(){var box=document.getElementById('catf');if(!box||!EV)return;var td=new Date(Date.now()-5*3600e3).toISOString().slice(0,10),fr=new Date(Date.now()-5*3600e3-6*864e5).toISOString().slice(0,10),n={},all=0;
  EV.forEach(function(e){if(e.date>=fr&&e.date<=td){n[e.category]=(n[e.category]||0)+1;all++}});
- [].forEach.call(box.querySelectorAll('button'),function(b){var v=b.dataset.c,k=v?(n[v]||0):all,x=b.querySelector('.tlx-cn');if(!x){x=el('span','tlx-cn');b.appendChild(x)}x.textContent=k?String(k):'';x.style.display=k?'':'none'})}
+ [].forEach.call(box.querySelectorAll('button'),function(b){var v=b.dataset.c,k=v?(n[v]||0):all,x=b.querySelector('.tlx-cn');if(!x){x=el('span','tlx-cn');b.appendChild(x)}x.textContent=k?'새 '+k:'';x.title='최근 7일 새 소식';x.style.display=k?'':'none'})}
+function relabel(){if(P!=='policy')return;var root=document.querySelector('main')||document.body,w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),n;while(n=w.nextNode()){if(n.nodeValue.indexOf('AI·전력 정책')>=0)n.nodeValue=n.nodeValue.split('AI·전력 정책').join('AI 정책')}}
 function sortDay(){[].forEach.call(document.querySelectorAll('#tl .pg-mon'),function(m){var rows=[].slice.call(m.querySelectorAll(':scope>article.pg-ev'));if(rows.length<2)return;
  var desc=true,p=m.previousElementSibling;while(p&&!p.classList.contains('pg-div'))p=p.previousElementSibling;if(p&&/가까운 날|오래된/.test(p.textContent))desc=false;
  var tm=function(r){return (r.__tlx&&r.__tlx.time)||''};
  var sorted=rows.slice().sort(function(a,b){var da=a.__tlx?a.__tlx.date:'',db=b.__tlx?b.__tlx.date:'';if(da!==db)return rows.indexOf(a)-rows.indexOf(b);var ta=tm(a),tb=tm(b);if(!ta||!tb||ta===tb)return rows.indexOf(a)-rows.indexOf(b);return desc?(ta<tb?1:-1):(ta<tb?-1:1)});
  if(sorted.every(function(r,i){return r===rows[i]}))return;var anchor=rows[rows.length-1].nextSibling;sorted.forEach(function(r){m.insertBefore(r,anchor)})})}
 function mark(){var rows=document.querySelectorAll('#tl article.pg-ev');if(!rows.length)return;
- ev().then(function(){chips();catN();
+ ev().then(function(){chips();catN();relabel();
   [].forEach.call(rows,function(row){if(row.dataset.tlx)return;row.dataset.tlx='1';row.classList.add('tlx');var e=key(row);row.__tlx=e;
    var dc=row.querySelector('.d');if(dc&&!dc.dataset.tlx){dc.dataset.tlx='1';var sm=dc.querySelector('small');if(sm)sm.className='tlx-wd';}
    if(e&&e.time&&dc&&!dc.querySelector('.tlx-tm')){dc.appendChild(el('span','tlx-tm',e.time))}
