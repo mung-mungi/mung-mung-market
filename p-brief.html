@@ -236,7 +236,7 @@ function mount(){if(document.querySelector('.mm-push'))return true;var sh=docume
  if(can&&(Notification.permission==='granted'||standalone))load(function(OS){draw(OS);setTimeout(gate,600)});setTimeout(gate,1200);return true}
 var n=0;(function go(){if(!mount()&&++n<40)setTimeout(go,250)})();
 }catch(e){}})();
-</script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><link data-splash rel="stylesheet" href="_tools/splash.css?v=6299f372"><script data-splash src="_tools/splash.js?v=dea59561"></script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="아침 브리핑 주요 시황정리"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-brief.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202611011556">(function(){var me="202611011556";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>아침 브리핑 주요 시황정리</title><style>:root{color-scheme:light;
+</script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><link data-splash rel="stylesheet" href="_tools/splash.css?v=6299f372"><script data-splash src="_tools/splash.js?v=dea59561"></script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="아침 브리핑 주요 시황정리"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-brief.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202611011603">(function(){var me="202611011603";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>아침 브리핑 주요 시황정리</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
@@ -770,79 +770,7 @@ dash.onData(draw);
   try { new MutationObserver(later).observe(document.documentElement, { childList: true, subtree: true, characterData: true }); } catch (e) {}
 })();
 </script>
-</div><script data-tick>(function(){
-  // 멍뭉 터미널: 누르는 곳마다 부드러운 '틱' 소리(소리 파일 없이 브라우저가 직접 만듦), 오른쪽 아래 🔊/🔇로 끄고 켬
-  if (window.__tick) return; window.__tick = 1;
-  var KEY = 'mm-tick-off', off = false, ctx = null;
-  try { off = localStorage.getItem(KEY) === '1'; } catch (e) {}
-  var SEL = 'a,button,summary,select,label,[role=button],[role=tab],[onclick],.pb-row,.pb-hc,.pb-tile,.cp,.item,tr[data-tk],input[type=checkbox],input[type=radio]';
-  var buf = null;
-  function ac(){
-    if (!ctx) { var A = window.AudioContext || window.webkitAudioContext; if (!A) return null; ctx = new A(); }
-    if (ctx.state !== 'running' && ctx.resume) ctx.resume();
-    if (!buf) { // 아이폰 키보드처럼 들릴 듯 말 듯한 '똑' = 7ms짜리 아주 짧은 잡음(손끝에 닿는 느낌만 남김, 사용자 2026-10-29)
-      var n = Math.floor(ctx.sampleRate * 0.007); buf = ctx.createBuffer(1, n, ctx.sampleRate); var d = buf.getChannelData(0);
-      for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 7);
-    }
-    return ctx;
-  }
-  // 소리 종류: tap(기본 틱) · nav(페이지 이동, 조금 낮은 톡) · open(펼침, 올라가는 두 번 틱) · close(닫힘, 낮은 틱)
-  var TONE = { tap: [[3400, 0.07, 0]], nav: [[2600, 0.075, 0]], open: [[3800, 0.06, 0]], close: [[2900, 0.055, 0]] };
-  function tick(kind){
-    if (off) return;
-    try { if (navigator.vibrate) navigator.vibrate(6); } catch (e) {}  // 안드로이드만 살짝 진동(아이폰 웹은 진동 불가)
-    try {
-      var c = ac(); if (!c) return;
-      (TONE[kind] || TONE.tap).forEach(function(x){
-        var t = c.currentTime + 0.005 + x[2], s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
-        s.buffer = buf; f.type = 'bandpass'; f.frequency.value = x[0]; f.Q.value = 1.4; g.gain.value = x[1];
-        s.connect(f); f.connect(g); g.connect(c.destination); s.start(t);
-      });
-    } catch (e) {}
-  }
-  // 아이폰·카톡 안 브라우저는 '누름이 끝난 뒤(click)'에만 소리를 허락하는 경우가 많아 click에서 냅니다
-  var last = 0;
-  function onTap(e){
-    var el = e.target && e.target.closest ? e.target.closest(SEL) : null;
-    if (!el || el.id === 'mm-snd' || el.disabled) return;
-    var now = Date.now(); if (now - last < 120) return; last = now;
-    var isNav = el.tagName === 'A' && el.href && !el.target && (function(){ try { var u = new URL(el.href, location.href); return u.origin === location.origin && u.pathname !== location.pathname; } catch (x) { return false; } })();
-    var tog = el.hasAttribute('aria-expanded') ? 'aria-expanded' : el.hasAttribute('aria-pressed') && el.closest('[role=group]') == null ? 'aria-pressed' : null;
-    if (isNav) tick('nav');
-    else if (tog) { var before = el.getAttribute(tog); setTimeout(function(){ var after = el.getAttribute(tog); tick(after === before ? 'tap' : after === 'true' ? 'open' : 'close'); }, 0); }
-    else if (el.tagName === 'SUMMARY') { var d = el.parentElement; setTimeout(function(){ tick(d && d.open ? 'open' : 'close'); }, 0); }
-    else if (el.matches('tr, .pb-row')) { var wasOn = el.classList.contains('on'); setTimeout(function(){ tick(wasOn ? 'close' : 'open'); }, 0); }
-    else tick('tap');
-    // 다른 페이지로 넘어가는 링크는 소리가 끊기지 않게 0.07초 뒤에 이동
-    if (el.tagName === 'A' && el.href && !el.target && !e.defaultPrevented && !e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
-      var u = new URL(el.href, location.href);
-      if (u.origin === location.origin && u.pathname !== location.pathname) { e.preventDefault(); setTimeout(function(){ location.href = el.href; }, 70); }
-    }
-  }
-  document.addEventListener('click', onTap, true);
-  ['touchend', 'pointerdown', 'keydown'].forEach(function(ev){ document.addEventListener(ev, function(){ try { if (!off) ac(); } catch (e) {} }, { capture: true, passive: true }); });
-  // 누를 때 살짝 눌리는 느낌(움직임 줄이기 설정이면 생략)
-  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduce) {
-    var st = document.createElement('style');
-    st.textContent = '.mm-press{transform:scale(.975)!important;filter:brightness(.97);transition:transform .07s ease,filter .07s ease!important}tr.mm-press{transform:none!important}.item{box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 4px 0 rgba(30,22,8,.13),0 9px 20px rgba(30,22,8,.13)!important;transition:transform .1s ease,box-shadow .1s ease!important}.pb-chip,.pb-tdet .cp{box-shadow:0 3px 0 rgba(30,22,8,.16),0 4px 8px rgba(30,22,8,.10);transition:transform .1s ease,box-shadow .1s ease}.item.mm-press,.pb-chip.mm-press,.pb-tdet .cp.mm-press{transform:translateY(3px)!important;filter:none!important;box-shadow:0 1px 0 rgba(30,22,8,.14)!important}@media (hover:hover){.item:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 4px 0 rgba(40,30,10,.08),0 10px 20px rgba(40,30,10,.10)!important}}tr.mm-press>td{background:rgba(154,98,0,.08)!important}.mm-rel{transition:transform .16s ease,filter .16s ease}';
-    (document.head || document.documentElement).appendChild(st);
-    var pressed = null;
-    var rel = function(){ if (pressed) { var p = pressed; pressed = null; p.classList.remove('mm-press'); p.classList.add('mm-rel'); setTimeout(function(){ p.classList.remove('mm-rel'); }, 180); } };
-    document.addEventListener('pointerdown', function(e){ var el = e.target && e.target.closest ? e.target.closest(SEL) : null; if (!el || el.id === 'mm-snd') return; rel(); pressed = el; el.classList.add('mm-press'); }, { capture: true, passive: true });
-    ['pointerup', 'pointercancel', 'pointerleave', 'scroll'].forEach(function(ev){ document.addEventListener(ev, rel, { capture: true, passive: true }); });
-  }
-  function ui(){
-    if (document.getElementById('mm-snd')) return;
-    var b = document.createElement('button'); b.id = 'mm-snd'; b.type = 'button';
-    var paint = function(){ b.textContent = off ? '🔇' : '🔊'; b.setAttribute('aria-label', off ? '누름 소리 켜기' : '누름 소리 끄기'); b.title = b.getAttribute('aria-label'); };
-    b.style.cssText = 'position:fixed;z-index:50;right:calc(12px + env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));width:36px;height:36px;border-radius:50%;border:1px solid rgba(0,0,0,.12);background:rgba(255,255,255,.92);box-shadow:0 2px 8px rgba(0,0,0,.12);font-size:16px;line-height:1;cursor:pointer;padding:0;opacity:.85';
-    b.addEventListener('click', function(){ off = !off; try { localStorage.setItem(KEY, off ? '1' : '0'); } catch (e) {} paint(); if (!off) tick(); });
-    paint(); document.body.appendChild(b);
-  }
-  if (document.body) ui(); else document.addEventListener('DOMContentLoaded', ui);
-})();
-</script><style data-hero>
+</div><script data-tick src="_tools/tick.js?v=aaa536b1"></script><style data-hero>
 /* 페이지 머리(제목 영역) 통일 — 사용자 2026-10-28 지시: 모든 페이지 같은 모양, 정보와 무관한 안내문은 지움 */
 .mm-hero{display:flex!important;flex-direction:column!important;gap:12px!important;padding:6px 0 0!important;margin:0 0 22px!important;background:none!important;border:0!important;box-shadow:none!important}
 .mm-hero>.mm-x{display:none!important}

@@ -73,7 +73,7 @@ def run(root):
     TK = open(os.path.join(T, 'tick.js'), encoding='utf-8').read()
     for f in _g.glob(os.path.join(root, '*.html')):
         s0 = open(f, encoding='utf-8').read()
-        s1 = re.sub(r'<script data-tick>[\s\S]*?</script>', lambda m: '<script data-tick>' + TK + '</script>', s0)
+        s1 = _ht.tidy_tick(s0)  # 공용 파일 참조(2026-11-01)
         if s1 != s0: open(f, 'w', encoding='utf-8').write(s1); n.append('tick:' + os.path.basename(f))
     n += fix_hub(root)
     n += rename_cal(root)

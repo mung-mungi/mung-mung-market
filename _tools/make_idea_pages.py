@@ -96,7 +96,7 @@ PAGES = {
   </section>
 </div>'''},
 }
-a = src.find('<div id="dash-root"'); b = src.find('<script data-tick>')
+a = src.find('<div id="dash-root"'); b = src.find('<script data-tick')  # 통째든 공용 파일 참조든 같은 자리(2026-11-01)
 assert a > 0 and b > a
 for key, P in PAGES.items():
     s = src[:a] + '<div id="dash-root" data-dash-state="ready"><style data-ideas>' + CSS + '</style>' + P['body'] + '<script data-ideas>window.__IDEA__="' + key + '";' + JS + '</script></div>' + src[b:]

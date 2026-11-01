@@ -506,6 +506,17 @@ def core_strip(s, marker):  # 예전 통째 붙인 것과 새 참조 둘 다 지
 def vt_refs():
     return core_ref('vt', 'vt.css') + core_ref('vt', 'vt.js')
 
+# 누름 소리(틱) — 2026-11-01 정리 1일차 이어서: 통째 부품을 공용 파일 참조로, 자리는 그대로(본문 끝)
+def tidy_tick(s):
+    pat = r'<script data-tick(?:\s[^>]*)?>[\s\S]*?</script>'
+    m = re.search(pat, s)
+    if not m:
+        return s
+    ref = core_ref('tick', 'tick.js')
+    head, tail = s[:m.start()], s[m.end():]
+    return head + ref + re.sub(pat, '', tail)  # 첫 자리에 참조 하나, 혹시 겹친 것은 지움
+
+
 # 휴대폰 버벅임 줄이기 — _tools/perf.js를 <head> 맨 앞에(사용자 2026-10-29)
 def tidy_perf(s):
     s = core_strip(s, 'perf')
