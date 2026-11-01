@@ -53,6 +53,13 @@ for f, keys in G.items():
     for k in keys:
         if k not in t: problems.append(f'{f}: 기능 표시 "{k}" 가 빠짐 ({G.get("_why", {}).get(k, "")})')
 
+# ③ 합치다 남은 충돌 표시(2026-11-01 20:17 실제 사례 — 페이지 맨 위에 '<<<<<<< Updated upstream'이 그대로 올라감)
+for f in git('diff', '--name-only', BASE, 'HEAD').split():
+    try: t = open(os.path.join(R, f), encoding='utf-8', errors='ignore').read()
+    except Exception: continue
+    if re.search(r'^(<<<<<<< |>>>>>>> )', t, re.M):
+        problems.append(f'{f}: 합치다 남은 충돌 표시(<<<<<<< / >>>>>>>)가 그대로 있음')
+
 if problems:
     print('⛔ 올리기 멈춤 — 옛 복사본으로 덮어쓴 것 같습니다:')
     for p in problems: print('  - ' + p)
