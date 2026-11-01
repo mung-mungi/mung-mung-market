@@ -27,7 +27,7 @@ function toggle(row,e,force){var open=force!=null?force:!row.classList.contains(
   dt().then(function(D){w.remove();var x=D[e.id];if(x)bd.appendChild(build(x))}).catch(function(){w.textContent='정리본을 불러오지 못했습니다'})}}
 function chips(){var sec=document.getElementById('tl');if(!sec||!EV)return;var bar=document.getElementById('tlx-th');
  var c={};EV.forEach(function(e){if(e.thread)c[e.thread]=(c[e.thread]||0)+1});var ks=Object.keys(c).sort(function(a,b){return c[b]-c[a]});if(!ks.length)return;
- if(!bar){bar=el('div','tlx-th');bar.id='tlx-th';bar.setAttribute('data-noswipe','');sec.parentElement.insertBefore(bar,sec)}
+ if(!bar){bar=el('div','tlx-th');bar.id='tlx-th';bar.setAttribute('data-noswipe','');var box=sec.closest('.pg-card')||sec;box.parentElement.insertBefore(bar,box)}
  if(bar.dataset.n==ks.join('|')+TH)return;bar.dataset.n=ks.join('|')+TH;bar.textContent='';
  bar.appendChild(el('span','tlx-tl','흐름 이어 보기'));
  ['전체'].concat(ks).forEach(function(k){var b=el('button','tlx-c',k==='전체'?'전체':k+' '+c[k]);b.type='button';b.setAttribute('aria-pressed',(k==='전체'?!TH:TH===k)?'true':'false');

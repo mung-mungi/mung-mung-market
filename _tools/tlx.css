@@ -63,3 +63,5 @@
 #ordbtn+.tlx-hint::before{content:"›";display:inline-block;transform:rotate(90deg);margin-right:5px;font-size:15px;font-weight:700}
 .pg-ctrl:has(>#ordbtn){flex-wrap:wrap!important;overflow:visible!important;row-gap:6px}
 @media (max-width:520px){#ordbtn+.tlx-hint{flex-basis:100%;margin:2px 0 0 6px}}
+/* 흐름 알약 줄은 상자 밖(위)에 — 상자 스크롤에 가려지지 않게(사용자 2026-11-01) */
+.tlx-th{padding:4px 0 12px;margin:0}
