@@ -1218,6 +1218,22 @@
   "media": "아나돌루"
  },
  {
+  "id": "e92",
+  "date": "2026-11-01",
+  "month": "2026-11",
+  "category": "이란 전쟁·유가",
+  "title": "OPEC+ 12월 생산 목표 동결 — 브렌트 117달러대, 전쟁으로 목표치도 못 채워",
+  "summary": "사우디·러시아 등 OPEC+ 핵심 7개국은 일요일 회의에서 12월 생산 목표를 9월 수준(합계 약 하루 3,100만 배럴)으로 유지하기로 했습니다. 대부분의 회원국은 이란 전쟁으로 실제 생산이 목표에 못 미치는 상태입니다. 브렌트유는 117.64달러로 한때 118달러를 찍었습니다. 공급을 늘려 유가를 누르는 카드는 당장 없다는 뜻이라, 유가는 호르무즈 협상 결과에 더 크게 기대게 됩니다. 다음 회의는 11월 29일입니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "source_url": "https://www.thenationalnews.com/business/energy/2026/11/01/opec-holds-december-oil-output-targets-steady-as-iran-war-disrupts-supply/",
+  "media": "더내셔널(로이터 사진)",
+  "tier": "small",
+  "thread": "유가·공급 대응",
+  "has_detail": false
+ },
+ {
   "id": "e24",
   "date": "2026-11-03",
   "month": "2026-11",
