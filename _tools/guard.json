@@ -32,8 +32,7 @@
   "mm-yt": "유튜브 새 영상 배너",
   "btscore": "옵션·채권 경고등 흐름 점수 양식(2026-11-02)",
   "fngbar": "시황 공포탐욕 막대 방향 통일 + 기사 경고등 알약 점수화",
-  "todaybtn": "메인 오늘 카드 → 시황 버튼",
-  "n_on": "켜진 불 수로 단계 상한(시장)"
+  "todaybtn": "메인 오늘 카드 → 시황 버튼"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -138,7 +137,5 @@
  "_tools/todaybtn.js": [
   "mm-tb-go"
  ],
- "_tools/lights_fresh.py": [
-  "n_on"
- ]
+ "_tools/lights_fresh.py": []
 }

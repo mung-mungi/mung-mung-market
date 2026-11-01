@@ -43,12 +43,11 @@ def level(r, t, wti=None):
     return k
 
 
-def score_stage(sc, n_on=None):
-    # 켜진 불 수로 단계 상한(사용자 2026-11-02): 0개 → 최대 경계, 1개 → 최대 긴장, 2개 이상 → 위험까지. 근접만으로 '위험'이 되지 않게
-    cap = 4 if n_on is None or n_on >= 2 else (3 if n_on == 1 else 2)
+def score_stage(sc):
+    # 단계는 점수 그대로(사용자 2026-11-02: 켜진 불 수로 깎지 않음 — 전체 점수가 더 정확함)
     for b, i in BANDS:
         if sc >= b:
-            return STAGE[min(i, cap)]
+            return STAGE[i]
     return STAGE[0]
 
 
@@ -118,7 +117,7 @@ def run(R, src=None):
     on = [k for k, r in L.items() if r.get('on')]
     s = sum(L[k].get('w', 1) for k in on)
     a = len({L[k]['board'] for k in on})
-    ic, nm = score_stage(score, len(on))
+    ic, nm = score_stage(score)
     near = []
     for k, r in L.items():
         t = th.get(k)
