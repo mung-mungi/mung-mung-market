@@ -39,6 +39,9 @@
  "_tools/page_tidy.py": [
   "mmtNav"
  ],
+ "_tools/prep_site.py": [
+  "visibilitychange"
+ ],
  "_tools/tlx.js": [
   "tlx-hint",
   "sortDay",
