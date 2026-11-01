@@ -59,10 +59,14 @@
   "core_ref('dock'",
   "core_ref('headui'",
   "core_ref('rdbox'",
-  "core_ref('uniui'"
+  "core_ref('uniui'",
+  "tidy_search"
  ],
  "_tools/owner.js": [
   "own-draft",
   "decJ"
+ ],
+ "_tools/search_ko.js": [
+  "__mmq"
  ]
 }

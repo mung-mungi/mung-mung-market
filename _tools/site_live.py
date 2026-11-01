@@ -109,6 +109,12 @@ def run(root):
         sys.path.insert(0, T); import hub_tidy
         o = open(pbd, encoding='utf-8').read(); b = hub_tidy.tidy_bond(o)
         if b != o: open(pbd, 'w', encoding='utf-8').write(b); n.append('p-bond')
+    sys.path.insert(0, T); import hub_tidy as _hs  # 종목 찾기 한글 별명·초성(사용자 2026-11-02)
+    for _f in _hs.SEARCH_PAGES:
+        _p = os.path.join(root, _f)
+        if os.path.exists(_p):
+            o = open(_p, encoding='utf-8').read(); b = _hs.tidy_search(o)
+            if b != o: open(_p, 'w', encoding='utf-8').write(b); n.append('search:' + _f[:-5])
     for nm in ('p-policy', 'p-tech'):  # 정책·지정학 / 테크 행사 순서·일정 3건·종합 3줄(사용자 2026-11-01)
         ppl = os.path.join(root, nm + '.html')
         if os.path.exists(ppl):

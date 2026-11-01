@@ -33,3 +33,9 @@ try:
     import page_tidy as _pt; _pt.run(R)
 except Exception as _e:
     print('page_tidy fail', _e)
+# 종목 찾기 한글 별명·초성(2026-11-02)
+for f in h.SEARCH_PAGES:
+    p = os.path.join(R, f)
+    if os.path.exists(p):
+        o = open(p, encoding='utf-8').read(); a = h.tidy_search(o)
+        if a != o: open(p, 'w', encoding='utf-8').write(a)

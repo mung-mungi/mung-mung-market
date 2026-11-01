@@ -724,3 +724,14 @@ def tidy_bond(s):
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-bdnear>' + open(os.path.join(d, 'bdnear.css'), encoding='utf-8').read() + '</style><script data-bdnear>' + open(os.path.join(d, 'bdnear.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+SEARCH_PAGES = ['p-prices.html', 'p-targets.html', 'p-trend.html']
+def tidy_search(s):
+    """종목 찾기: 한글 별명·영문·초성까지(사용자 2026-11-02) — _tools/search_ko.js의 __mmq로 바꿔 끼움"""
+    s = re.sub(r"\(\s*([A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)?)\.name \+ ' ' \+ \1\.ticker\)\.toLowerCase\(\)\.includes\(q\)",
+               lambda m: 'window.__mmq(' + m.group(1) + ',q)', s)
+    if 'window.__mmq(' not in s: return s
+    s = re.sub(r'<script data-mmq>[\s\S]*?</script>', '', s)
+    js = '<script data-mmq>' + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'search_ko.js'), encoding='utf-8').read() + '</script>'
+    return re.sub(r'(<meta charset[^>]*>)', lambda m: m.group(1) + js, s, count=1, flags=re.I) if re.search(r'<meta charset', s, re.I) else js + s
