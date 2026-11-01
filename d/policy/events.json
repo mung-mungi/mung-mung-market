@@ -34,13 +34,13 @@
   "date": "2026-07-10",
   "month": "2026-07",
   "category": "한국 관련",
-  "title": "미국, 삼성·SK에 \"미국에 공장 지어라\" 압박 — 국내외 투자 고민 커져",
-  "summary": "뉴스핌 보도 제목 기준. 트럼프 행정부가 외국 반도체 기업에 미국 내 생산을 요구하면서 삼성전자·SK하이닉스의 국내외 투자 배분이 쟁점이 됐습니다. 세부 요구 조건은 이 자료에 없습니다.",
+  "title": "러트닉 상무장관, 삼성·SK에 \"미국 메모리 생산 늘려라\" 압박",
+  "summary": "러트닉 상무장관이 SK하이닉스와 삼성전자에 미국 안에서 메모리 생산을 늘리라고 압박했습니다. 관세와 대미 투자 협상이 맞물린 시기라 한국 반도체 회사들의 미국 투자 부담이 커지는 흐름입니다.",
   "nasdaq_pct": null,
   "mkt_note": "자료 없음",
   "status": "진행중",
-  "source_url": "https://www.newspim.com/news/view/20260710001236",
-  "media": "뉴스핌",
+  "source_url": "https://news.bloomberglaw.com/bloomberg-government-news/lutnick-presses-sk-hynix-samsung-to-boost-memory-output-in-us",
+  "media": "블룸버그",
   "tier": "big",
   "thread": "한국 대미 투자"
  },
@@ -195,6 +195,21 @@
   "thread": "반도체 수출통제"
  },
  {
+  "id": "e36",
+  "date": "2026-08-27",
+  "month": "2026-08",
+  "category": "한국 관련",
+  "title": "SK하이닉스, 인디애나 HBM 패키징 공장 착공 — 40억 달러 이상, 2029년 양산 목표",
+  "summary": "SK하이닉스가 미국 첫 첨단 패키징 공장을 인디애나에서 착공했습니다. 투자 규모는 40억 달러 이상이고 미국 상무부가 반도체법 보조금 4억5800만 달러를 확정했습니다. 한국에서 만든 웨이퍼를 가져와 HBM을 쌓고 시험하는 곳으로, 2029년 3분기 HBM4E 양산이 목표입니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "자료 없음",
+  "status": "진행중",
+  "source_url": "https://www.trendforce.com/news/2026/08/28/news-sk-hynix-breaks-ground-on-indiana-packaging-plant-eyes-hbm4e-by-3q29-ceo-sees-tight-supply-through-2030/",
+  "media": "트렌드포스",
+  "tier": "big",
+  "thread": "한국 대미 투자"
+ },
+ {
   "id": "e08",
   "date": "2026-08-28",
   "month": "2026-08",
@@ -208,21 +223,6 @@
   "media": "인베스팅라이브",
   "tier": "big",
   "thread": "연준 금리"
- },
- {
-  "id": "e36",
-  "date": "2026-08-28",
-  "month": "2026-08",
-  "category": "한국 관련",
-  "title": "SK하이닉스, 미국 패키징 이어 전공정 투자도 검토 — 반도체 관세가 변수",
-  "summary": "네이트뉴스(연합 종합) 보도 제목 기준. 인디애나 HBM 첨단 패키징 공장에 이어 전공정 투자까지 검토한다는 내용으로, 미국 반도체 관세 수준이 결정 변수로 거론됐습니다.",
-  "nasdaq_pct": null,
-  "mkt_note": "자료 없음",
-  "status": "진행중",
-  "source_url": "https://m.news.nate.com/view/20260828n28525",
-  "media": "네이트뉴스(종합)",
-  "tier": "big",
-  "thread": "한국 대미 투자"
  },
  {
   "id": "e09",
@@ -264,8 +264,8 @@
   "nasdaq_pct": null,
   "mkt_note": "자료 없음",
   "status": "발생",
-  "source_url": "https://www.fnnews.com/news/202609071531119156",
-  "media": "파이낸셜뉴스",
+  "source_url": "https://www.thestar.com.my/business/business-news/2026/09/07/south-korea-us-agree-on-more-than-us20bil-gas-plant-investment-in-texas-media-reports",
+  "media": "로이터(더 스타 전재)",
   "tier": "big",
   "thread": "한국 대미 투자"
  },
@@ -362,21 +362,6 @@
   "has_detail": false
  },
  {
-  "id": "e14",
-  "date": "2026-10-01",
-  "month": "2026-10",
-  "category": "한국 관련",
-  "title": "김정관 장관 \"미국, 관세 15% 수준 유지 전달… 반도체 신규 요구 없어\"",
-  "summary": "대미투자 협의 백브리핑. 301조든 다른 수단이든 15% 수준을 유지하겠다는 미국 측 입장을 전달받았으나 합의문에는 명시되지 않았습니다. 301조 과잉생산 조사 결과는 9/24 미중 정상회담 이후로 미뤄졌고, 이번 협의에서 반도체 투자 추가 요구는 없었습니다.",
-  "nasdaq_pct": null,
-  "mkt_note": "자료 없음",
-  "status": "진행중",
-  "source_url": "https://www.seoul.co.kr/news/economy/2026/10/01/20261001500026",
-  "media": "서울신문",
-  "tier": "big",
-  "thread": "한국 대미 투자"
- },
- {
   "id": "e50",
   "date": "2026-10-01",
   "month": "2026-10",
@@ -436,22 +421,6 @@
   "media": "새벽 브리핑 기록",
   "tier": "small",
   "thread": "유가·공급 대응"
- },
- {
-  "id": "e92",
-  "date": "2026-10-02",
-  "month": "2026-10",
-  "category": "한국 관련",
-  "title": "이재용·최태원·정의선 워싱턴행 — 베선트·그리어 만나 대미 투자 논의",
-  "summary": "삼성·SK·현대차 총수와 한경협 회장이 워싱턴 한미일 경영자 대화에서 베선트 재무장관, 그리어 무역대표, 라이트 에너지장관을 만났습니다. 트럼프 행정부는 중간선거 전에 한국 기업의 미국 투자 발표를 서두르라고 압박하고 있습니다. 러트닉 상무장관은 알래스카 유세에서 한국의 투자 약속을 501억 달러로 언급했습니다.",
-  "nasdaq_pct": null,
-  "mkt_note": "",
-  "status": "발생",
-  "source_url": "https://en.sedaily.com/finance/2026/10/30/korean-business-chiefs-court-washington-amid-trump",
-  "media": "서울경제",
-  "tier": "small",
-  "thread": "한국 대미 투자",
-  "has_detail": false
  },
  {
   "id": "e39",
@@ -661,8 +630,8 @@
   "nasdaq_pct": null,
   "mkt_note": "자료 없음",
   "status": "진행중",
-  "source_url": "https://www.mt.co.kr/world/2026/10/15/2026101514265939431",
-  "media": "머니투데이(로이터 인용)",
+  "source_url": "https://www.thestandard.com.hk/breaking-news/section/2/200000000/SK-Hynix-conditions-new-US-factory-on-more-US-chip-equipment-exports-to-China,-sources-say",
+  "media": "로이터(더 스탠더드 전재)",
   "tier": "big",
   "thread": "한국 대미 투자"
  },
@@ -680,22 +649,6 @@
   "media": "새벽 브리핑 기록",
   "tier": "small",
   "thread": "데이터센터 정치"
- },
- {
-  "id": "e93",
-  "date": "2026-10-15",
-  "month": "2026-10",
-  "category": "한국 관련",
-  "title": "미셸 스틸 주한미국대사 \"약속은 지켜진다\" — 한국 비관세 장벽 해소 요구",
-  "summary": "한미재계회의 총회에서 스틸 대사가 2025년 11월 정상 합의에 담긴 미국 기업의 한국 시장 접근과 공정한 대우가 진전되길 기대한다고 밝혔습니다. 사실상 한국의 비관세 장벽을 풀라는 요구로 읽힙니다. 미국 측 재계 대표는 3500억 달러 대미 투자 가운데 1500억 달러가 조선 분야라고 설명했습니다.",
-  "nasdaq_pct": null,
-  "mkt_note": "",
-  "status": "발생",
-  "source_url": "https://www.newspim.com/news/view/20261015000302",
-  "media": "뉴스핌",
-  "tier": "small",
-  "thread": "한국 대미 투자",
-  "has_detail": false
  },
  {
   "id": "e16",
@@ -1319,8 +1272,8 @@
   "nasdaq_pct": null,
   "mkt_note": "",
   "status": "예정",
-  "source_url": "https://en.fnnews.com/news/202609100646439749",
-  "media": "파이낸셜뉴스(영문)",
+  "source_url": "https://www.lg.gov.cn/english/news/latestnews/content/post_12588327.html",
+  "media": "선전시 정부",
   "tier": "big",
   "thread": "관세·무역"
  },
