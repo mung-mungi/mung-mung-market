@@ -56,6 +56,7 @@ def fred1(i):
     raise RuntimeError('FRED %s 실패 %s' % (i, str(last)[:40]))
 def chifed():
     t = get('https://www.chicagofed.org/-/media/publications/nfci/nfci-data-series-csv.csv'); rows = list(csv.DictReader(io.StringIO(t))); out = {}
+    print('chifed cols', list(rows[0].keys())[:8], 'first', list(rows[0].values())[:2], 'last', list(rows[-1].values())[:2], len(rows))
     for r in rows:
         ks = {k.strip().upper(): v for k, v in r.items() if k}
         d = ks.get('FRIDAY_OF_WEEK') or ks.get('DATE') or ''
