@@ -95,3 +95,15 @@
 .mm-sm-grid span{display:block;font:800 14px/1.25 sans-serif}
 .mm-sm-grid small{display:block;font:600 9.5px sans-serif;opacity:.8}
 .mm-st2{margin-top:12px}
+/* 심리 막대 눈금(사용자 2026-11-01) */
+.mm-st-bar.sm.mk{margin:0 0 15px}
+.mm-st-bar .tk{position:absolute;top:-3px;width:0;height:14px;border-left:1.5px dashed rgba(38,38,38,.45);transform:translateX(-50%)}
+.mm-st-bar .tk.avg{border-left:2.5px solid #262626;top:-4px;height:16px}
+.mm-st-bar .tk small{position:absolute;top:15px;left:0;transform:translateX(-50%);font:700 9.5px/1 sans-serif;color:#8a857a;white-space:nowrap}
+.mm-st-bar .tk.avg small{color:#262626}
+.mm-st-bar .tk.up small{top:-12px}
+.mm-st-cr2.mkr{grid-template-columns:1fr auto}
+.mm-st-cr2.mkr .mm-st-bar{grid-column:1/3;grid-row:2;margin:16px 6px 16px}
+.mm-st-cr2.mkr .nm{grid-column:1;grid-row:1}.mm-st-cr2.mkr .v{grid-column:2;grid-row:1;align-self:start}
+.mm-st-cr2.mkr .rd{grid-column:1/3}
+.mm-st-cr2.mkr .v small{display:inline;margin-left:4px}

@@ -93,8 +93,12 @@ function story(sc){var SE=S.sectors||[],out=[];var big=SE.slice().sort(function(
  var sy=risk(sc.system),near=F&&F.near?F.near:[];var t='금융 시스템은 '+sy[0]+'(공식 지수 '+sc.system+'). ';if(near.some(function(n){return /10년물/.test(n)})&&sc.y10)t+='<em>10년물 '+sc.y10.toFixed(2)+'%</em>가 5%를 넘느냐가 다음 관문입니다.';else if(near.length)t+='문턱 바로 앞: '+near.slice(0,3).join('·')+'.';else t+='문턱에 다가간 불은 없습니다.';
  out.push([sc.system!=null&&sc.system<55?'그래도':'그리고',t]);return out}
 function sec(root,id,title,sub){var d=el('section','mm-st-d on');d.id='mm-'+id;var h=el('h3','',title);d.appendChild(h);if(sub)d.appendChild(el('p','s',sub));root.appendChild(d);return d}
+// 심리 막대 눈금(사용자 2026-11-01): 기관이 쓰는 신호선·평소 자리. 위치는 화면 점수(0 공포~100 환희) 기준
+// CNN = 값 그대로 · AAII = 50+(강세−약세)×1.25(장기 평균 강세 37.5%·약세 31% → +6.5%p) · BofA 강세약세 = 값×10(2 이하 매수·8 이상 매도 신호) · FMS 현금 = 50+(4.5−현금)×40(5% 이상 매수·4% 아래 매도 신호, 장기 평균 약 4.8%)
+var MK={cnn:[[25,'극단 공포'],[50,'중립','avg'],[75,'극단 탐욕']],aaii:[[25,'약세 20%p 많음'],[58,'평소(강세 +6.5%p)','avg up'],[75,'강세 20%p 많음']],bofa_bb:[[20,'2 매수 신호'],[50,'5 중간','avg'],[80,'8 매도 신호']],bofa_fms:[[30,'5% 매수 신호'],[38,'평균 4.8%','avg up'],[70,'4% 매도 신호']]};
 function cRow(x,isEmo){var r=el('div','mm-st-cr2');var nm=el('div','nm');nm.appendChild(el('b','',NM[x.id]||x.name));var c=CH[x.id];var sm=el('small','',(c?c[0]+' · ':'')+(x.freq||'').replace('(기사)','')+' · '+md(x.date));nm.appendChild(sm);r.appendChild(nm);
- var p=isEmo?x.emo:x.pct;var col=isEmo?emo(p)[1]:risk(p)[1];var b=el('div','mm-st-bar sm'+(isEmo?' emo':''));b.style.setProperty('--c',col);var i=el('i');i.style.left=Math.max(3,Math.min(97,p||0))+'%';b.appendChild(i);r.appendChild(b);
+ var p=isEmo?x.emo:x.pct;var col=isEmo?emo(p)[1]:risk(p)[1];var b=el('div','mm-st-bar sm'+(isEmo?' emo':''));b.style.setProperty('--c',col);var mk=isEmo&&MK[x.id];if(mk){b.classList.add('mk');r.classList.add('mkr');mk.forEach(function(m){var t=el('span','tk'+(m[2]?' '+m[2]:''));t.style.left=m[0]+'%';t.appendChild(el('small','',m[1]));b.appendChild(t)})}
+ var i=el('i');i.style.left=Math.max(3,Math.min(97,p||0))+'%';b.appendChild(i);r.appendChild(b);
  var v=el('div','v',val(x));v.style.color=col;v.appendChild(el('small','',isEmo?emo(p)[0]:p+'점'));r.appendChild(v);
  var e=ENDS[x.id];var rd=el('p','rd',(HOW[x.id]?HOW[x.id]+' · ':'')+(e?e[0]+' ↔ '+e[2]:(x.read||'')));r.appendChild(rd);return r}
 function draw(){var root=document.querySelector('.mm-st:not(.mm-st2)');var mast=document.querySelector('.lw-mast');if(!S||!mast)return;if(!root){root=el('div','mm-st');mast.after(root)}root.textContent='';
@@ -113,7 +117,7 @@ function draw(){var root=document.querySelector('.mm-st:not(.mm-st2)');var mast=
  var d0=sec(root,'semi','반도체·기술 한눈에');panelSemi(d0);
  var d1=sec(root,'sector','업종 회전 지도 · 돈은 어디로');panelSector(d1);d1.querySelector('h3').remove();
  var root2=document.querySelector('.mm-st2');if(!root2){root2=el('div','mm-st mm-st2')}root2.textContent='';var ac=document.getElementById('area-card');if(ac)ac.after(root2);else root.after(root2);
- var d2=sec(root2,'emo','공포 ↔ 환희 · 개인과 기관','왼쪽 파랑 공포 ◀ 중립 ▶ 오른쪽 주황 환희. 끝으로 갈수록 거꾸로 읽습니다.');
+ var d2=sec(root2,'emo','공포 ↔ 환희 · 개인과 기관','왼쪽(파랑) = 겁먹음 · 오른쪽(주황) = 들뜸. 막대마다 같은 방향으로 맞췄습니다. 양 끝은 둘 다 경고 — 너무 겁먹으면 바닥 쪽, 너무 들뜨면 꼭지 쪽 신호로 거꾸로 읽습니다. 가는 눈금 = 기관이 쓰는 신호선, 진한 눈금 = 평소 자리.');
  var vs=el('div','mm-st-vs');[['개인',sc.retail],['기관',sc.inst]].forEach(function(a){var e=emo(a[1]);var c=el('div');c.style.setProperty('--c',e[1]);c.style.setProperty('--b',a[1]<45?'#edf2fa':a[1]>=55?'#fdeee6':'#f1ede4');c.appendChild(el('i','',a[0]));c.appendChild(el('b','',a[1]==null?'—':a[1]+''));c.appendChild(el('small','',e[0]));vs.appendChild(c)});d2.appendChild(vs);
  ['cnn','aaii','bofa_bb','bofa_fms'].forEach(function(k){var x=I(k);if(x)d2.appendChild(cRow(x,true))});d2.appendChild(el('div','mm-st-say',mix(sc)));
  var d3=sec(root2,'sys','금융 시스템 · 시장 가격','공식 지수와 변동성을 최근 10년 중 몇 % 자리로 맞췄습니다(0 평온 · 50 평소 · 100 가장 불안).');

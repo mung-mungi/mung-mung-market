@@ -236,7 +236,7 @@ function mount(){if(document.querySelector('.mm-push'))return true;var sh=docume
  if(can&&(Notification.permission==='granted'||standalone))load(function(OS){draw(OS);setTimeout(gate,600)});setTimeout(gate,1200);return true}
 var n=0;(function go(){if(!mount()&&++n<40)setTimeout(go,250)})();
 }catch(e){}})();
-</script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><link data-splash rel="stylesheet" href="_tools/splash.css?v=6299f372"><script data-splash src="_tools/splash.js?v=dea59561"></script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="시장 경고등"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-lights.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202611011638">(function(){var me="202611011638";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>시장 경고등</title><style>:root{color-scheme:light;
+</script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><link data-splash rel="stylesheet" href="_tools/splash.css?v=6299f372"><script data-splash src="_tools/splash.js?v=dea59561"></script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="시장 경고등"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-lights.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta charset="utf-8"><script data-ver="202611011644">(function(){var me="202611011644";try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>시장 경고등</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
@@ -771,6 +771,18 @@ fetch('d/lights/fresh.json?t='+Date.now(),{cache:'no-store'}).then(function(r){r
 .mm-sm-grid span{display:block;font:800 14px/1.25 sans-serif}
 .mm-sm-grid small{display:block;font:600 9.5px sans-serif;opacity:.8}
 .mm-st2{margin-top:12px}
+/* 심리 막대 눈금(사용자 2026-11-01) */
+.mm-st-bar.sm.mk{margin:0 0 15px}
+.mm-st-bar .tk{position:absolute;top:-3px;width:0;height:14px;border-left:1.5px dashed rgba(38,38,38,.45);transform:translateX(-50%)}
+.mm-st-bar .tk.avg{border-left:2.5px solid #262626;top:-4px;height:16px}
+.mm-st-bar .tk small{position:absolute;top:15px;left:0;transform:translateX(-50%);font:700 9.5px/1 sans-serif;color:#8a857a;white-space:nowrap}
+.mm-st-bar .tk.avg small{color:#262626}
+.mm-st-bar .tk.up small{top:-12px}
+.mm-st-cr2.mkr{grid-template-columns:1fr auto}
+.mm-st-cr2.mkr .mm-st-bar{grid-column:1/3;grid-row:2;margin:16px 6px 16px}
+.mm-st-cr2.mkr .nm{grid-column:1;grid-row:1}.mm-st-cr2.mkr .v{grid-column:2;grid-row:1;align-self:start}
+.mm-st-cr2.mkr .rd{grid-column:1/3}
+.mm-st-cr2.mkr .v small{display:inline;margin-left:4px}
 </style><script data-ltui>// 시장 경고등 맨 위 '한눈에'(사용자 2026-11-01): 지금 시장은 한 줄 → 층위별 신호등 6칸(누르면 아래로 상세) → 업종 회전 지도(점·타일 누르면 관련 기업)
 // 자료: d/stress/stress.json(build_stress.py, Actions) + d/lights/fresh.json. 위험 쪽 점수 0 평온~100 불안, 심리 쪽 0 공포~100 환희
 (function(){
@@ -866,8 +878,12 @@ function story(sc){var SE=S.sectors||[],out=[];var big=SE.slice().sort(function(
  var sy=risk(sc.system),near=F&&F.near?F.near:[];var t='금융 시스템은 '+sy[0]+'(공식 지수 '+sc.system+'). ';if(near.some(function(n){return /10년물/.test(n)})&&sc.y10)t+='<em>10년물 '+sc.y10.toFixed(2)+'%</em>가 5%를 넘느냐가 다음 관문입니다.';else if(near.length)t+='문턱 바로 앞: '+near.slice(0,3).join('·')+'.';else t+='문턱에 다가간 불은 없습니다.';
  out.push([sc.system!=null&&sc.system<55?'그래도':'그리고',t]);return out}
 function sec(root,id,title,sub){var d=el('section','mm-st-d on');d.id='mm-'+id;var h=el('h3','',title);d.appendChild(h);if(sub)d.appendChild(el('p','s',sub));root.appendChild(d);return d}
+// 심리 막대 눈금(사용자 2026-11-01): 기관이 쓰는 신호선·평소 자리. 위치는 화면 점수(0 공포~100 환희) 기준
+// CNN = 값 그대로 · AAII = 50+(강세−약세)×1.25(장기 평균 강세 37.5%·약세 31% → +6.5%p) · BofA 강세약세 = 값×10(2 이하 매수·8 이상 매도 신호) · FMS 현금 = 50+(4.5−현금)×40(5% 이상 매수·4% 아래 매도 신호, 장기 평균 약 4.8%)
+var MK={cnn:[[25,'극단 공포'],[50,'중립','avg'],[75,'극단 탐욕']],aaii:[[25,'약세 20%p 많음'],[58,'평소(강세 +6.5%p)','avg up'],[75,'강세 20%p 많음']],bofa_bb:[[20,'2 매수 신호'],[50,'5 중간','avg'],[80,'8 매도 신호']],bofa_fms:[[30,'5% 매수 신호'],[38,'평균 4.8%','avg up'],[70,'4% 매도 신호']]};
 function cRow(x,isEmo){var r=el('div','mm-st-cr2');var nm=el('div','nm');nm.appendChild(el('b','',NM[x.id]||x.name));var c=CH[x.id];var sm=el('small','',(c?c[0]+' · ':'')+(x.freq||'').replace('(기사)','')+' · '+md(x.date));nm.appendChild(sm);r.appendChild(nm);
- var p=isEmo?x.emo:x.pct;var col=isEmo?emo(p)[1]:risk(p)[1];var b=el('div','mm-st-bar sm'+(isEmo?' emo':''));b.style.setProperty('--c',col);var i=el('i');i.style.left=Math.max(3,Math.min(97,p||0))+'%';b.appendChild(i);r.appendChild(b);
+ var p=isEmo?x.emo:x.pct;var col=isEmo?emo(p)[1]:risk(p)[1];var b=el('div','mm-st-bar sm'+(isEmo?' emo':''));b.style.setProperty('--c',col);var mk=isEmo&&MK[x.id];if(mk){b.classList.add('mk');r.classList.add('mkr');mk.forEach(function(m){var t=el('span','tk'+(m[2]?' '+m[2]:''));t.style.left=m[0]+'%';t.appendChild(el('small','',m[1]));b.appendChild(t)})}
+ var i=el('i');i.style.left=Math.max(3,Math.min(97,p||0))+'%';b.appendChild(i);r.appendChild(b);
  var v=el('div','v',val(x));v.style.color=col;v.appendChild(el('small','',isEmo?emo(p)[0]:p+'점'));r.appendChild(v);
  var e=ENDS[x.id];var rd=el('p','rd',(HOW[x.id]?HOW[x.id]+' · ':'')+(e?e[0]+' ↔ '+e[2]:(x.read||'')));r.appendChild(rd);return r}
 function draw(){var root=document.querySelector('.mm-st:not(.mm-st2)');var mast=document.querySelector('.lw-mast');if(!S||!mast)return;if(!root){root=el('div','mm-st');mast.after(root)}root.textContent='';
@@ -886,7 +902,7 @@ function draw(){var root=document.querySelector('.mm-st:not(.mm-st2)');var mast=
  var d0=sec(root,'semi','반도체·기술 한눈에');panelSemi(d0);
  var d1=sec(root,'sector','업종 회전 지도 · 돈은 어디로');panelSector(d1);d1.querySelector('h3').remove();
  var root2=document.querySelector('.mm-st2');if(!root2){root2=el('div','mm-st mm-st2')}root2.textContent='';var ac=document.getElementById('area-card');if(ac)ac.after(root2);else root.after(root2);
- var d2=sec(root2,'emo','공포 ↔ 환희 · 개인과 기관','왼쪽 파랑 공포 ◀ 중립 ▶ 오른쪽 주황 환희. 끝으로 갈수록 거꾸로 읽습니다.');
+ var d2=sec(root2,'emo','공포 ↔ 환희 · 개인과 기관','왼쪽(파랑) = 겁먹음 · 오른쪽(주황) = 들뜸. 막대마다 같은 방향으로 맞췄습니다. 양 끝은 둘 다 경고 — 너무 겁먹으면 바닥 쪽, 너무 들뜨면 꼭지 쪽 신호로 거꾸로 읽습니다. 가는 눈금 = 기관이 쓰는 신호선, 진한 눈금 = 평소 자리.');
  var vs=el('div','mm-st-vs');[['개인',sc.retail],['기관',sc.inst]].forEach(function(a){var e=emo(a[1]);var c=el('div');c.style.setProperty('--c',e[1]);c.style.setProperty('--b',a[1]<45?'#edf2fa':a[1]>=55?'#fdeee6':'#f1ede4');c.appendChild(el('i','',a[0]));c.appendChild(el('b','',a[1]==null?'—':a[1]+''));c.appendChild(el('small','',e[0]));vs.appendChild(c)});d2.appendChild(vs);
  ['cnn','aaii','bofa_bb','bofa_fms'].forEach(function(k){var x=I(k);if(x)d2.appendChild(cRow(x,true))});d2.appendChild(el('div','mm-st-say',mix(sc)));
  var d3=sec(root2,'sys','금융 시스템 · 시장 가격','공식 지수와 변동성을 최근 10년 중 몇 % 자리로 맞췄습니다(0 평온 · 50 평소 · 100 가장 불안).');
