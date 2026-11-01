@@ -1,0 +1,21 @@
+# 멈춘 GitHub Pages 배포 풀기(사용자 승인 2026-11-01) — '진행 중'으로 멈춘 배포 하나를 취소해 다음 배포가 나가게 함(수동 실행)
+name: pages-unstick
+on:
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: '멈춘 배포의 커밋 SHA'
+        required: true
+permissions:
+  pages: write
+  contents: read
+jobs:
+  cancel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: cancel stuck deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api -X POST "repos/${{ github.repository }}/pages/deployments/${{ github.event.inputs.sha }}/cancel" && echo "::notice::취소 완료 ${{ github.event.inputs.sha }}" || echo "::warning::취소 실패(이미 끝났을 수 있음)"
