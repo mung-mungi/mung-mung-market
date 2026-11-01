@@ -5,7 +5,7 @@
 var F=null;
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 function md(d){var a=String(d||'').split('-');return a.length===3?(+a[1])+'/'+(+a[2]):d}
-var BC=[[0,'#2e9d5b','평온'],[3,'#c99a06','주의'],[4.5,'#e07b16','경계'],[6,'#c8501c','긴장'],[7.5,'#b3261e','위험']];
+var BC=[[0,'#2e9d5b','평온'],[3,'#c99a06','주의'],[4.7,'#e07b16','경계'],[6.6,'#c8501c','긴장'],[8.4,'#b3261e','위험']];
 function col(v){var c=BC[0][1];BC.forEach(function(b){if(v>=b[0])c=b[1]});return c}
 function stn(v){var c=BC[0][2];BC.forEach(function(b){if(v>=b[0])c=b[2]});return c}
 var ORD=['반도체·AI','유가','채권·금리','신용','옵션·공포'];

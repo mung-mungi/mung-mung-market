@@ -24,3 +24,11 @@
 /* 겹치는 옛 칸 숨김: '불 n개 그대로' 카드, 경고등 카드 안 글 목록(위 5줄과 같음) */
 html body #bt-card.bt-card{display:none!important}
 html body #lights-card #lights{display:none!important}
+/* 위쪽 바로가기 알약 — 가로 밀기 없이 줄바꿈(사용자 2026-11-02) */
+.mm-bj{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 4px;padding:0 2px}
+.mm-bj a{font:800 13.5px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#7a5200;background:#fff;border:1px solid #e6dfcf;border-radius:999px;padding:9px 12px;box-shadow:0 2px 0 #ece4d2;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.mm-bj a:active{transform:translateY(1px);box-shadow:none}
+.mm-bj a.hot{color:#fff;background:#9a6200;border-color:#9a6200;box-shadow:0 2px 0 #6f4700}
+.mm-bj a em{font-style:normal;font-weight:700;opacity:.85}
+.mm-bo-now{margin:8px 0 0!important;padding:9px 11px;border-radius:10px;background:#fdf0e1;border-left:4px solid #e07b16;font:700 14.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3b2a14}
+.mm-bo-now .q{display:inline-block;margin-right:7px;padding:2px 8px;border-radius:999px;background:#a14d00;color:#fff;font-size:12.5px;font-weight:800;vertical-align:1px}

@@ -25,8 +25,10 @@
   function thermo(){ if (document.querySelector('.mm-thc')) return;
     fetch('d/lights/fresh.json?t=' + Math.floor(Date.now() / 3e5)).then(function(r){ return r.ok ? r.json() : null; }).then(function(F){ if (!F || !F.area_scores) return;
       var M = {}; Object.keys(F.area_scores).forEach(function(a){ F.area_scores[a].items.forEach(function(i){ M[i.id] = i; }); });
-      var BR = [[0,'평온','#2e9d5b'],[.25,'주의','#c99a06'],[.375,'경계','#e07b16'],[.5,'긴장','#c8501c'],[.625,'위험','#b3261e']];
-      [['p-opt', ['vix','term','pc'], 'vix', 'VIX ', ''], ['p-bond', ['inv','y10','jump','y30','hy'], 'y10', '10년물 ', '%']].forEach(function(c){
+      // 맨 위 '시장 경고등' 띠도 점수로(옛 '불 n/m'은 무게 0 지표까지 세서 어긋남, 2026-11-02)
+      var lb = document.querySelector('a.mm-bar[href*="p-lights"] .mid'); if (lb && F.score != null) { var C = {'평온':'#2f9a4c','주의':'#b08a00','경계':'#d9822b','긴장':'#d9822b','위험':'#c4453a'}[F.stage] || '#2f9a4c'; lb.innerHTML = F.score.toFixed(1) + '/' + F.score_max + '점 · <em style="color:' + C + '">● ' + F.stage + '</em>'; }
+      var BR = [[0,'평온','#2e9d5b'],[.25,'주의','#c99a06'],[.392,'경계','#e07b16'],[.55,'긴장','#c8501c'],[.7,'위험','#b3261e']];
+      [['p-opt', ['vix','term','pc'], 'vix', 'VIX ', ''], ['p-bond', ['y10','why','y30','auc','hy'], 'y10', '10년물 ', '%']].forEach(function(c){
         var a = document.querySelector('a.item[href*="' + c[0] + '.html"]'); if (!a || a.querySelector('.mm-thc')) return;
         var sc = 0, mx = 0; c[1].forEach(function(id){ var i = M[id]; if (i) { sc += Number(i.pt || 0); mx += Number(i.w || 1); } }); if (!mx) return;
         var g = BR[0]; BR.forEach(function(b){ if (sc >= b[0] * mx - 1e-9) g = b; });

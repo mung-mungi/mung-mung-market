@@ -4,8 +4,8 @@
 (function(){try{
 var P=/p-opt\.html/.test(location.pathname)?'opt':/p-bond\.html/.test(location.pathname)?'bond':null;if(!P)return;
 var CFG={opt:{ids:['vix','term','pc'],nm:'옵션 경고등',sh:{vix:'VIX',term:'기간구조',pc:'풋콜'},calm:'옵션 쪽은 조용합니다.'},
- bond:{ids:['inv','y10','jump','y30','hy'],nm:'채권 경고등',sh:{inv:'장단기차',y10:'10년물',jump:'10년물 2주',y30:'30년물',hy:'하이일드'},calm:'금리·신용 쪽은 조용합니다.'}}[P];
-var BR=[[0,'평온','#2e9d5b'],[.25,'주의','#c99a06'],[.375,'경계','#e07b16'],[.5,'긴장','#c8501c'],[.625,'위험','#b3261e']];
+ bond:{ids:['y10','why','y30','auc','hy'],nm:'채권 경고등',sh:{why:'금리 움직임',auc:'국채 입찰',inv:'장단기차',y10:'10년물',jump:'10년물 2주',y30:'30년물',hy:'하이일드'},calm:'금리·신용 쪽은 조용합니다.'}}[P];
+var BR=[[0,'평온','#2e9d5b'],[.25,'주의','#c99a06'],[.392,'경계','#e07b16'],[.55,'긴장','#c8501c'],[.7,'위험','#b3261e']];
 var L=null,T=null,F=null;
 function j(u){return fetch(u+'?t='+Math.floor(Date.now()/3e5)).then(function(r){return r.ok?r.json():null}).catch(function(){return null})}
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}

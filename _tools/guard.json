@@ -38,7 +38,9 @@
   "mm-src": "시황 통일 양식: 출처 매체 알약·맨 위 날짜 줄·공포탐욕 설명 접기(2026-11-02)",
   "mm-bo-rows": "채권 온도계 오늘 한눈에 5줄(옵션 온도계 양식)",
   "'bdopt'": "채권 온도계 덧입힘 연결",
-  "mm-thc": "메인 온도계 두 칸 단계 칩"
+  "mm-thc": "메인 온도계 두 칸 단계 칩",
+  "def judge": "금리 움직인 이유 판정(피난형 등)",
+  "bond_why": "경고등 점수에 금리 움직인 이유 연결"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -150,7 +152,9 @@
  "_tools/todaybtn.js": [
   "mm-tb-go"
  ],
- "_tools/lights_fresh.py": [],
+ "_tools/lights_fresh.py": [
+  "bond_why"
+ ],
  "_tools/ddate.js": [
   "mm-dd-r"
  ],
@@ -170,5 +174,8 @@
  ],
  "_tools/chipfold.js": [
   "mx-more"
+ ],
+ "_tools/bond_why.py": [
+  "def judge"
  ]
 }

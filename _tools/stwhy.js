@@ -2,8 +2,8 @@
 // 다만 불이 적게 켜졌는데 '위험'이면 보는 사람이 헷갈리므로 켜진 불 + 문턱 앞 지표를 한 줄로 풀어 줌. 자료 d/lights/fresh.json
 (function(){
 var P=/p-opt\.html/.test(location.pathname)?'opt':/p-bond\.html/.test(location.pathname)?'bond':null;if(!P)return;
-var IDS={opt:['vix','term','pc'],bond:['inv','y10','jump','y30','hy']}[P];
-var SH={vix:'VIX',term:'기간구조',pc:'풋콜',inv:'장단기차',y10:'10년물',jump:'10년물 2주 급등',y30:'30년물',hy:'하이일드'};
+var IDS={opt:['vix','term','pc'],bond:['y10','why','y30','auc','hy']}[P];
+var SH={why:'금리 움직임',auc:'국채 입찰',vix:'VIX',term:'기간구조',pc:'풋콜',inv:'장단기차',y10:'10년물',jump:'10년물 2주 급등',y30:'30년물',hy:'하이일드'};
 var F=null;
 function ratio(i){var v=Number(i.val),t=Number(i.th);if(i.val==null)return 0;if(i.op==='<'||i.op==='<=')return t===0?1-(v/0.5):t/v;return t>0?v/t:0}
 function text(){var it=[];Object.keys(F.area_scores||{}).forEach(function(a){F.area_scores[a].items.forEach(function(i){if(IDS.indexOf(i.id)>=0)it.push(i)})});
