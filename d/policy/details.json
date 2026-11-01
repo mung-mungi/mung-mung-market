@@ -1,0 +1,48 @@
+{
+ "e48": {
+  "updated": "11.01 18:50",
+  "lead": "이란이 해협 재개 시간을 7일에서 2일로 줄였습니다. 공은 미국으로 넘어갔고, 트럼프의 '선거 전 공습 유예'는 11/3에 끝납니다.",
+  "blocks": [
+   {"k": "어떻게 여기까지 왔나", "type": "steps", "items": [
+     ["9.25", "아락치, 유엔에서 '7일 안에 해협 재개' 로드맵 제시"],
+     ["9.26", "트럼프, 7일안 거절(월스트리트저널 보도)"],
+     ["10.8", "트럼프, '중간선거 전 이란 공습은 없다'고 약속"],
+     ["10.26", "혁명수비대, 해협 '공식 폐쇄' 선언"],
+     ["10.31", "이란·카타르 12시간 넘는 회담 — 카타르는 5일, 결론은 2일"],
+     ["11.1", "아락치, '2일 안' 공식 확인. 미국 답변은 아직 없음"]
+   ]},
+   {"k": "조건 6개, 어디까지 왔나", "type": "conds", "note": "보도를 바탕으로 한 우리 판단이며 미국은 아무것도 확인하지 않았습니다.", "items": [
+     {"n": "제재 해제(7월 양해각서 붕괴 이후분)", "s": "진전", "t": "밴스 서한의 어조가 누그러졌다는 이란 측 평가. 돈 문제는 가장 빨리 풀릴 수 있는 쪽"},
+     {"n": "석유 수출 면제 복원", "s": "진전", "t": "제재 해제와 한 묶음. 재무부 면허 형태로 나올 수 있음"},
+     {"n": "동결 자금 해제(카타르 보관분 포함)", "s": "진전", "t": "요구액이 9월안(약 120억 달러)보다 커진 점은 변수"},
+     {"n": "역내 미군 축소", "s": "미정", "t": "항모 회항 같은 '모양새'로 대응할 여지"},
+     {"n": "레바논 공격 중단", "s": "미정", "t": "이스라엘 새 정부 구성이 늦어져(과반 미달) 약속할 주체가 애매"},
+     {"n": "이란-오만 항로만 인정", "s": "쟁점", "t": "사실상 해협 통제권. 미국이 가장 받기 어려운 조건"}
+   ]},
+   {"k": "누가 뭐라 했나", "type": "quotes", "items": [
+     {"who": "아락치", "role": "이란 외무장관", "say": "카타르 중재로 7일안을 2일로 줄였다. 미국이 첫날 이행하면 둘째 날 통항 재개", "media": "인베스팅닷컴", "src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"},
+     {"who": "레자에이", "role": "이란 안보 책임자", "say": "밴스 서한은 더 유화적이지만, 조건 충족 전에는 해협을 열지 않는다", "media": "인베스팅닷컴", "src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"},
+     {"who": "트럼프", "role": "미국 대통령", "say": "협상은 잘 되고 있고 이란이 딜을 원한다. 우리는 서두르지 않는다", "media": "인베스팅닷컴", "src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"},
+     {"who": "루비오", "role": "미국 국무장관", "say": "공습 재개는 결정되지 않았고 외교적 해결도 가능하다", "media": "인베스팅닷컴", "src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"},
+     {"who": "모즈타바 하메네이", "role": "이란 최고지도자", "say": "공격받으면 지역 제한 없이 즉각 대응하도록 지휘관들에게 준비 지시", "media": "인베스팅닷컴", "src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"}
+   ]},
+   {"k": "시장과 어떻게 이어지나", "type": "text", "text": "서부텍사스유는 10월 한 달 15% 올라 104달러에 마감했고, 10년물 금리는 5% 안팎에서 내려오지 않고 있습니다. 해협이 열리면 유가에 붙은 위험 프리미엄이 빠지고, 물가와 금리 부담도 함께 줄어듭니다. 다만 10월 하락의 주범은 이란보다 AI 투자 대비 수익성 질문이었습니다. 딜이 나와도 반등은 지수 전체보다 유가·금리에 민감한 쪽의 순환에 가까울 수 있습니다."},
+   {"k": "시나리오", "type": "scen", "items": [
+     {"h": "딜 먼저", "c": "up", "t": "미국 답변 → 재무부 면허(제재 유예) → 해협 통항 재개. 유가·금리 부담이 풀리고, 트럼프는 선거 직전 '전쟁을 끝내는 대통령' 그림을 얻습니다. 이란이 나중에 발을 빼도 공습 카드는 남습니다."},
+     {"h": "공습 먼저", "c": "dn", "t": "미국은 걸프 동맹에 11/4부터 짧고 강한 공습이 가능하다고 알린 것으로 보도됐습니다. 유가 재급등과 10년물 5% 위 부담이 다시 커지고, 보증국인 걸프 국가들의 반발도 변수입니다."}
+   ], "con": "반대 시각 — 이란은 9월 7일안 때도 기대만 키우고 무산됐습니다. '조건 충족 전엔 열지 않는다'는 말을 보면 딜 기대가 앞서갈 수 있습니다."},
+   {"k": "다음 볼 것", "type": "list", "items": [
+     "미국의 공식 답변(일요일 밤~월요일 새벽)",
+     "재무부 일반 면허(제재 유예)가 정규장 전후로 나오는지",
+     "11/3 공습 유예 만료와 11/4 공습 여부",
+     "해협 실제 통항 수 — 10/18 하루 4척(전쟁 전 85척)"
+   ]}
+  ],
+  "links": [
+   {"media": "인베스팅닷컴", "t": "이란 48시간 해협 재개안", "u": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"},
+   {"media": "하우스오브사우드", "t": "2일안과 11/3 유예 만료 일지", "u": "https://houseofsaud.com/araghchi-2-day-hormuz-plan-trump-moratorium/"},
+   {"media": "타임스오브이스라엘", "t": "걸프에 11/4 공습 가능 경고", "u": "https://www.timesofisrael.com/liveblog_entry/report-us-warns-gulf-allies-of-possible-iran-strikes-as-early-as-november-4/"},
+   {"media": "하우스오브사우드", "t": "10/26 폐쇄 선언·통항 수", "u": "https://houseofsaud.com/iran-hormuz-ceasefire-conditions-oct28/"}
+  ]
+ }
+}

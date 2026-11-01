@@ -705,6 +705,9 @@ def tidy_policy(s):
         return s
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-polord>' + open(os.path.join(d, 'polord.css'), encoding='utf-8').read() + '</style><script data-polord>' + open(os.path.join(d, 'polord.js'), encoding='utf-8').read() + '</script>'
+    # 타임라인 헤드라인 모드(사용자 2026-11-01): 제목만 이어 보고 누르면 펼침, 흐름 이어 보기, 정리본 — 정책·테크 공용
+    s = re.sub(r'<(style|script) data-tlx>.*?</\1>', '', s, flags=re.S)
+    add += '<style data-tlx>' + open(os.path.join(d, 'tlx.css'), encoding='utf-8').read() + '</style><script data-tlx>' + open(os.path.join(d, 'tlx.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
 

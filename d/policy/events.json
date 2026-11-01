@@ -10,7 +10,9 @@
   "mkt_note": "유가 +5%, 2주 최고(주식 반응 자료 없음)",
   "status": "발생",
   "source_url": "https://www.khaleejtimes.com/world/mena/trump-iran-ceasefire-war-nato-summit",
-  "media": "칼리지타임스(AFP)"
+  "media": "칼리지타임스(AFP)",
+  "tier": "big",
+  "thread": "호르무즈 해상 충돌"
  },
  {
   "id": "e30",
@@ -23,7 +25,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis",
-  "media": "위키백과(호르무즈 위기)"
+  "media": "위키백과(호르무즈 위기)",
+  "tier": "big",
+  "thread": "이란 해협 협상"
  },
  {
   "id": "e34",
@@ -36,7 +40,9 @@
   "mkt_note": "자료 없음",
   "status": "진행중",
   "source_url": "https://www.newspim.com/news/view/20260710001236",
-  "media": "뉴스핌"
+  "media": "뉴스핌",
+  "tier": "big",
+  "thread": "한국 대미 투자"
  },
  {
   "id": "e02",
@@ -49,7 +55,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://ca.finance.yahoo.com/news/us-official-says-shipments-h200-145442006.html",
-  "media": "로이터(야후파이낸스)"
+  "media": "로이터(야후파이낸스)",
+  "tier": "big",
+  "thread": "반도체 수출통제"
  },
  {
   "id": "e31",
@@ -62,7 +70,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis",
-  "media": "위키백과(호르무즈 위기)"
+  "media": "위키백과(호르무즈 위기)",
+  "tier": "big",
+  "thread": "호르무즈 해상 충돌"
  },
  {
   "id": "e32",
@@ -75,7 +85,9 @@
   "mkt_note": "자료 없음",
   "status": "진행중",
   "source_url": "https://ari.us/senate-ndaa-takes-major-step-to-strengthen-ai-chip-export-controls/",
-  "media": "ARI(책임있는혁신을위한미국인)"
+  "media": "ARI(책임있는혁신을위한미국인)",
+  "tier": "big",
+  "thread": "반도체 수출통제"
  },
  {
   "id": "e03",
@@ -88,7 +100,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://www.rvia.org/news-insights/section-122-tariffs-replaced-new-section-301-forced-labor-tariffs",
-  "media": "RVIA"
+  "media": "RVIA",
+  "tier": "big",
+  "thread": "관세·무역"
  },
  {
   "id": "e33",
@@ -101,7 +115,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis",
-  "media": "위키백과(호르무즈 위기)"
+  "media": "위키백과(호르무즈 위기)",
+  "tier": "small",
+  "thread": "유가·공급 대응"
  },
  {
   "id": "e04",
@@ -114,7 +130,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://www.rvia.org/news-insights/section-122-tariffs-replaced-new-section-301-forced-labor-tariffs",
-  "media": "RVIA"
+  "media": "RVIA",
+  "tier": "big",
+  "thread": "한국 대미 투자"
  },
  {
   "id": "e05",
@@ -127,7 +145,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://www.staradvertiser.com/2026/07/29/breaking-news/fed-holds-rates-steady-as-3-policymakers-dissent-in-favor-of-hike/",
-  "media": "로이터(호놀룰루 스타애드버타이저)"
+  "media": "로이터(호놀룰루 스타애드버타이저)",
+  "tier": "big",
+  "thread": "연준 금리"
  },
  {
   "id": "e06",
@@ -140,7 +160,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://finance.yahoo.com/technology/articles/nvidia-h200-chips-reach-china-021726633.html",
-  "media": "로이터(야후파이낸스)"
+  "media": "로이터(야후파이낸스)",
+  "tier": "big",
+  "thread": "반도체 수출통제"
  },
  {
   "id": "e35",
@@ -153,7 +175,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis",
-  "media": "위키백과(호르무즈 위기)"
+  "media": "위키백과(호르무즈 위기)",
+  "tier": "big",
+  "thread": "호르무즈 해상 충돌"
  },
  {
   "id": "e07",
@@ -166,7 +190,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027",
-  "media": "엔비디아 뉴스룸"
+  "media": "엔비디아 뉴스룸",
+  "tier": "big",
+  "thread": "반도체 수출통제"
  },
  {
   "id": "e08",
@@ -179,7 +205,9 @@
   "mkt_note": "나스닥 -0.5%(종가), 소형주·산업재 약세",
   "status": "발생",
   "source_url": "https://investinglive.com/central-banks/new-week-catch-up-time-warsh-s-hawkish-jackson-hole-remarks-lift-rate-hike-odds-pressure-stocks/",
-  "media": "인베스팅라이브"
+  "media": "인베스팅라이브",
+  "tier": "big",
+  "thread": "연준 금리"
  },
  {
   "id": "e36",
@@ -192,7 +220,9 @@
   "mkt_note": "자료 없음",
   "status": "진행중",
   "source_url": "https://m.news.nate.com/view/20260828n28525",
-  "media": "네이트뉴스(종합)"
+  "media": "네이트뉴스(종합)",
+  "tier": "big",
+  "thread": "한국 대미 투자"
  },
  {
   "id": "e09",
@@ -205,7 +235,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://breakingdefense.com/2026/09/house-passes-funding-stopgap-averting-government-shutdown-in-october/",
-  "media": "브레이킹디펜스"
+  "media": "브레이킹디펜스",
+  "tier": "big",
+  "thread": "예산·셧다운"
  },
  {
   "id": "e37",
@@ -218,7 +250,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis",
-  "media": "위키백과(호르무즈 위기)"
+  "media": "위키백과(호르무즈 위기)",
+  "tier": "big",
+  "thread": "호르무즈 해상 충돌"
  },
  {
   "id": "e10",
@@ -231,7 +265,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://www.fnnews.com/news/202609071531119156",
-  "media": "파이낸셜뉴스"
+  "media": "파이낸셜뉴스",
+  "tier": "big",
+  "thread": "한국 대미 투자"
  },
  {
   "id": "e11",
@@ -244,7 +280,9 @@
   "mkt_note": "브렌트 +2.5%(주식 반응 자료 없음)",
   "status": "발생",
   "source_url": "https://www.insurancejournal.com/news/international/2026/09/09/884476.htm",
-  "media": "인슈어런스저널(블룸버그)"
+  "media": "인슈어런스저널(블룸버그)",
+  "tier": "big",
+  "thread": "호르무즈 해상 충돌"
  },
  {
   "id": "e12",
@@ -257,7 +295,9 @@
   "mkt_note": "나스닥 -0.37%, 다우 -1.3%; 에너지·금융 약세",
   "status": "발생",
   "source_url": "https://virginiabusiness.com/fed-raises-interest-rates-stocks-fall-new-york/",
-  "media": "로이터(버지니아비즈니스)"
+  "media": "로이터(버지니아비즈니스)",
+  "tier": "big",
+  "thread": "연준 금리"
  },
  {
   "id": "e13",
@@ -270,7 +310,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://en.mercopress.com/2026/09/25/trump-and-xi-end-the-state-visit-with-the-trade-truce-extended-and-no-substantive-deals",
-  "media": "메르코프레스"
+  "media": "메르코프레스",
+  "tier": "big",
+  "thread": "관세·무역"
  },
  {
   "id": "e49",
@@ -283,7 +325,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://houseofsaud.com/araghchi-2-day-hormuz-plan-trump-moratorium/",
-  "media": "하우스오브사우드"
+  "media": "하우스오브사우드",
+  "tier": "big",
+  "thread": "이란 해협 협상"
  },
  {
   "id": "e14",
@@ -296,7 +340,9 @@
   "mkt_note": "자료 없음",
   "status": "진행중",
   "source_url": "https://www.seoul.co.kr/news/economy/2026/10/01/20261001500026",
-  "media": "서울신문"
+  "media": "서울신문",
+  "tier": "big",
+  "thread": "한국 대미 투자"
  },
  {
   "id": "e50",
@@ -309,7 +355,24 @@
   "mkt_note": "나스닥 +0.04%, 브렌트 102.31달러",
   "status": "발생",
   "source_url": "https://www.thenationalnews.com/news/us/2026/10/01/us-sends-third-aircraft-carrier-to-middle-east/",
-  "media": "더내셔널"
+  "media": "더내셔널",
+  "tier": "big",
+  "thread": "미국 공습 옵션"
+ },
+ {
+  "id": "e55",
+  "date": "2026-10-01",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "중국 정유사 10월 석유제품 수출 중단 — 푸틴 \"제재 풀리기 전 경유 수출 없다\"",
+  "summary": "중국 정유사들이 홍콩·마카오를 뺀 지역으로 경유·휘발유·항공유 수출을 한 달 멈췄고, 푸틴도 제재가 풀리기 전엔 경유 수출을 재개하지 않겠다고 했습니다. 석유제품 공급 우려에 유가가 뛰었습니다.",
+  "nasdaq_pct": 0.04,
+  "mkt_note": "나스닥 +0.04%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "유가·공급 대응"
  },
  {
   "id": "e38",
@@ -322,7 +385,24 @@
   "mkt_note": "선물 상승·금리 하락(종가 자료 없음)",
   "status": "발생",
   "source_url": "https://finance.yahoo.com/economy/articles/september-2026-jobs-report-payrolls-123334753.html",
-  "media": "야후파이낸스"
+  "media": "야후파이낸스",
+  "tier": "big",
+  "thread": "연준 금리"
+ },
+ {
+  "id": "e56",
+  "date": "2026-10-02",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "G7, 비축유·경유 최대 1억 배럴 방출 합의",
+  "summary": "주요 7개국이 넉 달에 걸쳐 비축유와 경유를 최대 1억 배럴 풀기로 했습니다. 브렌트는 100달러 안팎에서 등락했습니다.",
+  "nasdaq_pct": 1.19,
+  "mkt_note": "나스닥 +1.19%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "유가·공급 대응"
  },
  {
   "id": "e39",
@@ -335,7 +415,24 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://tariffsentinel.com/changes/section-301-china-four-year-review-continuation-2026",
-  "media": "태리프센티널(관보 인용)"
+  "media": "태리프센티널(관보 인용)",
+  "tier": "big",
+  "thread": "관세·무역"
+ },
+ {
+  "id": "e57",
+  "date": "2026-10-07",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "후티, 사우디 지잔·나즈란 공항 공격 — 원유 시설 피격 보도도",
+  "summary": "예멘 후티 반군이 사우디 남부 공항을 공격했고 사우디 원유 시설 피격 보도가 이어졌습니다. 이란 전쟁이 홍해·사우디 전선으로 번지는 흐름의 시작입니다.",
+  "nasdaq_pct": -0.22,
+  "mkt_note": "나스닥 -0.22%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "후티-사우디 전선"
  },
  {
   "id": "e51",
@@ -348,7 +445,24 @@
   "mkt_note": "나스닥 -1.25%(유가 91달러대)",
   "status": "발생",
   "source_url": "https://houseofsaud.com/araghchi-2-day-hormuz-plan-trump-moratorium/",
-  "media": "하우스오브사우드"
+  "media": "하우스오브사우드",
+  "tier": "big",
+  "thread": "미국 공습 옵션"
+ },
+ {
+  "id": "e58",
+  "date": "2026-10-08",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "허리케인 이사이아스 — 멕시코만 원유 생산 약 25% 중단",
+  "summary": "멕시코만 원유 생산의 약 25%, 가스 약 16%가 멈췄습니다. 중동 위험에 미국 내 공급 차질까지 겹쳤습니다.",
+  "nasdaq_pct": -1.25,
+  "mkt_note": "나스닥 -1.25%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "유가·공급 대응"
  },
  {
   "id": "e40",
@@ -361,7 +475,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://www.utilitydive.com/news/ferc-pjm-large-load-interconnection-iras-byonc/832716/",
-  "media": "유틸리티다이브"
+  "media": "유틸리티다이브",
+  "tier": "big",
+  "thread": "데이터센터 정치"
  },
  {
   "id": "e52",
@@ -374,7 +490,9 @@
   "mkt_note": "나스닥 +0.6%, 브렌트 104.72달러",
   "status": "발생",
   "source_url": "https://www.timesofisrael.com/liveblog_entry/trump-says-iran-war-will-be-over-soon-one-way-or-the-other/",
-  "media": "타임스오브이스라엘"
+  "media": "타임스오브이스라엘",
+  "tier": "small",
+  "thread": "이란 해협 협상"
  },
  {
   "id": "e53",
@@ -387,7 +505,69 @@
   "mkt_note": "나스닥 -0.44%, 브렌트 106.65달러",
   "status": "발생",
   "source_url": "https://www.tribuneindia.com/news/world/response-inadequate-iran-claims-us-agreed-to-some-of-its-seven-conditions/",
-  "media": "트리뷴(이란 국영방송 인용)"
+  "media": "트리뷴(이란 국영방송 인용)",
+  "tier": "big",
+  "thread": "이란 해협 협상"
+ },
+ {
+  "id": "e59",
+  "date": "2026-10-12",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "후티, 리야드 국제공항 공격 — 사우디 연합군 보복, 트럼프 \"동참 검토\"",
+  "summary": "후티는 10일 리야드 공항 공격으로 13명 사망·300명 넘게 다쳤다고 주장했고, 사우디 주도 연합군이 예멘 에너지 시설을 보복 타격했습니다. 트럼프는 미국의 동참을 검토 중이라고 말했습니다.",
+  "nasdaq_pct": -0.44,
+  "mkt_note": "나스닥 -0.44%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "후티-사우디 전선"
+ },
+ {
+  "id": "e60",
+  "date": "2026-10-12",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "오만 소하르 인근·호르무즈에서 유조선 피격",
+  "summary": "10~11일 오만 소하르 정박지 인근 유조선이 드론에 맞았고 호르무즈에서도 유조선 피해가 보고됐습니다(영국 해사무역기구).",
+  "nasdaq_pct": -0.44,
+  "mkt_note": "나스닥 -0.44%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "호르무즈 해상 충돌"
+ },
+ {
+  "id": "e61",
+  "date": "2026-10-12",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "트럼프, 러시아-우크라이나 \"에너지 휴전\" 발표",
+  "summary": "트럼프가 양국의 에너지 시설 공격 중단을 발표했습니다. 러시아산 공급 우려를 덜어 유가 상단을 누르는 재료입니다.",
+  "nasdaq_pct": -0.44,
+  "mkt_note": "나스닥 -0.44%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "유가·공급 대응"
+ },
+ {
+  "id": "e62",
+  "date": "2026-10-13",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "중부사령부 \"이란이 해협을 통제한다는 주장은 사실 아니다\"",
+  "summary": "미 중부사령부가 이란 측의 해협 통제 주장을 공식 부인했습니다. 후티-사우디 충돌이 이어지며 브렌트는 106~107달러대였습니다.",
+  "nasdaq_pct": -0.15,
+  "mkt_note": "나스닥 -0.15%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "호르무즈 해상 충돌"
  },
  {
   "id": "e15",
@@ -400,7 +580,9 @@
   "mkt_note": "나스닥 -1.88%(종가), 엔비디아 -3%, 코어위브 -15%, 네비우스 -10%",
   "status": "발생",
   "source_url": "https://virginiabusiness.com/us-consumer-price-index-september-rate-hike-bets/",
-  "media": "로이터(버지니아비즈니스) · 스탁트위츠"
+  "media": "로이터(버지니아비즈니스) · 스탁트위츠",
+  "tier": "big",
+  "thread": "연준 금리"
  },
  {
   "id": "e41",
@@ -413,7 +595,24 @@
   "mkt_note": "자료 없음",
   "status": "진행중",
   "source_url": "https://www.mt.co.kr/world/2026/10/15/2026101514265939431",
-  "media": "머니투데이(로이터 인용)"
+  "media": "머니투데이(로이터 인용)",
+  "tier": "big",
+  "thread": "한국 대미 투자"
+ },
+ {
+  "id": "e63",
+  "date": "2026-10-15",
+  "month": "2026-10",
+  "category": "AI·전력 정책",
+  "title": "텍사스·뉴욕 데이터센터 신규 유예 — 전기·물 요금 규제 확산",
+  "summary": "텍사스·뉴욕의 신규 데이터센터 건설 유예와 펜실베이니아·버지니아 등의 물·전기요금 규제 움직임이 퍼지고 있습니다. 중간선거에서 데이터센터 전기료가 쟁점이 되는 배경입니다.",
+  "nasdaq_pct": 0.08,
+  "mkt_note": "나스닥 +0.08%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "데이터센터 정치"
  },
  {
   "id": "e16",
@@ -426,7 +625,54 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://geopolitechs.org/p/china-imposes-temporary-export-registration",
-  "media": "지오폴리텍스"
+  "media": "지오폴리텍스",
+  "tier": "big",
+  "thread": "반도체 수출통제"
+ },
+ {
+  "id": "e64",
+  "date": "2026-10-16",
+  "month": "2026-10",
+  "category": "연준·정책",
+  "title": "워시 \"각국이 함께 긴축 중, 무임승차자는 없다\"",
+  "summary": "워시 의장이 국제통화기금 연차총회에서 주요국 중앙은행이 함께 긴축하고 있다고 말했습니다. 12월 인상 기대를 받치는 발언입니다.",
+  "nasdaq_pct": -2.14,
+  "mkt_note": "나스닥 -2.14%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "연준 금리"
+ },
+ {
+  "id": "e65",
+  "date": "2026-10-16",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "후티, 사우디 얀부 겨냥·페르시아만 유조선 2척 공격 — 미군 호위 확대",
+  "summary": "후티가 사우디 얀부 수출 거점을 노렸고 페르시아만에서 유조선 2척이 공격받았다는 보도가 나왔습니다. 미군은 호르무즈에서 1억 배럴 넘는 원유 수송을 호위했습니다.",
+  "nasdaq_pct": -2.14,
+  "mkt_note": "나스닥 -2.14%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "호르무즈 해상 충돌"
+ },
+ {
+  "id": "e66",
+  "date": "2026-10-16",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "트럼프, 대러 제재·관세 대부분 유예",
+  "summary": "러시아산 경유 공급이 늘 것이란 기대에 브렌트가 소폭 내렸습니다. 우크라이나는 러시아 석유 시설 타격을 이어 갔습니다.",
+  "nasdaq_pct": -2.14,
+  "mkt_note": "나스닥 -2.14%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "유가·공급 대응"
  },
  {
   "id": "e17",
@@ -439,7 +685,9 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://www.semafor.com/article/10/20/2026/chinese-tech-firms-purchase-more-than-35-billion-of-nvidia-chips-reuters",
-  "media": "세마포(로이터 인용)"
+  "media": "세마포(로이터 인용)",
+  "tier": "big",
+  "thread": "반도체 수출통제"
  },
  {
   "id": "e18",
@@ -452,7 +700,69 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://www.uniindia.com/world/brent-crude-110/220098",
-  "media": "UNI"
+  "media": "UNI",
+  "tier": "small",
+  "thread": "유가·공급 대응"
+ },
+ {
+  "id": "e67",
+  "date": "2026-10-20",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "카타르·파키스탄 새 제안 보도 — 동결 자금 이자 양보·비공개 사찰",
+  "summary": "카타르 은행에 묶인 동결 자금 60억 달러의 이자 일부 양보와 국제원자력기구 비공개 사찰 수용이 담겼다는 보도가 나왔습니다. 양국 모두 확인하지 않았고, 브렌트는 한때 약 3% 내렸습니다.",
+  "nasdaq_pct": -0.02,
+  "mkt_note": "나스닥 -0.02%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "이란 해협 협상"
+ },
+ {
+  "id": "e68",
+  "date": "2026-10-21",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "아락치 \"협상 진전 기대할 이유 거의 없다\" — 푸틴은 중재 의사",
+  "summary": "이란 외무장관이 미국과의 협상에 회의적인 입장을 밝혀 호르무즈 협상이 교착에 빠졌습니다. 푸틴은 위트코프 특사를 만나 이란 위기 해결을 돕겠다고 했습니다.",
+  "nasdaq_pct": 1.05,
+  "mkt_note": "나스닥 +1.05%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "이란 해협 협상"
+ },
+ {
+  "id": "e69",
+  "date": "2026-10-22",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "이란 국영방송 \"해협 내 유조선 7척 피해\" — 트럼프 \"가짜 피격\"",
+  "summary": "이란은 유조선 7척이 피해를 입거나 불탔다고 보도했고, 트럼프는 조작이라고 반박하며 이란이 바뀌지 않으면 미국과 이스라엘이 \"곧 일을 끝낼 것\"이라고 경고했습니다.",
+  "nasdaq_pct": -2.6,
+  "mkt_note": "나스닥 -2.60%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "호르무즈 해상 충돌"
+ },
+ {
+  "id": "e70",
+  "date": "2026-10-22",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "후티, 아람코 시설 공격 주장 — 담맘 공항 2명 사망",
+  "summary": "후티가 사우디 아람코 시설 등을 공격했다고 주장했고 담맘 공항에서 2명이 숨졌습니다.",
+  "nasdaq_pct": -2.6,
+  "mkt_note": "나스닥 -2.60%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "후티-사우디 전선"
  },
  {
   "id": "e42",
@@ -465,7 +775,39 @@
   "mkt_note": "자료 없음",
   "status": "발생",
   "source_url": "https://www.tomshardware.com/tech-industry/data-centers/illegal-nvidia-blackwell-ultra-b300-gpus-found-inside-state-owned-china-telecoms-network-nvidia-says-chip-smuggling-a-drop-in-the-bucket-insists-smuggling-remains-a-nonfactor",
-  "media": "톰스하드웨어"
+  "media": "톰스하드웨어",
+  "tier": "big",
+  "thread": "반도체 수출통제"
+ },
+ {
+  "id": "e71",
+  "date": "2026-10-23",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "이란 \"재공격 받으면 걸프 해저케이블 타격\" 계획 보도",
+  "summary": "로이터는 미국·이스라엘이 다시 공격하면 이란이 걸프 해저 통신케이블을 치고 복구도 막을 수 있다는 계획을 보도했습니다. 호르무즈를 지나는 대역폭은 세계의 1% 미만이라 영향은 지역적이라는 평가입니다.",
+  "nasdaq_pct": -0.21,
+  "mkt_note": "나스닥 -0.21%",
+  "status": "발생",
+  "source_url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/25/iran-warns-of-gulf-undersea",
+  "media": "더스타(로이터 인용)",
+  "tier": "small",
+  "thread": "이란 해협 협상"
+ },
+ {
+  "id": "e72",
+  "date": "2026-10-23",
+  "month": "2026-10",
+  "category": "관세·무역",
+  "title": "캐나다산 일부 농림 제품 50% 관세 철폐 검토 보도",
+  "summary": "월스트리트저널은 행정부가 일부 캐나다산 농림 제품의 50% 관세를 없애되 다른 품목 관세로 상쇄하는 방안을 검토 중이라고 보도했습니다.",
+  "nasdaq_pct": -0.21,
+  "mkt_note": "나스닥 -0.21%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "관세·무역"
  },
  {
   "id": "e43",
@@ -478,7 +820,24 @@
   "mkt_note": "자료 없음",
   "status": "진행중",
   "source_url": "https://www.iranintl.com/en/202610250633",
-  "media": "이란인터내셔널"
+  "media": "이란인터내셔널",
+  "tier": "big",
+  "thread": "이란 해협 협상"
+ },
+ {
+  "id": "e73",
+  "date": "2026-10-25",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "중부사령부 \"호르무즈 주요 항로에 기뢰 없다\"",
+  "summary": "미 중부사령부가 주요 항로에 기뢰가 없다고 확인했습니다. 같은 날 트럼프는 \"오늘은 공습 없다\"고 했습니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "source_url": "https://www.timesofisrael.com/liveblog_entry/trump-says-us-wont-strike-iran-today-amid-ris",
+  "media": "타임스오브이스라엘",
+  "tier": "small",
+  "thread": "호르무즈 해상 충돌"
  },
  {
   "id": "e20",
@@ -491,7 +850,9 @@
   "mkt_note": "나스닥 +0.96%(장중 3시 기준), 반도체 상승",
   "status": "발생",
   "source_url": "https://www.benzinga.com/news/politics/26/10/62581355/trump-iran-strike-oil-prices",
-  "media": "벤징가"
+  "media": "벤징가",
+  "tier": "big",
+  "thread": "이란 해협 협상"
  },
  {
   "id": "e45",
@@ -504,7 +865,39 @@
   "mkt_note": "나스닥 +0.95%, 반도체 +2.8%",
   "status": "발생",
   "source_url": "https://houseofsaud.com/iran-hormuz-ceasefire-conditions-oct28/",
-  "media": "하우스오브사우드"
+  "media": "하우스오브사우드",
+  "tier": "big",
+  "thread": "호르무즈 해상 충돌"
+ },
+ {
+  "id": "e74",
+  "date": "2026-10-26",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "중부사령부 \"봉쇄로 이란 석유 수입 250억 달러 이상 손실\"",
+  "summary": "미국은 해상 봉쇄로 이란이 최소 250억 달러의 석유 수입을 잃었다고 밝혔습니다. 이란은 간접 협상은 이어 가되 공격이 재개돼도 입장은 바꾸지 않겠다고 했습니다.",
+  "nasdaq_pct": 0.95,
+  "mkt_note": "나스닥 +0.95%",
+  "status": "발생",
+  "source_url": "https://www.cbsnews.com/live-updates/iran-war-trump-us-diplomacy-oil-prices-strait-of-hormuz/",
+  "media": "CBS",
+  "tier": "small",
+  "thread": "이란 해협 협상"
+ },
+ {
+  "id": "e75",
+  "date": "2026-10-26",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "이집트 의회, 사우디 방어용 파병 승인",
+  "summary": "후티가 리야드 공항 공격을 주장한 가운데 이집트 의회가 사우디 방어를 위한 파병을 승인했습니다.",
+  "nasdaq_pct": 0.95,
+  "mkt_note": "나스닥 +0.95%",
+  "status": "발생",
+  "source_url": "https://www.cbsnews.com/live-updates/iran-war-trump-us-diplomacy-oil-prices-strait-of-hormuz/",
+  "media": "CBS",
+  "tier": "small",
+  "thread": "후티-사우디 전선"
  },
  {
   "id": "e22",
@@ -517,7 +910,39 @@
   "mkt_note": "나스닥 +1.18%, 반도체 +3.6%(이란 대화 기대로 유가 100달러 아래)",
   "status": "발생",
   "source_url": "https://www.timesofisrael.com/with-all-votes-counted-netanyahus-bloc-at-53-seats-eisenkots-48-arab-parties-19/",
-  "media": "타임스오브이스라엘"
+  "media": "타임스오브이스라엘",
+  "tier": "big",
+  "thread": "이스라엘 정치"
+ },
+ {
+  "id": "e76",
+  "date": "2026-10-27",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "\"미국, 선거 전 추가 공습 없다\" 보도 — 서부텍사스유 100달러 아래로",
+  "summary": "사우디·파키스탄·튀르키예와의 대화가 이어지는 가운데 미국이 중간선거 전 추가 공습을 하지 않는다는 보도가 나왔습니다. 서부텍사스유는 99.87달러(-1.9%)로 내려왔습니다.",
+  "nasdaq_pct": 1.18,
+  "mkt_note": "나스닥 +1.18%",
+  "status": "발생",
+  "source_url": "https://finance.yahoo.com/markets/live/stock-market-today-tuesday-october-27-dow-sp-500-nasdaq-081901995.html",
+  "media": "야후파이낸스",
+  "tier": "small",
+  "thread": "이란 해협 협상"
+ },
+ {
+  "id": "e77",
+  "date": "2026-10-27",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "후티, 라스타누라 정유시설 공격 주장 — 이집트 지원은 \"선전포고\"",
+  "summary": "후티가 사우디 라스타누라 정유시설에 미사일을 쐈다고 주장했고(화재), 이집트의 사우디 군사지원을 선전포고로 규정했습니다. 홍해 전선이 넓어지고 있습니다.",
+  "nasdaq_pct": 1.18,
+  "mkt_note": "나스닥 +1.18%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "후티-사우디 전선"
  },
  {
   "id": "e23",
@@ -530,7 +955,9 @@
   "mkt_note": "나스닥 +0.27%, 10년물 5.05%",
   "status": "발생",
   "source_url": "https://fortune.com/2026/10/28/fed-rates-steady-midterms-october-3-75-to-4-percent-cook-hammack-dissent/",
-  "media": "포천"
+  "media": "포천",
+  "tier": "big",
+  "thread": "연준 금리"
  },
  {
   "id": "e46",
@@ -543,7 +970,9 @@
   "mkt_note": "나스닥 +0.27%(같은 날 연준 동결)",
   "status": "발생",
   "source_url": "https://www.dailymaverick.co.za/article/2026-10-28-qatari-mediators-present-iran-with-new-deal-to-end-the-war-official-says.md",
-  "media": "데일리매버릭(AP)"
+  "media": "데일리매버릭(AP)",
+  "tier": "big",
+  "thread": "이란 해협 협상"
  },
  {
   "id": "e54",
@@ -556,7 +985,69 @@
   "mkt_note": "나스닥 +0.27%(같은 날 연준 동결)",
   "status": "발생",
   "source_url": "https://dailybeirut.com/en/world/axios-saudi-arabia-asked-trump-not-to-rush-into-war-with-iran-and-give-more-time/",
-  "media": "데일리베이루트(악시오스 인용)"
+  "media": "데일리베이루트(악시오스 인용)",
+  "tier": "big",
+  "thread": "이란 해협 협상"
+ },
+ {
+  "id": "e78",
+  "date": "2026-10-28",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "후티 \"사우디 최대 정유시설(하루 55만 배럴) 타격\"",
+  "summary": "후티가 사우디 최대 정유시설을 미사일로 쳤다고 주장했고 사우디는 확인하지 않았습니다. 이날 유가 상승의 직접 계기였습니다.",
+  "nasdaq_pct": 0.27,
+  "mkt_note": "나스닥 +0.27%",
+  "status": "발생",
+  "source_url": "https://finance.yahoo.com/energy/articles/oil-prices-rise-attack-saudi-021422891.html",
+  "media": "야후파이낸스(로이터)",
+  "tier": "small",
+  "thread": "후티-사우디 전선"
+ },
+ {
+  "id": "e79",
+  "date": "2026-10-29",
+  "month": "2026-10",
+  "category": "연준·정책",
+  "title": "3분기 성장률 3.4% — \"경제는 좋은데 물가는 높다\" 선거 구도",
+  "summary": "선거를 며칠 앞두고 나온 성장률이 예상보다 강해, 경제는 괜찮지만 체감 물가가 높다는 구도가 부각됐습니다.",
+  "nasdaq_pct": -1.38,
+  "mkt_note": "나스닥 -1.38%",
+  "status": "발생",
+  "source_url": "https://npr.org/2026/10/29/nx-s1-6021008/economy-gdp-inflation-midterms-voters-affordabili",
+  "media": "NPR",
+  "tier": "small",
+  "thread": "중간선거"
+ },
+ {
+  "id": "e80",
+  "date": "2026-10-30",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "이란 \"기뢰로 유조선 4~6척 피격\" — 중부사령부 \"남쪽 항로 안전\"",
+  "summary": "이란이 기뢰 피격을 주장했고 미군은 반박했습니다. 서부텍사스유는 104달러대로 올랐습니다.",
+  "nasdaq_pct": -2.86,
+  "mkt_note": "나스닥 -2.86%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "호르무즈 해상 충돌"
+ },
+ {
+  "id": "e81",
+  "date": "2026-10-30",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "트럼프 \"전쟁 곧 끝난다\" — 카타르 중재단 테헤란 복귀",
+  "summary": "트럼프가 전쟁이 곧 끝난다고 하면서도 중간선거 뒤 공습 가능성을 열어 뒀고, 카타르 중재단이 테헤란으로 돌아갔습니다. 이 방문이 10/31 12시간 회담과 11/1 2일안으로 이어집니다.",
+  "nasdaq_pct": -2.86,
+  "mkt_note": "나스닥 -2.86%",
+  "status": "발생",
+  "source_url": null,
+  "media": "새벽 브리핑 기록",
+  "tier": "small",
+  "thread": "이란 해협 협상"
  },
  {
   "id": "e47",
@@ -569,7 +1060,39 @@
   "mkt_note": "주말 — 장 없음",
   "status": "발생",
   "source_url": "https://www.timesofisrael.com/liveblog_entry/report-us-warns-gulf-allies-of-possible-iran-strikes-as-early-as-november-4/",
-  "media": "타임스오브이스라엘(MSNOW 인용)"
+  "media": "타임스오브이스라엘(MSNOW 인용)",
+  "tier": "big",
+  "thread": "미국 공습 옵션"
+ },
+ {
+  "id": "e82",
+  "date": "2026-10-31",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "무산담 앞바다 유조선 화재, 선원 25명 구조 — 미군 \"통과 선박 95% 이상 안전\"",
+  "summary": "혁명수비대는 유조선 4척이 기뢰에 맞았다고 주장했고 오만이 선원 25명을 구조했습니다. 미 중부사령부는 주요 항로 기뢰를 제거했고 최근 몇 달 통과 선박의 95% 이상이 안전했다고 반박했습니다. 10월 해협 선박 공격은 전쟁 이후 최다였습니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "source_url": "https://gulfnews.com/world/mena/middle-east-war-saudi-intercepts-drone-iran-claims-3-tankers-hit-mines-in-hormuz-1.500730393",
+  "media": "걸프뉴스",
+  "tier": "small",
+  "thread": "호르무즈 해상 충돌"
+ },
+ {
+  "id": "e83",
+  "date": "2026-10-31",
+  "month": "2026-10",
+  "category": "이란 전쟁·유가",
+  "title": "하메네이 \"다시 공격받으면 끝낼 시점은 이란이 정한다\"",
+  "summary": "아락치는 미국의 대화 시도를 긍정적이라면서도 당장 회담 계획은 없다고 했고, 최고지도자는 재공격 시 대응 수위를 이란이 정하겠다고 경고했습니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "source_url": "https://www.aljazeera.com/news/liveblog/2026/10/31/iran-war-live-oil-tankers-hit-in-hormuz-trump-says-conflict-will-end-soon",
+  "media": "알자지라",
+  "tier": "small",
+  "thread": "이란 해협 협상"
  },
  {
   "id": "e48",
@@ -582,7 +1105,10 @@
   "mkt_note": "주말 — 월요일 장(선거 전 마지막 거래일) 반응 확인 필요",
   "status": "진행중",
   "source_url": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413",
-  "media": "인베스팅닷컴"
+  "media": "인베스팅닷컴",
+  "tier": "big",
+  "thread": "이란 해협 협상",
+  "has_detail": true
  },
  {
   "id": "e24",
@@ -595,7 +1121,9 @@
   "mkt_note": "",
   "status": "예정",
   "source_url": "https://www.benzinga.com/news/politics/26/10/62581355/trump-iran-strike-oil-prices",
-  "media": "벤징가"
+  "media": "벤징가",
+  "tier": "big",
+  "thread": "중간선거"
  },
  {
   "id": "e44",
@@ -608,7 +1136,9 @@
   "mkt_note": "",
   "status": "예정",
   "source_url": "https://tariffsentinel.com/changes/section-301-china-four-year-review-continuation-2026",
-  "media": "태리프센티널(관보 인용)"
+  "media": "태리프센티널(관보 인용)",
+  "tier": "big",
+  "thread": "관세·무역"
  },
  {
   "id": "e25",
@@ -621,7 +1151,9 @@
   "mkt_note": "",
   "status": "예정",
   "source_url": "https://geopolitechs.org/p/china-imposes-temporary-export-registration",
-  "media": "지오폴리텍스"
+  "media": "지오폴리텍스",
+  "tier": "big",
+  "thread": "반도체 수출통제"
  },
  {
   "id": "e26",
@@ -634,7 +1166,9 @@
   "mkt_note": "",
   "status": "예정",
   "source_url": "https://en.fnnews.com/news/202609100646439749",
-  "media": "파이낸셜뉴스(영문)"
+  "media": "파이낸셜뉴스(영문)",
+  "tier": "big",
+  "thread": "관세·무역"
  },
  {
   "id": "e27",
@@ -647,7 +1181,9 @@
   "mkt_note": "",
   "status": "예정",
   "source_url": "https://www.forbes.com/sites/simonmoore/2026/10/19/what-to-look-for-from-the-feds-october-meeting/",
-  "media": "포브스"
+  "media": "포브스",
+  "tier": "big",
+  "thread": "연준 금리"
  },
  {
   "id": "e28",
@@ -660,7 +1196,9 @@
   "mkt_note": "",
   "status": "예정",
   "source_url": "https://breakingdefense.com/2026/09/house-passes-funding-stopgap-averting-government-shutdown-in-october/",
-  "media": "브레이킹디펜스"
+  "media": "브레이킹디펜스",
+  "tier": "big",
+  "thread": "예산·셧다운"
  },
  {
   "id": "e29",
@@ -673,6 +1211,8 @@
   "mkt_note": "",
   "status": "예정",
   "source_url": "https://en.wikipedia.org/wiki/2026_G20_Miami_summit",
-  "media": "위키백과"
+  "media": "위키백과",
+  "tier": "big",
+  "thread": "관세·무역"
  }
 ]
