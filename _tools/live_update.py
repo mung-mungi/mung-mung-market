@@ -46,6 +46,9 @@ def gate(now):
     ts = [(int(x.split('|')[0]), x.split('|', 1)[1]) for x in log if '|' in x]
     t0 = now.timestamp()
     if sum(1 for t, _ in ts if t0 - t < 3600) >= 7: return 'skip: 최근 1시간 게시 7번'
+    # 앞 실행이 50분 순환을 마치자마자 대기 중이던 다음 실행이 30초 뒤 또 올리던 문제(2026-11-01 확인, 사흘에 5번) — 봇 게시 사이 최소 5분
+    mine0 = [t for t, a in ts if a == BOT]
+    if mine0 and t0 - mine0[0] < 5 * 60: return 'skip: 5분 안에 이미 올림'
     human = [t for t, a in ts if a != BOT]
     if human and t0 - human[0] < 600: return 'skip: Claude가 10분 안에 올림'
     if earn:
