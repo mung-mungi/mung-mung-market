@@ -34,7 +34,8 @@
   "fngbar": "시황 공포탐욕 막대 방향 통일 + 기사 경고등 알약 점수화",
   "todaybtn": "메인 오늘 카드 → 시황 버튼",
   "mm-dd-r": "시황 날짜 카드 큰 날짜·요일·오늘/어제 꼬리표(2026-11-02)",
-  "mm-why": "단계 옆 '왜 이 단계?' 한 줄"
+  "mm-why": "단계 옆 '왜 이 단계?' 한 줄",
+  "mm-src": "시황 통일 양식: 출처 매체 알약·맨 위 날짜 줄·공포탐욕 설명 접기(2026-11-02)"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -93,7 +94,8 @@
   "ltjump",
   "def tidy_easy",
   "'todaybtn'",
-  "def tidy_ddate"
+  "def tidy_ddate",
+  "def tidy_briefui"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -147,5 +149,10 @@
  ],
  "_tools/stwhy.js": [
   "mm-why"
+ ],
+ "_tools/briefui.js": [
+  "mm-src",
+  "mm-fgx",
+  "mm-td"
  ]
 }

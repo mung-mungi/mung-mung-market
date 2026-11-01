@@ -58,6 +58,7 @@ def tidy_brief(s):
     s = tidy_fng(s)
     s = tidy_dend(s)
     s = tidy_ddate(s)
+    s = tidy_briefui(s)
     if "'더 보기 ▾ ('" in s or BRIEF_ANCHOR not in s:
         return s
     s = s.replace(BRIEF_ANCHOR, "s.appendChild(ul);" + BRIEF_ADD + ";if(kind==='eco'", 1)
@@ -723,6 +724,16 @@ def tidy_ddate(s):
         return s
     d = os.path.dirname(os.path.abspath(__file__))
     add = '<style data-ddate>' + open(os.path.join(d, 'ddate.css'), encoding='utf-8').read() + '</style><script data-ddate>' + open(os.path.join(d, 'ddate.js'), encoding='utf-8').read() + '</script>'
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+# 데일리 시황 통일 양식(사용자 2026-11-02 — 신문 컨셉 대신 사이트 공통 카드·고딕·알약) — _tools/briefui.*
+def tidy_briefui(s):
+    s = re.sub(r'<(style|script) data-briefui>.*?</\1>', '', s, flags=re.S)
+    if 'id="days"' not in s:
+        return s
+    d = os.path.dirname(os.path.abspath(__file__))
+    add = '<style data-briefui>' + open(os.path.join(d, 'briefui.css'), encoding='utf-8').read() + '</style><script data-briefui>' + open(os.path.join(d, 'briefui.js'), encoding='utf-8').read() + '</script>'
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
 
 
