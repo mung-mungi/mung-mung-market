@@ -13,29 +13,33 @@ if(document.body)add();else document.addEventListener('DOMContentLoaded',add);
 // 다시 올리기: 손잡이 누르기·위로 밀기, 또는 화면을 위로 크게 되돌려 올릴 때
 (function(){try{
 var IDLE=6000,t=0,B=document.body;
+// 숨김 상태는 메뉴(.mmd)·이전홈(#mm-fab)·소리(#mm-snd)에만, 아래 여백은 body 인라인으로(사용자 2026-11-02 버벅임 점검)
+function isH(){var d=document.querySelector('.mmd');return !!(d&&d.classList.contains('mmd-hide'))}
+function setH(v){['.mmd','#mm-fab','#mm-snd'].forEach(function(q){var e=document.querySelector(q);if(e)e.classList.toggle('mmd-hide',v)});
+ if(v&&B.classList.contains('mmd-on'))B.style.setProperty('padding-bottom','calc(64px + env(safe-area-inset-bottom))','important');else B.style.removeProperty('padding-bottom')}
 function sheetOpen(){var s=document.querySelector('.mmd-sheet');return s&&!s.hidden}
-function arm(){clearTimeout(t);t=setTimeout(function(){if(!sheetOpen()&&document.querySelector('.mmd'))B.classList.add('mmd-hide')},IDLE)}
-function show(){B.classList.remove('mmd-hide');arm()}
+function arm(){clearTimeout(t);t=setTimeout(function(){if(!sheetOpen()&&document.querySelector('.mmd'))setH(true)},IDLE)}
+function show(){setH(false);arm()}
 function init(){B=document.body;if(!document.querySelector('.mmd'))return setTimeout(init,500);
 // 손잡이는 독 박스 위 가운데에 붙어 함께 움직임(일체형) — 독이 내려가면 손잡이만 바닥에 남음
 var dk=document.querySelector('.mmd');
 var p=document.createElement('button');p.id='mm-pull';p.setAttribute('aria-label','아래 메뉴 올리기·내리기');p.innerHTML='<b>메뉴</b>';dk.appendChild(p);
-function hide(){if(sheetOpen())return;B.classList.add('mmd-hide');clearTimeout(t)}
+function hide(){if(sheetOpen())return;setH(true);clearTimeout(t)}
 var y0=0,moved=0;
 p.addEventListener('touchstart',function(e){y0=e.touches[0].clientY;moved=0;e.stopPropagation()},{passive:true});
 p.addEventListener('touchmove',function(e){var d=e.touches[0].clientY-y0;e.preventDefault();e.stopPropagation();if(moved)return;
 if(d<-12){moved=1;show()}else if(d>12){moved=1;hide()}},{passive:false});
-p.addEventListener('touchend',function(e){e.stopPropagation();if(!moved&&B.classList.contains('mmd-hide')){moved=1;show()}},{passive:true});
-p.addEventListener('click',function(e){e.stopPropagation();if(moved){moved=0;return}B.classList.contains('mmd-hide')?show():hide()});
+p.addEventListener('touchend',function(e){e.stopPropagation();if(!moved&&isH()){moved=1;show()}},{passive:true});
+p.addEventListener('click',function(e){e.stopPropagation();if(moved){moved=0;return}isH()?show():hide()});
 ['touchstart','click'].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target.closest&&e.target.closest('.mmd,#mm-fab,.mmd-sheet')&&!e.target.closest('#mm-pull'))show()},{passive:true})});
 var ly=scrollY,up=0,dn=0,sq=0;addEventListener('scroll',function(){if(sq)return;sq=1;requestAnimationFrame(function(){sq=0;var y=scrollY;
-if(y<ly){dn=0;up+=ly-y;if(up>48||y<40)show()}else{up=0;dn+=y-ly;if(dn>14&&y>60&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}}ly=y})},{passive:true}); /* 반응 속도(사용자 2026-11-01): 스크롤 1픽셀마다가 아니라 화면 그릴 때 한 번 */
+if(y<ly){dn=0;up+=ly-y;if(up>48||y<40)show()}else{up=0;dn+=y-ly;if(dn>14&&y>60&&!sheetOpen()){setH(true);clearTimeout(t)}}ly=y})},{passive:true}); /* 반응 속도(사용자 2026-11-01): 스크롤 1픽셀마다가 아니라 화면 그릴 때 한 번 */
 // 아이패드 트랙패드·마우스(사용자 2026-11-01): 커서를 화면 아래 끝 가까이 내리면 숨었던 아래 메뉴가 올라옴(아이패드 독처럼)
-addEventListener('pointermove',function(e){if(e.pointerType==='mouse'&&e.clientY>innerHeight-36&&B.classList.contains('mmd-hide'))show()},{passive:true});
+addEventListener('pointermove',function(e){if(e.pointerType==='mouse'&&e.clientY>innerHeight-36&&isH())show()},{passive:true});
 // 독을 아래로 쓸어내리면 바로 숨김(위로 올리는 동작의 반대)
 var dy=0;
 dk.addEventListener('touchstart',function(e){dy=e.touches[0].clientY},{passive:true});
-dk.addEventListener('touchmove',function(e){if(e.touches[0].clientY-dy>22&&!sheetOpen()){B.classList.add('mmd-hide');clearTimeout(t)}},{passive:true});
+dk.addEventListener('touchmove',function(e){if(e.touches[0].clientY-dy>22&&!sheetOpen()){setH(true);clearTimeout(t)}},{passive:true});
 arm()}
 if(document.body)init();else document.addEventListener('DOMContentLoaded',init);
 }catch(e){}})();

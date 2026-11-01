@@ -1,3 +1,4 @@
+/* 메뉴 숨김 표시는 body가 아니라 메뉴·이전홈 버튼·소리 버튼에만 붙임(사용자 2026-11-02 버벅임 점검 — body 클래스를 바꾸면 페이지 전체 모양을 다시 계산해 한 번에 최대 0.05초) */
 /* 아래 메뉴 위 왼쪽 '이전·홈' 동그란 버튼 — 반투명(사용자 2026-10-29). 메인 화면에서는 숨김 */
 #mm-fab{position:fixed;left:10px;bottom:calc(78px + env(safe-area-inset-bottom));z-index:8990;display:flex;gap:6px;pointer-events:none}
 #mm-fab a{all:unset;pointer-events:auto;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.7);border:1px solid rgba(160,140,100,.28);box-shadow:0 3px 10px rgba(11,11,11,.12);color:#3a3630;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s,background .12s}
@@ -7,21 +8,21 @@ body:not(.mmd-on) #mm-fab{bottom:calc(16px + env(safe-area-inset-bottom))}
 /* 한동안 안 쓰면 독·이전·홈이 아래로 숨고, 가운데 손잡이만 남음 — 누르거나 위로 밀면 다시 올라옴(사용자 2026-10-29) */
 body .mmd{transition:transform .45s cubic-bezier(.33,.9,.3,1)}
 #mm-fab{transition:transform .45s cubic-bezier(.33,.9,.3,1),opacity .25s}
-body.mmd-hide .mmd{transform:translateY(100%)}
-body.mmd-hide #mm-fab{transform:translateY(110px);opacity:0;pointer-events:none}
+body .mmd.mmd-hide{transform:translateY(100%)}
+body #mm-fab.mmd-hide{transform:translateY(110px);opacity:0;pointer-events:none}
 /* 숨은 상태에서는 투명 버튼이 화면 아래 끝에 걸려 대신 눌리던 문제 막기(사용자 2026-10-30) */
-body.mmd-hide #mm-fab a{pointer-events:none}
-body.mmd-hide.mmd-on{padding-bottom:calc(30px + env(safe-area-inset-bottom))!important}
+body #mm-fab.mmd-hide a{pointer-events:none}
+
 /* 손잡이: 독 박스 위 가운데에 붙은 탭(일체형, 시안 A) — 독이 내려가면 이 탭만 화면 바닥에 남음(사용자 2026-10-29) */
 body .mmd .grab em{visibility:hidden}
 body.mmd-on .mmd{border-top:1px solid #e0d3b4!important}
 body .mmd #mm-pull{all:unset;box-sizing:border-box;position:absolute;left:50%;top:-24px;width:84px;height:25px;margin-left:-42px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.88);border:1px solid #e0d3b4;border-bottom:0;border-radius:14px 14px 0 0;box-shadow:0 -4px 10px rgba(11,11,11,.07);cursor:pointer;touch-action:none;-webkit-tap-highlight-color:transparent}
 body .mmd #mm-pull:after{content:'';width:8px;height:8px;margin-top:5px;border-right:2.5px solid #9a7420;border-bottom:2.5px solid #9a7420;transform:translateY(-3px) rotate(45deg);transition:transform .3s}
-body.mmd-hide .mmd #mm-pull{background:rgba(255,255,255,.95);border-color:#c9a24a;box-shadow:0 -3px 10px rgba(11,11,11,.16)}
-body.mmd-hide .mmd #mm-pull:after{transform:translateY(1px) rotate(-135deg)}
+body .mmd.mmd-hide #mm-pull{background:rgba(255,255,255,.95);border-color:#c9a24a;box-shadow:0 -3px 10px rgba(11,11,11,.16)}
+body .mmd.mmd-hide #mm-pull:after{transform:translateY(1px) rotate(-135deg)}
 body .mmd #mm-pull:active{background:#f3efe4}
 body.mmd-on #mm-snd{transition:bottom .32s cubic-bezier(.2,.8,.2,1)}
-body.mmd-hide.mmd-on #mm-snd{bottom:calc(4px + env(safe-area-inset-bottom))!important}
+body.mmd-on #mm-snd.mmd-hide{bottom:calc(4px + env(safe-area-inset-bottom))!important}
 
 /* 좌우로 크게 밀면 옆 페이지로(사용자 2026-10-29) — 미는 동안 가장자리에서 다음 페이지 이름표가 따라 나옴 */
 #mm-swp{position:fixed;top:50%;z-index:9500;pointer-events:none;display:flex;align-items:center;gap:6px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.95);border:1.5px solid #e0d6bf;box-shadow:0 4px 14px rgba(11,11,11,.16);font:800 15px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#3a3630;white-space:nowrap;opacity:0;transition:background .15s,color .15s,border-color .15s}
@@ -46,10 +47,10 @@ a.mm-earnnew.seen{border-color:#e6dcc6;border-left-color:#b08a3e;box-shadow:0 2p
    — 맨 아래 가장자리는 아이폰이 '홈으로 가기' 제스처로 먼저 가로채서 밀어 올리기가 잘 안 먹음 */
 body .mmd #mm-pull{transition:top .45s cubic-bezier(.33,.9,.3,1),width .25s,height .25s,border-radius .25s,margin .25s}
 body .mmd #mm-pull:before{content:'';position:absolute;left:-18px;right:-18px;top:-12px;bottom:-10px}
-body.mmd-hide .mmd #mm-pull{top:calc(-46px - max(env(safe-area-inset-bottom),14px));width:128px;height:38px;margin-left:-64px;border:1.5px solid #c9a24a;border-radius:999px;gap:6px;background:#fff;box-shadow:0 4px 12px rgba(11,11,11,.18),0 1px 0 rgba(255,255,255,.9) inset;font:800 14px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#7a5a12}
-body.mmd-hide .mmd #mm-pull:active{transform:scale(.96);background:#f3efe4}
+body .mmd.mmd-hide #mm-pull{top:calc(-46px - max(env(safe-area-inset-bottom),14px));width:128px;height:38px;margin-left:-64px;border:1.5px solid #c9a24a;border-radius:999px;gap:6px;background:#fff;box-shadow:0 4px 12px rgba(11,11,11,.18),0 1px 0 rgba(255,255,255,.9) inset;font:800 14px/1 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;color:#7a5a12}
+body .mmd.mmd-hide #mm-pull:active{transform:scale(.96);background:#f3efe4}
 body .mmd #mm-pull b{display:none;font:inherit}
-body.mmd-hide .mmd #mm-pull b{display:inline;order:2}
-body.mmd-hide .mmd #mm-pull:after{order:1;margin-top:6px}
-body.mmd-hide.mmd-on{padding-bottom:calc(64px + env(safe-area-inset-bottom))!important}
-body.mmd-hide.mmd-on #mm-snd{bottom:calc(14px + max(env(safe-area-inset-bottom),14px))!important}
+body .mmd.mmd-hide #mm-pull b{display:inline;order:2}
+body .mmd.mmd-hide #mm-pull:after{order:1;margin-top:6px}
+
+body.mmd-on #mm-snd.mmd-hide{bottom:calc(14px + max(env(safe-area-inset-bottom),14px))!important}
