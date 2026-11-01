@@ -738,3 +738,13 @@ def tidy_search(s):
     s = re.sub(r'<script data-mmq>[\s\S]*?</script>', '', s)
     js = '<script data-mmq>' + open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'search_ko.js'), encoding='utf-8').read() + '</script>'
     return re.sub(r'(<meta charset[^>]*>)', lambda m: m.group(1) + js, s, count=1, flags=re.I) if re.search(r'<meta charset', s, re.I) else js + s
+
+
+# 페이지 안에 통째로 남은 부품을 그 자리 그대로 공용 파일 참조로 바꿈(사용자 2026-11-02 — 메인 머리 양식·아이디어 페이지 공통 양식)
+def inline_to_ref(s, marker, css=None, js=None):
+    pat = r'(?:<style data-' + marker + r'(?:\s[^>]*)?>.*?</style>)?\s*(?:<script data-' + marker + r'(?:\s[^>]*)?>(?!\s*</script>).*?</script>)?'
+    for m in re.finditer(pat, s, re.S):
+        if m.group(0).strip() and ('<style data-' + marker in m.group(0) or '<script data-' + marker in m.group(0)) and ' src=' not in m.group(0).split('>')[0]:
+            ref = (core_ref(marker, css) if css and '<style' in m.group(0) else '') + (core_ref(marker, js) if js and '<script' in m.group(0) else '')
+            return s[:m.start()] + ref + s[m.end():]
+    return s
