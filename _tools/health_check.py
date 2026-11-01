@@ -17,6 +17,7 @@ def git(*a):
 FRESH = [
     ('시세(5분)', 'live/stamp.json', 2, True),
     ('시장 경고등', 'd/lights', 30, True),
+    ('옵션 온도계', 'd/opt', 30, True),
     ('공포·탐욕', 'd/fng.json', 30, True),
     ('금융 스트레스', 'd/stress', 30, True),
     ('시황 브리핑', 'd/brief', 30, True),

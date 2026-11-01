@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  actions: write
 concurrency:
   group: health
   cancel-in-progress: false
@@ -28,6 +29,20 @@ jobs:
           if git fetch -q origin health 2>/dev/null; then git archive FETCH_HEAD | tar -x -C /tmp/health; fi
       - name: check
         run: python3 _tools/health_check.py . /tmp/health  # -I를 빼야 방금 설치한 playwright가 보임
+      # 늦은 자료 스스로 다시 받기(사용자 2026-11-02 '오래된 자료 칩이 뜨면 자체적으로 최신화') — 자동 갱신 장치가 있는 자료만, 하루 한 번
+      - name: self-heal late data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY' > /tmp/heal.txt || true
+          import json
+          H = json.load(open('/tmp/health/health.json', encoding='utf-8'))
+          MAP = {'시장 경고등': 'lights.yml', '공포·탐욕': 'lights.yml', '금융 스트레스': 'lights.yml', '옵션 온도계': 'lights.yml', '시세(5분)': 'prices.yml', '유튜브 영상': 'yt.yml'}
+          wf = sorted({MAP[x['name']] for x in H.get('fresh', []) if x.get('state') == 'late' and x['name'] in MAP})
+          print(' '.join(wf))
+          PY
+          for w in $(cat /tmp/heal.txt); do echo "다시 돌림: $w"; gh workflow run "$w" --ref main || true; done
+          printf '{"at":"%s","rerun":"%s"}\n' "$(date -u +%FT%TZ)" "$(cat /tmp/heal.txt)" > /tmp/health/heal.json
       - name: publish to health branch
         run: |
           cd /tmp/health

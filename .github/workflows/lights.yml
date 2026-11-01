@@ -12,7 +12,7 @@ on:
     - cron: '17 1 * * 2-6'
   push:
     branches: [main]
-    paths: ['d/lights/**', 'd/bond/**']
+    paths: ['d/lights/**', 'd/bond/**', 'd/opt/**']
   workflow_dispatch:
 permissions:
   contents: write
@@ -31,10 +31,13 @@ jobs:
         run: python3 -I _tools/build_fng.py . || true
       - name: stress
         run: python3 -I _tools/build_stress.py . || true
+      # 옵션 온도계 VIX·기간구조·풋콜(사용자 2026-11-02 — 손으로 넣던 자료가 10.23에서 멈춤)
+      - name: opt
+        run: python3 -I _tools/build_opt.py . || true
       - name: commit
         run: |
           git config user.name 'github-actions[bot]'; git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add d/lights d/bond/yields_daily.json d/bond/hy_spread.json d/fng.json d/stress
+          git add d/lights d/bond/yields_daily.json d/bond/hy_spread.json d/fng.json d/stress d/opt
           if git diff --cached --quiet; then echo 'no change'; exit 0; fi
           git commit -m "시장 경고등 자동 갱신 $(TZ=Asia/Seoul date +%m.%d\ %H:%M)"
           for i in 1 2 3 4 5; do git pull --rebase -X theirs origin main && git push && exit 0; sleep $((i*7)); done; exit 1
