@@ -1,0 +1,8 @@
+/* 메인 '오늘' 카드를 누르게 생긴 버튼으로 — 누르면 데일리 시황(사용자 2026-11-02) */
+.today.mm-tb{border-left:3px solid var(--accent,#9a6200)!important;box-shadow:0 3px 0 color-mix(in srgb,var(--accent,#9a6200) 22%,transparent),0 6px 14px -10px rgba(60,40,10,.35)}
+.today.mm-tb .body{cursor:pointer;padding-right:40px!important}
+.today.mm-tb .body::before{display:none!important}
+.today.mm-tb .body:active{background:color-mix(in srgb,var(--accent,#9a6200) 6%,transparent)}
+.today.mm-tb #t-more{display:none!important}
+.today.mm-tb .mm-tb-ar{position:absolute;right:14px;top:50%;margin-top:-14px;font:700 26px/28px -apple-system,sans-serif;color:var(--accent,#9a6200)}
+.today.mm-tb .mm-tb-go{display:inline-flex;align-items:center;gap:4px;margin:7px 0 0;font:800 13.5px/1.2 -apple-system,"Apple SD Gothic Neo",sans-serif;color:var(--accent,#9a6200)}
