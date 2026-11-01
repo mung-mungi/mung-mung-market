@@ -8,15 +8,15 @@ function ratio(t,v){if(v==null)return 0;if(t.op==='<'||t.op==='<=')return t.valu
 function bsc(){if(!F||!F.area_scores)return null;var ids=Object.keys(MAP).map(function(k){return MAP[k]}),sc=0,mx=0;Object.keys(F.area_scores).forEach(function(a){F.area_scores[a].items.forEach(function(i){if(ids.indexOf(i.id)>=0){sc+=i.pt;mx+=i.w}})});return mx?{sc:Math.round(sc*10)/10,mx:mx}:null}
 // 단계 구간은 시장 경고등(12점 만점: 주의 3 · 경계 4.5 · 긴장 6 · 위험 7.5)과 같은 비율로(사용자 2026-11-02 '말과 점수 맞추기')
 var BR=[[0,'평온','#2e9d5b'],[.25,'주의','#c99a06'],[.375,'경계','#e07b16'],[.5,'긴장','#c8501c'],[.625,'위험','#b3261e']];
-function stg(sc,mx){var r=BR[0];BR.forEach(function(b){if(sc>=b[0]*mx-1e-9)r=b});return r}
+function stg(sc,mx,on){var r=0;BR.forEach(function(b,i){if(sc>=b[0]*mx-1e-9)r=i});if(on!=null)r=Math.min(r,on>=2?4:on===1?3:2);return BR[r]}
 function fx(v){return (Math.round(v*100)/100)+''}
-function scoreUI(card,on,nr,n){var b=bsc();if(!b)return;var g=stg(b.sc,b.mx);card.classList.add('mm-bsc');
+function scoreUI(card,on,nr,n){var b=bsc();if(!b)return;var g=stg(b.sc,b.mx,on);card.classList.add('mm-bsc');
  var w=card.querySelector('.mm-bd-sc');if(!w){w=document.createElement('div');w.className='mm-bd-sc';var lh=card.querySelector('.lh');(lh||card.querySelector('h2')).after(w)}
  w.innerHTML='<span class="c"></span><div class="r"><b class="n"></b><span class="of"></span><span class="st"></span></div>';
  w.querySelector('.c').textContent='채권 경고등 점수 · '+n+'개 중 켜짐 '+on+' · 문턱 앞 '+nr;w.querySelector('.n').textContent=b.sc.toFixed(1);w.querySelector('.of').textContent='/ '+b.mx+'점';var st=w.querySelector('.st');st.textContent='→ '+(nr&&!on?'문턱 앞 · ':'')+g[1];st.style.color=g[2];
  var sp=card.querySelector('.mm-bd-steps');if(!sp){sp=document.createElement('div');sp.className='mm-bd-steps';var o=document.getElementById('steps');if(o)o.after(sp);else card.appendChild(sp)}sp.textContent='';
  BR.forEach(function(x){var d=document.createElement('div');if(x===g){d.className='on';d.style.background=x[2]}d.appendChild(document.createElement('b')).textContent=x[1];d.appendChild(document.createElement('span')).textContent=fx(x[0]*b.mx)+'점~';sp.appendChild(d)});
- card.querySelectorAll('details p').forEach(function(p){if(/^0개 평온/.test(p.textContent))p.textContent='점수: 켜짐 = 무게 전부 · 근접(기준의 90%↑) 0.8 · 보통 0.4 · 양호 0.2 · 안전 0을 무게에 곱해 더합니다. 단계는 시장 경고등과 같은 비율 — 평온 · 주의 '+fx(.25*b.mx)+'점 · 경계 '+fx(.375*b.mx)+'점 · 긴장 '+fx(.5*b.mx)+'점 · 위험 '+fx(.625*b.mx)+'점부터입니다. 비슷한 방식의 실제 지표로는 연준의 금융 스트레스 지수, CNN 공포·탐욕 지수(7개 신호 합산)가 있습니다.'})}
+ card.querySelectorAll('details p').forEach(function(p){if(/^0개 평온/.test(p.textContent))p.textContent='점수: 켜짐 = 무게 전부 · 근접(기준의 90%↑) 0.8 · 보통 0.4 · 양호 0.2 · 안전 0을 무게에 곱해 더합니다. 단계는 시장 경고등과 같은 비율 — 평온 · 주의 '+fx(.25*b.mx)+'점 · 경계 '+fx(.375*b.mx)+'점 · 긴장 '+fx(.5*b.mx)+'점 · 위험 '+fx(.625*b.mx)+'점부터이고, 켜진 불이 없으면 경계까지 · 1개면 긴장까지만 올라갑니다. 비슷한 방식의 실제 지표로는 연준의 금융 스트레스 지수, CNN 공포·탐욕 지수(7개 신호 합산)가 있습니다.'})}
 function run(){var card=document.getElementById('lights-card'),ul=document.getElementById('lights'),dots=document.getElementById('b-dots');if(!card||!ul||!dots||!L||!T)return false;
  var lis=[...ul.querySelectorAll('li')];if(!lis.length)return false;var TH={};T.forEach(function(t){TH[t.id]=t});var d=L[L.length-1].date;var cur={};L.forEach(function(r){if(r.date===d)cur[r.id]=r});
  var st=[],nears=[];lis.forEach(function(li){var name=Object.keys(MAP).find(function(k){return li.textContent.indexOf(k)>=0});var id=name&&MAP[name],r=id&&cur[id],t=id&&TH[id];var s='off';
