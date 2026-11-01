@@ -14,3 +14,6 @@ svg .ott-lt{fill:#c9a0a0;font-weight:700}
 svg .ott-note{fill:#6b6355;font-weight:700;font-size:10.5px}
 svg .ott-v{fill:var(--dc1,#2f55b0)}
 svg .ott-3{fill:var(--dc2,#b08a2e)}
+.ott-now .ott-q{background:#fff;border:1px solid #ecdcbc;border-radius:10px;padding:7px 10px;font-size:13.5px;line-height:1.55}
+.ott-now li{line-height:1.6}
+.ott-now details.ott-q summary{list-style:none;cursor:pointer;font-size:13.5px}.ott-now details.ott-q summary::-webkit-details-marker{display:none}

@@ -11,16 +11,18 @@ function verdict(){var card=document.getElementById('term-card');if(!card||!F||d
  var f=F[0][kS],l=F[F.length-1][kS],up=l>f,dd=kP?F.reduce(function(a,r){return a+(r[kS]-r[kP])},0)/F.length:0;
  var r=R&&R.length?R[R.length-1]:null,ratio=r?r.ratio:null;
  var hot=ratio!=null?ratio>=1:!up,near=ratio!=null&&ratio>=0.9&&ratio<1;
- var st=hot?['🔴','공포 쪽(백워데이션)','지금 당장이 더 무섭다는 뜻입니다']:near?['🟡','평온 쪽이지만 문턱 근처','지금 공포가 3개월 뒤 예상에 바짝 붙었습니다']:['🟢','평온 쪽(콘탱고)','당장보다 나중을 더 걱정하는, 보통의 모습입니다'];
+ var st=hot?['🔴','공포 쪽(백워데이션)','지금 당장이 더 무섭다는 뜻입니다']:near?['🟡','평온 쪽이지만 문턱 근처','지금 불안이 3개월 뒤 예상 불안에 바짝 붙었습니다']:['🟢','평온 쪽(콘탱고)','당장보다 나중을 더 걱정하는, 보통의 모습입니다'];
  var box=document.createElement('div');box.className='ott-now';
  var old=daysOld(dS);
+ var fm=function(r){return (+r.month.slice(5))+'월물'};
  box.innerHTML='<div class="ott-h"><span class="ott-b">'+st[0]+' 지금은 '+st[1]+'</span>'+(old>4?'<span class="ott-old">⚠ 선물 커브 '+md(dS)+' 정산 · '+old+'일 전 자료</span>':'')+'</div>'+
   '<p>'+st[2]+'</p>'+
-  '<ul><li><b>VIX ÷ VIX3M</b> '+(ratio!=null?ratio.toFixed(2):'—')+(r?' ('+md(r.date)+')':'')+' — 1을 넘으면 공포 쪽, 지금은 '+(ratio!=null?(ratio>=1?'넘었습니다':'1보다 '+(1-ratio).toFixed(2)+' 아래'):'—')+'</li>'+
-  '<li><b>선물 커브</b> 가까운 달 '+f.toFixed(1)+' → 먼 달 '+l.toFixed(1)+' · '+(up?'오른쪽으로 갈수록 오름 = 평온':'오른쪽으로 갈수록 내림 = 공포')+'</li>'+
-  (kP?'<li><b>하루 새</b> 커브 전체가 평균 '+(dd>=0?'+':'')+dd.toFixed(2)+' '+(Math.abs(dd)<0.05?'— 거의 그대로':dd>0?'— 공포 가격이 조금 올랐습니다(진한 선이 흐린 선 위)':'— 공포 가격이 조금 내렸습니다(진한 선이 흐린 선 아래)')+'</li>':'')+'</ul>';
+  '<details class="ott-q"><summary role="button"><b>VIX가 뭔가요?</b> ▾</summary>앞으로 한 달 동안 S&P 500이 얼마나 출렁일지 옵션 시장이 매긴 값입니다. 숫자가 클수록 불안하다는 뜻이고, 보통 15 아래는 차분, 20 위는 긴장, 30 위는 공포로 봅니다.</details>'+
+  '<ul><li><b>① 지금 불안 vs 3개월 뒤 불안</b> '+(r?'지금 '+r.vix.toFixed(1)+' · 3개월 뒤 '+r.vix3m.toFixed(1)+' → 나누면 <b>'+ratio.toFixed(2)+'</b>':'—')+'. '+(ratio!=null?(ratio>=1?'1을 넘었습니다 = 지금이 더 무섭다는 신호입니다.':'1보다 낮으면 평온, 1을 넘으면 공포 신호입니다. 지금은 1까지 '+(1-ratio).toFixed(2)+' 남았습니다.'):'')+'</li>'+
+  '<li><b>② 달마다의 불안 가격(오른쪽 그림)</b> 가까운 '+fm(F[0])+' '+f.toFixed(1)+' → 먼 '+fm(F[F.length-1])+' '+l.toFixed(1)+'. '+(up?'먼 달이 더 비쌉니다 = \'당장은 괜찮고 나중이 더 걱정\'인 평온한 모습입니다.':'가까운 달이 더 비쌉니다 = \'지금 당장이 더 무섭다\'는 공포의 모습입니다.')+'</li>'+
+  (kP?'<li><b>③ 하루 사이 변화</b> 모든 달이 평균 '+(dd>=0?'+':'')+dd.toFixed(2)+'씩 '+(Math.abs(dd)<0.05?'거의 그대로입니다(두 선이 겹침).':dd>0?'비싸졌습니다 → 불안이 조금 커졌다는 뜻입니다(진한 선이 흐린 선 위).':'싸졌습니다 → 불안이 조금 줄었다는 뜻입니다(진한 선이 흐린 선 아래).')+'</li>':'')+'</ul>';
  var sub=card.querySelector('.sub');
- if(sub){sub.innerHTML='<b>왼쪽</b> 파랑 = 지금 공포(VIX), 노랑 = 3개월 뒤 예상 공포(VIX3M). <b>파랑이 노랑 위로 올라오면</b> 지금이 더 무섭다는 신호입니다. <b>오른쪽</b> = 달마다의 공포 가격(VIX 선물). <b>오른쪽으로 갈수록 오르면 평온</b>, 내려가면 공포입니다. 진한 선은 최근, 흐린 선은 하루 전입니다.';
+ if(sub){sub.innerHTML='<b>왼쪽 그림</b> 파란 선 = 지금 불안(VIX), 노란 선 = 3개월 뒤 예상 불안(VIX3M). 평소엔 노란 선이 위에 있고, <b>파란 선이 노란 선 위로 올라오면</b> 지금이 더 무섭다는 신호입니다. <b>오른쪽 그림</b> = 달마다 매겨진 불안 가격(VIX 선물). 선이 <b>오른쪽 위로 올라가면 평온</b>, 오른쪽 아래로 내려가면 공포입니다. <b>진한 선은 최근, 흐린 선은 하루 전</b>입니다.';
   sub.parentNode.insertBefore(box,sub.nextSibling)}else card.insertBefore(box,card.children[1]);
  done.v=1;done.dS=dS;done.dP=dP;done.dd=dd}
 function svgText(svg,x,y,t,cls,anchor){var e=document.createElementNS('http://www.w3.org/2000/svg','text');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('class',cls);e.setAttribute('text-anchor',anchor||'end');e.textContent=t;svg.appendChild(e);return e}
@@ -32,12 +34,12 @@ function labels(){
   var light=ps.find(function(p){return +(p.getAttribute('stroke-opacity')||p.getAttribute('opacity')||1)<1}),dark=ps.find(function(p){return p!==light});
   if(dark&&light){var a=firstPt(dark),b=firstPt(light);
    // 선 위 이름표는 값 숫자와 겹쳐서 범례 이름 + 위쪽 한 줄 설명으로 대신함
-   svgText(fs,318,14,done.dd>=0.05?'진한 선이 위 = 하루 새 공포 가격 ↑':done.dd<=-0.05?'진한 선이 아래 = 하루 새 공포 가격 ↓':'두 선이 거의 겹침 = 하루 새 변화 없음','ott-lb ott-note','end')}}
+   svgText(fs,318,14,done.dd>=0.05?'진한 선이 위 = 하루 새 불안 가격 ↑':done.dd<=-0.05?'진한 선이 아래 = 하루 새 불안 가격 ↓':'두 선이 거의 겹침 = 하루 새 변화 없음','ott-lb ott-note','end')}}
  var ts=document.querySelector('#term-chart svg');
  if(ts&&!ts.querySelector('.ott-lb')){var pv=[].slice.call(ts.querySelectorAll('path')).filter(function(p){return /dc1/.test(p.getAttribute('stroke')||'')}).sort(function(a,b){return (b.getAttribute('d')||'').length-(a.getAttribute('d')||'').length})[0];
   var p3=[].slice.call(ts.querySelectorAll('path')).filter(function(p){return /dc2/.test(p.getAttribute('stroke')||'')}).sort(function(a,b){return (b.getAttribute('d')||'').length-(a.getAttribute('d')||'').length})[0];
-  if(pv){var e=lastPt(pv);if(e)svgText(ts,e[0]-4,e[1]+16,'지금 공포','ott-lb ott-v')}
-  if(p3){var e3=lastPt(p3);if(e3)svgText(ts,e3[0]-4,e3[1]-8,'3개월 뒤 예상','ott-lb ott-3')}}
+  if(pv){var e=lastPt(pv);if(e)svgText(ts,e[0]-4,e[1]+16,'지금 불안','ott-lb ott-v')}
+  if(p3){var e3=lastPt(p3);if(e3)svgText(ts,e3[0]-4,e3[1]-8,'3개월 뒤 예상 불안','ott-lb ott-3')}}
  // 범례 이름도 쉬운 말로
  [].forEach.call(document.querySelectorAll('#fut-legend span, #term-legend span'),function(s){var t=s.lastChild;if(!t||t.nodeType!==3)return;var v=t.nodeValue;
   if(done.dS&&v.indexOf(done.dS.slice(5).replace('-','.'))>=0&&v.indexOf('최근')<0)t.nodeValue=v+' (최근·진한 선)';
