@@ -1,6 +1,6 @@
 {
  "e48": {
-  "updated": "11.02 15:45",
+  "updated": "11.02 21:37",
   "lead": "이란이 해협 재개 시간을 7일에서 2일로 줄였지만 결론은 나지 않았습니다. 트럼프는 공습보다 외교에 시간을 주겠다는 쪽으로 보도됐고, 선거 전 공습 유예는 11/3에 끝납니다.",
   "blocks": [
    {
@@ -50,6 +50,14 @@
      [
       "11.2",
       "브렌트유 3%대 하락, 110달러 부근"
+     ],
+     [
+      "11.2",
+      "바가이 '2일 실행 가능, 모든 건 미국에 달렸다' — 가리바바디 외무차관, 합의 초안 위해 도하행"
+     ],
+     [
+      "11.2",
+      "라몬 공항 미 급유기 25대 위성 포착 보도(미·이스라엘 미확인)"
      ]
     ]
    },
@@ -163,13 +171,27 @@
       "say": "딜을 하거나 그냥 끝낼 것이다. 어느 쪽이든 곧 끝낸다",
       "media": "더내셔널(CBS 인용)",
       "src": "https://www.thenationalnews.com/business/2026/11/02/oil-prices-slide-more-than-3-as-trump-signals-more-time-for-iran-diplomacy/"
+     },
+     {
+      "who": "바가이",
+      "role": "이란 외무부 대변인",
+      "say": "2일 안 실행 가능성은 이란의 선의를 보여 준다. 모든 것은 미국이 요구를 받아들이는지에 달렸다",
+      "media": "유로뉴스",
+      "src": "https://www.euronews.com/2026/11/02/iran-says-it-can-reopen-hormuz-in-two-days-if-us-meets-conditions"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "(이번 주 전쟁 복귀를 예상하느냐는 질문에) 그렇다 해도 말해 주겠나",
+      "media": "유로뉴스",
+      "src": "https://www.euronews.com/2026/11/02/oil-slides-on-hormuz-deal-hopes-but-trump-keeps-iran-strikes-on-the-table"
      }
     ]
    },
    {
     "k": "시장과 어떻게 이어지나",
     "type": "text",
-    "text": "브렌트유 1월물은 2일 아시아 시간 3%대 내려 110달러 부근이고, 서부텍사스유는 100달러 선까지 밀렸습니다. 공습 우려가 줄어든 만큼 위험 프리미엄이 먼저 빠진 것으로 우리는 판단합니다. 해협이 실제로 열리면 물가와 금리 부담도 함께 줄지만, 기대만으로 내린 몫은 공습 소식 한 번에 되돌아갈 수 있습니다. 10월 하락의 주범은 이란보다 AI 투자 대비 수익성 질문이었으므로, 딜이 나와도 반등은 지수 전체보다 유가·금리에 민감한 쪽의 순환에 가까울 수 있습니다."
+    "text": "브렌트유 1월물은 2일 아시아 시간 3%대 내려 110달러 부근이고, 서부텍사스유는 100달러 선까지 밀렸습니다. 공습 우려가 줄어든 만큼 위험 프리미엄이 먼저 빠진 것으로 우리는 판단합니다. 해협이 실제로 열리면 물가와 금리 부담도 함께 줄지만, 기대만으로 내린 몫은 공습 소식 한 번에 되돌아갈 수 있습니다. 10월 하락의 주범은 이란보다 AI 투자 대비 수익성 질문이었으므로, 딜이 나와도 반등은 지수 전체보다 유가·금리에 민감한 쪽의 순환에 가까울 수 있습니다. 골드만삭스는 10월 상승분 대부분을 배럴당 약 27달러의 위험 프리미엄으로 보면서도 12월 브렌트 평균 전망을 105달러로 올렸습니다."
    },
    {
     "k": "시나리오",
@@ -193,6 +215,7 @@
     "type": "list",
     "items": [
      "미국의 공식 답변과 중재국의 남은 쟁점 조율 결과",
+     "도하의 예비 합의 초안이 실제로 나오는지",
      "재무부 일반 면허(제재 유예)가 정규장 전후로 나오는지",
      "11/3 공습 유예 만료와 11/4 공습 여부",
      "해협 실제 통항 수 — 10/18 하루 4척(전쟁 전 85척)"
@@ -229,6 +252,21 @@
     "media": "인베스팅닷컴",
     "t": "트럼프 외교 우선 보도와 유가 하락",
     "u": "https://www.investing.com/news/commodities-news/oil-falls-as-trump-favours-iran-diplomacy-before-midterm-elections-4989799"
+   },
+   {
+    "media": "유로뉴스",
+    "t": "이란 2일안과 조건, 도하 초안 작업",
+    "u": "https://www.euronews.com/2026/11/02/iran-says-it-can-reopen-hormuz-in-two-days-if-us-meets-conditions"
+   },
+   {
+    "media": "걸프뉴스",
+    "t": "라몬 급유기·라스알카프지 유조선 피격",
+    "u": "https://gulfnews.com/uae/us-israel-iran-war-what-uae-residents-need-to-know-today-nov-2-2026-1.500732326"
+   },
+   {
+    "media": "오일프라이스",
+    "t": "골드만 브렌트 전망 105달러",
+    "u": "https://oilprice.com/Latest-Energy-News/World-News/Goldman-Sachs-Raises-Brent-Oil-Price-Forecast-to-105.html"
    }
   ]
  }
