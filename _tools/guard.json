@@ -119,7 +119,8 @@
   "'bdopt'",
   "'chipfold'",
   "'descfold'",
-  "'shtop'"
+  "'shtop'",
+  "newsq_ui"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -203,5 +204,9 @@
  ],
  "_tools/calui.js": [
   "mmc-tabs"
+ ],
+ "_tools/newsq_ui.js": [
+  "function draw(",
+  "newsq/newsq.json"
  ]
 }

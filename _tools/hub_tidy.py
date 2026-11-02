@@ -796,6 +796,8 @@ for _p in ['p-prices.html', 'p-trend.html', 'p-short.html', 'p-targets.html', 'p
 EASY['p-short.html'] = EASY['p-short.html'] + ['shtop']
 # 단계 옆 '왜 이 단계?' 한 줄(사용자 2026-11-02) — 단계는 점수 그대로, 코멘트로 풀어 줌
 EASY['p-opt.html'] = EASY['p-opt.html'] + ['stwhy']; EASY['p-bond.html'] = EASY['p-bond.html'] + ['stwhy']
+# 방금 들어온 소식(사용자 2026-11-02) — 뉴스 두 페이지 맨 위
+EASY['p-policy.html'] = EASY['p-policy.html'] + ['newsq_ui']; EASY['p-tech.html'] = EASY['p-tech.html'] + ['newsq_ui']
 def tidy_easy(s, name):
     for mk in EASY.get(name) or []:
         s = _easy_one(s, mk)
