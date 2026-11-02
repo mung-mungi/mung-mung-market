@@ -30,14 +30,12 @@ CATS = {
 }
 ME_CATS = {'이란 전쟁·유가'}
 BIG = ['strike', 'attack', 'ceasefire', 'deal', 'agreement', 'sanction', 'ban', 'announces', 'approves', 'blocks', 'closes', 'seize', 'killed', 'rate cut', 'raises rates', 'cuts rates', 'tariff', 'export control', 'emergency', 'invade', 'launches', 'missile']
-DROP = re.compile(r'\b(opinion|analysis|explainer|column|commentary|podcast|live:|live updates|what to know|factbox|breakingviews|newsletter|week ahead|morning bid|could|might|may|interview|review|obituary)\b|^(watch|how|why|what|where|when|who|inside|opinion|letters?)\b|where things stand|\blive\b|\bwar live\b|press release|company announcement|\bunpicking\b|missed a chance|still life|has nada|\?$', re.I)
+DROP = re.compile(r'\b(opinion|analysis|explainer|column|commentary|podcast|live:|live updates|what to know|factbox|breakingviews|newsletter|week ahead|morning bid|could|might|may|interview|review|obituary)\b|^(watch|how|why|what|where|when|who|inside|opinion|letters?)\b|where things stand|\blive\b|\bwar live\b|press release|company announcement|\bunpicking\b|missed a chance|still life|has nada|preview|on deck|risk report|takeaways|food fight|real estate boom|criticism|braces for|promises made|travel blitz|leaves no room|\?$', re.I)
 
 # 공식 발표(되는 것만 — 실패는 runs.jsonl에 기록)
 OFFICIAL = [
     ('연준', 'https://www.federalreserve.gov/feeds/press_all.xml', '연준·정책'),
     ('백악관', 'https://www.whitehouse.gov/news/feed/', None),
-    ('재무부', 'https://home.treasury.gov/news/press-releases/feed', None),
-    ('상무부 산업안보국', 'https://www.bis.gov/rss.xml', '반도체 수출통제'),
     ('무역대표부', 'https://ustr.gov/rss.xml', '관세·무역'),
 ]
 
@@ -106,6 +104,14 @@ for nm, url, cat in OFFICIAL:
     except Exception as e:
         log['fail'].append(f'{nm}: {type(e).__name__} {str(e)[:60]}')
 
+for nm, site, cat in [('재무부', 'home.treasury.gov', None), ('상무부 산업안보국', 'bis.gov', '반도체 수출통제')]:
+    try:
+        n = 0
+        for it in items(gnews(f'site:{site} when:2d')):
+            it['dom'] = 'official'; it['media'] = nm; it['force_cat'] = cat; n += 1; raw.append(it)
+        log['ok'].append(f'{nm} {n}')
+    except Exception as e:
+        log['fail'].append(f'{nm}: {type(e).__name__} {str(e)[:60]}')
 log['raw'] = len(raw)
 kept = []
 for it in raw:
@@ -222,7 +228,26 @@ if len(_w) > 1:
 # 굵직한 사건만 표시(사용자 2026-11-02 '히스토리에 올릴 정도 굵직한 사건만 트래킹') — major 표시는 화면이 거르는 기준
 MAJOR = re.compile(r'\b(strikes?|struck|attacks?|ceasefire|truce|deal|agreement|sanctions?|ban|bans|banned|blockade|seiz\w+|missiles?|invad\w+|reopen\w*|clos(e|es|ed|ure)|talks|rate cut|rate hike|raise[sd]? rates|cut[s]? rates|tariffs?|export controls?|curbs|acquir\w+|to buy|buys|merger|ipo|files? for|halt\w*|suspend\w*|resign\w*|fired|indict\w*|emergency|default|downgrade\w*|record)\b|\$\d+(\.\d+)? ?(billion|bn|trillion)|\d+ billion', re.I)
 for o in out:
-    o['major'] = bool(o.get('n', 1) >= 2 or o.get('media') in ('연준', '백악관', '재무부', '무역대표부', '상무부 산업안보국') or (MAJOR.search(o['title']) and not WRAP.search(o['title'])))
+    o['major'] = bool((o.get('n', 1) >= 2 and not WRAP.search(o['title'])) or (o.get('media') == '연준') or (MAJOR.search(o['title']) and not WRAP.search(o['title'])))
+COMMON = {'the','a','an','us','u.s.','trump','iran','iran’s',"iran's",'china','china’s','israel','oil','ai','new','after','as','in','on','for','with','says','say','exclusive:','breaking','report:','reports:','president','ambassador','united','states','america’s'}
+def ent(t):
+    for w in re.findall(r"[A-Z][A-Za-z0-9’'\.-]+", t):
+        lw = w.lower().strip("’'.")
+        if lw not in COMMON and len(lw) > 2:
+            return re.sub(r"(’s|'s)$", '', lw)
+    return None
+_g = {}
+for o in sorted([o for o in out if o.get('major') and NOW - o['t'] < 12 * 3600], key=lambda o: -o['t']):
+    e = ent(o['title'])
+    if not e:
+        continue
+    k = (e, (o.get('cats') or [''])[0])
+    if k in _g:
+        _g[k]['same'] = _g[k].get('same', 1) + 1
+        _g[k]['n'] = max(_g[k].get('n', 1), o.get('n', 1))
+        o['major'] = False; o['dup_of'] = _g[k]['id']
+    else:
+        _g[k] = o; o['same'] = 1
 log['kept'] = len([o for o in out if o['id'] in seen])
 json.dump({'at': log['at'], 'items': out}, open(os.path.join(OUT, 'newsq.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 with open(os.path.join(OUT, 'runs.jsonl'), 'a', encoding='utf-8') as f:
