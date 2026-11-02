@@ -20,8 +20,8 @@ PAYWALL = {'bloomberg.com', 'wsj.com', 'ft.com'}
 
 # 분류 — 주요 뉴스 페이지와 같은 이름. 키워드는 제목 기준(대소문자 무시)
 CATS = {
-    '이란 전쟁·유가': ['iran', 'hormuz', 'tehran', 'irgc', 'israel', 'hezbollah', 'houthi', 'lebanon', 'gaza', 'tanker', 'opec', 'crude', 'oil price', 'brent', 'ceasefire', 'airstrike', 'strike on'],
-    '연준·정책': ['federal reserve', 'the fed', 'fed ', "fed's", 'powell', 'rate cut', 'rate hike', 'fomc', 'treasury yield', 'inflation', 'jobs report', 'payrolls', 'cpi', 'government shutdown', 'bessent'],
+    '이란 전쟁·유가': ['iran', 'hormuz', 'tehran', 'irgc', 'israel', 'hezbollah', 'houthi', 'lebanon', 'gaza', 'tanker', 'opec', 'crude', 'oil price', 'brent', 'airstrike'],
+    '연준·정책': ['federal reserve', 'the fed', 'fed ', "fed's", 'powell', 'rate cut', 'rate hike', 'fomc', 'treasury yield', 'us inflation', 'jobs report', 'nonfarm payrolls', 'consumer prices', 'government shutdown', 'bessent'],
     '반도체 수출통제': ['export control', 'export curbs', 'entity list', 'chip export', 'chip curbs', 'bureau of industry', 'semiconductor curbs', 'chip ban', 'rare earth'],
     'AI 정책': ['ai regulation', 'ai rules', 'ai bill', 'ai act', 'ai executive order', 'ai safety', 'data center power', 'data centers', 'ai copyright', 'preemption'],
     '관세·무역': ['tariff', 'trade deal', 'trade war', 'trade talks', 'ustr', 'greer', 'section 232', 'section 301', 'customs duties'],
@@ -61,13 +61,14 @@ def ts(pub):
     try: return parsedate_to_datetime(pub).timestamp()
     except Exception: return None
 
+_RX = {c: re.compile(r'\b(' + '|'.join(re.escape(k.strip()) for k in ks) + r')\b', re.I) for c, ks in CATS.items()}
 def cats(title):
-    t = ' ' + title.lower() + ' '
-    return [c for c, ks in CATS.items() if any(k in t for k in ks)]
+    return [c for c, rx in _RX.items() if rx.search(title)]
 
 def norm(title):
     t = re.sub(r'\s+-\s+[^-]{2,40}$', '', title)  # 구글 뉴스 제목 끝 ' - 매체명' 떼기
-    return t.strip()
+    t = t.strip()
+    return '' if len(t) < 15 else t
 
 def key(title):
     w = re.findall(r'[a-z0-9]+', title.lower())
@@ -83,6 +84,8 @@ for dom, nm in {**TIER1, **MIDEAST}.items():
         x = gnews(f'site:{dom} when:6h')
         n = 0
         for it in items(x):
+            if it['src_url'] and dom not in it['src_url']:
+                continue
             it['dom'] = dom; it['media'] = nm; n += 1; raw.append(it)
         log['ok'].append(f'{nm} {n}')
     except Exception as e:
@@ -104,6 +107,8 @@ for it in raw:
     if t is None or NOW - t > 6 * 3600:
         log['dropped']['old'] += 1; continue
     title = norm(it['title'])
+    if not title:
+        log['dropped']['opinion'] += 1; continue
     if DROP.search(title):
         log['dropped']['opinion'] += 1; continue
     cs = [it['force_cat']] if it.get('force_cat') else cats(title)
