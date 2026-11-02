@@ -1,0 +1,35 @@
+# 속보 대기열 시험 수집(사용자 2026-11-02) — 30분마다 1순위 외신·중동 2곳·공식 발표 제목을 걸러 'newsq' 가지에만 쌓음. Claude 크레딧 없음
+# 사이트 본문(main)에는 아무것도 안 올리므로 사이트 다시 만들기 한도를 쓰지 않음. 화면 표시는 시험 결과를 본 뒤 결정.
+name: newsq
+on:
+  schedule:
+    - cron: '7,37 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: newsq
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: previous
+        run: |
+          mkdir -p /tmp/newsq
+          if git fetch -q origin newsq 2>/dev/null; then git archive FETCH_HEAD | tar -x -C /tmp/newsq; fi
+      - name: collect
+        run: python3 -I _tools/newsq.py /tmp/newsq d/newsq_done.json
+      - name: publish to newsq branch
+        run: |
+          cd /tmp/newsq
+          tail -n 400 runs.jsonl > r.tmp && mv r.tmp runs.jsonl
+          rm -rf .git; git init -q -b newsq
+          git config user.name 'github-actions[bot]'; git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git add -A; git commit -qm "속보 대기열 $(TZ=Asia/Seoul date +%m.%d\ %H:%M)"
+          git push -q -f origin newsq
