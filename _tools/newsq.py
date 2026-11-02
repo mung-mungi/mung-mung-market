@@ -67,7 +67,9 @@ def cats(title):
 
 def norm(title):
     t = re.sub(r'\s+-\s+[^-]{2,40}$', '', title)  # 구글 뉴스 제목 끝 ' - 매체명' 떼기
-    t = t.strip()
+    t = t.strip().lstrip('-–— ').strip()
+    if re.fullmatch(r'(the )?times of israel|al jazeera|reuters|bloomberg|cnbc', t, re.I):
+        return ''
     return '' if len(t) < 15 else t
 
 def key(title):
