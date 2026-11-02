@@ -20,7 +20,7 @@ PAYWALL = {'bloomberg.com', 'wsj.com', 'ft.com'}
 
 # 분류 — 주요 뉴스 페이지와 같은 이름. 키워드는 제목 기준(대소문자 무시)
 CATS = {
-    '이란 전쟁·유가': ['iran', 'hormuz', 'tehran', 'irgc', 'israel', 'hezbollah', 'houthi', 'lebanon', 'gaza', 'tanker', 'opec', 'crude', 'oil price', 'brent', 'airstrike'],
+    '이란 전쟁·유가': ['iran', 'iranian', 'hormuz', 'tehran', 'irgc', 'houthi', 'houthis', 'tanker', 'tankers', 'opec', 'crude', 'oil price', 'oil prices', 'brent', 'strait'],
     '연준·정책': ['federal reserve', 'the fed', 'fed ', "fed's", 'powell', 'rate cut', 'rate hike', 'fomc', 'treasury yield', 'us inflation', 'jobs report', 'nonfarm payrolls', 'consumer prices', 'government shutdown', 'bessent'],
     '반도체 수출통제': ['export control', 'export curbs', 'entity list', 'chip export', 'chip curbs', 'bureau of industry', 'semiconductor curbs', 'chip ban', 'rare earth'],
     'AI 정책': ['ai regulation', 'ai rules', 'ai bill', 'ai act', 'ai executive order', 'ai safety', 'data center power', 'data centers', 'ai copyright', 'preemption'],
@@ -30,7 +30,7 @@ CATS = {
 }
 ME_CATS = {'이란 전쟁·유가'}
 BIG = ['strike', 'attack', 'ceasefire', 'deal', 'agreement', 'sanction', 'ban', 'announces', 'approves', 'blocks', 'closes', 'seize', 'killed', 'rate cut', 'raises rates', 'cuts rates', 'tariff', 'export control', 'emergency', 'invade', 'launches', 'missile']
-DROP = re.compile(r'\b(opinion|analysis|explainer|column|commentary|podcast|live:|live updates|what to know|factbox|breakingviews|newsletter|week ahead|morning bid|could|might|may)\b', re.I)
+DROP = re.compile(r'\b(opinion|analysis|explainer|column|commentary|podcast|live:|live updates|what to know|factbox|breakingviews|newsletter|week ahead|morning bid|could|might|may|interview|review|obituary)\b|^(watch|how|why|what|where|when|who|inside|opinion|letters?)\b|where things stand|\blive\b|\bwar live\b|press release|company announcement|\bunpicking\b|missed a chance|still life|has nada|\?$', re.I)
 
 # 공식 발표(되는 것만 — 실패는 runs.jsonl에 기록)
 OFFICIAL = [
@@ -61,14 +61,18 @@ def ts(pub):
     try: return parsedate_to_datetime(pub).timestamp()
     except Exception: return None
 
+MATERIAL = re.compile(r'\$|billion|\bdeal\b|acquir|\bbuy\b|\bbuys\b|merger|stake|contract|agreement|\border|guidance|results|earnings|revenue|\bipo\b|raises|funding|launch|unveil|\bban\b|probe|lawsuit|antitrust|tariff|export|chip|data cent|capex|spending|layoff|ceo|plans?\b|sign', re.I)
 _RX = {c: re.compile(r'\b(' + '|'.join(re.escape(k.strip()) for k in ks) + r')\b', re.I) for c, ks in CATS.items()}
 def cats(title):
-    return [c for c, rx in _RX.items() if rx.search(title)]
+    cs = [c for c, rx in _RX.items() if rx.search(title)]
+    if 'AI·테크' in cs and not MATERIAL.search(title):
+        cs.remove('AI·테크')
+    return cs
 
 def norm(title):
     t = re.sub(r'\s+-\s+[^-]{2,40}$', '', title)  # 구글 뉴스 제목 끝 ' - 매체명' 떼기
     t = t.strip().lstrip('-–— ').strip()
-    if re.fullmatch(r'(the )?times of israel|al jazeera|reuters|bloomberg|cnbc', t, re.I):
+    if re.fullmatch(r'(the )?times of israel|al jazeera|reuters|bloomberg|cnbc', t, re.I) or re.search(r' - (al jazeera|the times of israel)$', t, re.I):
         return ''
     return '' if len(t) < 15 else t
 
@@ -201,6 +205,13 @@ for o in out:
         log.setdefault('ko_fail', 0); log['ko_fail'] = log.get('ko_fail', 0) + 1
 log['ko_new'] = nko
 out.sort(key=lambda x: (-x['t']))
+_seen = set(); _u = []
+for o in out:
+    k = re.sub(r'[^a-z0-9]', '', o['title'].lower())[:60]
+    if k in _seen:
+        continue
+    _seen.add(k); _u.append(o)
+out = _u
 log['kept'] = len([o for o in out if o['id'] in seen])
 json.dump({'at': log['at'], 'items': out}, open(os.path.join(OUT, 'newsq.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 with open(os.path.join(OUT, 'runs.jsonl'), 'a', encoding='utf-8') as f:
