@@ -39,3 +39,6 @@ body.mmc-on #mmc-tabs~*:not(#mmc-arc){display:none!important}
 #mmc-arc .mmc-v{padding:4px 8px;border-radius:8px;font:800 12.5px/1 sans-serif;white-space:nowrap;background:#f0eee8;color:#6f6d68}
 #mmc-arc .mmc-v.g{background:rgba(22,134,74,.12);color:#12703d}
 #mmc-arc .mmc-c{color:#b9b5aa;font-weight:800}
+/* 이번 주 핵심 이야기: 아이폰에서 '코히어런트·루멘텀·…'처럼 가운뎃점으로 이어진 긴 말이 한 덩어리로 묶여 칸 밖으로 나가던 문제(사용자 2026-11-02) */
+body .weekstory .ws-body,body .weekstory .ws-body *{min-width:0}
+body .weekstory .ws-body{overflow-wrap:anywhere}
