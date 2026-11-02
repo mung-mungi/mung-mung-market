@@ -179,6 +179,27 @@ for o in out:
     d = DONE.get(o['id'])
     o['state'] = d['act'] if d else 'new'
     if d: o['row'] = d.get('row'); o['why'] = d.get('why')
+
+# 한글 제목(사용자 2026-11-02 '한글로 변환') — 구글 번역 무료 주소로 기계 번역(크레딧 0). 새로 들어온 것만, 한 번 번역한 건 다시 안 함.
+def ko(title):
+    u = 'https://translate.googleapis.com/translate_a/single?' + urllib.parse.urlencode({'client': 'gtx', 'sl': 'en', 'tl': 'ko', 'dt': 't', 'q': title})
+    j = json.loads(get(u, 15).decode('utf-8'))
+    return ''.join(seg[0] for seg in j[0] if seg and seg[0]).strip()
+nko = 0
+for o in out:
+    if o.get('title_ko') and o.get('title_src') == o['title']:
+        continue
+    pv = prev.get(o['id'])
+    if pv and pv.get('title_ko') and pv.get('title_src') == o['title']:
+        o['title_ko'] = pv['title_ko']; o['title_src'] = o['title']; continue
+    if nko >= 60:
+        continue
+    try:
+        o['title_ko'] = ko(o['title']); o['title_src'] = o['title']; nko += 1
+        time.sleep(0.3)
+    except Exception as e:
+        log.setdefault('ko_fail', 0); log['ko_fail'] = log.get('ko_fail', 0) + 1
+log['ko_new'] = nko
 out.sort(key=lambda x: (-x['t']))
 log['kept'] = len([o for o in out if o['id'] in seen])
 json.dump({'at': log['at'], 'items': out}, open(os.path.join(OUT, 'newsq.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)

@@ -11,12 +11,12 @@ function draw(d){var take=document.getElementById('take');if(!take||!d||!d.items
  L.sort(function(a,b){return (b.t-a.t)});
  var box=document.querySelector('.nq');if(!box){box=el('section','nq nq-col');take.after(box)}box.textContent='';
  var h=el('div','nq-h');h.appendChild(el('span','dot'));h.appendChild(el('span','','방금 들어온 소식'));h.appendChild(el('span','s','30분마다 · 확인 '+ago(Date.parse(d.at)/1e3)));box.appendChild(h);
- box.appendChild(el('div','nq-sub','외신·공식 발표 원문 제목 그대로 · 정리 전이라 일부는 타임라인에 안 올라갈 수 있습니다'));
+ box.appendChild(el('div','nq-sub','외신·공식 발표 제목을 기계 번역(아래 회색은 원문) · 정리 전이라 일부는 타임라인에 안 올라갈 수 있습니다'));
  if(!L.length){box.appendChild(el('div','nq-sub','지난 12시간 새 소식 없음'));return}
  L.slice(0,20).forEach(function(x,i){var a=el('a','nq-r'+(i>=5?' x':''));a.href=x.link;a.target='_blank';a.rel='noopener';
   var m=el('div','nq-m');(x.cats||[]).filter(function(c){return PG==='p-tech'||c!=='AI·테크'}).slice(0,2).forEach(function(c){m.appendChild(el('span','nq-c',EMO[c]||c))});
   if(now-x.t<3600)m.appendChild(el('span','new','NEW'));
-  m.appendChild(el('span','',x.media+(x.n>1?' 외 '+(x.n-1)+'곳':'')+(x.paywall?' (유료)':'')+' · '+ago(x.t)));a.appendChild(m);a.appendChild(el('div','nq-t',x.title));box.appendChild(a)});
+  m.appendChild(el('span','',x.media+(x.n>1?' 외 '+(x.n-1)+'곳':'')+(x.paywall?' (유료)':'')+' · '+ago(x.t)));a.appendChild(m);a.appendChild(el('div','nq-t',x.title_ko||x.title));if(x.title_ko)a.appendChild(el('div','nq-o',x.title));box.appendChild(a)});
  if(L.length>5){var b=el('button','nq-more','더 보기 '+(Math.min(L.length,20)-5)+'건 ▾');b.type='button';b.onclick=function(){var c=box.classList.toggle('nq-col');b.textContent=c?'더 보기 '+(Math.min(L.length,20)-5)+'건 ▾':'접기 ▴'};box.appendChild(b)}}
 function load(){fetch(URL+'?t='+Math.floor(Date.now()/12e4)).then(function(r){return r.ok?r.json():null}).then(function(d){var k=0;(function t(){if(document.getElementById('take'))draw(d);else if(++k<30)setTimeout(t,300)})()}).catch(function(){})}
 load();setInterval(load,5*60*1000);
