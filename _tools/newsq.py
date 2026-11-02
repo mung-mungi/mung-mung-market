@@ -140,6 +140,16 @@ except Exception:
 prev = {}
 try:
     for g in json.load(open(os.path.join(OUT, 'newsq.json'), encoding='utf-8')).get('items', []):
+        # 이전 실행 것도 지금 규칙으로 다시 거름(규칙을 고치면 옛 오탐이 남지 않게)
+        if not norm(g.get('title', '')) or DROP.search(g['title']):
+            continue
+        if g.get('media') not in ('연준', '백악관', '재무부', '무역대표부', '상무부 산업안보국'):
+            c2 = cats(g['title'])
+            if g.get('media') in MIDEAST.values():
+                c2 = [c for c in c2 if c in ME_CATS]
+            if not c2:
+                continue
+            g['cats'] = c2
         prev[g['id']] = g
 except Exception:
     pass
