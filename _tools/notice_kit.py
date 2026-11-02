@@ -45,7 +45,8 @@ def img_uri(src, root):
 
 def render(d, root='.'):
     o = ['<!-- 메인 전달사항 — notice_kit.py로 만든 것(%s). 바꿀 때: data-id를 새로(새로 띄움), data-on="0"이면 내림 -->' % datetime.date.today()]
-    o.append('<div id="mm-ntc-src" data-on="1" data-id="%s" data-date="%s" data-title="%s">' % (esc(d['id']), esc(d['date']), html.escape(d['title'])))
+    _at = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).isoformat(timespec='minutes')  # 올린 시각 — 배너는 24시간 뒤 자동으로 빠짐(사용자 2026-11-03)
+    o.append('<div id="mm-ntc-src" data-on="1" data-id="%s" data-date="%s" data-at="%s" data-title="%s">' % (esc(d['id']), esc(d['date']), _at, html.escape(d['title'])))
     o.append(style())
     if d.get('new'):
         o.append('<div class="nc-new"><span>⚡ 속보</span><b>%s</b></div>' % rich(d['new']))

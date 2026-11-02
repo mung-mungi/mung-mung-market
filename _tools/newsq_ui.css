@@ -1,16 +1,16 @@
 /* 방금 들어온 소식(속보 대기열) — 사용자 2026-11-02 '멍터에서 더 자주 새 소식을 보며 타이트하게 트래킹' */
-.nq{margin:12px 0 14px;padding:11px 13px 9px;border-radius:14px;background:#fff;box-shadow:0 0 0 1px rgba(154,98,0,.14),0 3px 0 rgba(11,11,11,.07)}
-.nq-h{display:flex;align-items:center;gap:8px;font:800 15px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1a16}
-.nq-h .dot{width:8px;height:8px;border-radius:50%;background:#d9480f;box-shadow:0 0 0 3px rgba(217,72,15,.18);flex:none}
-.nq-h .s{margin-left:auto;font:700 12px/1.2 -apple-system,sans-serif;color:#8a857a;white-space:nowrap}
-.nq-sub{font:600 12px/1.4 -apple-system,sans-serif;color:#8a857a;margin:3px 0 6px}
-.nq-r{display:block;padding:8px 0;border-top:1px solid #f0ebe0;text-decoration:none!important;color:inherit!important}
-.nq-r:first-of-type{border-top:0}
-.nq-m{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font:700 11.5px/1.3 -apple-system,sans-serif;color:#8a857a;margin-bottom:3px}
-.nq-c{padding:1px 7px;border-radius:999px;background:#faf1e0;color:#8a5a00}
-.nq-m .new{color:#d9480f}
-.nq-t{font:600 15px/1.45 -apple-system,"Helvetica Neue",sans-serif;color:#1d1a16;overflow-wrap:anywhere}
-.nq-more{display:block;width:100%;margin:6px 0 2px;padding:7px 0;border:0;border-radius:999px;background:#faf5ea;font:800 13px/1.2 -apple-system,sans-serif;color:#8a5a00;box-shadow:0 2px 0 #ecd6a6}
-.nq-more:active{transform:translateY(1px);box-shadow:none}
-.nq.nq-col .nq-r.x{display:none}
-.nq-o{font:500 12px/1.4 -apple-system,"Helvetica Neue",sans-serif;color:#a39d90;margin-top:2px;overflow-wrap:anywhere}
+.mm-nq{margin:12px 0 14px;padding:11px 13px 9px;border-radius:14px;background:#fff;box-shadow:0 0 0 1px rgba(154,98,0,.14),0 3px 0 rgba(11,11,11,.07)}
+.mm-nq-h{display:flex;align-items:center;gap:8px;font:800 15px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1a16}
+.mm-nq-h .dot{width:8px;height:8px;border-radius:50%;background:#d9480f;box-shadow:0 0 0 3px rgba(217,72,15,.18);flex:none}
+.mm-nq-h .s{margin-left:auto;font:700 12px/1.2 -apple-system,sans-serif;color:#8a857a;white-space:nowrap}
+.mm-nq-sub{font:600 12px/1.4 -apple-system,sans-serif;color:#8a857a;margin:3px 0 6px}
+.mm-nq-r{display:block;padding:8px 0;border-top:1px solid #f0ebe0;text-decoration:none!important;color:inherit!important}
+.mm-nq-r:first-of-type{border-top:0}
+.mm-nq-m{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font:700 11.5px/1.3 -apple-system,sans-serif;color:#8a857a;margin-bottom:3px}
+.mm-nq-c{padding:1px 7px;border-radius:999px;background:#faf1e0;color:#8a5a00}
+.mm-nq-m .new{color:#d9480f}
+.mm-nq-t{font:600 15px/1.45 -apple-system,"Helvetica Neue",sans-serif;color:#1d1a16;overflow-wrap:anywhere}
+.mm-nq-more{display:block;width:100%;margin:6px 0 2px;padding:7px 0;border:0;border-radius:999px;background:#faf5ea;font:800 13px/1.2 -apple-system,sans-serif;color:#8a5a00;box-shadow:0 2px 0 #ecd6a6}
+.mm-nq-more:active{transform:translateY(1px);box-shadow:none}
+.mm-nq.mm-nq-col .mm-nq-r.x{display:none}
+.mm-nq-o{font:500 12px/1.4 -apple-system,"Helvetica Neue",sans-serif;color:#a39d90;margin-top:2px;overflow-wrap:anywhere}

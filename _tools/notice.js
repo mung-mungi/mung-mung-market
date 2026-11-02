@@ -10,6 +10,10 @@ function ss(k,v){try{sessionStorage.setItem(k,v)}catch(e){}}
 fetch('d/notice.html?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(function(h){
   var w=document.createElement('div');w.innerHTML=h;var src=w.querySelector('#mm-ntc-src');
   if(!src||src.getAttribute('data-on')!=='1')return;
+  // 하루 지나면 배너에서 뺌(사용자 2026-11-03) — data-at(올린 시각, ISO)이 있으면 그 시각부터 24시간, 없으면 data-date(M.D) 한국 정오 기준 24시간
+  var at=src.getAttribute('data-at'),t0=at?Date.parse(at):NaN;
+  if(isNaN(t0)){var m=/^(\d{1,2})\.(\d{1,2})/.exec(src.getAttribute('data-date')||'');if(m){var y=new Date(Date.now()+9*3600e3).getUTCFullYear(),mo=+m[1];if(mo>new Date(Date.now()+9*3600e3).getUTCMonth()+2)y--;t0=Date.UTC(y,mo-1,+m[2],3,0)}}
+  if(!isNaN(t0)&&Date.now()-t0>24*3600e3)return;
   var id=src.getAttribute('data-id')||'',dt=src.getAttribute('data-date')||'',tt=src.getAttribute('data-title')||'전달사항',body=src.innerHTML;
   // 1) 메인 접힌 한 줄
   var card=document.createElement('div');card.className='mm-ntc';
