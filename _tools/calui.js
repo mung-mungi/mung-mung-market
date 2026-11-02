@@ -19,3 +19,28 @@ function mmLinkDone(box){feed(function(it){var v=((document.querySelector('a[hre
  var box=n.querySelector('.cn');if(!box){box=document.createElement('div');box.className='cn';n.appendChild(box)}box.innerHTML=h;mmLinkDone(box);n.classList.add('cn-on');n.dataset.sig=n.textContent.replace(box.textContent,'')===t?t:t}
 var k=0;(function go(){try{fx()}catch(e){}if(++k<14)setTimeout(go,400)})();
 try{new MutationObserver(function(){try{var n=document.getElementById('next');if(n&&!n.querySelector('.cn'))fx()}catch(e){}}).observe(document.body,{childList:true,subtree:true})}catch(e){}})();
+
+// 지난달 실적 보기(사용자 2026-11-02) — '이번 주 / 10월' 전환, 자료 d/cal_arc.json(실적 결과 카드에서 자동으로 쌓임)
+(function(){var DAY='일월화수목금토',A=null;
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function dt(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2])}
+function md(x){return (x.getMonth()+1)+'/'+x.getDate()}
+function earnHref(){var a=document.querySelector('a[href*="p-earn.html"]'),m=a&&(a.getAttribute('href')||'').match(/\?v=\d+/);return 'p-earn.html'+(m?m[0]:'')}
+function rowHtml(x,h){return '<a class="mmc-row" href="'+h+'#'+esc(x.id)+'"><span class="mmc-n">'+esc(x.n)+(x.s?'<em>'+esc(x.s)+'</em>':'')+'<span class="mmc-x">'+esc(x.x)+'</span></span><span class="mmc-v'+(x.v==='호재'?' g':'')+'">'+esc(x.v||'결과')+'</span><span class="mmc-c">›</span></a>'}
+function draw(ym){var box=document.getElementById('mmc-arc'),its=A.filter(function(x){return x.d.slice(0,7)===ym}),h=earnHref(),wk={};
+ its.forEach(function(x){var d=dt(x.d),m=new Date(d);m.setDate(d.getDate()-((d.getDay()+6)%7));var k=m.getFullYear()+'-'+('0'+(m.getMonth()+1)).slice(-2)+'-'+('0'+m.getDate()).slice(-2);(wk[k]=wk[k]||[]).push(x)});
+ var ks=Object.keys(wk).sort().reverse(),good=its.filter(function(x){return x.v==='호재'}).length,big=its.slice().sort(function(a,b){return a.r-b.r}).slice(0,3).map(function(x){return x.n}).join('·');
+ var out='<div class="mmc-sum"><b>'+(+ym.slice(5))+'월 발표 '+its.length+'곳</b> · AI 관점 호재 '+good+'곳<br>'+esc(big)+' 등 · 누르면 실적 결과로 이동합니다</div>';
+ ks.forEach(function(k,i){var m=dt(k),e=new Date(m);e.setDate(m.getDate()+6);var ds={};wk[k].forEach(function(x){(ds[x.d]=ds[x.d]||[]).push(x)});
+  out+='<section class="mmc-wk"><button class="mmc-wh" aria-expanded="'+(i===0)+'">'+md(m)+' ~ '+md(e)+' <small>'+wk[k].length+'곳</small><em>'+(i===0?'접기 ▴':'펼치기 ▾')+'</em></button><div class="mmc-b"'+(i===0?'':' hidden')+'>'+Object.keys(ds).sort().reverse().map(function(d){var t=dt(d);return '<div class="mmc-day">'+md(t)+' '+DAY[t.getDay()]+'<i>'+ds[d].length+'곳</i></div>'+ds[d].map(function(x){return rowHtml(x,h)}).join('')}).join('')+'</div></section>'});
+ box.innerHTML=out;
+ box.querySelectorAll('.mmc-wh').forEach(function(b){b.addEventListener('click',function(){var w=b.nextElementSibling,o=w.hidden;w.hidden=!o;b.setAttribute('aria-expanded',o);b.querySelector('em').textContent=o?'접기 ▴':'펼치기 ▾'})})}
+function pick(v){var on=v!=='now';document.body.classList.toggle('mmc-on',on);document.querySelectorAll('#mmc-tabs button').forEach(function(b){b.setAttribute('aria-selected',b.dataset.m===v)});if(on)draw(v);try{history.replaceState(null,'',on?'#'+v:location.pathname+location.search)}catch(e){}}
+function start(){var n=document.getElementById('next');if(!n||document.getElementById('mmc-tabs'))return;
+ fetch('d/cal_arc.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){A=d.items||[];if(!A.length||document.getElementById('mmc-tabs'))return;
+  var ms={};A.forEach(function(x){ms[x.d.slice(0,7)]=1});var ks=Object.keys(ms).sort().reverse();
+  var t=document.createElement('div');t.id='mmc-tabs';t.setAttribute('role','tablist');t.innerHTML='<button role="tab" data-m="now">이번 주</button>'+ks.map(function(k){return '<button role="tab" data-m="'+k+'">'+(+k.slice(5))+'월</button>'}).join('');
+  n.parentNode.insertBefore(t,n);var b=document.createElement('div');b.id='mmc-arc';n.parentNode.appendChild(b);
+  t.addEventListener('click',function(e){var x=e.target.closest('button');if(x)pick(x.dataset.m)});
+  var h=location.hash.slice(1);pick(ms[h]?h:'now')}).catch(function(){})}
+var c=0;(function go(){start();if(++c<8&&!document.getElementById('mmc-tabs'))setTimeout(go,400)})()})();

@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: build
-        run: python3 -I _tools/build_ideas.py . && python3 -I _tools/build_earn_feed.py . && python3 -I _tools/build_gates.py .
+        run: python3 -I _tools/build_ideas.py . && python3 -I _tools/build_earn_feed.py . && python3 -I _tools/build_cal_arc.py . && python3 -I _tools/build_gates.py .
       - name: push
         env:
           ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
@@ -31,7 +31,7 @@ jobs:
       - name: commit
         run: |
           git config user.name 'github-actions[bot]'; git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add d/ideas d/earn_feed.json d/push_state.json
+          git add d/ideas d/earn_feed.json d/cal_arc.json d/push_state.json
           if git diff --cached --quiet; then echo 'no change'; exit 0; fi
           git commit -m "아이디어 자료 다시 계산 $(TZ=Asia/Seoul date +%m.%d\ %H:%M)"
           for i in 1 2 3 4 5; do git pull --rebase -X theirs origin main && git push && exit 0; sleep $((i*7)); done; exit 1

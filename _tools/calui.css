@@ -17,3 +17,25 @@ body #next .cn-as li.past b{color:#6f6d68;font-weight:700}body #next .cn-as li.p
 
 body #next .cn-as li.go{cursor:pointer;border-radius:10px;-webkit-tap-highlight-color:transparent}body #next .cn-as li.go:active{background:rgba(154,98,0,.07)}body #next .cn-as li.go i{box-shadow:0 1px 0 rgba(26,127,55,.25),0 2px 4px rgba(0,0,0,.06);border:1px solid rgba(26,127,55,.25)}
 body #next .cn-as i{white-space:nowrap}body #next .cn-as b{min-width:0;overflow-wrap:anywhere}
+
+/* 지난달 실적 보기(사용자 2026-11-02) */
+#mmc-tabs{display:flex;gap:4px;padding:4px;margin:0 0 12px;border-radius:13px;background:#ece9e1;overflow-x:auto;scrollbar-width:none}
+#mmc-tabs::-webkit-scrollbar{display:none}
+#mmc-tabs button{flex:1 0 auto;min-width:72px;border:0;background:none;padding:9px 12px;border-radius:10px;font:800 15px/1.2 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#6f6d68;cursor:pointer}
+#mmc-tabs button[aria-selected=true]{background:#fff;color:#0b0b0b;box-shadow:0 1px 0 rgba(11,11,11,.12),0 2px 5px rgba(11,11,11,.08)}
+body.mmc-on #mmc-tabs~*:not(#mmc-arc){display:none!important}
+#mmc-arc{display:none}body.mmc-on #mmc-arc{display:block}
+#mmc-arc .mmc-sum{padding:12px 14px;margin-bottom:12px;border-radius:14px;background:#fff;border:1px solid #ead9ad;box-shadow:0 3px 0 rgba(11,11,11,.06);font:600 15px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#33312c}
+#mmc-arc .mmc-sum b{font-size:18px;color:#0b0b0b}
+#mmc-arc .mmc-wk{margin-bottom:10px;border-radius:14px;background:#fff;border:1px solid #ead9ad;box-shadow:0 3px 0 rgba(11,11,11,.06);overflow:hidden}
+#mmc-arc .mmc-wh{display:flex;align-items:center;width:100%;gap:8px;border:0;background:#fbf8f0;padding:12px 14px;font:800 16px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b;cursor:pointer;text-align:left}
+#mmc-arc .mmc-wh small{font:700 13px/1 sans-serif;color:#6f6d68}#mmc-arc .mmc-wh em{margin-left:auto;font-style:normal;font-size:13px;color:#9a6200}
+#mmc-arc .mmc-day{display:flex;gap:6px;align-items:center;padding:10px 14px 4px;font:800 14px/1.2 -apple-system,sans-serif;color:#9a6200}
+#mmc-arc .mmc-day i{font-style:normal;font-weight:700;font-size:12px;color:#6f6d68}
+#mmc-arc a.mmc-row{display:grid;grid-template-columns:1fr auto 12px;gap:8px;align-items:center;padding:8px 14px;border-top:1px dashed rgba(11,11,11,.08);text-decoration:none;color:inherit}
+#mmc-arc .mmc-n{font:800 16px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#0b0b0b;min-width:0}
+#mmc-arc .mmc-n em{font-style:normal;font-size:12px;font-weight:700;color:#6f6d68;margin-left:5px}
+#mmc-arc .mmc-x{display:block;font:500 12.5px/1.4 -apple-system,sans-serif;color:#6f6d68;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#mmc-arc .mmc-v{padding:4px 8px;border-radius:8px;font:800 12.5px/1 sans-serif;white-space:nowrap;background:#f0eee8;color:#6f6d68}
+#mmc-arc .mmc-v.g{background:rgba(22,134,74,.12);color:#12703d}
+#mmc-arc .mmc-c{color:#b9b5aa;font-weight:800}

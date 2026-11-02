@@ -49,7 +49,8 @@
   "'shtop'": "공매도 오늘 한눈에 연결",
   ".pg-ev.tlx.tlx-open{": "펼친 뉴스 칸 날짜 위로·본문 넓게",
   "function flip(": "뉴스 칸 펼침 모션(FLIP)",
-  "tlx-pdb": "정리본은 버튼으로 따로 펼침"
+  "tlx-pdb": "정리본은 버튼으로 따로 펼침",
+  "mmc-tabs": "실적 일정 지난달(10월 등) 보기 전환"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -199,5 +200,8 @@
  ],
  "_tools/shtop.js": [
   "mm-sh-rows"
+ ],
+ "_tools/calui.js": [
+  "mmc-tabs"
  ]
 }
