@@ -212,6 +212,13 @@ for o in out:
         continue
     _seen.add(k); _u.append(o)
 out = _u
+# 시장 시황성 제목(유가·증시·달러·금·국채 '오르고 내림')은 최근 6시간 안 가장 새것 1개만 남김 — 같은 하루 흐름이 여러 줄로 반복되지 않게
+WRAP = re.compile(r'\b(oil|crude|stocks?|futures|dollar|gold|treasur\w*|yields?|markets?|currenc\w*|fx|shares)\b.*\b(fall|falls|fell|drop|drops|slide|slides|rise|rises|rose|gain|gains|climb|climbs|jump|jumps|decline|declines|mixed|lower|higher|settle|settles|retreat|retreats|edge|edges|slip|slips|tumble|tumbles|rally|rallies)\b|\b(fall|falls|drop|drops|rise|rises|decline|declines|slip|slips)\b.*\b(oil|crude|stocks?|dollar|gold|yields?)\b', re.I)
+_w = [o for o in out if WRAP.search(o['title']) and NOW - o['t'] < 6 * 3600]
+if len(_w) > 1:
+    keep = max(_w, key=lambda o: o['t'])
+    keep['wraps'] = len(_w)
+    out = [o for o in out if o is keep or o not in _w]
 log['kept'] = len([o for o in out if o['id'] in seen])
 json.dump({'at': log['at'], 'items': out}, open(os.path.join(OUT, 'newsq.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 with open(os.path.join(OUT, 'runs.jsonl'), 'a', encoding='utf-8') as f:
