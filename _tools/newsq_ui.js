@@ -7,12 +7,12 @@ var EMO={'이란 전쟁·유가':'🛢 이란·유가','연준·정책':'🏦 �
 function ago(t){var m=Math.max(0,Math.round((Date.now()/1e3-t)/60));return m<60?m+'분 전':Math.floor(m/60)+'시간 '+(m%60)+'분 전'}
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 function draw(d){var take=document.getElementById('take');if(!take||!d||!d.items)return;
- var now=Date.now()/1e3,L=d.items.filter(function(x){if(x.state&&x.state!=='new')return false;if(!x.title||x.title.length<15||/^[-–—]/.test(x.title))return false;if(now-x.t>12*3600)return false;var tech=x.cats.indexOf('AI·테크')>=0;return PG==='p-tech'?tech:x.cats.some(function(c){return c!=='AI·테크'})});
+ var now=Date.now()/1e3,L=d.items.filter(function(x){if(x.state&&x.state!=='new')return false;if(!x.major)return false;if(!x.title||x.title.length<15||/^[-–—]/.test(x.title))return false;if(now-x.t>12*3600)return false;var tech=x.cats.indexOf('AI·테크')>=0;return PG==='p-tech'?tech:x.cats.some(function(c){return c!=='AI·테크'})});
  L.sort(function(a,b){return (b.t-a.t)});
  var box=document.querySelector('.nq');if(!box){box=el('section','nq nq-col');take.after(box)}box.textContent='';
- var h=el('div','nq-h');h.appendChild(el('span','dot'));h.appendChild(el('span','','방금 들어온 소식'));h.appendChild(el('span','s','30분마다 · 확인 '+ago(Date.parse(d.at)/1e3)));box.appendChild(h);
- box.appendChild(el('div','nq-sub','외신·공식 발표 제목을 기계 번역(아래 회색은 원문) · 정리 전이라 일부는 타임라인에 안 올라갈 수 있습니다'));
- if(!L.length){box.appendChild(el('div','nq-sub','지난 12시간 새 소식 없음'));return}
+ var h=el('div','nq-h');h.appendChild(el('span','dot'));h.appendChild(el('span','','굵직한 새 소식'));h.appendChild(el('span','s','30분마다 · 확인 '+ago(Date.parse(d.at)/1e3)));box.appendChild(h);
+ box.appendChild(el('div','nq-sub','외신 여러 곳이 같이 다루거나 공식 발표·합의·공습·관세·대형 거래처럼 판을 바꿀 사건만 · 기계 번역(아래 회색은 원문)'));
+ if(!L.length){box.appendChild(el('div','nq-sub','지난 12시간 굵직한 새 소식 없음'));return}
  L.slice(0,20).forEach(function(x,i){var a=el('a','nq-r'+(i>=5?' x':''));a.href=x.link;a.target='_blank';a.rel='noopener';
   var m=el('div','nq-m');(x.cats||[]).filter(function(c){return PG==='p-tech'||c!=='AI·테크'}).slice(0,2).forEach(function(c){m.appendChild(el('span','nq-c',EMO[c]||c))});
   if(now-x.t<3600)m.appendChild(el('span','new','NEW'));

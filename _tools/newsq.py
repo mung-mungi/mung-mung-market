@@ -219,6 +219,10 @@ if len(_w) > 1:
     keep = max(_w, key=lambda o: o['t'])
     keep['wraps'] = len(_w)
     out = [o for o in out if o is keep or o not in _w]
+# 굵직한 사건만 표시(사용자 2026-11-02 '히스토리에 올릴 정도 굵직한 사건만 트래킹') — major 표시는 화면이 거르는 기준
+MAJOR = re.compile(r'\b(strikes?|struck|attacks?|ceasefire|truce|deal|agreement|sanctions?|ban|bans|banned|blockade|seiz\w+|missiles?|invad\w+|reopen\w*|clos(e|es|ed|ure)|talks|rate cut|rate hike|raise[sd]? rates|cut[s]? rates|tariffs?|export controls?|curbs|acquir\w+|to buy|buys|merger|ipo|files? for|halt\w*|suspend\w*|resign\w*|fired|indict\w*|emergency|default|downgrade\w*|record)\b|\$\d+(\.\d+)? ?(billion|bn|trillion)|\d+ billion', re.I)
+for o in out:
+    o['major'] = bool(o.get('n', 1) >= 2 or o.get('media') in ('연준', '백악관', '재무부', '무역대표부', '상무부 산업안보국') or (MAJOR.search(o['title']) and not WRAP.search(o['title'])))
 log['kept'] = len([o for o in out if o['id'] in seen])
 json.dump({'at': log['at'], 'items': out}, open(os.path.join(OUT, 'newsq.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 with open(os.path.join(OUT, 'runs.jsonl'), 'a', encoding='utf-8') as f:
