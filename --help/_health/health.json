@@ -1,0 +1,105 @@
+{
+ "at": "2026-11-03 07:28",
+ "weekend": false,
+ "problems": [
+  "시세 게시 5분 안 연속 2번",
+  "시간당 게시 10번 넘은 시간 2개(사이트 빌드 한도)"
+ ],
+ "total_kb": 0,
+ "total_inline": 0,
+ "prev_total_kb": null,
+ "prev_total_inline": null,
+ "heaviest": [],
+ "fresh": [
+  {
+   "name": "시세(5분)",
+   "path": "live/stamp.json",
+   "state": "none"
+  },
+  {
+   "name": "시장 경고등",
+   "path": "d/lights",
+   "state": "none"
+  },
+  {
+   "name": "옵션 온도계",
+   "path": "d/opt",
+   "state": "none"
+  },
+  {
+   "name": "주요 뉴스",
+   "path": "d/policy",
+   "state": "none"
+  },
+  {
+   "name": "AI·테크 뉴스",
+   "path": "d/tech",
+   "state": "none"
+  },
+  {
+   "name": "유튜브 영상",
+   "path": "d/yt.json",
+   "state": "none"
+  },
+  {
+   "name": "공포·탐욕",
+   "path": "d/fng.json",
+   "state": "none"
+  },
+  {
+   "name": "금융 스트레스",
+   "path": "d/stress",
+   "state": "none"
+  },
+  {
+   "name": "시황 브리핑",
+   "path": "d/brief",
+   "state": "none"
+  },
+  {
+   "name": "목표주가",
+   "path": "d/targets",
+   "state": "none"
+  },
+  {
+   "name": "실적 노트",
+   "path": "d/notes.json",
+   "state": "none"
+  },
+  {
+   "name": "공매도",
+   "path": "d/short",
+   "state": "none"
+  },
+  {
+   "name": "경제지표",
+   "path": "d/econ",
+   "state": "none"
+  },
+  {
+   "name": "아이디어(저평가·고수)",
+   "path": "d/ideas",
+   "state": "none"
+  },
+  {
+   "name": "IR 서재",
+   "path": "d/ir",
+   "state": "none"
+  }
+ ],
+ "posts": {
+  "total_24h": 52,
+  "by_author": {
+   "github-actions[bot]": 4,
+   "mung-mungi": 3,
+   "mung-bot": 45
+  },
+  "bot_under_5min": 2,
+  "busiest_hour_posts": 12,
+  "hours_over_10": 2
+ },
+ "drift": [],
+ "lost": [],
+ "live_lag": null,
+ "pages": {}
+}
