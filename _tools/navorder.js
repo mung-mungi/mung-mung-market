@@ -6,4 +6,4 @@ function fx(){document.querySelectorAll('nav.ib').forEach(function(n){n.querySel
  var c=n.querySelector('[aria-current=page]');if(c)try{n.scrollLeft=c.offsetLeft-n.clientWidth/2+c.offsetWidth/2}catch(e){}})}
 fx();document.addEventListener('DOMContentLoaded',fx);
 function ctr(){document.querySelectorAll('nav.ib').forEach(function(n){var c=n.querySelector('[aria-current=page]');if(c)n.scrollLeft=c.offsetLeft-n.clientWidth/2+c.offsetWidth/2})}
-window.addEventListener('load',function(){ctr();setTimeout(ctr,300);setTimeout(ctr,1200)})})();
+var raf=window.requestAnimationFrame||setTimeout;window.addEventListener('load',function(){raf(ctr);setTimeout(function(){raf(ctr)},1200)}) /* 속도(2026-11-03): 다음 프레임에 한 번 + 1.2초 뒤 한 번 */})();

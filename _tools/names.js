@@ -10,10 +10,14 @@ function fix(n){if(!n)return;if(n.nodeType===3){var p=n.parentNode;if(p&&!SKIP[p
  if(n.nodeType===1&&n.textContent.indexOf(M[0][0])<0&&M.length===1)return;
  var w=document.createTreeWalker(n,4,null),t;while((t=w.nextNode())){if(!SKIP[t.parentNode.nodeName])fixText(t)}}
 // perf.js가 화면 감시를 한 프레임에 한 번으로 묶으면서 바뀐 목록을 비워 넘기므로, 바뀔 때마다 전체를 가볍게 다시 훑음(0.3초에 한 번까지)
+// 속도(2026-11-03): 페이지 전체를 다시 훑지 않고, 새로 들어온 칸·바뀐 글자만 고침 — perf.js가 감싼 감시기 대신 원래 감시기(바뀐 목록이 그대로 옴)를 씀
 var last=0,tm=0;function sweep(){tm=0;last=Date.now();var b=document.body;if(!b||b.textContent.indexOf(M[0][0])<0)return;fix(b)}
 function later(){if(tm)return;var w=Math.max(0,300-(Date.now()-last));tm=setTimeout(sweep,w)}
+var RMO=window.MutationObserver&&window.MutationObserver.__thr?Object.getPrototypeOf(window.MutationObserver):window.MutationObserver;
+var Q=[],qt=0;function flush(){qt=0;var a=Q;Q=[];for(var i=0;i<a.length;i++){var n=a[i];if(n.isConnected)fix(n)}}
 function go(){sweep();if(document.title)document.title=document.title.replace(re,function(m){return to[m]});
- new MutationObserver(later).observe(document.body,{childList:true,subtree:true,characterData:true});
+ try{new RMO(function(rs){for(var i=0;i<rs.length;i++){var r=rs[i];if(r.type==='characterData')Q.push(r.target);else for(var j=0;j<r.addedNodes.length;j++)Q.push(r.addedNodes[j])}if(Q.length>400){Q=[];later();return}if(!qt)qt=(window.requestAnimationFrame||setTimeout)(flush)}).observe(document.body,{childList:true,subtree:true,characterData:true})}
+ catch(e){new MutationObserver(later).observe(document.body,{childList:true,subtree:true,characterData:true})}
  addEventListener('load',later);setTimeout(later,1500);setTimeout(later,4000)}
 if(document.body)go();else document.addEventListener('DOMContentLoaded',go);
 }catch(e){}})();
