@@ -1,0 +1,30 @@
+{
+  "req": "예약 실행 시험(11/3 21:15): 최근 시장 관련 X 게시물 1개(영향력 있는 계정, 루머·익명·밈 제외)",
+  "at": "2026-11-03T12:17:32+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스슈왑 수석 투자전략가",
+      "time_et": "2026-11-03 07:13",
+      "text": "Spending on data center construction rose 90% year/year in October, highest in over a decade https://t.co/Cr6tTvFCzC",
+      "ko": "미국 데이터센터 건설 지출이 전년 대비 90% 늘어 10여 년 만에 최고 증가율",
+      "url": "https://x.com/LizAnnSonders/status/2117591097979314511",
+      "media": [
+        "https://pbs.twimg.com/media/HWMx4cGXMAAoC_-.jpg"
+      ],
+      "media_note": "블룸버그 터미널 차트(1015×559): 미 인구조사국 민간 데이터센터 건설 지출(SA, 96,462)과 전년 대비 증가율(90.26%), 2015~2026",
+      "views": 1860,
+      "likes": 2
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": [
+      "AI 데이터센터 투자 급증이 공식 건설 지출 통계로 확인된 자료라 AI 밸류체인(전력·냉각·반도체) 수요의 근거로 쓰기 좋음.",
+      "예약 실행 시험용으로 게시물 1개만 담음."
+    ]
+  },
+  "metrics_at": "2026-11-03T12:17:32+09:00"
+}
