@@ -147,6 +147,7 @@ COMP = {
  'XLV': [('LLY', '일라이릴리', '제약'), ('UNH', '유나이티드헬스', '보험'), ('JNJ', '존슨앤존슨', '제약'), ('ABBV', '애브비', '제약'), ('ISRG', '인튜이티브', '의료기기')],
  'XLP': [('COST', '코스트코', '유통'), ('WMT', '월마트', '유통'), ('PG', 'P&G', '생활용품'), ('KO', '코카콜라', '음료'), ('PM', '필립모리스', '담배')],
  'XLU': [('CEG', '컨스텔레이션', '원전 전력'), ('VST', '비스트라', '전력'), ('TLN', '탈렌', '원전 전력'), ('NEE', '넥스트에라', '재생에너지'), ('SO', '서던', '전력')]}
+LASTTS = {}
 def spark(syms):
     out = {}
     for i in range(0, len(syms), 20):
@@ -155,7 +156,15 @@ def spark(syms):
             try:
                 j = json.loads(get('https://%s.finance.yahoo.com/v7/finance/spark?symbols=%s&range=1y&interval=1d' % (host, ','.join(part))))
                 for r in j['spark']['result']:
-                    q = r['response'][0]; out[r['symbol']] = [c for c in q['indicators']['quote'][0]['close'] if c]
+                    q = r['response'][0]; ts = q.get('timestamp') or []; cl = q['indicators']['quote'][0]['close']
+                    pts = [(t, c) for t, c in zip(ts, cl) if c] if ts else [(None, c) for c in cl if c]
+                    # 야후 묶음(spark) 일봉이 마지막 거래일 종가를 늦게 줄 때가 있음(2026-11-03: 11/2 반도체 −3.4%가 빠지고 10/30 −8.2%가 남음)
+                    # → 정규장 마지막 가격(meta)이 마지막 일봉보다 뒤 날짜면 그 종가를 붙임
+                    m = q.get('meta') or {}; mt, mp = m.get('regularMarketTime'), m.get('regularMarketPrice')
+                    if mt and mp and pts and pts[-1][0] and int(mt) // 86400 > int(pts[-1][0]) // 86400 and int(mt) % 86400 >= 20 * 3600:  # 장 마감 뒤 값만
+                        pts.append((mt, mp))
+                    out[r['symbol']] = [c for _, c in pts]
+                    if pts and pts[-1][0]: LASTTS[r['symbol']] = int(pts[-1][0])
                 break
             except Exception: subprocess.run(['sleep', '3'])
     return out
@@ -205,7 +214,7 @@ ins = [it[k]['emo'] for k in ('bofa_bb', 'bofa_fms') if k in it and 'emo' in it[
 prc = [it[k]['pct'] for k in ('vix', 'move') if k in it and it[k].get('pct') is not None]
 scores = {'system': avg('official'), 'price': round(sum(prc) / len(prc)) if prc else None,
           'retail': round(sum(ret) / len(ret)) if ret else None, 'inst': round(sum(ins) / len(ins)) if ins else None,
-          'atk': mean(atkdef.get('atk', [])), 'def': mean(atkdef.get('def', [])), 'cyc': mean(atkdef.get('cyc', [])), 'spy_m1': spy_m1, 'spy_d1': spy_d1, 'y10': (load(P('d/bond/yields_daily.json'), [{}]) or [{}])[-1].get('us10y')}
+          'atk': mean(atkdef.get('atk', [])), 'def': mean(atkdef.get('def', [])), 'cyc': mean(atkdef.get('cyc', [])), 'spy_m1': spy_m1, 'spy_d1': spy_d1, 'px_date': (dt.datetime.utcfromtimestamp(LASTTS['SPY'] - 5 * 3600).strftime('%Y-%m-%d') if LASTTS.get('SPY') else None), 'y10': (load(P('d/bond/yields_daily.json'), [{}]) or [{}])[-1].get('us10y')}
 out = {'updated': dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).strftime('%Y-%m-%d %H:%M KST'), 'window': '최근 10년',
        'avg_official': avg('official'), 'avg_sentiment': avg('sentiment'), 'scores': scores, 'sectors': sectors, 'comps': comps, 'items': items, 'errors': errs}
 os.makedirs(os.path.dirname(OUT), exist_ok=True)

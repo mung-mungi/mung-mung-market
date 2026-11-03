@@ -116,7 +116,7 @@ function cRow(x,isEmo){var r=el('div','mm-st-cr2');var nm=el('div','nm');nm.appe
  var nw=NOW(x);if(nw){var q=el('p','now');q.appendChild(el('b','','지금'));var t=el('span');t.textContent=nw;q.appendChild(t);r.appendChild(q)}
  var e=ENDS[x.id];var rd=el('p','rd',(HOW[x.id]?HOW[x.id]+' · ':'')+(e?e[0]+' ↔ '+e[2]:(x.read||'')));r.appendChild(rd);return r}
 function draw(){var root=document.querySelector('.mm-st:not(.mm-st2)');var mast=document.querySelector('.lw-mast');if(!S||!mast)return;if(!root){root=el('div','mm-st');mast.after(root)}root.textContent='';
- var sc=S.scores||{};var date=(I('vix')||{}).date||'';var cv=comp(sc),cl=compLbl(cv);
+ var sc=S.scores||{};var date=[sc.px_date,(I('vix')||{}).date].filter(Boolean).sort().pop()||''; // 업종 시세 마지막 날짜가 더 새로우면 그걸로(사용자 2026-11-03 '반도체 오늘 내리지 않았나')var cv=comp(sc),cl=compLbl(cv);
  var hero=el('section','mm-st-hero');var tp=el('div','tp');tp.appendChild(el('b','','지금 시장 한눈에'));tp.appendChild(el('span','',md(date)+' 마감 기준'));hero.appendChild(tp);
  var vd=el('div','vd');var n=el('span','n',cv+'');n.style.color=cl[1];vd.appendChild(n);var lb=el('span','l',cl[0]+' 구간');lb.style.color=cl[1];lb.appendChild(el('small','','0 긍정 · 50 중립 · 100 위험 — 6개 층위 종합'));vd.appendChild(lb);hero.appendChild(vd);
  var gg=el('div','gauge');var gi=el('i');gi.style.left=Math.max(3,Math.min(97,cv))+'%';gg.appendChild(gi);hero.appendChild(gg);var gl=el('div','gl');['긍정','양호','중립','조심','위험'].forEach(function(t){gl.appendChild(el('span','',t))});hero.appendChild(gl);
