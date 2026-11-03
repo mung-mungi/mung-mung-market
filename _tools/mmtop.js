@@ -86,7 +86,7 @@ function comp(sc){var st={'평온':15,'주의':35,'경계':55,'긴장':72,'위�
  var sen=50+((sc.inst==null?50:sc.inst)-50)*0.5-(50-(sc.retail==null?50:sc.retail))*0.5;var parts=[[sc.system,.3],[sc.price,.2],[st,.25],[sec,.15],[sen,.1]].filter(function(a){return a[0]!=null});var w=parts.reduce(function(a,b){return a+b[1]},0);
  return Math.round(parts.reduce(function(a,b){return a+b[0]*b[1]},0)/w)}
 function compLbl(v){return v<30?['긍정','#2e9d5b']:v<45?['양호','#6aa84f']:v<55?['중립','#8a857a']:v<70?['조심','#d0731f']:['위험','#b3261e']}
-function story(sc){var SE=S.sectors||[],out=[];var big=SE.slice().sort(function(a,b){return Math.abs(b.d1)-Math.abs(a.d1)})[0];
+function story(sc){var SE=S.sectors||[],out=[];var big=SE.slice().sort(function(a,b){return Math.abs(b.d1)-Math.abs(a.d1)})[0];var semi=SE.filter(function(x){return x.t==='SOXX'})[0];if(semi&&big&&big!==semi&&Math.abs(semi.d1)>=2&&Math.abs(semi.d1)>=Math.abs(big.d1)*0.6)big=semi;/* 테크 중심: 반도체가 크게 움직인 날은 반도체를 먼저(사용자 2026-10-28·11-03) */
  if(big){var cs=((S.comps||{})[big.t]||[]).slice().sort(function(a,b){return Math.abs(b.d1)-Math.abs(a.d1)})[0];var a=(cs&&Math.abs(cs.d1)>=Math.abs(big.d1)*1.8?cs.n+' '+sg(cs.d1)+'%'+(cs.d1<0?' 쇼크에 ':' 급등에 '):'')+'<em>'+big.n+' 하루 '+sg(big.d1)+'%</em>, 한 달 '+sg(big.m1)+'%.';if(sc.spy_d1!=null)a+=' S&P는 하루 '+sg(sc.spy_d1)+'%'+(Math.abs(big.d1)>Math.abs(sc.spy_d1)*2.5?' — 지수보다 속이 훨씬 아팠습니다.':'.');out.push(['무슨 일',a])}
  if(sc.atk!=null&&sc.def!=null){var g=sc.def-sc.atk;var lead=SE.filter(function(x){var l=x.trail[x.trail.length-1];return l[0]>=0&&l[1]>=0}).map(function(x){return x.n});
   out.push(['돈은',g>=8?'공격 업종 '+sg(sc.atk)+'% → <em>방어 업종 '+sg(sc.def)+'%</em>(1달). '+(lead.length?lead.slice(0,3).join('·')+'로 숨었습니다.':''):g<=-8?'<em>공격 업종 '+sg(sc.atk)+'%</em> vs 방어 '+sg(sc.def)+'%(1달) — 돈이 공격 업종으로 몰립니다.':'공격 '+sg(sc.atk)+'% · 방어 '+sg(sc.def)+'%(1달) — 업종 흐름이 고릅니다.'])}
@@ -116,7 +116,7 @@ function cRow(x,isEmo){var r=el('div','mm-st-cr2');var nm=el('div','nm');nm.appe
  var nw=NOW(x);if(nw){var q=el('p','now');q.appendChild(el('b','','지금'));var t=el('span');t.textContent=nw;q.appendChild(t);r.appendChild(q)}
  var e=ENDS[x.id];var rd=el('p','rd',(HOW[x.id]?HOW[x.id]+' · ':'')+(e?e[0]+' ↔ '+e[2]:(x.read||'')));r.appendChild(rd);return r}
 function draw(){var root=document.querySelector('.mm-st:not(.mm-st2)');var mast=document.querySelector('.lw-mast');if(!S||!mast)return;if(!root){root=el('div','mm-st');mast.after(root)}root.textContent='';
- var sc=S.scores||{};var date=[sc.px_date,(I('vix')||{}).date].filter(Boolean).sort().pop()||''; // 업종 시세 마지막 날짜가 더 새로우면 그걸로(사용자 2026-11-03 '반도체 오늘 내리지 않았나')var cv=comp(sc),cl=compLbl(cv);
+ var sc=S.scores||{};var date=[sc.px_date,(I('vix')||{}).date].filter(Boolean).sort().pop()||'';/* 업종 시세 마지막 날짜가 더 새로우면 그걸로(사용자 2026-11-03) */var cv=comp(sc),cl=compLbl(cv);
  var hero=el('section','mm-st-hero');var tp=el('div','tp');tp.appendChild(el('b','','지금 시장 한눈에'));tp.appendChild(el('span','',md(date)+' 마감 기준'));hero.appendChild(tp);
  var vd=el('div','vd');var n=el('span','n',cv+'');n.style.color=cl[1];vd.appendChild(n);var lb=el('span','l',cl[0]+' 구간');lb.style.color=cl[1];lb.appendChild(el('small','','0 긍정 · 50 중립 · 100 위험 — 6개 층위 종합'));vd.appendChild(lb);hero.appendChild(vd);
  var gg=el('div','gauge');var gi=el('i');gi.style.left=Math.max(3,Math.min(97,cv))+'%';gg.appendChild(gi);hero.appendChild(gg);var gl=el('div','gl');['긍정','양호','중립','조심','위험'].forEach(function(t){gl.appendChild(el('span','',t))});hero.appendChild(gl);
