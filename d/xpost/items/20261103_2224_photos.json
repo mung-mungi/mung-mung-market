@@ -1,0 +1,60 @@
+{
+  "items": [
+    {
+      "name": "Lisa Su",
+      "role": "AMD Chair & CEO",
+      "img_url": "https://www.amd.com/content/dam/amd/en/images/photography/corporate/lisa-su/lisa-su-executive-photo.jpg",
+      "source_page": "https://www.amd.com/en/corporate/leadership/lisa-su.html",
+      "credit": "© AMD (official executive page)"
+    },
+    {
+      "name": "Lisa Su",
+      "role": "AMD Chair & CEO",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/SXSW-2024-alih-OB7A0861-Lisa_Su.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:SXSW-2024-alih-OB7A0861-Lisa_Su.jpg",
+      "credit": "Fuzheado / CC BY 4.0 (Wikimedia Commons)"
+    },
+    {
+      "name": "Lisa Su",
+      "role": "AMD Chair & CEO",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Lisa_T._Su%2C_PCAST_Member.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Lisa_T._Su,_PCAST_Member.jpg",
+      "credit": "The White House / Public domain (Wikimedia Commons)"
+    },
+    {
+      "name": "Jayshree Ullal",
+      "role": "Arista Networks Chairperson, President & CEO",
+      "img_url": "https://s21.q4cdn.com/861911615/files/images/BoD/JU_Awards.png",
+      "source_page": "https://investors.arista.com/Corporate-Governance/Committee-Composition/Person-details/default.aspx?ItemId=c810a4b8-53d2-4feb-b33e-5c8d40a433ac",
+      "credit": "© Arista Networks (official executive page)"
+    },
+    {
+      "name": "Jayshree Ullal",
+      "role": "Arista Networks Chairperson, President & CEO",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Jayshree_Ullal_Arista_CEO.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Jayshree_Ullal_Arista_CEO.jpg",
+      "credit": "Theolive123 / CC BY-SA 4.0 (Wikimedia Commons)"
+    },
+    {
+      "name": "Jayshree Ullal",
+      "role": "Arista Networks Chairperson, President & CEO",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Jayshree_V._Ullal.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Jayshree_V._Ullal.jpg",
+      "credit": "Multichill / CC BY-SA 3.0 (Wikimedia Commons)"
+    },
+    {
+      "name": "Charles Liang",
+      "role": "Supermicro Founder, President, CEO & Chairman",
+      "img_url": "https://s204.q4cdn.com/707617056/files/images/leadership/CharlesJMZ.jpg",
+      "source_page": "https://ir.supermicro.com/governance/executive-management/default.aspx",
+      "credit": "© Supermicro (official executive page)"
+    },
+    {
+      "name": "Charles Liang",
+      "role": "Supermicro Founder, President, CEO & Chairman",
+      "img_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Charles_Liang_2025.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Charles_Liang_2025.jpg",
+      "credit": "高雄市政府 (Kaohsiung City Government) / Taiwan Government Website Open Information Announcement (GWOIA, attribution) (Wikimedia Commons)"
+    }
+  ]
+}
