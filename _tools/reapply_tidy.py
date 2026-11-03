@@ -58,3 +58,18 @@ _pp = os.path.join(R, 'p-prices.html')
 if os.path.exists(_pp):
     _o = open(_pp, encoding='utf-8').read(); _a = h.tidy_prices_per(_o)
     if _a != _o: open(_pp, 'w', encoding='utf-8').write(_a); print('tidy prices per')
+# 공매도 자료 가볍게(사용자 2026-11-03 속도 작업): 사이트에 올릴 때만 일별 공매도(sv)·종가(px)에서 화면이 안 쓰는 id·빈 값을 빼고 촘촘하게 씀.
+# 원본(공매도 대시보드 자료)은 그대로 — 동기화로 다시 들어와도 여기서 다시 줄임(멱등). 약 4.9MB → 3.1MB
+try:
+    import json as _j
+    for _f in ('sv', 'px'):
+        _p = os.path.join(R, 'd', 'short', _f + '.json')
+        if not os.path.exists(_p):
+            continue
+        _d = _j.load(open(_p, encoding='utf-8'))
+        if isinstance(_d, list) and _d and isinstance(_d[0], dict) and 'id' in _d[0]:
+            _o = [{k: v for k, v in r.items() if k != 'id' and v is not None} for r in _d]
+            _j.dump(_o, open(_p, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+            print('slim', _f)
+except Exception as _e:
+    print('slim fail', _e)
