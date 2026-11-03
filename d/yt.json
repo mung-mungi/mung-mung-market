@@ -4,6 +4,22 @@
  "channel_url": "https://www.youtube.com/@멍뭉터미널",
  "items": [
   {
+   "id": "7ugZITfLG_I",
+   "title": "유가는 빠졌는데 왜 반도체는 빠졌나 #미국증시 #반도체 #Shorts",
+   "published": "2026-11-03T05:30:08+00:00",
+   "url": "https://www.youtube.com/shorts/7ugZITfLG_I",
+   "short": true,
+   "thumb": "https://i.ytimg.com/vi/7ugZITfLG_I/mqdefault.jpg"
+  },
+  {
+   "id": "r3OBLPFdqco",
+   "title": "유가가 빠졌는데 반도체는 왜 빠졌나: 오라클·마벨·애플 | 미국증시 시황",
+   "published": "2026-11-03T04:24:49+00:00",
+   "url": "https://www.youtube.com/watch?v=r3OBLPFdqco",
+   "short": false,
+   "thumb": "https://i.ytimg.com/vi/r3OBLPFdqco/mqdefault.jpg"
+  },
+  {
    "id": "3m147eNbWtc",
    "title": "이번 주 증시 갈림길 — 호르무즈 협상이냐, 공습이냐",
    "published": "2026-11-01T12:45:12+00:00",
@@ -34,14 +50,6 @@
    "url": "https://www.youtube.com/watch?v=wgllLTxYIso",
    "short": false,
    "thumb": "https://i.ytimg.com/vi/wgllLTxYIso/mqdefault.jpg"
-  },
-  {
-   "id": "o6AIXSCyOIk",
-   "title": "10/29 미국증시 — 마소는 오르고 구글은 내린 날",
-   "published": "2026-10-29T11:13:53+00:00",
-   "url": "https://www.youtube.com/watch?v=o6AIXSCyOIk",
-   "short": false,
-   "thumb": "https://i.ytimg.com/vi/o6AIXSCyOIk/mqdefault.jpg"
   }
  ]
 }
