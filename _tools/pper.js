@@ -11,7 +11,7 @@ var t0=null;new MutationObserver(function(){clearTimeout(t0);t0=setTimeout(funct
 })();
 
 // 1일 칸은 숨김(기간 칸 하나로 합침, 사용자 2026-11-03 '두 개나 있을 필요 없음') — 1일을 고르면 첫 칸이 1일 중앙값
-(function(){var st=document.createElement('style');st.textContent='#tiles.mm-t5>.pb-tile[data-tile="d1"]{display:none!important}@media (max-width:700px){#tiles.mm-t5{grid-template-columns:repeat(6,minmax(0,1fr))!important}#tiles.mm-t5>.pb-tile{grid-column:span 2}#tiles.mm-t5>.pb-tile[data-tile="lo"],#tiles.mm-t5>.pb-tile[data-tile="hi"]{grid-column:span 3}}@media (min-width:701px){#tiles.mm-t5{grid-template-columns:repeat(5,minmax(0,1fr))!important}}';document.head.appendChild(st)})();
+(function(){var st=document.createElement('style');st.textContent='#tiles.mm-t5>.pb-tile[data-tile="d1"]{display:none!important}#tiles.mm-t5{grid-template-columns:repeat(6,minmax(0,1fr))!important}#tiles.mm-t5>.pb-tile{grid-column:span 2}#tiles.mm-t5>.pb-tile[data-tile="lo"],#tiles.mm-t5>.pb-tile[data-tile="hi"]{grid-column:span 3}';document.head.appendChild(st)})();
 // 52주 고점·저점 칸 살리기 + 읽는 법 기준일 자동(사용자 2026-11-03 '신저가 근처가 활성화 안 되는 것 같음 — 페이지 전체 점검')
 (function(){
 function md(d){var a=String(d||'').split('-');return a.length===3?(+a[1])+'월 '+(+a[2])+'일':''}
