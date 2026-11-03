@@ -95,3 +95,5 @@
 /* 정리본 따로 펼치기 버튼(2026-11-02) */
 .tlx-pdb{display:block;margin:10px 0 2px;padding:8px 12px;border:1px solid #e3cf9f;border-radius:999px;background:#fffaf0;color:#8a5a00;font:800 13px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;box-shadow:0 2px 0 #ecd6a6;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .tlx-pdb:active{transform:translateY(1px);box-shadow:none}
+/* 뉴스 지난 기록 상자: 상자 끝(맨 위·맨 아래)까지 밀면 페이지가 이어서 따라 움직이게(사용자 2026-11-03) — uniui의 contain(상자 안에 갇힘)을 뉴스 상자만 풀어 줌 */
+html body .u-box:has(.tlx){overscroll-behavior-y:auto!important}

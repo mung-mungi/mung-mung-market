@@ -59,7 +59,8 @@
   "RMO": "가볍게: 이름 바꾸기는 바뀐 부분만",
   "dataset.utc": "가볍게: 표 계산 기억",
   "dataset.ubn": "가볍게: 긴 상자 검사 기억",
-  "separators=": "가볍게: 공매도 자료 군살 빼기"
+  "separators=": "가볍게: 공매도 자료 군살 빼기",
+  ".u-box:has(.tlx)": "뉴스 지난 기록 상자 끝에서 페이지가 이어서 움직임"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -107,7 +108,8 @@
  "_tools/tlx.css": [
   "tlx-open",
   "tlx-wd",
-  ".pg-ev.tlx.tlx-open{"
+  ".pg-ev.tlx.tlx-open{",
+  ".u-box:has(.tlx)"
  ],
  "_tools/hub_tidy.py": [
   "data-tlx",
