@@ -56,3 +56,8 @@ html body .evj-sc{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:
 html body .evj-k{font-size:13px;font-weight:700;color:#3b3934;min-width:6.2em}
 html body .evj-ctx{margin:4px 0 6px;font-size:12.5px;line-height:1.55;color:#6f6a60}
 html body .evj .evj-h+.evj-t,html body .evj .evj-t{margin:2px 0}
+/* 그림자 칸(2026-11-04): 알약 글자는 속성으로 */
+html body .evg-pill::after{content:attr(data-lab)}
+html body .evg-host[hidden]{display:none!important}
+html body tr.evg-host>td{padding:0 4px 6px!important;background:transparent!important}
+html body .evg-pill.prs{transform:translateY(1px);box-shadow:none;filter:brightness(.96)}

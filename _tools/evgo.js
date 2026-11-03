@@ -39,7 +39,7 @@ function judge(box,k,r){if(!SENSE[k]||r.unit==null)return;var u=r.unit,done=r.ac
 function kindOf(id){for(var i=0;i<KS.length;i++)if(id.indexOf(KS[i]+'-')===0)return KS[i];return null}
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 function j(u){return fetch(u+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})}
-function load(){if(!busy)busy=Promise.all([j('d/econ/series.json'),j('d/econ/calendar.json'),j('d/econ/alert_extra.json'),j('d/econ/trends.json')]).then(function(r){SER=r[0]||{};CAL=(r[1]||[]).concat(r[2]||[]);try{REG=regime(r[3])}catch(e){}});return busy}
+function load(){if(!busy)busy=Promise.all([j('d/econ/series.json'),j('d/econ/calendar.json'),j('d/econ/alert_extra.json'),j('d/econ/trends.json'),css()]).then(function(r){SER=r[0]||{};CAL=(r[1]||[]).concat(r[2]||[]);try{REG=regime(r[3])}catch(e){}CSS=(r[4]||'').replace(/html body /g,'')});return busy}
 function rowOf(id){for(var i=0;i<(CAL||[]).length;i++)if(CAL[i].id===id)return CAL[i];return null}
 function fmt(v,u){if(v==null||isNaN(v))return '자료 없음';var a=Math.abs(v),s=a>=100?Math.round(v).toLocaleString('ko-KR'):(+(+v).toFixed(a>=10?1:2)).toString();
  if(!u||u==='지수')return s;if(u==='포인트')return (+(+v).toFixed(1))+'포인트';if(/^%/.test(u))return s+'%';if(u==='%p')return s+'%p';if(/^(백만|천|십억)/.test(u))return s+u.replace(' ','');return s+' '+u}
@@ -88,32 +88,48 @@ function panel(id){var r=rowOf(id),k=kindOf(id);if(!r)return null;var u=r.unit||
   box.appendChild(el('p','evg-src','출처: 미국 노동통계국·FRED'+(C.fresh?' · 마지막 점은 방금 발표치':'')+' · 노란 점이 '+(done?'이번 발표':'가장 최근 발표')))}
  return box}
 // 줄 찾기 · 펼치기 · 다시 붙이기
+// 빠르게(2026-11-04): 이 페이지엔 '화면이 바뀌면 페이지 전체를 다시 훑는' 공용 감시기가 여럿(줄바꿈·상자·사명 표기 등) 있어,
+// 펼칠 때마다 칸을 새로 끼우면 아이폰에서 1~2초 멈춤 → 줄마다 빈 자리(그림자 칸)를 처음 한 번만 붙이고, 누를 땐 그 안만 채우고 보이기만 바꿈(감시기에 안 걸림)
+var CSS='';
+function css(){var l=document.querySelector('link[data-evgo]');return l?fetch(l.href).then(function(r){return r.ok?r.text():''}).catch(function(){return ''}):Promise.resolve('')}
 function find(id){var w=document.querySelector('#weeks .mc-ev[data-key="'+id+'"]');if(w)return{row:w,box:w.closest('.u-box')};var t=document.querySelector('#calbody tr[data-key="'+id+'"]');return t?{row:t,box:t.closest('.u-box,.mc-tbox')}:null}
-function close(){OPEN='';[].forEach.call(document.querySelectorAll('.evg,.evg-tr'),function(e){e.remove()});mark()}
-function attach(f,id){var p=panel(id);if(!p)return null;
- // 펼쳐서 카드가 길어져도 '높이 고정 상자'로 바뀌지 않게(uniui.js는 1400px 넘는 카드를 상자로 만들고 옆에 안내 줄을 끼움 → 넓은 화면 두 칸 배치가 깨짐, 2026-11-04)
- var cd=f.row.closest('#weeks .mc-card');if(cd&&!cd.classList.contains('u-box'))cd.dataset.ub=1;if(f.row.tagName==='TR'){var tr=el('tr','evg-tr'),td=el('td');td.colSpan=f.row.children.length||9;td.appendChild(p);tr.appendChild(td);f.row.after(tr)}else f.row.after(p);return p}
-function show(id,how){var f=find(id);if(!f)return;[].forEach.call(document.querySelectorAll('.evg,.evg-tr'),function(e){e.remove()});OPEN=id;var p=attach(f,id);mark();
- // 펼친 칸이 보이게: 높이 고정 상자 안이면 상자를 그 줄 위치로, 화면도 그 상자 쪽으로
- if(f.box&&f.box.scrollHeight>f.box.clientHeight+4){var d=(how==='alert'?f.row:p||f.row).getBoundingClientRect().top-f.box.getBoundingClientRect().top-(how==='alert'?10:70);f.box.scrollTo({top:f.box.scrollTop+d,behavior:how==='alert'?'auto':'smooth'})}
+function hostOf(row,make){var h=row.nextElementSibling;if(h&&h.classList.contains('evg-host')&&h.dataset.for===row.dataset.key)return h;if(!make)return null;
+ if(row.tagName==='TR'){h=el('tr','evg-host evg-tr');var td=el('td');td.colSpan=row.children.length||9;h.appendChild(td);h.__slot=td}else{h=el('div','evg-host');h.__slot=h}
+ h.dataset.for=row.dataset.key;h.hidden=true;try{h.__sr=h.__slot.attachShadow({mode:'open'})}catch(e){h.__sr=null}row.after(h);return h}
+function fill(h,id){var p=panel(id);if(!p)return null;var sr=h.__sr;if(sr){var st=document.createElement('style');st.textContent=CSS;sr.replaceChildren(st,p)}else{h.__slot.replaceChildren(p)}h.hidden=false;return h}
+function hideAll(){[].forEach.call(document.querySelectorAll('.evg-host:not([hidden])'),function(h){h.hidden=true})}
+function close(){OPEN='';hideAll();mark()}
+function show(id,how){var f=find(id);if(!f)return;hideAll();OPEN=id;
+ var cd=f.row.closest('#weeks .mc-card');if(cd&&!cd.classList.contains('u-box'))cd.dataset.ub=1;   // 펼쳐 길어져도 높이 고정 상자로 안 바뀌게(넓은 화면 두 칸 배치 유지)
+ var p=fill(hostOf(f.row,true),id);mark();
+ if(f.box&&f.box.scrollHeight>f.box.clientHeight+4){var d=(how==='alert'?f.row:p||f.row).getBoundingClientRect().top-f.box.getBoundingClientRect().top-(how==='alert'?10:70);f.box.scrollTo({top:f.box.scrollTop+d,behavior:'auto'})}
  if(how==='alert'){var t0=0;function to(sm){var g=find(id);if(!g)return;var tg=g.box&&g.box.scrollHeight>g.box.clientHeight+4?g.box:g.row,y=tg.getBoundingClientRect().top+scrollY-84;if(Math.abs(y-scrollY)>30)scrollTo({top:y,behavior:sm?'smooth':'auto'})}
   function flash(){var g=find(id);if(!g)return;if(!t0&&!cover())t0=Date.now();if(t0&&Date.now()-t0<2600&&!g.row.classList.contains('evg-flash')){var r0=g.row;r0.classList.add('evg-flash');setTimeout(function(){r0.classList.remove('evg-flash')},2600-(Date.now()-t0))}}
   to(1);flash();[450,1100,2200].forEach(function(ms){setTimeout(function(){to();flash()},ms)});var n=0;(function sp(){if(cover()&&++n<30)return setTimeout(sp,250);if(n){to(1);flash()}})()}
  else{var b=p&&p.getBoundingClientRect();if(b&&b.bottom>innerHeight-90&&!(f.box&&f.box.scrollHeight>f.box.clientHeight+4))scrollTo({top:scrollY+Math.min(b.bottom-innerHeight+110,b.top-90),behavior:'smooth'})}}
 function cover(){var e=document.getElementById('mm-splash');if(!e||!e.isConnected)return false;var c=getComputedStyle(e);return c.display!=='none'&&c.visibility!=='hidden'&&+c.opacity>.05}
-// 줄마다 '결과 보기 ▾ / 예상 보기 ▾' 알약 + 누르게 생긴 모양
+// 줄마다 '결과 보기 ▾ / 예상치 보기 ▾' 알약(글자는 속성으로 바꿈 → 감시기에 안 걸림) + 이번 주 카드 줄마다 빈 자리 미리
 function mark(){if(!CAL)return;[].forEach.call(document.querySelectorAll('#weeks .mc-ev[data-key],#calbody tr[data-key]'),function(e){var id=e.dataset.key,r=rowOf(id);if(!r||!r.unit){e.classList.remove('evg-can');return}
   var on=OPEN===id,lab=(r.actual!=null?'결과 ':'예상치 ')+(on?'접기 ▴':'보기 ▾'),host=e.tagName==='TR'?e.querySelector('td:nth-child(3)'):e.querySelector('.ex')||e,pill=e.querySelector('.evg-pill');
-  e.classList.add('evg-can');e.classList.toggle('evg-on',on);if(!pill){pill=el('span','evg-pill');host.appendChild(pill)}if(pill.textContent!==lab)pill.textContent=lab;pill.classList.toggle('done',r.actual!=null)});
- if(OPEN){var f=find(OPEN);if(f&&!document.querySelector('.evg[data-for="'+OPEN+'"]'))attach(f,OPEN)}}
-document.addEventListener('click',function(e){var t=e.target;if(!t.closest||t.closest('a,.evg'))return;var r=t.closest('#weeks .mc-ev[data-key],#calbody tr[data-key]');if(!r||!r.classList.contains('evg-can'))return;
- var id=r.dataset.key;if(OPEN===id)close();else show(id,'tap')});
-document.addEventListener('click',function(e){if(CAL)return;var t=e.target,r=t.closest&&t.closest('#weeks .mc-ev[data-key],#calbody tr[data-key]');if(r&&!t.closest('a,.evg'))load().then(function(){show(r.dataset.key,'tap')})});
+  if(!e.classList.contains('evg-can'))e.classList.add('evg-can');if(e.classList.contains('evg-on')!==on)e.classList.toggle('evg-on',on);
+  if(!pill){pill=el('span','evg-pill');host.appendChild(pill)}if(pill.dataset.lab!==lab)pill.dataset.lab=lab;if(pill.classList.contains('done')!==(r.actual!=null))pill.classList.toggle('done',r.actual!=null);
+  if(e.tagName!=='TR')hostOf(e,true)});
+ if(OPEN){var f=find(OPEN),h=f&&hostOf(f.row,false);if(f&&(!h||h.hidden||!h.__sr||!h.__sr.querySelector('.evg')))fill(hostOf(f.row,true),OPEN)}}
+// 아이폰: 상자 안을 밀다가 바로 누르면 첫 누름이 '스크롤 멈춤'으로만 쓰이고 click이 안 옴 → 손을 뗄 때(pointerup) 바로 열고, 뒤따르는 click은 무시
+var PD=null,LAST=0;
+function rowAt(t){if(!t||!t.closest||t.closest('a,.evg-host'))return null;var r=t.closest('#weeks .mc-ev[data-key],#calbody tr[data-key]');return r&&r.classList.contains('evg-can')?r:null}
+function toggle(r,up){var id=r.dataset.key;if(up)LAST=Date.now();if(OPEN===id)close();else show(id,'tap')}
+document.addEventListener('pointerdown',function(e){var r=rowAt(e.target);PD=r?{r:r,x:e.clientX,y:e.clientY,t:Date.now()}:null;if(r){var p=r.querySelector('.evg-pill');if(p)p.classList.add('prs')}},{passive:true});
+document.addEventListener('pointercancel',function(){if(PD){var p=PD.r.querySelector('.evg-pill');if(p)p.classList.remove('prs')}PD=null},{passive:true});
+document.addEventListener('pointerup',function(e){var d=PD;PD=null;if(!d)return;var p=d.r.querySelector('.evg-pill');if(p)p.classList.remove('prs');
+ if(Math.abs(e.clientX-d.x)>10||Math.abs(e.clientY-d.y)>10||Date.now()-d.t>700||rowAt(e.target)!==d.r)return;toggle(d.r,1)},{passive:true});
+document.addEventListener('click',function(e){var r=rowAt(e.target);if(!r)return;if(Date.now()-LAST<600)return;toggle(r)});
+document.addEventListener('click',function(e){if(CAL)return;var t=e.target,r=t.closest&&t.closest('#weeks .mc-ev[data-key],#calbody tr[data-key]');if(r&&!t.closest('a,.evg-host'))load().then(function(){show(r.dataset.key,'tap')})});
 var q=0;function sched(){if(q)return;q=1;requestAnimationFrame(function(){q=0;try{mark()}catch(e){}})}
 var MO=window.MutationObserver;try{if(MO.__thr)MO=Object.getPrototypeOf(MO)}catch(e){}
-function watch(){var a=document.getElementById('weeks'),b=document.getElementById('calbody');if(!a||!b){setTimeout(watch,400);return}try{var mo=new MO(function(ms){for(var i=0;i<ms.length;i++){var n=ms[i].target;if(!(n.closest&&n.closest('.evg,.evg-tr,.evg-pill'))){sched();return}}});mo.observe(a,{childList:true,subtree:true});mo.observe(b,{childList:true})}catch(e){}}
+function watch(){var a=document.getElementById('weeks'),b=document.getElementById('calbody');if(!a||!b){setTimeout(watch,400);return}try{var mo=new MO(function(ms){for(var i=0;i<ms.length;i++){var m=ms[i],n=m.target;if(n.closest&&n.closest('.evg-host'))continue;var ad=[].slice.call(m.addedNodes||[]);if(ad.length&&ad.every(function(x){return x.classList&&(x.classList.contains('evg-host')||x.classList.contains('evg-pill'))}))continue;sched();return}});mo.observe(a,{childList:true,subtree:true});mo.observe(b,{childList:true})}catch(e){}}
 function hash(){var m=/^#ev-([\w.-]+)$/.exec(location.hash||'');if(!m)return;var id=m[1],tries=0;(function wait(){if(!find(id)||!CAL){if(++tries<40)setTimeout(wait,300);return}show(id,'alert')})()}
 addEventListener('hashchange',hash);
-load();function start(){watch();load().then(function(){mark();hash()})}
+load();function start(){watch();load().then(function(){mark();hash();var w=window.requestIdleCallback||function(f){setTimeout(f,1200)};w(function(){try{var r=document.querySelector('#weeks .mc-ev.evg-can');if(r)panel(r.dataset.key)}catch(e){}})})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
 })();
