@@ -1,0 +1,43 @@
+{
+  "req": "[req test1103] 연습: 최근 24시간 AI 반도체 관련 영향력 있는 계정의 X 게시물 2개",
+  "at": "2026-11-03T20:50:55+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "글로벌 자본시장 분석 뉴스레터 공식 계정",
+      "time_et": "2026-11-02 20:10",
+      "text": "BREAKING: Alphabet, $GOOGL, Meta, $META, Microsoft, $MSFT, Amazon, $AMZN, and Oracle, $ORCL, have now disclosed a record $3.3 trillion in future spending commitments.\n\nThese are off-balance-sheet commitments covering data-center spending, future equipment purchases, leases, and other obligations.\n\n$GOOGL accounts for the largest amount at $1.06 trillion, with its disclosed commitments surging nearly +700% over the last year.\n\n$META follows at $866 billion, with nearly half tied to data-center leases that have not yet commenced and payment periods extending up to 30 years.\n\nMeanwhile, Microsoft, $MSFT, has $593 billion in commitments, followed by Amazon, $AMZN, at $453 billion, and Oracle, $ORCL, at $322 billion.\n\nThe AI infrastructure buildout is creating an unprecedented pipeline of future financial obligations.",
+      "ko": "빅테크 5곳의 데이터센터·장비 등 부외 지출 약정이 사상 최대 3.3조 달러, AI 인프라(반도체 수요) 투자 규모를 보여 줌",
+      "url": "https://x.com/KobeissiLetter/status/2117424042944721041",
+      "media": [
+        "https://pbs.twimg.com/media/HWIKGqFX0AA9XH5.jpg"
+      ],
+      "media_note": "막대그래프(1560×1050) 'Big Tech Off-Balance-Sheet Spending Commitments': 구글 $1,059B, 메타 $866B, MS $593B, 아마존 $453B, 오라클 $322B (출처 Bloomberg)",
+      "views": 236996,
+      "likes": 2355
+    },
+    {
+      "author": "Jim Cramer",
+      "handle": "@jimcramer",
+      "role": "CNBC 'Mad Money' 진행자, CNBC Investing Club 운영",
+      "time_et": "2026-11-02 18:28",
+      "text": "The negativity when it comes to Marvell, Apple, Palantir is pretty thick...  No matter what they say, it isn't enough...",
+      "ko": "마벨(AI 반도체)·애플·팔란티어에 대한 비관이 짙어 무엇을 발표해도 부족하다는 분위기라고 지적",
+      "url": "https://x.com/jimcramer/status/2117398593531486423",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 169983,
+      "likes": 1133
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": [
+      "빅테크의 데이터센터·장비 지출 약정 3.3조 달러는 AI 반도체 수요의 직접적인 기반이자 이번 주 AMD 등 실적 해석의 배경.",
+      "동시에 '부외 부채' 부담이 부각돼 AI 투자 회의론(마벨 등 반도체주 약세)과 함께 볼 지표."
+    ]
+  },
+  "metrics_at": "2026-11-03T20:50:55+09:00"
+}
