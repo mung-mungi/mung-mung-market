@@ -31,7 +31,7 @@ function mount(){
   body.querySelectorAll('.own-col').forEach(function(col){var m=col.querySelector('.own-col-more');if(!m)return;m.setAttribute('role','button');
    m.onclick=function(){var o=col.classList.toggle('own-col-open');m.textContent=o?'▲ 칼럼 접기':'▼ 칼럼 전체 펼치기';if(!o)col.scrollIntoView({block:'start',behavior:'smooth'})}})}
  function lock(){ss('');body.innerHTML='';c.className='mm-own';hd.querySelector('i').textContent='🔒';hd.querySelector('small').textContent='비밀번호로 열립니다';hd.querySelector('em').textContent='열기 ›';inp.value='';paint()}
- function tryPin(p,quiet){msg.textContent='여는 중…';return dec(p).then(function(h){ss(p);msg.textContent='';show(h);draft(p);ownTag()}).catch(function(e){
+ function tryPin(p,quiet){msg.textContent='여는 중…';return dec(p).then(function(h){ss(p);msg.textContent='';show(h);draft(p);ownTag();report()}).catch(function(e){
    if(quiet){ss('');msg.textContent='';return}
    msg.textContent=e==='nocrypto'?'이 브라우저에서는 열 수 없습니다':'비밀번호가 다릅니다';inp.value='';paint();
    var l=c.querySelector('.mm-own-lock');l.classList.remove('sh');void l.offsetWidth;l.classList.add('sh')})}
@@ -95,6 +95,14 @@ function sendUI(c,x,src,tt,pin){var btn=c.querySelector('.own-dr-send'),m=c.quer
     .then(function(){btn.textContent='✅ 공개됨 · 알림 보냄';m.textContent='1~2분 뒤 사이트에 배너가 뜨고 알림이 갑니다.'})})
   .catch(function(e){btn.disabled=false;btn.textContent='📢 공개 + 전체 알림 보내기';if(e==='nokey'){keyForm();return}
    m.textContent='보내지 못했습니다: '+e+(/^40[13]/.test(String(e))?' — 열쇠 권한·기한을 확인하세요':'');if(/^401/.test(String(e))){try{localStorage.removeItem('mm-own-gh')}catch(_){}}})}}
+// ── 작업 보고(사용자 2026-11-03): Claude가 단계마다 d/report/log.json에 한 줄씩 남기면 주인장 칸 맨 위에 '오늘 작업 보고'로 보여 줌
+function report(){fetch('d/report/log.json?t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){
+ var b=document.querySelector('.mm-own-body');if(!b||!j||!(j.items||[]).length)return;var old=b.querySelector('.own-rep');if(old)old.remove();
+ var e=document.createElement('div');e.className='own-rep';
+ e.innerHTML='<div class="own-rep-hd">🐾 작업 보고 <small>'+esc(j.date||'')+'</small></div>'+j.items.slice(-12).map(function(x){
+  return '<div class="own-rep-r'+(/⚠/.test(x.s||'')?' warn':'')+'"><span class="t">'+esc(x.t||'')+'</span><span class="s">'+esc(x.s||'')+'</span><span class="m">'+esc(x.msg||'')+'</span></div>'}).join('')+
+  (j.note?'<p class="own-rep-note">'+esc(j.note)+'</p>':'');
+ var tn=b.querySelector('.own-tagnote');b.insertBefore(e,tn?tn.nextSibling:b.firstChild)}).catch(function(){})}
 function draft(pin){fetch('d/notice_draft.enc.json?t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){return decJ(j,pin)}).then(function(t){return inbox(pin,t)}).then(function(t){
  var body=document.querySelector('.mm-own-body');if(!body||body.querySelector('.own-draft'))return;
  var B;try{B=JSON.parse(t)}catch(e){B={drafts:[{title:'',html:t}],cands:[]}}

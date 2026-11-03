@@ -121,3 +121,12 @@
 .mm-own-body .own-key p{margin:4px 0 8px;line-height:1.5}
 .mm-own-body .own-key input{width:70%;padding:8px;border:1px solid #d9c9a6;border-radius:8px;font-size:14px}
 .mm-own-body .own-key button{margin-left:6px;padding:8px 12px;border:0;border-radius:8px;background:#5b5246;color:#fff;font-weight:800}
+
+.mm-own-body .own-rep{background:#fbf8f1;border:1px solid #e6d7b8;border-radius:12px;padding:10px 12px;margin:0 0 10px}
+.mm-own-body .own-rep-hd{font-weight:900;font-size:15px;margin-bottom:6px}
+.mm-own-body .own-rep-hd small{font-weight:600;color:#8a7f6c;margin-left:6px}
+.mm-own-body .own-rep-r{display:grid;grid-template-columns:44px 20px 1fr;gap:6px;font-size:13.5px;line-height:1.45;padding:4px 0;border-top:1px dashed #eadfc8}
+.mm-own-body .own-rep-r:first-of-type{border-top:0}
+.mm-own-body .own-rep-r .t{font-variant-numeric:tabular-nums;color:#5b5246;font-weight:700}
+.mm-own-body .own-rep-r.warn .m{color:#b03d20}
+.mm-own-body .own-rep-note{margin:6px 0 0;font-size:12.5px;color:#8a7f6c}
