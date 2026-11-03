@@ -63,7 +63,8 @@
   ".u-box:has(.tlx)": "뉴스 지난 기록 상자 끝에서 페이지가 이어서 움직임",
   "tm-jump": "뉴스 날짜 바로가기",
   "tm-more": "뉴스 더 보기(상자 대신)",
-  "'tlmore'": "뉴스 더 보기 부품 연결"
+  "'tlmore'": "뉴스 더 보기 부품 연결",
+  "LAZYRUN_JS": "가볍게: 목표주가 아래쪽 차트 늦게 그리기"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -138,7 +139,8 @@
   "mm-per1w",
   "DEFER_JS",
   "__lazyCD",
-  "'tlmore'"
+  "'tlmore'",
+  "LAZYRUN_JS"
  ],
  "_tools/owner.js": [
   "own-draft",

@@ -807,11 +807,20 @@ for _pg in ('p-opt.html', 'p-bond.html', 'p-lights.html'):
 EASY['p-policy.html'] = EASY['p-policy.html'] + ['newsq_ui']; EASY['p-tech.html'] = EASY['p-tech.html'] + ['newsq_ui']
 # 뉴스 타임라인: 높이 고정 상자 대신 '더 보기' + 날짜 바로가기(사용자 2026-11-03)
 EASY['p-policy.html'] = EASY['p-policy.html'] + ['tlmore']; EASY['p-tech.html'] = EASY['p-tech.html'] + ['tlmore']
+# 목표주가 아래쪽 차트 늦게 그리기(2026-11-03): 데이터가 덜 와서 페이지가 짧을 때 잘못 '보임'으로 판정하지 않게 1.5초 뒤(또는 손가락이 처음 닿을 때)부터 지켜봄
+LAZYRUN_JS = r"""<script data-lazyrun>window.__lazyRun=function(k,f,el){if(!el||!window.IntersectionObserver)return f();var L=window.__lazyRun.s||(window.__lazyRun.s={}),z=L[k]||(L[k]={});z.f=f;if(z.on)return f();if(z.o)return;z.o=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting})){z.o.disconnect();z.on=1;requestAnimationFrame(function(){z.f()})}},{rootMargin:"500px 0px"});var arm=function(){if(z.a)return;z.a=1;z.o.observe(el)};setTimeout(arm,1500);['touchstart','wheel','keydown'].forEach(function(t){addEventListener(t,arm,{once:true,passive:true})})};</script>"""
 def tidy_easy(s, name):
     if name == 'p-brief.html':  # 속도(2026-11-03): 시황 그림은 화면에 들어올 때 그림(보이지 않는 지난 날짜 차트까지 열 때 다 그리던 것)
         s = s.replace('requestAnimationFrame(()=>drawCD(cv,cd))', '(window.__lazyCD||requestAnimationFrame)(()=>drawCD(cv,cd),cv)')
         if 'window.__lazyCD=' not in s:
             s = re.sub(r'(<script[^>]*>)', lambda m: '<script data-lazycd>window.__lazyCD=function(f,el){if(!el||!window.IntersectionObserver)return requestAnimationFrame(f);var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){o.disconnect();requestAnimationFrame(f)}})},{rootMargin:"600px 0px"});o.observe(el)};</script>' + m.group(1), s, count=1)
+    if name == 'p-targets.html':  # 속도(2026-11-03): 아래쪽 차트(종목 선 그래프·월별·업종 열지도·업종 표)는 화면 가까이 올 때 그림
+        for a, b in [("    drawHeat();\n    drawCat();", "    (window.__lazyRun||((k,f)=>f()))('heat',drawHeat,document.getElementById('heat-card'));\n    (window.__lazyRun||((k,f)=>f()))('cat',drawCat,document.getElementById('cat-card'));"),
+                     ("    drawPicker();\n    redrawTk();\n  });", "    drawPicker();\n    (window.__lazyRun||((k,f)=>f()))('tk',redrawTk,document.getElementById('lines-card'));\n  });")]:
+            if a in s: s = s.replace(a, b, 1)
+        s = re.sub(r'<script data-lazyrun>.*?</script>', '', s, flags=re.S)
+        if True:
+            s = re.sub(r'(<script[^>]*>)', lambda m: LAZYRUN_JS + m.group(1), s, count=1)
     for mk in EASY.get(name) or []:
         s = _easy_one(s, mk)
     return s
