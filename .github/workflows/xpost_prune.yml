@@ -1,0 +1,28 @@
+# 영상 자료 받은편지함 정리(사용자 2026-11-03) — d/xpost/items의 그록봇 파일은 14일 지나면 지움(쌓이지 않게). Claude 크레딧 없음
+name: xpost-prune
+on:
+  schedule:
+    - cron: '17 19 * * *'   # 한국 04:17 (새벽 작업 전)
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: xpost-prune
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: 14일 지난 파일 지우기
+        run: |
+          cut=$(TZ=Asia/Seoul date -d '14 days ago' +%Y%m%d)
+          n=0
+          for f in d/xpost/items/2*.json; do
+            [ -e "$f" ] || continue
+            d=$(basename "$f" | cut -c1-8)
+            if [ "$d" \< "$cut" ]; then git rm -q "$f"; n=$((n+1)); fi
+          done
+          echo "지운 파일 $n개"
+          [ "$n" = 0 ] && exit 0
+          git -c user.name=mung-bot -c user.email=mung-bot@users.noreply.github.com commit -qm "영상 자료 받은편지함 정리: 14일 지난 $n개"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q && break; sleep 5; done
