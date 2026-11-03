@@ -19,7 +19,7 @@ function nz(s){return String(s||'').toLowerCase().replace(/[\s·\-_.()]/g,'')}
 window.__mmq=function(r,q){if(!q)return true;var t=String(r.ticker||''),h=nz(r.name)+' '+nz(t)+' '+nz(t.split('.')[0])+' '+nz(A[t]||''),k=nz(q);if(!k)return true;
  if(h.indexOf(k)>=0)return true;if(/^[ㄱ-ㅎ]+$/.test(k))return cho(nz(r.name)+' '+nz(A[t]||'')).indexOf(k)>=0;return false};
 })();
-</script><script data-ver="202611031133">(function(){var me="202611031133",last=0;function chk(){var n=Date.now();if(n-last<20000)return;last=n;try{fetch("version.json?t="+n,{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")chk()});addEventListener("pageshow",function(e){if(e.persisted)chk()});function ver(){if(!/\/(index\.html)?$/.test(location.pathname))return;var t=document.querySelector("header.bn .tx");if(!t||document.getElementById("mm-ver"))return;var p=document.createElement("p");p.id="mm-ver";p.textContent="v2.0";p.style.cssText="margin:3px 0 0;font-size:12px;color:#9a978f;font-variant-numeric:tabular-nums;letter-spacing:.2px";t.appendChild(p)}document.readyState!=="loading"?ver():document.addEventListener("DOMContentLoaded",ver)})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>AI 밸류체인 시세 보드</title><style>:root{color-scheme:light;
+</script><script data-ver="202611031154">(function(){var me="202611031154",last=0;function chk(){var n=Date.now();if(n-last<20000)return;last=n;try{fetch("version.json?t="+n,{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")chk()});addEventListener("pageshow",function(e){if(e.persisted)chk()});function ver(){if(!/\/(index\.html)?$/.test(location.pathname))return;var t=document.querySelector("header.bn .tx");if(!t||document.getElementById("mm-ver"))return;var p=document.createElement("p");p.id="mm-ver";p.textContent="v2.0";p.style.cssText="margin:3px 0 0;font-size:12px;color:#9a978f;font-variant-numeric:tabular-nums;letter-spacing:.2px";t.appendChild(p)}document.readyState!=="loading"?ver():document.addEventListener("DOMContentLoaded",ver)})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>AI 밸류체인 시세 보드</title><style>:root{color-scheme:light;
 --color-bg:#f9f9f7;--color-fg:#0b0b0b;--color-fg-muted:#6f6d68;--color-panel:#ffffff;--color-border-line:rgba(11,11,11,.1);--color-ok:#1a7a45;--color-warn:#9a6200;--color-bad:#b23434;
 --font-anthropic-sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,sans-serif;--font-anthropic-serif:ui-serif,"New York","Noto Serif KR",Georgia,"Times New Roman",serif;
 --cds-font-size-caption:13px;--cds-font-size-body:15px;--cds-font-size-heading:17px;--cds-font-size-title:28px;--cds-font-weight-medium:500;
@@ -237,7 +237,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
 .pb-read ul{padding-left:1.1em;margin:0}
 .pb-wrap .pb-read b{font-weight:700}
 .pb-src ul{padding-left:1.1em;margin:0;font-size:var(--cds-font-size-caption);line-height:1.7;color:var(--color-fg-muted)}
-.pb-per{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.pb-per{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;align-items:center;gap:6px;padding-bottom:4px}.pb-per::-webkit-scrollbar{display:none}.pb-per .pb-chip,.pb-per .lab{flex:none}
 .pb-per .lab{font-size:var(--cds-font-size-caption);font-weight:700;color:var(--color-fg-muted);margin-right:4px}
 .pb-per .pb-chip{font-weight:700;min-width:3.6rem;text-align:center}
 .pb-count{font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
@@ -288,7 +288,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
     </div>
   </section>
 
-  <div class="pb-per" id="period" role="group" aria-label="등락 기간 고르기"><span class="lab">등락 기간</span><button type="button" class="pb-chip" data-p="12m">12개월</button><button type="button" class="pb-chip" data-p="6m">6개월</button><button type="button" class="pb-chip" data-p="3m">3개월</button><button type="button" class="pb-chip" data-p="1m">1개월</button></div>
+  <div class="pb-per" id="period" role="group" aria-label="등락 기간 고르기"><span class="lab">등락 기간</span><button type="button" class="pb-chip" data-p="1d">1일</button><button type="button" class="pb-chip" data-p="1w">1주일</button><button type="button" class="pb-chip" data-p="1m">1개월</button><button type="button" class="pb-chip" data-p="3m">3개월</button><button type="button" class="pb-chip" data-p="6m">6개월</button><button type="button" class="pb-chip" data-p="12m">12개월</button></div>
 
   <p class="pb-hint">칸을 누르면 <b>분야별 종목 지도</b>가 펼쳐집니다.</p>
   <section class="pb-tiles" id="tiles" data-fetchpriority="high">
@@ -303,7 +303,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
 
   <section class="pb-card pb-sec" id="heat-sec">
     <h2 class="k">분야별 온도</h2>
-    <div class="pb-per2" role="group" aria-label="분야별 온도 기간"><button type="button" class="pb-chip" data-p="1d">1일</button><button type="button" class="pb-chip" data-p="1m">1개월</button><button type="button" class="pb-chip" data-p="3m">3개월</button><button type="button" class="pb-chip" data-p="6m">6개월</button><button type="button" class="pb-chip" data-p="12m">12개월</button></div>
+    <div class="pb-per2" role="group" aria-label="분야별 온도 기간"><button type="button" class="pb-chip" data-p="1d">1일</button><button type="button" class="pb-chip" data-p="1w">1주일</button><button type="button" class="pb-chip" data-p="1m">1개월</button><button type="button" class="pb-chip" data-p="3m">3개월</button><button type="button" class="pb-chip" data-p="6m">6개월</button><button type="button" class="pb-chip" data-p="12m">12개월</button></div>
     <p class="pb-sub">분야별 평균 <b id="hper-word">1개월</b> 등락률입니다. 칸을 누르면 아래 표가 그 분야만 보여 줍니다.</p>
     <div class="pb-heat" id="heat" data-source="board_heat"></div>
   </section>
@@ -373,6 +373,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
       const n = (x) => (x === null || x === undefined || x === '' ? null : Number(x));
       const pct = (a, b) => (a != null && b ? (a / b - 1) * 100 : null);
       const pt = new Map(tickers.map((t) => [t.ticker, n(t.cons_avg_pt)]));
+      /*mm-per1w*/const W1 = (function () { try { const H = dash.data('history'); if (!H || H.status !== 'ok') return {}; if (window.__mmW1 && window.__mmW1.ref === H.data && window.__mmW1.n === prices.length) return window.__mmW1.m; const by = {}; H.data.forEach((x) => { if (x.kind === 'm') return; (by[x.ticker] = by[x.ticker] || []).push(x); }); const m = {}; prices.forEach((r) => { const a = (by[r.ticker] || []).filter((x) => x.date < r.price_date).sort((p, q) => (p.date < q.date ? -1 : 1)); if (a.length >= 5) m[r.ticker] = Number(a[a.length - 5].close); }); window.__mmW1 = { ref: H.data, n: prices.length, m: m }; return m; } catch (e) { return {}; } })();
       return prices.map((r) => {
         const p = n(r.price);
         const hi = n(r.hi_52w) != null && p != null ? Math.max(n(r.hi_52w), p) : n(r.hi_52w);
@@ -383,6 +384,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
         return {
           ticker: r.ticker, name: r.name, category: r.category, order: n(r.order),
           chg_1d: pct(p, n(r.prev_close)),
+          chg_1w: pct(p, W1[r.ticker]),
           chg_1m: pct(p, n(r.m1_close)),
           chg_3m: pct(p, n(r.m3_close)),
           chg_6m: pct(p, n(r.m6_close)),
@@ -410,8 +412,8 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
       return cats.map((c) => {
         const rs = board_calc.filter((r) => r.category === c);
         const pick = (k) => rs.map((r) => r[k]).filter((x) => x != null);
-        const m1 = pick('chg_1m'), m3 = pick('chg_3m'), m6 = pick('chg_6m'), m12 = pick('chg_12m'), d1 = pick('chg_1d');
-        return { category: c, n: rs.length, n_1d: d1.length, avg_1d: avg(d1),
+        const m1 = pick('chg_1m'), m3 = pick('chg_3m'), m6 = pick('chg_6m'), m12 = pick('chg_12m'), d1 = pick('chg_1d'), w1 = pick('chg_1w');
+        return { category: c, n: rs.length, n_1d: d1.length, avg_1d: avg(d1), n_1w: w1.length, avg_1w: avg(w1),
           n_1m: m1.length, avg_1m: avg(m1), n_3m: m3.length, avg_3m: avg(m3),
           n_6m: m6.length, avg_6m: avg(m6), n_12m: m12.length, avg_12m: avg(m12),
           avg_ytd: avg(rs.map((r) => ytd.get(r.ticker)).filter((x) => x != null)) };
@@ -428,7 +430,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
       const up = board_calc.map((r) => r.upside).filter((x) => x != null);
       const dates = prices.map((r) => r.price_date).filter(Boolean).sort();
       const per = {};
-      ['1m', '3m', '6m', '12m'].forEach((k) => {
+      ['1d', '1w', '1m', '3m', '6m', '12m'].forEach((k) => {
         const v = board_calc.map((r) => r['chg_' + k]).filter((x) => x != null);
         const h = board_heat.filter((x) => x['avg_' + k] != null).sort((a, b) => b['avg_' + k] - a['avg_' + k]);
         per['n_' + k] = v.length;
@@ -475,7 +477,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
 
   let cat = null, sortK = 'order', sortDir = 1, q = '';
   let openGuide = false, openTk = null, openRange = '12m', histRef = null, histBy = new Map();
-  const PER = { '1m': ['1개월', '지난 1개월', '한 달 전'], '3m': ['3개월', '지난 3개월', '3개월 전'], '6m': ['6개월', '지난 6개월', '6개월 전'], '12m': ['12개월', '지난 12개월', '1년 전'] };
+  const PER = { '1d': ['1일', '오늘', '전날'], '1w': ['1주일', '지난 1주일', '1주일 전'], '1m': ['1개월', '지난 1개월', '한 달 전'], '3m': ['3개월', '지난 3개월', '3개월 전'], '6m': ['6개월', '지난 6개월', '6개월 전'], '12m': ['12개월', '지난 12개월', '1년 전'] };
   const per = () => { const p = dash.params().period; return PER[p] ? p : '1m'; };
   document.querySelectorAll('#period .pb-chip').forEach((b) => b.addEventListener('click', () => dash.setParams({ period: b.dataset.p })));
   const tb = document.getElementById('tb');
@@ -486,7 +488,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
   try { const v0 = localStorage.getItem('pb-view2'); if (v0 && v0 !== 'card') setView(v0); } catch (e) {}
   const HSN = { '반도체 지수 ETF': '반도체 ETF', '시장 지수 ETF': '시장 ETF', '연산칩 (GPU·CPU)': 'GPU·CPU', '메모리·저장장치': '메모리', '반도체 장비·후공정': '반도체 장비', '설계 소프트웨어': '설계 SW', '소프트웨어·보안': 'SW·보안', '연결·네트워크': '네트워크', '전력·냉각·발전': '전력·냉각', '전력 인프라 시공': '전력 시공', '네오클라우드': '네오클라우드' };
   let heatP = null, openTile = null;
-  const HPL = { '1d': '1일', '1m': '1개월', '3m': '3개월', '6m': '6개월', '12m': '12개월' };
+  const HPL = { '1d': '1일', '1w': '1주일', '1m': '1개월', '3m': '3개월', '6m': '6개월', '12m': '12개월' };
   document.querySelectorAll('.pb-per2 .pb-chip').forEach((b) => b.addEventListener('click', () => { heatP = b.dataset.p; draw(); }));
   document.querySelectorAll('#tiles .pb-tile').forEach((b) => b.addEventListener('click', () => { openTile = openTile === b.dataset.tile ? null : b.dataset.tile; draw(); }));
   const medOf = (a) => { const s = a.filter((x) => x != null).sort((x, y) => x - y); if (!s.length) return null; const m = Math.floor(s.length / 2); return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
@@ -549,7 +551,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
       st.forEach((x) => divRow(x.c, x.v, mx, `오름 ${x.up} · 내림 ${x.dn} / ${x.n}종목` + (x.best ? ` · 강한 종목 ${nmS(x.best)} ${fmtPct(x.best[key], d)}` : '') + (x.worst && x.worst !== x.best ? ` · 약한 종목 ${nmS(x.worst)} ${fmtPct(x.worst[key], d)}` : ''), d));
     };
     if (openTile === 'd1' || openTile === 'up' || openTile === 'per') {
-      const key = openTile === 'per' ? 'chg_' + P : 'chg_1d', lab = openTile === 'per' ? PL[0] : '1일', sc = openTile === 'per' ? ({ '1m': 20, '3m': 35, '6m': 50, '12m': 80 }[P] || 25) : 4;
+      const key = openTile === 'per' ? 'chg_' + P : 'chg_1d', lab = openTile === 'per' ? PL[0] : '1일', sc = openTile === 'per' ? ({ '1d': 4, '1w': 10, '1m': 20, '3m': 35, '6m': 50, '12m': 80 }[P] || 25) : 4;
       head(lab + ' 등락 · 종목 지도', '평균이 높은 분야부터 · 종목을 누르면 아래 표에서 열립니다.');
       const tmp = el('div'); const keep = box; 
       const st = chipMap(key, sc, 1);
@@ -626,7 +628,7 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
       fillMarks((k) => {
         const v = t[k];
         if (v == null) return '자료 없음';
-        if (/^(best|worst)_\d+m$/.test(k)) return fmtPct(v);
+        if (/^(best|worst)_\d+[mdw]$/.test(k)) return fmtPct(v);
         return String(v);
       });
       document.getElementById('mood').textContent = t.med_1d == null ? '날' : t.med_1d > 0 ? '오른 날' : t.med_1d < 0 ? '내린 날' : '보합인 날';
@@ -1069,4 +1071,4 @@ html[data-cols='4'] .pb-tdet .cw{grid-template-columns:repeat(4,minmax(0,1fr))}
   document.addEventListener('DOMContentLoaded', scan); window.addEventListener('load', scan); setTimeout(scan, 1500);
   var st = document.createElement('style'); st.textContent = '.mm-fh{color:#1f7a3f!important}'; (document.head || document.documentElement).appendChild(st);
 })();
-</script><link data-ibdrag rel="stylesheet" href="_tools/ibdrag.css?v=fee4f713"><script data-ibdrag src="_tools/ibdrag.js?v=c9eadee1"></script><link data-headui rel="stylesheet" href="_tools/headui.css?v=3b65af25"><script data-headui src="_tools/headui.js?v=927b277e"></script><link data-rdbox rel="stylesheet" href="_tools/rdbox.css?v=8d082c44"><script data-rdbox src="_tools/rdbox.js?v=5e0a243f"></script><link data-dock rel="stylesheet" href="_tools/dock.css?v=06efc20f"><script data-dock src="_tools/dock.js?v=368580ec"></script><link data-chipfold rel="stylesheet" href="_tools/chipfold.css?v=1a5c2c61"><script data-chipfold src="_tools/chipfold.js?v=bc687aab"></script></body></html>
+</script><link data-ibdrag rel="stylesheet" href="_tools/ibdrag.css?v=fee4f713"><script data-ibdrag src="_tools/ibdrag.js?v=c9eadee1"></script><link data-chipfold rel="stylesheet" href="_tools/chipfold.css?v=1a5c2c61"><script data-chipfold src="_tools/chipfold.js?v=bc687aab"></script><link data-headui rel="stylesheet" href="_tools/headui.css?v=3b65af25"><script data-headui src="_tools/headui.js?v=927b277e"></script><link data-rdbox rel="stylesheet" href="_tools/rdbox.css?v=8d082c44"><script data-rdbox src="_tools/rdbox.js?v=5e0a243f"></script><link data-dock rel="stylesheet" href="_tools/dock.css?v=06efc20f"><script data-dock src="_tools/dock.js?v=368580ec"></script><script data-pper src="_tools/pper.js?v=735bad71"></script></body></html>

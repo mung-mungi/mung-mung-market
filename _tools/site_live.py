@@ -121,6 +121,11 @@ def run(root):
             sys.path.insert(0, T); import hub_tidy
             o = open(ppl, encoding='utf-8').read(); b = hub_tidy.tidy_policy(o)
             if b != o: open(ppl, 'w', encoding='utf-8').write(b); n.append(nm)
+    pp = os.path.join(root, 'p-prices.html')  # 시세 보드 기간 1일·1주일(사용자 2026-11-03)
+    if os.path.exists(pp):
+        sys.path.insert(0, T); import hub_tidy
+        o = open(pp, encoding='utf-8').read(); b = hub_tidy.tidy_prices_per(o)
+        if b != o: open(pp, 'w', encoding='utf-8').write(b); n.append('p-prices-per')
     po = os.path.join(root, 'p-opt.html')
     if os.path.exists(po):
         sys.path.insert(0, T); import hub_tidy

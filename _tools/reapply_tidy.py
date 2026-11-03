@@ -53,3 +53,8 @@ for _n in h.EASY:
     if os.path.exists(_p):
         _o = open(_p, encoding='utf-8').read(); _a = h.tidy_easy(_o, _n)
         if _a != _o: open(_p, 'w', encoding='utf-8').write(_a); print('tidy', _n)
+# 시세 보드 기간 1일·1주일(2026-11-03)
+_pp = os.path.join(R, 'p-prices.html')
+if os.path.exists(_pp):
+    _o = open(_pp, encoding='utf-8').read(); _a = h.tidy_prices_per(_o)
+    if _a != _o: open(_pp, 'w', encoding='utf-8').write(_a); print('tidy prices per')

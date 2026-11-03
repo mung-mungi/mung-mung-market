@@ -50,7 +50,9 @@
   ".pg-ev.tlx.tlx-open{": "펼친 뉴스 칸 날짜 위로·본문 넓게",
   "function flip(": "뉴스 칸 펼침 모션(FLIP)",
   "tlx-pdb": "정리본은 버튼으로 따로 펼침",
-  "mmc-tabs": "실적 일정 지난달(10월 등) 보기 전환"
+  "mmc-tabs": "실적 일정 지난달(10월 등) 보기 전환",
+  "mm-per1w": "시세 보드 1일·1주일 기간",
+  "가장 덜 빠진": "강세 칸 마이너스면 가장 덜 빠진 분야"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -120,7 +122,8 @@
   "'chipfold'",
   "'descfold'",
   "'shtop'",
-  "newsq_ui"
+  "newsq_ui",
+  "mm-per1w"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -208,5 +211,8 @@
  "_tools/newsq_ui.js": [
   "function draw(",
   "newsq/newsq.json"
+ ],
+ "_tools/pper.js": [
+  "가장 덜 빠진"
  ]
 }

@@ -808,3 +808,38 @@ def _easy_one(s, mk):
         return s
     s = core_strip(s, mk)
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+# 시세 보드 기간 1일·1주일 추가 + 왼쪽부터 짧은 순(사용자 2026-11-03) — 원본(통합본 동기화로 덮임) 위에 멱등 치환
+# 1주일 = history의 일별 종가 중 기준일 이전 5번째 거래일 종가. history를 계산 입력에 넣지 않고(보드가 history를 기다리지 않게) 계산 안에서 읽음
+PPER_MARK = '/*mm-per1w*/'
+PPER_REP = [
+    ("<button type=\"button\" class=\"pb-chip\" data-p=\"12m\">12개월</button><button type=\"button\" class=\"pb-chip\" data-p=\"6m\">6개월</button><button type=\"button\" class=\"pb-chip\" data-p=\"3m\">3개월</button><button type=\"button\" class=\"pb-chip\" data-p=\"1m\">1개월</button>",
+     "<button type=\"button\" class=\"pb-chip\" data-p=\"1d\">1일</button><button type=\"button\" class=\"pb-chip\" data-p=\"1w\">1주일</button><button type=\"button\" class=\"pb-chip\" data-p=\"1m\">1개월</button><button type=\"button\" class=\"pb-chip\" data-p=\"3m\">3개월</button><button type=\"button\" class=\"pb-chip\" data-p=\"6m\">6개월</button><button type=\"button\" class=\"pb-chip\" data-p=\"12m\">12개월</button>"),
+    ("<button type=\"button\" class=\"pb-chip\" data-p=\"1d\">1일</button><button type=\"button\" class=\"pb-chip\" data-p=\"1m\">1개월</button>",
+     "<button type=\"button\" class=\"pb-chip\" data-p=\"1d\">1일</button><button type=\"button\" class=\"pb-chip\" data-p=\"1w\">1주일</button><button type=\"button\" class=\"pb-chip\" data-p=\"1m\">1개월</button>"),
+    ("const PER = { '1m': ['1개월', '지난 1개월', '한 달 전'],",
+     "const PER = { '1d': ['1일', '오늘', '전날'], '1w': ['1주일', '지난 1주일', '1주일 전'], '1m': ['1개월', '지난 1개월', '한 달 전'],"),
+    ("const HPL = { '1d': '1일', '1m': '1개월',", "const HPL = { '1d': '1일', '1w': '1주일', '1m': '1개월',"),
+    ("({ '1m': 20, '3m': 35, '6m': 50, '12m': 80 }[P] || 25)", "({ '1d': 4, '1w': 10, '1m': 20, '3m': 35, '6m': 50, '12m': 80 }[P] || 25)"),
+    ("      return prices.map((r) => {\n        const p = n(r.price);",
+     "      " + PPER_MARK + "const W1 = (function () { try { const H = dash.data('history'); if (!H || H.status !== 'ok') return {}; if (window.__mmW1 && window.__mmW1.ref === H.data && window.__mmW1.n === prices.length) return window.__mmW1.m; const by = {}; H.data.forEach((x) => { if (x.kind === 'm') return; (by[x.ticker] = by[x.ticker] || []).push(x); }); const m = {}; prices.forEach((r) => { const a = (by[r.ticker] || []).filter((x) => x.date < r.price_date).sort((p, q) => (p.date < q.date ? -1 : 1)); if (a.length >= 5) m[r.ticker] = Number(a[a.length - 5].close); }); window.__mmW1 = { ref: H.data, n: prices.length, m: m }; return m; } catch (e) { return {}; } })();\n      return prices.map((r) => {\n        const p = n(r.price);"),
+    ("          chg_1d: pct(p, n(r.prev_close)),\n", "          chg_1d: pct(p, n(r.prev_close)),\n          chg_1w: pct(p, W1[r.ticker]),\n"),
+    ("m12 = pick('chg_12m'), d1 = pick('chg_1d');", "m12 = pick('chg_12m'), d1 = pick('chg_1d'), w1 = pick('chg_1w');"),
+    ("n_1d: d1.length, avg_1d: avg(d1),", "n_1d: d1.length, avg_1d: avg(d1), n_1w: w1.length, avg_1w: avg(w1),"),
+    ("if (/^(best|worst)_\\d+m$/.test(k))", "if (/^(best|worst)_\\d+[mdw]$/.test(k))"),
+    (".pb-per{display:flex;flex-wrap:wrap;align-items:center;gap:6px}", ".pb-per{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;align-items:center;gap:6px;padding-bottom:4px}.pb-per::-webkit-scrollbar{display:none}.pb-per .pb-chip,.pb-per .lab{flex:none}"),
+    ("      ['1m', '3m', '6m', '12m'].forEach((k) => {\n        const v = board_calc.map((r) => r['chg_' + k])",
+     "      ['1d', '1w', '1m', '3m', '6m', '12m'].forEach((k) => {\n        const v = board_calc.map((r) => r['chg_' + k])"),
+]
+def tidy_prices_per(s):
+    if 'id="period"' not in s or 'board_calc' not in s:
+        return s
+    if PPER_MARK not in s:
+        for a, b in PPER_REP:
+            if a in s:
+                s = s.replace(a, b, 1)
+    # '강세' 칸이 마이너스면 '가장 덜 빠진', '약세' 칸이 플러스면 '가장 덜 오른' — _tools/pper.js
+    s = core_strip(s, 'pper')
+    add = core_ref('pper', 'pper.js')
+    return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
