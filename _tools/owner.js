@@ -31,7 +31,7 @@ function mount(){
   body.querySelectorAll('.own-col').forEach(function(col){var m=col.querySelector('.own-col-more');if(!m)return;m.setAttribute('role','button');
    m.onclick=function(){var o=col.classList.toggle('own-col-open');m.textContent=o?'▲ 칼럼 접기':'▼ 칼럼 전체 펼치기';if(!o)col.scrollIntoView({block:'start',behavior:'smooth'})}})}
  function lock(){ss('');body.innerHTML='';c.className='mm-own';hd.querySelector('i').textContent='🔒';hd.querySelector('small').textContent='비밀번호로 열립니다';hd.querySelector('em').textContent='열기 ›';inp.value='';paint()}
- function tryPin(p,quiet){msg.textContent='여는 중…';return dec(p).then(function(h){ss(p);msg.textContent='';show(h);draft(p)}).catch(function(e){
+ function tryPin(p,quiet){msg.textContent='여는 중…';return dec(p).then(function(h){ss(p);msg.textContent='';show(h);draft(p);ownTag()}).catch(function(e){
    if(quiet){ss('');msg.textContent='';return}
    msg.textContent=e==='nocrypto'?'이 브라우저에서는 열 수 없습니다':'비밀번호가 다릅니다';inp.value='';paint();
    var l=c.querySelector('.mm-own-lock');l.classList.remove('sh');void l.offsetWidth;l.classList.add('sh')})}
@@ -60,6 +60,41 @@ function inbox(pin,t){var C=crypto.subtle;return Promise.all([fetch('d/notice_in
   var B;try{B=JSON.parse(t)}catch(e){B={drafts:[],cands:[]}}B.drafts=B.drafts||[];B.cands=B.cands||[];B.log=B.log||[];
   M.filter(Boolean).reverse().forEach(function(m){var x=m.item,k=m.kind;B.drafts=B.drafts.filter(function(y){return y.id!==x.id});B.cands=B.cands.filter(function(y){return y.id!==x.id});
    if(k==='draft')B.drafts.unshift(x);else if(k==='cand')B.cands.unshift(x);if(m.log)B.log.unshift(m.log)});B.log=B.log.slice(0,30);B.cands=B.cands.slice(0,8);return JSON.stringify(B)})}).catch(function(){return t})}
+// ── 주인장만 울리는 알림(사용자 2026-11-03): 비번이 맞은 기기의 알림 구독에 '주인장' 표시(mm_owner=1)를 붙임
+//    주인장 칸에 새 글이 올라오면 owner_push.yml이 이 표시가 있는 기기에만 보냄(지인 폰은 안 울림)
+function ownTag(){try{localStorage.setItem('mm-owner','1')}catch(e){}var n=0;(function w(){var O=window.OneSignal;
+ try{if(O&&O.User&&O.User.PushSubscription&&O.User.PushSubscription.id){O.User.addTag('mm_owner','1');ownNote('🔔 이 기기는 주인장 알림을 받습니다');return}}catch(e){}
+ if(++n<40)setTimeout(w,500);else ownNote('🔕 이 기기는 알림이 꺼져 있어 주인장 알림을 못 받습니다 (홈 화면 앱에서 알림 켜기)')})()}
+function ownNote(t){var b=document.querySelector('.mm-own-body');if(!b)return;var e=b.querySelector('.own-tagnote');if(!e){e=document.createElement('p');e.className='own-tagnote';b.insertBefore(e,b.firstChild)}e.textContent=t}
+// ── 배너에서 바로 공개 + 전체 알림(사용자 2026-11-03): 이 기기에 한 번 등록한 GitHub 열쇠로 d/notice.html을 올리고 push-notice를 실행
+//    열쇠는 저장소에 올라가지 않고, 이 기기 브라우저에만 비번으로 잠가 둠(mm-own-gh)
+var GH='https://api.github.com/repos/mung-mungi/mung-mung-market';
+function encJ(txt,pin){var C=crypto.subtle,salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),it=310000;
+ return C.importKey('raw',new TextEncoder().encode(pin),'PBKDF2',false,['deriveKey']).then(function(k){return C.deriveKey({name:'PBKDF2',salt:salt,iterations:it,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['encrypt'])})
+ .then(function(key){return C.encrypt({name:'AES-GCM',iv:iv},key,new TextEncoder().encode(txt))}).then(function(ct){function b(u){u=new Uint8Array(u);var s='';for(var i=0;i<u.length;i++)s+=String.fromCharCode(u[i]);return btoa(s)}
+  return {iter:it,salt:b(salt),iv:b(iv),ct:b(ct)}})}
+function ghKey(pin){var j;try{j=JSON.parse(localStorage.getItem('mm-own-gh')||'null')}catch(e){}return j?decJ(j,pin):Promise.reject('nokey')}
+function gh(tok,path,opt){opt=opt||{};opt.headers={'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'};
+ return fetch(GH+path,opt).then(function(r){if(r.status===204)return {};return r.json().then(function(j){if(!r.ok)throw (r.status+' '+(j.message||''));return j})})}
+function b64u(s){var u=new TextEncoder().encode(s),o='';for(var i=0;i<u.length;i+=32768)o+=String.fromCharCode.apply(null,u.subarray(i,i+32768));return btoa(o)}
+function sendUI(c,x,src,tt,pin){var btn=c.querySelector('.own-dr-send'),m=c.querySelector('.own-send-msg'),armed=false;
+ fetch('d/notice.html?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.text()}).then(function(h){if(h.indexOf('data-id="'+(src.getAttribute('data-id')||x.id)+'"')>0&&/data-on="1"/.test(h)){btn.textContent='✅ 이미 공개됨';btn.disabled=true}}).catch(function(){});
+ function keyForm(){m.innerHTML='<div class="own-key"><b>🔑 보내기 열쇠 등록 (기기마다 한 번)</b><p>GitHub → Settings → Developer settings → Fine-grained tokens에서 <b>mung-mung-market 저장소만</b> 고르고 권한 <b>Contents: Read and write</b>, <b>Actions: Read and write</b>로 만든 토큰을 붙여 넣으세요. 이 기기에만 비번으로 잠가 저장되고 저장소에는 올라가지 않습니다.</p><input type="password" autocomplete="off" placeholder="github_pat_…"><button>저장</button></div>';
+  var i=m.querySelector('input');m.querySelector('button').onclick=function(){var v=i.value.trim();if(!/^(github_pat_|ghp_)/.test(v)){i.value='';i.placeholder='토큰 모양이 아닙니다';return}
+   encJ(v,pin).then(function(j){try{localStorage.setItem('mm-own-gh',JSON.stringify(j))}catch(e){}m.textContent='🔑 등록됐습니다. 다시 눌러 보내세요.'})}}
+ btn.onclick=function(){
+  if(!armed){armed=true;btn.textContent='한 번 더 누르면 지인 전체에게 공개·알림';btn.classList.add('armed');setTimeout(function(){if(armed&&!btn.disabled){armed=false;btn.textContent='📢 공개 + 전체 알림 보내기';btn.classList.remove('armed')}},6000);return}
+  armed=false;btn.disabled=true;btn.classList.remove('armed');btn.textContent='보내는 중…';
+  ghKey(pin).then(function(tok){
+   var now=new Date(Date.now()+9*3600e3).toISOString().slice(0,16)+'+09:00',html=x.html;
+   html=/data-at="[^"]*"/.test(html)?html.replace(/data-at="[^"]*"/,'data-at="'+now+'"'):html.replace('<div id="mm-ntc-src"','<div id="mm-ntc-src" data-at="'+now+'"');
+   var first=(src.querySelector('.ntc-c')||src.querySelector('.nc-new b')||{}).textContent||'';first=first.replace(/^[①②③④]\s*/,'').trim().slice(0,120)||'멍뭉 터미널 전달사항이 올라왔습니다.';
+   m.textContent='① 배너 올리는 중…';
+   function put(n){return gh(tok,'/contents/d/notice.html').then(function(f){return gh(tok,'/contents/d/notice.html',{method:'PUT',body:JSON.stringify({message:'전달사항 공개(주인장 칸에서): '+tt,content:b64u(html),sha:f.sha})})}).catch(function(e){if(n<2&&/^409/.test(String(e)))return put(n+1);throw e})}
+   return put(0).then(function(){m.textContent='② 전체 알림 보내는 중…';return gh(tok,'/actions/workflows/push_notice.yml/dispatches',{method:'POST',body:JSON.stringify({ref:'main',inputs:{title:'📢 '+tt,msg:first,path:'index.html'}})})})
+    .then(function(){btn.textContent='✅ 공개됨 · 알림 보냄';m.textContent='1~2분 뒤 사이트에 배너가 뜨고 알림이 갑니다.'})})
+  .catch(function(e){btn.disabled=false;btn.textContent='📢 공개 + 전체 알림 보내기';if(e==='nokey'){keyForm();return}
+   m.textContent='보내지 못했습니다: '+e+(/^40[13]/.test(String(e))?' — 열쇠 권한·기한을 확인하세요':'');if(/^401/.test(String(e))){try{localStorage.removeItem('mm-own-gh')}catch(_){}}})}}
 function draft(pin){fetch('d/notice_draft.enc.json?t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){return decJ(j,pin)}).then(function(t){return inbox(pin,t)}).then(function(t){
  var body=document.querySelector('.mm-own-body');if(!body||body.querySelector('.own-draft'))return;
  var B;try{B=JSON.parse(t)}catch(e){B={drafts:[{title:'',html:t}],cands:[]}}
@@ -70,12 +105,14 @@ function draft(pin){fetch('d/notice_draft.enc.json?t='+Date.now(),{cache:'no-sto
   var c=document.createElement('div');c.className='own-card own-test own-draft own-on';
   c.innerHTML='<div class="own-hd" role="button"><span class="own-dr-chip">🧪 검수 대기 · 배너 초안</span><span class="own-dr-at">'+esc(x.at||'')+' 작성</span><b></b></div><div class="own-b">'+scoreHtml(x,R)+
    '<div class="own-dr-btns"><button class="own-dr-pop">📱 배너로 띄워 보기</button><button class="own-dr-in">본문 펼치기 ▾</button></div><div class="own-dr-body mm-ntcb" hidden></div>'+
-   '<p class="own-dr-how">괜찮으면 대화창에 <b>배너 공개</b>, 고칠 곳은 그대로 말해 주세요. 공개 전에는 주인장만 봅니다.</p></div>';
+   '<div class="own-send"><button class="own-dr-send">📢 공개 + 전체 알림 보내기</button><div class="own-send-msg"></div></div>'+
+   '<p class="own-dr-how">여기서 바로 보내거나, 대화창에 <b>배너 공개</b>라고 해도 됩니다. 고칠 곳은 대화창에 말해 주세요. 공개 전에는 주인장만 봅니다.</p></div>';
   c.querySelector('b').textContent=tt+(dt?' · '+dt:'');
   var bd=c.querySelector('.own-dr-body');bd.innerHTML=src.innerHTML;
   c.querySelector('.own-hd').onclick=function(){c.classList.toggle('own-on')};
   c.querySelector('.own-dr-in').onclick=function(){bd.hidden=!bd.hidden;this.textContent=bd.hidden?'본문 펼치기 ▾':'본문 접기 ▴'};
   c.querySelector('.own-dr-pop').onclick=function(){popup(tt,dt,src.innerHTML)};
+  sendUI(c,x,src,tt,pin);
   box.appendChild(c)});
  if((B.cands||[]).length){var c=document.createElement('div');c.className='own-card own-test own-draft own-cands own-on';
   var h='<div class="own-hd" role="button"><span class="own-dr-chip c">후보 '+B.cands.length+'건 · 5~6점</span><b>보시고 올리라고 하면 배너로 만듭니다</b></div><div class="own-b">';

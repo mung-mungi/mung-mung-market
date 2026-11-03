@@ -1,0 +1,30 @@
+# 주인장 칸에 새 글이 올라오면 주인장 기기에만 알림(사용자 2026-11-03)
+# 주인장 칸 비번을 연 기기에 붙는 표시(mm_owner=1)가 있는 구독에만 보냄 — 지인 폰은 안 울림
+name: owner-push
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'd/notice_draft.json'
+      - 'd/owner.enc.json'
+  workflow_dispatch:
+concurrency: owner-push
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - id: chk
+        run: python3 -I _tools/owner_push.py .
+      - name: send
+        if: steps.chk.outputs.msg != ''
+        env:
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          PUSH_OWNER: '1'
+          PUSH_TEST: ${{ steps.chk.outputs.msg }}
+          PUSH_TITLE: ${{ steps.chk.outputs.title }}
+          PUSH_PATH: 'index.html'
+        run: python3 -I _tools/push_notify.py .

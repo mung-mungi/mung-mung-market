@@ -17,10 +17,12 @@ if TEST == 'STAT' and KEY:  # 최근 알림 5개가 몇 대에 도착했는지(�
 # 전달사항 등 수동 알림(사용자 2026-10-31): PUSH_TITLE·PUSH_PATH를 주면 그 제목·주소로 보냄(없으면 예전 시험 알림)
 HEAD = os.environ.get('PUSH_TITLE', '').strip() or '🔔 멍뭉 터미널 시험 알림'
 PATH = os.environ.get('PUSH_PATH', '').strip() or 'p-earn.html'
+# 주인장만(사용자 2026-11-03): PUSH_OWNER=1이면 주인장 칸 비번을 연 기기(태그 mm_owner=1)에만 보냄
+WHO = {'filters': [{'field': 'tag', 'key': 'mm_owner', 'relation': '=', 'value': '1'}]} if os.environ.get('PUSH_OWNER') == '1' else {'included_segments': ['Total Subscriptions']}
 if TEST and APP and KEY:
     req = urllib.request.Request('https://api.onesignal.com/notifications', method='POST', headers={'Content-Type': 'application/json', 'Authorization': 'Key ' + KEY},
-        data=json.dumps({'app_id': APP, 'included_segments': ['Total Subscriptions'], 'target_channel': 'push', 'headings': {'en': HEAD, 'ko': HEAD},
-                         'contents': {'en': TEST, 'ko': TEST}, 'url': SITE + PATH}).encode())
+        data=json.dumps(dict({'app_id': APP, 'target_channel': 'push', 'headings': {'en': HEAD, 'ko': HEAD},
+                         'contents': {'en': TEST, 'ko': TEST}, 'url': SITE + PATH}, **WHO)).encode())
     try: print('::notice::시험 알림 ' + urllib.request.urlopen(req, timeout=20).read().decode()[:300])
     except Exception as e: print('::notice::시험 실패 %s %s' % (e, getattr(e, 'read', lambda: b'')().decode()[:300]))
     sys.exit(0)
