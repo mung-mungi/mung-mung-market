@@ -61,5 +61,7 @@ function gate(){var g=document.getElementById('mmpg');if(g)g.remove();if(!can||!
 function mount(){if(document.querySelector('.mm-push'))return true;var sh=document.querySelector('p.sh');if(!sh)return false;var box=sh.parentElement;
  card=document.createElement('div');var was=false;try{was=localStorage.getItem('mm-push-on')==='1'||Notification.permission==='granted'}catch(e){}if(was&&can)box.parentElement.appendChild(card);else box.parentElement.insertBefore(card,box);draw(null);
  if(can&&(Notification.permission==='granted'||standalone))load(function(OS){draw(OS);setTimeout(gate,600)});setTimeout(gate,1200);return true}
+// 주인장 칸 벨 버튼에서 알림 켜기(사용자 2026-11-03)
+window.mmPushSub=function(cb){if(!can){cb&&cb('cant');return}load(function(){sub(function(ok){cb&&cb(ok)})})};
 var n=0;(function go(){if(!mount()&&++n<40)setTimeout(go,250)})();
 }catch(e){}})();

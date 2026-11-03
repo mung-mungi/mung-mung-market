@@ -62,10 +62,15 @@ function inbox(pin,t){var C=crypto.subtle;return Promise.all([fetch('d/notice_in
    if(k==='draft')B.drafts.unshift(x);else if(k==='cand')B.cands.unshift(x);if(m.log)B.log.unshift(m.log)});B.log=B.log.slice(0,30);B.cands=B.cands.slice(0,8);return JSON.stringify(B)})}).catch(function(){return t})}
 // ── 주인장만 울리는 알림(사용자 2026-11-03): 비번이 맞은 기기의 알림 구독에 '주인장' 표시(mm_owner=1)를 붙임
 //    주인장 칸에 새 글이 올라오면 owner_push.yml이 이 표시가 있는 기기에만 보냄(지인 폰은 안 울림)
-function ownTag(){try{localStorage.setItem('mm-owner','1')}catch(e){}var n=0;(function w(){var O=window.OneSignal;
- try{if(O&&O.User&&O.User.PushSubscription&&O.User.PushSubscription.id){O.User.addTag('mm_owner','1');ownNote('🔔 이 기기는 주인장 알림을 받습니다');return}}catch(e){}
- if(++n<40)setTimeout(w,500);else ownNote('🔕 이 기기는 알림이 꺼져 있어 주인장 알림을 못 받습니다 (홈 화면 앱에서 알림 켜기)')})()}
-function ownNote(t){var b=document.querySelector('.mm-own-body');if(!b)return;var e=b.querySelector('.own-tagnote');if(!e){e=document.createElement('p');e.className='own-tagnote';b.insertBefore(e,b.firstChild)}e.textContent=t}
+function ownTag(){try{localStorage.setItem('mm-owner','1')}catch(e){}var n=0;ownNote('🔔 주인장 알림 확인 중…',0);(function w(){var O=window.OneSignal;
+ try{if(O&&O.User&&O.User.PushSubscription&&O.User.PushSubscription.id&&O.User.PushSubscription.optedIn!==false){O.User.addTag('mm_owner','1');ownNote('🔔 이 기기는 주인장 알림을 받습니다',1);return}}catch(e){}
+ if(++n<16)setTimeout(w,500);else ownNote('🔕 주인장 알림 켜기 — 눌러 주세요',2)})()}
+function ownNote(t,st){var b=document.querySelector('.mm-own-body');if(!b)return;var e=b.querySelector('.own-tagnote');
+ if(!e){e=document.createElement('button');e.type='button';e.className='own-tagnote';b.insertBefore(e,b.firstChild);
+  e.onclick=function(){if(e.dataset.st==='1'){ownTag();return}if(e.dataset.st==='0')return;
+   if(!window.mmPushSub){ownNote('홈 화면에 추가한 멍터 앱에서 열어야 알림을 켤 수 있습니다',3);return}
+   ownNote('🔔 알림 허용 창을 띄웁니다…',0);window.mmPushSub(function(ok){if(ok==='cant'){ownNote('아이폰은 홈 화면에 추가한 멍터 앱에서만 알림이 됩니다 — 앱으로 열어 주세요',3);return}if(ok===false){ownNote('🔕 알림이 허용되지 않았습니다 — 설정 › 알림에서 멍터를 켠 뒤 다시 눌러 주세요',2);return}setTimeout(ownTag,800)})}}
+ e.textContent=t;e.dataset.st=String(st==null?1:st);e.classList.toggle('on',st===1);e.classList.toggle('off',st===2||st===3)}
 // ── 배너에서 바로 공개 + 전체 알림(사용자 2026-11-03): 이 기기에 한 번 등록한 GitHub 열쇠로 d/notice.html을 올리고 push-notice를 실행
 //    열쇠는 저장소에 올라가지 않고, 이 기기 브라우저에만 비번으로 잠가 둠(mm-own-gh)
 var GH='https://api.github.com/repos/mung-mungi/mung-mung-market';
@@ -110,19 +115,20 @@ function draft(pin){fetch('d/notice_draft.enc.json?t='+Date.now(),{cache:'no-sto
  (B.drafts||[]).forEach(function(x){
   var w=document.createElement('div');w.innerHTML=x.html||'';var src=w.querySelector('#mm-ntc-src');if(!src)return;
   var tt=x.title||src.getAttribute('data-title')||'초안',dt=x.date||src.getAttribute('data-date')||'';
-  var c=document.createElement('div');c.className='own-card own-test own-draft own-on';
+  var c=document.createElement('div');c.className='own-card own-test own-draft';
   c.innerHTML='<div class="own-hd" role="button"><span class="own-dr-chip">🧪 검수 대기 · 배너 초안</span><span class="own-dr-at">'+esc(x.at||'')+' 작성</span><b></b></div><div class="own-b">'+scoreHtml(x,R)+
    '<div class="own-dr-btns"><button class="own-dr-pop">📱 배너로 띄워 보기</button><button class="own-dr-in">본문 펼치기 ▾</button></div><div class="own-dr-body mm-ntcb" hidden></div>'+
    '<div class="own-send"><button class="own-dr-send">📢 공개 + 전체 알림 보내기</button><div class="own-send-msg"></div></div>'+
-   '<p class="own-dr-how">여기서 바로 보내거나, 대화창에 <b>배너 공개</b>라고 해도 됩니다. 고칠 곳은 대화창에 말해 주세요. 공개 전에는 주인장만 봅니다.</p></div>';
+   '<p class="own-dr-how">여기서 바로 보내거나, 대화창에 <b>배너 공개</b>라고 해도 됩니다. 고칠 곳은 대화창에 말해 주세요. 공개 전에는 주인장만 봅니다.</p><button type="button" class="own-fold">접기 ▴</button></div>';
   c.querySelector('b').textContent=tt+(dt?' · '+dt:'');
   var bd=c.querySelector('.own-dr-body');bd.innerHTML=src.innerHTML;
   c.querySelector('.own-hd').onclick=function(){c.classList.toggle('own-on')};
+  c.querySelector('.own-fold').onclick=function(){c.classList.remove('own-on');c.scrollIntoView({block:'nearest',behavior:'smooth'})};
   c.querySelector('.own-dr-in').onclick=function(){bd.hidden=!bd.hidden;this.textContent=bd.hidden?'본문 펼치기 ▾':'본문 접기 ▴'};
   c.querySelector('.own-dr-pop').onclick=function(){popup(tt,dt,src.innerHTML)};
   sendUI(c,x,src,tt,pin);
   box.appendChild(c)});
- if((B.cands||[]).length){var c=document.createElement('div');c.className='own-card own-test own-draft own-cands own-on';
+ if((B.cands||[]).length){var c=document.createElement('div');c.className='own-card own-test own-draft own-cands';
   var h='<div class="own-hd" role="button"><span class="own-dr-chip c">후보 '+B.cands.length+'건 · 5~6점</span><b>보시고 올리라고 하면 배너로 만듭니다</b></div><div class="own-b">';
   B.cands.forEach(function(x){h+='<details class="own-cd"><summary role="button"><em class="lv-'+esc(x.level)+'">'+(x.total||0)+'</em><span>'+esc(x.title)+'</span><i>'+esc(x.at||'')+'</i></summary>'+scoreHtml(x,R)+(x.note?'<p class="own-dr-how">'+esc(x.note)+'</p>':'')+'</details>'});
   c.innerHTML=h+'</div>';c.querySelector('.own-hd').onclick=function(){c.classList.toggle('own-on')};box.appendChild(c)}

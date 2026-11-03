@@ -110,7 +110,11 @@
 .mm-own-body .own-rule div{background:#fffaf0;border:1px solid #efd9a8;border-radius:10px;padding:6px 10px}
 .mm-own-body .own-rule p{margin:4px 0;line-height:1.5}
 
-.mm-own-body .own-tagnote{margin:0 0 8px;font-size:12.5px;color:#5b5246;background:#f6f1e6;border-radius:9px;padding:5px 9px}
+.mm-own-body .own-tagnote{display:block;width:100%;text-align:left;margin:0 0 8px;font:inherit;font-size:13.5px;font-weight:700;color:#5b5246;background:#f6f1e6;border:1px solid #e6d7b8;border-radius:10px;padding:8px 11px;box-shadow:0 2px 0 #e9dcc2;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mm-own-body .own-tagnote:active{transform:translateY(1px);box-shadow:none}
+.mm-own-body .own-tagnote.on{background:#eef6ee;border-color:#cfe4cf;color:#2d6a3a;box-shadow:0 2px 0 #d5e8d5}
+.mm-own-body .own-tagnote.off{background:#fff1e8;border-color:#f0c9b3;color:#b03d20;box-shadow:0 2px 0 #f0d3c2}
+.mm-own-body .own-fold{display:block;margin:8px auto 2px;padding:7px 18px;border:1px solid #e0d2b4;border-radius:999px;background:#fff;color:#5b5246;font-weight:800;font-size:13px;box-shadow:0 2px 0 #eadfc8}
 .mm-own-body .own-send{margin:10px 0 2px}
 .mm-own-body .own-dr-send{width:100%;padding:12px;border:0;border-radius:12px;background:#b03d20;color:#fff;font-weight:900;font-size:15px;box-shadow:0 3px 0 #7d2a15}
 .mm-own-body .own-dr-send.armed{background:#d8343f;animation:ownpulse .8s infinite alternate}
