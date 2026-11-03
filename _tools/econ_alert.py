@@ -281,6 +281,19 @@ def push(head, body, url=''):
         print('알림 실패', e); return False
 
 
+def already_sent(g):
+    # 보내기 직전에 저장소 최신 '보낸 목록'을 한 번 더 확인(같은 발표 알림 두 번 방지, 사용자 2026-11-04)
+    if DRY or ONLY:
+        return False
+    try:
+        import subprocess
+        subprocess.run(['git', '-C', R, 'fetch', '-q', 'origin', 'main'], timeout=30, check=True)
+        t = subprocess.run(['git', '-C', R, 'show', 'origin/main:d/econ/alert_state.json'], capture_output=True, text=True, timeout=15).stdout
+        return bool(t) and any(x['id'] in set(json.loads(t).get('sent', [])) for x in g)
+    except Exception as e:
+        print('::notice::최신 보낸 목록 확인 실패 ' + str(e)[:100]); return False
+
+
 def main():
     cal = json.load(open(CAL, encoding='utf-8'))
     try:
@@ -342,6 +355,8 @@ def main():
                 body += ('\n' if body else '') + '나머지(%s)는 확인되는 대로 페이지에 반영합니다' % ', '.join(SHORT.get(kind(x), x['event']) for x in miss)
             if late > 20:
                 body += '\n(발표 %d분 뒤 확인)' % late
+            if already_sent(g):
+                print('::notice::다른 실행이 이미 보냄 — 건너뜀 ' + ','.join(x['id'] for x in g)); sent |= {x['id'] for x in g}; continue
             if push(title(g), body, '#ev-' + g[0]['id']):   # 누르면 그 발표 줄로 바로 + 추세 그래프
                 ids = [x['id'] for x in g] if not miss else list(got)
                 sent |= set(ids)

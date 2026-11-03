@@ -26,6 +26,8 @@ jobs:
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main   # 줄 서서 기다린 실행도 최신 '보낸 목록'을 보게(예약 실행은 기본이 예약 시각의 옛 판 → 11/4 졸트 두 번 감)
       - name: alert
         env:
           ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
