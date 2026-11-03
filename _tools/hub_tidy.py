@@ -839,6 +839,13 @@ def tidy_easy(s, name):
         s = s.replace('drawViz();linkTickers();initFind(open);', 'linkTickers();initFind(open);(window.__lzHollow||Object)();drawViz();', 1)
         s = re.sub(r'<script data-earnlz>.*?</script>', '', s, flags=re.S)
         s = re.sub(r'(<script[^>]*>)', lambda m: EARNLZ_JS + m.group(1), s, count=1)
+    if name == 'p-brief.html':  # 가볍게(사용자 2026-11-04): 처음엔 최근 7일만 그리고 '지난 날 더 보기'로 14일씩(찾기·분위기 거르기·차트에서 고른 날은 그대로 다 보임)
+        s = s.replace("  const rows=ALL.filter(hit).slice().reverse();\n",
+                      "  const rows0=ALL.filter(hit).slice().reverse(),LIM=(st.q||st.mood)?1e9:(st.lim||7),oi=rows0.findIndex(r=>r.date===st.open),rows=rows0.slice(0,Math.max(LIM,oi+1)),LEFT=rows0.length-rows.length;\n", 1)
+        s = s.replace("    box.appendChild(card);\n  });\n}\ndash.onData(draw);",
+                      "    box.appendChild(card);\n  });\n  if(LEFT>0){const mw=document.createElement('div');mw.className='bf-moreday';const mb=document.createElement('button');mb.type='button';mb.textContent='▾ 지난 날 더 보기 · 남은 '+LEFT+'일';mb.onclick=()=>{const y=scrollY;st.lim=(st.lim||7)+14;drawDays();scrollTo(0,y)};mw.appendChild(mb);box.appendChild(mw)}\n}\ndash.onData(draw);", 1)
+        if '.bf-moreday{' not in s:
+            s = s.replace('</head>', '<style data-moreday>body #days .bf-moreday{display:flex;justify-content:center;margin:14px 0 22px}body #days .bf-moreday button{font:800 15px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#7a5200;background:#fffaf0;border:1px solid #e3cf9f;border-radius:999px;padding:13px 20px;box-shadow:0 2px 0 #ecd6a6;cursor:pointer;-webkit-tap-highlight-color:transparent}body #days .bf-moreday button:active{transform:translateY(1px);box-shadow:none}</style></head>', 1)
     if name == 'p-brief.html':  # 속도(2026-11-03): 시황 그림은 화면에 들어올 때 그림(보이지 않는 지난 날짜 차트까지 열 때 다 그리던 것)
         s = s.replace('requestAnimationFrame(()=>drawCD(cv,cd))', '(window.__lazyCD||requestAnimationFrame)(()=>drawCD(cv,cd),cv)')
         if 'window.__lazyCD=' not in s:
