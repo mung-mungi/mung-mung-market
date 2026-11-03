@@ -509,10 +509,14 @@ def _core_v(name):
     import hashlib
     p = os.path.join(os.path.dirname(os.path.abspath(__file__)), name)
     return hashlib.md5(open(p, 'rb').read()).hexdigest()[:8]
+DEFER_JS = {'navfab.js', 'push.js', 'stale.js', 'descfold.js'}
 def core_ref(marker, name):
     u = '_tools/' + name + '?v=' + _core_v(name)
     if name.endswith('.css'):
         return '<link data-' + marker + ' rel="stylesheet" href="' + u + '">'
+    # 속도(2026-11-03): 머리(head)에 들어가지만 첫 화면에 필요 없는 부품은 defer — 내용부터 그리고 실행(순서는 그대로 유지)
+    if name in DEFER_JS:
+        return '<script data-' + marker + ' defer src="' + u + '"></script>'
     return '<script data-' + marker + ' src="' + u + '"></script>'
 def core_strip(s, marker):  # 예전 통째 붙인 것과 새 참조 둘 다 지움
     s = re.sub(r'<(style|script) data-' + marker + r'(?:\s[^>]*)?>.*?</\1>', '', s, flags=re.S)
@@ -802,6 +806,10 @@ for _pg in ('p-opt.html', 'p-bond.html', 'p-lights.html'):
 # 방금 들어온 소식(사용자 2026-11-02) — 뉴스 두 페이지 맨 위
 EASY['p-policy.html'] = EASY['p-policy.html'] + ['newsq_ui']; EASY['p-tech.html'] = EASY['p-tech.html'] + ['newsq_ui']
 def tidy_easy(s, name):
+    if name == 'p-brief.html':  # 속도(2026-11-03): 시황 그림은 화면에 들어올 때 그림(보이지 않는 지난 날짜 차트까지 열 때 다 그리던 것)
+        s = s.replace('requestAnimationFrame(()=>drawCD(cv,cd))', '(window.__lazyCD||requestAnimationFrame)(()=>drawCD(cv,cd),cv)')
+        if 'window.__lazyCD=' not in s:
+            s = re.sub(r'(<script[^>]*>)', lambda m: '<script data-lazycd>window.__lazyCD=function(f,el){if(!el||!window.IntersectionObserver)return requestAnimationFrame(f);var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){o.disconnect();requestAnimationFrame(f)}})},{rootMargin:"600px 0px"});o.observe(el)};</script>' + m.group(1), s, count=1)
     for mk in EASY.get(name) or []:
         s = _easy_one(s, mk)
     return s
