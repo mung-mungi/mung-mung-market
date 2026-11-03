@@ -1,0 +1,18 @@
+/* 경제지표 알림 → 그 발표 줄 + 추세 그래프(사용자 2026-11-04) — _tools/evgo.js */
+html body .mc-ev.evg-flash,html body #calbody tr.evg-flash{background:#fff1c9!important;box-shadow:0 0 0 2px #e9b949 inset;border-radius:10px;transition:background .4s,box-shadow .4s}
+html body .evg{margin:8px 0 12px;padding:12px 12px 10px;background:#fffdf8;border:1px solid #ecd9ae;border-radius:14px;box-shadow:0 2px 0 #f0e2c0}
+html body .evg-hd{display:flex;justify-content:space-between;align-items:center;gap:8px}
+html body .evg-hd b{font:800 14.5px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#5b4300}
+html body .evg-x{font:700 12.5px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#8a857a;background:none;border:0;padding:6px 4px;cursor:pointer}
+html body .evg-tk{margin:6px 0 4px;font-size:14px;line-height:1.55;color:#3b3934}
+html body .evg-tk b{color:#1f1c17}
+html body .evg-svg{display:block;width:100%;height:auto;max-height:190px}
+html body .evg-gl{stroke:#eee6d5;stroke-width:1}
+html body .evg-zero{stroke:#b9b0a0;stroke-width:1;stroke-dasharray:3 3}
+html body .evg-ax{font:600 10.5px -apple-system,"Apple SD Gothic Neo",sans-serif;fill:#8a857a}
+html body .evg-line{fill:none;stroke:#9a6200;stroke-width:2.2;stroke-linejoin:round}
+html body .evg-area{fill:#f4e6c4;opacity:.55}
+html body .evg-bar{fill:#d9c49a}html body .evg-bar.neg{fill:#e7b5a0}html body .evg-bar.last{fill:#e0a400}
+html body .evg-dot.last{fill:#f2b400;stroke:#7a5200;stroke-width:2}
+html body .evg-dot.prev{fill:#fff;stroke:#9a6200;stroke-width:1.6}
+html body .evg-src{margin:4px 0 0;font-size:11.5px;color:#8a857a}

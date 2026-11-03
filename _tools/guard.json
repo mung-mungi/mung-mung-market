@@ -64,6 +64,7 @@
   "tm-jump": "뉴스 날짜 바로가기",
   "tm-more": "뉴스 더 보기(상자 대신)",
   "'tlmore'": "뉴스 더 보기 부품 연결",
+  "'evgo'": "경제지표 알림 바로가기·추세 그래프 연결",
   "LAZYRUN_JS": "가볍게: 목표주가 아래쪽 차트 늦게 그리기",
   "var NQ=[]": "가볍게: 데일리 시황 칸 높이 한 번에 재기",
   "EARNLZ_JS": "가볍게: 실적 결과 접힌 노트 본문은 펼칠 때 붙이기",
@@ -143,6 +144,7 @@
   "DEFER_JS",
   "__lazyCD",
   "'tlmore'",
+  "'evgo'",
   "LAZYRUN_JS",
   "var NQ=[]",
   "EARNLZ_JS",
@@ -248,6 +250,14 @@
  ],
  "_tools/reapply_tidy.py": [
   "separators="
+ ],
+ "_tools/econ_alert.py": [
+  "#ev-",
+  "series.json"
+ ],
+ "_tools/evgo.js": [
+  "series.json",
+  "evg-flash"
  ],
  "_tools/tlmore.js": [
   "tm-jump",

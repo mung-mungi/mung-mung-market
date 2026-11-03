@@ -10,6 +10,7 @@ from zoneinfo import ZoneInfo
 R = sys.argv[1] if len(sys.argv) > 1 else '.'
 CAL = os.path.join(R, 'd/econ/calendar.json')
 SP = os.path.join(R, 'd/econ/alert_state.json')
+SERP = os.path.join(R, 'd/econ/series.json')  # 알림 누르면 그 지표 추세 그래프(사용자 2026-11-04) — 지표별 최근 2년 숫자
 EXTRA = os.path.join(R, 'd/econ/alert_extra.json')  # 경제지표 일정에 없는 알림 지표(ADP 등) — 일정이 다시 만들어져도 알림은 유지
 APP = os.environ.get('ONESIGNAL_APP_ID', '').strip() or 'b81f8268-5aef-4a29-b2b8-2173248136a3'
 KEY = os.environ.get('ONESIGNAL_API_KEY', '').strip()
@@ -121,6 +122,35 @@ def calc(k, s, tp):
     return round(s[tp], 1)
 
 
+_SC = {}
+
+
+def hist(k, s=None, src=None, n=25):
+    # 지표 하나의 최근 n개 숫자(발표 숫자와 같은 계산) — 페이지의 추세 그래프용
+    if s is None:
+        bls, fred, _ = SPEC[k]
+        for src, sid in (('fred', fred), ('bls', bls)):
+            if not sid:
+                continue
+            try:
+                s = series_fred(sid) if src == 'fred' else series_bls(sid); break
+            except Exception as e:
+                print('::notice::추세 읽기 실패 %s %s %s' % (src, sid, str(e)[:120])); s = None
+        if not s:
+            return None
+    pts = []
+    for tp in sorted(s):
+        v = calc(k, s, tp)
+        if v is not None:
+            pts.append(['%d-%02d' % tp, v])
+    return {'name': SHORT.get(k, k), 'q': k == 'gdp', 'src': src, 'pts': pts[-(12 if k == 'gdp' else n):]} if pts else None
+
+
+def save_series(ser):
+    ser['at'] = dt.datetime.now(dt.timezone.utc).isoformat(timespec='minutes')
+    json.dump(ser, open(SERP, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+
+
 def value(x):
     k = kind(x); tp = target_period(x)
     if k not in SPEC or not tp:
@@ -133,6 +163,7 @@ def value(x):
             s = series_bls(sid) if src == 'bls' else series_fred(sid)
             v = calc(k, s, tp)
             if v is not None:
+                _SC[k] = (s, src)
                 return v, src
         except Exception as e:
             print('::notice::읽기 실패 %s %s %s' % (src, sid, str(e)[:120]))
@@ -235,15 +266,15 @@ def title(group):
     return '🔔 경제지표 발표'
 
 
-def push(head, body):
+def push(head, body, url=''):
     if DRY:
-        print('::notice::[DRY] ' + head + ' | ' + body.replace('\n', ' / ')); return True
+        print('::notice::[DRY] ' + head + ' | ' + body.replace('\n', ' / ') + ' | ' + url); return True
     if not KEY:
         print('원시그널 키 없음 — 건너뜀'); return False
     req = urllib.request.Request('https://api.onesignal.com/notifications', method='POST',
         headers={'Content-Type': 'application/json', 'Authorization': 'Key ' + KEY},
         data=json.dumps({'app_id': APP, 'included_segments': ['Total Subscriptions'], 'target_channel': 'push',
-                         'headings': {'en': head, 'ko': head}, 'contents': {'en': body, 'ko': body}, 'url': SITE + 'p-econ.html'}).encode())
+                         'headings': {'en': head, 'ko': head}, 'contents': {'en': body, 'ko': body}, 'url': SITE + 'p-econ.html' + url}).encode())
     try:
         r = json.load(urllib.request.urlopen(req, timeout=20)); print('알림 보냄', head, r.get('id'), r.get('errors')); return True
     except Exception as e:
@@ -264,6 +295,17 @@ def main():
         st = {'sent': []}
     sent = set(st.get('sent', []))
     now = dt.datetime.now(dt.timezone.utc)
+    try:
+        ser = json.load(open(SERP, encoding='utf-8'))
+    except Exception:
+        ser = {}
+    ser_changed = False
+    if not DRY:   # 아직 추세가 없는 알림 지표는 한 번만 채움(FRED, 몇 초)
+        for k in sorted({kind(x) for x in cal_all if want(x)} & set(SPEC)):
+            if k not in ser:
+                h = hist(k)
+                if h:
+                    ser[k] = h; ser_changed = True
     groups = {}
     for x in cal_all:
         if not want(x) or x['id'] in sent or kind(x) is None:
@@ -275,6 +317,8 @@ def main():
             continue
         groups.setdefault(t, []).append(x)
     if not groups:
+        if ser_changed:
+            save_series(ser)
         print('가까운 발표 없음'); return
     changed = False
     for t in sorted(groups):
@@ -298,17 +342,25 @@ def main():
                 body += ('\n' if body else '') + '나머지(%s)는 확인되는 대로 페이지에 반영합니다' % ', '.join(SHORT.get(kind(x), x['event']) for x in miss)
             if late > 20:
                 body += '\n(발표 %d분 뒤 확인)' % late
-            if push(title(g), body):
+            if push(title(g), body, '#ev-' + g[0]['id']):   # 누르면 그 발표 줄로 바로 + 추세 그래프
                 ids = [x['id'] for x in g] if not miss else list(got)
                 sent |= set(ids)
                 for x in cal + extra:
                     if x['id'] in got and got[x['id']][0] == 'val' and x.get('actual') is None:
                         x['actual'] = got[x['id']][1]; x['status'] = '발표'; changed = True
+                for x in g:
+                    k = kind(x)
+                    if k in SPEC and x['id'] in got:
+                        h = hist(k, *_SC[k]) if k in _SC else hist(k)
+                        if h:
+                            ser[k] = h; ser_changed = True
         else:
             print('::notice::숫자를 못 읽음 ' + ','.join(x['id'] for x in g))
     if not DRY:
         st['sent'] = sorted(sent)[-400:]; st['last'] = now.isoformat(timespec='minutes')
         json.dump(st, open(SP, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+        if ser_changed:
+            save_series(ser)
         if changed:
             json.dump(cal, open(CAL, 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
             if extra:
