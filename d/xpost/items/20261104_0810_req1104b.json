@@ -1,0 +1,124 @@
+{
+  "req": "11/3 미국 동부 16:00 이후 AMD 어닝콜 반응, 아스테라랩스·아리스타·슈퍼마이크로 콜 핵심, 중간선거·데이터센터 정책 관련 X 게시물 (req 1104b)",
+  "at": "2026-11-04T08:21:00+09:00",
+  "by": "그록봇",
+  "metrics_at": "2026-11-04T08:21:00+09:00",
+  "posts": [
+    {
+      "author": "Patrick Moorhead",
+      "handle": "@PatrickMoorhead",
+      "role": "Moor Insights & Strategy 창업자·수석 애널리스트(전 AMD CVP)",
+      "time_et": "2026-11-03 16:33",
+      "text": "$AMD Q3: BEAT and raise, it's up sharply after hours: the market is paying for the $17B guide. Stellar execution; the pundits were wrong.\n\nThe numbers:\n-Revenue $13.38B, +45% YoY, vs $13.08B consensus: BEAT\n-Non-GAAP EPS $2.09 vs $1.93 consensus, $1.98 whisper: BEAT\n-Non-GAAP gross margin 56% vs 56% guide: MEET\n-Q4 guide ~$17.0B, +27% QoQ, vs $16.14B consensus: BEAT\n\nTakeaways:\n1. Friday I said that if AMD showed Intel's substrate pain, it's the market's problem. It didn't: AMD locked in wafers, substrates and memory early.\n\n2. AMD expects data center up about 50% sequentially in Q4, so by my math the rest of AMD shrinks. With PCs soft and memory expensive, it's moving wafers to data center. AMD is a datacenter company.\n\n3. Helios is running at Anthropic, Meta, Microsoft, OpenAI and Oracle. The cost: free cash flow fell to $554M on a $3.0B inventory build. Q4 non-GAAP gross margin: ~55%. \n\nSome analysts said Helios wouldn't even be ready by Q3. They were wrong.\n\n@AMD $AMD",
+      "ko": "AMD 3분기 매출·EPS 상회, 4분기 가이던스 170억달러; 웨이퍼·기판·메모리 선확보로 공급 차질 없었고, 헬리오스는 앤트로픽·메타·MS·오픈AI·오라클에서 가동 중이며 재고 30억달러 증가 속 4분기 총이익률은 약 55%.",
+      "url": "https://x.com/PatrickMoorhead/status/2117731878069256576",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 9501,
+      "likes": 103
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 실적·시장 뉴스 계정(Wall St Engine)",
+      "time_et": "2026-11-03 17:23",
+      "text": "$AMD CEO Lisa Su:\n\n“We now expect revenue to grow more than 80% in 2027,” more than twice the company's long-term growth target outlined last November.\n\nData Center is now expected to account for over 80% of AMD's total revenue in 2027, up from 64% in Q3.\n\nServer CPU revenue is expected to double YoY in 2027, compared with the previous forecast of 70%+ growth.\n\nData Center AI revenue is expected to grow even faster than management projected just 90 days ago.\n\nSu said customers have expanded their EPYC and Instinct deployment plans, while AMD has secured additional supply to support the higher growth outlook.\n\nLooking beyond 2027, AMD is also working with multiple frontier AI labs to optimize its upcoming MI500 accelerators for their planned multi-gigawatt deployments.",
+      "ko": "리사 수: 2027년 매출 80% 이상 성장 전망, 서버 CPU 매출은 2배(기존 70%+), 데이터센터 비중 80% 이상, 추가 공급 확보.",
+      "url": "https://x.com/wallstengine/status/2117744421261431135",
+      "media": [
+        "https://pbs.twimg.com/media/HWO9SskbkAAjzDG.png"
+      ],
+      "media_note": "2027 전망 발언 관련 캡처 이미지",
+      "views": 27745,
+      "likes": 219
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 실적·시장 뉴스 계정(Wall St Engine)",
+      "time_et": "2026-11-03 17:34",
+      "text": "$AMD CEO Lisa Su:\n\n“It is true that demand is higher than supply. So we continue to work with our supply chain partners to increase supply.”\n\nAMD has been securing wafers, substrates, advanced packaging and memory to support its 2027 growth plans.",
+      "ko": "리사 수: 수요가 공급보다 많다—웨이퍼·기판·첨단 패키징·메모리 확보 중.",
+      "url": "https://x.com/wallstengine/status/2117747323606642903",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 13317,
+      "likes": 99
+    },
+    {
+      "author": "Ben Bajarin",
+      "handle": "@BenBajarin",
+      "role": "Creative Strategies CEO·수석 애널리스트",
+      "time_et": "2026-11-03 16:45",
+      "text": "Based on what we learned from $INTC last week, while they will still grow with server CPU TAM growth, it's a fair assumption now that $AMD is now the best positioned for server CPU growth in a market going to $80-$100b in 2027.",
+      "ko": "인텔 실적을 보면 AMD가 2027년 800억~1,000억달러로 커질 서버 CPU 시장에서 가장 유리한 위치.",
+      "url": "https://x.com/BenBajarin/status/2117735065321193783",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 4913,
+      "likes": 69
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 실적·시장 뉴스 계정(Wall St Engine)",
+      "time_et": "2026-11-03 18:12",
+      "text": "$AMD CFO Jean Hu declined to give a quarterly 2027 gross-margin outlook, citing uncertainty over the mix of Instinct GPUs and EPYC CPUs.\n\n“Right now, I actually don't have that visibility.”\n\nAMD didn't reaffirm a 55% gross-margin floor for 2027 in this exchange.",
+      "ko": "CFO 진 후: GPU·CPU 믹스 불확실성으로 2027년 분기별 총이익률 전망은 제시하지 않음, 55% 하한도 재확인 안 함.",
+      "url": "https://x.com/wallstengine/status/2117756739101823340",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 5688,
+      "likes": 16
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 실적·시장 뉴스 계정(Wall St Engine)",
+      "time_et": "2026-11-03 17:03",
+      "text": "$ANET +18%\n\nJUST POSTED ITS FASTEST REVENUE GROWTH SINCE GOING PUBLIC IN 2014, UP 58.5% YOY.\n\nArista beat Wall Street expectations in Q3 and guided Q4 above estimates, while introducing a 2027 outlook well ahead of expectations.\n\nDespite ramping investments in AI networking, liquid cooling, and high-speed switching, Arista delivered a 49.1% adjusted operating margin.\n\nThe company also raised its 2026 revenue guidance for the fourth time this year to $13.3B, representing 48% annual growth.\n\nLooking ahead to 2027, management expects approximately $18.5B in revenue, or 38%-40% growth. That's well above the roughly $16.4B analysts were modeling before earnings.\n\nAI networking is expected to drive much of that growth.\n\nArista expects its AI fabrics business to approximately double from at least $3.5B in 2026 to around $7B in 2027, accounting for nearly 38% of total company revenue next year.\n\nMeanwhile, its campus networking business is projected to grow 60% to approximately $2B.\n\nCEO Jayshree Ullal said Arista has now surpassed 100 Etherlink customers, compared with just four or five major AI customers when the company began its AI networking push a few years ago.\n\nBy the end of 2027, Arista expects more than 10 gigawatts of AI deployments across at least 10 different types of compute accelerators.\n\nAnother interesting development is the shift from centralized AI training toward distributed inference, where different parts of a workload, including prefill and token generation, run across separate systems.\n\nThat requires more networking capacity and more intelligent routing between GPUs, memory, and storage. Arista sees this as another growth opportunity beyond traditional AI data center networking.\n\nThe company is also expanding into scale-up Ethernet, which connects accelerators within and across racks, with customer trials expected in 2027 and production targeted for 2028.",
+      "ko": "아리스타 매출 58.5% 증가(상장 후 최고), 2027년 매출 약 185억달러 전망, AI 패브릭 매출 35억→70억달러, 이더링크 고객 100곳 돌파.",
+      "url": "https://x.com/wallstengine/status/2117739567323443483",
+      "media": [
+        "https://pbs.twimg.com/media/HWO4gn-bUAAP4zc.jpg"
+      ],
+      "media_note": "아리스타 실적 요약 이미지",
+      "views": 17628,
+      "likes": 103
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 실적·시장 뉴스 계정(Wall St Engine)",
+      "time_et": "2026-11-03 16:48",
+      "text": "$SMCI +8% after hours after issuing stronger-than-expected revenue guidance.\n\nQ2 revenue outlook of $19.5B–$21.5B came in well above the $17.5B estimate, while the company raised its FY27 revenue guidance to $72B–$82B vs. $70.3B expected.\n\n🟢🟢🟢🟢🟢🟢🟢🟢 https://t.co/tIUAkPnW19 https://t.co/hpXauwKUsv",
+      "ko": "슈퍼마이크로 시간외 +8%: 2분기 매출 가이던스 195억~215억달러, 2027회계연도 가이던스 720억~820억달러로 상향.",
+      "url": "https://x.com/wallstengine/status/2117735711168471438",
+      "media": [
+        "https://pbs.twimg.com/media/HWO0AlCaoAAej3g.jpg"
+      ],
+      "media_note": "슈퍼마이크로 실적 하이라이트 이미지",
+      "views": 17331,
+      "likes": 92
+    },
+    {
+      "author": "The Information",
+      "handle": "@theinformation",
+      "role": "The Information(테크 전문 매체) 공식 계정",
+      "time_et": "2026-11-03 17:43",
+      "text": "Data centers have become a major election issue, but the midterm results may not lead to significant changes in federal policy.\n\n“When it comes down to brass tacks, the views aren't actually that different.”\n\nThe Information's @leomschwartz explains why candidates' positions on data center development are often more similar than their campaign rhetoric suggests.\n\nFull story: https://t.co/GyiQUFWCF9",
+      "ko": "데이터센터가 중간선거 핵심 쟁점이 됐지만 후보들 입장은 실제로 비슷해 연방 정책 변화는 크지 않을 수 있다는 분석.",
+      "url": "https://x.com/theinformation/status/2117749488420884804",
+      "media": [
+        "https://pbs.twimg.com/media/HWPB73qWgAAwAF8.jpg"
+      ],
+      "media_note": "영상 첨부(주소는 영상 미리보기 이미지)",
+      "views": 1987,
+      "likes": 0
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": "무어헤드 글 하나에 실적 상회·170억달러 가이던스·공급 확보·헬리오스 고객·4분기 총이익률 55%(재고 증가)까지 요청 항목 대부분이 담겨 있음.\n전 AMD 임원 출신 애널리스트라 AMD 장 인용 카드로 쓰기 좋음."
+  }
+}
