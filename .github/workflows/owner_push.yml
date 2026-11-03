@@ -7,6 +7,7 @@ on:
     paths:
       - 'd/notice_draft.json'
       - 'd/owner.enc.json'
+      - 'd/report/latest.json'
   workflow_dispatch:
 concurrency: owner-push
 jobs:
@@ -26,5 +27,5 @@ jobs:
           PUSH_OWNER: '1'
           PUSH_TEST: ${{ steps.chk.outputs.msg }}
           PUSH_TITLE: ${{ steps.chk.outputs.title }}
-          PUSH_PATH: 'index.html'
+          PUSH_PATH: ${{ steps.chk.outputs.path || 'index.html' }}
         run: python3 -I _tools/push_notify.py .
