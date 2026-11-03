@@ -123,6 +123,35 @@ def calc(k, s, tp):
 
 
 _SC = {}
+# 알림은 안 보내도 줄을 누르면 추세를 보여 줄 지표(FRED) — (시리즈, 계산: mom 전월비 % / level / weekly 주간 천 건)
+TREND = {'ppi': ('PPIFIS', 'mom', '생산자물가 전월비'), 'umich': ('UMCSENT', 'level', '미시간대 소비자심리'),
+         'retail': ('RSAFS', 'mom', '소매판매 전월비'), 'claims': ('ICSA', 'weekly', '신규 실업수당 청구'), 'pce': ('PCEPI', 'yoy', 'PCE 물가 전년비')}
+
+
+def hist_extra(k, n=25):
+    sid, how, name = TREND[k]
+    t = get('https://fred.stlouisfed.org/graph/fredgraph.csv?id=' + sid)
+    rows = []
+    for line in t.splitlines()[1:]:
+        a = line.split(',')
+        try:
+            rows.append((a[0], float(a[1])))
+        except Exception:
+            pass
+    if how == 'weekly':
+        return {'name': name, 'q': False, 'src': 'fred', 'pts': [[d, round(v / 1000)] for d, v in rows[-26:]]}
+    m = {(int(d[:4]), int(d[5:7])): v for d, v in rows}
+    pts = []
+    for (y, mo) in sorted(m):
+        if how == 'level':
+            v = round(m[(y, mo)], 1)
+        elif how == 'yoy':
+            pv = m.get((y - 1, mo)); v = round((m[(y, mo)] / pv - 1) * 100, 1) if pv else None
+        else:
+            pk = (y, mo - 1) if mo > 1 else (y - 1, 12); v = round((m[(y, mo)] / m[pk] - 1) * 100, 1) if pk in m else None
+        if v is not None:
+            pts.append(['%d-%02d' % (y, mo), v])
+    return {'name': name, 'q': False, 'src': 'fred', 'pts': pts[-n:]} if pts else None
 
 
 def hist(k, s=None, src=None, n=25):
@@ -313,12 +342,21 @@ def main():
     except Exception:
         ser = {}
     ser_changed = False
-    if not DRY:   # 아직 추세가 없는 알림 지표는 한 번만 채움(FRED, 몇 초)
-        for k in sorted({kind(x) for x in cal_all if want(x)} & set(SPEC)):
-            if k not in ser:
-                h = hist(k)
-                if h:
-                    ser[k] = h; ser_changed = True
+    if not DRY:   # 추세: 없거나 하루 지난 지표만 다시 받음(FRED, 몇 초) — 페이지에서 줄 누르면 보이는 그래프
+        def kind2(x):
+            return kind(x) or next((k for k in TREND if x['id'].startswith(k + '-')), None)
+        ks = {kind2(x) for x in cal_all} & (set(SPEC) | set(TREND))
+        old_at = ser.get('at', '')
+        stale = not old_at or (now - dt.datetime.fromisoformat(old_at)).total_seconds() > 20 * 3600
+        for k in sorted(ks):
+            if k in ser and not stale:
+                continue
+            try:
+                h = hist_extra(k) if k in TREND else hist(k)
+            except Exception as e:
+                h = None; print('::notice::추세 실패 ' + k + ' ' + str(e)[:100])
+            if h:
+                ser[k] = h; ser_changed = True
     groups = {}
     for x in cal_all:
         if not want(x) or x['id'] in sent or kind(x) is None:

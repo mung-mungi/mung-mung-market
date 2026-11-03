@@ -1,53 +1,90 @@
-// 경제지표 알림 누르면 그 발표 줄로 바로 + 그 지표 추세 그래프(사용자 2026-11-04)
-// 알림 주소: p-econ.html#ev-<발표 id>(_tools/econ_alert.py). 이번 주·다음 주 카드의 그 줄(없으면 전체 일정표 줄)로 이동해 노랗게 깜빡이고,
-// 바로 아래에 최근 2년 추세(d/econ/series.json, 알림 보낼 때 갱신) — 방금 발표 숫자가 아직 추세에 없으면 일정표 '실제'를 끝에 붙임.
+// 경제지표 발표 줄 누르면 그 자리에서 펼침(사용자 2026-11-04)
+// - 발표된 지표: 실제 vs 예상(상회·하회·부합) · 이전 · 그날 지수 + 최근 2년 추세 그래프
+// - 기다리는 지표: 예상치·이전 + 이렇게 읽습니다 한 줄 + 지금까지 추세
+// - 알림(p-econ.html#ev-<발표 id>, _tools/econ_alert.py)으로 들어오면 그 줄로 이동해 깜빡이고 바로 펼침
+// 추세: d/econ/series.json(econ_alert.py가 FRED·노동통계국에서 채움). 이번 주 카드·일정표는 자료가 다시 오면 통째로 다시 그려지므로 펼친 칸은 다시 붙임
 (function(){
-var KS=['core-cpi','core-pce','cpi','nfp','adp','ur','ahe','jolts','gdp'],SER=null,CAL=null,done='';
+var KS=['core-cpi','core-pce','claims','umich','retail','ism-m','ism-s','jolts','cpi','nfp','adp','ahe','gdp','pce','ppi','ur'],SER=null,CAL=null,OPEN='',busy=null;
+var HOW={cpi:'예상보다 높으면 금리 인하 기대가 줄어 주식에 부담입니다.','core-cpi':'에너지·식품을 뺀 물가 — 연준이 더 눈여겨봅니다. 높으면 금리 부담입니다.',
+ ppi:'기업이 받는 가격 — 높으면 몇 달 뒤 소비자물가로 번질 수 있습니다.',nfp:'너무 약하면 경기 걱정, 너무 강하면 금리 부담 — 예상과 비슷한 게 가장 편합니다.',
+ ur:'오르면 노동시장이 식는다는 신호입니다.',ahe:'임금이 빨리 오르면 물가 압력이 됩니다.',adp:'금요일 정부 고용 발표의 예고편입니다.',
+ jolts:'기업이 뽑으려는 자리 수 — 줄면 노동시장이 식는다는 뜻입니다.',claims:'갑자기 늘기 시작하면 해고가 시작됐다는 신호입니다.',
+ 'ism-m':'50 위면 확장, 아래면 위축입니다. 함께 나오는 가격 지수도 봅니다.','ism-s':'50 위면 확장, 아래면 위축입니다. 경제의 큰 몫인 서비스업 체온입니다.',
+ umich:'소비 심리 — 낮을수록 지갑이 닫힙니다. 함께 나오는 기대 물가도 봅니다.',gdp:'경제 성장 속도(연율)입니다.','core-pce':'연준이 목표로 삼는 물가입니다.',pce:'연준이 보는 물가(전체)입니다.',retail:'소비가 얼마나 버티는지 봅니다.'};
 function kindOf(id){for(var i=0;i<KS.length;i++)if(id.indexOf(KS[i]+'-')===0)return KS[i];return null}
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 function j(u){return fetch(u+'?t='+Math.floor(Date.now()/6e4),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})}
-function fmt(v,u){var a=Math.abs(v),s=a>=100?Math.round(v).toLocaleString('ko-KR'):(+v.toFixed(a>=10?1:2)).toString();return s+(u?(/^%/.test(u)?'%':/^(백만|천|십억)/.test(u)?u:' '+u):'')}
-function ml(m,q,lg){var y=m.slice(2,4),n=+m.slice(5,7);return q?y+'년 '+Math.ceil(n/3)+'분기':lg?n+'월':y+'.'+n}
+function load(){if(!busy)busy=Promise.all([j('d/econ/series.json'),j('d/econ/calendar.json'),j('d/econ/alert_extra.json')]).then(function(r){SER=r[0]||{};CAL=(r[1]||[]).concat(r[2]||[])});return busy}
+function rowOf(id){for(var i=0;i<(CAL||[]).length;i++)if(CAL[i].id===id)return CAL[i];return null}
+function fmt(v,u){if(v==null||isNaN(v))return '자료 없음';var a=Math.abs(v),s=a>=100?Math.round(v).toLocaleString('ko-KR'):(+(+v).toFixed(a>=10?1:2)).toString();
+ if(!u||u==='지수')return s;if(u==='포인트')return (+(+v).toFixed(1))+'포인트';if(/^%/.test(u))return s+'%';if(u==='%p')return s+'%p';if(/^(백만|천|십억)/.test(u))return s+u.replace(' ','');return s+' '+u}
+function ml(m,q,lg){if(m.length>7)return (+m.slice(5,7))+'.'+(+m.slice(8,10));var y=m.slice(2,4),n=+m.slice(5,7);return q?y+'년 '+Math.ceil(n/3)+'분기':lg?n+'월':y+'.'+n}
 function periodKey(p){var m=/(\d{4})년\s*(\d+)분기/.exec(p||'');if(m)return m[1]+'-'+('0'+(m[2]*3-2)).slice(-2);m=/(\d{4})년\s*(\d+)월/.exec(p||'');return m?m[1]+'-'+('0'+m[2]).slice(-2):''}
+// 추세 그래프(SVG) — 발표 숫자가 아직 추세에 없으면 일정표 '실제'를 끝에 붙임
 function chart(k,row){var S=SER&&SER[k];if(!S||!S.pts||S.pts.length<3)return null;
- var P=S.pts.map(function(p){return[p[0],+p[1]]}),u=row&&row.unit||'',pk=row&&periodKey(row.period),fresh=false;
- if(row&&row.actual!=null&&pk){var ix=-1;P.forEach(function(p,i){if(p[0]===pk)ix=i});if(ix<0&&pk>P[P.length-1][0]){P.push([pk,+row.actual]);fresh=true}else if(ix>=0){P[ix][1]=+row.actual;P=P.slice(0,ix+1)}}
- var W=340,H=150,L=8,R=52,T=16,B=22,vs=P.map(function(p){return p[1]}),lo=Math.min.apply(0,vs),hi=Math.max.apply(0,vs);if(lo>0&&k!=='nfp'&&k!=='adp'&&k!=='gdp')lo=lo-(hi-lo)*.15;var pad=(hi-lo)*.12||1;lo-=pad;hi+=pad;
+ var P=S.pts.map(function(p){return[p[0],+p[1]]}),u=row&&row.unit||'',pk=row&&periodKey(row.period),fresh=false,wk=P[0][0].length>7;
+ if(!wk&&row&&row.actual!=null&&pk){var ix=-1;P.forEach(function(p,i){if(p[0]===pk)ix=i});if(ix<0&&pk>P[P.length-1][0]){P.push([pk,+row.actual]);fresh=true}else if(ix>=0){P[ix][1]=+row.actual;P=P.slice(0,ix+1)}}
+ if(!wk&&row&&row.actual==null&&pk){P=P.filter(function(p){return p[0]<pk})}
+ if(P.length<3)return null;
+ var W=340,H=140,L=8,R=46,T=12,B=22,vs=P.map(function(p){return p[1]}),bars=(k==='nfp'||k==='adp'||k==='gdp'||k==='ppi'||k==='retail');
+ var lo=Math.min.apply(0,vs),hi=Math.max.apply(0,vs);if(bars){lo=Math.min(lo,0);hi=Math.max(hi,0)}var pad=(hi-lo)*.12||1;lo-=pad;hi+=pad;
  var zero=lo<0&&hi>0;function x(i){return L+(W-L-R)*i/(P.length-1)}function y(v){return T+(H-T-B)*(1-(v-lo)/(hi-lo))}
- var bars=(k==='nfp'||k==='adp'||k==='gdp'),ns='http://www.w3.org/2000/svg',sv=document.createElementNS(ns,'svg');sv.setAttribute('viewBox','0 0 '+W+' '+H);sv.setAttribute('class','evg-svg');
+ var ns='http://www.w3.org/2000/svg',sv=document.createElementNS(ns,'svg');sv.setAttribute('viewBox','0 0 '+W+' '+H);sv.setAttribute('class','evg-svg');
  function add(t,a,tx){var e=document.createElementNS(ns,t);for(var q in a)e.setAttribute(q,a[q]);if(tx!=null)e.textContent=tx;sv.appendChild(e);return e}
  [hi-pad,(hi+lo)/2,lo+pad].forEach(function(v){add('line',{x1:L,x2:W-R,y1:y(v),y2:y(v),'class':'evg-gl'});add('text',{x:W-R+6,y:y(v)+4,'class':'evg-ax'},fmt(v,''))});
  if(zero)add('line',{x1:L,x2:W-R,y1:y(0),y2:y(0),'class':'evg-zero'});
- if(bars){var bw=Math.max(3,(W-L-R)/P.length*.62),b0=y(zero?0:lo);P.forEach(function(p,i){var yy=y(p[1]);add('rect',{x:x(i)-bw/2,y:Math.min(yy,b0),width:bw,height:Math.max(1,Math.abs(b0-yy)),rx:1.5,'class':'evg-bar'+(i===P.length-1?' last':'')+(p[1]<0?' neg':'')})})}
- else{var d='',ar='';P.forEach(function(p,i){d+=(i?'L':'M')+x(i).toFixed(1)+','+y(p[1]).toFixed(1)});ar=d+'L'+x(P.length-1).toFixed(1)+','+(H-B)+'L'+L+','+(H-B)+'Z';
-  add('path',{d:ar,'class':'evg-area'});add('path',{d:d,'class':'evg-line'});var pl=P.length-2;add('circle',{cx:x(pl),cy:y(P[pl][1]),r:3,'class':'evg-dot prev'})}
- var n=P.length-1;add('circle',{cx:x(n),cy:y(P[n][1]),r:5,'class':'evg-dot last'});
+ if(k==='ism-m'||k==='ism-s'){if(lo<50&&hi>50)add('line',{x1:L,x2:W-R,y1:y(50),y2:y(50),'class':'evg-zero'})}
+ var n=P.length-1;
+ if(bars){var bw=Math.max(3,(W-L-R)/P.length*.62),b0=y(zero?0:lo);P.forEach(function(p,i){var yy=y(p[1]);add('rect',{x:x(i)-bw/2,y:Math.min(yy,b0),width:bw,height:Math.max(1,Math.abs(b0-yy)),rx:1.5,'class':'evg-bar'+(i===n?' last':'')+(p[1]<0?' neg':'')})})}
+ else{var d='';P.forEach(function(p,i){d+=(i?'L':'M')+x(i).toFixed(1)+','+y(p[1]).toFixed(1)});
+  add('path',{d:d+'L'+x(n).toFixed(1)+','+(H-B)+'L'+L+','+(H-B)+'Z','class':'evg-area'});add('path',{d:d,'class':'evg-line'});add('circle',{cx:x(n-1),cy:y(P[n-1][1]),r:3,'class':'evg-dot prev'})}
+ add('circle',{cx:x(n),cy:y(P[n][1]),r:5,'class':'evg-dot last'+(row&&row.actual==null?' old':'')});
  [0,Math.floor(n/2),n].forEach(function(i,z){add('text',{x:x(i),y:H-6,'class':'evg-ax','text-anchor':z===0?'start':z===2?'end':'middle'},ml(P[i][0],S.q))});
- var last=P[n][1],prv=P[n-1][1],dd=last-prv,mx=Math.max.apply(0,vs.concat([last])),mn=Math.min.apply(0,vs.concat([last])),yrs=S.q?'최근 3년':'최근 2년';
+ var last=P[n][1],mx=Math.max.apply(0,vs.concat([last])),mn=Math.min.apply(0,vs.concat([last])),yrs=wk?'최근 반년':S.q?'최근 3년':'최근 2년';
  var pos=last>=mx?yrs+' 가운데 가장 높습니다.':last<=mn?yrs+' 가운데 가장 낮습니다.':yrs+' 범위('+fmt(mn,u)+'~'+fmt(mx,u)+') 안 '+(last-mn>(mx-mn)*.6?'위쪽':last-mn<(mx-mn)*.4?'아래쪽':'가운데')+'입니다.';
- var box=el('div','evg');box.setAttribute('data-noswipe','');
- var hd=el('div','evg-hd');hd.appendChild(el('b',null,S.name+' · '+yrs+' 추세'));var cx=el('button','evg-x','닫기');cx.type='button';cx.onclick=function(){box.remove()};hd.appendChild(cx);box.appendChild(hd);
- var tk=el('p','evg-tk');tk.appendChild(el('b',null,ml(P[n][0],S.q,1)+' '+fmt(last,u)));var du=/^%/.test(u)?'%p':u;tk.appendChild(document.createTextNode(' — 직전('+fmt(prv,u)+')보다 '+(dd===0?'변화 없음':fmt(Math.abs(dd),du)+(dd>0?' 늘었습니다':' 줄었습니다'))+'. '+pos));box.appendChild(tk);
- box.appendChild(sv);box.appendChild(el('p','evg-src','출처: 미국 노동통계국·FRED'+(fresh?' · 마지막 점은 방금 발표치':'')+' · 노란 점이 이번 발표'));return box}
-function find(id){var w=document.querySelector('#weeks .mc-ev[data-key="'+id+'"]');if(w)return{row:w,at:w.closest('.mc-wk')||w,box:w.closest('.u-box')};var t=document.querySelector('#calbody tr[data-key="'+id+'"]');if(t)return{row:t,at:document.getElementById('calf')};return null}
-function run(){var m=/^#ev-([\w.-]+)$/.exec(location.hash||'');if(!m)return;var id=m[1];if(done===id)return;var tries=0;
- (function wait(){var f=find(id);if(!f){if(++tries<40)setTimeout(wait,300);return}done=id;
-  Promise.all([SER?SER:j('d/econ/series.json'),CAL?CAL:j('d/econ/calendar.json'),j('d/econ/alert_extra.json')]).then(function(r){SER=r[0]||{};CAL=r[1]||[];var ex=r[2]||[];
-   var row=null;CAL.concat(ex).forEach(function(x){if(x.id===id)row=x});var old=document.querySelector('.evg');if(old)old.remove();
-   var k=kindOf(id),box=k?chart(k,row):null,t0=0,tg=null;
-   // 알림으로 처음 열면 첫 화면(멍뭉 터미널 시작 그림)이 2초쯤 덮음 → 그게 걷힌 뒤부터 깜빡임
-   function cover(){var e=document.getElementById('mm-splash');if(!e||!e.isConnected)return false;var c=getComputedStyle(e);return c.display!=='none'&&c.visibility!=='hidden'&&+c.opacity>.05}
-   // 이번 주 카드·일정표는 자료가 다시 오면 통째로 다시 그려짐 → 그 뒤에도 같은 줄을 다시 찾아 그래프·깜빡임을 붙임(처음 8초)
-   function place(){var f=find(id);if(!f)return;if(box&&!box.isConnected)f.at.parentNode.insertBefore(box,f.at);   // 이번 주 카드는 높이 고정 상자라 그래프는 카드 바로 위에(상자 안에 넣으면 잘림)
-    if(f.box){var d=f.row.getBoundingClientRect().top-f.box.getBoundingClientRect().top-56;if(Math.abs(d)>20)f.box.scrollTop+=d}
-    if(!t0&&!cover())t0=Date.now();
-    if(t0&&Date.now()-t0<2600&&!f.row.classList.contains('evg-flash')){var r0=f.row;r0.classList.add('evg-flash');setTimeout(function(){r0.classList.remove('evg-flash')},2600-(Date.now()-t0))}
-    tg=box||f.row}
-   function to(sm){place();if(!tg||!tg.isConnected)return;var y=tg.getBoundingClientRect().top+scrollY-84;if(Math.abs(y-scrollY)>30)scrollTo({top:y,behavior:sm?'smooth':'auto'})}
-   var MO=window.MutationObserver;try{if(MO.__thr)MO=Object.getPrototypeOf(MO)}catch(e){}
-   try{var mo=new MO(function(){if(box&&!box.isConnected||tg&&!tg.isConnected)to()});['weeks','calbody'].forEach(function(i){var e=document.getElementById(i);if(e)mo.observe(e,{childList:true,subtree:true})});setTimeout(function(){mo.disconnect()},8000)}catch(e){}
-   to(1);setTimeout(to,450);setTimeout(to,1100);setTimeout(to,2200);
-   var n=0;(function sp(){if(cover()&&++n<30)return setTimeout(sp,250);if(n)to(1)})()})})()}
-addEventListener('hashchange',function(){done='';run()});
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+ return {svg:sv,pos:pos,yrs:yrs,fresh:fresh,last:P[n],prev:P[n-1],u:u,q:S.q}}
+function line(b,t){var p=el('p','evg-ln');if(b){p.appendChild(el('b',null,b))}if(t)p.appendChild(document.createTextNode(t));return p}
+function panel(id){var r=rowOf(id),k=kindOf(id);if(!r)return null;var u=r.unit||'',du=/^%/.test(u)?'%p':u==='지수'?'포인트':u,box=el('div','evg');box.setAttribute('data-noswipe','');box.dataset.for=id;
+ var C=k?chart(k,r):null,done=r.actual!=null;
+ var hd=el('div','evg-hd');hd.appendChild(el('b',null,(done?'결과 · ':'예상 · ')+r.event));var cx=el('button','evg-x','접기 ▴');cx.type='button';cx.onclick=function(e){e.stopPropagation();close()};hd.appendChild(cx);box.appendChild(hd);
+ if(!u){box.appendChild(line(null,r.note||'숫자로 나오는 발표가 아닙니다.'));return box}
+ if(done){var a=+r.actual,c=r.consensus,pv=r.previous,g=el('div','evg-big');g.appendChild(el('span','evg-v',fmt(a,u)));
+  if(c!=null){var dd=a-c,tag=Math.abs(dd)<1e-9?['예상 부합','eq']:dd>0?['예상 상회','up']:['예상 하회','dn'];g.appendChild(el('span','evg-tag '+tag[1],tag[0]))}
+  box.appendChild(g);
+  box.appendChild(line(null,'예상 '+(c!=null?fmt(c,u):'자료 없음')+' · 이전 '+(pv!=null?fmt(pv,u):'자료 없음')+(pv!=null?' → 이전보다 '+(a===pv?'변화 없음':fmt(Math.abs(a-pv),du)+(a>pv?' 높음':' 낮음')):'')));
+  if(r.spx_chg_pct!=null)box.appendChild(line('그날 지수 ','S&P 500 '+(r.spx_chg_pct>0?'+':'')+r.spx_chg_pct+'% · 나스닥 '+(r.ndx_chg_pct>0?'+':'')+r.ndx_chg_pct+'%'));
+}
+ else{var c2=r.consensus,p2=r.previous,g2=el('div','evg-big');g2.appendChild(el('span','evg-v'+(c2==null?' na':''),c2!=null?'예상 '+fmt(c2,u):'예상치 아직'));box.appendChild(g2);
+  box.appendChild(line(null,c2!=null?'이전 '+(p2!=null?fmt(p2,u):'자료 없음')+(p2!=null?' → 예상대로면 '+(c2===p2?'그대로':fmt(Math.abs(c2-p2),du)+(c2>p2?' 높아짐':' 낮아짐')):''):'시장 예상치는 보통 발표 주 초에 나옵니다 · 이전 '+(p2!=null?fmt(p2,u):'자료 없음')));
+}
+ if(HOW[k])box.appendChild(line('이렇게 읽습니다 ',HOW[k]));
+ if(C){box.appendChild(el('p','evg-sub',(done?C.yrs+' 추세 · ':'지금까지 '+C.yrs+' 추세 · ')+C.pos));box.appendChild(C.svg);
+  box.appendChild(el('p','evg-src','출처: 미국 노동통계국·FRED'+(C.fresh?' · 마지막 점은 방금 발표치':'')+' · 노란 점이 '+(done?'이번 발표':'가장 최근 발표')))}
+ return box}
+// 줄 찾기 · 펼치기 · 다시 붙이기
+function find(id){var w=document.querySelector('#weeks .mc-ev[data-key="'+id+'"]');if(w)return{row:w,box:w.closest('.u-box')};var t=document.querySelector('#calbody tr[data-key="'+id+'"]');return t?{row:t,box:t.closest('.u-box,.mc-tbox')}:null}
+function close(){OPEN='';[].forEach.call(document.querySelectorAll('.evg,.evg-tr'),function(e){e.remove()});mark()}
+function attach(f,id){var p=panel(id);if(!p)return null;if(f.row.tagName==='TR'){var tr=el('tr','evg-tr'),td=el('td');td.colSpan=f.row.children.length||9;td.appendChild(p);tr.appendChild(td);f.row.after(tr)}else f.row.after(p);return p}
+function show(id,how){var f=find(id);if(!f)return;[].forEach.call(document.querySelectorAll('.evg,.evg-tr'),function(e){e.remove()});OPEN=id;var p=attach(f,id);mark();
+ // 펼친 칸이 보이게: 높이 고정 상자 안이면 상자를 그 줄 위치로, 화면도 그 상자 쪽으로
+ if(f.box&&f.box.scrollHeight>f.box.clientHeight+4){var d=(how==='alert'?f.row:p||f.row).getBoundingClientRect().top-f.box.getBoundingClientRect().top-(how==='alert'?10:70);f.box.scrollTo({top:f.box.scrollTop+d,behavior:how==='alert'?'auto':'smooth'})}
+ if(how==='alert'){var t0=0;function to(sm){var g=find(id);if(!g)return;var tg=g.box&&g.box.scrollHeight>g.box.clientHeight+4?g.box:g.row,y=tg.getBoundingClientRect().top+scrollY-84;if(Math.abs(y-scrollY)>30)scrollTo({top:y,behavior:sm?'smooth':'auto'})}
+  function flash(){var g=find(id);if(!g)return;if(!t0&&!cover())t0=Date.now();if(t0&&Date.now()-t0<2600&&!g.row.classList.contains('evg-flash')){var r0=g.row;r0.classList.add('evg-flash');setTimeout(function(){r0.classList.remove('evg-flash')},2600-(Date.now()-t0))}}
+  to(1);flash();[450,1100,2200].forEach(function(ms){setTimeout(function(){to();flash()},ms)});var n=0;(function sp(){if(cover()&&++n<30)return setTimeout(sp,250);if(n){to(1);flash()}})()}
+ else{var b=p&&p.getBoundingClientRect();if(b&&b.bottom>innerHeight-90&&!(f.box&&f.box.scrollHeight>f.box.clientHeight+4))scrollTo({top:scrollY+Math.min(b.bottom-innerHeight+110,b.top-90),behavior:'smooth'})}}
+function cover(){var e=document.getElementById('mm-splash');if(!e||!e.isConnected)return false;var c=getComputedStyle(e);return c.display!=='none'&&c.visibility!=='hidden'&&+c.opacity>.05}
+// 줄마다 '결과 보기 ▾ / 예상 보기 ▾' 알약 + 누르게 생긴 모양
+function mark(){if(!CAL)return;[].forEach.call(document.querySelectorAll('#weeks .mc-ev[data-key],#calbody tr[data-key]'),function(e){var id=e.dataset.key,r=rowOf(id);if(!r||!r.unit){e.classList.remove('evg-can');return}
+  var on=OPEN===id,lab=(r.actual!=null?'결과 ':'예상 ')+(on?'접기 ▴':'보기 ▾'),host=e.tagName==='TR'?e.querySelector('td:nth-child(3)'):e.querySelector('.ex')||e,pill=e.querySelector('.evg-pill');
+  e.classList.add('evg-can');e.classList.toggle('evg-on',on);if(!pill){pill=el('span','evg-pill');host.appendChild(pill)}if(pill.textContent!==lab)pill.textContent=lab;pill.classList.toggle('done',r.actual!=null)});
+ if(OPEN){var f=find(OPEN);if(f&&!document.querySelector('.evg[data-for="'+OPEN+'"]'))attach(f,OPEN)}}
+document.addEventListener('click',function(e){var t=e.target;if(!t.closest||t.closest('a,.evg'))return;var r=t.closest('#weeks .mc-ev[data-key],#calbody tr[data-key]');if(!r||!r.classList.contains('evg-can'))return;
+ var id=r.dataset.key;if(OPEN===id)close();else show(id,'tap')});
+var q=0;function sched(){if(q)return;q=1;requestAnimationFrame(function(){q=0;try{mark()}catch(e){}})}
+var MO=window.MutationObserver;try{if(MO.__thr)MO=Object.getPrototypeOf(MO)}catch(e){}
+function watch(){var a=document.getElementById('weeks'),b=document.getElementById('calbody');if(!a||!b){setTimeout(watch,400);return}try{var mo=new MO(function(ms){for(var i=0;i<ms.length;i++){var n=ms[i].target;if(!(n.closest&&n.closest('.evg,.evg-tr,.evg-pill'))){sched();return}}});mo.observe(a,{childList:true,subtree:true});mo.observe(b,{childList:true})}catch(e){}}
+function hash(){var m=/^#ev-([\w.-]+)$/.exec(location.hash||'');if(!m)return;var id=m[1],tries=0;(function wait(){if(!find(id)||!CAL){if(++tries<40)setTimeout(wait,300);return}show(id,'alert')})()}
+addEventListener('hashchange',hash);
+function start(){watch();load().then(function(){mark();hash()})}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
 })();
