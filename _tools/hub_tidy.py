@@ -815,7 +815,7 @@ def _easy_one(s, mk):
 
 # 시세 보드 기간 1일·1주일 추가 + 왼쪽부터 짧은 순(사용자 2026-11-03) — 원본(통합본 동기화로 덮임) 위에 멱등 치환
 # 1주일 = history의 일별 종가 중 기준일 이전 5번째 거래일 종가. history를 계산 입력에 넣지 않고(보드가 history를 기다리지 않게) 계산 안에서 읽음
-PPER_MARK = '/*mm-per1w*/'
+PPER_MARK = '/*mm-per1w2*/'
 PPER_REP = [
     ("<button type=\"button\" class=\"pb-chip\" data-p=\"12m\">12개월</button><button type=\"button\" class=\"pb-chip\" data-p=\"6m\">6개월</button><button type=\"button\" class=\"pb-chip\" data-p=\"3m\">3개월</button><button type=\"button\" class=\"pb-chip\" data-p=\"1m\">1개월</button>",
      "<button type=\"button\" class=\"pb-chip\" data-p=\"1d\">1일</button><button type=\"button\" class=\"pb-chip\" data-p=\"1w\">1주일</button><button type=\"button\" class=\"pb-chip\" data-p=\"1m\">1개월</button><button type=\"button\" class=\"pb-chip\" data-p=\"3m\">3개월</button><button type=\"button\" class=\"pb-chip\" data-p=\"6m\">6개월</button><button type=\"button\" class=\"pb-chip\" data-p=\"12m\">12개월</button>"),
@@ -826,9 +826,11 @@ PPER_REP = [
     ("const HPL = { '1d': '1일', '1m': '1개월',", "const HPL = { '1d': '1일', '1w': '1주일', '1m': '1개월',"),
     ("({ '1m': 20, '3m': 35, '6m': 50, '12m': 80 }[P] || 25)", "({ '1d': 4, '1w': 10, '1m': 20, '3m': 35, '6m': 50, '12m': 80 }[P] || 25)"),
     ("      return prices.map((r) => {\n        const p = n(r.price);",
-     "      " + PPER_MARK + "const W1 = (function () { try { const H = dash.data('history'); if (!H || H.status !== 'ok') return {}; if (window.__mmW1 && window.__mmW1.ref === H.data && window.__mmW1.n === prices.length) return window.__mmW1.m; const by = {}; H.data.forEach((x) => { if (x.kind === 'm') return; (by[x.ticker] = by[x.ticker] || []).push(x); }); const m = {}; prices.forEach((r) => { const a = (by[r.ticker] || []).filter((x) => x.date < r.price_date).sort((p, q) => (p.date < q.date ? -1 : 1)); if (a.length >= 5) m[r.ticker] = Number(a[a.length - 5].close); }); window.__mmW1 = { ref: H.data, n: prices.length, m: m }; return m; } catch (e) { return {}; } })();\n      return prices.map((r) => {\n        const p = n(r.price);"),
+     "      " + PPER_MARK + "window.__mmOff = prices.filter((r) => /day|pre|after/.test(r.price_kind || '')).length > prices.length / 2; const W1 = (function () { try { const H = dash.data('history'); if (!H || H.status !== 'ok') return {}; if (window.__mmW1 && window.__mmW1.ref === H.data && window.__mmW1.n === prices.length) return window.__mmW1.m; const by = {}; H.data.forEach((x) => { if (x.kind === 'm') return; (by[x.ticker] = by[x.ticker] || []).push(x); }); const m = {}; prices.forEach((r) => { const a = (by[r.ticker] || []).filter((x) => x.date <= (r.prev_date || r.price_date) && (r.prev_date || x.date < r.price_date)).sort((p, q) => (p.date < q.date ? -1 : 1)); if (a.length >= 5) m[r.ticker] = Number(a[a.length - 5].close); }); window.__mmW1 = { ref: H.data, n: prices.length, m: m }; return m; } catch (e) { return {}; } })();\n      window.__mmOff = prices.filter((r) => /day|pre|after/.test(r.price_kind || '')).length > prices.length / 2;\n      return prices.map((r) => {\n        const p = n(r.price);"),
     ("          chg_1d: pct(p, n(r.prev_close)),\n", "          chg_1d: pct(p, n(r.prev_close)),\n          chg_1w: pct(p, W1[r.ticker]),\n"),
+    ("const pick = (k) => rs.map((r) => r[k]).filter((x) => x != null);", "const LEV = ['SOXL', 'SOXS', 'TQQQ', 'SQQQ', 'TECL', 'UPRO', 'SPXL', 'NVDL', 'TSLL']; const pick = (k) => rs.filter((r) => LEV.indexOf(r.ticker) < 0 || rs.every((q) => LEV.indexOf(q.ticker) >= 0)).map((r) => r[k]).filter((x) => x != null);"),
     ("m12 = pick('chg_12m'), d1 = pick('chg_1d');", "m12 = pick('chg_12m'), d1 = pick('chg_1d'), w1 = pick('chg_1w');"),
+    ("c.textContent = HP === '1d' ? `${r.n_1d}종목` : `오늘 ${fmtPct(r.avg_1d)}`;", "c.textContent = HP === '1d' ? `${r.n_1d}종목` : `${window.__mmOff ? '장외' : '오늘'} ${fmtPct(r.avg_1d)}`;"),
     ("n_1d: d1.length, avg_1d: avg(d1),", "n_1d: d1.length, avg_1d: avg(d1), n_1w: w1.length, avg_1w: avg(w1),"),
     ("if (/^(best|worst)_\\d+m$/.test(k))", "if (/^(best|worst)_\\d+[mdw]$/.test(k))"),
     (".pb-per{display:flex;flex-wrap:wrap;align-items:center;gap:6px}", ".pb-per{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;align-items:center;gap:6px;padding-bottom:4px}.pb-per::-webkit-scrollbar{display:none}.pb-per .pb-chip,.pb-per .lab{flex:none}"),
