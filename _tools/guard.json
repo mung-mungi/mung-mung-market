@@ -64,7 +64,8 @@
   "tm-jump": "뉴스 날짜 바로가기",
   "tm-more": "뉴스 더 보기(상자 대신)",
   "'tlmore'": "뉴스 더 보기 부품 연결",
-  "LAZYRUN_JS": "가볍게: 목표주가 아래쪽 차트 늦게 그리기"
+  "LAZYRUN_JS": "가볍게: 목표주가 아래쪽 차트 늦게 그리기",
+  "var NQ=[]": "가볍게: 데일리 시황 칸 높이 한 번에 재기"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -140,7 +141,8 @@
   "DEFER_JS",
   "__lazyCD",
   "'tlmore'",
-  "LAZYRUN_JS"
+  "LAZYRUN_JS",
+  "var NQ=[]"
  ],
  "_tools/owner.js": [
   "own-draft",

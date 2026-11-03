@@ -1339,7 +1339,7 @@ dash.calc('trend_sum', {
 <script data-hero-fix src="_tools/herofix.js?v=0e3d58b5"></script>
 <link data-hero2 rel="stylesheet" href="_tools/hero2.css?v=6f1456d8">
 <script data-hero2 src="_tools/hero2.js?v=4d6ebe99"></script>
-<link data-ibdrag rel="stylesheet" href="_tools/ibdrag.css?v=fee4f713"><script data-ibdrag src="_tools/ibdrag.js?v=c9eadee1"></script><link data-chipfold rel="stylesheet" href="_tools/chipfold.css?v=1a5c2c61"><script data-chipfold src="_tools/chipfold.js?v=0c91b024"></script><style data-tgrow>/* 목표주가: 표·목록을 시세 보드 '종목별 시세' 한 줄 카드로 (사용자 2026-10-29) */
+<link data-ibdrag rel="stylesheet" href="_tools/ibdrag.css?v=fee4f713"><script data-ibdrag src="_tools/ibdrag.js?v=c9eadee1"></script><style data-tgrow>/* 목표주가: 표·목록을 시세 보드 '종목별 시세' 한 줄 카드로 (사용자 2026-10-29) */
 body :is(#trend-card,#firm-card,#log-card) .pt-tbl-box{overflow-y:auto!important;overflow-x:hidden!important;max-height:min(62vh,520px)!important;border:0!important;background:none!important;padding:2px 4px 8px!important;overscroll-behavior:contain}
 body :is(#trend-card,#firm-card,#log-card) table.pt-tbl thead{position:sticky;top:0;z-index:2;background:var(--color-bg-card,#fff)}
 body :is(#trend-card,#firm-card,#log-card) table.pt-tbl{display:block!important;width:100%!important;border:0!important;background:none!important}
@@ -1471,4 +1471,4 @@ function tidy(){
   var mk=document.querySelector('#vsprice ul.mkey'); if(mk&&!mk.closest('details')){ var d=document.createElement('details'); d.className='mm-fold'; d.innerHTML='<summary><span>막대·점 읽는 법</span></summary>'; mk.before(d); d.appendChild(mk); }
 }
 
-(function(){var q=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(q)return;q=1;setTimeout(function(){q=0;go()},150)}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();</script></body></html>
+(function(){var q=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(q)return;q=1;setTimeout(function(){q=0;go()},150)}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();</script><link data-chipfold rel="stylesheet" href="_tools/chipfold.css?v=1a5c2c61"><script data-chipfold src="_tools/chipfold.js?v=bc687aab"></script></body></html>
