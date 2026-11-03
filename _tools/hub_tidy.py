@@ -809,7 +809,28 @@ EASY['p-policy.html'] = EASY['p-policy.html'] + ['newsq_ui']; EASY['p-tech.html'
 EASY['p-policy.html'] = EASY['p-policy.html'] + ['tlmore']; EASY['p-tech.html'] = EASY['p-tech.html'] + ['tlmore']
 # 목표주가 아래쪽 차트 늦게 그리기(2026-11-03): 데이터가 덜 와서 페이지가 짧을 때 잘못 '보임'으로 판정하지 않게 1.5초 뒤(또는 손가락이 처음 닿을 때)부터 지켜봄
 LAZYRUN_JS = r"""<script data-lazyrun>window.__lazyRun=function(k,f,el){if(!el||!window.IntersectionObserver)return f();var L=window.__lazyRun.s||(window.__lazyRun.s={}),z=L[k]||(L[k]={});z.f=f;if(z.on)return f();if(z.o)return;z.o=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting})){z.o.disconnect();z.on=1;requestAnimationFrame(function(){z.f()})}},{rootMargin:"500px 0px"});var arm=function(){if(z.a)return;z.a=1;z.o.observe(el)};setTimeout(arm,1500);['touchstart','wheel','keydown'].forEach(function(t){addEventListener(t,arm,{once:true,passive:true})})};</script>"""
+# 실적 결과 가볍게(사용자 2026-11-03, A안): 접힌 노트는 한 줄 카드(+제목·꼬리표)만 화면에 두고, 본문은 펼칠 때 붙임.
+# 데이터(seed)·노트 HTML은 그대로 — 자동 실적 업로드·실적 일정·새 소식 목록 도구와 무관. 접힌 동안 본문 안 찾기(.verdict·.row 등)는 보관본까지 같이 찾음
+EARNLZ_JS = r"""<script data-earnlz>(function(){var MO=window.MutationObserver,P=Element.prototype,QA=P.querySelectorAll,Q1=P.querySelector,mo=null;
+var RX=/([가-힣A-Za-z])\((?=[^)\d\s][^)]+\))/g,SK={SCRIPT:1,STYLE:1,TEXTAREA:1,INPUT:1,CODE:1,PRE:1,NOSCRIPT:1},NUM=/[①②③④⑤⑥⑦⑧⑨⑩]/,SPL=/(?=[①②③④⑤⑥⑦⑧⑨⑩])/,BLK={P:1,DIV:1,LI:1,UL:1,OL:1,TABLE:1,SECTION:1,ARTICLE:1,H1:1,H2:1,H3:1,H4:1},SKS='button,a,select,option,svg,script,style,textarea,input,label,nav';
+// 열 때 붙이는 본문에도 페이지를 열 때 하던 손질을 똑같이(감시기가 늦게 붙은 칸을 놓치는 두 가지): 괄호 앞 줄바꿈 자리(wrapfix.js) · ①② 번호마다 줄바꿈(페이지 가독성 스크립트)
+function prep(f){try{var w=document.createTreeWalker(f,4),n,L=[];while((n=w.nextNode()))L.push(n);L.forEach(function(n){var p=n.parentNode;if(!p||SK[p.nodeName]||(p.closest&&p.closest('svg,[contenteditable]')))return;RX.lastIndex=0;if(RX.test(n.nodeValue)){RX.lastIndex=0;n.nodeValue=n.nodeValue.replace(RX,'$1​(')}});RX.lastIndex=0}catch(e){}
+ try{[].forEach.call(QA.call(f,'p,li,td,dd,blockquote,div,span.sub'),function(el){for(var j=0;j<el.children.length;j++)if(BLK[el.children[j].tagName])return;var t=el.textContent||'',m=t.match(/[①②③④⑤⑥⑦⑧⑨⑩]/g);if(!m||m.length<2||t.length<30||el.closest(SKS))return;
+  var tw=document.createTreeWalker(el,4),ns=[],seen=false;while(tw.nextNode())ns.push(tw.currentNode);
+  ns.forEach(function(n){var s=n.textContent;if(n.parentElement&&n.parentElement.closest(SKS)){if(s.trim())seen=true;return}var parts=s.split(SPL);if(!parts.some(function(q,i){return NUM.test(q.charAt(0))&&(seen||i>0)})){if(s.trim())seen=true;return}
+   var prev=n.previousSibling,g=document.createDocumentFragment();parts.forEach(function(q,i){if(NUM.test(q.charAt(0))&&(seen||i>0)){if(!(i===0&&prev&&prev.nodeName==='BR'))g.appendChild(document.createElement('br'));q=q.replace(/^\s+/,'')}else if(i<parts.length-1)q=q.replace(/\s+$/,'');if(q)g.appendChild(document.createTextNode(q));if(q.trim())seen=true});n.parentNode.replaceChild(g,n)})})}catch(e){}}
+function fill(a){if(!a.__lz||a.classList.contains('fold'))return;var f=a.__lz;a.__lz=null;delete a.querySelectorAll;delete a.querySelector;a.appendChild(f);try{if(window.drawViz)drawViz()}catch(e){}prep(a)}
+window.__lzHollow=function(){try{if(!mo)mo=new MO(function(ms){ms.forEach(function(m){fill(m.target)})});
+ document.querySelectorAll('article[data-date].fold').forEach(function(a){if(a.__lz)return;var k=[].slice.call(a.children),i=0;while(i<k.length&&k[i].matches('.sumrow,.tag,h3'))i++;if(i>=k.length)return;
+  var f=document.createDocumentFragment();k.slice(i).forEach(function(c){f.appendChild(c)});a.__lz=f;
+  a.querySelectorAll=function(s){var r=[].slice.call(QA.call(this,s));if(this.__lz)r=r.concat([].slice.call(this.__lz.querySelectorAll(s)));return r};
+  a.querySelector=function(s){return Q1.call(this,s)||(this.__lz?this.__lz.querySelector(s):null)};
+  mo.observe(a,{attributes:true,attributeFilter:['class']})})}catch(e){}};})();</script>"""
 def tidy_easy(s, name):
+    if name == 'p-earn.html':
+        s = s.replace('drawViz();linkTickers();initFind(open);', 'linkTickers();initFind(open);(window.__lzHollow||Object)();drawViz();', 1)
+        s = re.sub(r'<script data-earnlz>.*?</script>', '', s, flags=re.S)
+        s = re.sub(r'(<script[^>]*>)', lambda m: EARNLZ_JS + m.group(1), s, count=1)
     if name == 'p-brief.html':  # 속도(2026-11-03): 시황 그림은 화면에 들어올 때 그림(보이지 않는 지난 날짜 차트까지 열 때 다 그리던 것)
         s = s.replace('requestAnimationFrame(()=>drawCD(cv,cd))', '(window.__lazyCD||requestAnimationFrame)(()=>drawCD(cv,cd),cv)')
         if 'window.__lazyCD=' not in s:
