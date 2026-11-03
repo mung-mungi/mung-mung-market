@@ -1,0 +1,15 @@
+/* '어제보다 바뀐 점' 카드(사용자 2026-11-03) — _tools/mvban.js */
+.mm-mv{margin:0 0 14px;background:#fff;border:1.5px solid #e9b98f;border-radius:16px;padding:12px 14px;box-shadow:0 3px 0 #f1d6bd;font-family:-apple-system,"Apple SD Gothic Neo",sans-serif;color:#1f1e1b}
+.mm-mv .hd{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;font-weight:800;font-size:12.5px;line-height:1.4;color:#c8501c}
+.mm-mv .x{flex:none;border:0;background:none;color:#b0a99c;font-size:15px;padding:0 2px;cursor:pointer}
+.mm-mv .ln{margin:6px 0 0;font-weight:800;font-size:16px;line-height:1.4}
+.mm-mv .ln em{font-style:normal;color:#c8501c}
+.mm-mv .ln small{font-weight:700;font-size:13px;color:#7a766d}
+.mm-mv .why{margin:5px 0 0;font-weight:500;font-size:13.5px;line-height:1.55;color:#4a463f}
+.mm-mv .why b{color:#1f1e1b}
+.mm-mv .mk{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed #ece6d8;font-weight:500;font-size:13px;line-height:1.5;color:#5f5a52;text-decoration:none}
+.mm-mv .mk b{color:#9a6200;margin-right:5px}
+.mm-mv .chip{display:none}
+.mm-mv.fold{background:none;border:0;box-shadow:none;padding:0}
+.mm-mv.fold>:not(.chip){display:none}
+.mm-mv.fold .chip{display:inline-flex;font-weight:800;font-size:12.5px;color:#c8501c;background:#fff;border:1px solid #f0c2b2;border-radius:999px;padding:5px 11px;box-shadow:0 2px 0 #f6dfd5;cursor:pointer}
