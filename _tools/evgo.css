@@ -44,3 +44,15 @@ html body #calbody td.evc{color:#2c5aa0;background:#eaf1fb!important;font-weight
 html body #calbody td.evc::before{content:'예상치 ';font-size:11px;font-weight:700;color:#5b7fb8}
 html body .evg-v.evc{color:#1f4a8a}
 html body .evg-pill:not(.done){color:#2c5aa0;background:#f2f6fd;border-color:#bfd0ec;box-shadow:0 2px 0 #d3dff2}
+/* 판정 칩 · 지금 상황 영향(2026-11-04) */
+html body .evj{margin:8px 0 4px;padding:9px 10px;background:#f7f3ea;border-radius:11px}
+html body .evj-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+html body .evj-c{display:inline-block;font:800 13px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;border-radius:999px;padding:6px 10px;white-space:nowrap}
+html body .evj-c.hot{color:#9a3412;background:#ffedd5}html body .evj-c.cold{color:#1e5a8a;background:#e0eefa}html body .evj-c.eq{color:#5f5a50;background:#ebe7de}
+html body .evj-c.rup{color:#fff;background:#c2410c}html body .evj-c.rdn{color:#fff;background:#2c6fb0}html body .evj-c.req{color:#5f5a50;background:#fff;border:1px solid #ddd5c4}
+html body .evj-t{margin:2px 0 0;font-size:13.5px;line-height:1.6;color:#3b3934}html body .evj-t b{color:#7a5200}
+html body .evj-h{margin:0 0 5px;font:800 13px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#7a5200}
+html body .evj-sc{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:0 0 6px}
+html body .evj-k{font-size:13px;font-weight:700;color:#3b3934;min-width:6.2em}
+html body .evj-ctx{margin:4px 0 6px;font-size:12.5px;line-height:1.55;color:#6f6a60}
+html body .evj .evj-h+.evj-t,html body .evj .evj-t{margin:2px 0}
