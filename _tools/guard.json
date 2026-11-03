@@ -60,7 +60,10 @@
   "dataset.utc": "가볍게: 표 계산 기억",
   "dataset.ubn": "가볍게: 긴 상자 검사 기억",
   "separators=": "가볍게: 공매도 자료 군살 빼기",
-  ".u-box:has(.tlx)": "뉴스 지난 기록 상자 끝에서 페이지가 이어서 움직임"
+  ".u-box:has(.tlx)": "뉴스 지난 기록 상자 끝에서 페이지가 이어서 움직임",
+  "tm-jump": "뉴스 날짜 바로가기",
+  "tm-more": "뉴스 더 보기(상자 대신)",
+  "'tlmore'": "뉴스 더 보기 부품 연결"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -134,7 +137,8 @@
   "newsq_ui",
   "mm-per1w",
   "DEFER_JS",
-  "__lazyCD"
+  "__lazyCD",
+  "'tlmore'"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -236,5 +240,9 @@
  ],
  "_tools/reapply_tidy.py": [
   "separators="
+ ],
+ "_tools/tlmore.js": [
+  "tm-jump",
+  "tm-more"
  ]
 }

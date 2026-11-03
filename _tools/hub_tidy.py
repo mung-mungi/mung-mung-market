@@ -805,6 +805,8 @@ for _pg in ('p-opt.html', 'p-bond.html', 'p-lights.html'):
     EASY[_pg] = EASY.get(_pg, []) + ['mvban']
 # 방금 들어온 소식(사용자 2026-11-02) — 뉴스 두 페이지 맨 위
 EASY['p-policy.html'] = EASY['p-policy.html'] + ['newsq_ui']; EASY['p-tech.html'] = EASY['p-tech.html'] + ['newsq_ui']
+# 뉴스 타임라인: 높이 고정 상자 대신 '더 보기' + 날짜 바로가기(사용자 2026-11-03)
+EASY['p-policy.html'] = EASY['p-policy.html'] + ['tlmore']; EASY['p-tech.html'] = EASY['p-tech.html'] + ['tlmore']
 def tidy_easy(s, name):
     if name == 'p-brief.html':  # 속도(2026-11-03): 시황 그림은 화면에 들어올 때 그림(보이지 않는 지난 날짜 차트까지 열 때 다 그리던 것)
         s = s.replace('requestAnimationFrame(()=>drawCD(cv,cd))', '(window.__lazyCD||requestAnimationFrame)(()=>drawCD(cv,cd),cv)')
