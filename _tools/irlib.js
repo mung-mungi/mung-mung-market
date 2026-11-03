@@ -41,9 +41,12 @@ function txt(b){b=String(b||'');var ls=b.split('\n'),hd=[],i,cut=-1;for(i=0;i<ls
 function card(x,i){var c=document.createElement('div');c.className='ir-c';c.id='ir-'+esc(x.id||i);c.dataset.tk=String(x.ticker||'').toUpperCase();
  var fresh=(Date.now()-new Date(x.date||0).getTime())<3*864e5;
  c.innerHTML='<button type="button" class="ir-row" aria-expanded="false"><div class="ir-l"><b>'+(fresh?'<i>최신</i>':'')+esc(x.name)+'</b><small>'+esc(x.ticker||'')+(x.q?' · '+esc(x.q):'')+(x.time?' · '+esc(x.time):'')+'</small>'+(x.title?'<span class="ir-t">'+esc(x.title)+'</span>':'')+'</div><div class="ir-r"><em>'+esc(x._l)+'</em><span class="ar">›</span></div></button>'+
- '<div class="ir-body"><div class="ir-top">'+(x.pdf_kr_site?'<button type="button" class="ir-pdf ir-main" data-u="'+esc(x.pdf_kr_site)+'" data-t="'+esc(x.name+' '+(x.q||'')+(x.pdf_kr?' 번역본':' 원문'))+'">'+(x.pdf_kr?'📄 번역본':'📄 원문(한글)')+'</button>':x.pdf_kr?lk(x.pdf_kr,'📄 번역본','ir-main'):lk(x.pdf_orig,'📄 원문(한글)','ir-main'))+(x.pdf_kr?lk(x.pdf_orig,'원문'):'')+lk(x.pdf_slides,'슬라이드')+lk(x.src,'IR ↗')+'</div>'+txt(x.body)+'<div class="ir-foot"><button type="button" class="ir-up">접기 ▴</button><span>'+(x.by?'정리 · '+esc(x.by):'')+'</span></div></div>';
- var row=c.querySelector('.ir-row');function tog(){var on=c.classList.toggle('on');row.setAttribute('aria-expanded',on)}
- row.onclick=tog;var pb=c.querySelector('.ir-pdf');if(pb)pb.onclick=function(){view(pb.dataset.u,pb.dataset.t)};c.querySelector('.ir-up').onclick=function(){tog();var y=c.getBoundingClientRect().top+scrollY-80;if(c.getBoundingClientRect().top<0)scrollTo(0,y)};return c}
+ '<div class="ir-body"></div>';
+ // 가볍게(사용자 2026-11-04): 본문(정리 글·링크)은 처음 펼칠 때 만듦 — 열 때 서재 카드 수십 권 본문을 다 만들던 것(실적 결과 화면 조각의 절반 이상)
+ function fill(){if(c.__b)return;c.__b=1;c.querySelector('.ir-body').outerHTML='<div class="ir-body"><div class="ir-top">'+(x.pdf_kr_site?'<button type="button" class="ir-pdf ir-main" data-u="'+esc(x.pdf_kr_site)+'" data-t="'+esc(x.name+' '+(x.q||'')+(x.pdf_kr?' 번역본':' 원문'))+'">'+(x.pdf_kr?'📄 번역본':'📄 원문(한글)')+'</button>':x.pdf_kr?lk(x.pdf_kr,'📄 번역본','ir-main'):lk(x.pdf_orig,'📄 원문(한글)','ir-main'))+(x.pdf_kr?lk(x.pdf_orig,'원문'):'')+lk(x.pdf_slides,'슬라이드')+lk(x.src,'IR ↗')+'</div>'+txt(x.body)+'<div class="ir-foot"><button type="button" class="ir-up">접기 ▴</button><span>'+(x.by?'정리 · '+esc(x.by):'')+'</span></div></div>';var pb=c.querySelector('.ir-pdf');if(pb)pb.onclick=function(){view(pb.dataset.u,pb.dataset.t)};c.querySelector('.ir-up').onclick=function(){tog();var y=c.getBoundingClientRect().top+scrollY-80;if(c.getBoundingClientRect().top<0)scrollTo(0,y)}}
+
+ var row=c.querySelector('.ir-row');function tog(){fill();var on=c.classList.toggle('on');row.setAttribute('aria-expanded',on)}
+ row.onclick=tog;c.__fill=fill;return c}
 
 // PDF 보기 화면(사용자 2026-10-30): 사이트 안 번역본을 페이지 안에서 열고, 맨 위 '← 돌아가기'(휴대폰 뒤로가기로도 닫힘)
 var PJ=null;function pdfjs(cb){if(window.pdfjsLib)return cb(window.pdfjsLib);if(PJ)return PJ.push(cb);PJ=[cb];var sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';

@@ -850,6 +850,9 @@ def tidy_easy(s, name):
         s = s.replace('requestAnimationFrame(()=>drawCD(cv,cd))', '(window.__lazyCD||requestAnimationFrame)(()=>drawCD(cv,cd),cv)')
         if 'window.__lazyCD=' not in s:
             s = re.sub(r'(<script[^>]*>)', lambda m: '<script data-lazycd>window.__lazyCD=function(f,el){if(!el||!window.IntersectionObserver)return requestAnimationFrame(f);var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){o.disconnect();requestAnimationFrame(f)}})},{rootMargin:"600px 0px"});o.observe(el)};</script>' + m.group(1), s, count=1)
+    if name == 'p-targets.html':  # 가볍게(사용자 2026-11-04): '목표가 vs 현재가' 78줄·'평균 목표가 추세' 표 78줄(작은 추세선 포함)도 화면 가까이 올 때 그림
+        s = s.replace("    drawVs();\n    fillTake();", "    (window.__lazyRun||((k,f)=>f()))('vs',drawVs,document.getElementById('vsprice'));\n    fillTake();", 1)
+        s = s.replace("    drawTrend();\n    drawPicker();", "    (window.__lazyRun||((k,f)=>f()))('trend',drawTrend,document.getElementById('trend-card'));\n    drawPicker();", 1)
     if name == 'p-targets.html':  # 속도(2026-11-03): 아래쪽 차트(종목 선 그래프·월별·업종 열지도·업종 표)는 화면 가까이 올 때 그림
         for a, b in [("    drawHeat();\n    drawCat();", "    (window.__lazyRun||((k,f)=>f()))('heat',drawHeat,document.getElementById('heat-card'));\n    (window.__lazyRun||((k,f)=>f()))('cat',drawCat,document.getElementById('cat-card'));"),
                      ("    drawPicker();\n    redrawTk();\n  });", "    drawPicker();\n    (window.__lazyRun||((k,f)=>f()))('tk',redrawTk,document.getElementById('lines-card'));\n  });")]:
