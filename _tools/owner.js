@@ -63,11 +63,11 @@ function inbox(pin,t){var C=crypto.subtle;return Promise.all([fetch('d/notice_in
 // ── 주인장만 울리는 알림(사용자 2026-11-03): 비번이 맞은 기기의 알림 구독에 '주인장' 표시(mm_owner=1)를 붙임
 //    주인장 칸에 새 글이 올라오면 owner_push.yml이 이 표시가 있는 기기에만 보냄(지인 폰은 안 울림)
 function ownTag(){try{localStorage.setItem('mm-owner','1')}catch(e){}var n=0;ownNote('🔔 주인장 알림 확인 중…',0);(function w(){var O=window.OneSignal;
- try{if(O&&O.User&&O.User.PushSubscription&&O.User.PushSubscription.id&&O.User.PushSubscription.optedIn!==false){O.User.addTag('mm_owner','1');ownNote('🔔 이 기기는 주인장 알림을 받습니다',1);return}}catch(e){}
+ try{if(O&&O.User&&O.User.PushSubscription&&O.User.PushSubscription.id&&O.User.PushSubscription.optedIn!==false){O.User.addTag('mm_owner','1');var d=new Date();ownNote('🔔 이 기기는 주인장 알림을 받습니다 · '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)+' 확인',1);return}}catch(e){}
  if(++n<16)setTimeout(w,500);else ownNote('🔕 주인장 알림 켜기 — 눌러 주세요',2)})()}
 function ownNote(t,st){var b=document.querySelector('.mm-own-body');if(!b)return;var e=b.querySelector('.own-tagnote');
  if(!e){e=document.createElement('button');e.type='button';e.className='own-tagnote';b.insertBefore(e,b.firstChild);
-  e.onclick=function(){if(e.dataset.st==='1'){ownTag();return}if(e.dataset.st==='0')return;
+  e.onclick=function(){if(e.dataset.st==='1'){try{navigator.vibrate&&navigator.vibrate(8)}catch(_){}ownTag();return}if(e.dataset.st==='0')return;
    if(!window.mmPushSub){ownNote('홈 화면에 추가한 멍터 앱에서 열어야 알림을 켤 수 있습니다',3);return}
    ownNote('🔔 알림 허용 창을 띄웁니다…',0);window.mmPushSub(function(ok){if(ok==='cant'){ownNote('아이폰은 홈 화면에 추가한 멍터 앱에서만 알림이 됩니다 — 앱으로 열어 주세요',3);return}if(ok===false){ownNote('🔕 알림이 허용되지 않았습니다 — 설정 › 알림에서 멍터를 켠 뒤 다시 눌러 주세요',2);return}setTimeout(ownTag,800)})}}
  e.textContent=t;e.dataset.st=String(st==null?1:st);e.classList.toggle('on',st===1);e.classList.toggle('off',st===2||st===3)}
