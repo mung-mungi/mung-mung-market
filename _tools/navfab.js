@@ -130,3 +130,14 @@ function paint(nw,un){
   var pc=document.querySelector('.mm-push:not(.bot)');if(pc&&pc.nextElementSibling!==box)pc=null;box.parentElement.insertBefore(a,pc||box);
 }
 }catch(e){}})();
+
+// 아이폰 키보드 닫은 뒤 아래 메뉴가 화면 가운데 떠 있던 것(사용자 2026-11-04, iOS 26 버그: 키보드를 닫아도 화면 높이를 '키보드 떠 있던 높이'로 기억)
+// ① 키보드가 닫히면 페이지를 1px 움직였다 되돌려 다시 재게 함 ② 그래도 남는 차이(화면 높이 − 보이는 높이)가 있으면 아래 메뉴·이전홈·소리·손잡이를 그만큼 내려 붙임
+(function(){try{var V=window.visualViewport;if(!V)return;var cur=0,q=0;
+function ed(){var a=document.activeElement;return !!(a&&(a.isContentEditable||/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)))}
+function put(g){if(g===cur)return;cur=g;['.mmd','#mm-fab','#mm-snd'].forEach(function(s){var e=document.querySelector(s);if(e){if(g)e.style.setProperty('translate','0 '+g+'px');else e.style.removeProperty('translate')}})}
+function fix(){q=0;if(ed())return put(0);var g=Math.round(innerHeight-V.height-V.offsetTop);put(g>40&&g<innerHeight*.7?g:0)}
+function sch(){if(!q){q=1;requestAnimationFrame(fix)}}
+V.addEventListener('resize',sch);V.addEventListener('scroll',sch);addEventListener('scroll',sch,{passive:true});addEventListener('pageshow',sch);
+document.addEventListener('focusout',function(){setTimeout(function(){if(ed())return;var y=scrollY;scrollTo(scrollX,y+1);requestAnimationFrame(function(){scrollTo(scrollX,y);sch()})},120);setTimeout(sch,600)},true);
+}catch(e){}})();

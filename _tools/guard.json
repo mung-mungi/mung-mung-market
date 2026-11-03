@@ -78,7 +78,8 @@
   "wx",
   "EZ=",
   "<b>메뉴</b>",
-  "function setH("
+  "function setH(",
+  "innerHeight-V.height"
  ],
  "_tools/navfab.css": [
   "mm-swiping",
