@@ -1,0 +1,99 @@
+{
+  "req": "미국 중간선거(11/3) 전후·이번 주 AI 반도체 실적 앞두고 최근 48시간 시장 관련 반응 큰 X 게시물 최대 6개(영향력 있는 계정, 루머·익명·밈 제외)",
+  "at": "2026-11-03T19:51:57+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The White House",
+      "handle": "@WhiteHouse",
+      "role": "미국 백악관 공식 계정 (트럼프 대통령 발언 인용)",
+      "time_et": "2026-11-02 15:52",
+      "text": "\"Oil Prices are DROPPING LIKE A ROCK, down almost $10 a Barrel, A RECORD...\" - President Donald J. Trump https://t.co/AGRRnhQJB6",
+      "ko": "트럼프 \"유가가 배럴당 거의 10달러, 사상 최대폭 폭락 중\" 발언을 백악관이 인용 게시",
+      "url": "https://x.com/WhiteHouse/status/2117359293024416144",
+      "media": [
+        "https://pbs.twimg.com/media/HWJfC4lXUAAyO_c.png"
+      ],
+      "media_note": "트럼프 Truth Social 글 캡처(567×362): \"…because people feel that there will not be a War with Iran. Iran wants a settlement, as soon as possible. It could happen!\"",
+      "views": 1053842,
+      "likes": 14878
+    },
+    {
+      "author": "Bill Ackman",
+      "handle": "@BillAckman",
+      "role": "퍼싱스퀘어(Pershing Square) CEO",
+      "time_et": "2026-11-02 16:57",
+      "text": "We just released the Pershing Square Inc. third quarter letter which includes an update on the business, a detailed portfolio review including an update on F2, some thoughts on AI and the hyperscalers, and our perspectives on recent developments in the capital markets. It can be found here:\n\nhttps://t.co/YSNzGReqQA",
+      "ko": "퍼싱스퀘어 3분기 주주서한 공개, AI·하이퍼스케일러 견해와 최근 자본시장 평가 포함",
+      "url": "https://x.com/BillAckman/status/2117375476033593592",
+      "media": [],
+      "media_note": "이미지 없음, 서한 PDF 링크(https://pershingsquareinc.com/wp-content/uploads/2026/11/Q3-26-PS-Inc-Letter-to-Shareholders.pdf)",
+      "views": 462783,
+      "likes": 2618
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "글로벌 자본시장 분석 뉴스레터 공식 계정",
+      "time_et": "2026-11-01 08:30",
+      "text": "Key Events This Week:\n\n1. October ISM Manufacturing PMI data - Monday\n\n2. Apple, $AAPL, and Palantir, $PLTR, Report Earnings - Monday\n\n3. US Midterm Elections - Tuesday\n\n4. September JOLTS Job Openings data - Tuesday\n\n5. AMD, $AMD, and SMCI, $SMCI, Report Earnings - Tuesday\n\n6. October ADP Nonfarm Employment Change - Wednesday\n\n7. October ISM Non-Manufacturing PMI data - Wednesday\n\n8. October Jobs Report - Friday\n\n9. November MI Inflation Expectations and Consumer Sentiment data - Friday\n\n10. ~20% of S&P 500 Companies Report Earnings This Week\n\n11. Total of 5 Fed Speaker Events This Week\n\nBuckle up for a huge week ahead.",
+      "ko": "이번 주 일정: 중간선거(화), AMD·SMCI 실적(화), 10월 고용보고서(금), 연준 인사 발언 5회",
+      "url": "https://x.com/KobeissiLetter/status/2116885664780231025",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 318601,
+      "likes": 2212
+    },
+    {
+      "author": "Jim Cramer",
+      "handle": "@jimcramer",
+      "role": "CNBC 'Mad Money' 진행자, CNBC Investing Club 운영",
+      "time_et": "2026-11-02 18:28",
+      "text": "The negativity when it comes to Marvell, Apple, Palantir is pretty thick...  No matter what they say, it isn't enough...",
+      "ko": "마벨·애플·팔란티어에 대한 시장 비관이 너무 짙어 무엇을 발표해도 부족하다는 반응이라고 지적",
+      "url": "https://x.com/jimcramer/status/2117398593531486423",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 164668,
+      "likes": 1103
+    },
+    {
+      "author": "Mohamed A. El-Erian",
+      "handle": "@elerianm",
+      "role": "와튼스쿨 교수, 알리안츠 고문, 전 핌코 CEO",
+      "time_et": "2026-11-02 16:42",
+      "text": "I don't know about you, but I find it notable that the yield on 10-year US Treasuries barely moved lower on the day, closing at 4.91%, notwithstanding an 8% drop in oil prices and an intraday turnaround that saw the Nasdaq lose steam and close down 1.1%.\n#economy #markets #bonds https://t.co/v7lrTWbejy",
+      "ko": "유가 8% 급락·나스닥 1.1% 하락에도 미 10년물 금리가 4.91%로 거의 안 내려간 점이 눈에 띈다고 지적",
+      "url": "https://x.com/elerianm/status/2117371797674885139",
+      "media": [
+        "https://pbs.twimg.com/media/HWJqSlVWMAESGFr.jpg"
+      ],
+      "media_note": "미 10년물 국채금리 당일(1D) 차트 캡처(986×592), 4.912% -0.017",
+      "views": 72098,
+      "likes": 658
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스슈왑 수석 투자전략가",
+      "time_et": "2026-11-02 19:01",
+      "text": "NASDAQ 100 fell 1.4% today and entered correction territory, down over 10% from its October 6 peak [Past performance is no guarantee of future results] https://t.co/zNx4MovovI",
+      "ko": "나스닥100이 하루 1.4% 하락, 10/6 고점 대비 10% 넘게 빠지며 조정 국면 진입",
+      "url": "https://x.com/LizAnnSonders/status/2117406882948436170",
+      "media": [
+        "https://pbs.twimg.com/media/HWKKVooWwAE4oRC.jpg"
+      ],
+      "media_note": "블룸버그 터미널 차트(1015×577): 나스닥100 지수(27,989.82)와 고점 대비 낙폭(-10.36%)",
+      "views": 20726,
+      "likes": 190
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": [
+      "이란과의 합의 가능성 언급으로 유가가 하루 만에 급락, 인플레이션·연준 금리 인상 기대·중간선거 구도에 직결되는 핵심 변수.",
+      "다만 4번(엘에리언)처럼 10년물 금리가 따라 내려오지 않아 AI 반도체주 밸류에이션 부담은 여전."
+    ]
+  },
+  "metrics_at": "2026-11-03T19:51:57+09:00"
+}
