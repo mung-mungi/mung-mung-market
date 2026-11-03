@@ -35,3 +35,12 @@ html body .evg-ln b{color:#7a5200}
 html body .evg-sub{margin:9px 0 2px;font-size:13px;line-height:1.5;color:#5f5a50;font-weight:700}
 html body .evg-dot.last.old{fill:#fff;stroke:#c08a00}
 html body .evg-x{white-space:nowrap;flex:none}
+/* 넓은 화면(두 칸)에서 '상자 안에서 내려 보면' 안내 줄이 칸 하나를 차지해 다음 주 카드가 밀리던 것 → 안내 줄은 맨 아래 한 줄로 */
+@media (min-width:46rem){html body #weeks>.u-hint{grid-column:1/-1;order:9;margin:2px 0 0}}
+/* 아직 안 나온 발표의 예상치 — 다른 색(파랑) + '예상치' (2026-11-04) */
+html body .mc-ev .evc{color:#2c5aa0;background:#eaf1fb;border-radius:6px;padding:1px 6px;font-weight:700}
+html body .mc-ev .evc b{color:#1f4a8a}
+html body #calbody td.evc{color:#2c5aa0;background:#eaf1fb!important;font-weight:700}
+html body #calbody td.evc::before{content:'예상치 ';font-size:11px;font-weight:700;color:#5b7fb8}
+html body .evg-v.evc{color:#1f4a8a}
+html body .evg-pill:not(.done){color:#2c5aa0;background:#f2f6fd;border-color:#bfd0ec;box-shadow:0 2px 0 #d3dff2}

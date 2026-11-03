@@ -831,6 +831,10 @@ window.__lzHollow=function(){try{if(!mo)mo=new MO(function(ms){ms.forEach(functi
 def tidy_easy(s, name):
     if name == 'p-econ.html':  # 알림 바로가기(evgo.js)가 이번 주 카드의 발표 줄을 찾게 줄마다 발표 id
         s = s.replace("const li=el('div','mc-ev'+(r.stars===3?' p3':''));\n", "const li=el('div','mc-ev'+(r.stars===3?' p3':''));li.dataset.key=r.id;\n", 1)
+        # 아직 안 나온 발표의 예상치는 다른 색 + '예상치'라고(사용자 2026-11-04) — 이번 주 카드·전체 일정표
+        s = s.replace("ex.appendChild(document.createTextNode('예상 '));ex.appendChild(mk(el('span',null,fv(r.consensus,r.unit)),'calendar','consensus','id='+enc(r.id)));",
+                      "if(r.actual==null&&r.consensus!=null){const cb=el('span','evc');cb.appendChild(document.createTextNode('예상치 '));cb.appendChild(mk(el('b',null,fv(r.consensus,r.unit)),'calendar','consensus','id='+enc(r.id)));ex.appendChild(cb)}else{ex.appendChild(document.createTextNode('예상 '));ex.appendChild(mk(el('span',null,fv(r.consensus,r.unit)),'calendar','consensus','id='+enc(r.id)))}", 1)
+        s = s.replace("num('consensus');num('previous');", "{const cc=num('consensus');if(r.actual==null&&r.consensus!=null)cc.classList.add('evc')}num('previous');", 1)
     if name == 'p-earn.html':
         s = s.replace('drawViz();linkTickers();initFind(open);', 'linkTickers();initFind(open);(window.__lzHollow||Object)();drawViz();', 1)
         s = re.sub(r'<script data-earnlz>.*?</script>', '', s, flags=re.S)
