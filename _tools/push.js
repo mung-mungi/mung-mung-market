@@ -5,7 +5,7 @@
 function clrBadge(){try{if(document.visibilityState!=='visible')return;navigator.clearAppBadge&&navigator.clearAppBadge().catch(function(){});window.caches&&caches.delete('mm-badge').catch(function(){})}catch(e){}}
 clrBadge();document.addEventListener('visibilitychange',clrBadge);
 // 선거 개표판 불러오기(사용자 2026-11-04, 11/6까지)
-try{if(Date.now()<Date.parse('2026-11-06T12:00:00+09:00')&&/(\/(index\.html)?|p-neo\.html)$/.test(location.pathname)){var _el=document.createElement('script');_el.src='_tools/elect.js?v='+Math.floor(Date.now()/600000);_el.defer=true;document.head.appendChild(_el)}}catch(_){}
+try{if(Date.now()<Date.parse('2026-11-06T12:00:00+09:00')&&/(\/(index\.html)?|p-neo\.html)$/.test(location.pathname)){var _el=document.createElement('script');_el.src='_tools/elect.js?v='+Math.floor(Date.now()/60000);_el.defer=true;document.head.appendChild(_el)}}catch(_){}
 if(!/\/(index\.html)?$/.test(location.pathname))return;
 var APP='b81f8268-5aef-4a29-b2b8-2173248136a3',ua=navigator.userAgent;
 var iOS=/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1);
