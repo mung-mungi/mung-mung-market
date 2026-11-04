@@ -1,984 +1,995 @@
 {
-"e48": {
-"updated": "11.03 07:45",
-"lead": "이란이 해협 재개 시간을 7일에서 2일로 줄였지만 결론은 나지 않았습니다. 트럼프가 선거 후 공습을 고려하느냐는 질문에 \"아니다\"라고 답하면서 공습 압박은 줄었고, 공은 미국의 답변으로 넘어가 있습니다.",
-"blocks": [
-{
-"k": "어떻게 여기까지 왔나",
-"type": "steps",
-"items": [
-[
-"9.25",
-"아락치, 유엔에서 '7일 안에 해협 재개' 로드맵 제시"
-],
-[
-"9.26",
-"트럼프, 7일안 거절(월스트리트저널 보도)"
-],
-[
-"10.8",
-"트럼프, '중간선거 전 이란 공습은 없다'고 약속"
-],
-[
-"10.26",
-"혁명수비대, 해협 '공식 폐쇄' 선언"
-],
-[
-"10.31",
-"이란·카타르 12시간 넘는 회담 — 카타르는 5일, 결론은 2일"
-],
-[
-"11.1",
-"아락치, '2일 안' 공식 확인. 미국 답변은 아직 없음"
-],
-[
-"11.1",
-"트럼프 '핵시설 한두 곳 남았다', 카타르 LNG선 피격 — 협상과 압박이 함께 진행"
-],
-[
-"11.1",
-"미 국무부 \"협상의 손 내밀었다, 다른 길도 준비\" — 이란은 영국 해·공군을 테러 조직 지정"
-],
-[
-"11.1",
-"트럼프, 네타냐후의 선거 직후 공습 요구에 \"외교에 시간 더\"(악시오스)"
-],
-[
-"11.1",
-"이란 협상단 도하 떠나 — 아락치 \"아직 결론 없다\", 중재국이 남은 쟁점 조율"
-],
-[
-"11.2",
-"브렌트유 6% 가까이 하락, 106달러대(로이터, 개장 전) — 서부텍사스유는 100달러 아래"
-],
-[
-"11.2",
-"바가이 '2일 실행 가능, 모든 건 미국에 달렸다' — 가리바바디 외무차관, 합의 초안 위해 도하행"
-],
-[
-"11.2",
-"라몬 공항 미 급유기 25대 위성 포착 보도(미·이스라엘 미확인)"
-],
-[
-"11.2",
-"바가이 \"공은 미국 코트에\" — 봉쇄가 끝나야 해협 재개, 미국 답변은 아직 없음"
-],
-[
-"11.2",
-"사우디 라스알카프지 앞바다 유조선 피격"
-],
-[
-"11.1",
-"트럼프 유세서 \"언젠가 망치를 내려야\" — 공습 카드 유지"
-],
-[
-"11.2",
-"로이터 \"도하 협상 돌파구 없이 종료, 초안 회람\" — 이란 소식통은 합의보다 공격 가능성 높게 봄"
-],
-[
-"11.2",
-"유가 7.6% 급락 마감 — 브렌트 104.77달러, 서부텍사스유 96.46달러"
-],
-[
-"11.2",
-"이르나 \"모즈타바 하메네이, 정부에 협상 가속 권한\" — 밴스 \"타결 전망 꽤 좋다\""
-],
-[
-"11.2",
-"트럼프, 선거 후 공습 고려하느냐에 \"아니다\" — 합의 \"이뤄질 수 있다\"(로이터)"
-]
-]
-},
-{
-"k": "조건 6개, 어디까지 왔나",
-"type": "conds",
-"note": "보도를 바탕으로 한 우리 판단이며 미국은 아무것도 확인하지 않았습니다.",
-"items": [
-{
-"n": "제재 해제(7월 양해각서 붕괴 이후분)",
-"s": "진전",
-"t": "밴스 서한의 어조가 누그러졌다는 이란 측 평가. 돈 문제는 가장 빨리 풀릴 수 있는 쪽"
-},
-{
-"n": "석유 수출 면제 복원",
-"s": "진전",
-"t": "제재 해제와 한 묶음. 재무부 면허 형태로 나올 수 있음"
-},
-{
-"n": "동결 자금 해제(카타르 보관분 포함)",
-"s": "진전",
-"t": "요구액이 9월안(약 120억 달러)보다 커진 점은 변수"
-},
-{
-"n": "역내 미군 축소",
-"s": "미정",
-"t": "항모 회항 같은 '모양새'로 대응할 여지"
-},
-{
-"n": "레바논 공격 중단",
-"s": "미정",
-"t": "이스라엘 새 정부 구성이 늦어져(과반 미달) 약속할 주체가 애매"
-},
-{
-"n": "이란-오만 항로만 인정",
-"s": "쟁점",
-"t": "사실상 해협 통제권. 미국이 가장 받기 어려운 조건"
-}
-]
-},
-{
-"k": "누가 뭐라 했나",
-"type": "quotes",
-"items": [
-{
-"who": "아락치",
-"role": "이란 외무장관",
-"say": "카타르 중재로 7일안을 2일로 줄였다. 미국이 첫날 이행하면 둘째 날 통항 재개",
-"media": "인베스팅닷컴",
-"src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"
-},
-{
-"who": "레자에이",
-"role": "이란 안보 책임자",
-"say": "밴스 서한은 더 유화적이지만, 조건 충족 전에는 해협을 열지 않는다",
-"media": "인베스팅닷컴",
-"src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "협상은 잘 되고 있고 이란이 딜을 원한다. 우리는 서두르지 않는다",
-"media": "인베스팅닷컴",
-"src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"
-},
-{
-"who": "루비오",
-"role": "미국 국무장관",
-"say": "공습 재개는 결정되지 않았고 외교적 해결도 가능하다",
-"media": "인베스팅닷컴",
-"src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"
-},
-{
-"who": "모즈타바 하메네이",
-"role": "이란 최고지도자",
-"say": "공격받으면 지역 제한 없이 즉각 대응하도록 지휘관들에게 준비 지시",
-"media": "인베스팅닷컴",
-"src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "핵은 없앴다. 한두 곳이 남았는데 10분이면 처리할 수 있다. 협상은 잘 되지만 그들은 믿을 만하지 않다",
-"media": "CBS",
-"src": "https://www.cbsnews.com/live-updates/iran-war-us-trump-diplomacy-threat-resume-attacks/"
-},
-{
-"who": "도널드 블롬",
-"role": "미 국무부 근동 담당 차관보",
-"say": "협상의 손은 내밀어졌고 채널은 열려 있다. 다른 방향으로 갈 준비도 돼 있다. 이란이 지역과 세계 경제를 인질로 잡게 둘 수 없다",
-"media": "타임스오브이스라엘(AP)",
-"src": "https://www.timesofisrael.com/liveblog_entry/us-state-dept-official-says-hand-of-negotiation-extended-to-iran-but-all-options-on-table"
-},
-{
-"who": "아락치",
-"role": "이란 외무장관",
-"say": "2일안 협의는 실행 쪽으로 가고 있지만 아직 결론에 이르지 못했다",
-"media": "이란인터내셔널",
-"src": "https://www.iranintl.com/en/202611015366"
-},
-{
-"who": "니크자드",
-"role": "이란 의회 부의장",
-"say": "상대가 새로 내놓을 것이 없어 협상의 창은 닫혔다",
-"media": "이란인터내셔널",
-"src": "https://www.iranintl.com/en/202611015366"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "딜을 하거나 그냥 끝낼 것이다. 어느 쪽이든 곧 끝낸다",
-"media": "더내셔널(CBS 인용)",
-"src": "https://www.thenationalnews.com/business/2026/11/02/oil-prices-slide-more-than-3-as-trump-signals-more-time-for-iran-diplomacy/"
-},
-{
-"who": "바가이",
-"role": "이란 외무부 대변인",
-"say": "2일 안 실행 가능성은 이란의 선의를 보여 준다. 모든 것은 미국이 요구를 받아들이는지에 달렸다",
-"media": "유로뉴스",
-"src": "https://www.euronews.com/2026/11/02/iran-says-it-can-reopen-hormuz-in-two-days-if-us-meets-conditions"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "(이번 주 전쟁 복귀를 예상하느냐는 질문에) 그렇다 해도 말해 주겠나",
-"media": "유로뉴스",
-"src": "https://www.euronews.com/2026/11/02/oil-slides-on-hormuz-deal-hopes-but-trump-keeps-iran-strikes-on-the-table"
-},
-{
-"who": "바가이",
-"role": "이란 외무부 대변인",
-"say": "공은 미국 코트에 있다. 봉쇄가 끝나고 이란의 정당한 요구가 이행되기 전에는 해협을 열 수 없다",
-"media": "이란인터내셔널",
-"src": "https://www.iranintl.com/en/liveblog/202610312594"
-},
-{
-"who": "가르가시",
-"role": "UAE 대통령 외교 고문",
-"say": "외교적 돌파구를 바라지만 최악에도 대비하고 있다",
-"media": "RTE(AFP)",
-"src": "https://www.rte.ie/news/2026/1102/1597573-iran-strikes/"
-},
-{
-"who": "바가이",
-"role": "이란 외무부 대변인",
-"say": "대화는 계속되지만 문제가 복잡하다. 기준은 여전히 이제 2일로 압축된 이란의 7단계안이다",
-"media": "로이터",
-"src": "https://za.investing.com/news/commodities-news/iran-says-contacts-over-ending-war-continue-as-talks-end-with-no-breakthrough-4542835"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "선거 후 공습을 고려하느냐는 질문에 \"아니다\". 이란이 합의를 원하고, 합의가 이뤄질 수 있다",
-"media": "로이터",
-"src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
-},
-{
-"who": "밴스",
-"role": "미국 부통령",
-"say": "대통령과 나는 협상 타결 전망을 꽤 좋게 본다. 계속 노력하겠다",
-"media": "로이터",
-"src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
-},
-{
-"who": "아락치",
-"role": "이란 외무장관",
-"say": "조건을 받아들이면 해협이 열리고 협상이 재개된다. 아니면 지금 상황이 이어지고 이란은 굴복하지 않는다",
-"media": "알자지라",
-"src": "https://www.aljazeera.com/news/2026/11/2/iran-pushing-accelerated-plan-for-ceasefire-talks-with-us"
-}
-]
-},
-{
-"k": "시장과 어떻게 이어지나",
-"type": "text",
-"text": "브렌트유는 2일 7.63% 내린 104.77달러에 마쳤습니다. 공습 우려가 줄어든 만큼 위험 프리미엄이 먼저 빠진 것으로 우리는 판단합니다. 해협이 실제로 열리면 물가와 금리 부담도 함께 줄지만, 기대만으로 내린 몫은 공습 소식 한 번에 되돌아갈 수 있습니다. 10월 하락의 주범은 이란보다 AI 투자 대비 수익성 질문이었으므로, 딜이 나와도 반등은 지수 전체보다 유가·금리에 민감한 쪽의 순환에 가까울 수 있습니다. 골드만삭스는 10월 상승분 대부분을 배럴당 약 27달러의 위험 프리미엄으로 보면서도 12월 브렌트 평균 전망을 105달러로 올렸습니다."
-},
-{
-"k": "시나리오",
-"type": "scen",
-"items": [
-{
-"h": "딜 먼저",
-"c": "up",
-"t": "미국 답변 → 재무부 면허(제재 유예) → 해협 통항 재개. 유가·금리 부담이 풀리고, 트럼프는 선거 직전 '전쟁을 끝내는 대통령' 그림을 얻습니다. 이란이 나중에 발을 빼도 공습 카드는 남습니다."
-},
-{
-"h": "공습 먼저",
-"c": "dn",
-"t": "트럼프가 선거 후 공습 고려를 부인해 가까운 시일의 가능성은 줄었습니다. 그래도 그는 \"어떻게든 뭔가 하겠다\"고 했고 네타냐후는 공습을 요구하고 있어, 협상이 멈추면 유가 재급등과 금리 부담이 다시 커질 수 있습니다."
-}
-],
-"con": "반대 시각 — 이란은 9월 7일안 때도 기대만 키우고 무산됐습니다. '조건 충족 전엔 열지 않는다'는 말을 보면 딜 기대가 앞서갈 수 있습니다."
-},
-{
-"k": "다음 볼 것",
-"type": "list",
-"items": [
-"미국의 공식 답변과 중재국의 남은 쟁점 조율 결과",
-"도하의 예비 합의 초안이 실제로 나오는지",
-"재무부 일반 면허(제재 유예)가 나오는지",
-"해협 실제 통항 수 — 10/18 하루 4척(전쟁 전 85척)"
-]
-}
-],
-"links": [
-{
-"media": "인베스팅닷컴",
-"t": "이란 48시간 해협 재개안",
-"u": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"
-},
-{
-"media": "하우스오브사우드",
-"t": "2일안과 11/3 유예 만료 일지",
-"u": "https://houseofsaud.com/araghchi-2-day-hormuz-plan-trump-moratorium/"
-},
-{
-"media": "타임스오브이스라엘",
-"t": "걸프에 11/4 공습 가능 경고",
-"u": "https://www.timesofisrael.com/liveblog_entry/report-us-warns-gulf-allies-of-possible-iran-strikes-as-early-as-november-4/"
-},
-{
-"media": "하우스오브사우드",
-"t": "10/26 폐쇄 선언·통항 수",
-"u": "https://houseofsaud.com/iran-hormuz-ceasefire-conditions-oct28/"
-},
-{
-"media": "타임스오브이스라엘(AP)",
-"t": "미 국무부 \"협상의 손 내밀었다\"",
-"u": "https://www.timesofisrael.com/liveblog_entry/us-state-dept-official-says-hand-of-negotiation-extended-to-iran-but-all-options-on-table"
-},
-{
-"media": "인베스팅닷컴",
-"t": "트럼프 외교 우선 보도와 유가 하락",
-"u": "https://www.investing.com/news/commodities-news/oil-falls-as-trump-favours-iran-diplomacy-before-midterm-elections-4989799"
-},
-{
-"media": "유로뉴스",
-"t": "이란 2일안과 조건, 도하 초안 작업",
-"u": "https://www.euronews.com/2026/11/02/iran-says-it-can-reopen-hormuz-in-two-days-if-us-meets-conditions"
-},
-{
-"media": "걸프뉴스",
-"t": "라몬 급유기·라스알카프지 유조선 피격",
-"u": "https://gulfnews.com/uae/us-israel-iran-war-what-uae-residents-need-to-know-today-nov-2-2026-1.500732326"
-},
-{
-"media": "오일프라이스",
-"t": "골드만 브렌트 전망 105달러",
-"u": "https://oilprice.com/Latest-Energy-News/World-News/Goldman-Sachs-Raises-Brent-Oil-Price-Forecast-to-105.html"
-},
-{
-"media": "로이터",
-"t": "트럼프, 공습 재개에 의문 제기",
-"u": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
-}
-]
-},
-"e107": {
-"updated": "11.03 09:50",
-"lead": "트럼프가 선거 후 이란 공습을 고려하느냐는 질문에 \"아니다\"라고 답했습니다. 공습 유예 종료를 앞둔 긴장은 줄었지만 공식 철회나 합의는 아닙니다.",
-"blocks": [
-{
-"k": "어떻게 여기까지 왔나",
-"type": "steps",
-"items": [
-[
-"10.8",
-"트럼프, \"중간선거 전 이란 공습은 없다\"고 약속"
-],
-[
-"10.31",
-"미국이 걸프 동맹에 \"11/4부터 공습 가능\" 경고, 트럼프는 네타냐후와 재개 논의"
-],
-[
-"11.1",
-"트럼프, 네타냐후의 선거 직후 공습 요구에 \"외교에 시간 더\"(악시오스)"
-],
-[
-"11.1",
-"트럼프 유세서 \"언젠가 망치를\""
-],
-[
-"11.2",
-"악시오스 인터뷰 \"어떻게든 뭔가 하겠지만 서두를 것 없다\""
-],
-[
-"11.2",
-"리플렉팅풀 연설 뒤 선거 후 공습 고려 질문에 \"아니다\"(로이터)"
-],
-[
-"11.2",
-"트루스소셜 \"이란은 가능한 한 빨리 합의를 원한다\", 카타르 중재단은 초안 들고 테헤란행"
-]
-]
-},
-{
-"k": "쟁점, 어디까지 왔나",
-"type": "conds",
-"note": "보도를 바탕으로 한 우리 판단이며 백악관의 공식 정책 발표는 아닙니다.",
-"items": [
-{
-"n": "선거 직후 공습",
-"s": "진전",
-"t": "트럼프가 고려를 부인. 공습 시점 압박이 줄어든 상태"
-},
-{
-"n": "네타냐후의 공습 요구",
-"s": "쟁점",
-"t": "공습 요구에 대한 이스라엘의 새 반응은 없음. 다만 전쟁 재개에 대비해 레바논에 헤즈볼라 지역 검문소를 요청했다는 보도(칸)"
-},
-{
-"n": "이란 조건 수용",
-"s": "미정",
-"t": "이란이 요구를 바꾸거나 미국이 수용했다는 징후는 없음(알자지라)"
-},
-{
-"n": "핵 문제",
-"s": "쟁점",
-"t": "트럼프는 이란의 핵무기 보유를 절대 허용하지 않겠다고 재확인"
-}
-]
-},
-{
-"k": "누가 뭐라 했나",
-"type": "quotes",
-"items": [
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "유가가 돌처럼 떨어지고 있다. 이란은 가능한 한 빨리 합의를 원한다. 이뤄질 수 있다",
-"media": "타임스오브이스라엘",
-"src": "https://www.timesofisrael.com/liveblog-november-03-2026/"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "선거 후 공습을 고려하느냐는 질문에 \"아니다\". 이란이 합의를 원하고, 합의가 이뤄질 수 있다",
-"media": "로이터",
-"src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "어떻게든 뭔가 하겠지만 서두를 것 없다. 그들을 재정적으로 무력화했다",
-"media": "미들이스트아이(악시오스 인용)",
-"src": "https://www.middleeasteye.net/news/trump-says-he-will-not-attack-iran-after-midterms"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "이란이 핵무기를 갖게 두지 않을 것이고, 그들도 그것을 알고 있다",
-"media": "로이터",
-"src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
-},
-{
-"who": "밴스",
-"role": "미국 부통령",
-"say": "대통령과 나는 협상 타결 전망을 꽤 좋게 본다. 계속 노력하겠다",
-"media": "로이터",
-"src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
-},
-{
-"who": "바가이",
-"role": "이란 외무부 대변인",
-"say": "어떤 공격이든 강력하고 즉각적이며 포괄적인 대응에 부딪힐 것이다",
-"media": "유로뉴스",
-"src": "https://www.euronews.com/2026/11/02/iran-says-it-can-reopen-hormuz-in-two-days-if-us-meets-conditions"
-}
-]
-},
-{
-"k": "시장과 어떻게 이어지나",
-"type": "text",
-"text": "브렌트유는 2일 7.63% 내린 104.77달러, 서부텍사스유는 7.36% 내린 96.46달러에 마쳤습니다. 공습 우려가 줄어든 몫이 유가에 먼저 반영된 것으로 우리는 판단합니다. 나스닥은 같은 날 1.07% 내려 유가 하락이 곧 기술주 상승으로 이어지지는 않았습니다."
-},
-{
-"k": "시나리오",
-"type": "scen",
-"items": [
-{
-"h": "공습 보류 지속",
-"c": "up",
-"t": "협상이 이어지고 미국이 답변을 내놓으면 유가의 위험 프리미엄이 더 줄 수 있습니다. 물가와 금리 부담도 함께 덜 수 있습니다."
-},
-{
-"h": "발언 뒤집힘",
-"c": "dn",
-"t": "협상이 멈추거나 네타냐후의 요구가 먹히면 공습 카드는 다시 올라옵니다. 트럼프는 그동안 \"망치\"와 \"서두르지 않는다\"를 오갔습니다."
-}
-],
-"con": "반대 시각 — 한 단어 답변이라 정책 변경으로 보기 이릅니다. 트럼프는 같은 날 \"어떻게든 뭔가 하겠다\"고도 했고, 유가 하락이 앞서갔을 수 있습니다."
-},
-{
-"k": "다음 볼 것",
-"type": "list",
-"items": [
-"카타르 중재단의 테헤란 협의 결과",
-"선거 후 트럼프가 같은 말을 유지하는지",
-"이스라엘 측 반응",
-"미국의 2일안 공식 답변",
-"해협 실제 통항 수"
-]
-}
-],
-"links": [
-{
-"media": "로이터",
-"t": "트럼프, 공습 재개에 의문 제기",
-"u": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
-},
-{
-"media": "미들이스트아이",
-"t": "트럼프 \"선거 후 공격 안 한다\"",
-"u": "https://www.middleeasteye.net/news/trump-says-he-will-not-attack-iran-after-midterms"
-},
-{
-"media": "알자지라",
-"t": "이란, 휴전 협상 가속안 추진",
-"u": "https://www.aljazeera.com/news/2026/11/2/iran-pushing-accelerated-plan-for-ceasefire-talks-with-us"
-},
-{
-"media": "타임스오브이스라엘",
-"t": "11.3 라이브블로그 — 트럼프 게시글·이스라엘의 레바논 요청",
-"u": "https://www.timesofisrael.com/liveblog-november-03-2026/"
-}
-]
-},
-"e113": {
-"updated": "11.04 07:31",
-"lead": "트럼프가 3일 케슘섬 공습을 \"소규모 공격\"이라며 직접 인정했고, 뉴욕타임스는 이르면 수요일 공습 계획이 준비됐다고 보도했습니다. 이란 레자이는 미국 답변이 \"설득력 없다\"고 했고 다른 고위 당국자는 답변 시한이 없다고 밝혀 협상은 벌어진 채입니다.",
-"blocks": [
-{
-"k": "어떻게 여기까지 왔나",
-"type": "steps",
-"items": [
-[
-"10.8",
-"트럼프, \"중간선거 전 이란 공습은 없다\"고 약속"
-],
-[
-"10.31",
-"미국이 걸프 동맹에 \"11/4부터 공습 가능\" 경고, 트럼프는 네타냐후와 재개 논의"
-],
-[
-"11.1",
-"트럼프, 네타냐후의 선거 직후 공습 요구에 \"외교에 시간 더\"(악시오스)"
-],
-[
-"11.1",
-"트럼프 유세서 \"언젠가 망치를\""
-],
-[
-"11.2",
-"악시오스 인터뷰 \"어떻게든 뭔가 하겠지만 서두를 것 없다\""
-],
-[
-"11.2",
-"리플렉팅풀 연설 뒤 선거 후 공습 고려 질문에 \"아니다\"(로이터)"
-],
-[
-"11.2",
-"트루스소셜 \"이란은 가능한 한 빨리 합의를 원한다\", 카타르 중재단은 초안 들고 테헤란행"
-],
-[
-"11.2",
-"이르나, 케슘섬 폭발 보도. 월스트리트저널 \"미국의 비공개 제한 공습\""
-],
-[
-"11.2",
-"AP \"미 당국자, 지대공 미사일 쓴 이란 표적에 방어 공격\""
-],
-[
-"11.2",
-"폭스뉴스 인터뷰 \"합의 없으면 곡괭이산 칠 수도, 합의 가능성은 매우 크다\""
-],
-[
-"11.3",
-"이란 고위 당국자 \"합의까지 멀다\", 갈리바프 \"공은 워싱턴에\""
-],
-[
-"11.3",
-"혁명수비대 \"MQ-9 격추\" 주장, 오만 앞바다 인도 선적 선박 피격(선원 1명 사망)"
-],
-[
-"11.3",
-"갈리바프 \"오판하면 새 전장\", 함샤흐리 \"유럽의 미군 지원 기지까지 표적 검토\"(유로뉴스)"
-],
-[
-"11.3",
-"카타르 \"합의 가능성 아직 있다, 임시 합의 추진\", 로이터 \"중재국 새 제안, 36시간 내 답 기대\""
-],
-[
-"11.3",
-"알아라비알자디드 \"미국, 카타르 양해각서 초안 승인\", 원유 4달러 급락(뉴스퀵)"
-],
-[
-"11.3",
-"혁명수비대 \"무허가 항로 유조선 3척 기뢰에 폭발\" 주장(독립 확인 없음)"
-],
-[
-"11.3",
-"레자이 \"미국 답변 설득력 없다, 7개 조건 이행해야 해협 재개\""
-],
-[
-"11.3",
-"트럼프, 폭스뉴스서 공습 인정 \"소규모 공격, 전쟁 아냐\""
-],
-[
-"11.3",
-"압돌라히 5개 조건 제시, 이란 고위 당국자 \"답변 시한 없다\"(로이터)"
-],
-[
-"11.3",
-"뉴욕타임스 \"이르면 수요일 공습 계획\", 이스라엘의 화학무기 경고에 걸프는 회의적"
-],
-[
-"11.3",
-"오만 앞바다 유조선 기관실 피격(영국해사무역기구), 브렌트 103.60달러 마감(AP)"
-]
-]
-},
-{
-"k": "쟁점, 어디까지 왔나",
-"type": "conds",
-"note": "보도를 바탕으로 한 우리 판단이며 백악관의 공식 정책 발표는 아닙니다.",
-"items": [
-{
-"n": "중재국 새 제안",
-"s": "쟁점",
-"t": "알아라비알자디드는 미국이 초안을 승인했고 이란 핵 양보와 동결 자산 일부 해제를 맞바꾼다고 보도. 레자이는 미국 답변이 설득력 없다고 거부 신호. 양측 공식 확인 없음"
-},
-{
-"n": "답변 시한",
-"s": "쟁점",
-"t": "카타르는 36시간 안의 답을 기대했지만 이란 고위 당국자는 시한이 없다고 말함(로이터). 압돌라히는 해협 주권 인정 등 5개 조건을 제시"
-},
-{
-"n": "이란 7개 조건",
-"s": "쟁점",
-"t": "영구 종전, 봉쇄 해제, 미군 철수, 제재 해제, 배상, 이란이 정하는 해협 운항 체계 인정 등. 레자이는 이를 이행해야 해협을 다시 연다고 밝힘"
-},
-{
-"n": "선거 직후 공습",
-"s": "쟁점",
-"t": "트럼프는 고려를 부인했지만 그날 저녁 케슘섬 공습이 있었고, 뉴욕타임스는 이르면 수요일 공격 계획이 준비됐다고 보도. 승인 여부는 확인되지 않음"
-},
-{
-"n": "곡괭이산 표적",
-"s": "쟁점",
-"t": "트럼프가 \"합의 없으면\"이라는 조건을 달아 핵 시설 공격 가능성을 꺼냄. 실제 계획이 확인된 것은 아님"
-},
-{
-"n": "비공개 제한 공습",
-"s": "쟁점",
-"t": "트럼프가 3일 \"대공 시설을 때렸다\"고 직접 인정. 중부사령부 공식 발표는 확인되지 않음. 혁명수비대는 MQM-170 2대와 MQ-9 격추 주장(독립 확인 없음)"
-},
-{
-"n": "네타냐후의 공습 요구",
-"s": "쟁점",
-"t": "공습 요구에 대한 이스라엘의 새 반응은 없음. 다만 전쟁 재개에 대비해 레바논에 헤즈볼라 지역 검문소를 요청했다는 보도(칸). 트럼프가 3일 대이스라엘 군사지원 연말 중단을 말해 이스라엘 당국자들이 놀랐다는 보도도 나옴"
-},
-{
-"n": "이란 조건 수용",
-"s": "미정",
-"t": "이란 고위 당국자가 로이터에 미국의 \"과도한 요구\"는 받지 않겠다고 말함. 외무부는 농축우라늄 국외 반출을 배제"
-},
-{
-"n": "핵 문제",
-"s": "쟁점",
-"t": "트럼프는 이란의 핵무기 보유를 절대 허용하지 않겠다고 재확인"
-},
-{
-"n": "이란 보복 범위",
-"s": "쟁점",
-"t": "유로뉴스는 \"지리적 제한 없는 대응\" 결정 보도와 유럽 내 미군 지원 기지 표적 검토 보도를 전함. 실제 행동으로 확인된 것은 없음"
-}
-]
-},
-{
-"k": "누가 뭐라 했나",
-"type": "quotes",
-"items": [
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "그들이 대공 시설을 지었고, 완성되자마자 지난밤 때렸다. 소규모 공격이었고 전쟁은 아니었다",
-"media": "타임스오브이스라엘·파키스탄투데이",
-"src": "https://www.timesofisrael.com/israel-said-to-tell-skeptical-us-gulf-countries-that-iran-may-use-chemical-weapons/"
-},
-{
-"who": "이란 고위 당국자",
-"role": "익명, 로이터 인용",
-"say": "중재국을 통한 메시지 교환이나 답변 검토에 시한은 없다",
-"media": "뉴아랍(로이터)",
-"src": "https://www.newarab.com/news/talk-possible-us-iran-deal-americans-head-polls"
-},
-{
-"who": "페제시키안",
-"role": "이란 대통령",
-"say": "전쟁이 다시 불붙으면 누구에게도 이득이 없다",
-"media": "타임스오브이스라엘",
-"src": "https://www.timesofisrael.com/israel-said-to-tell-skeptical-us-gulf-countries-that-iran-may-use-chemical-weapons/"
-},
-{
-"who": "레자이",
-"role": "이란 최고안보회의 서기",
-"say": "이란의 권리와 요구에 대한 미국의 답변은 설득력이 없었다. 7개 조건에 답하고 이행해야만 호르무즈가 다시 열린다",
-"media": "타임스오브이스라엘",
-"src": "https://www.timesofisrael.com/liveblog_entry/top-iranian-official-us-response-to-truce-offer-not-convincing-hormuz-will-not-be-opened/"
-},
-{
-"who": "소식통",
-"role": "익명, 알아라비알자디드 인용",
-"say": "이란이 핵 문제 양보를 밝히고 미국은 동결 자산 일부 해제를 밝히는 방식이다",
-"media": "미들이스트모니터(아나돌루)",
-"src": "https://www.middleeastmonitor.com/20261103-us-approves-qatar-presented-draft-deal-with-iran-sources"
-},
-{
-"who": "안사리",
-"role": "카타르 외무부 대변인",
-"say": "합의가 이뤄질 가능성이 아직 있다고 희망한다. 임시 합의를 향해 일하고 있다",
-"media": "CBS(AFP)",
-"src": "https://www.cbsnews.com/live-updates/iran-war-us-trump-negotiations-midterms/"
-},
-{
-"who": "회담 브리핑 관계자",
-"role": "익명, 로이터 인용",
-"say": "중재국이 절차를 진전시킬 새 제안을 내놓았다",
-"media": "CBS(로이터)",
-"src": "https://www.cbsnews.com/live-updates/iran-war-us-trump-negotiations-midterms/"
-},
-{
-"who": "가리바바디",
-"role": "이란 외무차관",
-"say": "이란은 정당한 자위권을 갖고 있다",
-"media": "CBS(AFP, 이스나 인용)",
-"src": "https://www.cbsnews.com/live-updates/iran-war-us-trump-negotiations-midterms/"
-},
-{
-"who": "갈리바프",
-"role": "이란 의회 의장",
-"say": "전쟁을 막을 공은 미국 코트에 있다. 미국이 전략적 오판을 하면 전쟁의 새 전장이 열린다",
-"media": "유로뉴스",
-"src": "https://www.euronews.com/2026/11/03/iran-warns-of-new-battlefield-after-reported-us-strike-on-qeshm"
-},
-{
-"who": "안와르 가르가시",
-"role": "아랍에미리트 대통령 고문",
-"say": "입장 차가 좁혀지지 않으면 최악을 걱정해야 한다",
-"media": "타임스오브이스라엘",
-"src": "https://www.timesofisrael.com/us-carries-out-defensive-strikes-on-irans-qeshm-island-in-strait-of-hormuz/"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "곡괭이산을 쳐야 할 수도 있다. 1시간이면 된다. 합의가 안 되면 일어날 수 있지만, 합의할 가능성이 매우 크다",
-"media": "이란인터내셔널(폭스뉴스 인용)",
-"src": "https://www.iranintl.com/en/liveblog/202610312594"
-},
-{
-"who": "이란 고위 당국자",
-"role": "익명, 로이터 인용",
-"say": "양측은 합의와 거리가 멀고, 미국의 과도한 요구는 받지 않겠다",
-"media": "이란인터내셔널(로이터 인용)",
-"src": "https://www.iranintl.com/en/liveblog/202610312594"
-},
-{
-"who": "갈리바프",
-"role": "이란 의회 의장",
-"say": "방아쇠에 손가락을 건 것처럼 전투 준비가 돼 있다. 전쟁을 막을 공은 이제 워싱턴에 있다",
-"media": "이란인터내셔널",
-"src": "https://www.iranintl.com/en/liveblog/202610312594"
-},
-{
-"who": "미국 당국자",
-"role": "익명, AP 인용",
-"say": "호르무즈의 이란 표적에 방어 공격을 했다. 미군 자산에 지대공 미사일을 쓴 이란 측을 겨눴다",
-"media": "타임스오브이스라엘(AP)",
-"src": "https://www.timesofisrael.com/liveblog-november-03-2026/"
-},
-{
-"who": "팀 워터러",
-"role": "KCM트레이드 수석 시장분석가",
-"say": "외교 쪽을 반영하기 시작한 시장에 군사 활동이 계속된다는 점을 일깨워 위험 프리미엄이 일부 돌아왔다",
-"media": "비즈니스레코더(로이터)",
-"src": "https://www.brecorder.com/news/40447167/oil-rises-after-report-of-us-strike-on-irans-qeshm-island"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "전쟁을 했고 이겼다. 몇 달째 싸우지 않고 있어서 전쟁이라고 부를 수 있는지도 모르겠다",
-"media": "더내셔널",
-"src": "https://www.thenationalnews.com/news/us/2026/11/03/us-strike-qeshm-iran-hormuz/"
-},
-{
-"who": "미국 당국자",
-"role": "익명, 월스트리트저널 인용",
-"say": "소규모 공습은 몇 주째 진행됐다. 큰 전투 재개 의사로 읽히지 않게 조용히 했다",
-"media": "인베스팅라이브",
-"src": "https://investinglive.com/commodities/more-on-us-strikes-on-qeshm-officials-confirm-attack-as-trump-plays-down-war-risk/"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "유가가 돌처럼 떨어지고 있다. 이란은 가능한 한 빨리 합의를 원한다. 이뤄질 수 있다",
-"media": "타임스오브이스라엘",
-"src": "https://www.timesofisrael.com/liveblog-november-03-2026/"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "선거 후 공습을 고려하느냐는 질문에 \"아니다\". 이란이 합의를 원하고, 합의가 이뤄질 수 있다",
-"media": "로이터",
-"src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "어떻게든 뭔가 하겠지만 서두를 것 없다. 그들을 재정적으로 무력화했다",
-"media": "미들이스트아이(악시오스 인용)",
-"src": "https://www.middleeasteye.net/news/trump-says-he-will-not-attack-iran-after-midterms"
-},
-{
-"who": "트럼프",
-"role": "미국 대통령",
-"say": "이란이 핵무기를 갖게 두지 않을 것이고, 그들도 그것을 알고 있다",
-"media": "로이터",
-"src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
-},
-{
-"who": "밴스",
-"role": "미국 부통령",
-"say": "대통령과 나는 협상 타결 전망을 꽤 좋게 본다. 계속 노력하겠다",
-"media": "로이터",
-"src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
-},
-{
-"who": "바가이",
-"role": "이란 외무부 대변인",
-"say": "어떤 공격이든 강력하고 즉각적이며 포괄적인 대응에 부딪힐 것이다",
-"media": "유로뉴스",
-"src": "https://www.euronews.com/2026/11/02/iran-says-it-can-reopen-hormuz-in-two-days-if-us-meets-conditions"
-}
-]
-},
-{
-"k": "시장과 어떻게 이어지나",
-"type": "text",
-"text": "브렌트유는 2일 7.63% 내린 104.77달러에 마쳤고, 공습 보도 뒤 시간외에서는 뉴욕시각 20시 4분 0.5% 오른 105.25달러였습니다(로이터). 3일 뉴욕시각 3시 52분에는 2.03% 오른 107달러 가까이까지 갔습니다(더내셔널). 6시 10분에는 105.87달러로 상승 폭을 줄였습니다(코너스톤퓨처스). 뉴욕시각 8시 51분 초안 승인 보도 뒤 원유는 배럴당 4달러 급락했습니다(뉴스퀵). 브렌트는 오전에 잠시 101달러 아래로 내려갔다가 1.1% 내린 103.60달러에 마쳤습니다(AP). 나스닥은 2일 1.07% 내렸고 3일에는 0.83% 올랐습니다. 단일 소식통 보도에 유가가 크게 움직인 것은 시장이 합의 쪽에 기대를 걸고 있다는 뜻이라, 레자이 거부가 굳어지거나 수요일 공습 보도가 현실이 되면 되돌림 위험도 크다고 우리는 판단합니다."
-},
-{
-"k": "시나리오",
-"type": "scen",
-"items": [
-{
-"h": "낮은 수위 유지",
-"c": "up",
-"t": "제한 공습이 협상과 함께 가고 이란이 크게 맞대응하지 않으면 유가의 위험 프리미엄은 다시 줄 수 있습니다."
-},
-{
-"h": "맞대응 확전",
-"c": "dn",
-"t": "이란이 공습을 이유로 협상을 멈추거나 보복하면 공습 카드가 전면으로 돌아옵니다. 일부 아랍국의 보복 경고까지 겹치면 전선이 넓어집니다."
-}
-],
-"con": "반대 시각 — 트럼프는 이번 공격을 소규모라고 했고, 공습 계획 보도는 승인 확인이 아닙니다. 방어 조치라는 설명대로면 협상과 별개일 수 있고, 카타르는 중재를 이어 갑니다."
-},
-{
-"k": "다음 볼 것",
-"type": "list",
-"items": [
-"수요일 공습 계획 보도가 실제 행동으로 이어지는지, 백악관이 어떻게 답하는지",
-"이란이 시한 없이 답을 미루는지, 레자이 7개 조건이 최종 입장인지",
-"미국·이란이 초안 보도를 공식 확인하는지",
-"이란의 후속 대응과 오만만 선박 피격이 이어지는지",
-"갈리바프 경고가 실제 보복으로 이어지는지",
-"중간선거 결과가 트럼프의 공습 판단에 주는 영향",
-"곡괭이산 발언이 선거 뒤에도 이어지는지"
-]
-}
-],
-"links": [
-{
-"media": "타임스오브이스라엘",
-"t": "뉴욕타임스 공습 계획·화학무기 경고, 트럼프 공습 인정",
-"u": "https://www.timesofisrael.com/israel-said-to-tell-skeptical-us-gulf-countries-that-iran-may-use-chemical-weapons/"
-},
-{
-"media": "알자지라",
-"t": "압돌라히 5개 조건",
-"u": "https://www.aljazeera.com/news/2026/11/3/iran-commander-sets-out-five-conditions-for-regional-security"
-},
-{
-"media": "뉴아랍(로이터)",
-"t": "이란 \"답변 시한 없다\"",
-"u": "https://www.newarab.com/news/talk-possible-us-iran-deal-americans-head-polls"
-},
-{
-"media": "BNN블룸버그(AP)",
-"t": "3일 마감 시황·브렌트 종가",
-"u": "https://bnnbloomberg.ca/markets/dow-jones/2026/11/03/us-stocks-drift-in-mixed-early-trading-on-wall-street-as-apple-falls"
-},
-{
-"media": "타임스오브이스라엘",
-"t": "레자이 \"설득력 없다\"",
-"u": "https://www.timesofisrael.com/liveblog_entry/top-iranian-official-us-response-to-truce-offer-not-convincing-hormuz-will-not-be-opened/"
-},
-{
-"media": "미들이스트모니터(아나돌루)",
-"t": "미국 초안 승인 보도",
-"u": "https://www.middleeastmonitor.com/20261103-us-approves-qatar-presented-draft-deal-with-iran-sources"
-},
-{
-"media": "뉴스퀵",
-"t": "초안 보도 뒤 원유 급락",
-"u": "https://www.newsquawk.com/headlines/snap-analysis-crude-tumbles-following-source-reports-by-al-araby-al-jadeed-of-a-us-iran-draft-accord"
-},
-{
-"media": "CBS",
-"t": "카타르 36시간 답변 기대·임시 합의",
-"u": "https://www.cbsnews.com/live-updates/iran-war-us-trump-negotiations-midterms/"
-},
-{
-"media": "유로뉴스",
-"t": "갈리바프 \"새 전장\" 경고",
-"u": "https://www.euronews.com/2026/11/03/iran-warns-of-new-battlefield-after-reported-us-strike-on-qeshm"
-},
-{
-"media": "에이에스원(로이터)",
-"t": "이란 고위 당국자 \"합의는 아직 멀다\"",
-"u": "https://www.asiaone.com/world/iran-us-deal-still-out-reach-despite-heightened-diplomatic-efforts"
-},
-{
-"media": "CBS",
-"t": "오만 앞바다 선박 피격 라이브",
-"u": "https://cbsnews.com/live-updates/iran-war-us-trump-negotiations-midterms"
-},
-{
-"media": "이란인터내셔널",
-"t": "곡괭이산 발언·이란 반응 라이브",
-"u": "https://www.iranintl.com/en/liveblog/202610312594"
-},
-{
-"media": "익스프레스트리뷴(로이터·아나돌루)",
-"t": "드론 주장과 이란 반응",
-"u": "https://tribune.com.pk/story/2638408/us-strikes-irans-qeshm-island-as-irgc-claims-downing-of-two-more-us-mqm-170-drones"
-},
-{
-"media": "비즈니스레코더(로이터)",
-"t": "공습 보도 뒤 유가",
-"u": "https://www.brecorder.com/news/40447167/oil-rises-after-report-of-us-strike-on-irans-qeshm-island"
-},
-{
-"media": "더블유에이엔에이(악시오스·뉴스네이션 인용)",
-"t": "발사대·레이더 타격 설명",
-"u": "https://wanaen.com/us-confirms-strike-on-irans-qeshm-island/"
-},
-{
-"media": "더내셔널",
-"t": "미국 케슘섬 공습 보도",
-"u": "https://www.thenationalnews.com/news/us/2026/11/03/us-strike-qeshm-iran-hormuz/"
-},
-{
-"media": "타임스오브이스라엘(로이터)",
-"t": "호르무즈의 이란 섬 공습",
-"u": "https://www.timesofisrael.com/liveblog_entry/us-said-to-strike-iranian-island-in-strait-of-hormuz/"
-},
-{
-"media": "인베스팅라이브",
-"t": "당국자 설명 정리",
-"u": "https://investinglive.com/commodities/more-on-us-strikes-on-qeshm-officials-confirm-attack-as-trump-plays-down-war-risk/"
-},
-{
-"media": "인베스팅닷컴",
-"t": "공습 보도 뒤 유가",
-"u": "https://www.investing.com/news/commodities-news/oil-rises-after-reported-us-strike-on-irans-qeshm-island-4993349"
-},
-{
-"media": "이란인터내셔널",
-"t": "아랍국의 보복 경고",
-"u": "https://www.iranintl.com/en/202611020302"
-},
-{
-"media": "로이터",
-"t": "트럼프, 공습 재개에 의문 제기",
-"u": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
-},
-{
-"media": "미들이스트아이",
-"t": "트럼프 \"선거 후 공격 안 한다\"",
-"u": "https://www.middleeasteye.net/news/trump-says-he-will-not-attack-iran-after-midterms"
-}
-]
-}
+ "e48": {
+  "updated": "11.03 07:45",
+  "lead": "이란이 해협 재개 시간을 7일에서 2일로 줄였지만 결론은 나지 않았습니다. 트럼프가 선거 후 공습을 고려하느냐는 질문에 \"아니다\"라고 답하면서 공습 압박은 줄었고, 공은 미국의 답변으로 넘어가 있습니다.",
+  "blocks": [
+   {
+    "k": "어떻게 여기까지 왔나",
+    "type": "steps",
+    "items": [
+     [
+      "9.25",
+      "아락치, 유엔에서 '7일 안에 해협 재개' 로드맵 제시"
+     ],
+     [
+      "9.26",
+      "트럼프, 7일안 거절(월스트리트저널 보도)"
+     ],
+     [
+      "10.8",
+      "트럼프, '중간선거 전 이란 공습은 없다'고 약속"
+     ],
+     [
+      "10.26",
+      "혁명수비대, 해협 '공식 폐쇄' 선언"
+     ],
+     [
+      "10.31",
+      "이란·카타르 12시간 넘는 회담 — 카타르는 5일, 결론은 2일"
+     ],
+     [
+      "11.1",
+      "아락치, '2일 안' 공식 확인. 미국 답변은 아직 없음"
+     ],
+     [
+      "11.1",
+      "트럼프 '핵시설 한두 곳 남았다', 카타르 LNG선 피격 — 협상과 압박이 함께 진행"
+     ],
+     [
+      "11.1",
+      "미 국무부 \"협상의 손 내밀었다, 다른 길도 준비\" — 이란은 영국 해·공군을 테러 조직 지정"
+     ],
+     [
+      "11.1",
+      "트럼프, 네타냐후의 선거 직후 공습 요구에 \"외교에 시간 더\"(악시오스)"
+     ],
+     [
+      "11.1",
+      "이란 협상단 도하 떠나 — 아락치 \"아직 결론 없다\", 중재국이 남은 쟁점 조율"
+     ],
+     [
+      "11.2",
+      "브렌트유 6% 가까이 하락, 106달러대(로이터, 개장 전) — 서부텍사스유는 100달러 아래"
+     ],
+     [
+      "11.2",
+      "바가이 '2일 실행 가능, 모든 건 미국에 달렸다' — 가리바바디 외무차관, 합의 초안 위해 도하행"
+     ],
+     [
+      "11.2",
+      "라몬 공항 미 급유기 25대 위성 포착 보도(미·이스라엘 미확인)"
+     ],
+     [
+      "11.2",
+      "바가이 \"공은 미국 코트에\" — 봉쇄가 끝나야 해협 재개, 미국 답변은 아직 없음"
+     ],
+     [
+      "11.2",
+      "사우디 라스알카프지 앞바다 유조선 피격"
+     ],
+     [
+      "11.1",
+      "트럼프 유세서 \"언젠가 망치를 내려야\" — 공습 카드 유지"
+     ],
+     [
+      "11.2",
+      "로이터 \"도하 협상 돌파구 없이 종료, 초안 회람\" — 이란 소식통은 합의보다 공격 가능성 높게 봄"
+     ],
+     [
+      "11.2",
+      "유가 7.6% 급락 마감 — 브렌트 104.77달러, 서부텍사스유 96.46달러"
+     ],
+     [
+      "11.2",
+      "이르나 \"모즈타바 하메네이, 정부에 협상 가속 권한\" — 밴스 \"타결 전망 꽤 좋다\""
+     ],
+     [
+      "11.2",
+      "트럼프, 선거 후 공습 고려하느냐에 \"아니다\" — 합의 \"이뤄질 수 있다\"(로이터)"
+     ]
+    ]
+   },
+   {
+    "k": "조건 6개, 어디까지 왔나",
+    "type": "conds",
+    "note": "보도를 바탕으로 한 우리 판단이며 미국은 아무것도 확인하지 않았습니다.",
+    "items": [
+     {
+      "n": "제재 해제(7월 양해각서 붕괴 이후분)",
+      "s": "진전",
+      "t": "밴스 서한의 어조가 누그러졌다는 이란 측 평가. 돈 문제는 가장 빨리 풀릴 수 있는 쪽"
+     },
+     {
+      "n": "석유 수출 면제 복원",
+      "s": "진전",
+      "t": "제재 해제와 한 묶음. 재무부 면허 형태로 나올 수 있음"
+     },
+     {
+      "n": "동결 자금 해제(카타르 보관분 포함)",
+      "s": "진전",
+      "t": "요구액이 9월안(약 120억 달러)보다 커진 점은 변수"
+     },
+     {
+      "n": "역내 미군 축소",
+      "s": "미정",
+      "t": "항모 회항 같은 '모양새'로 대응할 여지"
+     },
+     {
+      "n": "레바논 공격 중단",
+      "s": "미정",
+      "t": "이스라엘 새 정부 구성이 늦어져(과반 미달) 약속할 주체가 애매"
+     },
+     {
+      "n": "이란-오만 항로만 인정",
+      "s": "쟁점",
+      "t": "사실상 해협 통제권. 미국이 가장 받기 어려운 조건"
+     }
+    ]
+   },
+   {
+    "k": "누가 뭐라 했나",
+    "type": "quotes",
+    "items": [
+     {
+      "who": "아락치",
+      "role": "이란 외무장관",
+      "say": "카타르 중재로 7일안을 2일로 줄였다. 미국이 첫날 이행하면 둘째 날 통항 재개",
+      "media": "인베스팅닷컴",
+      "src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"
+     },
+     {
+      "who": "레자에이",
+      "role": "이란 안보 책임자",
+      "say": "밴스 서한은 더 유화적이지만, 조건 충족 전에는 해협을 열지 않는다",
+      "media": "인베스팅닷컴",
+      "src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "협상은 잘 되고 있고 이란이 딜을 원한다. 우리는 서두르지 않는다",
+      "media": "인베스팅닷컴",
+      "src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"
+     },
+     {
+      "who": "루비오",
+      "role": "미국 국무장관",
+      "say": "공습 재개는 결정되지 않았고 외교적 해결도 가능하다",
+      "media": "인베스팅닷컴",
+      "src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"
+     },
+     {
+      "who": "모즈타바 하메네이",
+      "role": "이란 최고지도자",
+      "say": "공격받으면 지역 제한 없이 즉각 대응하도록 지휘관들에게 준비 지시",
+      "media": "인베스팅닷컴",
+      "src": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "핵은 없앴다. 한두 곳이 남았는데 10분이면 처리할 수 있다. 협상은 잘 되지만 그들은 믿을 만하지 않다",
+      "media": "CBS",
+      "src": "https://www.cbsnews.com/live-updates/iran-war-us-trump-diplomacy-threat-resume-attacks/"
+     },
+     {
+      "who": "도널드 블롬",
+      "role": "미 국무부 근동 담당 차관보",
+      "say": "협상의 손은 내밀어졌고 채널은 열려 있다. 다른 방향으로 갈 준비도 돼 있다. 이란이 지역과 세계 경제를 인질로 잡게 둘 수 없다",
+      "media": "타임스오브이스라엘(AP)",
+      "src": "https://www.timesofisrael.com/liveblog_entry/us-state-dept-official-says-hand-of-negotiation-extended-to-iran-but-all-options-on-table"
+     },
+     {
+      "who": "아락치",
+      "role": "이란 외무장관",
+      "say": "2일안 협의는 실행 쪽으로 가고 있지만 아직 결론에 이르지 못했다",
+      "media": "이란인터내셔널",
+      "src": "https://www.iranintl.com/en/202611015366"
+     },
+     {
+      "who": "니크자드",
+      "role": "이란 의회 부의장",
+      "say": "상대가 새로 내놓을 것이 없어 협상의 창은 닫혔다",
+      "media": "이란인터내셔널",
+      "src": "https://www.iranintl.com/en/202611015366"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "딜을 하거나 그냥 끝낼 것이다. 어느 쪽이든 곧 끝낸다",
+      "media": "더내셔널(CBS 인용)",
+      "src": "https://www.thenationalnews.com/business/2026/11/02/oil-prices-slide-more-than-3-as-trump-signals-more-time-for-iran-diplomacy/"
+     },
+     {
+      "who": "바가이",
+      "role": "이란 외무부 대변인",
+      "say": "2일 안 실행 가능성은 이란의 선의를 보여 준다. 모든 것은 미국이 요구를 받아들이는지에 달렸다",
+      "media": "유로뉴스",
+      "src": "https://www.euronews.com/2026/11/02/iran-says-it-can-reopen-hormuz-in-two-days-if-us-meets-conditions"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "(이번 주 전쟁 복귀를 예상하느냐는 질문에) 그렇다 해도 말해 주겠나",
+      "media": "유로뉴스",
+      "src": "https://www.euronews.com/2026/11/02/oil-slides-on-hormuz-deal-hopes-but-trump-keeps-iran-strikes-on-the-table"
+     },
+     {
+      "who": "바가이",
+      "role": "이란 외무부 대변인",
+      "say": "공은 미국 코트에 있다. 봉쇄가 끝나고 이란의 정당한 요구가 이행되기 전에는 해협을 열 수 없다",
+      "media": "이란인터내셔널",
+      "src": "https://www.iranintl.com/en/liveblog/202610312594"
+     },
+     {
+      "who": "가르가시",
+      "role": "UAE 대통령 외교 고문",
+      "say": "외교적 돌파구를 바라지만 최악에도 대비하고 있다",
+      "media": "RTE(AFP)",
+      "src": "https://www.rte.ie/news/2026/1102/1597573-iran-strikes/"
+     },
+     {
+      "who": "바가이",
+      "role": "이란 외무부 대변인",
+      "say": "대화는 계속되지만 문제가 복잡하다. 기준은 여전히 이제 2일로 압축된 이란의 7단계안이다",
+      "media": "로이터",
+      "src": "https://za.investing.com/news/commodities-news/iran-says-contacts-over-ending-war-continue-as-talks-end-with-no-breakthrough-4542835"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "선거 후 공습을 고려하느냐는 질문에 \"아니다\". 이란이 합의를 원하고, 합의가 이뤄질 수 있다",
+      "media": "로이터",
+      "src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
+     },
+     {
+      "who": "밴스",
+      "role": "미국 부통령",
+      "say": "대통령과 나는 협상 타결 전망을 꽤 좋게 본다. 계속 노력하겠다",
+      "media": "로이터",
+      "src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
+     },
+     {
+      "who": "아락치",
+      "role": "이란 외무장관",
+      "say": "조건을 받아들이면 해협이 열리고 협상이 재개된다. 아니면 지금 상황이 이어지고 이란은 굴복하지 않는다",
+      "media": "알자지라",
+      "src": "https://www.aljazeera.com/news/2026/11/2/iran-pushing-accelerated-plan-for-ceasefire-talks-with-us"
+     }
+    ]
+   },
+   {
+    "k": "시장과 어떻게 이어지나",
+    "type": "text",
+    "text": "브렌트유는 2일 7.63% 내린 104.77달러에 마쳤습니다. 공습 우려가 줄어든 만큼 위험 프리미엄이 먼저 빠진 것으로 우리는 판단합니다. 해협이 실제로 열리면 물가와 금리 부담도 함께 줄지만, 기대만으로 내린 몫은 공습 소식 한 번에 되돌아갈 수 있습니다. 10월 하락의 주범은 이란보다 AI 투자 대비 수익성 질문이었으므로, 딜이 나와도 반등은 지수 전체보다 유가·금리에 민감한 쪽의 순환에 가까울 수 있습니다. 골드만삭스는 10월 상승분 대부분을 배럴당 약 27달러의 위험 프리미엄으로 보면서도 12월 브렌트 평균 전망을 105달러로 올렸습니다."
+   },
+   {
+    "k": "시나리오",
+    "type": "scen",
+    "items": [
+     {
+      "h": "딜 먼저",
+      "c": "up",
+      "t": "미국 답변 → 재무부 면허(제재 유예) → 해협 통항 재개. 유가·금리 부담이 풀리고, 트럼프는 선거 직전 '전쟁을 끝내는 대통령' 그림을 얻습니다. 이란이 나중에 발을 빼도 공습 카드는 남습니다."
+     },
+     {
+      "h": "공습 먼저",
+      "c": "dn",
+      "t": "트럼프가 선거 후 공습 고려를 부인해 가까운 시일의 가능성은 줄었습니다. 그래도 그는 \"어떻게든 뭔가 하겠다\"고 했고 네타냐후는 공습을 요구하고 있어, 협상이 멈추면 유가 재급등과 금리 부담이 다시 커질 수 있습니다."
+     }
+    ],
+    "con": "반대 시각 — 이란은 9월 7일안 때도 기대만 키우고 무산됐습니다. '조건 충족 전엔 열지 않는다'는 말을 보면 딜 기대가 앞서갈 수 있습니다."
+   },
+   {
+    "k": "다음 볼 것",
+    "type": "list",
+    "items": [
+     "미국의 공식 답변과 중재국의 남은 쟁점 조율 결과",
+     "도하의 예비 합의 초안이 실제로 나오는지",
+     "재무부 일반 면허(제재 유예)가 나오는지",
+     "해협 실제 통항 수 — 10/18 하루 4척(전쟁 전 85척)"
+    ]
+   }
+  ],
+  "links": [
+   {
+    "media": "인베스팅닷컴",
+    "t": "이란 48시간 해협 재개안",
+    "u": "https://www.investing.com/news/economy-news/iran-offers-48hour-hormuz-reopening-plan-as-trump-signals-progress-in-talks-4989413"
+   },
+   {
+    "media": "하우스오브사우드",
+    "t": "2일안과 11/3 유예 만료 일지",
+    "u": "https://houseofsaud.com/araghchi-2-day-hormuz-plan-trump-moratorium/"
+   },
+   {
+    "media": "타임스오브이스라엘",
+    "t": "걸프에 11/4 공습 가능 경고",
+    "u": "https://www.timesofisrael.com/liveblog_entry/report-us-warns-gulf-allies-of-possible-iran-strikes-as-early-as-november-4/"
+   },
+   {
+    "media": "하우스오브사우드",
+    "t": "10/26 폐쇄 선언·통항 수",
+    "u": "https://houseofsaud.com/iran-hormuz-ceasefire-conditions-oct28/"
+   },
+   {
+    "media": "타임스오브이스라엘(AP)",
+    "t": "미 국무부 \"협상의 손 내밀었다\"",
+    "u": "https://www.timesofisrael.com/liveblog_entry/us-state-dept-official-says-hand-of-negotiation-extended-to-iran-but-all-options-on-table"
+   },
+   {
+    "media": "인베스팅닷컴",
+    "t": "트럼프 외교 우선 보도와 유가 하락",
+    "u": "https://www.investing.com/news/commodities-news/oil-falls-as-trump-favours-iran-diplomacy-before-midterm-elections-4989799"
+   },
+   {
+    "media": "유로뉴스",
+    "t": "이란 2일안과 조건, 도하 초안 작업",
+    "u": "https://www.euronews.com/2026/11/02/iran-says-it-can-reopen-hormuz-in-two-days-if-us-meets-conditions"
+   },
+   {
+    "media": "걸프뉴스",
+    "t": "라몬 급유기·라스알카프지 유조선 피격",
+    "u": "https://gulfnews.com/uae/us-israel-iran-war-what-uae-residents-need-to-know-today-nov-2-2026-1.500732326"
+   },
+   {
+    "media": "오일프라이스",
+    "t": "골드만 브렌트 전망 105달러",
+    "u": "https://oilprice.com/Latest-Energy-News/World-News/Goldman-Sachs-Raises-Brent-Oil-Price-Forecast-to-105.html"
+   },
+   {
+    "media": "로이터",
+    "t": "트럼프, 공습 재개에 의문 제기",
+    "u": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
+   }
+  ]
+ },
+ "e107": {
+  "updated": "11.03 09:50",
+  "lead": "트럼프가 선거 후 이란 공습을 고려하느냐는 질문에 \"아니다\"라고 답했습니다. 공습 유예 종료를 앞둔 긴장은 줄었지만 공식 철회나 합의는 아닙니다.",
+  "blocks": [
+   {
+    "k": "어떻게 여기까지 왔나",
+    "type": "steps",
+    "items": [
+     [
+      "10.8",
+      "트럼프, \"중간선거 전 이란 공습은 없다\"고 약속"
+     ],
+     [
+      "10.31",
+      "미국이 걸프 동맹에 \"11/4부터 공습 가능\" 경고, 트럼프는 네타냐후와 재개 논의"
+     ],
+     [
+      "11.1",
+      "트럼프, 네타냐후의 선거 직후 공습 요구에 \"외교에 시간 더\"(악시오스)"
+     ],
+     [
+      "11.1",
+      "트럼프 유세서 \"언젠가 망치를\""
+     ],
+     [
+      "11.2",
+      "악시오스 인터뷰 \"어떻게든 뭔가 하겠지만 서두를 것 없다\""
+     ],
+     [
+      "11.2",
+      "리플렉팅풀 연설 뒤 선거 후 공습 고려 질문에 \"아니다\"(로이터)"
+     ],
+     [
+      "11.2",
+      "트루스소셜 \"이란은 가능한 한 빨리 합의를 원한다\", 카타르 중재단은 초안 들고 테헤란행"
+     ]
+    ]
+   },
+   {
+    "k": "쟁점, 어디까지 왔나",
+    "type": "conds",
+    "note": "보도를 바탕으로 한 우리 판단이며 백악관의 공식 정책 발표는 아닙니다.",
+    "items": [
+     {
+      "n": "선거 직후 공습",
+      "s": "진전",
+      "t": "트럼프가 고려를 부인. 공습 시점 압박이 줄어든 상태"
+     },
+     {
+      "n": "네타냐후의 공습 요구",
+      "s": "쟁점",
+      "t": "공습 요구에 대한 이스라엘의 새 반응은 없음. 다만 전쟁 재개에 대비해 레바논에 헤즈볼라 지역 검문소를 요청했다는 보도(칸)"
+     },
+     {
+      "n": "이란 조건 수용",
+      "s": "미정",
+      "t": "이란이 요구를 바꾸거나 미국이 수용했다는 징후는 없음(알자지라)"
+     },
+     {
+      "n": "핵 문제",
+      "s": "쟁점",
+      "t": "트럼프는 이란의 핵무기 보유를 절대 허용하지 않겠다고 재확인"
+     }
+    ]
+   },
+   {
+    "k": "누가 뭐라 했나",
+    "type": "quotes",
+    "items": [
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "유가가 돌처럼 떨어지고 있다. 이란은 가능한 한 빨리 합의를 원한다. 이뤄질 수 있다",
+      "media": "타임스오브이스라엘",
+      "src": "https://www.timesofisrael.com/liveblog-november-03-2026/"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "선거 후 공습을 고려하느냐는 질문에 \"아니다\". 이란이 합의를 원하고, 합의가 이뤄질 수 있다",
+      "media": "로이터",
+      "src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "어떻게든 뭔가 하겠지만 서두를 것 없다. 그들을 재정적으로 무력화했다",
+      "media": "미들이스트아이(악시오스 인용)",
+      "src": "https://www.middleeasteye.net/news/trump-says-he-will-not-attack-iran-after-midterms"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "이란이 핵무기를 갖게 두지 않을 것이고, 그들도 그것을 알고 있다",
+      "media": "로이터",
+      "src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
+     },
+     {
+      "who": "밴스",
+      "role": "미국 부통령",
+      "say": "대통령과 나는 협상 타결 전망을 꽤 좋게 본다. 계속 노력하겠다",
+      "media": "로이터",
+      "src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
+     },
+     {
+      "who": "바가이",
+      "role": "이란 외무부 대변인",
+      "say": "어떤 공격이든 강력하고 즉각적이며 포괄적인 대응에 부딪힐 것이다",
+      "media": "유로뉴스",
+      "src": "https://www.euronews.com/2026/11/02/iran-says-it-can-reopen-hormuz-in-two-days-if-us-meets-conditions"
+     }
+    ]
+   },
+   {
+    "k": "시장과 어떻게 이어지나",
+    "type": "text",
+    "text": "브렌트유는 2일 7.63% 내린 104.77달러, 서부텍사스유는 7.36% 내린 96.46달러에 마쳤습니다. 공습 우려가 줄어든 몫이 유가에 먼저 반영된 것으로 우리는 판단합니다. 나스닥은 같은 날 1.07% 내려 유가 하락이 곧 기술주 상승으로 이어지지는 않았습니다."
+   },
+   {
+    "k": "시나리오",
+    "type": "scen",
+    "items": [
+     {
+      "h": "공습 보류 지속",
+      "c": "up",
+      "t": "협상이 이어지고 미국이 답변을 내놓으면 유가의 위험 프리미엄이 더 줄 수 있습니다. 물가와 금리 부담도 함께 덜 수 있습니다."
+     },
+     {
+      "h": "발언 뒤집힘",
+      "c": "dn",
+      "t": "협상이 멈추거나 네타냐후의 요구가 먹히면 공습 카드는 다시 올라옵니다. 트럼프는 그동안 \"망치\"와 \"서두르지 않는다\"를 오갔습니다."
+     }
+    ],
+    "con": "반대 시각 — 한 단어 답변이라 정책 변경으로 보기 이릅니다. 트럼프는 같은 날 \"어떻게든 뭔가 하겠다\"고도 했고, 유가 하락이 앞서갔을 수 있습니다."
+   },
+   {
+    "k": "다음 볼 것",
+    "type": "list",
+    "items": [
+     "카타르 중재단의 테헤란 협의 결과",
+     "선거 후 트럼프가 같은 말을 유지하는지",
+     "이스라엘 측 반응",
+     "미국의 2일안 공식 답변",
+     "해협 실제 통항 수"
+    ]
+   }
+  ],
+  "links": [
+   {
+    "media": "로이터",
+    "t": "트럼프, 공습 재개에 의문 제기",
+    "u": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
+   },
+   {
+    "media": "미들이스트아이",
+    "t": "트럼프 \"선거 후 공격 안 한다\"",
+    "u": "https://www.middleeasteye.net/news/trump-says-he-will-not-attack-iran-after-midterms"
+   },
+   {
+    "media": "알자지라",
+    "t": "이란, 휴전 협상 가속안 추진",
+    "u": "https://www.aljazeera.com/news/2026/11/2/iran-pushing-accelerated-plan-for-ceasefire-talks-with-us"
+   },
+   {
+    "media": "타임스오브이스라엘",
+    "t": "11.3 라이브블로그 — 트럼프 게시글·이스라엘의 레바논 요청",
+    "u": "https://www.timesofisrael.com/liveblog-november-03-2026/"
+   }
+  ]
+ },
+ "e113": {
+  "updated": "11.04 09:40",
+  "lead": "트럼프가 3일 파이낸셜타임스에 이란을 당장 공습할 계획은 없다고 말해, 이르면 수요일 공습이라는 뉴욕타임스 보도와 엇갈렸습니다. 이란 고위 당국자는 답변 시한이 없다고 밝혔고 협상은 벌어진 채입니다.",
+  "blocks": [
+   {
+    "k": "어떻게 여기까지 왔나",
+    "type": "steps",
+    "items": [
+     [
+      "10.8",
+      "트럼프, \"중간선거 전 이란 공습은 없다\"고 약속"
+     ],
+     [
+      "10.31",
+      "미국이 걸프 동맹에 \"11/4부터 공습 가능\" 경고, 트럼프는 네타냐후와 재개 논의"
+     ],
+     [
+      "11.1",
+      "트럼프, 네타냐후의 선거 직후 공습 요구에 \"외교에 시간 더\"(악시오스)"
+     ],
+     [
+      "11.1",
+      "트럼프 유세서 \"언젠가 망치를\""
+     ],
+     [
+      "11.2",
+      "악시오스 인터뷰 \"어떻게든 뭔가 하겠지만 서두를 것 없다\""
+     ],
+     [
+      "11.2",
+      "리플렉팅풀 연설 뒤 선거 후 공습 고려 질문에 \"아니다\"(로이터)"
+     ],
+     [
+      "11.2",
+      "트루스소셜 \"이란은 가능한 한 빨리 합의를 원한다\", 카타르 중재단은 초안 들고 테헤란행"
+     ],
+     [
+      "11.2",
+      "이르나, 케슘섬 폭발 보도. 월스트리트저널 \"미국의 비공개 제한 공습\""
+     ],
+     [
+      "11.2",
+      "AP \"미 당국자, 지대공 미사일 쓴 이란 표적에 방어 공격\""
+     ],
+     [
+      "11.2",
+      "폭스뉴스 인터뷰 \"합의 없으면 곡괭이산 칠 수도, 합의 가능성은 매우 크다\""
+     ],
+     [
+      "11.3",
+      "이란 고위 당국자 \"합의까지 멀다\", 갈리바프 \"공은 워싱턴에\""
+     ],
+     [
+      "11.3",
+      "혁명수비대 \"MQ-9 격추\" 주장, 오만 앞바다 인도 선적 선박 피격(선원 1명 사망)"
+     ],
+     [
+      "11.3",
+      "갈리바프 \"오판하면 새 전장\", 함샤흐리 \"유럽의 미군 지원 기지까지 표적 검토\"(유로뉴스)"
+     ],
+     [
+      "11.3",
+      "카타르 \"합의 가능성 아직 있다, 임시 합의 추진\", 로이터 \"중재국 새 제안, 36시간 내 답 기대\""
+     ],
+     [
+      "11.3",
+      "알아라비알자디드 \"미국, 카타르 양해각서 초안 승인\", 원유 4달러 급락(뉴스퀵)"
+     ],
+     [
+      "11.3",
+      "혁명수비대 \"무허가 항로 유조선 3척 기뢰에 폭발\" 주장(독립 확인 없음)"
+     ],
+     [
+      "11.3",
+      "레자이 \"미국 답변 설득력 없다, 7개 조건 이행해야 해협 재개\""
+     ],
+     [
+      "11.3",
+      "트럼프, 폭스뉴스서 공습 인정 \"소규모 공격, 전쟁 아냐\""
+     ],
+     [
+      "11.3",
+      "압돌라히 5개 조건 제시, 이란 고위 당국자 \"답변 시한 없다\"(로이터)"
+     ],
+     [
+      "11.3",
+      "뉴욕타임스 \"이르면 수요일 공습 계획\", 이스라엘의 화학무기 경고에 걸프는 회의적"
+     ],
+     [
+      "11.3",
+      "오만 앞바다 유조선 기관실 피격(영국해사무역기구), 브렌트 103.60달러 마감(AP)"
+     ],
+     [
+      "11.3",
+      "트럼프, 파이낸셜타임스 인터뷰 \"당장 공습 계획 없다, 원하는 걸 다 얻고 있는 듯\"(로이터)"
+     ]
+    ]
+   },
+   {
+    "k": "쟁점, 어디까지 왔나",
+    "type": "conds",
+    "note": "보도를 바탕으로 한 우리 판단이며 백악관의 공식 정책 발표는 아닙니다.",
+    "items": [
+     {
+      "n": "중재국 새 제안",
+      "s": "쟁점",
+      "t": "알아라비알자디드는 미국이 초안을 승인했고 이란 핵 양보와 동결 자산 일부 해제를 맞바꾼다고 보도. 레자이는 미국 답변이 설득력 없다고 거부 신호. 양측 공식 확인 없음"
+     },
+     {
+      "n": "답변 시한",
+      "s": "쟁점",
+      "t": "카타르는 36시간 안의 답을 기대했지만 이란 고위 당국자는 시한이 없다고 말함(로이터). 압돌라히는 해협 주권 인정 등 5개 조건을 제시"
+     },
+     {
+      "n": "이란 7개 조건",
+      "s": "쟁점",
+      "t": "영구 종전, 봉쇄 해제, 미군 철수, 제재 해제, 배상, 이란이 정하는 해협 운항 체계 인정 등. 레자이는 이를 이행해야 해협을 다시 연다고 밝힘"
+     },
+     {
+      "n": "선거 직후 공습",
+      "s": "쟁점",
+      "t": "트럼프는 고려를 부인했지만 그날 저녁 케슘섬 공습이 있었고, 뉴욕타임스는 이르면 수요일 공격 계획이 준비됐다고 보도. 트럼프는 3일 파이낸셜타임스에 당장 공습 계획은 없고 군은 \"장전 완료\"라고 말함"
+     },
+     {
+      "n": "곡괭이산 표적",
+      "s": "쟁점",
+      "t": "트럼프가 \"합의 없으면\"이라는 조건을 달아 핵 시설 공격 가능성을 꺼냄. 실제 계획이 확인된 것은 아님"
+     },
+     {
+      "n": "비공개 제한 공습",
+      "s": "쟁점",
+      "t": "트럼프가 3일 \"대공 시설을 때렸다\"고 직접 인정. 중부사령부 공식 발표는 확인되지 않음. 혁명수비대는 MQM-170 2대와 MQ-9 격추 주장(독립 확인 없음)"
+     },
+     {
+      "n": "네타냐후의 공습 요구",
+      "s": "쟁점",
+      "t": "공습 요구에 대한 이스라엘의 새 반응은 없음. 다만 전쟁 재개에 대비해 레바논에 헤즈볼라 지역 검문소를 요청했다는 보도(칸). 트럼프가 3일 대이스라엘 군사지원 연말 중단을 말해 이스라엘 당국자들이 놀랐다는 보도도 나옴"
+     },
+     {
+      "n": "이란 조건 수용",
+      "s": "미정",
+      "t": "이란 고위 당국자가 로이터에 미국의 \"과도한 요구\"는 받지 않겠다고 말함. 외무부는 농축우라늄 국외 반출을 배제"
+     },
+     {
+      "n": "핵 문제",
+      "s": "쟁점",
+      "t": "트럼프는 이란의 핵무기 보유를 절대 허용하지 않겠다고 재확인"
+     },
+     {
+      "n": "이란 보복 범위",
+      "s": "쟁점",
+      "t": "유로뉴스는 \"지리적 제한 없는 대응\" 결정 보도와 유럽 내 미군 지원 기지 표적 검토 보도를 전함. 실제 행동으로 확인된 것은 없음"
+     }
+    ]
+   },
+   {
+    "k": "누가 뭐라 했나",
+    "type": "quotes",
+    "items": [
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "원하는 것을 다 얻고 있는 듯하다",
+      "media": "로이터(파이낸셜타임스 인터뷰)",
+      "src": "https://www.933thedrive.com/2026/11/03/us-has-no-immediate-plan-to-strike-iran-trump-tells-ft/"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "그들이 대공 시설을 지었고, 완성되자마자 지난밤 때렸다. 소규모 공격이었고 전쟁은 아니었다",
+      "media": "타임스오브이스라엘·파키스탄투데이",
+      "src": "https://www.timesofisrael.com/israel-said-to-tell-skeptical-us-gulf-countries-that-iran-may-use-chemical-weapons/"
+     },
+     {
+      "who": "이란 고위 당국자",
+      "role": "익명, 로이터 인용",
+      "say": "중재국을 통한 메시지 교환이나 답변 검토에 시한은 없다",
+      "media": "뉴아랍(로이터)",
+      "src": "https://www.newarab.com/news/talk-possible-us-iran-deal-americans-head-polls"
+     },
+     {
+      "who": "페제시키안",
+      "role": "이란 대통령",
+      "say": "전쟁이 다시 불붙으면 누구에게도 이득이 없다",
+      "media": "타임스오브이스라엘",
+      "src": "https://www.timesofisrael.com/israel-said-to-tell-skeptical-us-gulf-countries-that-iran-may-use-chemical-weapons/"
+     },
+     {
+      "who": "레자이",
+      "role": "이란 최고안보회의 서기",
+      "say": "이란의 권리와 요구에 대한 미국의 답변은 설득력이 없었다. 7개 조건에 답하고 이행해야만 호르무즈가 다시 열린다",
+      "media": "타임스오브이스라엘",
+      "src": "https://www.timesofisrael.com/liveblog_entry/top-iranian-official-us-response-to-truce-offer-not-convincing-hormuz-will-not-be-opened/"
+     },
+     {
+      "who": "소식통",
+      "role": "익명, 알아라비알자디드 인용",
+      "say": "이란이 핵 문제 양보를 밝히고 미국은 동결 자산 일부 해제를 밝히는 방식이다",
+      "media": "미들이스트모니터(아나돌루)",
+      "src": "https://www.middleeastmonitor.com/20261103-us-approves-qatar-presented-draft-deal-with-iran-sources"
+     },
+     {
+      "who": "안사리",
+      "role": "카타르 외무부 대변인",
+      "say": "합의가 이뤄질 가능성이 아직 있다고 희망한다. 임시 합의를 향해 일하고 있다",
+      "media": "CBS(AFP)",
+      "src": "https://www.cbsnews.com/live-updates/iran-war-us-trump-negotiations-midterms/"
+     },
+     {
+      "who": "회담 브리핑 관계자",
+      "role": "익명, 로이터 인용",
+      "say": "중재국이 절차를 진전시킬 새 제안을 내놓았다",
+      "media": "CBS(로이터)",
+      "src": "https://www.cbsnews.com/live-updates/iran-war-us-trump-negotiations-midterms/"
+     },
+     {
+      "who": "가리바바디",
+      "role": "이란 외무차관",
+      "say": "이란은 정당한 자위권을 갖고 있다",
+      "media": "CBS(AFP, 이스나 인용)",
+      "src": "https://www.cbsnews.com/live-updates/iran-war-us-trump-negotiations-midterms/"
+     },
+     {
+      "who": "갈리바프",
+      "role": "이란 의회 의장",
+      "say": "전쟁을 막을 공은 미국 코트에 있다. 미국이 전략적 오판을 하면 전쟁의 새 전장이 열린다",
+      "media": "유로뉴스",
+      "src": "https://www.euronews.com/2026/11/03/iran-warns-of-new-battlefield-after-reported-us-strike-on-qeshm"
+     },
+     {
+      "who": "안와르 가르가시",
+      "role": "아랍에미리트 대통령 고문",
+      "say": "입장 차가 좁혀지지 않으면 최악을 걱정해야 한다",
+      "media": "타임스오브이스라엘",
+      "src": "https://www.timesofisrael.com/us-carries-out-defensive-strikes-on-irans-qeshm-island-in-strait-of-hormuz/"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "곡괭이산을 쳐야 할 수도 있다. 1시간이면 된다. 합의가 안 되면 일어날 수 있지만, 합의할 가능성이 매우 크다",
+      "media": "이란인터내셔널(폭스뉴스 인용)",
+      "src": "https://www.iranintl.com/en/liveblog/202610312594"
+     },
+     {
+      "who": "이란 고위 당국자",
+      "role": "익명, 로이터 인용",
+      "say": "양측은 합의와 거리가 멀고, 미국의 과도한 요구는 받지 않겠다",
+      "media": "이란인터내셔널(로이터 인용)",
+      "src": "https://www.iranintl.com/en/liveblog/202610312594"
+     },
+     {
+      "who": "갈리바프",
+      "role": "이란 의회 의장",
+      "say": "방아쇠에 손가락을 건 것처럼 전투 준비가 돼 있다. 전쟁을 막을 공은 이제 워싱턴에 있다",
+      "media": "이란인터내셔널",
+      "src": "https://www.iranintl.com/en/liveblog/202610312594"
+     },
+     {
+      "who": "미국 당국자",
+      "role": "익명, AP 인용",
+      "say": "호르무즈의 이란 표적에 방어 공격을 했다. 미군 자산에 지대공 미사일을 쓴 이란 측을 겨눴다",
+      "media": "타임스오브이스라엘(AP)",
+      "src": "https://www.timesofisrael.com/liveblog-november-03-2026/"
+     },
+     {
+      "who": "팀 워터러",
+      "role": "KCM트레이드 수석 시장분석가",
+      "say": "외교 쪽을 반영하기 시작한 시장에 군사 활동이 계속된다는 점을 일깨워 위험 프리미엄이 일부 돌아왔다",
+      "media": "비즈니스레코더(로이터)",
+      "src": "https://www.brecorder.com/news/40447167/oil-rises-after-report-of-us-strike-on-irans-qeshm-island"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "전쟁을 했고 이겼다. 몇 달째 싸우지 않고 있어서 전쟁이라고 부를 수 있는지도 모르겠다",
+      "media": "더내셔널",
+      "src": "https://www.thenationalnews.com/news/us/2026/11/03/us-strike-qeshm-iran-hormuz/"
+     },
+     {
+      "who": "미국 당국자",
+      "role": "익명, 월스트리트저널 인용",
+      "say": "소규모 공습은 몇 주째 진행됐다. 큰 전투 재개 의사로 읽히지 않게 조용히 했다",
+      "media": "인베스팅라이브",
+      "src": "https://investinglive.com/commodities/more-on-us-strikes-on-qeshm-officials-confirm-attack-as-trump-plays-down-war-risk/"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "유가가 돌처럼 떨어지고 있다. 이란은 가능한 한 빨리 합의를 원한다. 이뤄질 수 있다",
+      "media": "타임스오브이스라엘",
+      "src": "https://www.timesofisrael.com/liveblog-november-03-2026/"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "선거 후 공습을 고려하느냐는 질문에 \"아니다\". 이란이 합의를 원하고, 합의가 이뤄질 수 있다",
+      "media": "로이터",
+      "src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "어떻게든 뭔가 하겠지만 서두를 것 없다. 그들을 재정적으로 무력화했다",
+      "media": "미들이스트아이(악시오스 인용)",
+      "src": "https://www.middleeasteye.net/news/trump-says-he-will-not-attack-iran-after-midterms"
+     },
+     {
+      "who": "트럼프",
+      "role": "미국 대통령",
+      "say": "이란이 핵무기를 갖게 두지 않을 것이고, 그들도 그것을 알고 있다",
+      "media": "로이터",
+      "src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
+     },
+     {
+      "who": "밴스",
+      "role": "미국 부통령",
+      "say": "대통령과 나는 협상 타결 전망을 꽤 좋게 본다. 계속 노력하겠다",
+      "media": "로이터",
+      "src": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
+     },
+     {
+      "who": "바가이",
+      "role": "이란 외무부 대변인",
+      "say": "어떤 공격이든 강력하고 즉각적이며 포괄적인 대응에 부딪힐 것이다",
+      "media": "유로뉴스",
+      "src": "https://www.euronews.com/2026/11/02/iran-says-it-can-reopen-hormuz-in-two-days-if-us-meets-conditions"
+     }
+    ]
+   },
+   {
+    "k": "시장과 어떻게 이어지나",
+    "type": "text",
+    "text": "브렌트유는 2일 7.63% 내린 104.77달러에 마쳤고, 공습 보도 뒤 시간외에서는 뉴욕시각 20시 4분 0.5% 오른 105.25달러였습니다(로이터). 3일 뉴욕시각 3시 52분에는 2.03% 오른 107달러 가까이까지 갔습니다(더내셔널). 6시 10분에는 105.87달러로 상승 폭을 줄였습니다(코너스톤퓨처스). 뉴욕시각 8시 51분 초안 승인 보도 뒤 원유는 배럴당 4달러 급락했습니다(뉴스퀵). 브렌트는 오전에 잠시 101달러 아래로 내려갔다가 1.1% 내린 103.60달러에 마쳤습니다(AP). 나스닥은 2일 1.07% 내렸고 3일에는 0.83% 올랐습니다. 단일 소식통 보도에 유가가 크게 움직인 것은 시장이 합의 쪽에 기대를 걸고 있다는 뜻이라, 레자이 거부가 굳어지거나 수요일 공습 보도가 현실이 되면 되돌림 위험도 크다고 우리는 판단합니다."
+   },
+   {
+    "k": "시나리오",
+    "type": "scen",
+    "items": [
+     {
+      "h": "낮은 수위 유지",
+      "c": "up",
+      "t": "제한 공습이 협상과 함께 가고 이란이 크게 맞대응하지 않으면 유가의 위험 프리미엄은 다시 줄 수 있습니다."
+     },
+     {
+      "h": "맞대응 확전",
+      "c": "dn",
+      "t": "이란이 공습을 이유로 협상을 멈추거나 보복하면 공습 카드가 전면으로 돌아옵니다. 일부 아랍국의 보복 경고까지 겹치면 전선이 넓어집니다."
+     }
+    ],
+    "con": "반대 시각 — 트럼프는 이번 공격을 소규모라고 했고, 공습 계획 보도는 승인 확인이 아닙니다. 방어 조치라는 설명대로면 협상과 별개일 수 있고, 카타르는 중재를 이어 갑니다."
+   },
+   {
+    "k": "다음 볼 것",
+    "type": "list",
+    "items": [
+     "수요일 공습 계획 보도가 실제 행동으로 이어지는지, 백악관이 어떻게 답하는지",
+     "이란이 시한 없이 답을 미루는지, 레자이 7개 조건이 최종 입장인지",
+     "미국·이란이 초안 보도를 공식 확인하는지",
+     "이란의 후속 대응과 오만만 선박 피격이 이어지는지",
+     "갈리바프 경고가 실제 보복으로 이어지는지",
+     "중간선거 결과가 트럼프의 공습 판단에 주는 영향",
+     "곡괭이산 발언이 선거 뒤에도 이어지는지"
+    ]
+   }
+  ],
+  "links": [
+   {
+    "media": "타임스오브이스라엘",
+    "t": "뉴욕타임스 공습 계획·화학무기 경고, 트럼프 공습 인정",
+    "u": "https://www.timesofisrael.com/israel-said-to-tell-skeptical-us-gulf-countries-that-iran-may-use-chemical-weapons/"
+   },
+   {
+    "media": "알자지라",
+    "t": "압돌라히 5개 조건",
+    "u": "https://www.aljazeera.com/news/2026/11/3/iran-commander-sets-out-five-conditions-for-regional-security"
+   },
+   {
+    "media": "뉴아랍(로이터)",
+    "t": "이란 \"답변 시한 없다\"",
+    "u": "https://www.newarab.com/news/talk-possible-us-iran-deal-americans-head-polls"
+   },
+   {
+    "media": "BNN블룸버그(AP)",
+    "t": "3일 마감 시황·브렌트 종가",
+    "u": "https://bnnbloomberg.ca/markets/dow-jones/2026/11/03/us-stocks-drift-in-mixed-early-trading-on-wall-street-as-apple-falls"
+   },
+   {
+    "media": "타임스오브이스라엘",
+    "t": "레자이 \"설득력 없다\"",
+    "u": "https://www.timesofisrael.com/liveblog_entry/top-iranian-official-us-response-to-truce-offer-not-convincing-hormuz-will-not-be-opened/"
+   },
+   {
+    "media": "미들이스트모니터(아나돌루)",
+    "t": "미국 초안 승인 보도",
+    "u": "https://www.middleeastmonitor.com/20261103-us-approves-qatar-presented-draft-deal-with-iran-sources"
+   },
+   {
+    "media": "뉴스퀵",
+    "t": "초안 보도 뒤 원유 급락",
+    "u": "https://www.newsquawk.com/headlines/snap-analysis-crude-tumbles-following-source-reports-by-al-araby-al-jadeed-of-a-us-iran-draft-accord"
+   },
+   {
+    "media": "CBS",
+    "t": "카타르 36시간 답변 기대·임시 합의",
+    "u": "https://www.cbsnews.com/live-updates/iran-war-us-trump-negotiations-midterms/"
+   },
+   {
+    "media": "유로뉴스",
+    "t": "갈리바프 \"새 전장\" 경고",
+    "u": "https://www.euronews.com/2026/11/03/iran-warns-of-new-battlefield-after-reported-us-strike-on-qeshm"
+   },
+   {
+    "media": "에이에스원(로이터)",
+    "t": "이란 고위 당국자 \"합의는 아직 멀다\"",
+    "u": "https://www.asiaone.com/world/iran-us-deal-still-out-reach-despite-heightened-diplomatic-efforts"
+   },
+   {
+    "media": "CBS",
+    "t": "오만 앞바다 선박 피격 라이브",
+    "u": "https://cbsnews.com/live-updates/iran-war-us-trump-negotiations-midterms"
+   },
+   {
+    "media": "이란인터내셔널",
+    "t": "곡괭이산 발언·이란 반응 라이브",
+    "u": "https://www.iranintl.com/en/liveblog/202610312594"
+   },
+   {
+    "media": "익스프레스트리뷴(로이터·아나돌루)",
+    "t": "드론 주장과 이란 반응",
+    "u": "https://tribune.com.pk/story/2638408/us-strikes-irans-qeshm-island-as-irgc-claims-downing-of-two-more-us-mqm-170-drones"
+   },
+   {
+    "media": "비즈니스레코더(로이터)",
+    "t": "공습 보도 뒤 유가",
+    "u": "https://www.brecorder.com/news/40447167/oil-rises-after-report-of-us-strike-on-irans-qeshm-island"
+   },
+   {
+    "media": "더블유에이엔에이(악시오스·뉴스네이션 인용)",
+    "t": "발사대·레이더 타격 설명",
+    "u": "https://wanaen.com/us-confirms-strike-on-irans-qeshm-island/"
+   },
+   {
+    "media": "더내셔널",
+    "t": "미국 케슘섬 공습 보도",
+    "u": "https://www.thenationalnews.com/news/us/2026/11/03/us-strike-qeshm-iran-hormuz/"
+   },
+   {
+    "media": "타임스오브이스라엘(로이터)",
+    "t": "호르무즈의 이란 섬 공습",
+    "u": "https://www.timesofisrael.com/liveblog_entry/us-said-to-strike-iranian-island-in-strait-of-hormuz/"
+   },
+   {
+    "media": "인베스팅라이브",
+    "t": "당국자 설명 정리",
+    "u": "https://investinglive.com/commodities/more-on-us-strikes-on-qeshm-officials-confirm-attack-as-trump-plays-down-war-risk/"
+   },
+   {
+    "media": "인베스팅닷컴",
+    "t": "공습 보도 뒤 유가",
+    "u": "https://www.investing.com/news/commodities-news/oil-rises-after-reported-us-strike-on-irans-qeshm-island-4993349"
+   },
+   {
+    "media": "이란인터내셔널",
+    "t": "아랍국의 보복 경고",
+    "u": "https://www.iranintl.com/en/202611020302"
+   },
+   {
+    "media": "로이터",
+    "t": "트럼프, 공습 재개에 의문 제기",
+    "u": "https://www.yahoo.com/news/politics/articles/trump-raises-doubts-renewed-attacks-205728456.html"
+   },
+   {
+    "media": "미들이스트아이",
+    "t": "트럼프 \"선거 후 공격 안 한다\"",
+    "u": "https://www.middleeasteye.net/news/trump-says-he-will-not-attack-iran-after-midterms"
+   }
+  ]
+ }
 }
