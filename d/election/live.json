@@ -1,0 +1,156 @@
+{
+ "updated_at": "2026-11-04T11:55:00+09:00",
+ "updated_label": "11.4 (수) 11:55 기준 · 의석 집계는 다음 갱신에서 채움",
+ "ended": false,
+ "house": {
+  "D": null,
+  "R": null,
+  "needed": 218,
+  "called": null,
+  "src": ""
+ },
+ "senate": {
+  "D": null,
+  "R": null,
+  "needed": 51,
+  "called": null,
+  "src": ""
+ },
+ "dc_races": [
+  {
+   "state": "오하이오",
+   "race": "주지사",
+   "status": "개표 중",
+   "candidates": [
+    {
+     "name": "에이미 액턴",
+     "party": "민주",
+     "dc_stance": "새 데이터센터 승인 단기 중단 지지",
+     "src": "https://www.forbes.com/sites/maryroeloffs/2026/11/02/data-centers-are-key-issue-in-midterm-battleground-states-as-household-electric-rates-soar/"
+    },
+    {
+     "name": "비벡 라마스와미",
+     "party": "공화",
+     "dc_stance": "대형 데이터센터 주변 주민을 전기요금 인상에서 보호하는 안 제시",
+     "src": "https://www.forbes.com/sites/maryroeloffs/2026/11/02/data-centers-are-key-issue-in-midterm-battleground-states-as-household-electric-rates-soar/"
+    }
+   ]
+  },
+  {
+   "state": "오하이오",
+   "race": "상원(보궐)",
+   "status": "개표 중",
+   "candidates": [
+    {
+     "name": "셰러드 브라운",
+     "party": "민주",
+     "dc_stance": "전기요금 상승·농촌 데이터센터 건설을 핵심 공격 소재로",
+     "src": "https://www.forbes.com/sites/maryroeloffs/2026/11/02/data-centers-are-key-issue-in-midterm-battleground-states-as-household-electric-rates-soar/"
+    },
+    {
+     "name": "존 허스티드",
+     "party": "공화·현직",
+     "dc_stance": "데이터센터가 비용을 스스로 내게 하는 요금 보호 법안 발의",
+     "src": "https://www.forbes.com/sites/maryroeloffs/2026/11/02/data-centers-are-key-issue-in-midterm-battleground-states-as-household-electric-rates-soar/"
+    }
+   ]
+  },
+  {
+   "state": "펜실베이니아",
+   "race": "주지사",
+   "status": "개표 중",
+   "candidates": [
+    {
+     "name": "조시 셔피로",
+     "party": "민주·현직",
+     "dc_stance": "데이터센터가 전력을 직접 짓거나 사 오고 전력망 비용을 부담하라는 행정명령",
+     "src": "https://www.forbes.com/sites/maryroeloffs/2026/11/02/data-centers-are-key-issue-in-midterm-battleground-states-as-household-electric-rates-soar/"
+    },
+    {
+     "name": "스테이시 개리티",
+     "party": "공화",
+     "dc_stance": "주민 요금 보호를 위해 데이터센터 유예 요구",
+     "src": "https://www.forbes.com/sites/maryroeloffs/2026/11/02/data-centers-are-key-issue-in-midterm-battleground-states-as-household-electric-rates-soar/"
+    }
+   ]
+  },
+  {
+   "state": "오하이오",
+   "race": "하원 9선거구",
+   "status": "개표 중",
+   "candidates": [
+    {
+     "name": "마시 캡터",
+     "party": "민주·현직",
+     "dc_stance": "가계 전기요금을 내세워 상대의 데이터센터 세제 혜택 지지를 비판",
+     "src": "https://www.forbes.com/sites/maryroeloffs/2026/11/02/data-centers-are-key-issue-in-midterm-battleground-states-as-household-electric-rates-soar/"
+    },
+    {
+     "name": "데릭 메린스",
+     "party": "공화",
+     "dc_stance": "데이터센터 세제 혜택 지지(상대 측 비판 기준)",
+     "src": "https://www.forbes.com/sites/maryroeloffs/2026/11/02/data-centers-are-key-issue-in-midterm-battleground-states-as-household-electric-rates-soar/"
+    }
+   ]
+  },
+  {
+   "state": "위스콘신",
+   "race": "하원 3선거구",
+   "status": "개표 중",
+   "candidates": [
+    {
+     "name": "리베카 쿡",
+     "party": "민주",
+     "dc_stance": "농촌 전력·생활비 보호를 위해 데이터센터 유예 요구",
+     "src": "https://www.forbes.com/sites/maryroeloffs/2026/11/02/data-centers-are-key-issue-in-midterm-battleground-states-as-household-electric-rates-soar/"
+    },
+    {
+     "name": "데릭 밴 오든",
+     "party": "공화·현직",
+     "dc_stance": "본인 입장 확인 안 됨(상대가 데이터센터 세제 혜택으로 공격)",
+     "src": "https://www.forbes.com/sites/maryroeloffs/2026/11/02/data-centers-are-key-issue-in-midterm-battleground-states-as-household-electric-rates-soar/"
+    }
+   ]
+  }
+ ],
+ "movers": [],
+ "measures": [
+  {
+   "place": "캔자스 오타와",
+   "what": "25메가와트 넘는 데이터센터 금지",
+   "src": "https://news.ballotpedia.org/2026/11/03/voters-in-ten-states-will-vote-on-data-center-related-ballot-measures-november-3/"
+  },
+  {
+   "place": "메인 웰스",
+   "what": "6개월 유예 + 직전 45일 내 허가 무효",
+   "src": "https://news.ballotpedia.org/2026/11/03/voters-in-ten-states-will-vote-on-data-center-related-ballot-measures-november-3/"
+  },
+  {
+   "place": "오하이오 그로브시티(28호)",
+   "what": "일정 규모 넘는 데이터센터는 주민 투표로 승인",
+   "src": "https://news.ballotpedia.org/2026/11/03/voters-in-ten-states-will-vote-on-data-center-related-ballot-measures-november-3/"
+  },
+  {
+   "place": "위스콘신 제인스빌",
+   "what": "4.5억 달러 넘는 특정 데이터센터 사업 주민 승인",
+   "src": "https://news.ballotpedia.org/2026/11/03/voters-in-ten-states-will-vote-on-data-center-related-ballot-measures-november-3/"
+  },
+  {
+   "place": "오하이오 페리(16호)",
+   "what": "세제 혜택 받는 개발사에 재정 보증 의무",
+   "src": "https://news.ballotpedia.org/2026/11/03/voters-in-ten-states-will-vote-on-data-center-related-ballot-measures-november-3/"
+  },
+  {
+   "place": "네바다 볼더시티(1호)",
+   "what": "엘도라도 밸리 구역에 데이터센터 허용",
+   "src": "https://news.ballotpedia.org/2026/11/03/voters-in-ten-states-will-vote-on-data-center-related-ballot-measures-november-3/"
+  },
+  {
+   "place": "오하이오 윌밍턴",
+   "what": "주거지를 산업용으로 바꿔 데이터센터 허용(4건)",
+   "src": "https://news.ballotpedia.org/2026/11/03/voters-in-ten-states-will-vote-on-data-center-related-ballot-measures-november-3/"
+  }
+ ],
+ "market": "데이터센터가 많은 주에서 양당 모두 '주민 전기요금 보호'를 내걸었습니다. 누가 이기든 데이터센터가 전력·전력망 비용을 더 부담하는 쪽으로 갈 가능성이 크고, 차이는 '유예(속도 제한)'냐 '비용 부담(조건부 허용)'이냐입니다. 전력 확보 비용이 늘면 빅테크 설비투자 단가가 오르고, 자체 전력·전력 장비(발전·변압·전력 반도체) 수요는 오히려 커질 수 있습니다.",
+ "note": "양당 같은 기준으로 확인된 발언·결과만 싣습니다(후보 입장: 포브스 11/2, 주민투표: 밸럿피디아 11/3). 11/5까지 운영 후 내려갑니다."
+}
