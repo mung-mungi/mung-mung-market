@@ -1,0 +1,124 @@
+{
+  "req": "11/5 영상 오프닝·텍사스·실적 장용: 트럼프 VETO 모자와 선거 뒤 발언, 머스크 우주 데이터센터, 11/4 빅테크 급등·반도체 약세 차트, 퀄컴·암·코히어런트 실적 핵심 (트럼프 트루스소셜 원본은 X에 없어 Kobeissi·Fox 게시물로 대신함, 히노호사 당선 뒤 데이터센터 공식 발언은 X에서 찾지 못함, 세미애널리시스·Tae Kim·Timiraos의 급락 설명 차트도 없음) (req 1105b)",
+  "at": "2026-11-04T23:20:18+09:00",
+  "by": "그록봇",
+  "metrics_at": "2026-11-04T23:20:18+09:00",
+  "posts": [
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "Kobeissi Letter 운영 계정(금융 뉴스, 팔로워 270만)",
+      "time_et": "2026-11-03 23:43",
+      "text": "BREAKING: President Trump posts a picture of a hat stating \"VETO\" after Democrats win the US House and Senate.\n\nPresident Trump previously said he would become \"Mr. Veto\" if Democrats won the Midterm elections. https://t.co/4Cf7qwK7an",
+      "ko": "트럼프가 민주당 상·하원 승리 뒤 'VETO' 모자 사진을 올렸다는 속보, 'Mr. Veto' 예고 언급",
+      "url": "https://x.com/KobeissiLetter/status/2117840033843741025",
+      "media": [
+        "https://pbs.twimg.com/media/HWQUSSUXgAA0xgY.jpg"
+      ],
+      "media_note": "첨부 사진: 트럼프가 올린 빨간 'VETO' 모자 이미지(트루스소셜 원본은 X에 없어 이 게시물로 대신함)",
+      "views": 348840,
+      "likes": 2359
+    },
+    {
+      "author": "Fox News",
+      "handle": "@FoxNews",
+      "role": "Fox News 공식 계정",
+      "time_et": "2026-11-04 00:13",
+      "text": "TRUMP: “It’s the power of veto. It’s one of the stronger powers that a president has.”\n\nPresident Trump tells @BretBaier how he plans to handle a potentially Democrat-controlled Congress following the midterms, saying he’s prepared to reject legislation he opposes until both sides find common ground.\n\n“They’ll send over things that are insane and I’ll veto them.”\n\nTrump says Democrats are already reaching out, claiming he’s spoken with several lawmakers and has more waiting to call.",
+      "ko": "트럼프, 브렛 바이어 인터뷰에서 '거부권은 대통령의 강한 권한, 말도 안 되는 법안은 거부하겠다' 선거 뒤 발언",
+      "url": "https://x.com/FoxNews/status/2117847589995286842",
+      "media": [
+        "https://pbs.twimg.com/amplify_video_thumb/2117847316342218752/img/_NYvwtjRO5r24JpW.jpg"
+      ],
+      "media_note": "영상(첨부 주소는 영상 썸네일), 브렛 바이어 인터뷰 장면",
+      "views": 587100,
+      "likes": 2903
+    },
+    {
+      "author": "Elon Musk",
+      "handle": "@elonmusk",
+      "role": "테슬라·스페이스X CEO",
+      "time_et": "2026-11-04 01:12",
+      "text": "Data centers in space looking pretty appealing right now",
+      "ko": "머스크 '우주 데이터센터가 지금 꽤 매력적으로 보인다' (텍사스 데이터센터 규제 우려 직후)",
+      "url": "https://x.com/elonmusk/status/2117862462976594112",
+      "media": [],
+      "media_note": "첨부 없음, 글만 있음",
+      "views": 9428146,
+      "likes": 214644
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "Unusual Whales 운영 계정(시장 데이터, 팔로워 540만)",
+      "time_et": "2026-11-04 16:41",
+      "text": "Now this was a green wave.\n\nEvery green stock in the Nasdaq 100 today, using Unusual Whales\n\nLeading the post-election rally:\n$APP +35.4%\n$MRNA +12.7%\n$BKNG +9.8%\n$ISRG +9.4%\n$DASH +8.3%\n$SHOP +7.5%\n\nMega caps too: $MSFT +6.6%, $AMZN +6%, $AAPL +5.5% https://t.co/tSEzT2lQxN",
+      "ko": "11/4 나스닥100 상승 종목 지도, MSFT +6.6%·AMZN +6%·AAPL +5.5% 등 빅테크 급등",
+      "url": "https://x.com/unusual_whales/status/2118096264407765447",
+      "media": [
+        "https://pbs.twimg.com/media/HWT9TKKaEAAL8Q9.jpg"
+      ],
+      "media_note": "나스닥100 상승 종목 히트맵 차트",
+      "views": 81072,
+      "likes": 148
+    },
+    {
+      "author": "Bespoke",
+      "handle": "@bespokeinvest",
+      "role": "Bespoke Investment Group 공식 계정(시장 리서치)",
+      "time_et": "2026-11-04 15:53",
+      "text": "Here's a snapshot of key ETF performance today, showing outperformance in consumer sectors, China, Europe, bitcoin, gold, and silver, and weakness in Energy, Semis, Israel and oil. https://t.co/ny4YykoV6y",
+      "ko": "11/4 주요 ETF 성과: 소비·중국·유럽·금은 강세, 에너지·반도체 약세",
+      "url": "https://x.com/bespokeinvest/status/2118084360402248054",
+      "media": [
+        "https://pbs.twimg.com/media/HWTyP3wXMAAb5LS.png"
+      ],
+      "media_note": "주요 ETF 당일 등락률 표",
+      "views": 5255,
+      "likes": 19
+    },
+    {
+      "author": "Patrick Moorhead",
+      "handle": "@PatrickMoorhead",
+      "role": "Moor Insights & Strategy CEO·반도체 애널리스트",
+      "time_et": "2026-11-04 18:08",
+      "text": "$QCOM off the call and not in the release: data center is now a supply question, not a demand question. Upside beyond the $5B FY27 target is constrained by supply, and two hyperscalers at scale make up most of the $5B, both running into FY28 and FY29.\n\nTop 5 things the call added:\n1. High-bandwidth compute is beating its design target in the lab: ~0.3 picojoules per bit vs 0.5, yields above plan, strongest on decode.\n2. Gross margin has a number now: once price increases land, the baseline returns to the low end of 48% to 50%, before custom silicon dilution.\n3. As I said in July, China troughed. June was the bottom for China Android, with growth in September and December. Samsung share baseline: 70%+, up from 50%.\n4. Earlier today I wanted SpaceX deal size and revenue timing. We got timing: revenue starts exiting FY27, mostly FY28. No size yet which is understandable.\n5. Auto's 5th-gen platform carries 8x the silicon content of 3rd-gen cars on the road. The growth is share, not pre-buys.\n\n@Qualcomm",
+      "ko": "퀄컴 콜 핵심: 데이터센터는 이제 수요가 아니라 공급 문제, FY27 50억 달러 목표의 대부분은 하이퍼스케일러 2곳",
+      "url": "https://x.com/PatrickMoorhead/status/2118118288408600775",
+      "media": [],
+      "media_note": "첨부 없음, 글만 있음",
+      "views": 559,
+      "likes": 6
+    },
+    {
+      "author": "Patrick Moorhead",
+      "handle": "@PatrickMoorhead",
+      "role": "Moor Insights & Strategy CEO·반도체 애널리스트",
+      "time_et": "2026-11-04 16:21",
+      "text": "$ARM fiscal Q2: BEAT and raise, but down ~3% after hours.. The market is selling royalties: +8% vs a low-teens guide, my test before the print.\n\nThe numbers:\n-Revenue $1.44B, +27% YoY, vs $1.38B est: BEAT\n-Non-GAAP EPS $0.52 vs $0.47 est, $0.51 whisper: BEAT\n-Royalties $670M, +8% YoY, vs low-teens guide: MISS\n-Licensing $773M, +50% YoY, vs ~30% guide: BEAT\n-Q3 guide $1.54B vs $1.52B est: BEAT\n\nTakeaways:\n1. Royalty growth fell to 8% from 22%. Data center doubled; phones went backwards. New quarter, new royalty explanation and that's OK.\n2. Licensing is Arm's book-to-bill, royalties years out, and it lifted non-GAAP operating margin to 44.2%.\n3. AGI CPU is supply-gated, and \"up to $2B\" is mostly FY28. (no surprise here they could sell a lot more)\n4. Arm's top-hyperscaler server share passed 50%; Graviton commitments rose 20x. The target is x86, not licensees.\n5. H1 royalties grew ~15%. July's high-teens outlook needs ~20% in H2. My math.\n\n@Arm",
+      "ko": "암 실적 서프라이즈·가이던스 상향에도 로열티 +8%(가이던스 미달)로 시간외 약 -3%",
+      "url": "https://x.com/PatrickMoorhead/status/2118091209008623965",
+      "media": [],
+      "media_note": "첨부 없음, 글만 있음",
+      "views": 2509,
+      "likes": 9
+    },
+    {
+      "author": "Patrick Moorhead",
+      "handle": "@PatrickMoorhead",
+      "role": "Moor Insights & Strategy CEO·반도체 애널리스트",
+      "time_et": "2026-11-04 16:39",
+      "text": "$COHR FQ1: BEAT and raise, up ~8% after hours after a 56% slide since June. The market is buying >60% FY27 growth.\n\nThe numbers:\n-Revenue $2.37B, +56% pro forma, vs $2.30B est: BEAT\n-Non-GAAP EPS $2.09 vs $1.97 est: BEAT\n-Non-GAAP gross margin 40.6% vs 40.5% guide: MEET\n-FQ2 guide ~$2.65B vs $2.53B est: BEAT\n-FY27 growth >60% vs ~50% street: BEAT\n\nTakeaways:\n1. In the deck: a ~$20B, five-year PhotonLink deal from early CY2028. As I said Monday, Marvell buying Lumentum makes Coherent the neutral supplier.\n2. In CPO, what surrounds the laser is as big an opportunity as the laser. PhotonLink sells all of it.\n3. In August I said capacity and cash matter. InP output doubled a quarter early. Operating cash flow was -$93M on $776M capex.\n4. The CFO credits pricing and cost, targeting >45% gross margin by end of CY2028. Lasers are the choke point.\n5. By my math, >60% FY27 growth will need ~$3B a quarter in 2H, not one $3B quarter by June.\n\n@CoherentCorp",
+      "ko": "코히어런트 실적·가이던스 상향, FY27 60% 넘는 성장 전망에 시간외 약 +8%",
+      "url": "https://x.com/PatrickMoorhead/status/2118095931757527494",
+      "media": [],
+      "media_note": "첨부 없음, 글만 있음",
+      "views": 2078,
+      "likes": 11
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": "트럼프가 올린 'VETO' 모자 사진이 첨부된 원본급 게시물로, 선거 결과와 앞으로의 대립 구도를 한 장면에 담아 오프닝에 바로 쓸 수 있음.\n조회 35만으로 확산도가 크고, Fox의 거부권 발언(1번)과 머스크 우주 데이터센터(2번)로 텍사스 장까지 자연스럽게 이어짐."
+  }
+}
