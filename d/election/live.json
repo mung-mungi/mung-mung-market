@@ -152,5 +152,368 @@
   }
  ],
  "market": "데이터센터가 많은 주에서 양당 모두 '주민 전기요금 보호'를 내걸었습니다. 누가 이기든 데이터센터가 전력·전력망 비용을 더 부담하는 쪽으로 갈 가능성이 크고, 차이는 '유예(속도 제한)'냐 '비용 부담(조건부 허용)'이냐입니다. 전력 확보 비용이 늘면 빅테크 설비투자 단가가 오르고, 자체 전력·전력 장비(발전·변압·전력 반도체) 수요는 오히려 커질 수 있습니다.",
- "note": "양당 같은 기준으로 확인된 발언·결과만 싣습니다(후보 입장: 포브스 11/2, 주민투표: 밸럿피디아 11/3). 11/5까지 운영 후 내려갑니다."
+ "note": "양당 같은 기준으로 확인된 발언·결과만 싣습니다(후보 입장: 포브스 11/2, 주민투표: 밸럿피디아 11/3). 11/5까지 운영 후 내려갑니다.",
+ "map": {
+  "dc_src": "데이터센터 수: 월드 파퓰레이션 리뷰 'Data Centers by State 2026'(데이터센터맵 기준, 2026년 5월 현재)",
+  "dc_src_url": "https://worldpopulationreview.com/state-rankings/data-centers-by-state",
+  "states": {
+   "VA": {
+    "dc": 637,
+    "race": "상원",
+    "lead": "D",
+    "called": true,
+    "src": "https://gvwire.com/2026/11/03/mark-warner-wins-reelection-in-virginia-ap-makes-first-senate-call-of-night/"
+   },
+   "TX": {
+    "dc": 480,
+    "race": "상원(초반 개표)",
+    "lead": "D",
+    "called": false,
+    "src": "https://www.texastribune.org/2026/11/03/texas-ken-paxton-james-talarico-us-senate-elections-2026/"
+   },
+   "CA": {
+    "dc": 291,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "IL": {
+    "dc": 239,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "GA": {
+    "dc": 227,
+    "race": "상원",
+    "lead": "D",
+    "called": true,
+    "src": "https://rollcall.com/2026/11/03/senate-democrats-results-midterm-elections/"
+   },
+   "OH": {
+    "dc": 226,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "AZ": {
+    "dc": 156,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "NY": {
+    "dc": 133,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "PA": {
+    "dc": 133,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "OR": {
+    "dc": 125,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "IN": {
+    "dc": 123,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "FL": {
+    "dc": 110,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "WA": {
+    "dc": 107,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "IA": {
+    "dc": 105,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "NC": {
+    "dc": 93,
+    "race": "상원",
+    "lead": "D",
+    "called": true,
+    "src": "https://rollcall.com/2026/11/03/senate-democrats-results-midterm-elections/"
+   },
+   "MO": {
+    "dc": 92,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "MN": {
+    "dc": 78,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "MI": {
+    "dc": 77,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "NV": {
+    "dc": 74,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "NJ": {
+    "dc": 67,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "TN": {
+    "dc": 63,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "CO": {
+    "dc": 57,
+    "race": "상원",
+    "lead": "D",
+    "called": true,
+    "src": "https://gvwire.com/2026/11/03/ap-calls-senate-races-in-colorado-new-mexico-and-wyoming/"
+   },
+   "MD": {
+    "dc": 53,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "WI": {
+    "dc": 53,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "CT": {
+    "dc": 52,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "KY": {
+    "dc": 49,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "UT": {
+    "dc": 48,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "OK": {
+    "dc": 47,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "SC": {
+    "dc": 46,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "MA": {
+    "dc": 42,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "KS": {
+    "dc": 36,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "NE": {
+    "dc": 36,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "WY": {
+    "dc": 31,
+    "race": "상원",
+    "lead": "R",
+    "called": true,
+    "src": "https://gvwire.com/2026/11/03/ap-calls-senate-races-in-colorado-new-mexico-and-wyoming/"
+   },
+   "MT": {
+    "dc": 30,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "AL": {
+    "dc": 25,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "MS": {
+    "dc": 24,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "LA": {
+    "dc": 23,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "ND": {
+    "dc": 23,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "NM": {
+    "dc": 22,
+    "race": "상원",
+    "lead": "D",
+    "called": true,
+    "src": "https://gvwire.com/2026/11/03/ap-calls-senate-races-in-colorado-new-mexico-and-wyoming/"
+   },
+   "DE": {
+    "dc": 18,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "ID": {
+    "dc": 18,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "AR": {
+    "dc": 12,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "ME": {
+    "dc": 11,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "NH": {
+    "dc": 10,
+    "race": "상원",
+    "lead": "D",
+    "called": true,
+    "src": "https://rollcall.com/2026/11/03/senate-democrats-results-midterm-elections/"
+   },
+   "SD": {
+    "dc": 10,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "WV": {
+    "dc": 10,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "HI": {
+    "dc": 9,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "AK": {
+    "dc": 8,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "RI": {
+    "dc": 7,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "DC": {
+    "dc": 6,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   },
+   "VT": {
+    "dc": 3,
+    "race": "",
+    "lead": "",
+    "called": false,
+    "src": ""
+   }
+  }
+ }
 }
