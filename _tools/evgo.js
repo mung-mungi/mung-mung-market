@@ -128,7 +128,10 @@ document.addEventListener('click',function(e){if(CAL)return;var t=e.target,r=t.c
 var q=0;function sched(){if(q)return;q=1;requestAnimationFrame(function(){q=0;try{mark()}catch(e){}})}
 var MO=window.MutationObserver;try{if(MO.__thr)MO=Object.getPrototypeOf(MO)}catch(e){}
 function watch(){var a=document.getElementById('weeks'),b=document.getElementById('calbody');if(!a||!b){setTimeout(watch,400);return}try{var mo=new MO(function(ms){for(var i=0;i<ms.length;i++){var m=ms[i],n=m.target;if(n.closest&&n.closest('.evg-host'))continue;var ad=[].slice.call(m.addedNodes||[]);if(ad.length&&ad.every(function(x){return x.classList&&(x.classList.contains('evg-host')||x.classList.contains('evg-pill'))}))continue;sched();return}});mo.observe(a,{childList:true,subtree:true});mo.observe(b,{childList:true})}catch(e){}}
-function hash(){var m=/^#ev-([\w.-]+)$/.exec(location.hash||'');if(!m)return;var id=m[1],tries=0;(function wait(){if(!find(id)||!CAL){if(++tries<40)setTimeout(wait,300);return}show(id,'alert')})()}
+// 일정 표에 줄이 없는 알림 지표(ADP 등 alert_extra)도 알림 누르면 맨 위에 그 지표 칸을 만들어 바로 보여 줌(사용자 2026-11-04)
+function stub(id){var r=rowOf(id),w=document.getElementById('weeks');if(!r||!w)return false;var c=document.getElementById('evg-stub');if(!c){c=el('div','mc-card evg-stub');c.id='evg-stub';w.insertBefore(c,w.firstChild)}
+ c.innerHTML='';var h=el('div','evg-stub-h');h.textContent='⚡ 방금 알림 온 지표';var e=el('div','mc-ev');e.dataset.key=id;var b=el('b');b.textContent=(r.event||id)+(r.period?' · '+r.period:'');var x=el('div','ex');x.textContent=(r.date_kst||'')+' '+(r.time_kst||'')+' 발표';e.appendChild(b);e.appendChild(x);c.appendChild(h);c.appendChild(e);return true}
+function hash(){var m=/^#ev-([\w.-]+)$/.exec(location.hash||'');if(!m)return;var id=m[1],tries=0;(function wait(){if(!find(id)||!CAL){if(CAL&&tries>=10&&!find(id)&&stub(id)){mark();show(id,'alert');return}if(++tries<40)setTimeout(wait,300);return}show(id,'alert')})()}
 addEventListener('hashchange',hash);
 load();function start(){watch();load().then(function(){mark();hash();var w=window.requestIdleCallback||function(f){setTimeout(f,1200)};w(function(){try{var r=document.querySelector('#weeks .mc-ev.evg-can');if(r)panel(r.dataset.key)}catch(e){}})})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
