@@ -1,6 +1,6 @@
 {
 "src": "Kalshi 예측시장(베팅 가격 = 시장이 매긴 확률, 실제 개표 결과 아님)",
-"updated_at": "2026-11-04T12:18+09:00",
+"updated_at": "2026-11-04T12:23+09:00",
 "senate": {
 "AL": {
 "R": 100,
@@ -9,13 +9,13 @@
 "nD": "Everett Wess"
 },
 "AK": {
-"R": 15,
+"R": 13,
 "nR": "Republican party",
-"D": 85,
+"D": 88,
 "nD": "Democratic party"
 },
 "AR": {
-"R": 100,
+"R": 99,
 "nR": "Tom Cotton",
 "D": 0,
 "nD": "Hallie Shoffner"
@@ -44,7 +44,7 @@
 "ID": {
 "R": 97,
 "nR": "Jim Risch",
-"D": 0,
+"D": 2,
 "nD": "David Roth"
 },
 "IL": {
@@ -57,7 +57,7 @@
 "IA": {
 "R": 4,
 "nR": "Ashley Hinson",
-"D": 94,
+"D": 96,
 "nD": "Josh Turek"
 },
 "KS": {
@@ -66,7 +66,7 @@
 "D": 99,
 "nD": "Adam Hamilton"
 },
-"LA": {
+"KY": {
 "R": 100,
 "nR": "Andy Barr",
 "won": "R",
@@ -74,9 +74,9 @@
 "nD": "Charles Booker"
 },
 "ME": {
-"R": 9,
+"R": 10,
 "nR": "Susan Collins",
-"D": 91,
+"D": 90,
 "nD": "Troy Jackson"
 },
 "MA": {
@@ -87,33 +87,33 @@
 "won": "D"
 },
 "MI": {
-"R": 3,
+"R": 2,
 "nR": "Mike Rogers",
-"D": 97,
+"D": 98,
 "nD": "Abdul El-Sayed"
 },
 "MN": {
 "R": 4,
 "nR": "Michele Tafoya",
-"D": 96,
+"D": 97,
 "nD": "Peggy Flanagan"
 },
 "MS": {
-"R": 85,
+"R": 89,
 "nR": "Cindy Hyde-Smith",
-"D": 15,
+"D": 12,
 "nD": "Scott Colom"
 },
 "MT": {
-"R": 94,
+"R": 95,
 "nR": "Kurt Alme",
 "D": 1,
 "nD": "Alani Bankhead"
 },
 "NE": {
-"R": 90,
+"R": 89,
 "nR": "Pete Ricketts",
-"D": 0,
+"D": 1,
 "nD": "Cindy Burbank"
 },
 "NH": {
@@ -171,9 +171,9 @@
 "nD": "Annie Andrews"
 },
 "SD": {
-"R": 99,
+"R": 100,
 "nR": "Mike Rounds",
-"D": 1,
+"D": 0,
 "nD": "Julian Beaudion"
 },
 "TN": {
@@ -183,7 +183,7 @@
 "nD": "Marquita Bradshaw"
 },
 "TX": {
-"R": 0,
+"R": 1,
 "nR": "Ken Paxton",
 "D": 100,
 "nD": "James Talarico"
@@ -212,15 +212,15 @@
 },
 "gov": {
 "AL": {
-"D": 1,
+"D": 2,
 "nD": "Doug Jones",
 "R": 98,
 "nR": "Tommy Tuberville"
 },
 "AZ": {
-"D": 99,
+"D": 100,
 "nD": "Katie Hobbs",
-"R": 1,
+"R": 0,
 "nR": "Andy Biggs"
 },
 "AR": {
@@ -232,7 +232,7 @@
 "CA": {
 "D": 99,
 "nD": "Xavier Becerra",
-"R": 2,
+"R": 1,
 "nR": "Steve Hilton"
 },
 "CO": {
@@ -289,9 +289,9 @@
 "nR": "Zach Lahn"
 },
 "ME": {
-"D": 99,
+"D": 97,
 "nD": "Hannah Pingree",
-"R": 2,
+"R": 3,
 "nR": "Robert Charles"
 },
 "MD": {
@@ -309,7 +309,7 @@
 "nR": "Mike Minogue"
 },
 "MI": {
-"D": 100,
+"D": 99,
 "nD": "Jocelyn Benson",
 "R": 1,
 "nR": "John James"
@@ -321,13 +321,13 @@
 "nR": "Lisa Demuth"
 },
 "NE": {
-"D": 13,
+"D": 12,
 "nD": "Lynne Walz",
-"R": 89,
+"R": 90,
 "nR": "Jim Pillen"
 },
 "NV": {
-"D": 96,
+"D": 97,
 "nD": "Aaron Ford",
 "R": 3,
 "nR": "Joe Lombardo"
@@ -346,9 +346,9 @@
 "nR": "Bruce Blakeman"
 },
 "OH": {
-"D": 99,
+"D": 98,
 "nD": "Amy Acton",
-"R": 1,
+"R": 2,
 "nR": "Vivek Ramaswamy"
 },
 "OK": {
@@ -358,7 +358,7 @@
 "nR": "Mike Mazzei"
 },
 "OR": {
-"D": 94,
+"D": 90,
 "nD": "Tina Kotek",
 "R": 6,
 "nR": "Christine Drazan"
@@ -378,27 +378,27 @@
 "nR": "Aaron Guckian"
 },
 "SC": {
-"D": 1,
+"D": 0,
 "nD": "Jermaine Johnson",
-"R": 98,
+"R": 99,
 "nR": "Alan Wilson"
 },
 "SD": {
-"D": 2,
+"D": 0,
 "nD": "Dan Ahlers",
 "R": 100,
 "nR": "Larry Rhoden"
 },
 "TN": {
-"D": 11,
+"D": 8,
 "nD": "Jerri Green",
-"R": 90,
+"R": 93,
 "nR": "Marsha Blackburn"
 },
 "TX": {
-"D": 97,
+"D": 98,
 "nD": "Gina Hinojosa",
-"R": 3,
+"R": 2,
 "nR": "Greg Abbott"
 },
 "VT": {
