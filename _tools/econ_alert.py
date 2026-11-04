@@ -359,7 +359,7 @@ def main():
                 ser[k] = h; ser_changed = True
     groups = {}
     for x in cal_all:
-        if not want(x) or x['id'] in sent or kind(x) is None:
+        if not want(x) or (x['id'] in sent and not ONLY) or kind(x) is None:   # ONLY(수동 다시 보내기)는 보낸 것도 다시
             continue
         if ONLY and x['id'] != ONLY and not any(y['id'] == ONLY and y['date_et'] == x['date_et'] and y['time_et'] == x['time_et'] for y in cal_all):
             continue
