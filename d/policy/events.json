@@ -2077,13 +2077,13 @@
 "has_detail": false,
 "id": "e143",
 "date": "2026-11-04",
-"title": "트럼프 \"이란 전쟁은 내가 끝낸다고 할 때 끝난다\" — 선거 패배 뒤 CBS 통화",
-"summary": "트럼프 대통령이 선거일 밤 CBS 뉴스와 통화하며 이란 전쟁은 \"내가 끝났다고 할 때 끝난다\"고 말했습니다. 패배한 선거와 별개로 전쟁 결정은 자신에게 있다는 뜻으로 읽힙니다. 공습 여부나 시점은 말하지 않았습니다. 시장은 민주당 의회가 전쟁 판단에 줄 영향을 아직 가늠하는 중입니다.",
+"title": "트럼프 \"패배 일부는 이란 탓… 그래도 다시 할 것\" — \"전쟁은 내가 끝낸다고 할 때 끝난다\"",
+"summary": "트럼프 대통령이 선거일 밤 폭스뉴스 전화 인터뷰에서 패배 원인을 두고 \"일부는 이란이었다\"고 인정했습니다. 월스트리트저널에는 \"옳은 일을 했다. 다시 하라면 또 했을 것\"이라고 말했습니다. CBS 뉴스와의 통화에서는 전쟁은 \"내가 끝났다고 할 때 끝난다\"고 했습니다. 패배를 인정하면서도 전쟁 결정은 자신에게 있다는 뜻으로 읽힙니다. 공습 여부나 시점은 말하지 않았습니다.",
 "nasdaq_pct": null,
 "mkt_note": "장 전",
 "status": "진행중",
-"source_url": "https://www.aninews.in/news/world/us/congratulations-to-the-democrats-trump-reacts-as-blue-wave-sweeps-us-congress-says-will-be-able-to-work-things-out20261104105126/",
-"media": "CBS 뉴스(ANI 인용)",
+"source_url": "https://www.cbsnews.com/live-updates/iran-war-us-trump-midterms-strait-of-hormuz/",
+"media": "CBS 뉴스·폭스뉴스·월스트리트저널",
 "thread": "미국 공습 옵션"
 },
 {
@@ -2101,6 +2101,22 @@
 "source_url": "https://www.malaymail.com/news/world/2026/11/04/americans-voted-no-to-war-in-midterm-landslide-and-we-endorse-it-says-irans-top-negotiator/241956",
 "media": "AFP(말레이메일)·ABC",
 "thread": "이란 해협 협상"
+},
+{
+"id": "e145",
+"date": "2026-11-04",
+"month": "2026-11",
+"category": "AI·전력 정책",
+"title": "민주당 주지사 당선인들 데이터센터 규제 예고 — 텍사스 히노호사 \"즉각 유예\"",
+"summary": "텍사스 주지사 선거에서 애벗을 꺾은 히노호사는 유세 때 주의회가 열릴 때까지 데이터센터를 즉각 유예해야 한다고 말했습니다. 조지아의 보텀스 당선인은 신규 데이터센터의 주 전체 한시 중단을 주장해 왔습니다. 오하이오의 액턴 당선인은 더 엄격한 규제 틀을 약속했습니다. 블룸에너지는 2028년 미국 AI 전력 수요의 30% 가까이가 텍사스에서 나올 것으로 봅니다. 전력·인허가가 주 단위에서 막히면 AI 인프라 일정에 부담이 될 수 있습니다.",
+"nasdaq_pct": null,
+"mkt_note": "장 전",
+"status": "진행중",
+"source_url": "https://english.aawsat.com/technology/5337461-democratic-victories-cloud-outlook-ai-data-center-rollout",
+"media": "아샤르크 알아우사트",
+"tier": "small",
+"thread": "데이터센터 정치",
+"has_detail": false
 },
 {
 "id": "e44",
