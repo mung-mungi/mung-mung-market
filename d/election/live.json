@@ -166,10 +166,24 @@
    },
    "TX": {
     "dc": 480,
-    "race": "상원(초반 개표)",
+    "race": "상원",
     "lead": "D",
     "called": false,
-    "src": "https://www.texastribune.org/2026/11/03/texas-ken-paxton-james-talarico-us-senate-elections-2026/"
+    "src": "https://www.texastribune.org/2026/11/03/texas-ken-paxton-james-talarico-us-senate-elections-2026/",
+    "cands": [
+     {
+      "n": "제임스 탈라리코",
+      "p": "D",
+      "pct": null,
+      "dc": ""
+     },
+     {
+      "n": "켄 팩스턴",
+      "p": "R",
+      "pct": null,
+      "dc": ""
+     }
+    ]
    },
    "CA": {
     "dc": 291,
@@ -194,10 +208,43 @@
    },
    "OH": {
     "dc": 226,
-    "race": "",
+    "race": "상원(보궐)",
     "lead": "",
     "called": false,
-    "src": ""
+    "src": "",
+    "cands": [
+     {
+      "n": "셰러드 브라운",
+      "p": "D",
+      "pct": null,
+      "dc": "— 전기요금·데이터센터를 핵심 공세로"
+     },
+     {
+      "n": "존 허스티드",
+      "p": "R",
+      "pct": null,
+      "dc": "— 데이터센터 비용 부담 법안 발의"
+     }
+    ],
+    "house": {
+     "D": 0,
+     "R": 0,
+     "total": 15,
+     "cands": [
+      {
+       "n": "마시 캡터(9선거구)",
+       "p": "D",
+       "pct": null,
+       "dc": "— 데이터센터 세제 혜택 비판"
+      },
+      {
+       "n": "데릭 메린스(9선거구)",
+       "p": "R",
+       "pct": null,
+       "dc": ""
+      }
+     ]
+    }
    },
    "AZ": {
     "dc": 156,
@@ -215,10 +262,24 @@
    },
    "PA": {
     "dc": 133,
-    "race": "",
+    "race": "주지사",
     "lead": "",
     "called": false,
-    "src": ""
+    "src": "",
+    "cands": [
+     {
+      "n": "조시 셔피로",
+      "p": "D",
+      "pct": null,
+      "dc": "— 전력망 비용 부담 행정명령"
+     },
+     {
+      "n": "스테이시 개리티",
+      "p": "R",
+      "pct": null,
+      "dc": "— 데이터센터 유예 요구"
+     }
+    ]
    },
    "OR": {
     "dc": 125,
@@ -323,7 +384,26 @@
     "race": "",
     "lead": "",
     "called": false,
-    "src": ""
+    "src": "",
+    "house": {
+     "D": 0,
+     "R": 0,
+     "total": 8,
+     "cands": [
+      {
+       "n": "리베카 쿡(3선거구)",
+       "p": "D",
+       "pct": null,
+       "dc": "— 데이터센터 유예 요구"
+      },
+      {
+       "n": "데릭 밴 오든(3선거구)",
+       "p": "R",
+       "pct": null,
+       "dc": ""
+      }
+     ]
+    }
    },
    "CT": {
     "dc": 52,
@@ -515,5 +595,6 @@
     "src": ""
    }
   }
- }
+ },
+ "changes": []
 }
