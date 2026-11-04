@@ -1,6 +1,6 @@
 {
 "src": "Kalshi 예측시장(베팅 가격 = 시장이 매긴 확률, 실제 개표 결과 아님)",
-"updated_at": "2026-11-04T12:23+09:00",
+"updated_at": "2026-11-04T12:24+09:00",
 "senate": {
 "AL": {
 "R": 100,
@@ -9,7 +9,7 @@
 "nD": "Everett Wess"
 },
 "AK": {
-"R": 13,
+"R": 12,
 "nR": "Republican party",
 "D": 88,
 "nD": "Democratic party"
@@ -17,7 +17,7 @@
 "AR": {
 "R": 99,
 "nR": "Tom Cotton",
-"D": 0,
+"D": 1,
 "nD": "Hallie Shoffner"
 },
 "CO": {
@@ -34,6 +34,13 @@
 "nD": "Chris Coons",
 "won": "D"
 },
+"FL": {
+"R": 100,
+"nR": "Ashley Moody",
+"won": "R",
+"D": 0,
+"nD": "Angie Nixon"
+},
 "GA": {
 "R": 0,
 "nR": "Mike Collins",
@@ -42,9 +49,9 @@
 "won": "D"
 },
 "ID": {
-"R": 97,
+"R": 98,
 "nR": "Jim Risch",
-"D": 2,
+"D": 1,
 "nD": "David Roth"
 },
 "IL": {
@@ -76,7 +83,7 @@
 "ME": {
 "R": 10,
 "nR": "Susan Collins",
-"D": 90,
+"D": 91,
 "nD": "Troy Jackson"
 },
 "MA": {
@@ -111,7 +118,7 @@
 "nD": "Alani Bankhead"
 },
 "NE": {
-"R": 89,
+"R": 90,
 "nR": "Pete Ricketts",
 "D": 1,
 "nD": "Cindy Burbank"
@@ -144,6 +151,12 @@
 "nD": "Roy Cooper",
 "won": "D"
 },
+"OH": {
+"R": 3,
+"nR": "Jon Husted",
+"D": 97,
+"nD": "Sherrod Brown"
+},
 "OK": {
 "R": 100,
 "nR": "Kevin Hern",
@@ -152,7 +165,7 @@
 "nD": "N’Kiyla Thomas"
 },
 "OR": {
-"R": 1,
+"R": 0,
 "nR": "David Brock Smith",
 "D": 100,
 "nD": "Jeff Merkley"
@@ -212,7 +225,7 @@
 },
 "gov": {
 "AL": {
-"D": 2,
+"D": 3,
 "nD": "Doug Jones",
 "R": 98,
 "nR": "Tommy Tuberville"
@@ -224,15 +237,15 @@
 "nR": "Andy Biggs"
 },
 "AR": {
-"D": 1,
+"D": 2,
 "nD": "Fred Love",
-"R": 100,
+"R": 99,
 "nR": "Sarah Huckabee Sanders"
 },
 "CA": {
 "D": 99,
 "nD": "Xavier Becerra",
-"R": 1,
+"R": 2,
 "nR": "Steve Hilton"
 },
 "CO": {
@@ -285,7 +298,7 @@
 "IA": {
 "D": 99,
 "nD": "Rob Sand",
-"R": 1,
+"R": 0,
 "nR": "Zach Lahn"
 },
 "ME": {
@@ -321,7 +334,7 @@
 "nR": "Lisa Demuth"
 },
 "NE": {
-"D": 12,
+"D": 13,
 "nD": "Lynne Walz",
 "R": 90,
 "nR": "Jim Pillen"
@@ -348,19 +361,19 @@
 "OH": {
 "D": 98,
 "nD": "Amy Acton",
-"R": 2,
+"R": 1,
 "nR": "Vivek Ramaswamy"
 },
 "OK": {
-"D": 2,
+"D": 1,
 "nD": "Cyndi Munson",
 "R": 98,
 "nR": "Mike Mazzei"
 },
 "OR": {
-"D": 90,
+"D": 94,
 "nD": "Tina Kotek",
-"R": 6,
+"R": 8,
 "nR": "Christine Drazan"
 },
 "PA": {
@@ -390,9 +403,9 @@
 "nR": "Larry Rhoden"
 },
 "TN": {
-"D": 8,
+"D": 11,
 "nD": "Jerri Green",
-"R": 93,
+"R": 90,
 "nR": "Marsha Blackburn"
 },
 "TX": {
@@ -420,5 +433,6 @@
 "nR": "Eric Barlow",
 "won": "R"
 }
-}
+},
+"house": {}
 }
