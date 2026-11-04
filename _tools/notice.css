@@ -57,3 +57,9 @@
 .mm-ntc-bot .d{background:#fff;color:#5c5346;border:1px solid #e3d3b2;box-shadow:0 2px 0 #eee2c9}
 .mm-ntc-bot .c{background:#1d1a16;color:#fff;border:1px solid #1d1a16;box-shadow:0 2px 0 #000}
 html.mm-ntc-lock,html.mm-ntc-lock body{overflow:hidden}
+/* 컴팩트(사용자 2026-11-04 '좀 더 작게'): 첫 줄 = 알약 + 펼치기, 둘째 줄 = 제목 2줄 */
+html body .mm-ntc{margin:10px 0 6px!important;border-radius:14px!important}
+html body .mm-ntc-hd{flex-wrap:wrap!important;gap:4px 8px!important;padding:8px 12px 9px!important}
+html body .mm-ntc-hd .chip{font-size:11.5px!important;padding:2px 8px!important;order:1}
+html body .mm-ntc-hd em{order:2;margin-left:auto;font-size:12px!important;padding:3px 9px!important}
+html body .mm-ntc-hd b{order:3;flex-basis:100%!important;font-size:14.5px!important;line-height:1.38!important;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}

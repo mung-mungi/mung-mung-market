@@ -6,3 +6,13 @@
 .today.mm-tb #t-more{display:none!important}
 .today.mm-tb .mm-tb-ar{position:absolute;right:14px;top:50%;margin-top:-14px;font:700 26px/28px -apple-system,sans-serif;color:var(--accent,#9a6200)}
 .today.mm-tb .mm-tb-go{display:inline-flex;align-items:center;gap:4px;margin:7px 0 0;font:800 13.5px/1.2 -apple-system,"Apple SD Gothic Neo",sans-serif;color:var(--accent,#9a6200)}
+/* 컴팩트(사용자 2026-11-04 '전달사항 정도 크기로 — 누르면 시황으로 가니 헤드라인만'): 날짜 알약 + 헤드라인 2줄 + 숫자 한 줄 */
+html body .today.mm-tb .body{padding:10px 40px 9px 14px!important;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+html body .today.mm-tb .body .lab{font-size:12px!important;padding:2px 9px!important;margin:0!important;line-height:1.4!important}
+html body .today.mm-tb .body .v{flex-basis:100%;margin:0!important;font-size:16.5px!important;line-height:1.38!important;letter-spacing:-.01em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+html body .today.mm-tb .body .c,html body .today.mm-tb .mm-tb-go{display:none!important}
+html body .today.mm-tb .mm-tb-ar{font-size:22px!important}
+/* 메인 카드 사이 간격 줄이기(같은 요청) — 아래 페이지 버튼이 한 화면 안에 더 보이게 */
+html body #v-home.view{row-gap:12px!important}
+html body #v-home .mm-yt{margin-top:0!important;margin-bottom:0!important}
+html body #v-home .mm-ntc{margin:0!important}
