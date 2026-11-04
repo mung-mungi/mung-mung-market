@@ -10,12 +10,20 @@ def get(path, **q):
     print('fail',u,err); return {}
 ST="AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY".split()
 def party(m):
+    r=(m.get('rules_primary') or '').lower()
+    if 'democratic party' in r or 'democrat' in r[:120]: return 'D'
+    if 'republican party' in r or 'republican' in r[:120]: return 'R'
     t=' '.join(str(m.get(k) or '') for k in ('yes_sub_title','subtitle','title','ticker')).lower()
     if re.search(r'democrat|\b-d\b|dem\b',t): return 'D'
     if re.search(r'republican|\b-r\b|gop|rep\b',t): return 'R'
     return None
 def price(m):
-    for k in ('last_price','yes_bid','yes_ask'):
+    for k in ('last_price_dollars','yes_bid_dollars','yes_ask_dollars'):
+        try:
+            v=float(m.get(k) or 0)
+            if v>0: return round(v*100)
+        except: pass
+    for k in ('last_price','yes_bid'):
         v=m.get(k)
         if isinstance(v,(int,float)) and v>0: return v
     return None
@@ -27,11 +35,10 @@ for kind,pre in (('senate',['SENATE']),('gov',['GOVPARTY','GOV'])):
             evs=[e for e in ev.get('events',[]) if '26' in e.get('event_ticker','') or '2026' in (e.get('title') or '')]
             if not evs: continue
             ms=evs[0].get('markets') or []
-            if s in ('TX','OH') and kind=='senate': print('DEBUG',json.dumps(ms[:2])[:1500])
             res={}
             for m in ms:
                 pp=party(m); pr=price(m)
-                if pp and pr is not None: res[pp]=max(res.get(pp,0),pr)
+                if pp and pr is not None and pr>res.get(pp,-1): res[pp]=pr; res['n'+pp]=m.get('yes_sub_title') or ''
                 if m.get('result') in ('yes',) and pp: res['won']=pp
             if res:
                 out[kind][s]=res; print(kind,s,p,evs[0].get('event_ticker'),res)
