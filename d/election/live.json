@@ -1,13 +1,14 @@
 {
- "updated_at": "2026-11-04T11:55:00+09:00",
- "updated_label": "11.4 (수) 11:55 기준 · 의석 집계는 다음 갱신에서 채움",
+ "updated_at": "2026-11-04T12:22:00+09:00",
+ "updated_label": "11.4 (수) 12:22 기준",
  "ended": false,
  "house": {
   "D": null,
   "R": null,
   "needed": 218,
-  "called": null,
-  "src": ""
+  "called": "민주",
+  "src": "https://www.nbcnews.com/politics/2026-election/live-blog/midterm-election-results-2026-news-trump-live-updates-rcna605763",
+  "note": "NBC 디시전데스크 다수당 예측 확정, 의석 집계는 다음 갱신"
  },
  "senate": {
   "D": null,
@@ -169,32 +170,33 @@
     "race": "상원",
     "lead": "D",
     "called": false,
-    "src": "https://www.texastribune.org/2026/11/03/texas-ken-paxton-james-talarico-us-senate-elections-2026/",
+    "src": "https://victoriaadvocate.com/2026/11/03/talarico-overtakes-paxton-in-texas-senate-race/",
     "cands": [
      {
       "n": "제임스 탈라리코",
       "p": "D",
-      "pct": null,
+      "pct": 59.7,
       "dc": ""
      },
      {
       "n": "켄 팩스턴",
       "p": "R",
-      "pct": null,
+      "pct": 38.8,
       "dc": ""
      }
-    ]
+    ],
+    "reported": 52
    },
    "CA": {
     "dc": 291,
-    "race": "",
+    "race": "주지사",
     "lead": "",
     "called": false,
     "src": ""
    },
    "IL": {
     "dc": 239,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
@@ -248,14 +250,14 @@
    },
    "AZ": {
     "dc": 156,
-    "race": "",
+    "race": "주지사",
     "lead": "",
     "called": false,
     "src": ""
    },
    "NY": {
     "dc": 133,
-    "race": "",
+    "race": "주지사",
     "lead": "",
     "called": false,
     "src": ""
@@ -263,9 +265,9 @@
    "PA": {
     "dc": 133,
     "race": "주지사",
-    "lead": "",
-    "called": false,
-    "src": "",
+    "lead": "D",
+    "called": true,
+    "src": "https://www.nbcnews.com/politics/2026-elections/pennsylvania-governor-results",
     "cands": [
      {
       "n": "조시 셔피로",
@@ -283,7 +285,7 @@
    },
    "OR": {
     "dc": 125,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
@@ -297,10 +299,10 @@
    },
    "FL": {
     "dc": 110,
-    "race": "",
-    "lead": "",
-    "called": false,
-    "src": ""
+    "race": "상원(보궐)",
+    "lead": "R",
+    "called": true,
+    "src": "https://www.nbcnews.com/politics/2026-election/ashley-moody-florida-senate-election-win-midterm-angie-nixon-rcna603333"
    },
    "WA": {
     "dc": 107,
@@ -311,7 +313,7 @@
    },
    "IA": {
     "dc": 105,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
@@ -332,35 +334,35 @@
    },
    "MN": {
     "dc": 78,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "MI": {
     "dc": 77,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "NV": {
     "dc": 74,
-    "race": "",
+    "race": "주지사",
     "lead": "",
     "called": false,
     "src": ""
    },
    "NJ": {
     "dc": 67,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "TN": {
     "dc": 63,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
@@ -374,14 +376,14 @@
    },
    "MD": {
     "dc": 53,
-    "race": "",
-    "lead": "",
-    "called": false,
-    "src": ""
+    "race": "주지사",
+    "lead": "D",
+    "called": true,
+    "src": "https://www.nbcnews.com/politics/2026-elections/maryland-governor-results"
    },
    "WI": {
     "dc": 53,
-    "race": "",
+    "race": "주지사",
     "lead": "",
     "called": false,
     "src": "",
@@ -407,14 +409,14 @@
    },
    "CT": {
     "dc": 52,
-    "race": "",
+    "race": "주지사",
     "lead": "",
     "called": false,
     "src": ""
    },
    "KY": {
     "dc": 49,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
@@ -428,35 +430,35 @@
    },
    "OK": {
     "dc": 47,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "SC": {
     "dc": 46,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "MA": {
     "dc": 42,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "KS": {
     "dc": 36,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "NE": {
     "dc": 36,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
@@ -470,28 +472,28 @@
    },
    "MT": {
     "dc": 30,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "AL": {
     "dc": 25,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "MS": {
     "dc": 24,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "LA": {
     "dc": 23,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
@@ -512,28 +514,28 @@
    },
    "DE": {
     "dc": 18,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "ID": {
     "dc": 18,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "AR": {
     "dc": 12,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "ME": {
     "dc": 11,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
@@ -547,35 +549,35 @@
    },
    "SD": {
     "dc": 10,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "WV": {
     "dc": 10,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "HI": {
     "dc": 9,
-    "race": "",
+    "race": "주지사",
     "lead": "",
     "called": false,
     "src": ""
    },
    "AK": {
     "dc": 8,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
    },
    "RI": {
     "dc": 7,
-    "race": "",
+    "race": "상원",
     "lead": "",
     "called": false,
     "src": ""
@@ -589,12 +591,33 @@
    },
    "VT": {
     "dc": 3,
-    "race": "",
+    "race": "주지사",
     "lead": "",
     "called": false,
     "src": ""
    }
   }
  },
- "changes": []
+ "changes": [
+  {
+   "t": "12:22",
+   "st": "",
+   "msg": "하원 다수당 민주 — NBC 디시전데스크 예측 확정"
+  },
+  {
+   "t": "12:22",
+   "st": "PA",
+   "msg": "주지사 민주(셔피로) 확정 · NBC"
+  },
+  {
+   "t": "12:22",
+   "st": "FL",
+   "msg": "상원 보궐 공화(무디) 확정 · NBC"
+  },
+  {
+   "t": "12:22",
+   "st": "TX",
+   "msg": "상원 민주 앞섬 59.7% 대 38.8% (개표 52%)"
+  }
+ ]
 }

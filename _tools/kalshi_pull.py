@@ -40,8 +40,10 @@ for kind,pre in (('senate',['SENATE']),('gov',['GOVPARTY','GOV'])):
                 pp=party(m); pr=price(m)
                 if pp and pr is not None and pr>res.get(pp,-1): res[pp]=pr; res['n'+pp]=m.get('yes_sub_title') or ''
                 if m.get('result') in ('yes',) and pp: res['won']=pp
+            if kind=='senate' and s=='LA' and 'Barr' in str(res.get('nR','')): s2='KY'
+            else: s2=s
             if res:
-                out[kind][s]=res; print(kind,s,p,evs[0].get('event_ticker'),res)
+                out[kind][s2]=res; print(kind,s2,p,evs[0].get('event_ticker'),res)
             break
 json.dump(out,open('d/election/kalshi.json','w'),ensure_ascii=False,indent=0)
 print('senate',len(out['senate']),'gov',len(out['gov']))
