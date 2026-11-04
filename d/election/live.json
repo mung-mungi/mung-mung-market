@@ -1,6 +1,6 @@
 {
- "updated_at": "2026-11-04T12:50:53+09:00",
- "updated_label": "11.4 (수) 12:50 기준",
+ "updated_at": "2026-11-04T13:03:00+09:00",
+ "updated_label": "11.4 (수) 13:03 기준",
  "ended": false,
  "house": {
   "D": null,
@@ -170,7 +170,7 @@
     "race": "상원",
     "lead": "D",
     "called": false,
-    "src": "https://victoriaadvocate.com/2026/11/03/talarico-overtakes-paxton-in-texas-senate-race/",
+    "src": "https://www.nbcnews.com/politics/2026-election/live-blog/midterm-election-results-2026-news-trump-live-updates-rcna605763",
     "cands": [
      {
       "n": "제임스 탈라리코",
@@ -601,6 +601,16 @@
  },
  "changes": [
   {
+   "t": "13:03",
+   "st": "IL",
+   "msg": "주지사 프리츠커 AP 확정 (상원 AP 미확인)"
+  },
+  {
+   "t": "13:03",
+   "st": "TX",
+   "msg": "상원 NBC 탈라리코 승리 보도 — AP 확정 미확인"
+  },
+  {
    "t": "12:50",
    "st": "",
    "msg": "하원 다수당 AP 미확정 — 방송사 예측으로 정정"
@@ -619,16 +629,6 @@
    "t": "12:50",
    "st": "PA",
    "msg": "주지사 AP 확정 미확인 — 확정 표시 해제"
-  },
-  {
-   "t": "12:50",
-   "st": "MD",
-   "msg": "주지사 AP 확정 미확인 — 확정 표시 해제"
-  },
-  {
-   "t": "12:22",
-   "st": "",
-   "msg": "하원 다수당 민주 — NBC 디시전데스크 예측 확정"
   }
  ]
 }
