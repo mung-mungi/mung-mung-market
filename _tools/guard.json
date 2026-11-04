@@ -269,6 +269,9 @@
  "_tools/irlib.js": [
   "c.__fill=fill"
  ],
+ "_tools/note_push.py": [
+  "SEED = re.compile"
+ ],
  "_tools/rdbox.js": [
   "p.__rdn"
  ],
