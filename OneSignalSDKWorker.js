@@ -1,5 +1,8 @@
 // 알림 누르면 그 내용으로 바로 이동(사용자 2026-11-04 — 앱이 이미 열려 있으면 그 화면만 앞으로 나오고 알림 주소로 안 가던 문제)
 // 원시그널 처리보다 먼저 받아서: 열린 앱 창이 있으면 그 창을 알림 주소로 옮기고, 없으면 새로 엶. 주소는 푸시 자료(custom.u)에서 찾음
+// 새 판이 열린 앱을 닫을 때까지 기다리지 않고 바로 적용(이게 없으면 앱을 완전히 닫기 전까지 옛 처리 방식이 계속 씀)
+self.addEventListener('install', function () { self.skipWaiting(); });
+self.addEventListener('activate', function (e) { e.waitUntil(self.clients.claim()); });
 var MM_SITE = 'https://mung-mungi.github.io/mung-mung-market/';
 function mmFind(o, d) {
   if (!o || d > 5) return '';
