@@ -1,6 +1,10 @@
 # 전달사항 휴대폰 알림(사용자 2026-10-31) — 제목·내용·열 주소로 한 번 보냄
 name: push-notice
 on:
+  # 자동 공개 배너(사용자 2026-11-04): 정책 예약 작업이 d/notice_push.json을 바꾸면 그 제목·내용으로 전체 알림
+  push:
+    branches: [main]
+    paths: ['d/notice_push.json']
   workflow_dispatch:
     inputs:
       title:
@@ -19,10 +23,14 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v4
+      - name: from-file
+        if: github.event_name == 'push'
+        run: |
+          python3 -I -c "import json,os;j=json.load(open('d/notice_push.json'));f=open(os.environ['GITHUB_ENV'],'a');[f.write(k+'<<EOF_X\n'+str(j.get(v,''))+'\nEOF_X\n') for k,v in (('AUTO_TITLE','title'),('AUTO_MSG','msg'))]"
       - name: send
         env:
           ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
-          PUSH_TEST: ${{ github.event.inputs.msg }}
-          PUSH_TITLE: ${{ github.event.inputs.title }}
+          PUSH_TEST: ${{ github.event.inputs.msg || env.AUTO_MSG }}
+          PUSH_TITLE: ${{ github.event.inputs.title || env.AUTO_TITLE }}
           PUSH_PATH: ${{ github.event.inputs.path || 'index.html' }}
         run: python3 -I _tools/push_notify.py .

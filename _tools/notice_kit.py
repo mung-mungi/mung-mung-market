@@ -8,7 +8,7 @@
 #   python3 -I _tools/notice_kit.py cand    후보.json <저장소> <비번>     # 5~6점 '후보' 한 줄만 남김
 #   python3 -I _tools/notice_kit.py drop    <저장소> <비번> <id>         # 초안·후보에서 빼기
 #   python3 -I _tools/notice_kit.py clear   <저장소>                      # 검수 칸 비우기
-#   python3 -I _tools/notice_kit.py auto    판정.json <저장소>            # ★비번 없이(예약 작업용)★ 점수로 초안/후보/기록만을 정해 받은편지함(d/notice_inbox.json, 공개키 잠금)에 넣음 — 주인장 칸이 비번으로 풀어 합쳐 보여 줌
+#   python3 -I _tools/notice_kit.py auto    판정.json <저장소>            # ★비번 없이(예약 작업용)★ 7점↑·무조건이면 d/notice.html로 바로 공개 + d/notice_push.json(전체 알림), 점수로 초안/후보/기록만을 정해 받은편지함(d/notice_inbox.json, 공개키 잠금)에 넣음 — 주인장 칸이 비번으로 풀어 합쳐 보여 줌
 # 초안·후보 JSON에는 score:{time,turn,ai,mkt,conf(각 0~2), force:'무조건 사유', why:{항목:이유}}를 넣음 → 주인장 칸에 점수·이유가 보임
 # 비번은 인자 대신 환경변수 OWNER_PIN으로 줘도 됨(GitHub Actions 비밀값용). 비번·평문 초안은 저장소에 절대 올리지 않음.
 #
@@ -146,7 +146,7 @@ def inbox_add(repo, kind, x):
     from cryptography.hazmat.primitives.ciphers.aead import AESGCM
     pub = serialization.load_pem_public_key(open(os.path.join(repo, 'd', 'notice_pub.pem'), 'rb').read())
     t, lv = grade(x.get('score')); x['total'], x['level'] = t, lv
-    msg = {'kind': kind, 'item': x, 'log': {'at': kst(), 'title': x['title'], 'total': t, 'level': lv, 'act': {'draft': '초안', 'cand': '후보'}.get(kind, '기록만') + '(자동)', 'note': x.get('note', '')}}
+    msg = {'kind': kind, 'item': x, 'log': {'at': kst(), 'title': x['title'], 'total': t, 'level': lv, 'act': ('자동 공개' if x.get('pub') else {'draft': '초안', 'cand': '후보'}.get(kind, '기록만') + '(자동)'), 'note': x.get('note', '')}}
     key, iv = AESGCM.generate_key(256), os.urandom(12)
     wk = pub.encrypt(key, padding.OAEP(mgf=padding.MGF1(hashes.SHA256()), algorithm=hashes.SHA256(), label=None))
     b = lambda v: base64.b64encode(v).decode()
@@ -187,6 +187,19 @@ def main(a):
         kind = 'draft' if lv in ('초안', '무조건') else ('cand' if lv == '후보' else 'log')
         x = {'id': d['id'], 'title': d['title'], 'date': d.get('date', ''), 'at': kst(), 'score': d.get('score', {}), 'note': d.get('note', '')}
         if kind == 'draft': x['html'] = render(d, repo)
+        if kind == 'draft' and '--no-pub' not in a:
+            # 자동 공개(사용자 2026-11-04): 검수 없이 바로 배너로 올리고, 주인장 칸에는 기록으로 남김.
+            # 같은 사건(같은 id)이 이미 떠 있으면 배너 내용만 바꾸고 알림은 다시 보내지 않음.
+            nf = os.path.join(repo, 'd', 'notice.html')
+            cur = open(nf, encoding='utf-8').read() if os.path.exists(nf) else ''
+            same = ('data-id="%s"' % esc(d['id'])) in cur and 'data-on="1"' in cur
+            open(nf, 'w', encoding='utf-8').write(x['html'])
+            x['pub'] = kst()
+            if not same:
+                c = re.sub(r'[*]', '', (d.get('cause') or [d.get('new') or d['title']])[0])[:120]
+                json.dump({'id': d['id'], 'title': '📢 ' + d['title'], 'msg': c, 'at': kst()},
+                          open(os.path.join(repo, 'd', 'notice_push.json'), 'w', encoding='utf-8'), ensure_ascii=False)
+            print('📢 자동 공개', '(같은 사건 — 내용만 갱신, 알림 생략)' if same else '+ 전체 알림 예약', d['title'])
         inbox_add(repo, kind, x)
     elif cmd == 'keygen':
         repo = a[1]; p = pin(2); assert re.fullmatch(r'\d{4}', p or ''), '비번(4자리)이 필요합니다'; keygen(repo, p); print('열쇠 만듦')
