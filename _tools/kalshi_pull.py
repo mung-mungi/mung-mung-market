@@ -54,7 +54,7 @@ while True:
     if cur:q['cursor']=cur
     d=get('/events',**q);evs=d.get('events',[])
     for e in evs:
-        t=e.get('event_ticker','');m_=re.search(r'-26([A-Z]{2})(\d+|AL)',t)
+        t=e.get('event_ticker','');m_=re.search(r'-([A-Z]{2})(\d+|AL)-26',t)
         if sample<3: print('HS',t,e.get('title'));sample+=1
         if not m_: continue
         st=m_.group(1);h=out['house'].setdefault(st,{'D':0,'R':0,'wD':0,'wR':0,'n':0});h['n']+=1;n+=1
