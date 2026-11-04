@@ -1,6 +1,6 @@
 {
 "src": "Kalshi 예측시장(베팅 가격 = 시장이 매긴 확률, 실제 개표 결과 아님)",
-"updated_at": "2026-11-04T16:30+09:00",
+"updated_at": "2026-11-04T18:08+09:00",
 "senate": {
 "AL": {
 "R": 100,
@@ -10,9 +10,9 @@
 "nD": "Everett Wess"
 },
 "AK": {
-"R": 19,
+"R": 13,
 "nR": "Republican party",
-"D": 84,
+"D": 88,
 "nD": "Democratic party"
 },
 "AR": {
@@ -103,7 +103,8 @@
 "R": 0,
 "nR": "Mike Rogers",
 "D": 100,
-"nD": "Abdul El-Sayed"
+"nD": "Abdul El-Sayed",
+"won": "D"
 },
 "MN": {
 "R": 0,
@@ -113,20 +114,22 @@
 "won": "D"
 },
 "MS": {
-"R": 24,
+"R": 17,
 "nR": "Cindy Hyde-Smith",
-"D": 77,
+"D": 84,
 "nD": "Scott Colom"
 },
 "MT": {
 "R": 100,
 "nR": "Kurt Alme",
+"won": "R",
 "D": 0,
 "nD": "Alani Bankhead"
 },
 "NE": {
-"R": 99,
+"R": 100,
 "nR": "Pete Ricketts",
+"won": "R",
 "D": 0,
 "nD": "Cindy Burbank"
 },
@@ -241,11 +244,13 @@
 "D": 0,
 "nD": "Doug Jones",
 "R": 100,
-"nR": "Tommy Tuberville"
+"nR": "Tommy Tuberville",
+"won": "R"
 },
 "AZ": {
 "D": 100,
 "nD": "Katie Hobbs",
+"won": "D",
 "R": 0,
 "nR": "Andy Biggs"
 },
@@ -343,6 +348,7 @@
 "MI": {
 "D": 100,
 "nD": "Jocelyn Benson",
+"won": "D",
 "R": 0,
 "nR": "John James"
 },
@@ -357,12 +363,13 @@
 "D": 1,
 "nD": "Lynne Walz",
 "R": 99,
-"nR": "Jim Pillen"
+"nR": "Jim Pillen",
+"won": "R"
 },
 "NV": {
-"D": 99,
+"D": 100,
 "nD": "Aaron Ford",
-"R": 2,
+"R": 0,
 "nR": "Joe Lombardo"
 },
 "NM": {
@@ -396,6 +403,7 @@
 "OR": {
 "D": 100,
 "nD": "Tina Kotek",
+"won": "D",
 "R": 0,
 "nR": "Christine Drazan"
 },
@@ -517,7 +525,7 @@
 "D": 9,
 "R": 23,
 "wD": 9,
-"wR": 15,
+"wR": 18,
 "n": 32
 },
 "TN": {
@@ -654,10 +662,10 @@
 "n": 7
 },
 "MN": {
-"D": 3,
-"R": 4,
+"D": 4,
+"R": 3,
 "wD": 3,
-"wR": 2,
+"wR": 3,
 "n": 7
 },
 "MI": {
@@ -713,7 +721,7 @@
 "D": 1,
 "R": 6,
 "wD": 1,
-"wR": 5,
+"wR": 6,
 "n": 7
 },
 "IL": {
@@ -727,7 +735,7 @@
 "D": 0,
 "R": 2,
 "wD": 0,
-"wR": 1,
+"wR": 2,
 "n": 2
 },
 "IA": {
@@ -790,14 +798,14 @@
 "D": 30,
 "R": 3,
 "wD": 29,
-"wR": 1,
+"wR": 2,
 "n": 41
 },
 "AZ": {
-"D": 4,
-"R": 2,
+"D": 3,
+"R": 3,
 "wD": 3,
-"wR": 0,
+"wR": 1,
 "n": 6
 },
 "AR": {
