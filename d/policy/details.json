@@ -515,8 +515,8 @@
 ]
 },
 "e113": {
-"updated": "11.04 19:50",
-"lead": "트럼프가 3일 파이낸셜타임스에 이란을 당장 공습할 계획은 없다고 말해, 이르면 수요일 공습이라는 뉴욕타임스 보도와 엇갈렸습니다. 이란 고위 당국자는 답변 시한이 없다고 밝혔고 협상은 벌어진 채입니다.",
+"updated": "11.04 19:30",
+"lead": "트럼프가 선거 패배 뒤 \"전쟁은 내가 끝낸다고 할 때 끝난다\"고 말했고, 3일에는 파이낸셜타임스에 당장 공습할 계획은 없다고 밝혔습니다. 갈리바프는 미국 선거 결과를 들어 압박했고, 이란의 답변은 아직 나오지 않았습니다.",
 "blocks": [
 {
 "k": "어떻게 여기까지 왔나",
@@ -621,6 +621,10 @@
 [
 "11.4",
 "밴스가 지난주 레자이에 서한, 레자이 \"어조 긍정 변화\"지만 답장은 아직(알자지라)"
+],
+[
+"11.4",
+"트럼프 CBS 통화 \"전쟁은 내가 끝낸다고 할 때 끝난다\", 갈리바프 \"미국인이 전쟁에 반대했다, 민의 저버리면 악몽\""
 ]
 ]
 },
@@ -685,6 +689,20 @@
 "k": "누가 뭐라 했나",
 "type": "quotes",
 "items": [
+{
+"who": "트럼프",
+"role": "미국 대통령",
+"say": "전쟁은 내가 끝났다고 할 때 끝난다",
+"media": "CBS 뉴스(ANI 인용)",
+"src": "https://www.aninews.in/news/world/us/congratulations-to-the-democrats-trump-reacts-as-blue-wave-sweeps-us-congress-says-will-be-able-to-work-things-out20261104105126/"
+},
+{
+"who": "갈리바프",
+"role": "이란 의회 의장·협상 대표",
+"say": "미국인이 전쟁에 반대했고 우리도 이 메시지를 지지한다",
+"media": "AFP(말레이메일)",
+"src": "https://www.malaymail.com/news/world/2026/11/04/americans-voted-no-to-war-in-midterm-landslide-and-we-endorse-it-says-irans-top-negotiator/241956"
+},
 {
 "who": "트럼프",
 "role": "미국 대통령",
@@ -881,6 +899,7 @@
 "k": "다음 볼 것",
 "type": "list",
 "items": [
+"이란이 선거 결과를 이유로 답변을 더 미루는지, 민주당 의회가 전쟁 권한을 어떻게 다루는지",
 "수요일 공습 계획 보도가 실제 행동으로 이어지는지, 백악관이 어떻게 답하는지",
 "이란이 시한 없이 답을 미루는지, 레자이 7개 조건이 최종 입장인지",
 "미국·이란이 초안 보도를 공식 확인하는지",
@@ -1001,6 +1020,11 @@
 "media": "미들이스트아이",
 "t": "트럼프 \"선거 후 공격 안 한다\"",
 "u": "https://www.middleeasteye.net/news/trump-says-he-will-not-attack-iran-after-midterms"
+},
+{
+"media": "말레이메일(AFP)",
+"t": "갈리바프 선거 결과 발언",
+"u": "https://www.malaymail.com/news/world/2026/11/04/americans-voted-no-to-war-in-midterm-landslide-and-we-endorse-it-says-irans-top-negotiator/241956"
 }
 ]
 },
