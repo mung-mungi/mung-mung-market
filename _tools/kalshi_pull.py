@@ -27,6 +27,7 @@ for kind,pre in (('senate',['SENATE']),('gov',['GOVPARTY','GOV'])):
             evs=[e for e in ev.get('events',[]) if '26' in e.get('event_ticker','') or '2026' in (e.get('title') or '')]
             if not evs: continue
             ms=evs[0].get('markets') or []
+            if s in ('TX','OH') and kind=='senate': print('DEBUG',json.dumps(ms[:2])[:1500])
             res={}
             for m in ms:
                 pp=party(m); pr=price(m)
