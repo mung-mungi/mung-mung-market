@@ -4,6 +4,14 @@
  "channel_url": "https://www.youtube.com/@멍뭉터미널",
  "items": [
   {
+   "id": "EJhaDxrtkYs",
+   "title": "블루웨이브가 와도 AI는 왜 못 멈출까?",
+   "published": "2026-11-04T10:09:46+00:00",
+   "url": "https://www.youtube.com/shorts/EJhaDxrtkYs",
+   "short": true,
+   "thumb": "https://i.ytimg.com/vi/EJhaDxrtkYs/mqdefault.jpg"
+  },
+  {
    "id": "1KNMfDc1Tp4",
    "title": "AMD 170억 달러, 블루웨이브에 눌리나? 개표 속보와 데이터센터 변수 | 미국증시 시황",
    "published": "2026-11-04T02:58:16+00:00",
@@ -42,14 +50,6 @@
    "url": "https://www.youtube.com/watch?v=XFpXWlXGexA",
    "short": false,
    "thumb": "https://i.ytimg.com/vi/XFpXWlXGexA/mqdefault.jpg"
-  },
-  {
-   "id": "XMKbyc77epA",
-   "title": "2026년 10월 31일",
-   "published": "2026-10-31T03:53:34+00:00",
-   "url": "https://www.youtube.com/shorts/XMKbyc77epA",
-   "short": true,
-   "thumb": "https://i.ytimg.com/vi/XMKbyc77epA/mqdefault.jpg"
   }
  ]
 }
