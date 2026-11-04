@@ -2,7 +2,7 @@ name: kalshi-elect
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/10 3-15 4,5 11 *'
+    - cron: '17 * 4,5 11 *'
 permissions:
   contents: write
 concurrency: { group: kalshi-elect, cancel-in-progress: false }
