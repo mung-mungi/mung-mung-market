@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-04T13:43:00+09:00",
-  "updated_label": "11.4 (수) 13:43 기준",
+  "updated_at": "2026-11-04T14:03:00+09:00",
+  "updated_label": "11.4 (수) 14:03 기준",
   "ended": false,
   "house": {
     "D": null,
@@ -454,9 +454,9 @@
       "KS": {
         "dc": 36,
         "race": "상원",
-        "lead": "",
+        "lead": "D",
         "called": false,
-        "src": ""
+        "src": "https://www.newsweek.com/midterm-results-tracker-senate-live-updates-election-2026-12637517"
       },
       "NE": {
         "dc": 36,
@@ -602,6 +602,11 @@
   },
   "changes": [
     {
+      "t": "14:03",
+      "st": "KS",
+      "msg": "상원 민주 탈환 보도 — AP 확정 미확인"
+    },
+    {
       "t": "13:43",
       "st": "",
       "msg": "상원 민주 다수 보도 — AP 확정 미확인"
@@ -625,11 +630,6 @@
       "t": "13:03",
       "st": "TX",
       "msg": "상원 NBC 탈라리코 승리 보도 — AP 확정 미확인"
-    },
-    {
-      "t": "12:50",
-      "st": "",
-      "msg": "하원 다수당 AP 미확정 — 방송사 예측으로 정정"
     }
   ]
 }
