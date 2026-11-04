@@ -42,3 +42,5 @@ body.mmc-on #mmc-tabs~*:not(#mmc-arc){display:none!important}
 /* 이번 주 핵심 이야기: 아이폰에서 '코히어런트·루멘텀·…'처럼 가운뎃점으로 이어진 긴 말이 한 덩어리로 묶여 칸 밖으로 나가던 문제(사용자 2026-11-02) */
 body .weekstory .ws-body,body .weekstory .ws-body *{min-width:0}
 body .weekstory .ws-body{overflow-wrap:anywhere}
+/* 닫힌 '상세' 옆 판이 넓은 화면(아이패드·PC)에서 오른쪽을 가려 금요일이 잘리던 것 — display:flex가 hidden을 이겨서(사용자 2026-11-04) */
+body .sheet[hidden],body .scrim[hidden]{display:none!important}
