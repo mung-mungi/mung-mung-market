@@ -35,15 +35,15 @@
   "stars": 2,
   "unit": "천 명",
   "actual": 86,
-  "consensus": null,
-  "previous": null,
+  "consensus": 69,
+  "previous": 86,
   "status": "발표",
   "spx_chg_pct": null,
   "ndx_chg_pct": null,
-  "reaction_source": null,
+  "reaction_source": "https://tradingeconomics.com/united-states/adp-employment-change",
   "date_confirmed": false,
-  "note": "고용 보고서 이틀 전 나오는 민간 집계",
-  "source": "https://adpemploymentreport.com/"
+  "note": "예상치는 트레이딩이코노믹스 집계 · 9월은 9만 → 8.6만 명으로 하향 수정 · 임금(직장 유지자) 전년 대비 +3.0%, 이직자 +4.8%",
+  "source": "https://mediacenter.adp.com/2026-11-04-ADP-National-Employment-Report-Private-Sector-Employment-Increased-by-86,000-Jobs-in-October"
  },
  {
   "id": "adp-2026-11",

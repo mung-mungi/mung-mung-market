@@ -77,6 +77,8 @@ function panel(id){var r=rowOf(id),k=kindOf(id);if(!r)return null;var u=r.unit||
   if(c!=null){var dd=a-c,tag=Math.abs(dd)<1e-9?['예상 부합','eq']:dd>0?['예상 상회','up']:['예상 하회','dn'];g.appendChild(el('span','evg-tag '+tag[1],tag[0]))}
   box.appendChild(g);
   box.appendChild(line(null,'예상 '+(c!=null?fmt(c,u):'자료 없음')+' · 이전 '+(pv!=null?fmt(pv,u):'자료 없음')+(pv!=null?' → 이전보다 '+(a===pv?'변화 없음':fmt(Math.abs(a-pv),du)+(a>pv?' 높음':' 낮음')):'')));
+  if(c!=null&&a!==c){var dc=a-c,pc=(!/%/.test(u||'')&&c)?' ('+(dc>0?'+':'−')+Math.abs(Math.round(dc/Math.abs(c)*1000)/10)+'%)':'';box.appendChild(line('예상 대비 ',fmt(Math.abs(dc),du)+(dc>0?' 많음':' 적음')+pc+(dc>0?' — 예상보다 높게 나왔습니다':' — 예상보다 낮게 나왔습니다')))}  // 컨센 대비 몇이나·몇 %(사용자 2026-11-04)
+  if(r.note)box.appendChild(line('짚을 점 ',r.note));
   if(r.spx_chg_pct!=null)box.appendChild(line('그날 지수 ','S&P 500 '+(r.spx_chg_pct>0?'+':'')+r.spx_chg_pct+'% · 나스닥 '+(r.ndx_chg_pct>0?'+':'')+r.ndx_chg_pct+'%'));
 }
  else{var c2=r.consensus,p2=r.previous,g2=el('div','evg-big');g2.appendChild(el('span','evg-v'+(c2==null?' na':' evc'),c2!=null?'예상치 '+fmt(c2,u):'예상치 아직'));box.appendChild(g2);
