@@ -1,14 +1,14 @@
 {
- "updated_at": "2026-11-04T12:22:00+09:00",
- "updated_label": "11.4 (수) 12:22 기준",
+ "updated_at": "2026-11-04T12:50:53+09:00",
+ "updated_label": "11.4 (수) 12:50 기준",
  "ended": false,
  "house": {
   "D": null,
   "R": null,
   "needed": 218,
-  "called": "민주",
-  "src": "https://www.nbcnews.com/politics/2026-election/live-blog/midterm-election-results-2026-news-trump-live-updates-rcna605763",
-  "note": "NBC 디시전데스크 다수당 예측 확정, 의석 집계는 다음 갱신"
+  "called": null,
+  "src": "https://variety.com/2026/politics/news/midterm-election-results-democrats-win-house-senate-1236938473/",
+  "note": "MS NOW·CNN·NBC·CBS 민주 다수 예측, AP 확정은 확인 안 됨"
  },
  "senate": {
   "D": null,
@@ -211,20 +211,20 @@
    "OH": {
     "dc": 226,
     "race": "상원(보궐)",
-    "lead": "",
+    "lead": "D",
     "called": false,
-    "src": "",
+    "src": "https://abcnews.com/Politics/ohio-2026-live-midterm-election-results/story?id=136761684",
     "cands": [
      {
       "n": "셰러드 브라운",
       "p": "D",
-      "pct": null,
+      "pct": 61,
       "dc": "— 전기요금·데이터센터를 핵심 공세로"
      },
      {
       "n": "존 허스티드",
       "p": "R",
-      "pct": null,
+      "pct": 35,
       "dc": "— 데이터센터 비용 부담 법안 발의"
      }
     ],
@@ -246,7 +246,8 @@
        "dc": ""
       }
      ]
-    }
+    },
+    "reported": 26
    },
    "AZ": {
     "dc": 156,
@@ -266,7 +267,7 @@
     "dc": 133,
     "race": "주지사",
     "lead": "D",
-    "called": true,
+    "called": false,
     "src": "https://www.nbcnews.com/politics/2026-elections/pennsylvania-governor-results",
     "cands": [
      {
@@ -302,7 +303,7 @@
     "race": "상원(보궐)",
     "lead": "R",
     "called": true,
-    "src": "https://www.nbcnews.com/politics/2026-election/ashley-moody-florida-senate-election-win-midterm-angie-nixon-rcna603333"
+    "src": "https://rollcall.com/2026/11/03/key-midterm-election-results/"
    },
    "WA": {
     "dc": 107,
@@ -342,9 +343,9 @@
    "MI": {
     "dc": 77,
     "race": "상원",
-    "lead": "",
+    "lead": "D",
     "called": false,
-    "src": ""
+    "src": "https://variety.com/2026/politics/news/midterm-election-results-democrats-win-house-senate-1236938473/"
    },
    "NV": {
     "dc": 74,
@@ -378,7 +379,7 @@
     "dc": 53,
     "race": "주지사",
     "lead": "D",
-    "called": true,
+    "called": false,
     "src": "https://www.nbcnews.com/politics/2026-elections/maryland-governor-results"
    },
    "WI": {
@@ -600,24 +601,34 @@
  },
  "changes": [
   {
+   "t": "12:50",
+   "st": "",
+   "msg": "하원 다수당 AP 미확정 — 방송사 예측으로 정정"
+  },
+  {
+   "t": "12:50",
+   "st": "OH",
+   "msg": "상원 민주 앞섬 61% 대 35% (개표 26%)"
+  },
+  {
+   "t": "12:50",
+   "st": "MI",
+   "msg": "상원 민주 앞섬"
+  },
+  {
+   "t": "12:50",
+   "st": "PA",
+   "msg": "주지사 AP 확정 미확인 — 확정 표시 해제"
+  },
+  {
+   "t": "12:50",
+   "st": "MD",
+   "msg": "주지사 AP 확정 미확인 — 확정 표시 해제"
+  },
+  {
    "t": "12:22",
    "st": "",
    "msg": "하원 다수당 민주 — NBC 디시전데스크 예측 확정"
-  },
-  {
-   "t": "12:22",
-   "st": "PA",
-   "msg": "주지사 민주(셔피로) 확정 · NBC"
-  },
-  {
-   "t": "12:22",
-   "st": "FL",
-   "msg": "상원 보궐 공화(무디) 확정 · NBC"
-  },
-  {
-   "t": "12:22",
-   "st": "TX",
-   "msg": "상원 민주 앞섬 59.7% 대 38.8% (개표 52%)"
   }
  ]
 }
