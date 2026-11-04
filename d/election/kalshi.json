@@ -1,6 +1,6 @@
 {
 "src": "Kalshi 예측시장(베팅 가격 = 시장이 매긴 확률, 실제 개표 결과 아님)",
-"updated_at": "2026-11-04T19:17+09:00",
+"updated_at": "2026-11-04T21:00+09:00",
 "senate": {
 "AL": {
 "R": 100,
@@ -10,9 +10,9 @@
 "nD": "Everett Wess"
 },
 "AK": {
-"R": 14,
+"R": 13,
 "nR": "Republican party",
-"D": 88,
+"D": 87,
 "nD": "Democratic party"
 },
 "AR": {
@@ -114,9 +114,9 @@
 "won": "D"
 },
 "MS": {
-"R": 19,
+"R": 20,
 "nR": "Cindy Hyde-Smith",
-"D": 83,
+"D": 79,
 "nD": "Scott Colom"
 },
 "MT": {
