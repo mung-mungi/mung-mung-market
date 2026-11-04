@@ -1,23 +1,24 @@
 {
 "src": "Kalshi 예측시장(베팅 가격 = 시장이 매긴 확률, 실제 개표 결과 아님)",
-"updated_at": "2026-11-04T12:25+09:00",
+"updated_at": "2026-11-04T13:06+09:00",
 "senate": {
 "AL": {
 "R": 100,
 "nR": "Barry Moore",
-"D": 0,
+"D": 1,
 "nD": "Everett Wess"
 },
 "AK": {
-"R": 12,
+"R": 10,
 "nR": "Republican party",
-"D": 88,
+"D": 89,
 "nD": "Democratic party"
 },
 "AR": {
-"R": 99,
+"R": 100,
 "nR": "Tom Cotton",
-"D": 1,
+"won": "R",
+"D": 0,
 "nD": "Hallie Shoffner"
 },
 "CO": {
@@ -49,7 +50,7 @@
 "won": "D"
 },
 "ID": {
-"R": 98,
+"R": 99,
 "nR": "Jim Risch",
 "D": 1,
 "nD": "David Roth"
@@ -62,15 +63,15 @@
 "won": "D"
 },
 "IA": {
-"R": 3,
+"R": 1,
 "nR": "Ashley Hinson",
-"D": 96,
+"D": 99,
 "nD": "Josh Turek"
 },
 "KS": {
-"R": 1,
+"R": 0,
 "nR": "Roger Marshall",
-"D": 99,
+"D": 100,
 "nD": "Adam Hamilton"
 },
 "KY": {
@@ -81,9 +82,9 @@
 "nD": "Charles Booker"
 },
 "ME": {
-"R": 10,
+"R": 8,
 "nR": "Susan Collins",
-"D": 90,
+"D": 92,
 "nD": "Troy Jackson"
 },
 "MA": {
@@ -94,33 +95,33 @@
 "won": "D"
 },
 "MI": {
-"R": 2,
+"R": 1,
 "nR": "Mike Rogers",
 "D": 98,
 "nD": "Abdul El-Sayed"
 },
 "MN": {
-"R": 4,
+"R": 2,
 "nR": "Michele Tafoya",
-"D": 97,
+"D": 98,
 "nD": "Peggy Flanagan"
 },
 "MS": {
-"R": 88,
+"R": 90,
 "nR": "Cindy Hyde-Smith",
-"D": 11,
+"D": 10,
 "nD": "Scott Colom"
 },
 "MT": {
-"R": 95,
+"R": 97,
 "nR": "Kurt Alme",
-"D": 1,
+"D": 0,
 "nD": "Alani Bankhead"
 },
 "NE": {
-"R": 90,
+"R": 94,
 "nR": "Pete Ricketts",
-"D": 1,
+"D": 0,
 "nD": "Cindy Burbank"
 },
 "NH": {
@@ -152,9 +153,9 @@
 "won": "D"
 },
 "OH": {
-"R": 3,
+"R": 0,
 "nR": "Jon Husted",
-"D": 97,
+"D": 100,
 "nD": "Sherrod Brown"
 },
 "OK": {
@@ -181,10 +182,11 @@
 "R": 0,
 "nR": "Darline Graham",
 "D": 100,
-"nD": "Annie Andrews"
+"nD": "Annie Andrews",
+"won": "D"
 },
 "SD": {
-"R": 99,
+"R": 100,
 "nR": "Mike Rounds",
 "D": 0,
 "nD": "Julian Beaudion"
@@ -196,10 +198,11 @@
 "nD": "Marquita Bradshaw"
 },
 "TX": {
-"R": 1,
+"R": 0,
 "nR": "Ken Paxton",
 "D": 100,
-"nD": "James Talarico"
+"nD": "James Talarico",
+"won": "D"
 },
 "VA": {
 "R": 0,
@@ -225,27 +228,28 @@
 },
 "gov": {
 "AL": {
-"D": 3,
+"D": 4,
 "nD": "Doug Jones",
 "R": 98,
 "nR": "Tommy Tuberville"
 },
 "AZ": {
-"D": 100,
+"D": 99,
 "nD": "Katie Hobbs",
-"R": 0,
+"R": 1,
 "nR": "Andy Biggs"
 },
 "AR": {
 "D": 2,
 "nD": "Fred Love",
-"R": 99,
-"nR": "Sarah Huckabee Sanders"
+"R": 100,
+"nR": "Sarah Huckabee Sanders",
+"won": "R"
 },
 "CA": {
-"D": 99,
+"D": 100,
 "nD": "Xavier Becerra",
-"R": 2,
+"R": 0,
 "nR": "Steve Hilton"
 },
 "CO": {
@@ -283,9 +287,9 @@
 "nR": "Gary Cordery"
 },
 "ID": {
-"D": 4,
+"D": 2,
 "nD": "Terri Pickens",
-"R": 97,
+"R": 98,
 "nR": "Brad Little"
 },
 "IL": {
@@ -298,13 +302,13 @@
 "IA": {
 "D": 99,
 "nD": "Rob Sand",
-"R": 1,
+"R": 0,
 "nR": "Zach Lahn"
 },
 "ME": {
-"D": 97,
+"D": 99,
 "nD": "Hannah Pingree",
-"R": 3,
+"R": 1,
 "nR": "Robert Charles"
 },
 "MD": {
@@ -322,32 +326,33 @@
 "nR": "Mike Minogue"
 },
 "MI": {
-"D": 99,
+"D": 100,
 "nD": "Jocelyn Benson",
-"R": 1,
+"R": 0,
 "nR": "John James"
 },
 "MN": {
 "D": 99,
 "nD": "Amy Klobuchar",
-"R": 1,
+"R": 2,
 "nR": "Lisa Demuth"
 },
 "NE": {
-"D": 13,
+"D": 9,
 "nD": "Lynne Walz",
-"R": 90,
+"R": 92,
 "nR": "Jim Pillen"
 },
 "NV": {
 "D": 97,
 "nD": "Aaron Ford",
-"R": 2,
+"R": 3,
 "nR": "Joe Lombardo"
 },
 "NM": {
-"D": 99,
+"D": 100,
 "nD": "Deb Haaland",
+"won": "D",
 "R": 2,
 "nR": "Greggory D. Hull"
 },
@@ -359,9 +364,10 @@
 "nR": "Bruce Blakeman"
 },
 "OH": {
-"D": 99,
+"D": 100,
 "nD": "Amy Acton",
-"R": 2,
+"won": "D",
+"R": 0,
 "nR": "Vivek Ramaswamy"
 },
 "OK": {
@@ -371,9 +377,9 @@
 "nR": "Mike Mazzei"
 },
 "OR": {
-"D": 93,
+"D": 95,
 "nD": "Tina Kotek",
-"R": 9,
+"R": 7,
 "nR": "Christine Drazan"
 },
 "PA": {
@@ -391,9 +397,9 @@
 "nR": "Aaron Guckian"
 },
 "SC": {
-"D": 0,
+"D": 2,
 "nD": "Jermaine Johnson",
-"R": 99,
+"R": 100,
 "nR": "Alan Wilson"
 },
 "SD": {
@@ -403,27 +409,27 @@
 "nR": "Larry Rhoden"
 },
 "TN": {
-"D": 12,
+"D": 7,
 "nD": "Jerri Green",
-"R": 83,
+"R": 93,
 "nR": "Marsha Blackburn"
 },
 "TX": {
-"D": 98,
+"D": 100,
 "nD": "Gina Hinojosa",
-"R": 2,
+"R": 0,
 "nR": "Greg Abbott"
 },
 "VT": {
-"D": 1,
+"D": 0,
 "nD": "Amanda Janoo",
-"R": 98,
+"R": 100,
 "nR": "Phil Scott"
 },
 "WI": {
 "D": 99,
 "nD": "David Crowley",
-"R": 1,
+"R": 0,
 "nR": "Tom Tiffany"
 },
 "WY": {
@@ -453,12 +459,12 @@
 "D": 2,
 "R": 4,
 "wD": 2,
-"wR": 1,
+"wR": 2,
 "n": 6
 },
 "WA": {
-"D": 7,
-"R": 1,
+"D": 6,
+"R": 2,
 "wD": 0,
 "wR": 0,
 "n": 8
@@ -474,7 +480,7 @@
 "D": 4,
 "R": 3,
 "wD": 4,
-"wR": 1,
+"wR": 2,
 "n": 7
 },
 "UT": {
@@ -485,9 +491,9 @@
 "n": 1
 },
 "TX": {
-"D": 10,
-"R": 22,
-"wD": 5,
+"D": 9,
+"R": 23,
+"wD": 8,
 "wR": 1,
 "n": 32
 },
@@ -495,7 +501,7 @@
 "D": 1,
 "R": 8,
 "wD": 0,
-"wR": 0,
+"wR": 1,
 "n": 9
 },
 "SD": {
@@ -506,10 +512,10 @@
 "n": 1
 },
 "SC": {
-"D": 3,
-"R": 4,
+"D": 2,
+"R": 5,
 "wD": 1,
-"wR": 3,
+"wR": 4,
 "n": 7
 },
 "RI": {
@@ -523,7 +529,7 @@
 "D": 6,
 "R": 6,
 "wD": 6,
-"wR": 2,
+"wR": 5,
 "n": 12
 },
 "OR": {
@@ -543,15 +549,15 @@
 "OH": {
 "D": 5,
 "R": 7,
-"wD": 2,
+"wD": 3,
 "wR": 6,
 "n": 12
 },
 "NY": {
-"D": 16,
-"R": 4,
-"wD": 12,
-"wR": 1,
+"D": 14,
+"R": 6,
+"wD": 14,
+"wR": 2,
 "n": 20
 },
 "NV": {
@@ -571,7 +577,7 @@
 "NJ": {
 "D": 8,
 "R": 1,
-"wD": 6,
+"wD": 7,
 "wR": 1,
 "n": 9
 },
@@ -621,12 +627,12 @@
 "D": 2,
 "R": 5,
 "wD": 1,
-"wR": 3,
+"wR": 4,
 "n": 7
 },
 "MN": {
-"D": 4,
-"R": 3,
+"D": 3,
+"R": 4,
 "wD": 0,
 "wR": 0,
 "n": 7
@@ -634,8 +640,8 @@
 "MI": {
 "D": 4,
 "R": 4,
-"wD": 2,
-"wR": 0,
+"wD": 4,
+"wR": 1,
 "n": 8
 },
 "ME": {
@@ -648,14 +654,14 @@
 "MD": {
 "D": 7,
 "R": 1,
-"wD": 4,
+"wD": 6,
 "wR": 0,
 "n": 8
 },
 "MA": {
 "D": 9,
 "R": 0,
-"wD": 5,
+"wD": 9,
 "wR": 0,
 "n": 9
 },
@@ -663,7 +669,7 @@
 "D": 1,
 "R": 5,
 "wD": 1,
-"wR": 0,
+"wR": 1,
 "n": 6
 },
 "KY": {
@@ -690,7 +696,7 @@
 "IL": {
 "D": 13,
 "R": 3,
-"wD": 9,
+"wD": 11,
 "wR": 3,
 "n": 16
 },
@@ -719,14 +725,14 @@
 "D": 5,
 "R": 9,
 "wD": 5,
-"wR": 6,
+"wR": 8,
 "n": 14
 },
 "FL": {
 "D": 7,
 "R": 19,
 "wD": 6,
-"wR": 15,
+"wR": 16,
 "n": 26
 },
 "DE": {
@@ -746,7 +752,7 @@
 "CT": {
 "D": 4,
 "R": 0,
-"wD": 1,
+"wD": 2,
 "wR": 0,
 "n": 4
 },
@@ -765,9 +771,9 @@
 "n": 41
 },
 "AZ": {
-"D": 5,
-"R": 1,
-"wD": 2,
+"D": 4,
+"R": 2,
+"wD": 3,
 "wR": 0,
 "n": 6
 },
@@ -781,8 +787,8 @@
 "AL": {
 "D": 2,
 "R": 5,
-"wD": 0,
-"wR": 1,
+"wD": 1,
+"wR": 2,
 "n": 7
 }
 }
