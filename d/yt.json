@@ -4,6 +4,22 @@
  "channel_url": "https://www.youtube.com/@멍뭉터미널",
  "items": [
   {
+   "id": "AS0i5SLmm2c",
+   "title": "아이렌, 내일 ±17% 좋은 실적이어도 안심 못 한다?",
+   "published": "2026-11-05T13:35:38+00:00",
+   "url": "https://www.youtube.com/shorts/AS0i5SLmm2c",
+   "short": true,
+   "thumb": "https://i.ytimg.com/vi/AS0i5SLmm2c/mqdefault.jpg"
+  },
+  {
+   "id": "wevOVeswM4s",
+   "title": "내일 아침 아이렌 실적, 네 칸만 보시면 됩니다 | 미국증시 시황",
+   "published": "2026-11-05T13:10:33+00:00",
+   "url": "https://www.youtube.com/watch?v=wevOVeswM4s",
+   "short": false,
+   "thumb": "https://i.ytimg.com/vi/wevOVeswM4s/mqdefault.jpg"
+  },
+  {
    "id": "F4zPlVvs48o",
    "title": "시장은 축제인데 왜 내 AI주만 파랄까? | 미국증시 시황",
    "published": "2026-11-05T01:27:55+00:00",
@@ -34,22 +50,6 @@
    "url": "https://www.youtube.com/shorts/7ugZITfLG_I",
    "short": true,
    "thumb": "https://i.ytimg.com/vi/7ugZITfLG_I/mqdefault.jpg"
-  },
-  {
-   "id": "r3OBLPFdqco",
-   "title": "유가가 빠졌는데 반도체는 왜 빠졌나: 오라클·마벨·애플 | 미국증시 시황",
-   "published": "2026-11-03T04:24:49+00:00",
-   "url": "https://www.youtube.com/watch?v=r3OBLPFdqco",
-   "short": false,
-   "thumb": "https://i.ytimg.com/vi/r3OBLPFdqco/mqdefault.jpg"
-  },
-  {
-   "id": "3m147eNbWtc",
-   "title": "이번 주 증시 갈림길 — 호르무즈 협상이냐, 공습이냐",
-   "published": "2026-11-01T12:45:12+00:00",
-   "url": "https://www.youtube.com/watch?v=3m147eNbWtc",
-   "short": false,
-   "thumb": "https://i.ytimg.com/vi/3m147eNbWtc/mqdefault.jpg"
   }
  ]
 }
