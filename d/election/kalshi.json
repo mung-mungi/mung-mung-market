@@ -1,6 +1,6 @@
 {
 "src": "Kalshi 예측시장(베팅 가격 = 시장이 매긴 확률, 실제 개표 결과 아님)",
-"updated_at": "2026-11-05T13:06+09:00",
+"updated_at": "2026-11-05T14:11+09:00",
 "senate": {
 "AL": {
 "R": 100,
@@ -10,9 +10,9 @@
 "nD": "Everett Wess"
 },
 "AK": {
-"R": 6,
+"R": 5,
 "nR": "Republican party",
-"D": 94,
+"D": 96,
 "nD": "Democratic party"
 },
 "AR": {
