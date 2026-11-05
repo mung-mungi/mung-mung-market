@@ -4,6 +4,14 @@
  "channel_url": "https://www.youtube.com/@멍뭉터미널",
  "items": [
   {
+   "id": "F4zPlVvs48o",
+   "title": "시장은 축제인데 왜 내 AI주만 파랄까? | 미국증시 시황",
+   "published": "2026-11-05T01:27:55+00:00",
+   "url": "https://www.youtube.com/watch?v=F4zPlVvs48o",
+   "short": false,
+   "thumb": "https://i.ytimg.com/vi/F4zPlVvs48o/mqdefault.jpg"
+  },
+  {
    "id": "EJhaDxrtkYs",
    "title": "블루웨이브가 와도 AI는 왜 못 멈출까?",
    "published": "2026-11-04T10:09:46+00:00",
@@ -42,14 +50,6 @@
    "url": "https://www.youtube.com/watch?v=3m147eNbWtc",
    "short": false,
    "thumb": "https://i.ytimg.com/vi/3m147eNbWtc/mqdefault.jpg"
-  },
-  {
-   "id": "XFpXWlXGexA",
-   "title": "혼난 건 빅테크, 맞은 건 반도체 | 10/30 미국증시 시황",
-   "published": "2026-10-31T08:57:53+00:00",
-   "url": "https://www.youtube.com/watch?v=XFpXWlXGexA",
-   "short": false,
-   "thumb": "https://i.ytimg.com/vi/XFpXWlXGexA/mqdefault.jpg"
   }
  ]
 }
