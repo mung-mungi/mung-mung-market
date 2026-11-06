@@ -22,7 +22,7 @@ function summary(u,all){var box=el('div','mm-ib-sum');
  var first=u[u.length-1];
  box.innerHTML='<b>마지막으로 보신 뒤 놓친 알림 '+u.length+'건</b> ('+parts.join(' · ')+')<br>';
  box.appendChild(document.createTextNode('가장 먼저 볼 것: '+(top?'['+top.kind+'] '+top.title:'')+(u.length>1?' — '+ago(first.at)+'부터 쌓였습니다.':'')));
- var ks=u.filter(function(x){return x.kind==='실적'}).map(function(x){return x.title.replace(/^새 실적\s*/,'').split(/[ 〔]/)[0]});
+ var ks=[];u.filter(function(x){return x.kind==='실적'}).forEach(function(x){x.title.replace(/^실적 \d+곳 · /,'').replace(/ 외 \d+곳$/,'').split(' · ').forEach(function(n){n=n.split(/\s*〔/)[0].trim();if(n&&ks.indexOf(n)<0)ks.push(n)})});
  if(ks.length>1){box.appendChild(el('br'));box.appendChild(document.createTextNode('실적: '+ks.slice(0,6).join(' · ')+(ks.length>6?' 외 '+(ks.length-6)+'곳':'')))}
  return box}
 function open(){if(!D)return;var u=unread(),sc=el('div','mm-ib-scrim'),sh=el('div','mm-ib-sheet');sh.setAttribute('role','dialog');
