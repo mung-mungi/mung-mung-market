@@ -30,7 +30,15 @@ for n in ns:
     items.append({'id': n.get('id', '')[:12], 'at': dt.datetime.fromtimestamp(ts, KST).isoformat(timespec='minutes'), 'kind': kind(t),
                   'title': re.sub(r'^【.+?】\s*', '', t).lstrip('📢🔔🏦🎤 ').strip(), 'body': b[:200],
                   'url': u[len(SITE):] if u.startswith(SITE) else 'index.html'})
+for x in items: x['title'] = re.sub(r'^새 실적\s*·\s*', '', x['title'])
 items.sort(key=lambda x: x['at'], reverse=True)
+# 같은 제목을 한 시간 안에 다시 보낸 것(재발송)은 최신 하나만
+_k, _o = {}, []
+for x in items:
+    t0 = dt.datetime.fromisoformat(x['at'])
+    if x['title'] in _k and (_k[x['title']] - t0) < dt.timedelta(hours=1): continue
+    _k[x['title']] = t0; _o.append(x)
+items = _o
 items = items[:40]
 try: old = json.load(open(OUT, encoding='utf-8')).get('items')
 except Exception: old = None
