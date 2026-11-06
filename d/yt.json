@@ -4,6 +4,14 @@
  "channel_url": "https://www.youtube.com/@멍뭉터미널",
  "items": [
   {
+   "id": "ickHNBv4efM",
+   "title": "역대급 폭락, 근데 이해가 안 됩니다.",
+   "published": "2026-11-06T02:30:23+00:00",
+   "url": "https://www.youtube.com/watch?v=ickHNBv4efM",
+   "short": false,
+   "thumb": "https://i.ytimg.com/vi/ickHNBv4efM/mqdefault.jpg"
+  },
+  {
    "id": "AS0i5SLmm2c",
    "title": "아이렌, 내일 ±17% 좋은 실적이어도 안심 못 한다?",
    "published": "2026-11-05T13:35:38+00:00",
@@ -42,14 +50,6 @@
    "url": "https://www.youtube.com/watch?v=1KNMfDc1Tp4",
    "short": false,
    "thumb": "https://i.ytimg.com/vi/1KNMfDc1Tp4/mqdefault.jpg"
-  },
-  {
-   "id": "7ugZITfLG_I",
-   "title": "유가는 빠졌는데 왜 반도체는 빠졌나 #미국증시 #반도체 #Shorts",
-   "published": "2026-11-03T05:30:08+00:00",
-   "url": "https://www.youtube.com/shorts/7ugZITfLG_I",
-   "short": true,
-   "thumb": "https://i.ytimg.com/vi/7ugZITfLG_I/mqdefault.jpg"
   }
  ]
 }
