@@ -296,6 +296,7 @@ def title(group):
 
 
 def push(head, body, url=''):
+    head = '【지표】 ' + re.sub(r'^\S+\s+', '', head)   # 알림 목록에서 종류가 한눈에(사용자 2026-11-06)
     if DRY:
         print('::notice::[DRY] ' + head + ' | ' + body.replace('\n', ' / ') + ' | ' + url); return True
     if not KEY:
@@ -303,7 +304,8 @@ def push(head, body, url=''):
     req = urllib.request.Request('https://api.onesignal.com/notifications', method='POST',
         headers={'Content-Type': 'application/json', 'Authorization': 'Key ' + KEY},
         data=json.dumps({'app_id': APP, 'included_segments': ['Total Subscriptions'], 'target_channel': 'push',
-                         'headings': {'en': head, 'ko': head}, 'contents': {'en': body, 'ko': body}, 'url': SITE + 'p-econ.html' + url}).encode())
+                         'headings': {'en': head, 'ko': head}, 'contents': {'en': body, 'ko': body}, 'url': SITE + 'p-econ.html' + url,
+                         'web_push_topic': 'econ-' + (url.replace('#ev-', '') or 'x')}).encode())
     try:
         r = json.load(urllib.request.urlopen(req, timeout=20)); print('알림 보냄', head, r.get('id'), r.get('errors')); return True
     except Exception as e:

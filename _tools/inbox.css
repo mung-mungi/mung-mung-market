@@ -1,0 +1,29 @@
+/* 멍터 알림함(사용자 2026-11-06) — 메인 맨 위 '🔔 알림함 ›' 버튼 + 누르면 아래에서 올라오는 목록 */
+html body .mm-ib-btn{display:flex;align-items:center;gap:8px;width:100%;margin:0;padding:9px 14px;background:#fff;border:1px solid #e6d7b8;border-left:4px solid #b07a1a;border-radius:14px;box-shadow:0 3px 0 #efe4cc;font:800 14.5px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1a16;cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:left}
+html body .mm-ib-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #efe4cc}
+html body .mm-ib-btn .ic{font-size:17px}
+html body .mm-ib-btn .t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;color:#5d564b}
+html body .mm-ib-btn .t b{color:#1d1a16;font-weight:900;margin-right:6px}
+html body .mm-ib-btn .n{flex:none;min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:#d1352b;color:#fff;font-size:12.5px;line-height:22px;text-align:center}
+html body .mm-ib-btn .n[hidden]{display:none}
+html body .mm-ib-btn .go{flex:none;color:#9a6200;font-size:13px;font-weight:800}
+html body .mm-ib-scrim{position:fixed;inset:0;background:rgba(20,14,4,.42);z-index:9998}
+html body .mm-ib-sheet{position:fixed;left:0;right:0;bottom:0;max-height:84vh;z-index:9999;background:#fbf8f2;border-radius:18px 18px 0 0;display:flex;flex-direction:column;box-shadow:0 -8px 30px rgba(0,0,0,.18);padding-bottom:env(safe-area-inset-bottom,0)}
+@media (min-width:700px){html body .mm-ib-sheet{left:50%;right:auto;width:560px;margin-left:-280px}}
+html body .mm-ib-top{display:flex;align-items:center;gap:10px;padding:14px 16px 10px;border-bottom:1px solid #eadfca}
+html body .mm-ib-top h3{margin:0;flex:1;font:900 18px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1a16}
+html body .mm-ib-top .x{width:36px;height:36px;border-radius:50%;border:1px solid #e3d3b2;background:#fff;font-size:19px;line-height:34px;text-align:center;cursor:pointer;color:#3a352d}
+html body .mm-ib-body{overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 14px 18px}
+html body .mm-ib-sum{background:#fff6e0;border:1px solid #ecd39a;border-radius:12px;padding:11px 13px;margin-bottom:12px;font:600 14.5px/1.6 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3a2f1c}
+html body .mm-ib-sum b{color:#8a5a00}
+html body .mm-ib-day{margin:14px 2px 6px;font:800 13px/1.3 -apple-system,sans-serif;color:#8a8376;letter-spacing:.02em}
+html body .mm-ib-row{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #ece3d2;border-radius:12px;padding:10px 12px;margin-bottom:7px;box-shadow:0 2px 0 #f0e8d8}
+html body .mm-ib-row:active{background:#fdf6e8}
+html body .mm-ib-row.new{border-color:#e9b949;box-shadow:0 2px 0 #f2dfae}
+html body .mm-ib-h{display:flex;align-items:center;gap:7px;font:700 12.5px/1.3 -apple-system,sans-serif;color:#8a8376}
+html body .mm-ib-k{font-weight:900;padding:1px 8px;border-radius:999px;color:#fff;background:#7a6a50}
+html body .mm-ib-k.k-실적{background:#2f62c8}html body .mm-ib-k.k-지표{background:#16857c}html body .mm-ib-k.k-속보{background:#c0392b}html body .mm-ib-k.k-전달{background:#9a6200}
+html body .mm-ib-h .dot{margin-left:auto;color:#d1352b;font-weight:900}
+html body .mm-ib-t{margin-top:5px;font:800 15.5px/1.4 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#1d1a16}
+html body .mm-ib-b{margin-top:3px;font:500 13.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#5d564b;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+html body .mm-ib-empty{padding:30px 6px;text-align:center;color:#8a8376;font-size:14.5px}

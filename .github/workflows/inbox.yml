@@ -1,0 +1,28 @@
+# 멍터 알림함(사용자 2026-11-06): 알림을 보낸 작업이 끝나면(또는 한 시간마다) 원시그널 기록 → d/inbox.json
+name: inbox
+on:
+  workflow_run:
+    workflows: [push-notice, econ-alert, ideas-daily]
+    types: [completed]
+  schedule:
+    - cron: '41 * * * *'
+  workflow_dispatch:
+concurrency: { group: inbox, cancel-in-progress: false }
+permissions: { contents: write }
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: sync
+        env:
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+        run: python3 -I _tools/inbox_sync.py .
+      - name: commit
+        run: |
+          git config user.name mung-mungi; git config user.email mung-mungi@users.noreply.github.com
+          git add d/inbox.json 2>/dev/null || true
+          git diff --cached --quiet && exit 0
+          git commit -m "알림함 갱신"
+          for i in 1 2 3; do git pull --rebase --autostash -X theirs origin main && git push && break; sleep 5; done

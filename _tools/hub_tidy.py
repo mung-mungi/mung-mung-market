@@ -809,6 +809,8 @@ EASY['p-policy.html'] = EASY['p-policy.html'] + ['newsq_ui']; EASY['p-tech.html'
 EASY['p-policy.html'] = EASY['p-policy.html'] + ['tlmore']; EASY['p-tech.html'] = EASY['p-tech.html'] + ['tlmore']
 # 경제지표 알림 누르면 그 발표 줄로 + 추세 그래프(사용자 2026-11-04)
 EASY['p-econ.html'] = EASY.get('p-econ.html', []) + ['evgo']
+# 멍터 알림함(사용자 2026-11-06) — 메인 맨 위 '🔔 알림함 ›'
+EASY['index.html'] = EASY.get('index.html', []) + ['inbox']
 # 목표주가 아래쪽 차트 늦게 그리기(2026-11-03): 데이터가 덜 와서 페이지가 짧을 때 잘못 '보임'으로 판정하지 않게 1.5초 뒤(또는 손가락이 처음 닿을 때)부터 지켜봄
 LAZYRUN_JS = r"""<script data-lazyrun>window.__lazyRun=function(k,f,el){if(!el||!window.IntersectionObserver)return f();var L=window.__lazyRun.s||(window.__lazyRun.s={}),z=L[k]||(L[k]={});z.f=f;if(z.on)return f();if(z.o)return;z.o=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting})){z.o.disconnect();z.on=1;requestAnimationFrame(function(){z.f()})}},{rootMargin:"500px 0px"});var arm=function(){if(z.a)return;z.a=1;z.o.observe(el)};setTimeout(arm,1500);['touchstart','wheel','keydown'].forEach(function(t){addEventListener(t,arm,{once:true,passive:true})})};</script>"""
 # 실적 결과 가볍게(사용자 2026-11-03, A안): 접힌 노트는 한 줄 카드(+제목·꼬리표)만 화면에 두고, 본문은 펼칠 때 붙임.

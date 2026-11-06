@@ -16,6 +16,10 @@ if TEST == 'STAT' and KEY:  # 최근 알림 5개가 몇 대에 도착했는지(�
     sys.exit(0)
 # 전달사항 등 수동 알림(사용자 2026-10-31): PUSH_TITLE·PUSH_PATH를 주면 그 제목·주소로 보냄(없으면 예전 시험 알림)
 HEAD = os.environ.get('PUSH_TITLE', '').strip() or '🔔 멍뭉 터미널 시험 알림'
+# 알림 목록에서 종류가 한눈에(사용자 2026-11-06): 전체 알림이면 제목 앞에 【속보】(자동 배너)·【전달】(손으로 보낸 전달사항)
+KIND = os.environ.get('PUSH_KIND', '').strip()
+if KIND and os.environ.get('PUSH_OWNER') != '1' and not HEAD.startswith('【'):
+    HEAD = '【%s】 ' % KIND + HEAD.lstrip('📢🔔 ').strip()
 PATH = os.environ.get('PUSH_PATH', '').strip() or 'p-earn.html'
 # 주인장만(사용자 2026-11-03): PUSH_OWNER=1이면 주인장 칸 비번을 연 기기(태그 mm_owner=1)에만 보냄
 WHO = {'filters': [{'field': 'tag', 'key': 'mm_owner', 'relation': '=', 'value': '1'}]} if os.environ.get('PUSH_OWNER') == '1' else {'included_segments': ['Total Subscriptions']}
@@ -45,15 +49,16 @@ try: POS = json.load(open(os.path.join(R, 'd/chain_pos.json'), encoding='utf-8')
 except Exception: POS = {}
 def pos(x): return POS.get(x['id'].split('-')[0]) or {}
 if len(new) == 1:
-    x = new[0]; c = pos(x); head = '🔔 새 실적 · ' + x['name'] + (' 〔%s〕' % c['tag'] if c.get('tag') else '')
+    x = new[0]; c = pos(x); head = '【실적】 ' + x['name'] + (' 〔%s〕' % c['tag'] if c.get('tag') else '')
     body = ((c['up'] + ' ▶ ' + x['name'] + ' · ') if c.get('up') else '') + (x.get('sum') or '실적 결과 노트가 올라왔습니다.'); body = body[:170]; url = SITE + 'p-earn.html#' + x['id']
 else:
     names = ' · '.join(x['name'] for x in new[:4]) + (' 외 %d곳' % (len(new) - 4) if len(new) > 4 else '')
-    head = '🔔 새 실적 %d곳' % len(new); body = names; url = SITE + 'p-earn.html'
+    head = '【실적】 새 실적 %d곳' % len(new); body = names; url = SITE + 'p-earn.html'
 req = urllib.request.Request('https://api.onesignal.com/notifications', method='POST',
     headers={'Content-Type': 'application/json', 'Authorization': 'Key ' + KEY},
     data=json.dumps({'app_id': APP, 'included_segments': ['Total Subscriptions'], 'target_channel': 'push',
-                     'headings': {'en': head, 'ko': head}, 'contents': {'en': body, 'ko': body}, 'url': url}).encode())
+                     'headings': {'en': head, 'ko': head}, 'contents': {'en': body, 'ko': body}, 'url': url,
+                     'web_push_topic': 'earn-' + (new[0]['id'] if len(new) == 1 else 'multi')}).encode())
 try:
     r = json.load(urllib.request.urlopen(req, timeout=20)); print('::notice::push 보냄 %s %s %s' % (head, r.get('id'), r.get('errors')))
     st['sent'] = sorted(sent | {x['id'] for x in new})[-300:]; st['last'] = now.isoformat(timespec='minutes')
