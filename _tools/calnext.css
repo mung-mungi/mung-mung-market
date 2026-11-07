@@ -1,0 +1,13 @@
+/* 실적 일정 — 주말엔 다음 주 미리 보기를 맨 위로(사용자 2026-11-07) — _tools/calnext.js */
+.mm-nx{border:1.5px solid #e9b98f!important;box-shadow:0 3px 0 #f1d6bd;background:#fffaf3!important}
+.mm-nx h2{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px}
+.mm-nx-tag{font:800 12px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#fff;background:#c8501c;border-radius:999px;padding:5px 9px;letter-spacing:0}
+.mm-nx-first{margin:2px 0 12px;font-size:15px;line-height:1.5;color:#4a463f}
+.mm-nx-first b{color:#9a6200;margin-right:4px}
+.mm-nx-past{margin:4px 0 -6px;font-size:14px;font-weight:700;color:#7a766d;letter-spacing:.02em}
+.mm-nx-later{margin-top:12px}
+.mm-nx-later summary{cursor:pointer;font-size:14px;font-weight:700;color:#7a766d;padding:6px 0}
+.mm-nx-later .nextw{margin-top:8px}
+.cn-tile.mm-nx-tile{background:#fffaf3;border-color:#e9b98f}
+.cn-tile.mm-nx-tile b{font-size:22px!important}
+.cn-tile.mm-nx-tile em{display:block;font-style:normal;font-weight:800;font-size:13px;color:#c8501c}
