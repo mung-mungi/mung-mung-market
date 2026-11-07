@@ -4,6 +4,14 @@
  "channel_url": "https://www.youtube.com/@멍뭉터미널",
  "items": [
   {
+   "id": "Yu-b4ds0Y7Y",
+   "title": "아쉬운 반등, 진짜 바닥일까? — 코로나 6개월·관세 4개월로 채점",
+   "published": "2026-11-07T02:29:22+00:00",
+   "url": "https://www.youtube.com/watch?v=Yu-b4ds0Y7Y",
+   "short": false,
+   "thumb": "https://i.ytimg.com/vi/Yu-b4ds0Y7Y/mqdefault.jpg"
+  },
+  {
    "id": "ickHNBv4efM",
    "title": "역대급 폭락, 근데 이해가 안 됩니다.",
    "published": "2026-11-06T02:30:23+00:00",
@@ -42,14 +50,6 @@
    "url": "https://www.youtube.com/shorts/EJhaDxrtkYs",
    "short": true,
    "thumb": "https://i.ytimg.com/vi/EJhaDxrtkYs/mqdefault.jpg"
-  },
-  {
-   "id": "1KNMfDc1Tp4",
-   "title": "AMD 170억 달러, 블루웨이브에 눌리나? 개표 속보와 데이터센터 변수 | 미국증시 시황",
-   "published": "2026-11-04T02:58:16+00:00",
-   "url": "https://www.youtube.com/watch?v=1KNMfDc1Tp4",
-   "short": false,
-   "thumb": "https://i.ytimg.com/vi/1KNMfDc1Tp4/mqdefault.jpg"
   }
  ]
 }
