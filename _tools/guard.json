@@ -278,5 +278,9 @@
  "_tools/tlmore.js": [
   "tm-jump",
   "tm-more"
+ ],
+ "_tools/calnext.js": [
+  "mm-nx-tile",
+  "mm-nx-later"
  ]
 }
