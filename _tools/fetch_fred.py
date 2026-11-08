@@ -4,7 +4,7 @@
 import csv, io, json, os, subprocess, sys, time, datetime as dt
 R = sys.argv[1] if len(sys.argv) > 1 else '.'
 P = os.path.join(R, 'd', 'lights', 'v2_fred.json')
-S = {'BAMLH0A0HYM2': 'hy', 'BAMLC0A0CM': 'ig', 'BAMLH0A3HYC': 'ccc', 'WRMFNS': 'mmf_r', 'WIMFNS': 'mmf_i'}
+S = {'BAMLH0A0HYM2': 'hy', 'BAMLC0A0CM': 'ig', 'BAMLH0A3HYC': 'ccc', 'WRMFNS': 'mmf_r'}
 try: C = json.load(open(P, encoding='utf-8'))
 except Exception: C = {}
 t0 = time.time(); got = []
@@ -23,7 +23,7 @@ for sid, k in S.items():
             if d and v not in (None, '', '.'): m[d] = float(v)
         a = b + dt.timedelta(days=1); time.sleep(3)
     C[k] = dict(sorted(m.items())[-800:]); got.append('%s %d' % (k, len(C[k])))
-if C.get('mmf_r') and C.get('mmf_i'):
-    C['mmf'] = {d: round(C['mmf_r'][d] + C['mmf_i'][d], 1) for d in C['mmf_r'] if d in C['mmf_i']}
+if C.get('mmf_r'):   # 기관 MMF(WIMFNS)는 발표 중단(11/9) → 개인 MMF로만
+    C['mmf'] = dict(C['mmf_r'])
 json.dump(C, open(P, 'w', encoding='utf-8'), separators=(',', ':'))
 print('FRED:', ' · '.join(got))

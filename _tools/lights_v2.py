@@ -50,7 +50,7 @@ def prices(R):
     return C
 
 
-FRED = {'BAMLC0A0CM': 'ig', 'BAMLH0A3HYC': 'ccc', 'WRMFNS': 'mmf_r', 'WIMFNS': 'mmf_i'}
+FRED = {'BAMLC0A0CM': 'ig', 'BAMLH0A3HYC': 'ccc', 'WRMFNS': 'mmf_r'}
 
 
 def fred(R):
@@ -63,14 +63,14 @@ def fred(R):
     try:
         G = json.load(open(os.path.join(R, 'd', 'xpost', 'fred', 'latest.json'), encoding='utf-8'))
         ch = 0
-        for k in ('hy', 'ig', 'ccc', 'mmf_r', 'mmf_i'):
+        for k in ('hy', 'ig', 'ccc', 'mmf_r'):
             for d, v in (G.get(k) or {}).items():
                 try: v = float(v)
                 except Exception: continue
                 if C.setdefault(k, {}).get(d) != v: C[k][d] = v; ch += 1
             if k in C: C[k] = dict(sorted(C[k].items())[-800:])
-        if C.get('mmf_r') and C.get('mmf_i'):
-            C['mmf'] = {d: round(C['mmf_r'][d] + C['mmf_i'][d], 1) for d in C['mmf_r'] if d in C['mmf_i']}
+        if C.get('mmf_r'):   # 기관 MMF(WIMFNS)는 발표 중단(11/9) → 개인 MMF로만
+            C['mmf'] = dict(C['mmf_r'])
         if ch: json.dump(C, open(p, 'w', encoding='utf-8'), separators=(',', ':'))
     except Exception:
         pass
@@ -89,8 +89,8 @@ def fred(R):
             C[k] = dict(sorted(m.items())[-800:])
         except Exception:
             print('::warning::경고등 2판 FRED 실패 ' + sid)
-    if 'mmf_r' in C and 'mmf_i' in C:
-        C['mmf'] = {d: round(C['mmf_r'][d] + C['mmf_i'][d], 1) for d in C['mmf_r'] if d in C['mmf_i']}
+    if C.get('mmf_r'):
+        C['mmf'] = dict(C['mmf_r'])
     json.dump(C, open(p, 'w', encoding='utf-8'), separators=(',', ':'))
     return C
 
@@ -215,7 +215,7 @@ def apply(R, out):
         A['신용'] = [logit(d, 'hy', '하이일드 스프레드', 1),
                    mk('ig', '투자등급 스프레드', ig, 1.5, '%p') if ig is not None else mk('ig_px', '투자등급 회사채 약세(국채 대비)', ddr('LQD', 'IEF', d), 5, '%'),
                    mk('ccc', '최저등급(CCC) 스프레드', ccc, 12, '%p') if ccc is not None else mk('hy_px', '하이일드 회사채 약세(국채 대비)', ddr('HYG', 'IEF', d), 6, '%'),
-                   mk('bdc', '사모신용(BDC) 고점 대비', dd('BIZD', d), 15, '%'), mk('mmf', 'MMF 잔고 4주 급증', mmf4(d), 3, '%')]
+                   mk('bdc', '사모신용(BDC) 고점 대비', dd('BIZD', d), 15, '%'), mk('mmf', '개인 MMF 잔고 4주 급증', mmf4(d), 3, '%')]
         A['옵션·공포'] = [logit(d, 'vix', 'VIX', 1), logit(d, 'term', '기간구조 뒤집힘', 1), logit(d, 'pc', '풋콜 비율 높음', 1), mk('vvix', 'VVIX', asof('^VVIX', d), 115, '')]
         return {a: [x for x in v if x and x['L'] is not None] for a, v in A.items()}
 
