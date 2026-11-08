@@ -57,7 +57,7 @@ def gate(now):
     return None
 
 
-MKT = [('nasdaq', '^IXIC', 'pct'), ('sox', '^SOX', 'pct'), ('us10y', '^TNX', 'lvl'), ('wti', 'CL=F', 'usd')]
+MKT = [('nasdaq', '^IXIC', 'pct'), ('sox', '^SOX', 'pct'), ('us10y', '^TNX', 'lvl'), ('wti', 'CL=F', 'usd'), ('brent', 'BZ=F', 'usd')]
 
 
 def market():

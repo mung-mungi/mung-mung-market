@@ -1,12 +1,14 @@
 (function(){
   // 홈 '오늘 한눈에' 숫자 4개를 5분 시세 갱신(live/market.json) 값으로 바꿈 — 사용자 2026-10-29 지시. 페이지를 열어 둔 동안 5분마다 다시 읽음
-  var MAP = [[/나스닥/, 'nasdaq'], [/반도체|SOX/, 'sox'], [/10년/, 'us10y'], [/WTI|유가/, 'wti']];
+  var MAP = [[/나스닥/, 'nasdaq'], [/반도체|SOX/, 'sox'], [/10년/, 'us10y'], [/WTI|유가/, 'wti'], [/브렌트/, 'brent']];
   function f2(v){ return v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
   function sg(v, u){ return (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toFixed(u === 'bp' ? 0 : 2) + (u || '%'); }
   function paint(d){
     var st = document.querySelectorAll('.stats .stat'); if (!st.length || !d || !d.items) return false;
     st.forEach(function(s){
       var k = s.querySelector('.k'), n = s.querySelector('.n'); if (!k || !n) return;
+      var m$ = /^\s*([\d.,]+)\s*달러\s*$/.exec(n.textContent); if (m$) n.textContent = '$' + m$[1]; // 달러 표기는 $로 통일(사용자 2026-11-09)
+      if (/주간/.test(k.textContent)) return; // '나스닥 주간' 칸에 하루 등락을 덮지 않음
       var key = null; MAP.forEach(function(m){ if (!key && m[0].test(k.textContent)) key = m[1]; }); var it = key && d.items[key]; if (!it) return;
       var txt, cls = '';
       if (it.kind === 'pct') { txt = sg(it.chg); cls = it.chg > 0 ? 'up' : it.chg < 0 ? 'dn' : ''; }
@@ -18,7 +20,7 @@
     return true;
   }
   // 숫자 칸을 누르면 종목 차트로(사용자 2026-10-29): 나스닥→QQQ, 반도체→SOXX, 10년물→미국 10년물 금리, WTI→WTI 원유
-  var GO = {nasdaq: 'QQQ', sox: 'SOXX', us10y: '-TNX', wti: 'CL-F'};
+  var GO = {nasdaq: 'QQQ', sox: 'SOXX', us10y: '-TNX', wti: 'CL-F', brent: 'BZ-F'};
   function links(){
     document.querySelectorAll('.stats .stat').forEach(function(s){
       if (s.dataset.go) return; var k = s.querySelector('.k'); if (!k) return;
