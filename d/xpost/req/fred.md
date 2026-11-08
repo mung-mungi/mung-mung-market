@@ -22,4 +22,11 @@ GitHub·Claude 작업 공간에서 FRED(fred.stlouisfed.org)가 막혀 있어 �
 1년 치는 필요 없습니다(크레딧 아끼기, 사용자 2026-11-09). 지난 기록은 회사채 ETF로 대신 계산하고, 문턱값은 고정이라 최근 값만 있으면 됩니다. 처음 한 번만 MMF(개인)는 최근 6주(6개)를 넣어 주세요(4주 증가율 계산용).
 이 파일 말고 다른 파일은 고치지 않습니다.
 
-기관 MMF(WIMFNS)는 FRED에서 발표가 중단돼 빼기로 했습니다(2026-11-09). MMF는 개인 MMF(WRMFNS) 하나로 봅니다.
+기관 MMF(WIMFNS)는 FRED에서 발표가 중단됐습니다(2026-11-09). 대신 **미국 자산운용협회(ICI) 주간 MMF 잔고 발표**(매주 목요일, ici.org 'Money Market Fund Assets')에서 아래 두 숫자를 넣어 주세요(발표 날짜 = 기준일 수요일).
+
+| 키 | 출처 | 뜻 |
+|---|---|---|
+| mmf_total | ICI 주간 발표 'Total money market fund assets' | MMF 전체 잔고(십억 달러) |
+| mmf_inst | ICI 주간 발표 'Institutional' 합계 | 기관 MMF 잔고(십억 달러) |
+
+형식은 위와 같이 {"YYYY-MM-DD": 숫자}. 처음 한 번만 최근 6주, 그 뒤엔 새 주 1개만.

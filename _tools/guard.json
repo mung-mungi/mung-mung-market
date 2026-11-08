@@ -189,8 +189,9 @@
   "ott-more"
  ],
  "_tools/rrgaxis.js": [
+  "function watch(",
   "mm-st-how",
-  "function watch("
+  "mm-rrg2"
  ],
  "_tools/ytban.js": [
   "mm-yt"
@@ -308,5 +309,9 @@
  "_tools/ltscore.js": [
   "j.bands",
   "mm-rv"
+ ],
+ "_tools/mmtop.js": [
+  "mm-st-rank",
+  "mm-rrg2"
  ]
 }
