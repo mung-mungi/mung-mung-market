@@ -352,5 +352,8 @@
  ],
  "_tools/build_fx.py": [
   "TWD=X"
+ ],
+ "_tools/build_insider.py": [
+  "tinytable"
  ]
 }
