@@ -355,5 +355,9 @@
  ],
  "_tools/build_insider.py": [
   "tinytable"
+ ],
+ "_tools/dock.js": [
+  "G9=",
+  "PL9"
  ]
 }

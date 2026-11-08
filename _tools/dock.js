@@ -6,12 +6,18 @@ function build(){var n=document.querySelector('nav.ib');if(!n||document.querySel
  var by={};[].forEach.call(n.querySelectorAll('a'),function(a){by[key(a)]=a});
  // 아이디어 페이지(공사중) — 페이지 줄에 아직 없으면 맨 끝 묶음으로 붙임(사용자 2026-10-29)
  if(!by['p-value']){var vq=((home&&home.getAttribute('href'))||'').match(/\?v=\d+/);vq=vq?vq[0]:'';var ig={t:'아이디어',l:[]};[['p-value','저평가 서치'],['p-pros','고수 성적표']].forEach(function(x){var a=document.createElement('a');a.setAttribute('href',x[0]+'.html'+vq);a.textContent=x[1];ig.l.push(a);by[x[0]]=a});groups.push(ig)}
- function lab(a){return (a.textContent||'').trim().replace('데일리 ','')}
+ // 메인 칸 정리와 같은 묶음·이름으로(사용자 2026-11-09 '다 하면 독도 반영') — 합친 짝(시세|차트·실적|일정·뉴스|AI·테크·공매도|내부자)은 붙여서
+ var G9=[['매일 아침',['p-lights','p-brief','p-prices','p-trend','p-earn','p-cal','p-policy','p-tech','p-econ']],['흐름 확인',['p-short','p-insider','p-fx','p-opt','p-bond','p-targets']],['월간·분기',['p-supply','p-capex','p-neo','p-qtr']]];
+ var LB9={'p-lights':'경고등','p-brief':'시황','p-prices':'시세','p-trend':'차트','p-earn':'실적','p-cal':'일정','p-policy':'뉴스','p-tech':'AI·테크','p-econ':'경제지표','p-short':'공매도','p-insider':'내부자','p-fx':'아시아 통화','p-opt':'옵션 온도계','p-bond':'채권 온도계','p-targets':'목표주가','p-supply':'아시아 수출','p-capex':'빅테크 투자','p-neo':'네오클라우드','p-qtr':'분기 실적'};
+ var PL9={'p-prices':'pl','p-trend':'pr','p-earn':'pl','p-cal':'pr','p-policy':'pl','p-tech':'pr','p-short':'pl','p-insider':'pr'};
+ var idg=groups.filter(function(x){return x.t==='아이디어'});var ng=G9.map(function(x){return{t:x[0],l:x[1].filter(function(k){return by[k]}).map(function(k){return by[k]})}}).filter(function(x){return x.l.length});
+ if(ng.length)groups=ng.concat(idg);
+ function lab(a){return LB9[key(a)]||(a.textContent||'').trim().replace('데일리 ','')}
  var d=document.createElement('nav');d.className='mmd';
- var row=(home?'<a href="'+home.getAttribute('href')+'"><i>'+IC.home+'</i><span>홈</span></a>':'')+groups.map(function(g,gi){return (gi?'<b class="sep"></b>':'')+g.l.map(function(a){var k=key(a);return '<a href="'+a.getAttribute('href')+'"'+(k===ck?' class="on"':'')+'><i>'+(IC[k]||'•')+'</i><span>'+lab(a)+'</span></a>'}).join('')}).join('');
+ var row=(home?'<a href="'+home.getAttribute('href')+'"><i>'+IC.home+'</i><span>홈</span></a>':'')+groups.map(function(g,gi){return (gi?'<b class="sep"></b>':'')+g.l.map(function(a){var k=key(a);return '<a href="'+a.getAttribute('href')+'"'+((k===ck||PL9[k])?' class="'+(k===ck?'on ':'')+(PL9[k]||'')+'"':'')+'><i>'+(IC[k]||'•')+'</i><span>'+lab(a)+'</span></a>'}).join('')}).join('');
  d.innerHTML='<button type="button" class="grab" aria-label="전체 메뉴"><em></em></button><div class="row">'+row+'</div>';
  var sh=document.createElement('div');sh.className='mmd-sheet';sh.hidden=true;
- sh.innerHTML='<div class="mmd-dim"></div><div class="mmd-pan"><div class="mmd-grab"></div>'+groups.map(function(g){return '<p class="mmd-g">'+g.t+'</p><div class="mmd-grid">'+g.l.map(function(a){var k=key(a);return '<a href="'+a.getAttribute('href')+'"'+(k===ck?' class="on"':'')+'><i>'+(IC[k]||'•')+'</i><span>'+lab(a)+'</span></a>'}).join('')+'</div>'}).join('')+'</div>';
+ sh.innerHTML='<div class="mmd-dim"></div><div class="mmd-pan"><div class="mmd-grab"></div>'+groups.map(function(g){return '<p class="mmd-g">'+g.t+'</p><div class="mmd-grid">'+g.l.map(function(a){var k=key(a);return '<a href="'+a.getAttribute('href')+'"'+((k===ck||PL9[k])?' class="'+(k===ck?'on ':'')+(PL9[k]||'')+'"':'')+'><i>'+(IC[k]||'•')+'</i><span>'+lab(a)+'</span></a>'}).join('')+'</div>'}).join('')+'</div>';
  [].forEach.call(d.querySelectorAll('a[href^="p-value"],a[href^="p-pros"]'),function(a){a.classList.add('wip')});[].forEach.call(sh.querySelectorAll('a[href^="p-value"],a[href^="p-pros"]'),function(a){a.classList.add('wip')});
  [].forEach.call(sh.querySelectorAll('.mmd-g'),function(g){if(g.textContent==='아이디어')g.textContent='아이디어 · 공사중'});
  document.body.appendChild(d);document.body.appendChild(sh);document.body.classList.add('mmd-on');
