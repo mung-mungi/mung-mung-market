@@ -945,3 +945,4 @@ def tidy_patch1109(name, s):
             s = s.replace(a, b, 1)
     return s
 EASY['p-brief.html'] = EASY.get('p-brief.html', []) + ['blobfix']  # 깨진 그림 숨김(2026-11-09 점검)
+EASY['index.html'] = EASY.get('index.html', []) + ['homev2']  # 메인 13칸 재구성(2026-11-09 점검)

@@ -1,0 +1,9 @@
+/* 메인 13칸 재구성(2026-11-09) — 합친 칸 안 두 줄 알약, 경고등 아래 한 줄 */
+.mm-compact .list .item .hl.mm-two{display:flex!important;flex-direction:column;gap:6px;-webkit-line-clamp:unset!important;overflow:visible!important}
+.mm-sub{display:block;font-size:12.5px;line-height:1.4;color:var(--muted,#6b675f);background:color-mix(in srgb,var(--c,#9a6200) 7%,#fff);border:1px solid color-mix(in srgb,var(--c,#9a6200) 22%,transparent);border-radius:9px;padding:5px 8px;box-shadow:0 1px 0 color-mix(in srgb,var(--c,#9a6200) 18%,transparent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.mm-sub b{color:var(--c,#9a6200);font-weight:800;margin-right:2px}
+.mm-sub:active{transform:translateY(1px)}
+.mm-lt-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;margin:-2px 0 2px;padding:8px 12px;border-radius:12px;background:#fff7e8;border:1px solid #f0d9a8;text-decoration:none;color:#5f4a20;font-size:13px;line-height:1.4}
+.mm-lt-line .k{font-weight:600;color:#8a7650}
+.mm-lt-line b.hot{color:#b3261e;font-weight:800}
+.mm-lt-line b.calm{color:#1a7f37;font-weight:800}

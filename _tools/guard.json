@@ -158,7 +158,8 @@
   "EARNLZ_JS",
   "window.__lzHollow||Object",
   "PATCH1109",
-  "blobfix"
+  "blobfix",
+  "'homev2'"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -340,5 +341,9 @@
  ],
  "_tools/ltnear.js": [
   "/VVIX/.test"
+ ],
+ "_tools/homev2.js": [
+  "mm-sub",
+  "mm-lt-line"
  ]
 }
