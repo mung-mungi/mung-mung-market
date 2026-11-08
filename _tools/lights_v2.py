@@ -18,7 +18,7 @@ LAY = [('semi_design', '칩 설계', ['NVDA', 'AMD', 'AVGO'], 30),
        ('semi_pwr', '전력·냉각', ['VRT', 'GEV'], 30),
        ('semi_neo', '네오클라우드', ['CRWV', 'NBIS'], 45)]
 NM = {'NVDA': '엔비디아', 'AMD': 'AMD', 'AVGO': '브로드컴', 'MU': '마이크론', '000660.KS': 'SK하이닉스', 'TSM': 'TSMC', 'AMAT': '어플라이드', 'LRCX': '램리서치', 'ANET': '아리스타', 'COHR': '코히어런트', 'VRT': '버티브', 'GEV': 'GE버노바', 'CRWV': '코어위브', 'NBIS': '네비우스'}
-TICK = sorted({t for l in LAY for t in l[2]} | {'CL=F', 'BZ=F', 'NG=F', 'BIZD', 'HYG', 'LQD', 'IEF', '^VVIX'})
+TICK = sorted({t for l in LAY for t in l[2]} | {'CL=F', 'BZ=F', 'NG=F', 'BIZD', 'HYG', 'LQD', 'IEF', '^VVIX', '^OVX'})
 
 
 def _get(u):
@@ -50,6 +50,34 @@ def prices(R):
     return C
 
 
+FRED = {'BAMLC0A0CM': 'ig', 'BAMLH0A3HYC': 'ccc', 'WRMFNS': 'mmf_r', 'WIMFNS': 'mmf_i'}
+
+
+def fred(R):
+    """연준(FRED) 투자등급·CCC 스프레드(매일, 하루 늦음)와 MMF 잔고(매주 목요일) — HTTP/1.1로 하나씩(동시에 받으면 막힘)"""
+    p = os.path.join(R, 'd', 'lights', 'v2_fred.json')
+    try: C = json.load(open(p, encoding='utf-8'))
+    except Exception: C = {}
+    import csv, io
+    if os.environ.get('MM_NOFRED'): return C
+    for sid, k in FRED.items():
+        m = C.get(k, {})
+        since = (dt.date.today() - dt.timedelta(days=60 if len(m) > 200 else 800)).isoformat()
+        try:
+            o = subprocess.run(['curl', '--http1.1', '--retry', '1', '-sSL', '-m', '35', '-A', 'Mozilla/5.0',
+                                'https://fred.stlouisfed.org/graph/fredgraph.csv?id=%s&cosd=%s' % (sid, since)], capture_output=True, text=True)
+            for r in csv.DictReader(io.StringIO(o.stdout)):
+                d = r.get('observation_date') or r.get('DATE'); v = r.get(sid)
+                if d and v not in (None, '', '.'): m[d] = float(v)
+            C[k] = dict(sorted(m.items())[-800:])
+        except Exception:
+            print('::warning::경고등 2판 FRED 실패 ' + sid)
+    if 'mmf_r' in C and 'mmf_i' in C:
+        C['mmf'] = {d: round(C['mmf_r'][d] + C['mmf_i'][d], 1) for d in C['mmf_r'] if d in C['mmf_i']}
+    json.dump(C, open(p, 'w', encoding='utf-8'), separators=(',', ':'))
+    return C
+
+
 def lv_of(v, th):
     if v is None: return None
     r = v / th if th else 0
@@ -61,6 +89,8 @@ def apply(R, out):
     log = json.load(open(P('d/lights/lights_log.json'), encoding='utf-8'))
     TH = {t['id']: t for t in json.load(open(P('d/lights/thresholds.json'), encoding='utf-8'))}
     C = prices(R)
+    try: FR = fred(R)
+    except Exception: FR = {}
     LOG = {}
     for r in log: LOG.setdefault(r['date'], {})[r['id']] = r
     days = sorted(LOG)[-260:]
@@ -109,10 +139,19 @@ def apply(R, out):
         A['반도체·AI'] = semi
         w_, b_ = asof('CL=F', d), asof('BZ=F', d)
         A['유가'] = [logit(d, 'oil', '유가 한 달 급등', 1), mk('oil_lvl', 'WTI 1년 평균 대비 높이', lvl1y('CL=F', d), 14, '%'),
-                    mk('oil_bw', '브렌트-WTI 차이', (b_ - w_) if (w_ and b_) else None, 8, '달러'), mk('ng', '천연가스 한 달 급등', chg('NG=F', d, 21), 30, '%')]
+                    mk('oil_bw', '중동 위험 웃돈(브렌트-WTI 차이)', (b_ - w_) if (w_ and b_) else None, 8, '달러'), mk('ovx', '유가 출렁임(OVX)', asof('^OVX', d), 60, ''), mk('ng', '천연가스 한 달 급등', chg('NG=F', d, 21), 30, '%')]
         A['채권·금리'] = [logit(d, k) for k in ('y10', 'why', 'y30', 'auc')]
-        A['신용'] = [logit(d, 'hy', '하이일드 스프레드', 1), mk('bdc', '사모신용(BDC) 고점 대비', dd('BIZD', d), 15, '%'),
-                   mk('ig_px', '투자등급 회사채 약세(국채 대비)', ddr('LQD', 'IEF', d), 5, '%'), mk('hy_px', '하이일드 회사채 약세(국채 대비)', ddr('HYG', 'IEF', d), 6, '%')]
+        def fv(k):
+            m = FR.get(k) or {}; ks = [x for x in m if x <= d]
+            return m[max(ks)] if ks and max(ks) >= (dt.date.fromisoformat(d) - dt.timedelta(days=10)).isoformat() else None
+        def mmf4(d):   # MMF 잔고 4주 증가율(위험자산에서 현금으로 숨는 돈)
+            m = FR.get('mmf') or {}; ks = sorted(x for x in m if x <= d)
+            return (m[ks[-1]] / m[ks[-5]] - 1) * 100 if len(ks) >= 5 and ks[-1] >= (dt.date.fromisoformat(d) - dt.timedelta(days=14)).isoformat() else None
+        ig, ccc = fv('ig'), fv('ccc')
+        A['신용'] = [logit(d, 'hy', '하이일드 스프레드', 1),
+                   mk('ig', '투자등급 스프레드', ig, 1.5, '%p') if ig is not None else mk('ig_px', '투자등급 회사채 약세(국채 대비)', ddr('LQD', 'IEF', d), 5, '%'),
+                   mk('ccc', '최저등급(CCC) 스프레드', ccc, 12, '%p') if ccc is not None else mk('hy_px', '하이일드 회사채 약세(국채 대비)', ddr('HYG', 'IEF', d), 6, '%'),
+                   mk('bdc', '사모신용(BDC) 고점 대비', dd('BIZD', d), 15, '%'), mk('mmf', 'MMF 잔고 4주 급증', mmf4(d), 3, '%')]
         A['옵션·공포'] = [logit(d, 'vix', 'VIX', 1), logit(d, 'term', '기간구조 뒤집힘', 1), logit(d, 'pc', '풋콜 비율 높음', 1), mk('vvix', 'VVIX', asof('^VVIX', d), 115, '')]
         return {a: [x for x in v if x and x['L'] is not None] for a, v in A.items()}
 

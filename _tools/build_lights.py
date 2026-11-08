@@ -6,7 +6,8 @@ import csv, io, json, os, sys, subprocess, datetime as dt
 R = sys.argv[1] if len(sys.argv) > 1 else '.'
 P = lambda *a: os.path.join(R, *a)
 def get(u):
-    o = subprocess.run(['curl', '-sSL', '-m', '25', '-A', 'Mozilla/5.0', u], capture_output=True, text=True)
+    # FRED는 HTTP/2로 받으면 끊김(2026-11-09 확인) → HTTP/1.1 + 재시도
+    o = subprocess.run(['curl', '-sSL', '-m', '40', '-A', 'Mozilla/5.0'] + (['--http1.1', '--retry', '2'] if 'stlouisfed' in u else []) + [u], capture_output=True, text=True)
     if o.returncode or not o.stdout: raise RuntimeError('fail ' + u[:60])
     return o.stdout
 def load(p, d):
