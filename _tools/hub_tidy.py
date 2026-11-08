@@ -938,6 +938,12 @@ PATCH1109 = [
      "document.getElementById('mood').textContent = (function(){var k=new Date(Date.now()+9*36e5),d=k.getUTCDay(),h=k.getUTCHours();return d===0||(d===6&&h>=10)||(d===1&&h<23)})()/*mm-wkend*/ ? '장 쉬는 날 · 금요일 마감 기준' : t.med_1d == null ? '날' :"),
 ]
 
+PATCH1109 += [
+    ('p-fx.html', "b.textContent=n.date+' 기준 · ECB 환율';", "b.textContent=n.date+' 기준 · 야후 종가';/*mm-fxsrc*/"),
+    ('p-fx.html', "일별 ECB 기준환율(원/달러).", "일별 종가(원/달러, 야후)."),
+    ('p-fx.html', "대만달러(TWD)는 ECB 기준환율에 없어 싣지 않았습니다.", "대만달러는 위 '아시아 통화 한눈에'에서 봅니다."),
+]
+
 
 def tidy_patch1109(name, s):
     for pg, a, b in PATCH1109:
@@ -946,3 +952,4 @@ def tidy_patch1109(name, s):
     return s
 EASY['p-brief.html'] = EASY.get('p-brief.html', []) + ['blobfix']  # 깨진 그림 숨김(2026-11-09 점검)
 EASY['index.html'] = EASY.get('index.html', []) + ['homev2']  # 메인 13칸 재구성(2026-11-09 점검)
+EASY['p-fx.html'] = EASY.get('p-fx.html', []) + ['fxasia']  # 아시아 통화(2026-11-09)

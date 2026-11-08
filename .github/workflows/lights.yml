@@ -34,10 +34,12 @@ jobs:
       # 옵션 온도계 VIX·기간구조·풋콜(사용자 2026-11-02 — 손으로 넣던 자료가 10.23에서 멈춤)
       - name: opt
         run: python3 -I _tools/build_opt.py . || true
+      - name: 아시아 통화(원·대만달러·엔) — 2026-11-09
+        run: python3 -I _tools/build_fx.py . || true
       - name: commit
         run: |
           git config user.name 'github-actions[bot]'; git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add d/lights d/bond/yields_daily.json d/bond/hy_spread.json d/fng.json d/stress d/opt
+          git add d/lights d/bond/yields_daily.json d/bond/hy_spread.json d/fng.json d/stress d/opt d/fx
           python3 -I _tools/stamp_only.py   # 갱신 시각만 바뀐 파일은 안 올림(헛걸음 막기, 2026-11-02)
           if git diff --cached --quiet; then echo 'no change'; exit 0; fi
           git commit -m "시장 경고등 자동 갱신 $(TZ=Asia/Seoul date +%m.%d\ %H:%M)"

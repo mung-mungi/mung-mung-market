@@ -345,5 +345,12 @@
  "_tools/homev2.js": [
   "mm-sub",
   "mm-lt-line"
+ ],
+ "_tools/fxasia.js": [
+  "fxa-g",
+  "usdtwd"
+ ],
+ "_tools/build_fx.py": [
+  "TWD=X"
  ]
 }
