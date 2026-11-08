@@ -316,7 +316,8 @@
   "F3.area_scores"
  ],
  "_tools/tgrow.js": [
-  "mk-rtf"
+  "mk-rtf",
+  "mk-now"
  ],
  "_tools/ltscore.js": [
   "mm-rv",

@@ -69,3 +69,4 @@ body #tk-sec>.pt-tiles>*>:nth-child(n+3){font-size:11px!important;line-height:1.
 .rc-list>li[data-rt] .mk-l small{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.7}
 .rc-list>li[data-rt] .mk-l b{white-space:normal}
 .mk-rt,.mk-mix{white-space:nowrap;display:inline-block}
+.mk-now{display:block;font:600 11.5px/1.3 -apple-system,sans-serif;color:#6b675f;margin-top:1px;white-space:nowrap} /* 현재가(2026-11-09) */
