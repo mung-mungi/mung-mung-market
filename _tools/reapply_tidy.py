@@ -58,6 +58,12 @@ _sp = os.path.join(R, 'p-supply.html')
 if os.path.exists(_sp):
     _o = open(_sp, encoding='utf-8').read(); _a = h.tidy_supply_tw(_o)
     if _a != _o: open(_sp, 'w', encoding='utf-8').write(_a); print('tidy supply tw')
+# 2026-11-09 점검 작은 고장 묶음
+for _nm in ('p-qtr.html', 'p-insider.html', 'p-capex.html', 'p-prices.html'):
+    _fp = os.path.join(R, _nm)
+    if os.path.exists(_fp):
+        _o = open(_fp, encoding='utf-8').read(); _a = h.tidy_patch1109(_nm, _o)
+        if _a != _o: open(_fp, 'w', encoding='utf-8').write(_a); print('tidy 1109', _nm)
 # 시세 보드 기간 1일·1주일(2026-11-03)
 _pp = os.path.join(R, 'p-prices.html')
 if os.path.exists(_pp):

@@ -155,7 +155,9 @@
   "LAZYRUN_JS",
   "var NQ=[]",
   "EARNLZ_JS",
-  "window.__lzHollow||Object"
+  "window.__lzHollow||Object",
+  "PATCH1109",
+  "blobfix"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -243,7 +245,8 @@
   "mm-sh-rows"
  ],
  "_tools/calui.js": [
-  "mmc-tabs"
+  "mmc-tabs",
+  "발표 없음/.test"
  ],
  "_tools/newsq_ui.js": [
   "function draw(",

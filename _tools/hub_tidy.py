@@ -799,7 +799,8 @@ for _p in ['p-prices.html', 'p-trend.html', 'p-short.html', 'p-targets.html', 'p
 # 공매도 추이 '오늘 한눈에' — 확인용 보조지표(사용자 2026-11-02)
 EASY['p-short.html'] = EASY['p-short.html'] + ['shtop']
 # 단계 옆 '왜 이 단계?' 한 줄(사용자 2026-11-02) — 단계는 점수 그대로, 코멘트로 풀어 줌
-EASY['p-opt.html'] = EASY['p-opt.html'] + ['stwhy']; EASY['p-opt.html'] = EASY['p-opt.html'] + ['vixlong']  # VIX 기간 고르기(사용자 2026-11-09); EASY['p-bond.html'] = EASY['p-bond.html'] + ['stwhy']
+EASY['p-opt.html'] = EASY['p-opt.html'] + ['stwhy']; EASY['p-opt.html'] = EASY['p-opt.html'] + ['vixlong']  # VIX 기간 고르기(사용자 2026-11-09)
+EASY['p-bond.html'] = EASY['p-bond.html'] + ['stwhy']  # 주석 뒤에 붙어 빠져 있던 것 되살림(2026-11-09 점검)
 # '어제보다 바뀐 점' 카드(사용자 2026-11-03, A안)
 for _pg in ('p-opt.html', 'p-bond.html', 'p-lights.html'):
     EASY[_pg] = EASY.get(_pg, []) + ['mvban']
@@ -919,3 +920,28 @@ def tidy_prices_per(s):
 def tidy_supply_tw(s):
     a = 'const W=Math.max(120,ch.clientWidth||160),H=96,'
     return s.replace(a, 'const W=300,H=110,/*mm-twfix*/', 1) if a in s else s
+
+
+# 2026-11-09 전체 점검에서 나온 페이지 원본 작은 고장(사용자 '다 순서대로 해보자'). (페이지, 원래 글자, 바꿀 글자) — 멱등
+PATCH1109 = [
+    ('p-qtr.html',  # 처음 열 때 발표 1곳뿐인 '진행 중' 분기 대신 가장 최근의 제대로 쌓인 분기
+     "if(!st.cq&&quarters.length)st.cq=quarters[quarters.length-1];",
+     "if(!st.cq&&quarters.length){const _L=quarters[quarters.length-1],_n=(QS.find(a=>a.cq===_L)||{}).n||0;st.cq=(_n<10&&quarters.length>1)?quarters[quarters.length-2]:_L}/*mm-qdef*/"),
+    ('p-insider.html',  # '엔비디아이(가)' → 받침 따라 '이/가'
+     "seg('이(가) 가장 크고, ')",
+     "seg((function(w){var c=String(w).charCodeAt(String(w).length-1);return c>=44032&&c<=55203&&(c-44032)%28?'이':'가'})(t.top_seller_company)+' 가장 크고, ')/*mm-josa*/"),
+    ('p-capex.html',  # 다음 발표 날짜가 아직 없으면 회색 로딩 막대로 멈춰 있던 칸
+     "    if (NU.status === 'ok' && NU.data.length) {",
+     "    if (!(NU.status === 'ok' && NU.data.length)) { unskel('t4v'); $('t4v').textContent = '날짜 미정'; $('t4s').textContent = '회사 발표 대기 · 보통 분기 끝나고 4주 뒤'; }/*mm-cxnext*/\n    if (NU.status === 'ok' && NU.data.length) {"),
+    ('p-prices.html',  # 주말·월요일 개장 전에는 '보합인 날' 대신 '장 쉬는 날'
+     "document.getElementById('mood').textContent = t.med_1d == null ? '날' :",
+     "document.getElementById('mood').textContent = (function(){var k=new Date(Date.now()+9*36e5),d=k.getUTCDay(),h=k.getUTCHours();return d===0||(d===6&&h>=10)||(d===1&&h<23)})()/*mm-wkend*/ ? '장 쉬는 날 · 금요일 마감 기준' : t.med_1d == null ? '날' :"),
+]
+
+
+def tidy_patch1109(name, s):
+    for pg, a, b in PATCH1109:
+        if pg == name and a in s and b not in s:
+            s = s.replace(a, b, 1)
+    return s
+EASY['p-brief.html'] = EASY.get('p-brief.html', []) + ['blobfix']  # 깨진 그림 숨김(2026-11-09 점검)
