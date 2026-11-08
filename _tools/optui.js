@@ -17,7 +17,7 @@ function earn(){var c=document.getElementById('earn-card');if(!c)return;var t=c.
  var done=[],todo=[];rows.forEach(function(r){var d=[...r.children].map(function(x){return x.textContent.trim()});if(d.length<7)return;
   var exp=d[5].replace(/자료 없음/,'—'),act=d[6],am=(act.match(/^([+\-−][\d.]+%)/)||[])[1],tag=(act.match(/예상 (초과|이내)/)||[])[1],dt=d[3].slice(5).replace('-','/'),tm=d[4].replace('장 마감 후','장후').replace('장 시작 전','장전');
   var cls=/^[\-−]/.test(am||'')?'dn':'up';
-  var h='<div class="o-row"><div class="o-l"><b>'+d[0]+'</b><small>'+d[1]+' · '+dt+' '+tm+'</small></div><div class="o-m"><small>예상</small><b>'+exp+'</b></div><div class="o-r '+(am?cls:'mu')+'">'+(am?'<b>'+am+'</b><small class="'+(tag==='초과'?'big':'')+'">예상 '+tag+'</small>':'<b>—</b><small>발표 전</small>')+'</div></div>';
+  var h='<div class="o-row"><div class="o-l"><b>'+d[0]+'</b><small>'+d[1]+' · '+dt+' '+tm+'</small></div><div class="o-m"><small>예상</small><b>'+exp+'</b></div><div class="o-r '+(am?cls:'mu')+'">'+(am?'<b>'+am+'</b><small class="'+(tag==='초과'?'big':'')+'">'+(tag?'예상 '+tag:'예상폭 자료 없음')+'</small>':'<b>—</b><small>발표 전</small>')+'</div></div>';
   (am?done:todo).push({h:h,tk:d[1],dt:d[3]})});
  /* 나온 것 = 중요도 높은 순(같으면 최근 발표 먼저) · 발표 예정 = 가까운 순(사용자 2026-11-09) */
  var IMP=['NVDA','MSFT','GOOGL','AMZN','META','AAPL','AVGO','TSM','TSLA','ORCL','AMD','MU','PLTR','CRWV','NBIS','AMAT','LRCX','KLAC','ANET','VRT','GEV','CSCO','INTC','NFLX','IBM','NOW','APH','COHR','CBRS','SNDK','STX','CAT','PWR','SMCI','CDNS','CLS'];
