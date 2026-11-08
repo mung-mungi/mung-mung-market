@@ -53,6 +53,11 @@ for _n in h.EASY:
     if os.path.exists(_p):
         _o = open(_p, encoding='utf-8').read(); _a = h.tidy_easy(_o, _n)
         if _a != _o: open(_p, 'w', encoding='utf-8').write(_a); print('tidy', _n)
+# 대만 8개사 작은 차트 눈금(2026-11-09)
+_sp = os.path.join(R, 'p-supply.html')
+if os.path.exists(_sp):
+    _o = open(_sp, encoding='utf-8').read(); _a = h.tidy_supply_tw(_o)
+    if _a != _o: open(_sp, 'w', encoding='utf-8').write(_a); print('tidy supply tw')
 # 시세 보드 기간 1일·1주일(2026-11-03)
 _pp = os.path.join(R, 'p-prices.html')
 if os.path.exists(_pp):

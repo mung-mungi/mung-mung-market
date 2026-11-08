@@ -349,7 +349,7 @@ function drawTw(TW,tw,twLast){
     const m=document.createElement('div');m.className='m';m.textContent=mlong(last.month)+' · '+nf(last.revenue_ntd_100m,0)+'억 대만달러';
     const ch=document.createElement('div');ch.className='sp-chart';ch.style.minHeight='96px';
     const mo=document.createElement('div');mo.className='more';mo.textContent='눌러서 자세히 ▾';box.append(n,r,y,m,ch,mo);grid.appendChild(box);box.tabIndex=0;box.setAttribute('role','button');box.onclick=()=>twDetail(c,rows,grid,box);box.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();twDetail(c,rows,grid,box)}};
-    const W=Math.max(120,ch.clientWidth||160),H=96,mg={l:4,r:4,t:12,b:18};
+    const W=300,H=110,/*mm-twfix*/mg={l:4,r:4,t:12,b:18};
     const x=d3.scaleBand().domain(months).range([mg.l,W-mg.r]).paddingInner(.25);
     const yS=d3.scaleLinear().domain(ext).nice().range([H-mg.b,mg.t]);
     const svg=d3.select(ch).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);

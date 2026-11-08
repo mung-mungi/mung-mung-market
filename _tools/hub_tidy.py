@@ -910,3 +910,10 @@ def tidy_prices_per(s):
     s = core_strip(s, 'pper')
     add = core_ref('pper', 'pper.js')
     return s.replace('</body>', add + '</body>', 1) if '</body>' in s else s + add
+
+
+# 대만 AI 8개사 작은 차트(사용자 2026-11-09 'TSMC가 성장률이 더 높은데 막대가 더 작아 보임'):
+# 칸마다 그릴 때 잰 폭(clientWidth)이 달라 같은 눈금이어도 화면 높이가 제각각 → 그림 폭을 고정해 모든 칸이 같은 비율로 커지게
+def tidy_supply_tw(s):
+    a = 'const W=Math.max(120,ch.clientWidth||160),H=96,'
+    return s.replace(a, 'const W=300,H=110,/*mm-twfix*/', 1) if a in s else s

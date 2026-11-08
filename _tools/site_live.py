@@ -121,6 +121,11 @@ def run(root):
             sys.path.insert(0, T); import hub_tidy
             o = open(ppl, encoding='utf-8').read(); b = hub_tidy.tidy_policy(o)
             if b != o: open(ppl, 'w', encoding='utf-8').write(b); n.append(nm)
+    sp = os.path.join(root, 'p-supply.html')  # 대만 8개사 작은 차트 눈금(사용자 2026-11-09)
+    if os.path.exists(sp):
+        sys.path.insert(0, T); import hub_tidy
+        o = open(sp, encoding='utf-8').read(); b = hub_tidy.tidy_supply_tw(o)
+        if b != o: open(sp, 'w', encoding='utf-8').write(b); n.append('p-supply-tw')
     pp = os.path.join(root, 'p-prices.html')  # 시세 보드 기간 1일·1주일(사용자 2026-11-03)
     if os.path.exists(pp):
         sys.path.insert(0, T); import hub_tidy
