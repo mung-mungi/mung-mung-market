@@ -59,7 +59,7 @@ def fred(R):
     try: C = json.load(open(p, encoding='utf-8'))
     except Exception: C = {}
     import csv, io
-    if os.environ.get('MM_NOFRED'): return C
+    return C   # 2026-11-09: 받기는 fetch_fred.py(fred.yml, 3시간마다)가 맡음
     for sid, k in FRED.items():
         m = C.get(k, {})
         since = (dt.date.today() - dt.timedelta(days=45)).isoformat()   # 긴 기간은 FRED가 오래 걸려 멈춤(11/9) — 최근 45일만, 지난 기록은 따로 채움

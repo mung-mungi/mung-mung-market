@@ -1,0 +1,24 @@
+# 연준(FRED) 자료 따로 받기 — 경고등 실행을 멈추지 않게 떼어 냄(사용자 2026-11-09)
+name: fred
+on:
+  schedule:
+    - cron: '43 */3 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: fred
+  cancel-in-progress: false
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -I _tools/fetch_fred.py .
+      - run: |
+          git config user.name 'github-actions[bot]'; git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add d/lights/v2_fred.json
+          if git diff --cached --quiet; then echo 'no change'; exit 0; fi
+          git commit -m "연준 자료 갱신 $(TZ=Asia/Seoul date +%m.%d\ %H:%M)"
+          for i in 1 2 3 4 5; do git pull --rebase -X theirs origin main && git push && exit 0; sleep $((i*7)); done; exit 1
