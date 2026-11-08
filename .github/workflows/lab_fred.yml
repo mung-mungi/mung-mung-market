@@ -11,7 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          for s in $(cat lab/req.txt); do (timeout 120 curl --http1.1 -sSL -m 100 -A Mozilla/5.0 "https://fred.stlouisfed.org/graph/fredgraph.csv?id=$s&cosd=2025-05-01" -o lab/$s.csv || echo fail $s) & done; wait
-          ls -la lab
-          git config user.name mung-bot; git config user.email mung-bot@users.noreply.github.com
-          git add lab/*.csv; git commit -m "lab fred" || true; git push
+          curl -sS -m 30 -o /dev/null -w "api %{http_code}\n" "https://api.stlouisfed.org/fred/series/observations?series_id=BAMLH0A0HYM2&file_type=json" || echo api fail
+          curl --http1.1 -sS -m 30 -o /tmp/a.csv -w "csv %{http_code}\n" "https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2&cosd=2026-10-01" || echo csv fail; head -3 /tmp/a.csv || true
+          curl -sS -m 30 -o /dev/null -w "alfred %{http_code}\n" "https://alfred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2" || echo alfred fail
