@@ -19,3 +19,12 @@ svg .ott-3{fill:var(--dc2,#b08a2e)}
 .ott-now details.ott-q summary{list-style:none;cursor:pointer;font-size:13.5px}.ott-now details.ott-q summary::-webkit-details-marker{display:none}
 .ott-now details.ott-more{margin-top:6px}.ott-now details.ott-more>summary{list-style:none;cursor:pointer;font-size:13px;font-weight:800;color:#8a6a2c;padding:2px 0}.ott-now details.ott-more>summary::-webkit-details-marker{display:none}.ott-now details.ott-more[open]>summary{margin-bottom:6px}
 .ott-now .ott-read{font-size:13.5px;line-height:1.6;margin:0 0 8px}
+
+.ott-num{display:inline-block;margin-left:6px;font-weight:700;color:#9a6200}
+.ott-ana{margin:8px 0 0;padding:8px 10px;border-radius:10px;background:#fff;border:1px dashed #e9d9b0;font-size:14px;line-height:1.6;color:#4a463f}
+.ott-cap{margin:0 0 4px;font-size:14px;color:#5f5a52}.ott-cap b{color:#1f1e1b;margin-right:4px}
+p.how .ott-hh{display:block;font-size:16px;margin-bottom:6px;color:#1f1e1b}
+p.how .ott-row{display:block;margin:6px 0;padding:8px 10px;border-left:3px solid #c8a24a;background:#fffaf0;border-radius:0 10px 10px 0}
+p.how .ott-row i{font-style:normal;font-weight:700}
+p.how .ott-row em{display:block;margin-top:4px;font-style:normal;font-weight:700;color:#c8501c}
+p.how .ott-tip{border-left-color:#bbb;background:#f7f5f0}

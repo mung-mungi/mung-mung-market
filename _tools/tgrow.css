@@ -60,3 +60,12 @@ body #tk-sec>.pt-tiles>*{min-width:0!important;width:auto!important;box-sizing:b
 body #tk-sec>.pt-tiles>*>:first-child{font-size:11.5px!important;line-height:1.3!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 body #tk-sec>.pt-tiles>*>:nth-child(2){font-size:17px!important;text-align:left!important;white-space:nowrap;line-height:1.3!important;margin:2px 0 0!important}
 body #tk-sec>.pt-tiles>*>:nth-child(n+3){font-size:11px!important;line-height:1.3!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:1px 0 0!important}
+/* 투자의견 변경(사용자 2026-11-09) */
+.mk-rt{font-style:normal;font-weight:800;padding:1px 6px;border-radius:6px}
+.mk-rt.up{color:#1e7a45;background:#e6f4ea}.mk-rt.dn{color:#b3261e;background:#fbe9e7}
+.mk-mix{font-style:normal;font-weight:800;font-size:12px;margin-left:6px;padding:2px 7px;border-radius:999px;background:#fff4d6;color:#9a6200;border:1px solid #f0d58a;vertical-align:2px}
+.rc-list.rt-only>li:not([data-rt]){display:none}
+.mk-rtf[aria-pressed="true"]{background:#1f1e1b;color:#fff}
+.rc-list>li[data-rt] .mk-l small{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.7}
+.rc-list>li[data-rt] .mk-l b{white-space:normal}
+.mk-rt,.mk-mix{white-space:nowrap;display:inline-block}

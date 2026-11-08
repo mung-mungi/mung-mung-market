@@ -5,7 +5,13 @@ const l2=g('.l2');const fm=l2?.querySelector('.fm')?.textContent||'';const pt=l2
 const cm=g('.cm');const dn=li.classList.contains('r-dn');const pct=(bd?.textContent.match(/[+\-−]\d+%/)||[''])[0];const kind=(bd?.textContent||'').replace(/[▲▼⬆⬇🡅🡇]/g,'').replace(/[+\-−]\d+%/,'').replace('목표가','').replace(/[·\s]+$/,'').split('·')[0].trim();
 const [a,b]=pt.split('→').map(x=>x&&x.trim());
 const row=document.createElement('div');row.className='mk-row';
-row.innerHTML=`<div class="mk-l"><b>${isnew?'<i class="mk-new">NEW</i>':''}${nm}</b><small>${fm} · ${op} · ${dt}</small></div><div class="mk-m"><span class="mk-old">${a||''}</span><b>${b||''}</b></div><div class="mk-r ${dn?'dn':'up'}"><b>${pct}</b><small>${kind}</small></div><span class="mk-ch">›</span>`;
+/* 투자의견 변경 표시(사용자 2026-11-09 '의견은 좋아졌는데 목표가는 낮아지는 경우') */
+const RK=x=>/강력매수|강력 매수/.test(x)?3:/매수|비중확대|아웃퍼폼|시장수익률 상회|긍정/.test(x)?2:/중립|보유|시장수익률|동일비중|홀드/.test(x)?1:/매도|비중축소|언더퍼폼/.test(x)?0:-1;
+const [rf,rt]=op.includes('→')?op.split('→').map(x=>x.trim()):[null,op];const rd=rf&&RK(rf)>=0&&RK(rt)>=0?Math.sign(RK(rt)-RK(rf)):0;
+const pv=parseFloat((pct||'0').replace('−','-'));const mix=rd&&pv&&Math.sign(pv)!==rd;
+const opH=rd?`<i class="mk-rt ${rd>0?'up':'dn'}">의견 ${rd>0?'⬆':'⬇'} ${rf}→${rt}</i>`:(op||'');
+if(rd)li.dataset.rt=rd>0?'up':'dn';
+row.innerHTML=`<div class="mk-l"><b>${isnew?'<i class="mk-new">NEW</i>':''}${nm}${mix?`<i class="mk-mix">의견${rd>0?'↑':'↓'} 목표가${pv>0?'↑':'↓'}</i>`:''}</b><small>${fm} · ${opH} · ${dt}</small></div><div class="mk-m"><span class="mk-old">${a||''}</span><b>${b||''}</b></div><div class="mk-r ${dn?'dn':'up'}"><b>${pct}</b><small>${kind}</small></div><span class="mk-ch">›</span>`;
 li.textContent='';li.appendChild(row);if(cm){cm.classList.add('mk-cm');li.appendChild(cm)}
 li.addEventListener('click',()=>li.classList.toggle('mk-open'));
 })}
@@ -24,3 +30,6 @@ var nav=document.querySelector('.pt-nav');if(nav){var L=[['#recent','최근 변�
 })();
 }
 var __k=0;(function g(){try{__tgord()}catch(e){}if(++__k<8&&!(document.querySelector('.pt-wrap')||{dataset:{}}).dataset.ord)setTimeout(g,400)})();
+
+// '의견 바뀐 것만' 버튼(사용자 2026-11-09)
+(function(){var k=0;(function g(){var h=document.querySelector('#recent .rc-head'),ul=document.getElementById('recent-list');if(h&&ul&&!h.querySelector('.mk-rtf')){var b=document.createElement('button');b.type='button';b.className='fchip mk-rtf';b.textContent='의견 바뀐 것만';b.onclick=function(){var on=!ul.classList.contains('rt-only');if(on){var more=document.getElementById('recent-more');if(more&&!ul.classList.contains('open')&&more.offsetParent)more.click()}ul.classList.toggle('rt-only',on);b.setAttribute('aria-pressed',on)};var ref=h.querySelector('#recent-more-top');h.insertBefore(b,ref||null);return}if(++k<20)setTimeout(g,500)})()})();

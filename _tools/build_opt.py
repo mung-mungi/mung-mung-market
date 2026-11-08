@@ -96,4 +96,100 @@ if pc and days:
         except Exception as e:
             print('풋콜', d, e)
     if dump('putcall', pc[-260:]): ch.append('풋콜')
+# ⑤ 실적 '옵션 예상 vs 실제' — 발표일이 지난 '발표 예정' 행의 실제 등락을 야후 종가로 채움(사용자 2026-11-09 '최신화가 안 됨')
+#    장 마감 후 발표 = 발표일 종가 → 다음 거래일 종가, 장 시작 전 = 전 거래일 종가 → 발표일 종가
+em = load('earnings_moves')
+if em:
+    import datetime as _dt
+    _today = _dt.date.today().isoformat(); _n = 0
+    for r in em:
+        if r.get('status') == 'reported' or not r.get('report_date') or r['report_date'] >= _today: continue
+        try:
+            j = json.loads(get('https://query1.finance.yahoo.com/v8/finance/chart/%s?range=3mo&interval=1d' % r['ticker']))['chart']['result'][0]
+            import zoneinfo; z = zoneinfo.ZoneInfo('America/New_York')
+            px = [(_dt.datetime.fromtimestamp(t, z).date().isoformat(), c) for t, c in zip(j['timestamp'], j['indicators']['quote'][0]['close']) if c]
+            ks = [d for d, _ in px]; rd = r['report_date']
+            if '전' in (r.get('timing') or ''):
+                i = next((k for k, d in enumerate(ks) if d >= rd), None); a, b = (i - 1, i) if i else (None, None)
+            else:
+                i = max((k for k, d in enumerate(ks) if d <= rd), default=None); a, b = (i, i + 1) if i is not None else (None, None)
+            if a is None or b is None or b >= len(px) or a < 0: continue
+            if px[b][0] >= _today: continue   # 다음 날 장이 아직 안 끝남
+            r['actual_pct'] = round((px[b][1] / px[a][1] - 1) * 100, 2); r['actual_date'] = px[b][0]
+            r['actual_source'] = 'https://finance.yahoo.com/quote/%s/history/ (야후 종가)' % r['ticker']; r['status'] = 'reported'; _n += 1
+        except Exception as e: print('실적 변동', r.get('ticker'), e)
+    if _n and dump('earnings_moves', em): ch.append('실적 실제 변동 %d' % _n)
+# ⑥ 다가오는 실적(실적 일정 페이지의 이번 주·다음 주) → '발표 예정' 행 + 옵션 예상 변동폭(CBOE 지연 시세, 등가격 스트래들 ÷ 주가)
+#    (사용자 2026-11-09 '최신화가 안 됨 · 실적 가까운 순') — 미국 상장 추적 종목만, 발표 전까지 매일 다시 계산
+US = {'엔비디아': 'NVDA', '코어위브': 'CRWV', '네비우스': 'NBIS', '어플라이드머티리얼즈': 'AMAT', '시스코': 'CSCO', '세레브라스': 'CBRS',
+      'AMD': 'AMD', '마이크론': 'MU', '브로드컴': 'AVGO', '오라클': 'ORCL', '마벨': 'MRVL', '델': 'DELL', 'HP엔터프라이즈': 'HPE', '슈퍼마이크로': 'SMCI',
+      '아리스타': 'ANET', '코히어런트': 'COHR', '버티브': 'VRT', '램리서치': 'LRCX', 'KLA': 'KLAC', '세일즈포스': 'CRM', '스노우플레이크': 'SNOW',
+      '팔란티어': 'PLTR', '아이렌': 'IREN', '클라우드플레어': 'NET', '어플라이드 옵토': 'AAOI', '시게이트': 'STX', '웨스턴디지털': 'WDC', '샌디스크': 'SNDK',
+      '퀄컴': 'QCOM', '애플': 'AAPL', '마이크로소프트': 'MSFT', '구글': 'GOOGL', '아마존': 'AMZN', '메타': 'META', '테슬라': 'TSLA', '인텔': 'INTC'}
+def _cal_events():
+    import re, datetime as _dt
+    try: h = open(os.path.join(R, 'p-cal.html'), encoding='utf-8').read()
+    except Exception: return []
+    ev = []
+    for key in ('const DAYS = ', 'const NEXT = '):
+        i = h.find(key)
+        if i < 0: continue
+        j = h.find(';\n', i)
+        try: arr = json.loads(h[i + len(key):j].strip().rstrip(';'))
+        except Exception: continue
+        y = _dt.date.today().year
+        for d in arr:
+            if 'blocks' in d:
+                lab = d['d']; rows = [(e.get('t', ''), e) for b in d['blocks'] for e in b['ev']]
+            else:
+                m = re.match(r'(\d+)/(\d+)', d.get('h', ''))
+                if not m: continue
+                lab = m.group(0); t0 = '장후' if '장후' in d['h'] else '장전' if '장전' in d['h'] else ''
+                rows = [(t0, e) for e in d['ev']]
+            mo, da = map(int, lab.split('/')[:2]); kd = _dt.date(y + (1 if mo < _dt.date.today().month - 6 else 0), mo, da)
+            for t, e in rows:
+                tk = US.get(e['n'])
+                if not tk: continue
+                hh = re.match(r'(\d+):', t or '')
+                if t == '장후' or (hh and int(hh.group(1)) < 12):     # 한국 새벽 = 뉴욕 전날 장 마감 후
+                    ev.append((tk, e['n'], (kd - _dt.timedelta(days=1)).isoformat(), '장 마감 후'))
+                elif t == '장전' or (hh and int(hh.group(1)) >= 18):
+                    ev.append((tk, e['n'], kd.isoformat(), '장 시작 전'))
+    return ev
+def _implied(tk, rd, after):
+    j = json.loads(get('https://cdn.cboe.com/api/global/delayed_quotes/options/%s.json' % tk))['data']
+    px = j.get('current_price') or j.get('close'); ops = j.get('options') or []
+    if not px or not ops: return None
+    import re
+    by = {}
+    for o in ops:
+        m = re.match(r'^[A-Z]+(\d{6})([CP])(\d{8})$', o['option'])
+        if not m: continue
+        exp = '20%s-%s-%s' % (m.group(1)[:2], m.group(1)[2:4], m.group(1)[4:]); k = int(m.group(3)) / 1000
+        mid = (o.get('bid', 0) + o.get('ask', 0)) / 2 if o.get('bid') and o.get('ask') else None
+        if mid: by.setdefault(exp, {}).setdefault(k, {})[m.group(2)] = mid
+    exps = sorted(e for e in by if (e > rd if after else e >= rd))
+    for e in exps[:2]:
+        ks = [k for k in by[e] if 'C' in by[e][k] and 'P' in by[e][k]]
+        if not ks: continue
+        k = min(ks, key=lambda x: abs(x - px))
+        return round((by[e][k]['C'] + by[e][k]['P']) / px * 100, 2), e
+    return None
+try:
+    import datetime as _dt
+    em = load('earnings_moves'); have = {(r['ticker'], r['report_date']) for r in em}; _today = _dt.date.today().isoformat(); _u = 0
+    for tk, nm, rd, tm in _cal_events():
+        if rd < _today: continue
+        row = next((r for r in em if r['ticker'] == tk and r['report_date'] == rd), None)
+        if not row:
+            row = {'ticker': tk, 'name_ko': nm, 'report_date': rd, 'timing': tm, 'implied_pct': None, 'implied_source': None, 'implied_alt_pct': None,
+                   'implied_alt_source': None, 'actual_pct': None, 'actual_date': None, 'actual_source': None, 'status': 'upcoming'}
+            em.append(row)
+        try:
+            iv = _implied(tk, rd, tm == '장 마감 후')
+            if iv: row['implied_pct'] = iv[0]; row['implied_source'] = 'https://www.cboe.com/delayed_quotes/%s/quote_table (등가격 스트래들 %s 만기 ÷ 주가, 자동 계산)' % (tk.lower(), iv[1]); _u += 1
+        except Exception as e: print('예상 변동', tk, e)
+    em.sort(key=lambda r: r['report_date'])
+    if dump('earnings_moves', em[-40:]): ch.append('실적 예정 %d' % _u)
+except Exception as e: print('실적 예정 실패', e)
 print('옵션 온도계:', ' · '.join(ch) if ch else '변화 없음', '(마지막 VIX', days[-1] if days else '-', ')')

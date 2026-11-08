@@ -152,6 +152,12 @@ def run(R, src=None):
            'score': score, 'score_max': smax, 'area_scores': area, 'score_hist': hist,
            'bands': [[0, '평온'], [3, '주의'], [4.7, '경계'], [6.6, '긴장'], [8.4, '위험']]}  # 영역 기준 표시(사용자 2026-11-01: '3/12'보다 '켜진 영역 2/5'가 직관적)
     json.dump(out, open(P('d/lights/fresh.json'), 'w', encoding='utf-8'), ensure_ascii=False)
+    # 경고등 2판(사용자 2026-11-09 B안): 5개 영역 동일 가중 10점제로 점수 칸을 바꿔 씀 — 실패하면 예전 12점제 그대로 남음
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import lights_v2
+        out = lights_v2.apply(R, out)
+    except Exception as e:
+        print('::warning::경고등 2판 실패 — 예전 점수 유지 ' + str(e)[:80])
     for x in stale:  # GitHub 실행 주석에 남겨 멈춘 자료를 바로 알아차리게
         print('::warning::경고등 자료 멈춤 — ' + x + ' 값을 이어 쓰는 중')
     return out

@@ -185,6 +185,7 @@
   "mm-bd-steps"
  ],
  "_tools/optterm.js": [
+  "ott-ana",
   "ott-more"
  ],
  "_tools/rrgaxis.js": [
@@ -199,13 +200,15 @@
   "function bond("
  ],
  "_tools/fngbar.js": [
+  "score_hist",
   "mm-fg-t",
-  "score_hist"
+  "MX||12"
  ],
  "_tools/todaybtn.js": [
   "mm-tb-go"
  ],
  "_tools/lights_fresh.py": [
+  "lights_v2",
   "bond_why"
  ],
  "_tools/ddate.js": [
@@ -288,6 +291,20 @@
   "vix_long"
  ],
  "_tools/build_opt.py": [
+  "_cal_events",
   "vix_long"
+ ],
+ "_tools/lights_v2.py": [
+  "동일 가중",
+  "prev_lv"
+ ],
+ "_tools/optui.js": [
+  "IMP="
+ ],
+ "_tools/tgrow.js": [
+  "mk-rtf"
+ ],
+ "_tools/ltscore.js": [
+  "j.bands"
  ]
 }

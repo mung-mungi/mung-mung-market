@@ -21,7 +21,8 @@ function build(L,T,F,B){var TH={};T.forEach(function(t){TH[t.id]=t});var ids=CFG
  function day(d){var s=0,lv={};ids.forEach(function(id){var r=by[d][id],t=TH[id];if(!r||!t)return;var i=lvi(t,r);lv[id]=i;s+=PT[i]*Number(t.weight==null?1:t.weight)});return{s:Math.round(s*10)/10,lv:lv}}
  var a=day(d0),b=day(d1),bands=BR.map(function(x){return[x[0]*mx,x[1]]});
  if(P==='lights'&&F&&F.score_hist&&F.bands){var h=F.score_hist,n=h.length;if(n>=2){d1=h[n-1][0];d0=h[n-2][0];a.s=h[n-2][1];b.s=h[n-1][1];mx=F.score_max||mx;bands=F.bands.map(function(x){return[x[0],x[1]]})}}
- var up=[],dn=[];ids.forEach(function(id){var x=a.lv[id],y=b.lv[id];if(x==null||y==null||x===y||TH[id].weight===0)return;(y>x?up:dn).push((SH[id]||TH[id].name)+' '+LV[x]+'→'+LV[y])});
+ var up=[],dn=[];if(P==='lights'&&F&&F.ver===2&&F.prev_lv&&F.area_scores){Object.keys(F.area_scores).forEach(function(a){F.area_scores[a].items.forEach(function(i){var x=LV.indexOf(F.prev_lv[i.id]),y=LV.indexOf(i.lv);if(x<0||y<0||x===y)return;(y>x?up:dn).push(i.name.replace(/\(.*?\)/,'')+' '+LV[x]+'→'+LV[y])})});ids=[]}
+ ids.forEach(function(id){var x=a.lv[id],y=b.lv[id];if(x==null||y==null||x===y||TH[id].weight===0)return;(y>x?up:dn).push((SH[id]||TH[id].name)+' '+LV[x]+'→'+LV[y])});
  var head=B&&B.length?B.slice().sort(function(p,q){return p.date<q.date?-1:1}).pop():null;
  return{d0:d0,d1:d1,s0:a.s,s1:b.s,mx:mx,g0:stg(a.s,mx,bands),g1:stg(b.s,mx,bands),up:up,dn:dn,head:head}}
 function render(X){if(!X)return;var host=P==='lights'?document.querySelector('.mm-st-hero'):P==='bond'?(document.querySelector('#take')||{}).closest&&document.querySelector('#take').closest('.bd-take'):document.getElementById('take');

@@ -18,7 +18,12 @@ function earn(){var c=document.getElementById('earn-card');if(!c)return;var t=c.
   var exp=d[5].replace(/자료 없음/,'—'),act=d[6],am=(act.match(/^([+\-−][\d.]+%)/)||[])[1],tag=(act.match(/예상 (초과|이내)/)||[])[1],dt=d[3].slice(5).replace('-','/'),tm=d[4].replace('장 마감 후','장후').replace('장 시작 전','장전');
   var cls=/^[\-−]/.test(am||'')?'dn':'up';
   var h='<div class="o-row"><div class="o-l"><b>'+d[0]+'</b><small>'+d[1]+' · '+dt+' '+tm+'</small></div><div class="o-m"><small>예상</small><b>'+exp+'</b></div><div class="o-r '+(am?cls:'mu')+'">'+(am?'<b>'+am+'</b><small class="'+(tag==='초과'?'big':'')+'">예상 '+tag+'</small>':'<b>—</b><small>발표 전</small>')+'</div></div>';
-  (am?done:todo).push(h)});
+  (am?done:todo).push({h:h,tk:d[1],dt:d[3]})});
+ /* 나온 것 = 중요도 높은 순(같으면 최근 발표 먼저) · 발표 예정 = 가까운 순(사용자 2026-11-09) */
+ var IMP=['NVDA','MSFT','GOOGL','AMZN','META','AAPL','AVGO','TSM','TSLA','ORCL','AMD','MU','PLTR','CRWV','NBIS','AMAT','LRCX','KLAC','ANET','VRT','GEV','CSCO','INTC','NFLX','IBM','NOW','APH','COHR','CBRS','SNDK','STX','CAT','PWR','SMCI','CDNS','CLS'];
+ var rk=function(t){var i=IMP.indexOf(t);return i<0?99:i};
+ done.sort(function(a,b){return rk(a.tk)-rk(b.tk)||(a.dt<b.dt?1:a.dt>b.dt?-1:0)});todo.sort(function(a,b){return a.dt<b.dt?-1:a.dt>b.dt?1:rk(a.tk)-rk(b.tk)});
+ done=done.map(function(x){return x.h});todo=todo.map(function(x){return x.h});
  var tabs=document.createElement('div');tabs.className='o-tab';tabs.innerHTML='<button type="button" aria-pressed="true">나온 것 '+done.length+'</button><button type="button" aria-pressed="false">발표 예정 '+todo.length+'</button>';
  var L1=document.createElement('div'),L2=document.createElement('div');L1.className=L2.className='o-list';L1.innerHTML=done.join('');L2.innerHTML=todo.join('');L2.hidden=true;
  if(!done.length){L1.hidden=true;L2.hidden=false;tabs.children[0].setAttribute('aria-pressed','false');tabs.children[1].setAttribute('aria-pressed','true')}
