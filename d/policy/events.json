@@ -3052,6 +3052,23 @@
   "thread": "호르무즈 해상 충돌"
  },
  {
+  "id": "e204",
+  "month": "2026-11",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "has_detail": false,
+  "date": "2026-11-08",
+  "time": "02:10",
+  "category": "이란 전쟁·유가",
+  "title": "후티 미사일에 리야드 금융지구 아람코 건물 파손 — 목격자 증언, 사우디 연합군 \"요격\"",
+  "summary": "후티가 쏜 미사일 공격으로 리야드 킹압둘라 금융지구(KAFD)의 아람코 건물이 파손됐다고 목격자들이 AFP에 말했습니다. 사우디 연합군은 후티가 쏜 미사일들을 요격했다고만 밝혔고 피해 규모는 발표하지 않았습니다. 하루 전 사우디 공습에 33명이 숨졌다는 후티 발표 뒤 나온 보복 성격의 공격입니다. 사우디 수도 한복판 아람코 시설까지 사정권에 든다는 점이 유가 위험을 키우는 대목입니다.",
+  "status": "발생",
+  "source_url": "https://www.timesofisrael.com/liveblog_entry/aramco-building-in-riyadh-financial-district-is-damaged-in-houthi-attack-witnesses-say/",
+  "media": "타임스오브이스라엘(AFP)",
+  "tier": "small",
+  "thread": "후티-사우디 전선"
+ },
+ {
   "id": "e44",
   "date": "2026-11-09",
   "month": "2026-11",
