@@ -295,6 +295,7 @@
   "vix_long"
  ],
  "_tools/lights_v2.py": [
+  "def review",
   "동일 가중",
   "prev_lv"
  ],
@@ -305,6 +306,7 @@
   "mk-rtf"
  ],
  "_tools/ltscore.js": [
-  "j.bands"
+  "j.bands",
+  "mm-rv"
  ]
 }

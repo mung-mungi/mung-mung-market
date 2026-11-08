@@ -78,6 +78,53 @@ def fred(R):
     return C
 
 
+def _bat(w):
+    c = w.rstrip()[-1]
+    if '가' <= c <= '힣': return (ord(c) - 0xAC00) % 28 != 0
+    return c.upper() in 'LMNR0136'
+
+
+def _j(w, a, b):  # 받침 있으면 a, 없으면 b(은/는, 이/가, 과/와, 이라고/라고)
+    return w + (a if _bat(w) else b)
+
+
+def _and(xs):
+    return ''.join(_j(x, '과 ', '와 ') if i < len(xs) - 2 else (x + ('' if i == len(xs) - 1 else '')) if i == len(xs) - 1 else _j(x, '과 ', '와 ') for i, x in enumerate(xs)).strip()
+
+
+def review(sc, nm, area):
+    """총평(사용자 2026-11-09 '시장 전체는 긴장인데 반도체만 가진 사람은 훨씬 아프다 — 오해 없게')
+    영역마다 그 영역만 놓고 본 단계(같은 비율 문턱)를 매기고, 시장 전체와 얼마나 엇갈리는지 말로 풂"""
+    cut = [(b / 10, t) for b, t in BANDS]
+    def st(r):
+        n = cut[0][1]
+        for b, t in cut:
+            if r >= b - 1e-9: n = t
+        return n
+    R = {a: v['ratio'] for a, v in area.items()}
+    hot = [a for a, r in sorted(R.items(), key=lambda x: -x[1]) if r >= .6]
+    cold = [a for a, r in sorted(R.items(), key=lambda x: x[1]) if r <= .15]
+    spread = max(R.values()) - min(R.values()) if R else 0
+    head = '시장 전체는 %s(%.1f점)' % (nm, sc)
+    if hot: head += ' — 그런데 %s만 보면 \'%s\'' % (_and(hot), st(R[hot[0]]))
+    body = []
+    body.append('경고등 점수는 다섯 영역의 평균이라, 한 영역이 아무리 나빠도 나머지가 멀쩡하면 전체 점수는 덜 올라갑니다.')
+    if hot:
+        h = hot[0]; it = area[h]['items']; on = [i for i in it if i['lv'] == '켜짐']
+        txt = '%s 불 %d개 중 %d개가 켜져 %d%% 찼습니다' % (_j(h, '은', '는'), len(it), len(on), round(R[h] * 100))
+        if h == '반도체·AI':
+            dd = sorted([i for i in it if i['id'].startswith('semi_')], key=lambda i: -(i['val'] or 0))
+            if dd: txt += ' — %s가 고점보다 %.0f%%, %s가 %.0f%% 빠져 있습니다' % (dd[0]['name'].replace(' 고점 대비', ''), dd[0]['val'], dd[-1]['name'].replace(' 고점 대비', ''), dd[-1]['val'])
+        body.append(txt + '.')
+    if cold:
+        body.append('반면 %s 거의 조용합니다(%s). 돈줄·시스템 전체가 흔들리는 위기라기보다, 특정 영역에 몰린 조정에 가깝다는 뜻입니다.' % (_j(_and(cold), '은', '는'), ' · '.join('%d%%' % round(R[a] * 100) for a in cold)))
+    if hot and spread >= .5:
+        body.append('그래서 반도체·AI 종목 비중이 큰 투자자라면 시장 전체 단계보다 \'%s\' 칸을 기준으로 보는 게 맞습니다. 시장 단계가 %s 해서 내 종목이 안전하다는 뜻은 아닙니다.' % (hot[0], "'" + nm + "'" + ('이라고' if _bat(nm) else '라고')))
+    elif not hot:
+        body.append('지금은 특별히 튀는 영역 없이 고르게 움직이고 있습니다.')
+    return {'head': head, 'body': body, 'by_area': {a: st(r) for a, r in R.items()}}
+
+
 def lv_of(v, th):
     if v is None: return None
     r = v / th if th else 0
@@ -190,7 +237,8 @@ def apply(R, out):
                 'area_scores': area, 'score_hist': hist, 'bands': BANDS, 'areas': len(area), 'areas_on': a_on,
                 'areas_near': sorted({a for a, v in A.items() if a not in a_on and any(x['L'] == 3 for x in v)}),
                 'prev_lv': PL, 'prev_date': days[-2] if len(days) > 1 else None,
-                'method': '5개 영역(반도체·AI·유가·채권·금리·신용·옵션·공포)이 얼마나 찼는지의 평균 × 10'})
+                'method': '5개 영역(반도체·AI·유가·채권·금리·신용·옵션·공포)이 얼마나 찼는지의 평균 × 10',
+                'review': review(sc, nm, area)})
     json.dump(out, open(P('d/lights/fresh.json'), 'w', encoding='utf-8'), ensure_ascii=False)
     print('경고등 2판: %s %.1f/10 %s' % (D, sc, nm))
     return out
