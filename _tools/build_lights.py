@@ -7,7 +7,7 @@ R = sys.argv[1] if len(sys.argv) > 1 else '.'
 P = lambda *a: os.path.join(R, *a)
 def get(u):
     # FRED는 HTTP/2로 받으면 끊김(2026-11-09 확인) → HTTP/1.1 + 재시도
-    o = subprocess.run(['curl', '-sSL', '-m', '40', '-A', 'Mozilla/5.0'] + (['--http1.1', '--retry', '2'] if 'stlouisfed' in u else []) + [u], capture_output=True, text=True)
+    o = subprocess.run(['curl', '-sSL', '-m', '40', '-A', 'Mozilla/5.0'] + (['--http1.1'] if 'stlouisfed' in u else []) + [u], capture_output=True, text=True)
     if o.returncode or not o.stdout: raise RuntimeError('fail ' + u[:60])
     return o.stdout
 def load(p, d):
@@ -49,8 +49,7 @@ except Exception as e: VIX, V3 = {}, {}; print('VIX 실패', e)
 try:
     H = {r['date']: r for r in hy}
     # 한 번 더 시도(사용자 2026-10-31 — 하이일드가 10/28 값에 사흘 멈춘 일이 있었음)
-    try: _t = get('https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2&cosd=' + (dt.date.today() - dt.timedelta(days=60)).isoformat())
-    except Exception: _t = get('https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2')
+    _t = get('https://fred.stlouisfed.org/graph/fredgraph.csv?id=BAMLH0A0HYM2&cosd=' + (dt.date.today() - dt.timedelta(days=45)).isoformat())  # 전체 기간은 오래 걸려 실행이 멈춤(11/9)
     for r in csv.DictReader(io.StringIO(_t)):
         k = r.get('observation_date') or r.get('DATE'); v = r.get('BAMLH0A0HYM2')
         if k and v not in (None, '', '.'): H[k] = {'date': k, 'hy': float(v)}

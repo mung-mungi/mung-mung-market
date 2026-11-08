@@ -62,13 +62,15 @@ def fred(R):
     if os.environ.get('MM_NOFRED'): return C
     for sid, k in FRED.items():
         m = C.get(k, {})
-        since = (dt.date.today() - dt.timedelta(days=60 if len(m) > 200 else 800)).isoformat()
+        since = (dt.date.today() - dt.timedelta(days=45)).isoformat()   # 긴 기간은 FRED가 오래 걸려 멈춤(11/9) — 최근 45일만, 지난 기록은 따로 채움
         try:
-            o = subprocess.run(['curl', '--http1.1', '--retry', '1', '-sSL', '-m', '35', '-A', 'Mozilla/5.0',
+            o = subprocess.run(['curl', '--http1.1', '-sSL', '-m', '20', '-A', 'Mozilla/5.0',
                                 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=%s&cosd=%s' % (sid, since)], capture_output=True, text=True)
             for r in csv.DictReader(io.StringIO(o.stdout)):
                 d = r.get('observation_date') or r.get('DATE'); v = r.get(sid)
                 if d and v not in (None, '', '.'): m[d] = float(v)
+            if not o.stdout.startswith('observation_date') and not o.stdout.startswith('DATE'):
+                print('::warning::경고등 2판 FRED 응답 없음 ' + sid + ' — 나머지 건너뜀'); break
             C[k] = dict(sorted(m.items())[-800:])
         except Exception:
             print('::warning::경고등 2판 FRED 실패 ' + sid)
