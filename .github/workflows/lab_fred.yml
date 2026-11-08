@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          for s in $(cat lab/req.txt); do curl -sSL -m 60 -A Mozilla/5.0 "https://fred.stlouisfed.org/graph/fredgraph.csv?id=$s&cosd=2015-01-01" -o lab/$s.csv || echo fail $s; done
+          for s in $(cat lab/req.txt); do curl --http1.1 -sSL --retry 3 -m 90 -A Mozilla/5.0 "https://fred.stlouisfed.org/graph/fredgraph.csv?id=$s&cosd=2015-01-01" -o lab/$s.csv || echo fail $s; done
           ls -la lab
           git config user.name mung-bot; git config user.email mung-bot@users.noreply.github.com
           git add lab/*.csv; git commit -m "lab fred" || true; git push
