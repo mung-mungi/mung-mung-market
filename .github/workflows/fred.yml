@@ -2,7 +2,7 @@
 name: fred
 on:
   schedule:
-    - cron: '43 */3 * * *'
+    - cron: '43 23 * * *'   # 하루 한 번만 시도(막혀 있으면 그록봇 자료로 대신)
   workflow_dispatch:
 permissions:
   contents: write

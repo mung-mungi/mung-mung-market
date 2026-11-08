@@ -12,7 +12,7 @@ on:
     - cron: '17 1 * * 2-6'
   push:
     branches: [main]
-    paths: ['d/lights/**', 'd/bond/**', 'd/opt/**']
+    paths: ['d/lights/**', 'd/bond/**', 'd/opt/**', 'd/xpost/fred/**']
   workflow_dispatch:
 permissions:
   contents: write

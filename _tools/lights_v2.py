@@ -59,7 +59,22 @@ def fred(R):
     try: C = json.load(open(p, encoding='utf-8'))
     except Exception: C = {}
     import csv, io
-    return C   # 2026-11-09: 받기는 fetch_fred.py(fred.yml, 3시간마다)가 맡음
+    # 2026-11-09: GitHub에서 FRED가 막혀 그록봇이 매일 d/xpost/fred/latest.json에 받아 둠(d/xpost/req/fred.md) → 여기서 합침
+    try:
+        G = json.load(open(os.path.join(R, 'd', 'xpost', 'fred', 'latest.json'), encoding='utf-8'))
+        ch = 0
+        for k in ('hy', 'ig', 'ccc', 'mmf_r', 'mmf_i'):
+            for d, v in (G.get(k) or {}).items():
+                try: v = float(v)
+                except Exception: continue
+                if C.setdefault(k, {}).get(d) != v: C[k][d] = v; ch += 1
+            if k in C: C[k] = dict(sorted(C[k].items())[-800:])
+        if C.get('mmf_r') and C.get('mmf_i'):
+            C['mmf'] = {d: round(C['mmf_r'][d] + C['mmf_i'][d], 1) for d in C['mmf_r'] if d in C['mmf_i']}
+        if ch: json.dump(C, open(p, 'w', encoding='utf-8'), separators=(',', ':'))
+    except Exception:
+        pass
+    return C   # 직접 받기는 fetch_fred.py(fred.yml)가 시도
     for sid, k in FRED.items():
         m = C.get(k, {})
         since = (dt.date.today() - dt.timedelta(days=45)).isoformat()   # 긴 기간은 FRED가 오래 걸려 멈춤(11/9) — 최근 45일만, 지난 기록은 따로 채움
