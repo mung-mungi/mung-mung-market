@@ -1,0 +1,24 @@
+# 내부자 거래(최근 60일) 매일 자동 — 10/26에서 멈췄던 자료(사용자 2026-11-09 점검)
+name: insider
+on:
+  schedule:
+    - cron: '27 22 * * *'   # 한국 07:27
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: insider
+  cancel-in-progress: false
+jobs:
+  get:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -I _tools/build_insider.py .
+      - run: |
+          git config user.name 'github-actions[bot]'; git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add d/insider
+          if git diff --cached --quiet; then echo 'no change'; exit 0; fi
+          git commit -m "내부자 거래 갱신 $(TZ=Asia/Seoul date +%m.%d\ %H:%M)"
+          for i in 1 2 3 4 5; do git pull --rebase -X theirs origin main && git push && exit 0; sleep $((i*7)); done; exit 1
