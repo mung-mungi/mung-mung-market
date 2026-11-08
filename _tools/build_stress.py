@@ -170,7 +170,11 @@ def spark(syms):
     return out
 sectors = []; comps = {}; atkdef = {}
 try:
-    syms = ['SPY'] + [t for t, _, _ in SECT] + [c for v in COMP.values() for c, _, _ in v]
+    # 반도체 전체(시세 보드 추적 종목 중 반도체 층위, 사용자 2026-11-09 '반도체 기업이 10곳뿐?') — 경고등 페이지 '반도체 전체 펼치기'
+    SEMICAT = ['연산칩 (GPU·CPU)', '맞춤형 칩', '파운드리', '메모리·저장장치', '반도체 장비·후공정', '광통신', '연결·네트워크', '전력반도체', '설계 소프트웨어']
+    try: SEMI = [(x['ticker'], x['name'].split('(')[0].strip(), x['category']) for x in json.load(open(P('d/prices/prices.json'), encoding='utf-8')) if x.get('category') in SEMICAT]
+    except Exception: SEMI = []
+    syms = ['SPY'] + [t for t, _, _ in SECT] + [c for v in COMP.values() for c, _, _ in v] + [t for t, _, _ in SEMI]
     PX = spark(syms); spy = PX['SPY']
     for t, n, g in SECT:
         c = PX.get(t)
@@ -188,6 +192,12 @@ try:
             if not p or len(p) < 23: continue
             cl.append({'t': ct, 'n': cn, 'r': cr, 'm1': round((p[-1] / p[-22] - 1) * 100, 1), 'd1': round((p[-1] / p[-2] - 1) * 100, 1), 'dd': round((p[-1] / max(p) - 1) * 100, 1)})
         comps[t] = sorted(cl, key=lambda x: x['m1'])
+    al = []
+    for ct, cn, cr in SEMI:
+        p = PX.get(ct)
+        if not p or len(p) < 23: continue
+        al.append({'t': ct, 'n': cn, 'r': cr, 'm1': round((p[-1] / p[-22] - 1) * 100, 1), 'd1': round((p[-1] / p[-2] - 1) * 100, 1), 'dd': round((p[-1] / max(p) - 1) * 100, 1)})
+    if al: comps['SEMI_ALL'] = al
     spy_m1 = round((spy[-1] / spy[-22] - 1) * 100, 1); spy_d1 = round((spy[-1] / spy[-2] - 1) * 100, 2)
 except Exception as e:
     errs.append('업종: ' + str(e)[:80]); spy_m1 = None; spy_d1 = None

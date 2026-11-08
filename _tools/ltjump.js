@@ -1,6 +1,6 @@
 // 시장 경고등: 맨 위 바로가기 칩 + 주제가 바뀌는 곳마다 구분띠(사용자 2026-11-02)
 (function(){
-var L=[['mm-semi','반도체·기술'],['big','경고등 점수'],['mm-sector','돈은 어디로'],['area-card','영역별 상세'],['mm-emo','투자자 심리'],['mm-sys','금융 시스템'],['hist-card','1년 기록']];
+var L=[['big','경고등 점수'],['area-card','영역별 상세'],['mm-sector','돈은 어디로'],['mm-semi','반도체·기술'],['mm-emo','투자자 심리'],['mm-sys','금융 시스템'],['hist-card','1년 기록']];
 var N='①②③④⑤⑥⑦⑧';
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 function jump(id){var b=document.querySelector('[data-mmband="'+id+'"]')||document.getElementById(id);if(!b)return;scrollTo({top:b.getBoundingClientRect().top+scrollY-8,behavior:'smooth'})}

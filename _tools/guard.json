@@ -314,7 +314,12 @@
   "F.ver3"
  ],
  "_tools/mmtop.js": [
+  "mm-rrg2",
   "mm-st-rank",
-  "mm-rrg2"
+  "mm-st4",
+  "SEMI_ALL"
+ ],
+ "_tools/build_stress.py": [
+  "SEMI_ALL"
  ]
 }
