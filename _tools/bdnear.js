@@ -6,7 +6,9 @@ var NEW=['y10','why','y30','auc','hy']; // 2026-11-02 채권 온도계: 장단�
 var MAP={'장단기 금리 역전':'inv','10년물 5% 이상':'y10','10년물 2주 급등':'jump','30년물 5.5% 이상':'y30','하이일드 스프레드 4.5%p 이상':'hy'};
 function ratio(t,v){if(v==null)return 0;if(t.op==='<'||t.op==='<=')return t.value===0?1-(v/0.5):t.value/v;return t.value>0?v/t.value:0}
 // 점수제(사용자 2026-11-01): 켜짐 = 무게 전부 · 근접 0.8 · 보통 0.4 · 양호 0.2
-function bsc(){if(!F||!F.area_scores)return null;var ids=NEW,sc=0,mx=0;Object.keys(F.area_scores).forEach(function(a){F.area_scores[a].items.forEach(function(i){if(ids.indexOf(i.id)>=0){sc+=i.pt;mx+=i.w}})});return mx?{sc:Math.round(sc*10)/10,mx:mx}:null}
+function bsc(){if(!F||!F.area_scores)return null;
+ /* 경고등 3판: 채권·금리 영역 점수(10점 만점)·시장 경고등과 같은 단계 구간(사용자 2026-11-09 점검) */
+ var A3=F.ver3&&F.area_scores['채권·금리'];if(A3&&F.bands){var C5=['#2e9d5b','#c99a06','#e07b16','#c8501c','#b3261e'];BR=F.bands.map(function(b,i){return[b[0]/10,b[1],C5[i]||C5[4]]});return{sc:Math.round(A3.ratio*100)/10,mx:10}}var ids=NEW,sc=0,mx=0;Object.keys(F.area_scores).forEach(function(a){F.area_scores[a].items.forEach(function(i){if(ids.indexOf(i.id)>=0){sc+=i.pt;mx+=i.w}})});return mx?{sc:Math.round(sc*10)/10,mx:mx}:null}
 // 단계 구간은 시장 경고등(12점 만점: 주의 3 · 경계 4.5 · 긴장 6 · 위험 7.5)과 같은 비율로(사용자 2026-11-02 '말과 점수 맞추기')
 var BR=[[0,'평온','#2e9d5b'],[.25,'주의','#c99a06'],[.392,'경계','#e07b16'],[.55,'긴장','#c8501c'],[.7,'위험','#b3261e']];
 function stg(sc,mx){var r=BR[0];BR.forEach(function(b){if(sc>=b[0]*mx-1e-9)r=b});return r}

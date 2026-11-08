@@ -90,7 +90,8 @@
  "_tools/home_order.js": [
   "'p-targets']",
   "mm-thc",
-  "'p-tech', 'p-econ'"
+  "'p-tech', 'p-econ'",
+  "A3 && F.bands"
  ],
  "_tools/herofix.js": [
   "rel("
@@ -184,7 +185,8 @@
   "mm-band"
  ],
  "_tools/bdnear.js": [
-  "mm-bd-steps"
+  "mm-bd-steps",
+  "F.area_scores['채권·금리']"
  ],
  "_tools/optterm.js": [
   "ott-ana",
@@ -200,7 +202,8 @@
  ],
  "_tools/btscore.js": [
   "mm-bs-tr",
-  "function bond("
+  "function bond(",
+  "F.ver3&&F.area_scores"
  ],
  "_tools/fngbar.js": [
   "score_hist",
@@ -229,7 +232,8 @@
   "def inbox_add"
  ],
  "_tools/bdopt.js": [
-  "mm-bo-rows"
+  "mm-bo-rows",
+  "F.area_scores['채권·금리']"
  ],
  "_tools/chipfold.js": [
   "mx-more",
@@ -256,7 +260,8 @@
   "가장 덜 빠진"
  ],
  "_tools/mvban.js": [
-  "mm-mv"
+  "mm-mv",
+  "var AN={opt"
  ],
  "_tools/uniui.js": [
   "dataset.utc",
@@ -306,7 +311,8 @@
   "prev_lv"
  ],
  "_tools/optui.js": [
-  "IMP="
+  "IMP=",
+  "F3.area_scores"
  ],
  "_tools/tgrow.js": [
   "mk-rtf"
@@ -321,7 +327,8 @@
   "mm-rrg2",
   "mm-st-rank",
   "mm-st4",
-  "SEMI_ALL"
+  "SEMI_ALL",
+  "var V3=F&&F.ver3"
  ],
  "_tools/build_stress.py": [
   "SEMI_ALL"

@@ -21,6 +21,8 @@ function calc(){var TH={};T.forEach(function(t){TH[t.id]=t});var by={};
  var day=function(d){var s=0,it=[];CFG.ids.forEach(function(id){var r=by[d][id],t=TH[id];if(!r||!t)return;var w=Number(t.weight||1),q=lv(t,r);s+=q[0]*w;it.push({id:id,t:t,r:r,lv:q[1]})});return{d:d,s:Math.round(s*10)/10,it:it}};
  return{mx:mx,days:ds.map(day)}}
 function draw(){var card=document.getElementById('bt-card');if(!card||!L||!T)return;
+ /* 경고등 3판이면 옛 불 기준 점수 카드는 숨김 — 위 '오늘 한눈에'·'바뀐 점'이 3판 영역 점수(10점 만점)를 보여 줌(사용자 2026-11-09 점검 '잣대 하나로') */
+ if(F&&F.ver3&&F.area_scores){card.classList.add('mm-bs-hide');card.style.display='none';var lc0=document.getElementById('lights-card');if(lc0){var t0=lc0.querySelector('.mm-bs-tr');if(t0)t0.remove()}return}
  var C=calc();if(C.days.length<2)return;var now=C.days[C.days.length-1],pv=C.days[C.days.length-2],g=stg(now.s,C.mx);
  if(P==='opt')top(now,C.mx,g);
  if(P==='bond'){bond(C,now,pv);return}

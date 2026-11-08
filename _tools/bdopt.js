@@ -16,9 +16,12 @@ function chg(k){if(!Y)return '';var r=Y.filter(function(x){return x[k]!=null});i
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 function take(){var tk=document.getElementById('take');if(!tk||!F)return;var M=items(),sc=0,mx=0,on=[],nr=[];
  ROW.forEach(function(r){var i=M[r[0]];if(!i)return;sc+=Number(i.pt||0);mx+=Number(i.w||1);if(i.lv==='켜짐')on.push(r[1]);if(i.lv==='근접')nr.push(r[1]+' '+(pct(i)||'')+'%')});
- if(!mx)return;sc=Math.round(sc*10)/10;var g=stg(sc,mx),key=F.date+':'+sc;var w=tk.parentNode.querySelector('.mm-bo');if(w&&w.dataset.k===key)return;
+ if(!mx)return;sc=Math.round(sc*10)/10;var g=stg(sc,mx);
+ /* 경고등 3판 영역 점수(10점 만점)·같은 단계 구간으로(사용자 2026-11-09 점검 '잣대 하나로') */
+ var A3=F.ver3&&F.area_scores&&F.area_scores['채권·금리'];if(A3&&F.bands){sc=Math.round(A3.ratio*100)/10;mx=10;var bi=0;F.bands.forEach(function(b,k){if(sc>=b[0])bi=k});g=[F.bands[bi][0],F.bands[bi][1],['#1a7f37','#b08a00','#e07b16','#c8501c','#c62828'][bi],['🟢','🟡','🟠','🟠','🔴'][bi]]}
+ var key=F.date+':'+sc;var w=tk.parentNode.querySelector('.mm-bo');if(w&&w.dataset.k===key)return;
  if(!w){w=el('div','mm-bo');tk.after(w)}w.dataset.k=key;w.textContent='';tk.classList.add('mm-bo-src');
- var top=el('div','mm-bo-top');var s=el('span','st',g[3]+' '+g[1]);s.style.color=g[2];top.appendChild(s);var c=el('span','sc');c.innerHTML='점수 <span class="n"></span> / '+mx;c.querySelector('.n').textContent=sc.toFixed(1);top.appendChild(c);w.appendChild(top);
+ var top=el('div','mm-bo-top');var s=el('span','st',g[3]+' '+g[1]);s.style.color=g[2];top.appendChild(s);var c=el('span','sc');c.innerHTML=(A3?'영역 점수':'점수')+' <span class="n"></span> / '+mx;c.querySelector('.n').textContent=sc.toFixed(1);top.appendChild(c);w.appendChild(top);
  var W=M.why;if(W&&W.kind){var y10=M.y10?Number(M.y10.val).toFixed(2):'';var TX={'피난형':'금리는 내렸지만 물가 덕이 아니라 피난 때문입니다 — 기술주에서 빠진 돈이 국채로 간 것이라 좋은 신호로 보기 어렵습니다.','물가 안정형':'물가 기대가 내려 금리가 내렸습니다 — 기술주에 우호적인 하락입니다.','재정 우려형':'장기물이 앞서 오릅니다 — 나라 빚 걱정이 붙은 상승이라 성장주에 가장 부담입니다.','긴축형':'단기물이 앞서 오릅니다 — 금리 인하가 늦춰질 걱정이 붙은 상승입니다.','급등':'금리가 2주 새 빠르게 올랐습니다 — 성장주 몸값에 바로 부담입니다.','금리 상승':'금리가 오르는 중입니다 — 성장주 몸값에 부담입니다.','보합':'최근 2주 금리는 크게 안 움직였습니다 — 지금은 10년물 '+y10+'%라는 높이 자체가 부담입니다.','금리 하락':'금리가 내렸고 주식도 버팁니다 — 부담이 조금 덜어졌습니다.'};
   var nw=el('p','mm-bo-now');nw.appendChild(el('span','q',W.kind));nw.appendChild(document.createTextNode(TX[W.kind]||''));w.appendChild(nw)}
  var why=el('p','mm-bo-why');why.appendChild(el('span','q','왜 이 단계? '));why.appendChild(document.createTextNode(on.length||nr.length?('켜진 불 '+on.length+'개'+(on.length?'('+on.join('·')+')':'')+(nr.length?' + 문턱 바로 앞 '+nr.length+'개('+nr.join(' · ')+')':'')+' — 켜지기 직전인 불까지 미리 더한 경고입니다.'):'금리·신용 쪽 지표가 모두 문턱에서 멀리 있습니다.'));w.appendChild(why);
