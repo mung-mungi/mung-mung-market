@@ -9,7 +9,7 @@ import json, os, subprocess, datetime as dt
 
 PT = [0.0, 0.2, 0.4, 0.8, 1.0]
 LVN = ['안전', '양호', '보통', '근접', '켜짐']
-BANDS = [[0, '평온'], [2.0, '주의'], [3.1, '경계'], [4.4, '긴장'], [6.0, '위험']]
+BANDS = [[0, '평온'], [2.0, '주의'], [3.0, '경계'], [4.4, '긴장'], [5.8, '위험']]   # 3판(11/9): 10년 백테스트 점수 분포 50·75·90·97% 자리
 ICON = {'평온': '🟢', '주의': '🟡', '경계': '🟠', '긴장': '🟠', '위험': '🔴'}
 LAY = [('semi_design', '칩 설계', ['NVDA', 'AMD', 'AVGO'], 30),
        ('semi_mem', '메모리', ['MU', '000660.KS'], 30),
@@ -146,9 +146,32 @@ def review(sc, nm, area):
 
 
 def lv_of(v, th):
+    # 3판(사용자 2026-11-09 '평온한 값에도 점수가 붙는 게 답답'): 문턱 가까이(88%↑) 와야 점수 — 양호(60%) 칸 없앰
     if v is None: return None
     r = v / th if th else 0
-    return 4 if r >= 1 else 3 if r >= .9 else 2 if r >= .8 else 1 if r >= .6 else 0
+    return 4 if r >= 1 else 3 if r >= .95 else 2 if r >= .88 else 0
+
+
+TP = {4: 1.0, 3: 0.8, 2: 0.4, 1: 0.2, 0: 0.0}
+
+
+def pct_of(q, v):
+    # 10년 분위표(101칸)에서 v의 자리(0~100)
+    if v is None or not q: return None
+    import bisect
+    i = bisect.bisect_left(q, v)
+    if i <= 0: return 0.0
+    if i >= len(q): return 100.0
+    lo, hi = q[i - 1], q[i]
+    return round(i - 1 + ((v - lo) / (hi - lo) if hi > lo else 1), 1)
+
+
+def pt_of(pc):   # 70% 자리부터 점수, 99% 자리면 만점 — 드물수록 계속 올라감(−30%와 −52%가 다르게)
+    return max(0.0, min(1.0, (pc - 70) / 29))
+
+
+def lv_pct(pc):
+    return 4 if pc >= 93 else 3 if pc >= 88 else 2 if pc >= 80 else 1 if pc >= 70 else 0
 
 
 def apply(R, out):
@@ -160,6 +183,8 @@ def apply(R, out):
     except Exception: FR = {}
     LOG = {}
     for r in log: LOG.setdefault(r['date'], {})[r['id']] = r
+    try: REF = json.load(open(P('d/lights/v3_ref.json'), encoding='utf-8'))['q']
+    except Exception: REF = {}
     days = sorted(LOG)[-260:]
     K = {t: sorted(C.get(t, {})) for t in C}
 
@@ -188,26 +213,38 @@ def apply(R, out):
         if not r or not t or r.get('val') is None: return None
         if r.get('on'): L = 4
         else: L = lv_of(r['val'], t['value']) if t['op'] in ('>=', '>') else (4 if r['val'] < t['value'] else 0)
-        it = {'id': k, 'name': name or t['name'], 'val': r['val'], 'th': t['value'], 'op': t['op'], 'unit': t.get('unit', ''), 'w': w or t.get('weight', 1), 'L': L}
+        it = {'id': k, 'name': name or t['name'], 'val': r['val'], 'th': t['value'], 'op': t['op'], 'unit': t.get('unit', ''), 'w': w or t.get('weight', 1), 'L': L, 'p': TP[L]}
         if r.get('kind'): it['kind'] = r['kind']; it['note'] = r['kind'] + ' — ' + r.get('note', '')
         return it
     def mk(i, name, v, th, unit, w=1):
-        return None if v is None else {'id': i, 'name': name, 'val': round(v, 2), 'th': th, 'op': '>=', 'unit': unit, 'w': w, 'L': lv_of(v, th)}
+        if v is None: return None
+        L = lv_of(v, th); return {'id': i, 'name': name, 'val': round(v, 2), 'th': th, 'op': '>=', 'unit': unit, 'w': w, 'L': L, 'p': TP[L]}
+    def mkp(i, name, v, rk, unit, w=1):   # 10년 중 몇 % 자리로 매김(3판)
+        q = REF.get(rk)
+        if v is None: return None
+        if not q: return None
+        pc = pct_of(q, v); return {'id': i, 'name': name, 'val': round(v, 2), 'th': q[93], 'op': '>=', 'unit': unit, 'w': w, 'L': lv_pct(pc), 'p': round(pt_of(pc), 3), 'pctl': pc}
+    def logp(d, k, name, rk, w=1):
+        r = LOG.get(d, {}).get(k)
+        if not r or r.get('val') is None: return None
+        t = TH.get(k, {}); return mkp(k, name, r['val'], rk, t.get('unit', ''), w)
 
     def areas(d):
         A = {}
         semi = []
-        for i, nm, ts, th in LAY:
+        for n_, (i, nm, ts, th) in enumerate(LAY):
             v = [x for x in (dd(t, d) for t in ts) if x is not None]
-            x = mk(i, nm + ' 고점 대비', sum(v) / len(v) if v else None, th, '%')
+            x = mkp(i, nm + ' 고점 대비', sum(v) / len(v) if v else None, 'L%d' % n_, '%')
             if x: x['who'] = ' · '.join(NM.get(t, t) for t in ts)
             semi.append(x)
-        semi.append(logit(d, 'soxday', '반도체 하루 급락(최근 5일)', 1))
+        semi.append(logp(d, 'soxday', '반도체 하루 급락(최근 5일)', 'soxday'))
         A['반도체·AI'] = semi
         w_, b_ = asof('CL=F', d), asof('BZ=F', d)
-        A['유가'] = [logit(d, 'oil', '유가 한 달 급등', 1), mk('oil_lvl', 'WTI 1년 평균 대비 높이', lvl1y('CL=F', d), 14, '%'),
-                    mk('oil_bw', '중동 위험 웃돈(브렌트-WTI 차이)', (b_ - w_) if (w_ and b_) else None, 8, '달러'), mk('ovx', '유가 출렁임(OVX)', asof('^OVX', d), 60, ''), mk('ng', '천연가스 한 달 급등', chg('NG=F', d, 21), 30, '%')]
-        A['채권·금리'] = [logit(d, k) for k in ('y10', 'why', 'y30', 'auc')]
+        A['유가'] = [logp(d, 'oil', '유가 한 달 급등', 'oil'), mkp('oil_lvl', 'WTI 1년 평균 대비 높이', lvl1y('CL=F', d), 'oil_lvl', '%'),
+                    mkp('oil_bw', '중동 위험 웃돈(브렌트-WTI 차이)', (b_ - w_) if (w_ and b_) else None, 'oil_bw', '달러'), mkp('ovx', '유가 출렁임(OVX)', asof('^OVX', d), 'ovx', ''),
+                    mkp('ng', '천연가스 한 달 급등', chg('NG=F', d, 21), 'ng', '%')]
+        # 금리 수준(10·30년물)은 10년 안에 초저금리 시절이 들어 있어 '몇 % 자리'로 보면 늘 켜짐 → 5%·5.5% 문턱 그대로, 2주 급등 속도만 10년 자리로
+        A['채권·금리'] = [logit(d, 'y10'), logit(d, 'y30'), logp(d, 'jump', '10년물 2주 급등', 'jump'), logit(d, 'why'), logit(d, 'auc')]
         def fv(k):
             m = FR.get(k) or {}; ks = [x for x in m if x <= d]
             return m[max(ks)] if ks and max(ks) >= (dt.date.fromisoformat(d) - dt.timedelta(days=10)).isoformat() else None
@@ -216,17 +253,19 @@ def apply(R, out):
             return (m[ks[-1]] / m[ks[-5]] - 1) * 100 if len(ks) >= 5 and ks[-1] >= (dt.date.fromisoformat(d) - dt.timedelta(days=14)).isoformat() else None
         ig, ccc = fv('ig'), fv('ccc')
         A['신용'] = [logit(d, 'hy', '하이일드 스프레드', 1),
-                   mk('ig', '투자등급 스프레드', ig, 1.5, '%p') if ig is not None else mk('ig_px', '투자등급 회사채 약세(국채 대비)', ddr('LQD', 'IEF', d), 5, '%'),
-                   mk('ccc', '최저등급(CCC) 스프레드', ccc, 14, '%p') if ccc is not None else mk('hy_px', '하이일드 회사채 약세(국채 대비)', ddr('HYG', 'IEF', d), 6, '%'),
-                   mk('bdc', '사모신용(BDC) 고점 대비', dd('BIZD', d), 15, '%'), mk('mmf', 'MMF 잔고 4주 급증', mmf4(d), 3, '%')]
-        A['옵션·공포'] = [logit(d, 'vix', 'VIX', 1), logit(d, 'term', '기간구조 뒤집힘', 1), logit(d, 'pc', '풋콜 비율 높음', 1), mk('vvix', 'VVIX', asof('^VVIX', d), 115, '')]
+                   mk('ig', '투자등급 스프레드', ig, 1.5, '%p') if ig is not None else mkp('ig_px', '투자등급 회사채 약세(국채 대비)', ddr('LQD', 'IEF', d), 'ig_px', '%'),
+                   mk('ccc', '최저등급(CCC) 스프레드', ccc, 14, '%p') if ccc is not None else mkp('hy_px', '하이일드 회사채 약세(국채 대비)', ddr('HYG', 'IEF', d), 'hy_px', '%'),
+                   mkp('bdc', '사모신용(BDC) 고점 대비', dd('BIZD', d), 'bdc', '%'), mk('mmf', 'MMF 잔고 4주 급증', mmf4(d), 3, '%')]
+        # VIX·VVIX는 같이 움직여 둘을 반씩(= '공포 강도' 하나)
+        A['옵션·공포'] = [logp(d, 'vix', 'VIX(공포 강도)', 'vix', .5), mkp('vvix', 'VVIX(공포 강도)', asof('^VVIX', d), 'vvix', '', .5),
+                       logp(d, 'term', '기간구조 뒤집힘', 'term'), logit(d, 'pc', '풋콜 비율 높음', 1)]
         return {a: [x for x in v if x and x['L'] is not None] for a, v in A.items()}
 
     def score(A):
         rs = []
         for v in A.values():
             sw = sum(x['w'] for x in v)
-            rs.append(sum(PT[x['L']] * x['w'] for x in v) / sw if sw else 0)
+            rs.append(sum(x['p'] * x['w'] for x in v) / sw if sw else 0)
         return round(sum(rs) / len(rs) * 10, 1) if rs else 0
 
     def stage(s):
@@ -244,9 +283,9 @@ def apply(R, out):
     PL = {x['id']: LVN[x['L']] for v in prev.values() for x in v}
     area = {}
     for a, v in A.items():
-        sw = sum(x['w'] for x in v); sp = sum(PT[x['L']] * x['w'] for x in v)
+        sw = sum(x['w'] for x in v); sp = sum(x['p'] * x['w'] for x in v)
         area[a] = {'score': round(sp, 1), 'max': sw, 'ratio': round(sp / sw, 3) if sw else 0,
-                   'items': [dict({k: x[k] for k in x if k != 'L'}, lv=LVN[x['L']], pt=round(PT[x['L']] * x['w'], 2)) for x in v]}
+                   'items': [dict({k: x[k] for k in x if k not in ('L', 'p')}, lv=LVN[x['L']], pt=round(x['p'] * x['w'], 2)) for x in v]}
     on = [x for v in A.values() for x in v if x['L'] == 4]
     near = [x['name'] for v in A.values() for x in v if x['L'] == 3]
     a_on = sorted({a for a, v in A.items() if any(x['L'] == 4 for x in v)})
@@ -257,10 +296,10 @@ def apply(R, out):
                 'area_scores': area, 'score_hist': hist, 'bands': BANDS, 'areas': len(area), 'areas_on': a_on,
                 'areas_near': sorted({a for a, v in A.items() if a not in a_on and any(x['L'] == 3 for x in v)}),
                 'prev_lv': PL, 'prev_date': days[-2] if len(days) > 1 else None,
-                'method': '5개 영역(반도체·AI·유가·채권·금리·신용·옵션·공포)이 얼마나 찼는지의 평균 × 10',
+                'ver3': True, 'method': '10년 중 몇 % 자리로 매긴 5개 영역(반도체·AI·유가·채권·금리·신용·옵션·공포)이 얼마나 찼는지의 평균 × 10',
                 'review': review(sc, nm, area)})
     json.dump(out, open(P('d/lights/fresh.json'), 'w', encoding='utf-8'), ensure_ascii=False)
-    print('경고등 2판: %s %.1f/10 %s' % (D, sc, nm))
+    print('경고등 3판: %s %.1f/10 %s' % (D, sc, nm))
     return out
 
 

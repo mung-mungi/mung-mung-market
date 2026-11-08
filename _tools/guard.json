@@ -296,8 +296,10 @@
   "vix_long"
  ],
  "_tools/lights_v2.py": [
-  "def review",
+  "v3_ref",
+  "pct_of",
   "동일 가중",
+  "def review",
   "prev_lv"
  ],
  "_tools/optui.js": [
@@ -307,8 +309,9 @@
   "mk-rtf"
  ],
  "_tools/ltscore.js": [
+  "mm-rv",
   "j.bands",
-  "mm-rv"
+  "F.ver3"
  ],
  "_tools/mmtop.js": [
   "mm-st-rank",
