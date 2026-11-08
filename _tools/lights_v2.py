@@ -125,7 +125,8 @@ def review(sc, nm, area):
     cold = [a for a, r in sorted(R.items(), key=lambda x: x[1]) if r <= .15]
     spread = max(R.values()) - min(R.values()) if R else 0
     head = '시장 전체는 %s(%.1f점)' % (nm, sc)
-    if hot: head += ' — 그런데 %s만 보면 \'%s\'' % (_and(hot), st(R[hot[0]]))
+    if hot and st(R[hot[0]]) != nm: head += ' — 그런데 %s만 보면 \'%s\'' % (_and(hot), st(R[hot[0]]))
+    elif hot: head += ' — %s 쪽이 꽉 찼습니다' % _and(hot)
     body = []
     body.append('경고등 점수는 다섯 영역의 평균이라, 한 영역이 아무리 나빠도 나머지가 멀쩡하면 전체 점수는 덜 올라갑니다.')
     if hot:
@@ -216,7 +217,7 @@ def apply(R, out):
         ig, ccc = fv('ig'), fv('ccc')
         A['신용'] = [logit(d, 'hy', '하이일드 스프레드', 1),
                    mk('ig', '투자등급 스프레드', ig, 1.5, '%p') if ig is not None else mk('ig_px', '투자등급 회사채 약세(국채 대비)', ddr('LQD', 'IEF', d), 5, '%'),
-                   mk('ccc', '최저등급(CCC) 스프레드', ccc, 12, '%p') if ccc is not None else mk('hy_px', '하이일드 회사채 약세(국채 대비)', ddr('HYG', 'IEF', d), 6, '%'),
+                   mk('ccc', '최저등급(CCC) 스프레드', ccc, 14, '%p') if ccc is not None else mk('hy_px', '하이일드 회사채 약세(국채 대비)', ddr('HYG', 'IEF', d), 6, '%'),
                    mk('bdc', '사모신용(BDC) 고점 대비', dd('BIZD', d), 15, '%'), mk('mmf', 'MMF 잔고 4주 급증', mmf4(d), 3, '%')]
         A['옵션·공포'] = [logit(d, 'vix', 'VIX', 1), logit(d, 'term', '기간구조 뒤집힘', 1), logit(d, 'pc', '풋콜 비율 높음', 1), mk('vvix', 'VVIX', asof('^VVIX', d), 115, '')]
         return {a: [x for x in v if x and x['L'] is not None] for a, v in A.items()}
