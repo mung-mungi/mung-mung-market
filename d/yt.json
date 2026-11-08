@@ -4,6 +4,14 @@
  "channel_url": "https://www.youtube.com/@멍뭉터미널",
  "items": [
   {
+   "id": "TpStkyzg4Y8",
+   "title": "반도체 무너진 주, 8조 달러는 시장 밖에서 기다린다 | 다음 주 미국증시 미리보기",
+   "published": "2026-11-08T22:05:16+00:00",
+   "url": "https://www.youtube.com/watch?v=TpStkyzg4Y8",
+   "short": false,
+   "thumb": "https://i.ytimg.com/vi/TpStkyzg4Y8/mqdefault.jpg"
+  },
+  {
    "id": "Yu-b4ds0Y7Y",
    "title": "아쉬운 반등, 진짜 바닥일까? — 코로나 6개월·관세 4개월로 채점",
    "published": "2026-11-07T02:29:22+00:00",
@@ -42,14 +50,6 @@
    "url": "https://www.youtube.com/watch?v=F4zPlVvs48o",
    "short": false,
    "thumb": "https://i.ytimg.com/vi/F4zPlVvs48o/mqdefault.jpg"
-  },
-  {
-   "id": "EJhaDxrtkYs",
-   "title": "블루웨이브가 와도 AI는 왜 못 멈출까?",
-   "published": "2026-11-04T10:09:46+00:00",
-   "url": "https://www.youtube.com/shorts/EJhaDxrtkYs",
-   "short": true,
-   "thumb": "https://i.ytimg.com/vi/EJhaDxrtkYs/mqdefault.jpg"
   }
  ]
 }
