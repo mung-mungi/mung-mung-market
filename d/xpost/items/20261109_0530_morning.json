@@ -1,0 +1,266 @@
+{
+  "req": "주말(11/7~8) 사이 시장 재료 — 금요일(11/6) 장 마감 후~일요일 밤: 엔비디아 젠슨 황 조사, AI 밸류체인(앤트로픽 IPO·데이터센터), 선거 후 정치·국채, 금리·연준, 이번 주 일정과 화제 차트 — 영향력 있는 계정만, 루머·익명·밈 제외 (월요일이라 새 뉴욕장 없음)",
+  "at": "2026-11-09T05:41:47+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The New York Times",
+      "handle": "@nytimes",
+      "role": "미국 일간지 뉴욕타임스 공식 계정",
+      "time_et": "2026-11-08 15:10",
+      "text": "Breaking News: Nvidia opened an investigation into Jensen Huang, its CEO, after he acknowledged to the company’s board that he had been intimate with a business executive who U.S. intelligence determined to be a Chinese spy. https://t.co/5tagTSNCzK",
+      "ko": "엔비디아, 미 정보당국이 중국 스파이로 판단한 사업가와의 관계를 젠슨 황이 이사회에 인정한 뒤 CEO 조사 착수",
+      "url": "https://x.com/nytimes/status/2119522888067801560",
+      "media": [],
+      "media_note": "첨부 없음(NYT 기사 링크)",
+      "views": 107252,
+      "likes": 912
+    },
+    {
+      "author": "NVIDIA Newsroom",
+      "handle": "@nvidianewsroom",
+      "role": "엔비디아 공식 뉴스룸 계정",
+      "time_et": "2026-11-08 15:02",
+      "text": "We just issued a press release from our board of directors. Read the release: https://t.co/W9yXWJzbkk",
+      "ko": "엔비디아 이사회 명의 보도자료 발표(독립 조사 착수·황 CEO 신임 재확인)",
+      "url": "https://x.com/nvidianewsroom/status/2119520873577398695",
+      "media": [],
+      "media_note": "첨부 없음(엔비디아 이사회 보도자료 링크)",
+      "views": 21237,
+      "likes": 260
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-08 15:37",
+      "text": "NVIDIA SAYS JENSEN HUANG WILL REMAIN CEO AMID PROBE\n\nNvidia ($NVDA ) says CEO Jensen Huang will continue leading the company without interruption, despite news of an investigation.\n\nIn a message to employees, Huang acknowledged being unfaithful to his wife, took full responsibility and pledged to rebuild trust.\n\nA Nvidia spokesperson emphasized that Huang remains fully committed to his role as CEO.",
+      "ko": "엔비디아, 조사 중에도 젠슨 황 CEO 체제 유지 — 황은 직원 메시지로 외도 인정·사과",
+      "url": "https://x.com/DeItaone/status/2119529730319786434",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 32282,
+      "likes": 97
+    },
+    {
+      "author": "The New York Times",
+      "handle": "@nytimes",
+      "role": "미국 일간지 뉴욕타임스 공식 계정",
+      "time_et": "2026-11-08 14:31",
+      "text": "Breaking News: Secretary of State Marco Rubio had warned Trump officials that Nvidia’s CEO, Jensen Huang, was entangled with a Chinese spy, multiple people briefed on the matter said. https://t.co/Zz2cqRZa58",
+      "ko": "루비오 국무장관이 트럼프 행정부에 황 CEO의 중국 스파이 연루를 경고했었다는 보도",
+      "url": "https://x.com/nytimes/status/2119513045869207895",
+      "media": [],
+      "media_note": "첨부 없음(NYT 기사 링크)",
+      "views": 189520,
+      "likes": 1381
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-06 16:23",
+      "text": "*ANTHROPIC PLANS NOVEMBER IPO RAISING $80B-$100B AT $1.25T-$1.75T VALUATION: FT",
+      "ko": "앤트로픽, 11월 IPO로 800억~1000억 달러 조달·기업가치 1.25조~1.75조 달러 계획(FT, 금요일 장 마감 후)",
+      "url": "https://x.com/DeItaone/status/2118816482130018752",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 236551,
+      "likes": 933
+    },
+    {
+      "author": "CNBC",
+      "handle": "@CNBC",
+      "role": "미국 경제방송 CNBC 공식 계정",
+      "time_et": "2026-11-08 08:53",
+      "text": "Anthropic secures $3.4 billion generator deal for AI data centers, FT reports https://t.co/twkFWsjKg5",
+      "ko": "앤트로픽, AI 데이터센터용 34억 달러 규모 발전기 계약 확보(FT)",
+      "url": "https://x.com/CNBC/status/2119428126816039085",
+      "media": [],
+      "media_note": "첨부 없음(CNBC 기사 링크)",
+      "views": 28659,
+      "likes": 85
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "글로벌 자본시장 분석 뉴스레터 공식 계정",
+      "time_et": "2026-11-06 18:18",
+      "text": "BREAKING: US imports of computers, computer accessories, and semiconductors surged +$12.1 billion in September, to a record $86.9 billion.\n\nThis marks the 2nd-largest monthly increase in history, following the record +$14.7 billion increase in July 2026.\n\nSince the start of 2024, imports of computers, computer accessories, and semiconductors have more than quadrupled.\n\nYoY, these imports rose +151%, the largest YoY increase on record, compared with peak annual growth of just +34% during the 2000 Dot-Com Boom.\n\nBased on September's figures, these imports are now running at an annualized rate above $1.0 trillion for the first time.\n\nUS demand for technology hardware is exploding.",
+      "ko": "9월 미국 컴퓨터·반도체 수입 사상 최대 869억 달러, 전년비 +151%로 연율 1조 달러 돌파",
+      "url": "https://x.com/KobeissiLetter/status/2118845395866357968",
+      "media": [
+        "https://pbs.twimg.com/media/HWemqHrWwAAVR5f.jpg"
+      ],
+      "media_note": "미 인구조사국 컴퓨터·부품·반도체 수입 장기 차트(1994~2026), 최근 869억 달러 급등 표시",
+      "views": 192251,
+      "likes": 1489
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "Creative Planning 리서치 책임자, 시장 차트 분석가",
+      "time_et": "2026-11-08 11:19",
+      "text": "Data-center construction spending has surged 90% over the past year to a record $96.5 billion.\n\nBut voters are increasingly pushing back against the data-center explosion.\n\nWhat happens to the economy if the AI spending boom slows? https://t.co/v4odbAGBpw",
+      "ko": "민간 데이터센터 건설 지출 1년 새 90% 급증해 965억 달러 사상 최대, 유권자 반발도 확대",
+      "url": "https://x.com/charliebilello/status/2119464888221487432",
+      "media": [
+        "https://pbs.twimg.com/media/HWnZKt3WIAIjKNX.png"
+      ],
+      "media_note": "민간 데이터센터 건설액 장기 차트(2014~2026)와 '데이터센터가 의회 투표에 얼마나 중요한가' AP 출구조사 막대",
+      "views": 23869,
+      "likes": 176
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "Creative Planning 리서치 책임자, 시장 차트 분석가",
+      "time_et": "2026-11-08 13:18",
+      "text": "Value stocks (+24%) are now outperforming Growth stocks (-6%) by over 30 percentage points in 2026.\n\nIf that holds, it would be a record spread, even wider than what occurred in 2000 when the Dot-Com Bubble burst.\n\nVideo: https://t.co/C3JW429hNe",
+      "ko": "2026년 가치주 +24% vs 성장주 -6%, 격차 30%p 이상으로 2000년 닷컴 붕괴 때보다 커질 기세",
+      "url": "https://x.com/charliebilello/status/2119494874097434824",
+      "media": [
+        "https://pbs.twimg.com/media/HWn1DVKXcAAMg1R.jpg"
+      ],
+      "media_note": "러셀1000 가치 +24.3% vs 성장 -6.4% 2026년 총수익률 막대 차트(11/5 기준)",
+      "views": 21648,
+      "likes": 185
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "Creative Planning 리서치 책임자, 시장 차트 분석가",
+      "time_et": "2026-11-07 11:25",
+      "text": "Update: it was indeed a speculative mania. Note the difference in top performers in the S&P 500 today vs. back in June... https://t.co/DwfXjwl3r4 https://t.co/EaPJLKqKbE",
+      "ko": "S&P500 연초 이후 상위 종목이 6월과 확연히 달라져 '투기적 광풍'이었다는 평가",
+      "url": "https://x.com/charliebilello/status/2119104031503093849",
+      "media": [
+        "https://pbs.twimg.com/media/HWiRwy0WgAAWzQa.png"
+      ],
+      "media_note": "S&P500 2026년 상승률 상위 20종목 표(11/6 기준): MRNA, SNDK, DELL, MU, MPC 등",
+      "views": 72718,
+      "likes": 345
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "글로벌 자본시장 분석 뉴스레터 공식 계정",
+      "time_et": "2026-11-07 15:11",
+      "text": "Thursday was a historic session in the US options market:\n\nUS put option trading volume on CBOE surged to a record 11.23 million contracts on Thursday.\n\nThis surpassed the previous all-time high of 10.22 million contracts set on April 4th, 2025.\n\nAs a result, the 20-day average of put option volume rose to ~7 million contracts, near its highest on record.\n\nBy comparison, the 20-day average oscillated around 4 million contracts in 2022.\n\n8 of the 10 highest daily put option volume readings have occurred in 2026.\n\nWe are seeing unprecedented options activity right now.",
+      "ko": "목요일(11/5) CBOE 풋옵션 거래량 1123만 계약 사상 최대",
+      "url": "https://x.com/KobeissiLetter/status/2119160893950828791",
+      "media": [
+        "https://pbs.twimg.com/media/HWjFmhEXMAAlk2_.jpg"
+      ],
+      "media_note": "미국 일간 풋옵션 거래량 상위 10일 막대 차트, 11/5 11.23백만 계약 1위",
+      "views": 163950,
+      "likes": 715
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "글로벌 자본시장 분석 뉴스레터 공식 계정",
+      "time_et": "2026-11-08 11:30",
+      "text": "History says last week's drop was a buying opportunity.\n\nOn Thursday, the S&P 500 declined -4.4%, its largest daily drop since April 2025.\n\nBefore that day, the index recorded 56 one-day declines of at least -4.0% since 1952.\n\nFollowing such drops, the S&P 500 has gained +1.0% on average over the next week.\n\nBy comparison, its average weekly return across all periods has been +0.2%.\n\nOver the next month, the index has averaged a gain of +2.0%, compared with +0.8% across all periods.\n\nOver the following 3 months, the S&P 500 has averaged +6.7%, more than triple the historical average of +2.2%.\n\nHistory suggests the market is set for a meaningful rebound.",
+      "ko": "S&P500 -4% 이상 급락 뒤 3개월 평균 +6.7% — 지난주 급락은 역사적으로 매수 기회",
+      "url": "https://x.com/KobeissiLetter/status/2119467484830904753",
+      "media": [
+        "https://pbs.twimg.com/media/HWnA2y7W4AAbDo2.jpg"
+      ],
+      "media_note": "1952년 이후 4%+ 일일 급락 뒤 1주·1개월·3개월 평균 수익률 vs 전체 평균 막대 차트",
+      "views": 164555,
+      "likes": 1413
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "글로벌 자본시장 분석 뉴스레터 공식 계정",
+      "time_et": "2026-11-08 13:32",
+      "text": "The global rate hike cycle is accelerating:\n\n~45% of global central banks have raised interest rates over the last 3 months, the largest total in 3 years.\n\nThis proportion has surged +40 percentage points since March.\n\nBy comparison, between 2024 and March 2026, more central banks were cutting rates than raising them.\n\nFurthermore, global central banks have delivered 42 rate hikes over the last 6 months, the largest number since late 2023.\n\nThis figure has quadrupled over the last 7 months and is comparable to the rate hike cycle seen in 2019.\n\nThe global monetary tightening cycle is gaining momentum.",
+      "ko": "최근 3개월 세계 중앙은행 약 45%가 금리 인상, 3년 만에 최대 — 글로벌 긴축 가속",
+      "url": "https://x.com/KobeissiLetter/status/2119498184615440538",
+      "media": [
+        "https://pbs.twimg.com/media/HWnBT-HWQAA6-pJ.jpg"
+      ],
+      "media_note": "The Daily Shot 차트: 최근 3개월 금리 인하국 vs 인상국 비율(2022~2026)",
+      "views": 119013,
+      "likes": 587
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "글로벌 자본시장 분석 뉴스레터 공식 계정",
+      "time_et": "2026-11-07 16:33",
+      "text": "BREAKING: The Fed’s balance sheet expanded +$3 billion in the week ending November 4th, to $6.75 trillion, its 3rd-highest level since mid-March 2025.\n\nTotal assets have surged +$212 billion since the December 2025 low.\n\nOver this period, Treasury holdings have risen +$390 billion, to $4.58 trillion, their highest since March 2024.\n\nAt the same time, holdings of Mortgage-Backed Securities have declined -$170 billion, to $1.88 trillion, their lowest since June 2020.\n\nThe Fed's balance sheet stands now +$2.99 trillion, or +80%, above pre-pandemic levels.\n\nThe Fed's balance sheet is growing again.",
+      "ko": "연준 총자산 6.75조 달러로 다시 증가, 국채 보유 4.58조로 2024년 3월 이후 최대",
+      "url": "https://x.com/KobeissiLetter/status/2119181497529684135",
+      "media": [
+        "https://pbs.twimg.com/media/HWjYVzNWIAAl_zj.jpg"
+      ],
+      "media_note": "연준 총자산 추이 차트(2019~2026), 최근 6.75조 달러 표시",
+      "views": 226998,
+      "likes": 1747
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "글로벌 자본시장 분석 뉴스레터 공식 계정",
+      "time_et": "2026-11-08 09:04",
+      "text": "BREAKING: President Trump says the US took a “giant step back in history” after the Midterm election results and comments on the $3 trillion loss in the stock market on November 5th. https://t.co/lHuCERlTki",
+      "ko": "트럼프, 중간선거 결과를 '역사적 후퇴'라 평가하고 11/5 3조 달러 증시 손실 언급",
+      "url": "https://x.com/KobeissiLetter/status/2119430988769943968",
+      "media": [
+        "https://pbs.twimg.com/media/HWm7QGfW8AA_6mP.jpg"
+      ],
+      "media_note": "트럼프 트루스소셜 게시물 캡처(11/8 8:49 AM)",
+      "views": 383043,
+      "likes": 4443
+    },
+    {
+      "author": "Bloomberg",
+      "handle": "@business",
+      "role": "블룸버그 공식 계정",
+      "time_et": "2026-11-08 15:10",
+      "text": "Wall Street sees the Treasury market emerging as a winner from the Democratic landslide in the US midterm elections, giving traders another reason to rethink this year’s sharp selloff. https://t.co/a59kaFzKrg",
+      "ko": "월가, 민주당 압승 중간선거의 승자로 미 국채시장 지목 — 올해 국채 매도세 재고",
+      "url": "https://x.com/business/status/2119522866601312652",
+      "media": [],
+      "media_note": "첨부 없음(블룸버그 기사 링크)",
+      "views": 14827,
+      "likes": 10
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-08 14:08",
+      "text": "IRAQ HAS REACHED UNDERSTANDINGS WITH US TO ALLOW OIL EXPORTS THROUGH STRAIT OF HORMUZ VIA SHIPPING LANE CLOSE TO OMAN, EXPORT OPERATIONS REMAIN ONGOING - REPORT CITING IRAQI FOREIGN MINISTER",
+      "ko": "이라크, 오만 인접 항로로 호르무즈 원유 수출 허용하는 데 미국과 합의",
+      "url": "https://x.com/DeItaone/status/2119507265879216176",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 173595,
+      "likes": 1025
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "글로벌 자본시장 분석 뉴스레터 공식 계정",
+      "time_et": "2026-11-08 09:26",
+      "text": "Key Events This Week:\n\n1. October CPI Inflation data - Tuesday \n\n2. OPEC Monthly Report - Wednesday\n\n3. Initial Jobless Claims data - Thursday\n\n4. October Existing Home Sales data - Thursday\n\n5. October PPI Inflation data - Friday \n\n6. Total of 17 Fed Speaker Events This Week\n\nWe expect another volatile week ahead.",
+      "ko": "이번 주 일정: 화 CPI, 수 OPEC 월보, 목 실업수당·기존주택판매, 금 PPI, 연준 발언 17회",
+      "url": "https://x.com/KobeissiLetter/status/2119436396020600848",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 201803,
+      "likes": 1893
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": [
+      "엔비디아 이사회가 젠슨 황 CEO의 중국 스파이 연루 의혹에 독립 조사를 착수 — 월요일 개장 전 AI 밸류체인 최대 변수.",
+      "NYT 단독 보도로 공식 확인(엔비디아 이사회 보도자료·CEO 유지 발표는 1·2번)되어 영상 첫 장면 인용 카드로 적합."
+    ]
+  }
+}
