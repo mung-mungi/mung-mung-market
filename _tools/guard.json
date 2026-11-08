@@ -344,7 +344,8 @@
  ],
  "_tools/homev2.js": [
   "mm-sub",
-  "mm-lt-line"
+  "mm-lt-line",
+  "mm-seg"
  ],
  "_tools/fxasia.js": [
   "fxa-g",

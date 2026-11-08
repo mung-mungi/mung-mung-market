@@ -14,8 +14,17 @@
   function ttl(a, t){ var x = a.querySelector('.ttl'); if (x && x.firstChild && x.firstChild.nodeType === 3) x.firstChild.textContent = t; else if (x) x.textContent = t; }
   function recount(){ document.querySelectorAll('nav.list').forEach(function(n){ var sh = n.previousElementSibling, sp = sh && sh.querySelector('span'); if (sp && /\d/.test(sp.textContent)) sp.textContent = sp.textContent.replace(/\d+/, String(n.querySelectorAll(':scope > a.item').length)); }); }
   var D = {}, done = false;
-  function merge(main, other, name, lines){ var a = card(main), b = card(other); if (!a) return; if (a.dataset.v2) return; a.dataset.v2 = 1; ttl(a, name);
-    var h = hl(a); h.textContent = ''; h.classList.add('mm-two'); lines.forEach(function(l){ if (l) h.appendChild(l); }); if (b) b.remove(); }
+  // A안(사용자 2026-11-09 '스크롤 편의성' — 칸 높이는 그대로, [가|나] 버튼으로 그 자리에서 내용만 바뀜, 칸을 누르면 고른 쪽 페이지로)
+  function ls(k, v){ try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  function merge(main, other, name, lines, def){ var a = card(main), b = card(other); if (!a) return; if (a.dataset.v2) return; a.dataset.v2 = 1; ttl(a, name);
+    var opts = lines.filter(Boolean).map(function(l){ return { go: l.dataset.go, k: l.querySelector('b').textContent.replace(' ›', ''), t: l.textContent.replace(l.querySelector('b').textContent, '').trim() }; });
+    var vq = (a.getAttribute('href') || '').match(/\?v=\d+/); vq = vq ? vq[0] : '';
+    var h = hl(a); h.classList.remove('mm-two'); h.classList.add('mm-segt');
+    var seg = el('span', 'mm-seg'); seg.setAttribute('role', 'tablist');
+    var key = 'mm_seg_' + main, cur = +(ls(key) || (def != null ? def : 0)); if (!opts[cur]) cur = 0;
+    function pick(i){ cur = i; [].forEach.call(seg.children, function(x, j){ x.classList.toggle('on', j === i); x.setAttribute('aria-selected', j === i); }); h.textContent = opts[i].t || ''; a.setAttribute('href', opts[i].go + vq); }
+    opts.forEach(function(o, i){ var bt = el('button', '', o.k); bt.type = 'button'; bt.setAttribute('role', 'tab'); bt.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); pick(i); ls(key, String(i)); }, true); seg.appendChild(bt); });
+    a.querySelector('.top').after(seg); pick(cur); if (b) b.remove(); }
   function run(){
     if (done || !document.documentElement.classList.contains('mm-compact')) return false;
     var pr = card('p-prices'); if (!pr) return false; done = true;
@@ -24,7 +33,8 @@
     merge('p-prices', 'p-trend-none', '시세·차트', [sub('p-prices.html', '시세', (D.n || 83) + '종목 종가·기간 등락·52주 위치'), sub('p-trend.html', '차트', '지지·저항·매물대 바로 보기')]);
     // ② 실적
     var hc = (D.hub && D.hub.cards) || {};
-    merge('p-earn', 'p-cal', '실적', [sub('p-earn.html', '결과', first((hc.results || {}).line, 46)), sub('p-cal.html', '일정', first((hc.calendar || {}).line, 46))]);
+    var kh = new Date(Date.now() + 9 * 36e5).getUTCHours();
+    merge('p-earn', 'p-cal', '실적', [sub('p-earn.html', '결과', first((hc.results || {}).line, 46)), sub('p-cal.html', '일정', first((hc.calendar || {}).line, 46))], kh >= 5 && kh < 12 ? 0 : 1);
     // ③ 뉴스
     merge('p-policy', 'p-tech', '뉴스', [sub('p-policy.html', '시장·정책', first(D.pol && D.pol.headline, 44)), sub('p-tech.html', 'AI·테크', first(D.tech && D.tech.headline, 44))]);
     // ④ 수급 — 공매도 칸에 내부자·기관을 합침
