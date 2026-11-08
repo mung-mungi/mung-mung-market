@@ -38,7 +38,7 @@
     // ③ 뉴스
     merge('p-policy', 'p-tech', '뉴스', [sub('p-policy.html', '시장·정책', first(D.pol && D.pol.headline, 44)), sub('p-tech.html', 'AI·테크', first(D.tech && D.tech.headline, 44))]);
     // ④ 수급 — 공매도 칸에 내부자·기관을 합침
-    merge('p-short', 'p-insider', '수급', [sub('p-short.html', '공매도', first((hc.shorts || {}).line, 40)), sub('p-insider.html', '내부자·기관', '임원 매수·매도 · 13F 보유 변화')]);
+    merge('p-short', 'p-insider', '수급', [sub('p-short.html', '공매도', first((hc.shorts || {}).line, 40)), sub('p-insider.html', '내부자', '임원 매수·매도 · 기관 13F 보유 변화')]);
     // ⑤ 이름 정리 + 설비투자는 분기 묶음으로
     var sp = card('p-supply'); if (sp) ttl(sp, '아시아 반도체 수출');
     var fx = card('p-fx'); if (fx) { ttl(fx, '아시아 통화'); var fh = hl(fx); fh.textContent = '원·대만달러·엔 — 아시아 반도체로 드나드는 외국인 돈의 방향을 봅니다'; }

@@ -7,9 +7,9 @@
 .mm-lt-line .k{font-weight:600;color:#8a7650}
 .mm-lt-line b.hot{color:#b3261e;font-weight:800}
 .mm-lt-line b.calm{color:#1a7f37;font-weight:800}
-/* A안 — 칸 안 [가|나] 전환 버튼(2026-11-09) · 칸 폭 꽉 채우고 버튼처럼 보이게(사용자 '딱 버튼 같은 느낌, 과하지 않게') */
-.mm-seg{display:flex;gap:4px;margin:10px 0 0;background:#efe9dc;border-radius:11px;padding:3px;width:100%;box-sizing:border-box;box-shadow:inset 0 1px 2px rgba(60,40,10,.10)}
-.mm-seg button{all:unset;flex:1;min-width:0;text-align:center;font:700 12.5px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:8px 4px;border-radius:9px;color:#8a8478;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .12s,color .12s}
-.mm-seg button.on{background:#fff;color:var(--c,#9a6200);font-weight:800;box-shadow:0 1px 0 color-mix(in srgb,var(--c,#9a6200) 35%,transparent),0 2px 4px rgba(40,25,5,.12);border:1px solid color-mix(in srgb,var(--c,#9a6200) 30%,transparent);padding:7px 3px}
-.mm-seg button:not(.on):active{background:rgba(255,255,255,.55)}
+/* A안 — 칸 안 [가|나] 전환 버튼(2026-11-09) · ④ 색 스위치 띠 + ② 꽉 찬 알약을 섞음(사용자 '스위치가 눈에 들고 2번이 예쁨') */
+.mm-seg{display:flex;gap:4px;margin:10px 0 0;width:100%;box-sizing:border-box;padding:3px;border-radius:999px;background:color-mix(in srgb,var(--c,#9a6200) 11%,#fff);box-shadow:inset 0 1px 3px rgba(40,25,5,.12)}
+.mm-seg button{all:unset;flex:1;min-width:0;text-align:center;font:700 12.5px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;padding:8px 4px;border-radius:999px;color:color-mix(in srgb,var(--c,#9a6200) 55%,#8a857a);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s,color .15s,box-shadow .15s}
+.mm-seg button.on{background:var(--c,#9a6200);color:#fff;font-weight:800;box-shadow:0 2px 0 color-mix(in srgb,var(--c,#9a6200) 62%,#000),0 3px 6px color-mix(in srgb,var(--c,#9a6200) 30%,transparent)}
+.mm-seg button:not(.on):active{background:rgba(255,255,255,.6)}
 .mm-compact .list .item .hl.mm-segt{margin-top:8px!important;-webkit-line-clamp:2!important}
