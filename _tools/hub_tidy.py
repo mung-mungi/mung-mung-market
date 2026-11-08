@@ -799,7 +799,7 @@ for _p in ['p-prices.html', 'p-trend.html', 'p-short.html', 'p-targets.html', 'p
 # 공매도 추이 '오늘 한눈에' — 확인용 보조지표(사용자 2026-11-02)
 EASY['p-short.html'] = EASY['p-short.html'] + ['shtop']
 # 단계 옆 '왜 이 단계?' 한 줄(사용자 2026-11-02) — 단계는 점수 그대로, 코멘트로 풀어 줌
-EASY['p-opt.html'] = EASY['p-opt.html'] + ['stwhy']; EASY['p-bond.html'] = EASY['p-bond.html'] + ['stwhy']
+EASY['p-opt.html'] = EASY['p-opt.html'] + ['stwhy']; EASY['p-opt.html'] = EASY['p-opt.html'] + ['vixlong']  # VIX 기간 고르기(사용자 2026-11-09); EASY['p-bond.html'] = EASY['p-bond.html'] + ['stwhy']
 # '어제보다 바뀐 점' 카드(사용자 2026-11-03, A안)
 for _pg in ('p-opt.html', 'p-bond.html', 'p-lights.html'):
     EASY[_pg] = EASY.get(_pg, []) + ['mvban']

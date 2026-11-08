@@ -49,6 +49,12 @@ if days and vd:
             keep.append({'date': d, 'close': VIX[d], 'status': 'final', 'source': SRC_IDX})
     keep.sort(key=lambda r: r['date']); keep = keep[-130:]
     if dump('vix_daily', keep): ch.append('VIX')
+# ①-2 VIX 10년 일별 종가(사용자 2026-11-09 '기간 설정 — 5년·10년까지, 역사적 사건과 지금 비교') — 화면 _tools/vixlong.js
+if days:
+    import datetime as _dt
+    cut = (_dt.date.fromisoformat(days[-1]) - _dt.timedelta(days=3653)).isoformat()
+    ks = [d for d in days if d >= cut]
+    if dump('vix_long', {'src': SRC_IDX, 'd': ks, 'c': [VIX[d] for d in ks]}): ch.append('VIX 10년')
 # ② 기간구조: VIX9D·VIX3M·VVIX — 마지막 날 이후 + 최근 15일 빈칸 채우기
 tm = load('term')
 if days:

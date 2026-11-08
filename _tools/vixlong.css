@@ -1,0 +1,18 @@
+/* VIX 기간 고르기(사용자 2026-11-09) — _tools/vixlong.js */
+.mm-vseg{display:inline-flex;margin:4px 0 10px;border:1px solid #e3dccd;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 2px 0 #efe8da}
+.mm-vseg button{border:0;background:none;padding:8px 16px;font:700 15px/1 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#7a766d;cursor:pointer}
+.mm-vseg button[aria-pressed="true"]{background:#1f1e1b;color:#fff}
+.mm-vl-svg{display:block;touch-action:pan-y}
+.mm-vl-svg .ax{font:500 11px -apple-system,sans-serif;fill:#8a857b}
+.mm-vl-svg .ev{font:800 10px -apple-system,sans-serif;fill:#fff;pointer-events:none}
+.mm-vl-tip{min-height:20px;font:600 13px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#5f5a52}
+.mm-vl-now{margin:10px 0 6px;padding:9px 12px;border-radius:12px;background:#fbf4dc;font:500 14.5px/1.55 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3a372f}
+.mm-vl-now b{color:#1f1e1b}.mm-vl-now small{color:#8a857b}
+.mm-vl-ev{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:1fr;gap:4px;font:500 13.5px/1.45 -apple-system,"Apple SD Gothic Neo",sans-serif;color:#3a372f}
+@media(min-width:700px){.mm-vl-ev{grid-template-columns:1fr 1fr}}
+.mm-vl-ev li{display:flex;flex-wrap:nowrap;align-items:center;gap:6px;padding:5px 8px;border:1px solid #f0e9da;border-radius:10px;background:#fff;white-space:nowrap}
+.mm-vl-ev li.hd{border:0;background:none;padding:2px 8px;font-size:12px;color:#8a857b}
+.mm-vl-ev li.hd span{font-size:12px}.mm-vl-ev li.hd em{color:#8a857b;font-weight:600}
+.mm-vl-ev li b{flex:none;display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#c8501c;color:#fff;font-size:11px}
+.mm-vl-ev li span{color:#8a857b;font-size:12.5px;overflow:hidden;text-overflow:ellipsis}
+.mm-vl-ev li em{margin-left:auto;flex:none;font-style:normal;font-weight:700;font-size:13px;color:#c8501c}

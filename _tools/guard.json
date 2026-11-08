@@ -282,5 +282,12 @@
  "_tools/calnext.js": [
   "mm-nx-tile",
   "mm-nx-later"
+ ],
+ "_tools/vixlong.js": [
+  "mm-vseg",
+  "vix_long"
+ ],
+ "_tools/build_opt.py": [
+  "vix_long"
  ]
 }
