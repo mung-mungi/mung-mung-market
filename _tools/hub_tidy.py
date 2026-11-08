@@ -811,6 +811,8 @@ EASY['p-policy.html'] = EASY['p-policy.html'] + ['tlmore']; EASY['p-tech.html'] 
 EASY['p-econ.html'] = EASY.get('p-econ.html', []) + ['evgo']
 # 멍터 알림함(사용자 2026-11-06) — 메인 맨 위 '🔔 알림함 ›'
 EASY['index.html'] = EASY.get('index.html', []) + ['inbox']
+# 경고등 '영역별' 카드를 3판 자료로(사용자 2026-11-09)
+EASY['p-lights.html'] = EASY.get('p-lights.html', []) + ['ltarea']
 # 실적 일정: 주간 일정이 끝나면 다음 주 미리 보기를 맨 위로(사용자 2026-11-07)
 EASY['p-cal.html'] = EASY.get('p-cal.html', []) + ['calnext']
 # 목표주가 아래쪽 차트 늦게 그리기(2026-11-03): 데이터가 덜 와서 페이지가 짧을 때 잘못 '보임'으로 판정하지 않게 1.5초 뒤(또는 손가락이 처음 닿을 때)부터 지켜봄

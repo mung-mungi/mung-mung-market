@@ -311,7 +311,8 @@
  "_tools/ltscore.js": [
   "mm-rv",
   "j.bands",
-  "F.ver3"
+  "F.ver3",
+  "__MM_EXP"
  ],
  "_tools/mmtop.js": [
   "mm-rrg2",
@@ -321,5 +322,13 @@
  ],
  "_tools/build_stress.py": [
   "SEMI_ALL"
+ ],
+ "_tools/ltarea.js": [
+  "dataset.v3",
+  "__MM_EXP",
+  "dataset.t=1"
+ ],
+ "_tools/ltnear.js": [
+  "/VVIX/.test"
  ]
 }
