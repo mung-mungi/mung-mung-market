@@ -14,7 +14,8 @@
    "pdf_orig": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261106/8299_3Q26_orig.pdf",
    "pdf_slides": "https://github.com/mung-mungi/mung-mung-market/releases/download/ir-20261106/8299_3Q26_slides.pdf",
    "by": "그록봇",
-   "id": "20261106_8299_3Q26"
+   "id": "20261106_8299_3Q26",
+   "pdf_kr_site": "d/ir/pdf/20261106_8299_3Q26_kr.pdf"
   },
   {
    "name": "플루오르",
@@ -1026,5 +1027,5 @@
   }
  ],
  "skipped": [],
- "updated": "2026-11-08T09:09Z"
+ "updated": "2026-11-09T01:52Z"
 }
