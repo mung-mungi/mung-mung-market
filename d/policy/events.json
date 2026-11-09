@@ -2906,6 +2906,22 @@
   "has_detail": false
  },
  {
+  "month": "2026-11",
+  "has_detail": false,
+  "id": "e210",
+  "date": "2026-11-06",
+  "category": "연준·정책",
+  "thread": "중간선거",
+  "tier": "small",
+  "status": "발생",
+  "title": "트럼프, 와일스 비서실장 교체 — 후임에 스티븐 밀러, 선거 참패 사흘 만",
+  "summary": "트럼프 대통령이 6일 수지 와일스 백악관 비서실장이 물러나고 스티븐 밀러 부비서실장이 뒤를 잇는다고 밝혔습니다. 중간선거에서 상·하원을 모두 내준 뒤 나온 첫 핵심 참모 교체입니다. 트럼프 대통령은 60분 인터뷰에서 추가 교체도 \"조금\" 있을 수 있다고 했습니다. 민주당 의회와 예산·관세를 다퉈야 하는 시기에 강경파가 백악관 운영을 맡는다는 점이 시장이 볼 대목입니다(우리 판단).",
+  "nasdaq_pct": 1.09,
+  "mkt_note": "나스닥 +1.09%",
+  "source_url": "https://www.npr.org/2026/11/06/nx-s1-6032810/stephen-miller-replaces-susie-wiles-as-white-house-chief-of-staff",
+  "media": "NPR·ABC·CBS"
+ },
+ {
   "id": "e202",
   "month": "2026-11",
   "nasdaq_pct": null,
@@ -3086,6 +3102,23 @@
   "time": "18:14"
  },
  {
+  "month": "2026-11",
+  "has_detail": false,
+  "id": "e211",
+  "date": "2026-11-08",
+  "time": "19:00",
+  "category": "이란 전쟁·유가",
+  "thread": "미국 공습 옵션",
+  "tier": "small",
+  "status": "발생",
+  "title": "트럼프 60분 인터뷰 \"이란 다시 칠 거냐면 단호히 예\" — \"지금 확전할 생각은 없어\"",
+  "summary": "트럼프 대통령은 CBS 60분 인터뷰에서 이란을 다시 공격하겠느냐는 질문에 \"단호히 예\"라고 답했습니다. 다만 \"지금 확전하려는 것은 아니다\"라며 당장의 확전은 부인했습니다. 선거 패배 이유로는 유권자들이 이란 전쟁과 그에 따른 휘발유값을 싫어했다고 인정했습니다. 공습 위협은 협상 지렛대로 남겨 두되 당장은 외교 쪽에 무게를 둔 발언입니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "source_url": "https://www.cbsnews.com/news/10-takeaways-from-trump-60-minutes-interview/",
+  "media": "CBS"
+ },
+ {
   "id": "e205",
   "date": "2026-11-08",
   "month": "2026-11",
@@ -3150,6 +3183,22 @@
   "has_detail": false
  },
  {
+  "month": "2026-11",
+  "has_detail": false,
+  "id": "e212",
+  "date": "2026-11-08",
+  "category": "AI·전력 정책",
+  "thread": "AI 규제",
+  "tier": "small",
+  "status": "진행중",
+  "title": "AP \"미 정부 초지능 안전센터, 백악관에 비공식 보고\" — 독립성 우려, 연구 공개도 멈춰",
+  "summary": "AP는 상무부 산하 AI 안전 기관인 '초지능 혁신·표준센터(CAISSI)' 직원들이 최근 백악관 한 부서에 비공식으로 보고하라는 요청을 받았다고 전직 관리 2명을 인용해 보도했습니다. 이 센터는 상임 책임자가 없고 연구 결과 공개도 멈춘 상태입니다. 예산은 연 1,000만 달러로 영국 같은 기관의 8분의 1 수준입니다. 민주당 의회가 내년 AI 독립 검증 법안을 예고한 가운데 정부 AI 안전 검증 체계가 쟁점으로 커질 수 있습니다(우리 판단).",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "source_url": "https://abcnews.com/US/wireStory/staff-us-center-ai-safety-reporting-white-house-137950879",
+  "media": "AP"
+ },
+ {
   "id": "e44",
   "date": "2026-11-09",
   "month": "2026-11",
@@ -3163,6 +3212,38 @@
   "media": "태리프센티널(관보 인용)",
   "tier": "big",
   "thread": "관세·무역"
+ },
+ {
+  "month": "2026-11",
+  "has_detail": false,
+  "id": "e213",
+  "date": "2026-11-09",
+  "category": "이란 전쟁·유가",
+  "thread": "이란 해협 협상",
+  "tier": "small",
+  "status": "진행중",
+  "title": "트럼프, 카타르 총리와 백악관 회동 — 이란 \"요구 들어주면 48시간 안에 해협 안정\"",
+  "summary": "트럼프 대통령이 9일 백악관에서 이란 중재를 맡은 카타르의 셰이크 무함마드 총리를 만납니다. 이란 외무부 바가이 대변인은 봉쇄 해제와 전 전선 적대 행위 중단 요구가 받아들여지면 48시간 안에 호르무즈 안전이 돌아올 수 있다고 말했습니다. 아락치 외무장관은 \"미국 선거 결과에 중재국 왕복 외교가 흔들렸다, 조금 기다려야 한다\"고 했습니다. 이스라엘 하욤은 카타르 동결 이란 자금 80억 달러 해제가 담긴 안이 올라간다고 익명 소식통을 인용해 보도했지만 공식 확인은 없습니다.",
+  "nasdaq_pct": null,
+  "mkt_note": "장 전",
+  "source_url": "https://www.aninews.in/news/world/middle-east/iran-says-two-day-plan-remains-on-table-links-hormuz-security-to-us-meeting-its-demands20261109143416/",
+  "media": "CBS·ANI·이스라엘 하욤"
+ },
+ {
+  "month": "2026-11",
+  "has_detail": false,
+  "id": "e214",
+  "date": "2026-11-09",
+  "category": "이란 전쟁·유가",
+  "thread": "유가·공급 대응",
+  "tier": "small",
+  "status": "발생",
+  "title": "브렌트 96달러대로 밀려 — 1.8% 하락, 트럼프 \"재공습 가능성 매우 낮다\" 영향",
+  "summary": "브렌트유는 9일 아랍에미리트 시각 오후 1시 23분 기준 1.83% 내린 배럴당 96.52달러, 서부텍사스유는 1.30% 내린 89.65달러를 기록했습니다. 트럼프 대통령이 재공습 가능성이 매우 낮다고 말한 것이 하락 이유로 꼽힙니다. 다만 혁명수비대가 주말에 유조선 3척 폭발을 주장하는 등 해협 위험은 남아 있습니다. 유가가 더 내려가면 물가·금리 부담이 줄어 기술주에 숨통이 될 수 있습니다(우리 판단).",
+  "nasdaq_pct": null,
+  "mkt_note": "장 전",
+  "source_url": "https://www.thenationalnews.com/business/energy/2026/11/09/oil-edges-lower-as-trump-plays-down-prospect-of-new-us-attacks-on-iran",
+  "media": "더내셔널"
  },
  {
   "id": "e25",
