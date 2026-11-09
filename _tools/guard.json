@@ -71,7 +71,8 @@
   "LAZYRUN_JS": "가볍게: 목표주가 아래쪽 차트 늦게 그리기",
   "var NQ=[]": "가볍게: 데일리 시황 칸 높이 한 번에 재기",
   "EARNLZ_JS": "가볍게: 실적 결과 접힌 노트 본문은 펼칠 때 붙이기",
-  "window.__lzHollow||Object": "가볍게: 실적 결과 본문 늦게 붙이기 연결"
+  "window.__lzHollow||Object": "가볍게: 실적 결과 본문 늦게 붙이기 연결",
+  "주요 인물": "AI·테크 타임라인 주요 인물 분류(사용자 2026-11-09 — 젠슨 황 등 헤드라인급만)"
  },
  "_tools/navfab.js": [
   "up>48",
@@ -116,7 +117,8 @@
   "if(s.textContent!==n+'건')",
   "catNote",
   "function flip(",
-  "tlx-pdb"
+  "tlx-pdb",
+  "'주요 인물':"
  ],
  "_tools/tlx.css": [
   "tlx-open",
@@ -361,5 +363,8 @@
  "_tools/dock.js": [
   "G9=",
   "PL9"
+ ],
+ "p-tech.html": [
+  "'업계 컨퍼런스','주요 인물'"
  ]
 }

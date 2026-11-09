@@ -63,7 +63,7 @@ function catN(){var box=document.getElementById('catf');if(!box||!EV)return;var 
 function relabel(){if(P!=='policy')return;var root=document.querySelector('main')||document.body,w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),n;var RL=[['AI·전력 정책','AI 정책'],['한국 관련','외신 한미 정책']];while(n=w.nextNode()){RL.forEach(function(r){if(n.nodeValue.indexOf(r[0])>=0)n.nodeValue=n.nodeValue.split(r[0]).join(r[1])})}}
 // 분류 알약을 누르면 짧은 설명 + 최근·다음 소식 한 줄씩(사용자 2026-11-02 '간단하고 명확하게')
 var CM={'이란 전쟁·유가':'이란 협상, 호르무즈 해상 충돌, 미국 공습 여부와 유가 흐름입니다.','연준·정책':'금리 결정, 연준 인사 발언, 선거·예산처럼 시장 금리를 움직이는 일정입니다.','반도체 수출통제':'미국의 대중국 칩·장비 수출 규제와 중국의 맞대응입니다.','AI·전력 정책':'AI 규제·행정명령·안전 법안과 데이터센터 전력·인허가 문제입니다.','관세·무역':'미국 관세 조치와 무역 협상, 정상회의 일정입니다.','한국 관련':'관세·대미 투자·미국 측 요구를 외신과 공식 발표로만 봅니다.',
- '칩·하드웨어 행사':'엔비디아·AMD 같은 칩 회사의 신제품 발표 행사입니다.','대형 거래·상장':'AI 회사들의 대형 계약·투자·상장 소식입니다.','클라우드·빅테크':'빅테크·클라우드 회사의 행사와 발표입니다.','AI 모델 공개':'오픈AI·앤트로픽·구글 등의 새 AI 모델 출시입니다.','반도체 공급망':'파운드리·장비·소재 업계 행사와 공급망 소식입니다.','업계 컨퍼런스':'AI·반도체 업계가 모이는 주요 학회·전시회 일정입니다.'};
+ '칩·하드웨어 행사':'엔비디아·AMD 같은 칩 회사의 신제품 발표 행사입니다.','대형 거래·상장':'AI 회사들의 대형 계약·투자·상장 소식입니다.','클라우드·빅테크':'빅테크·클라우드 회사의 행사와 발표입니다.','AI 모델 공개':'오픈AI·앤트로픽·구글 등의 새 AI 모델 출시입니다.','반도체 공급망':'파운드리·장비·소재 업계 행사와 공급망 소식입니다.','업계 컨퍼런스':'AI·반도체 업계가 모이는 주요 학회·전시회 일정입니다.','주요 인물':'젠슨 황·샘 올트먼 같은 업계 핵심 인물의 굵직한 발언과 거취입니다. 주요 매체 헤드라인급만 싣습니다.'};
 function md(d){return d.slice(5).replace('-','.')}
 function catNote(){var box=document.getElementById('catf');if(!box||!EV)return;var on=box.querySelector('button[aria-pressed=true]'),c=on&&on.dataset.c,m=document.getElementById('tlx-cm');
  if(!c){if(m)m.remove();return}if(!m){m=el('div','tlx-cm');m.id='tlx-cm';box.after(m)}
