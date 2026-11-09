@@ -1,0 +1,365 @@
+{
+  "req": "11/9(월) 뉴욕장 — 엔비디아(젠슨 황 조사·NYT 대중 칩 판매 보도) 급락 속 기술주 반등, AI 밸류체인(앤트로픽 IPO·데이터센터), 금리·연준(11/10 CPI 앞둠), 유가·이란, 화제 차트 — 영향력 있는 계정만, 루머·익명·밈 제외 (수집 시점 05:3x KST = 미 동부 15:3x로 정규장 마감 전이라 종가·장후 실적은 미반영)",
+  "at": "2026-11-10T05:33:02+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "거시·시장 분석 뉴스레터 공식 계정",
+      "time_et": "2026-11-09 12:13",
+      "text": "What is currently happening in the market seemed impossible prior to today.\n\nOn a day where Nvidia, $NVDA, is down -6.5%, erasing -$300 billion in market cap, the Nasdaq 100 is now up +3.2%.\n\nEven as the leader of not only the AI trade, but the broader market, accounting for nearly 8% of the S&P 500, falls sharply, investors are aggressively buying the dip.\n\nPrice action over the last 5 days has been a testament to just how powerful the AI Revolution truly is.\n\nInvestors are incredibly eager to buy the dip in US technology stocks, even if it means leaving the biggest leader of the AI Revolution behind.\n\nIn fact, the AI trade, and the market's rally as a whole, appears to be broadening.\n\nInnovation is at an all-time high and markets know it.\n\nThis is the most resilient market in history.",
+      "ko": "엔비디아 -6.5%(시총 -3천억 달러)에도 나스닥100 +3.2% — 엔비디아를 두고 기술주 저가매수 확산",
+      "url": "https://x.com/KobeissiLetter/status/2119840715211473196",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 221906,
+      "likes": 2064
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "거시·시장 분석 뉴스레터 공식 계정",
+      "time_et": "2026-11-09 11:19",
+      "text": "BREAKING: US stocks add +$1.5 trillion in market cap, rising to a new high of the day, as the rally gains momentum and technology stocks rebound.\n\n1. S&P 500: +2.1%\n2. Nasdaq 100: +3.0%\n3. Dow Jones: +1.8%\n4. WTI Crude: -3.5%\n5. Brent: -4.0%\n6. Gold: +1.5%\n\nThe S&P 500 is now 4% away from a new record high.",
+      "ko": "미국 증시 시총 +1.5조 달러: S&P500 +2.1%, 나스닥100 +3.0%, 다우 +1.8%, WTI -3.5%, 금 +1.5% — S&P 신고가까지 4%",
+      "url": "https://x.com/KobeissiLetter/status/2119827237918646547",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 166790,
+      "likes": 1525
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "거시·시장 분석 뉴스레터 공식 계정",
+      "time_et": "2026-11-09 13:15",
+      "text": "BREAKING: The Volatility Index, $VIX, extends its decline to over -20% on the day as the short squeeze in stocks gains momentum.\n\nWe are currently seeing very strong buying pressure across the board. https://t.co/7aJsPSjjEG",
+      "ko": "VIX 하루 -20% 넘게 급락, 숏스퀴즈로 전방위 매수세",
+      "url": "https://x.com/KobeissiLetter/status/2119856382002200651",
+      "media": [
+        "https://pbs.twimg.com/media/HWs-JLLX0AAo3aa.jpg"
+      ],
+      "media_note": "VIX 지수 장중 차트",
+      "views": 143800,
+      "likes": 1478
+    },
+    {
+      "author": "Mike Zaccardi, CFA, CMT",
+      "handle": "@MikeZaccardi",
+      "role": "CFA·CMT 시장 애널리스트",
+      "time_et": "2026-11-09 15:13",
+      "text": "Stocks - best day since April. A top 3 session back a year $ACWI \n\n+2.8% https://t.co/6peYxN9Df4",
+      "ko": "글로벌 주식(ACWI) +2.8%, 4월 이후 최고의 하루·최근 1년 상위 3위",
+      "url": "https://x.com/MikeZaccardi/status/2119886196151074945",
+      "media": [
+        "https://pbs.twimg.com/media/HWtZQv6WEAIFLyM.png"
+      ],
+      "media_note": "ACWI 일간 수익률 차트",
+      "views": 1520,
+      "likes": 5
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 업체 공식 계정",
+      "time_et": "2026-11-09 14:44",
+      "text": "JUST IN 🚨: Stock Market says Goodbye to Extreme Fear 🖖 🥳 https://t.co/3QS1MS4jRm",
+      "ko": "CNN 공포·탐욕 지수 '극단적 공포' 탈출",
+      "url": "https://x.com/Barchart/status/2119878780814553387",
+      "media": [
+        "https://pbs.twimg.com/media/HWtShJEW0AAQLfl.png"
+      ],
+      "media_note": "공포·탐욕 지수 게이지 캡처",
+      "views": 18200,
+      "likes": 189
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-09 09:58",
+      "text": "MORGAN STANLEY SEES S&P 500 CORRECTION NEARING ITS END\n\nMorgan Stanley's chief US equity strategist Mike Wilson believes the market correction is entering its final phase, potentially setting up a year-end rally.\n\nWilson expects the S&P 500 to approach his 7,100–7,300 downside range before finding a bottom, while maintaining his 8,000 year-end target.\n\nHowever, the bank advises investors to wait before buying the dip, as market breadth continues to weaken and AI infrastructure funding concerns persist.",
+      "ko": "모건스탠리 윌슨: S&P500 조정 막바지(7,100~7,300 하단 후 바닥), 연말 목표 8,000 유지 — 다만 저가매수는 기다리라",
+      "url": "https://x.com/DeItaone/status/2119806837839040833",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 171853,
+      "likes": 724
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 속보 계정",
+      "time_et": "2026-11-09 13:29",
+      "text": "BREAKING: The US Commerce Dept was approving sales of Nvidia, $NVDA, chips to companies in China which either did not exist, were on the sanctions list, and/or had ties to China's military, per NYT",
+      "ko": "NYT: 미 상무부가 존재하지 않거나 제재·중국군 연관 중국 기업에 엔비디아 칩 판매 승인",
+      "url": "https://x.com/unusual_whales/status/2119859817288450058",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 417531,
+      "likes": 7215
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-09 11:08",
+      "text": "NVIDIA INTERVENTION PRECEDED HALT OF US CHIP SMUGGLING PROBE\n\nA US Commerce Department investigation into suspected Nvidia ($NVDA ) chip smuggling to China was halted and transferred to the Justice Department after Nvidia's legal team contacted investigators, according to The New York Times.\n\nNvidia's general counsel reportedly cited authorization from a senior Commerce official, raising concerns among investigators about potential interference.\n\nThe case involves Megaspeed, whose former executive has been accused by US officials of links to Chinese intelligence.",
+      "ko": "NYT: 엔비디아 법무팀 접촉 뒤 상무부의 칩 밀수 조사 중단·법무부 이관(메가스피드 관련)",
+      "url": "https://x.com/DeItaone/status/2119824338350232035",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 149231,
+      "likes": 448
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-09 13:27",
+      "text": "HUANG DROPS OUT OF AI EVENTS. EXIT ODDS AT 44%.\n\nNvidia CEO Jensen Huang has disappeared from Anthropic and ElevenLabs event lineups following disclosures of an affair and a board investigation.\n\nPrediction markets now price a 44% chance Huang leaves Nvidia before 2028.\n\nNvidia maintains he will remain CEO.",
+      "ko": "젠슨 황, 앤트로픽·일레븐랩스 행사 불참 — 예측시장 2028년 전 퇴진 확률 44%",
+      "url": "https://x.com/DeItaone/status/2119859511515296029",
+      "media": [
+        "https://pbs.twimg.com/media/HWtA_UhXkAAh6ba.png"
+      ],
+      "media_note": "예측시장(황 퇴진 확률) 캡처",
+      "views": 128643,
+      "likes": 458
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 속보 계정",
+      "time_et": "2026-11-09 14:52",
+      "text": "$NVDA has fallen ~18% in just two weeks\n\nIt has lost $940 BILLION in market value. \n\n It's down another ~5% today while the rest of big tech rallies. https://t.co/rRELmtOgmY",
+      "ko": "엔비디아 2주 새 약 -18%, 시총 9,400억 달러 증발 — 빅테크 랠리 속 오늘도 약 -5%",
+      "url": "https://x.com/unusual_whales/status/2119880914302013670",
+      "media": [
+        "https://pbs.twimg.com/media/HWtUc_9akAAkE54.jpg"
+      ],
+      "media_note": "엔비디아 주가 차트",
+      "views": 70176,
+      "likes": 203
+    },
+    {
+      "author": "Mike Zaccardi, CFA, CMT",
+      "handle": "@MikeZaccardi",
+      "role": "CFA·CMT 시장 애널리스트",
+      "time_et": "2026-11-09 15:17",
+      "text": "$NVDA vs $QQQ ... worst day since DeepSeek Jan 2025... 2nd-worst session back to 2019 https://t.co/RhaPYv1jcA",
+      "ko": "엔비디아 대 QQQ 상대성과, 2025년 1월 딥시크 이후 최악·2019년 이후 두 번째로 나쁜 날",
+      "url": "https://x.com/MikeZaccardi/status/2119887080998236566",
+      "media": [
+        "https://pbs.twimg.com/media/HWtaEOcWgAAuKfL.jpg"
+      ],
+      "media_note": "NVDA/QQQ 상대 일간 성과 차트",
+      "views": 1444,
+      "likes": 4
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·실적 속보 계정",
+      "time_et": "2026-11-09 11:47",
+      "text": "South Korea 🇰🇷 expects \"NO\" disruption to its contracted Nvidia $NVDA GPU deliveries despite the company's ongoing issues, according to the country's deputy science minister. https://t.co/6CbqI2jSx6",
+      "ko": "한국 과기부 차관 \"엔비디아 GPU 계약 물량 공급 차질 없을 것\"",
+      "url": "https://x.com/wallstengine/status/2119834305786683561",
+      "media": [
+        "https://pbs.twimg.com/media/HWsp2utaIAMnwI3.png",
+        "https://pbs.twimg.com/media/HWsqDkBaIAARh1H.png"
+      ],
+      "media_note": "기사 캡처 2장",
+      "views": 24630,
+      "likes": 240
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "거시·시장 분석 뉴스레터 공식 계정",
+      "time_et": "2026-11-09 14:46",
+      "text": "The scale of Big Tech's AI future financial obligations is extraordinary:\n\nAlphabet, $GOOGL, Meta, $META, Anthropic, Microsoft, $MSFT, Amazon, $AMZN, Oracle, $ORCL, and Nvidia, $NVDA, have disclosed a combined $4.49 trillion in off-balance-sheet obligations.\n\nThese include future lease payments that have not yet commenced, data-center commitments, equipment purchases, and other contractual obligations.\n\nAlphabet accounts for the largest amount, at $1.08 trillion, followed by Anthropic, at $865 billion, and Meta, at $810 billion.\n\nBy comparison, their combined on-balance-sheet obligations total just $758 billion, consisting of long-term debt and existing lease liabilities.\n\nThis means off-balance-sheet commitments are nearly 6 times larger than their on-balance-sheet obligations.\n\nIn total, these 7 tech companies face ~$5.25 trillion in combined financial obligations.\n\nThe AI infrastructure race is facing enormous future financial commitments.",
+      "ko": "빅테크·앤트로픽 AI 부외(簿外) 약정 합계 4.49조 달러, 재무상태표 부채의 약 6배",
+      "url": "https://x.com/KobeissiLetter/status/2119879354045915540",
+      "media": [
+        "https://pbs.twimg.com/media/HWrNsNGWgAADwra.png"
+      ],
+      "media_note": "기업별 부외 약정 규모 막대 차트",
+      "views": 88982,
+      "likes": 435
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-09 15:03",
+      "text": "*ANTHROPIC TO LAUNCH MARKETING OF NASDAQ IPO TUES.: IFR",
+      "ko": "IFR: 앤트로픽, 화요일(11/10) 나스닥 IPO 마케팅(로드쇼) 시작",
+      "url": "https://x.com/DeItaone/status/2119883685172302151",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 70280,
+      "likes": 221
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-09 14:05",
+      "text": "ANTHROPIC: CLAUDE FABLE 5.2 AND CLAUDE MYTHOS 5.2 ARE AVAILABLE NOW",
+      "ko": "앤트로픽, 새 모델 Claude Fable 5.2·Mythos 5.2 출시",
+      "url": "https://x.com/DeItaone/status/2119868877962084635",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 84252,
+      "likes": 308
+    },
+    {
+      "author": "Evan",
+      "handle": "@StockMKTNewz",
+      "role": "주식 시장 뉴스 계정",
+      "time_et": "2026-11-09 08:04",
+      "text": "COREWEAVE $CRWV JUST SAID IT SIGNED A MULTI-YEAR DEAL WITH SELF-DRIVING AI STARTUP WAYVE\n\nWayve will train its self-driving AI models on CoreWeave's cloud using Nvidia $NVDA Blackwell chips https://t.co/qNHI9eHx77",
+      "ko": "코어위브, 자율주행 AI 스타트업 웨이브와 다년 계약(블랙웰 기반 학습)",
+      "url": "https://x.com/StockMKTNewz/status/2119778060014698546",
+      "media": [
+        "https://pbs.twimg.com/media/HWr20u0WQAAzK1c.jpg"
+      ],
+      "media_note": "발표 캡처",
+      "views": 43087,
+      "likes": 326
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·실적 속보 계정",
+      "time_et": "2026-11-09 14:28",
+      "text": "SPACEX PLANS A $24 BILLION DATA CENTER IN TEXAS\n\n$SPCX plans to build, own and run a gas-fired power plant and a supercomputing facility at Starbase, its company town in Texas.\n\nThe estimated cost of the first phase alone is $24B\n\nStarbase's city commission will consider a tax break and development agreement for the project on Dec. 9.\n\nLast month, Elon Musk said on SpaceX's earnings call that the company can bring power online 12 to 18 months faster than anyone else.\n\nSource: Bloomberg",
+      "ko": "스페이스X, 텍사스 스타베이스에 1단계 240억 달러 가스발전소·데이터센터 계획",
+      "url": "https://x.com/wallstengine/status/2119874883937358273",
+      "media": [
+        "https://pbs.twimg.com/media/HWtOjmHbUAA-yjW.png",
+        "https://pbs.twimg.com/media/HWtO3JVbsAAa_QM.jpg"
+      ],
+      "media_note": "현장·계획 이미지 2장",
+      "views": 22274,
+      "likes": 220
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-09 11:01",
+      "text": "NY FED: US INFLATION EXPECTATIONS BEAT FORECASTS AS JOB FEARS RISE\n\nThe New York Fed's October consumer survey shows 1-year inflation expectations rising slightly above forecasts.\n\n🔸 1-year inflation: 3.91% (Est. 3.78%; Prev. 3.90%)\n🔸 3-year inflation: 3.3% (Prev. 3.3%)\n🔸 5-year inflation: 3.0% (Prev. 3.0%)\n\nMeanwhile, expectations of rising unemployment reached their highest level since April 2020.\n\nHouseholds reported improving personal financial outlooks, while gasoline inflation expectations moderated.",
+      "ko": "뉴욕연준 10월 소비자 기대: 1년 기대인플레 3.91%(예상 3.78%), 실업 상승 기대 2020년 4월 이후 최고",
+      "url": "https://x.com/DeItaone/status/2119822781529325921",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 104433,
+      "likes": 194
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스 슈왑 수석 투자전략가",
+      "time_et": "2026-11-09 13:56",
+      "text": "Consumer expectations for higher unemployment a year from now rose to 45.3% in October, highest since the pandemic, according to @NewYorkFed https://t.co/FhoDct4msF",
+      "ko": "1년 뒤 실업률 상승 예상 비율 45.3%, 팬데믹 이후 최고(뉴욕연준)",
+      "url": "https://x.com/LizAnnSonders/status/2119866814322901226",
+      "media": [
+        "https://pbs.twimg.com/media/HWtHoJVW0AAc1wp.jpg"
+      ],
+      "media_note": "뉴욕연준 실업 기대 추이 차트",
+      "views": 8499,
+      "likes": 28
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-09 12:04",
+      "text": "FED'S BARKIN WARNS INFLATION RISKS REMAIN ELEVATED\n\nRichmond Fed President Thomas Barkin says inflation remains the primary risk to the Federal Reserve's dual mandate, calling for monetary policy to move carefully.\n\nBarkin describes the US economy as “remarkably stable,” with resilient consumer spending, strong corporate earnings and healthy lending demand.\n\nHowever, businesses report broad-based cost pressures and plans to pass higher expenses on to consumers.\n\nLayoffs remain muted despite weak consumer sentiment.",
+      "ko": "리치먼드 연은 바킨: 인플레가 여전히 주된 위험, 정책은 신중히 — 경제는 \"놀랍도록 안정적\"",
+      "url": "https://x.com/DeItaone/status/2119838609792487871",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 93989,
+      "likes": 104
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-09 14:11",
+      "text": "EVEN A SMALL CPI BEAT COULD SEAL DECEMBER FED RATE HIKE\n\nRussell Investments warns that even a modest upside surprise in Tuesday's US CPI report could cement a December Fed rate hike.\n\nFollowing strong employment data and signs of economic resilience, strategist BeiChen Lin expects the Fed to have little tolerance for persistent inflation.\n\nMarkets now price an 84.5% probability of a 25-basis-point hike on December 9, up from 76.3% a day earlier",
+      "ko": "러셀: 화요일 CPI가 조금만 높아도 12월 금리 인상 확정 — 12/9 25bp 인상 확률 84.5%(전일 76.3%)",
+      "url": "https://x.com/DeItaone/status/2119870512838926622",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 84208,
+      "likes": 184
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-09 15:18",
+      "text": "US OCTOBER CPI REPORT TO OMIT ANNUAL INFLATION FIGURES\n\nThe Bureau of Labor Statistics will exclude year-over-year headline and core CPI figures from Tuesday's October inflation report.\n\nMissing October 2025 price data from last year's government shutdown prevents reliable annual comparisons. Annual real earnings growth will also be unavailable.\n\nMonthly inflation figures will still be released.\n\nEconomists expect headline CPI to rise 0.3% MoM and core CPI to increase 0.2% MoM.",
+      "ko": "10월 CPI는 2025년 셧다운 공백으로 전년비 수치 없이 발표 — 예상 헤드라인 +0.3%, 근원 +0.2%(전월비)",
+      "url": "https://x.com/DeItaone/status/2119887302021259715",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 48652,
+      "likes": 116
+    },
+    {
+      "author": "Nick Timiraos",
+      "handle": "@NickTimiraos",
+      "role": "월스트리트저널 수석 경제 기자(연준 담당)",
+      "time_et": "2026-11-09 15:11",
+      "text": "Economists expect growth in the core CPI to have moderated in October to around 0.22%, though the full range of estimates is broad enough to round down to 0.1% or round up to 0.3%.\n\nDue to the government shutdown in Oct 2025, there's no tidy year-earlier figure. https://t.co/CFM7ikw8fO",
+      "ko": "이코노미스트 10월 근원 CPI 예상 약 +0.22%, 범위는 0.1~0.3%까지",
+      "url": "https://x.com/NickTimiraos/status/2119885620676043121",
+      "media": [
+        "https://pbs.twimg.com/media/HWtYYNzWUAAJBjT.png"
+      ],
+      "media_note": "근원 CPI 전망치 분포 차트",
+      "views": 17171,
+      "likes": 53
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-09 14:42",
+      "text": "US-IRAN NUCLEAR TALKS REPORTEDLY REVIVED\n\nAl Arabiya sources say a Qatari-Pakistani proposal has revived serious US-Iran negotiations.\n\nWashington has reportedly agreed to allow uranium enrichment in Iran up to 3.67%, with Tehran accepting.\n\nDiscussions are also being arranged for the return of IAEA inspectors, while a preliminary agreement to reduce Iranian uranium enrichment is considered likely.",
+      "ko": "알아라비야: 미·이란 핵협상 재개, 미국이 3.67% 농축 허용·IAEA 사찰 복귀 논의",
+      "url": "https://x.com/DeItaone/status/2119878272146456769",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 125328,
+      "likes": 713
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 속보 계정",
+      "time_et": "2026-11-09 14:32",
+      "text": "U.S. CRUDE OIL FUTURES SETTLE AT $86.85/BBL, DOWN $3.98, 4.38 PCT",
+      "ko": "WTI 선물 배럴당 86.85달러 마감, 3.98달러(-4.38%) 하락",
+      "url": "https://x.com/DeItaone/status/2119875789793735108",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 78936,
+      "likes": 175
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": [
+      "시장 1위 비중 엔비디아가 -6.5% 빠지는데 나스닥100은 +3.2% 오른 '엔비디아 없는 AI 랠리'를 한 문장으로 보여주는 오늘의 핵심 장면.",
+      "조회 22만·좋아요 2천으로 반응도 가장 크고, 황 조사·대중 칩 판매 보도·VIX 급락 게시물과 묶어 쓰기 좋음."
+    ]
+  }
+}
