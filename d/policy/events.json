@@ -3199,6 +3199,22 @@
   "media": "AP"
  },
  {
+  "id": "e215",
+  "date": "2026-11-08",
+  "month": "2026-11",
+  "category": "이란 전쟁·유가",
+  "title": "혁명수비대 \"해협 남쪽 항로 항행 보조시설 파괴\" — 밤새 허가 없는 선박 통과 없었다",
+  "summary": "이란 혁명수비대 해군 관계자는 국영매체에 호르무즈 해협 남쪽 항로의 항행 보조 시스템이 파괴됐다고 말했습니다(로이터). 그는 밤사이 허가받지 않은 선박이 이 항로를 지나지 않았다고 밝혔지만, 누가 시설을 부쉈는지와 규모는 밝히지 않았습니다. 이란은 앞서 이 항로를 허가 없이 지나던 유조선들이 미군 도움을 받았다고 주장해 왔고, 이번 발표는 그 항로를 사실상 닫았다는 주장입니다. 이란 주장대로 남쪽 항로까지 막히면 협상 기대로 내리는 유가에도 공급 위험은 남습니다(우리 판단).",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "source_url": "https://www.timesofisrael.com/liveblog_entry/iran-says-no-unauthorized-vessels-transited-strait-of-hormuz-overnight-after-navigation-aids-destroyed/",
+  "media": "로이터(타임스오브이스라엘·알모니터 전재)",
+  "tier": "small",
+  "thread": "호르무즈 해상 충돌",
+  "has_detail": false
+ },
+ {
   "id": "e44",
   "date": "2026-11-09",
   "month": "2026-11",
