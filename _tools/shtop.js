@@ -24,6 +24,8 @@ function orig(t){return [].filter.call(t.querySelectorAll('b'),function(b){retur
 function draw(){var t=document.getElementById('take');if(!t)return;var O=orig(t);if(O.length<2)return;var card=t.closest('section,.card,article')||t;var w=t.querySelector('.mm-sh');var C=calc();if(!C)return;
  var key=C.sd+C.vd+O.join('|');if(w&&w.dataset.k===key)return;if(!w){w=el('div','mm-sh');t.appendChild(w)}w.dataset.k=key;w.textContent='';t.classList.add('mm-sh-src');
  var hd=el('div','mm-sh-hd');hd.appendChild(el('span','tag','⏱ 확인용 보조지표'));hd.appendChild(el('span','dt','잔고 '+md(C.sd)+' 기준 · 일별 '+md(C.vd)+'까지'));w.appendChild(hd);w.appendChild(el('p','mm-sh-note','실시간 신호가 아닙니다 — 잔고는 2주에 한 번, 약 8거래일 늦게 나옵니다. 주가가 움직인 뒤 "숏 때문이었나"를 확인하는 데 씁니다.'));
+ // 경고 상자(사용자 2026-11-09 '경고 문자 하나 쓰자' — 연 5천만 원 추적 비용 없이는 실시간이 어려운 참고자료, 후행·단일지표 금지)
+ var wn=document.querySelector('.mm-shwarn');if(!wn){wn=el('div','mm-shwarn');card.parentNode.insertBefore(wn,card)}wn.textContent='';wn.appendChild(el('b','','⚠ 참고용 자료입니다'));wn.appendChild(el('p','','실시간 공매도 추적은 연 5천만 원 수준의 유료 자료가 있어야 가능합니다. 이 페이지는 공개 자료로 만들어 실시간 추적이 어렵습니다.'));wn.appendChild(el('p','','지난 흐름을 보는 후행 지표로만 쓰고, 이 숫자 하나로 판단하면 안 됩니다. (지금 잔고 '+md(C.sd)+' 기준)'));
  var N=function(t){return C.nm[t]||t};
  var rows=[['많이 쌓인 곳',O[0].replace(/,\s*/g,' · ')+' — 유통 주식 중 숏 비율'],
   ['요즘 몰리는 곳',O[1].replace(/,\s*/g,' · ')+' — 최근 5일 공매도 비중, 평소 대비']];

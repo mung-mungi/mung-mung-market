@@ -24,3 +24,8 @@ html body #take .mm-sh span,html body #take .mm-sh b,html body #take .mm-sh p{di
 html body #take .mm-sh-note{display:block!important;font-size:12.5px!important}
 html body #take .mm-sh-hd .tag,html body #take .mm-sh-hd .dt{display:inline-block!important;font-size:12.5px!important}
 html body #take .mm-sh-rows li .lb{font-size:13px!important}
+
+/* 경고 상자(2026-11-09) */
+.mm-shwarn{margin:0 0 12px;padding:12px 14px;border-radius:12px;background:#fdf1ee;border:1px solid #e9b7ab;border-left:5px solid #c4453a;color:#5a2a22;line-height:1.55;word-break:keep-all}
+.mm-shwarn b{display:block;color:#b23434;font-size:1.02em;margin-bottom:4px}
+.mm-shwarn p{margin:2px 0;font-size:.94em}

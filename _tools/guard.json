@@ -249,7 +249,8 @@
   "df-b"
  ],
  "_tools/shtop.js": [
-  "mm-sh-rows"
+  "mm-sh-rows",
+  "mm-shwarn"
  ],
  "_tools/calui.js": [
   "mmc-tabs",
