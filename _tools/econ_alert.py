@@ -26,6 +26,8 @@ def want(x):
     i = x.get('id', '')
     if i.startswith('fomc-pc'):  # 의장 기자회견은 알림 안 보냄(사용자 2026-10-30, 알림 너무 많음)
         return False
+    if x.get('alert') is False:  # 발표 기관이 이번엔 그 숫자를 안 냄(예: 2026년 10월 CPI 전년비 — 2025년 10월 셧다운) → 대체 지표로 알림
+        return False
     return x.get('stars') == 3 or i.startswith('jolts-') or i.startswith('ahe-') or i.startswith('adp-')
 
 
@@ -47,6 +49,8 @@ def get(url, data=None, timeout=20):
 SPEC = {
     'cpi': ('CUUR0000SA0', 'CPIAUCNS', 'yoy'),
     'core-cpi': ('CUUR0000SA0L1E', 'CPILFENS', 'yoy'),
+    'cpi-mom': ('CUSR0000SA0', 'CPIAUCSL', 'mom'),            # 전월비(계절조정) — 전년비가 안 나오는 달의 대체(2026-11-10)
+    'core-cpi-mom': ('CUSR0000SA0L1E', 'CPILFESL', 'mom'),
     'nfp': ('CES0000000001', 'PAYEMS', 'diff'),
     'adp': (None, 'ADPMNUSNERSA', 'diff'),
     'ur': ('LNS14000000', 'UNRATE', 'level'),
@@ -108,6 +112,9 @@ def calc(k, s, tp):
     if tp not in s:
         return None
     y, m = tp
+    if k in ('cpi-mom', 'core-cpi-mom'):
+        pm = (y, m - 1) if m > 1 else (y - 1, 12)
+        return round((s[tp] / s[pm] - 1) * 100, 1) if s.get(pm) else None
     if k in ('cpi', 'core-cpi', 'ahe', 'core-pce'):
         prev = s.get((y - 1, m))
         return round((s[tp] / prev - 1) * 100, 1) if prev else None
@@ -184,6 +191,8 @@ def value(x):
     k = kind(x); tp = target_period(x)
     if k not in SPEC or not tp:
         return None
+    if x.get('actual') is not None and x.get('manual'):   # 손으로 확인해 넣은 공식 숫자(자동 읽기가 막힌 날)
+        return x['actual'], 'manual'
     bls, fred, _ = SPEC[k]
     for src, sid in (('bls', bls), ('fred', fred)):
         if not sid:
@@ -237,9 +246,9 @@ def cmp(x, v):
     return ' (예상 %s) %s' % (fmt(x, c), sign)
 
 
-SHORT = {'cpi': '소비자물가(CPI) 전년비', 'core-cpi': '근원 CPI 전년비', 'nfp': '비농업 고용', 'adp': 'ADP 민간 고용', 'ur': '실업률', 'ahe': '시간당 임금 전년비',
+SHORT = {'cpi': '소비자물가(CPI) 전년비', 'core-cpi': '근원 CPI 전년비', 'cpi-mom': '소비자물가(CPI) 전월비', 'core-cpi-mom': '근원 CPI 전월비', 'nfp': '비농업 고용', 'adp': 'ADP 민간 고용', 'ur': '실업률', 'ahe': '시간당 임금 전년비',
          'jolts': '졸트 구인 건수', 'gdp': 'GDP 속보치(연율)', 'core-pce': '근원 PCE 전년비'}
-ORDER = ['adp', 'nfp', 'ur', 'ahe', 'cpi', 'core-cpi', 'gdp', 'core-pce', 'jolts']
+ORDER = ['adp', 'nfp', 'ur', 'ahe', 'cpi-mom', 'core-cpi-mom', 'cpi', 'core-cpi', 'gdp', 'core-pce', 'jolts']
 
 
 def build(group):
