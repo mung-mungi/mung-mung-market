@@ -13,6 +13,9 @@ var HOW={cpi:'예상보다 높으면 금리 인하 기대가 줄어 주식에 �
  umich:'소비 심리 — 낮을수록 지갑이 닫힙니다. 함께 나오는 기대 물가도 봅니다.',gdp:'경제 성장 속도(연율)입니다.','core-pce':'연준이 목표로 삼는 물가입니다.',pce:'연준이 보는 물가(전체)입니다.',retail:'소비가 얼마나 버티는지 봅니다.'};
 // 판정(사용자 2026-11-04): 숫자가 '경제 강함/약함 · 물가 뜨거움/식음'인지, 지금 상황(연준 금리 흐름)에서 금리를 어느 쪽으로 미는지, 주식엔 어떤지
 var SENSE={cpi:'inf','core-cpi':'inf',ppi:'inf','core-pce':'inf',pce:'inf',ahe:'inf',nfp:'grow',adp:'grow',jolts:'grow','ism-m':'grow','ism-s':'grow',retail:'grow',gdp:'grow',umich:'grow',ur:'slack',claims:'slack'},REG=null;
+// 전년비가 안 나오는 달(2026년 10월 CPI — 2025년 10월 셧다운)은 전월비 줄로: 일정 줄의 kind가 우선(2026-11-10)
+KS.unshift('core-cpi-mom','cpi-mom');HOW['cpi-mom']='전월비 물가 — 예상보다 높으면 금리 인하 기대가 줄어 주식에 부담입니다.';HOW['core-cpi-mom']='에너지·식품을 뺀 전월비 물가 — 연준이 더 눈여겨봅니다.';SENSE['cpi-mom']=SENSE['core-cpi-mom']='inf';
+var kindOf0=kindOf;kindOf=function(id){var R=rowOf(id);return R&&R.kind?R.kind:kindOf0(id)};
 function regime(T){if(!T||!T.length)return null;var ff=T.filter(function(r){return r.ff_upper!=null}),cp=T.filter(function(r){return r.cpi_yoy!=null});if(!ff.length)return null;
  var last=ff[ff.length-1],ch=null;for(var i=ff.length-1;i>0;i--)if(ff[i].ff_upper!==ff[i-1].ff_upper){ch={dir:ff[i].ff_upper>ff[i-1].ff_upper?1:-1,m:+ff[i].month.slice(5,7)};break}
  return {dir:ch?ch.dir:0,m:ch?ch.m:0,lo:last.ff_lower,hi:last.ff_upper,cpi:cp.length?cp[cp.length-1].cpi_yoy:null}}
