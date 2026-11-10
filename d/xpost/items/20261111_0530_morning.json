@@ -1,0 +1,389 @@
+{
+  "req": "11/10(화) 뉴욕장 — 10월 CPI 상회(근원 3개월 연율 3.7%)·10년물 5% 재돌파·12월 50bp 인상론(로건·보우먼), 엔비디아 5일 -18.5%(황 조사·슈머 비판), 앤트로픽 IPO·오피스 도구발 MSFT 급락, AI 밸류체인(코어위브 장후 실적 예정·비트디어·엔스케일), 화제 차트 — 영향력 있는 계정만, 루머·익명·밈 제외 (수집 시점 05:4x KST = 미 동부 15:4x로 정규장 마감 전이라 종가·코어위브 장후 실적은 미반영)",
+  "at": "2026-11-11T05:38:00+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-10 08:43",
+      "text": "BREAKING: Nasdaq 100 futures fall -1.5% after US CPI inflation comes in higher than expected.\n\nOdds of a December rate hike are surging. https://t.co/1QL5DNAdYs",
+      "ko": "10월 CPI가 예상보다 높게 나오자 나스닥100 선물 -1.5%, 12월 금리 인상 확률 급등",
+      "url": "https://x.com/KobeissiLetter/status/2120150401379086570",
+      "media": [
+        "https://pbs.twimg.com/media/HWxJjITacAAdTql.jpg",
+        "https://pbs.twimg.com/media/HWxJjEWaAAA5hhZ.jpg"
+      ],
+      "media_note": "나스닥100 선물 급락 차트와 12월 FOMC 금리 확률 표",
+      "views": 293166,
+      "likes": 4076
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-10 08:30",
+      "text": "BREAKING: October CPI inflation rises +0.4% month-over-month, above expectations of +0.3%.\n\nCore CPI inflation rose +0.3%, also above expectations of +0.2%.\n\nBLS will not be releasing year-over-year figures due to the October 2025 government shutdown.\n\nInflation still appears to be running hot.",
+      "ko": "10월 CPI 전월비 +0.4%(예상 +0.3%), 근원 +0.3%(예상 +0.2%) — 전년비는 2025년 셧다운으로 미발표",
+      "url": "https://x.com/KobeissiLetter/status/2120147133542125818",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 341024,
+      "likes": 2850
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-10 08:31",
+      "text": "US INFLATION COMES IN HOTTER THAN EXPECTED IN OCTOBER\n\nUS headline CPI rose 0.4% in October, above the 0.3% forecast, while core CPI increased 0.3% versus 0.2% expected.\n\nFood prices jumped 0.5%, energy rose 0.7%, and gasoline climbed 1.0%.\n\nHousing costs increased 0.3%, while real earnings for private-sector workers were unchanged.\n\nThe hotter-than-expected inflation report strengthens the case for further Fed rate hikes.",
+      "ko": "10월 CPI 세부: 식품 +0.5%, 에너지 +0.7%, 휘발유 +1.0%, 주거 +0.3% — 추가 인상 근거 강화",
+      "url": "https://x.com/DeItaone/status/2120147296587251740",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 253436,
+      "likes": 1374
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-10 08:54",
+      "text": "US CORE INFLATION ACCELERATES TO HIGHEST LEVEL SINCE JANUARY 2025\n\nUS core CPI accelerated to 3.7% annualized over the past three months, its highest reading since January 2025.\n\nSupercore inflation surged to 5.5% annualized, the strongest pace since April 2024, up from 4.6% in September.\n\nMeanwhile, the six-month core CPI rate eased to 2.7% from 2.9%.\n\nAn unofficial estimate puts annual core inflation at 2.74%, up from 2.56%.",
+      "ko": "근원 CPI 3개월 연율 3.7%로 2025년 1월 이후 최고, 슈퍼코어 5.5% 연율",
+      "url": "https://x.com/DeItaone/status/2120153040959238231",
+      "media": [
+        "https://pbs.twimg.com/media/HWxL8_bWIAAf69J.png"
+      ],
+      "media_note": "근원·슈퍼코어 CPI 3개월 연율 추이 차트",
+      "views": 135797,
+      "likes": 451
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스 슈왑 수석 투자전략가",
+      "time_et": "2026-11-10 08:39",
+      "text": "3-month annualized change in October core CPI #inflation climbed to +3.75% vs. +3.41% prior https://t.co/WTmNUmp7CD",
+      "ko": "근원 CPI 3개월 연율 +3.75%로 전월 3.41%에서 상승",
+      "url": "https://x.com/LizAnnSonders/status/2120149356603204052",
+      "media": [
+        "https://pbs.twimg.com/media/HWxImXhXcAARuf9.jpg"
+      ],
+      "media_note": "근원 CPI 3개월 연율 변화 차트",
+      "views": 11954,
+      "likes": 73
+    },
+    {
+      "author": "Evan",
+      "handle": "@StockMKTNewz",
+      "role": "시장 뉴스 계정(Evan)",
+      "time_et": "2026-11-10 08:45",
+      "text": "This is where inflation was and where it wasnt in October 2026 https://t.co/BJHfMky6l6",
+      "ko": "10월 품목별로 어디서 물가가 올랐고 어디서 안 올랐는지 한눈에",
+      "url": "https://x.com/StockMKTNewz/status/2120150978368532607",
+      "media": [
+        "https://pbs.twimg.com/media/HWxHLwJXAAARa8f.jpg"
+      ],
+      "media_note": "품목별 CPI 상승률 비교 그래픽",
+      "views": 32921,
+      "likes": 62
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 데이터 플랫폼",
+      "time_et": "2026-11-10 09:17",
+      "text": "Prices are rising faster than paychecks.\n\nInflation-adjusted wages fell 0.7% from a year earlier, the sixth straight monthly decline and the worst stretch in more than three years.\n\nConsumer prices rose 3.7% over the past year, led by a 9.1% jump in gasoline.",
+      "ko": "실질임금 전년비 -0.7%, 6개월 연속 감소로 3년여 만에 최악",
+      "url": "https://x.com/unusual_whales/status/2120158787650920840",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 153465,
+      "likes": 1746
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-10 11:58",
+      "text": "BREAKING: The US 10Y Note Yield surges back above 5.00% as October CPI inflation comes in higher than expected.\n\nOdds of a December rate hike are at a new high. https://t.co/BojsGRuCUl",
+      "ko": "CPI 서프라이즈로 미 10년물 금리가 다시 5.00% 위로, 12월 인상 확률 신고점",
+      "url": "https://x.com/KobeissiLetter/status/2120199304392700371",
+      "media": [
+        "https://pbs.twimg.com/media/HWxwYcPXEAAdKt_.jpg"
+      ],
+      "media_note": "미 10년물 국채금리 차트",
+      "views": 153481,
+      "likes": 1623
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-10 09:03",
+      "text": "FED COULD ACCELERATE RATE HIKES AFTER HOT INFLATION REPORT\n\nThe Fed may face a choice between a 50-basis-point hike in December or back-to-back increases in December and January, according to WSJ's Nick Timiraos.\n\nCore CPI rose 0.3% in October, beating expectations and marking the third consecutive monthly increase of that size.\n\nFed Governor Christopher Waller warned that another hot reading could justify a 50bps hike, though other officials have yet to endorse the move.\n\nThe inflation report raises the likelihood of additional rate hikes in 2027.",
+      "ko": "WSJ 티미라오스: 연준이 12월 50bp 인상 또는 12·1월 연속 인상 선택지에 직면",
+      "url": "https://x.com/DeItaone/status/2120155460418351510",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 150849,
+      "likes": 481
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-10 14:52",
+      "text": "Rate hike expectations are soaring.\n\nIn a sudden turn of events, markets are now pricing in the possibility of a 50 basis point rate hike in December.\n\nMarket expectations for a 50 basis point hike have surged to 11%, while expectations for a 25 basis point hike stand at 84%.\n\nIt is no longer a matter of if the Fed will hike rates in December, but rather by how much.",
+      "ko": "12월 50bp 인상 기대 11%, 25bp 84% — 이제 인상 여부가 아니라 폭의 문제",
+      "url": "https://x.com/KobeissiLetter/status/2120243221406089514",
+      "media": [
+        "https://pbs.twimg.com/media/HWyd98xWoAATLFu.jpg"
+      ],
+      "media_note": "CME FedWatch식 12월 금리 확률 표",
+      "views": 97448,
+      "likes": 596
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "시장·실적 뉴스 계정",
+      "time_et": "2026-11-10 10:58",
+      "text": "FED'S LOGAN SAYS THE FED NEEDS \"AT LEAST TWO MORE\" RATE HIKES, POSSIBLY FASTER THIS WINTER\n\n\"Excess inflation is unacceptable... It may be possible to move more rapidly this winter than the FOMC has moved so far this fall,\" after that it would make sense to pause & reassess. https://t.co/RxFwuJqu1A https://t.co/LUUyoBEOrM",
+      "ko": "댈러스 연은 로건 총재 '최소 두 차례 추가 인상 필요, 이번 겨울 더 빠르게 갈 수도'",
+      "url": "https://x.com/wallstengine/status/2120184352911081963",
+      "media": [
+        "https://pbs.twimg.com/media/HWxoJHnbEAAtAeu.jpg"
+      ],
+      "media_note": "로건 총재 발언 관련 이미지",
+      "views": 20651,
+      "likes": 57
+    },
+    {
+      "author": "Nick Timiraos",
+      "handle": "@NickTimiraos",
+      "role": "WSJ 수석 경제 특파원(연준 담당)",
+      "time_et": "2026-11-10 15:33",
+      "text": "On the same day Waller and Logan opened the door to faster hikes, Fed Vice Chair Miki Bowman struck a cautious note: the benefit of more tightening “has to be carefully weighed against its costs” given recent market developments.\n\nIn her remarks, she flags the interconnected nature of the AI financing ecosystem, including \"the appearance of circular financing.”",
+      "ko": "같은 날 월러·로건이 빠른 인상 문 열었지만 보우먼 부의장은 비용 고려 신중론, AI 자금의 '순환 금융' 언급",
+      "url": "https://x.com/NickTimiraos/status/2120253541507817489",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 7829,
+      "likes": 14
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "시장·실적 뉴스 계정",
+      "time_et": "2026-11-10 15:36",
+      "text": "Fed's Bowman flags risk of a major equity correction.\n\nShe sees October core PCE at 3.3% YoY and says sticky inflation and firmer labor conditions leave the Fed with \"work to do.\"\n\nBut tighter conditions make more hikes costly. She expects core inflation closer to 2% next year. https://t.co/pkzeuMZq6Q https://t.co/cW7bJWLHlO",
+      "ko": "보우먼 '주식 밸류에이션 큰 조정 위험', 10월 근원 PCE 3.3% 전망",
+      "url": "https://x.com/wallstengine/status/2120254263637184987",
+      "media": [
+        "https://pbs.twimg.com/media/HWyoACIacAAJ0tC.png"
+      ],
+      "media_note": "보우먼 연설 관련 이미지",
+      "views": 3439,
+      "likes": 7
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-10 13:49",
+      "text": "BREAKING: Democratic Senate Leader Schumer calls President Trump's defense of Nvidia, $NVDA, CEO Jensen Huang \"troubling\" and a \"failure to address foreign espionage.\"\n\nSchumer says \"full accounting\" for President Trump's \"failure to address foreign espionage in the American tech industry\" is necessary.",
+      "ko": "슈머 민주당 원내대표, 트럼프의 젠슨 황 옹호를 '우려스럽다'며 해외 스파이 대응 실패 비판",
+      "url": "https://x.com/KobeissiLetter/status/2120227350927548503",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 174708,
+      "likes": 947
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-10 15:04",
+      "text": "*NVIDIA SHARES FALL 7.06% TO SESSION LOW",
+      "ko": "엔비디아 장중 -7.06% 세션 저점",
+      "url": "https://x.com/DeItaone/status/2120246349807469020",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 62391,
+      "likes": 158
+    },
+    {
+      "author": "Mike Zaccardi, CFA, CMT",
+      "handle": "@MikeZaccardi",
+      "role": "CFA·CMT 시장 애널리스트",
+      "time_et": "2026-11-10 15:24",
+      "text": "$NVDA -18.5% last 5 sessions... worst stretch since September 2022 @stockcharts https://t.co/LA4zot1BQD",
+      "ko": "엔비디아 최근 5거래일 -18.5%, 2022년 9월 이후 최악의 구간",
+      "url": "https://x.com/MikeZaccardi/status/2120251316953903233",
+      "media": [
+        "https://pbs.twimg.com/media/HWylVlVWMAAao8y.png"
+      ],
+      "media_note": "엔비디아 주가 차트(StockCharts)",
+      "views": 1334,
+      "likes": 5
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 데이터 플랫폼",
+      "time_et": "2026-11-10 15:17",
+      "text": "Wow.\n\nSomeone just put $46 million into Nvidia, $NVDA, $185 calls expiring March 2027, bought at the ask.\n\n34,696 contracts, volume of 35,802 vs. open interest of 5,064.\n\nIt comes as Nvidia trades near its lowest levels in months amid the board’s investigation of Jensen Huang. https://t.co/SBUufk5xvL",
+      "ko": "엔비디아 2027년 3월 만기 185달러 콜에 4,600만 달러 매수 — 황 조사 속 저점 베팅",
+      "url": "https://x.com/unusual_whales/status/2120249384340176986",
+      "media": [
+        "https://pbs.twimg.com/media/HWyjVrGbIAA7ZV2.jpg"
+      ],
+      "media_note": "옵션 대량 체결 내역 캡처",
+      "views": 60775,
+      "likes": 247
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 데이터 플랫폼",
+      "time_et": "2026-11-10 15:01",
+      "text": "Microsoft $MSFT decreased over 3% in under 30 minutes after Anthropic unveils new AI office tools, taking direct aim at Excel.\n\nShares fell from ~$543 to an intraday low of ~$526 before partly recovering. \n\nThey’re now trading at $535.91, down 1.7% on the day. https://t.co/QjspSuK4n1",
+      "ko": "앤트로픽 엑셀 겨냥 AI 오피스 도구 공개에 마이크로소프트 30분 새 -3% 이상 급락",
+      "url": "https://x.com/unusual_whales/status/2120245357913543010",
+      "media": [
+        "https://pbs.twimg.com/media/HWyeBxlaoAAPIgq.jpg"
+      ],
+      "media_note": "마이크로소프트 장중 주가 차트",
+      "views": 67866,
+      "likes": 111
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "시장·실적 뉴스 계정",
+      "time_et": "2026-11-10 14:20",
+      "text": "ANTHROPIC WILL SET ASIDE UP TO 20% OF ITS IPO SHARES FOR RETAIL INVESTORS\n\nThat's up to 165M shares, worth as much as $12.9B at the top of the $70-$78 range.\n\nUS retail buyers can get in through:\nSCHWAB\nFIDELITY\nROBINHOOD\nSOFI\nE*TRADE\n\nEurope gets a separate retail offering. https://t.co/jzALWiUA0U",
+      "ko": "앤트로픽 IPO 주식 최대 20%(1.65억 주, 최대 129억 달러)를 개인 투자자에 배정",
+      "url": "https://x.com/wallstengine/status/2120235101946831355",
+      "media": [
+        "https://pbs.twimg.com/media/HWyWgkmacAA4sT9.jpg"
+      ],
+      "media_note": "앤트로픽 IPO 개인 배정 안내 이미지",
+      "views": 18708,
+      "likes": 111
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "시장·실적 뉴스 계정",
+      "time_et": "2026-11-10 14:16",
+      "text": "NSCALE WEIGHS DELAYING $35B VALUATION IPO\n\nThe Nvidia-backed UK data center developer may delay its New York debut until 2027 after the AI selloff.\n\nNote: Earlier valued at $14.6B, Nscale also lost Microsoft as an anchor tenant at its Essex site amid grid delays. https://t.co/Wust7G0n30",
+      "ko": "엔비디아 투자 영국 데이터센터 업체 엔스케일, AI 급락 여파로 뉴욕 IPO 2027년 연기 검토",
+      "url": "https://x.com/wallstengine/status/2120234042889224479",
+      "media": [
+        "https://pbs.twimg.com/media/HWyVk4wbwAAad9O.png"
+      ],
+      "media_note": "엔스케일 관련 이미지",
+      "views": 14773,
+      "likes": 47
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "시장·실적 뉴스 계정",
+      "time_et": "2026-11-10 08:17",
+      "text": "UBS maintains its S&P 500 Year-end targets:\n\n2027 YE: 8,900\n2028 YE: 9,600\n\nSees the selloff as a buying opportunity, with fwd P/E down 20% this year despite ~33% earnings growth.\n\nExpects 18% EPS growth in 2027 & favors semis, software, hyperscalers, healthcare & financials. https://t.co/cUcA2Hc3cw",
+      "ko": "UBS, S&P500 목표 2027년말 8,900·2028년말 9,600 유지 — 매도세는 매수 기회, 반도체·하이퍼스케일러 선호",
+      "url": "https://x.com/wallstengine/status/2120143876904346037",
+      "media": [
+        "https://pbs.twimg.com/media/HWxDnD1aIAA3a9e.jpg"
+      ],
+      "media_note": "UBS 목표치 그래픽",
+      "views": 20886,
+      "likes": 67
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "시장·실적 뉴스 계정",
+      "time_et": "2026-11-10 08:48",
+      "text": "BITDEER $BTDR Q3’26 EARNINGS HIGHLIGHTS\n\n🔹 Revenue: $320.7M (Est. $256M) 🟢; +89% YoY\n🔹 EPS: -$0.46 (Est. -$0.34) 🔴\n🔹 Adj. EBITDA: $69.6M; +173% YoY\n\nAnnouncements:\n🔹 AI Cloud Backlog: ~$2.9B; ~332 IT MW secured\n🔹 Tydal: $4.7B 16-year AI/HPC lease; 121 IT MW; ~$8.0B potential value\n\nOther Q3 Metrics:\n🔹 BTC Mined: 3,855\n🔹 AI Cloud Revenue: $20.4M\n🔹 Gross Margin: 3.4%; -2,000 bps YoY\n\nKey Updates:\n🔹 Fair-Value Loss: $54.6M on digital assets loan; included in net loss\n\nComments:\n🔸 “At the same time, we are converting AI demand into long-duration contracts. Our AI Cloud revenue backlog 3 has grown to approximately US$2.9 billion, and construction at Tydal remains on target.”\n\n🔸 “Our priorities are clear: deliver Tydal, complete our financings and bring Malaysia online.”",
+      "ko": "비트디어 3분기 매출 3.21억 달러로 예상 상회, AI 클라우드 백로그 약 29억 달러",
+      "url": "https://x.com/wallstengine/status/2120151666099921221",
+      "media": [
+        "https://pbs.twimg.com/media/HWxKtGHWcAAQ8Id.jpg"
+      ],
+      "media_note": "비트디어 실적 하이라이트 이미지",
+      "views": 18787,
+      "likes": 26
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터 플랫폼",
+      "time_et": "2026-11-10 13:02",
+      "text": "CoreWeave $CRWV will report earnings today after the close, w/ an expected move of 15% 🚨 Following last week's bounce off its lower trendline, could a countertrend rally be brewing? For magnified exposure, consider the Tradr 2X Long CRWV Daily ETF $CWVX from @TradrETFs https://t.co/m0kiD630Tx",
+      "ko": "코어위브 오늘 장 마감 후 실적 발표, 예상 변동폭 15%",
+      "url": "https://x.com/Barchart/status/2120215423954157603",
+      "media": [
+        "https://pbs.twimg.com/media/HWyEfVIW4AA1aVB.png"
+      ],
+      "media_note": "코어위브 주가 추세선 차트",
+      "views": 68713,
+      "likes": 66
+    },
+    {
+      "author": "Mike Zaccardi, CFA, CMT",
+      "handle": "@MikeZaccardi",
+      "role": "CFA·CMT 시장 애널리스트",
+      "time_et": "2026-11-10 15:21",
+      "text": "$RSP -0.2%\n$SPY -0.5%\n$QQQ -0.9%\n$XLK -1.4% @finviz_com https://t.co/Ll61L6G9nl",
+      "ko": "장 막판 동일가중 RSP -0.2%, SPY -0.5%, QQQ -0.9%, XLK -1.4% — 기술주 약세",
+      "url": "https://x.com/MikeZaccardi/status/2120250611912319306",
+      "media": [
+        "https://pbs.twimg.com/media/HWyksghWMAA0h4r.jpg"
+      ],
+      "media_note": "finviz 섹터·지수 등락 캡처",
+      "views": 1386,
+      "likes": 4
+    },
+    {
+      "author": "Mike Zaccardi, CFA, CMT",
+      "handle": "@MikeZaccardi",
+      "role": "CFA·CMT 시장 애널리스트",
+      "time_et": "2026-11-10 15:27",
+      "text": "Dollar $DXY quietly very close to a 52wk high @tradingview https://t.co/PNWj2fT3Ey",
+      "ko": "달러인덱스 DXY 52주 신고가 근접",
+      "url": "https://x.com/MikeZaccardi/status/2120252054765470050",
+      "media": [
+        "https://pbs.twimg.com/media/HWymAhsWIAAT8v4.jpg"
+      ],
+      "media_note": "DXY 차트(TradingView)",
+      "views": 1302,
+      "likes": 6
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-10 08:34",
+      "text": "BITCOIN FALLS TO 11-WEEK LOW OF $73,588 AFTER U.S. INFLATION DATA - LSEG",
+      "ko": "CPI 발표 후 비트코인 7만3,588달러로 11주 최저",
+      "url": "https://x.com/DeItaone/status/2120148171041243139",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 117585,
+      "likes": 352
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": [
+      "CPI 서프라이즈 직후 나스닥100 선물 -1.5%와 12월 인상 확률 급등을 차트 두 장으로 보여주는 오늘 장의 출발점.",
+      "조회 29만·좋아요 4천으로 반응 최대, 10년물 5%·50bp 인상론·엔비디아 급락 게시물과 이어 쓰기 좋음."
+    ]
+  }
+}
