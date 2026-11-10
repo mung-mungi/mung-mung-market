@@ -126,7 +126,7 @@ def run(root):
         sys.path.insert(0, T); import hub_tidy
         o = open(sp, encoding='utf-8').read(); b = hub_tidy.tidy_supply_tw(o)
         if b != o: open(sp, 'w', encoding='utf-8').write(b); n.append('p-supply-tw')
-    for nm9 in ('p-qtr.html', 'p-insider.html', 'p-capex.html', 'p-prices.html', 'p-fx.html'):  # 2026-11-09 점검 작은 고장
+    for nm9 in ('p-qtr.html', 'p-insider.html', 'p-capex.html', 'p-prices.html', 'p-fx.html', 'p-earn.html'):  # 2026-11-09 점검 작은 고장
         fp9 = os.path.join(root, nm9)
         if os.path.exists(fp9):
             sys.path.insert(0, T); import hub_tidy

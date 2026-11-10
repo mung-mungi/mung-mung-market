@@ -161,7 +161,8 @@
   "window.__lzHollow||Object",
   "PATCH1109",
   "blobfix",
-  "'homev2'"
+  "'homev2'",
+  "mm-mgnum"
  ],
  "_tools/owner.js": [
   "own-draft",

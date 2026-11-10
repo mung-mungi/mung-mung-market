@@ -944,6 +944,12 @@ PATCH1109 += [
     ('p-fx.html', "대만달러(TWD)는 ECB 기준환율에 없어 싣지 않았습니다.", "대만달러는 위 '아시아 통화 한눈에'에서 봅니다."),
 ]
 
+PATCH1109 += [  # 실적 점수(사용자 2026-11-10 'TSMC·대만 기업 실적 C 준 이유?') — 월매출 노트는 '숫자 자체는?'이라 판정을 못 읽고 기본값 C가 붙었음
+    ('p-earn.html', "P=mgVd(a,/실적 자체/)", "P=mgVd(a,/실적 자체|숫자 자체/)/*mm-mgnum*/"),
+    ('p-earn.html', "[/실적 자체/,'📊", "[/실적 자체|숫자 자체/,'📊"),
+    ('p-earn.html', "var w=AI.w;", "if(!P.w&&!(ok+no))p='–';/*mm-mgnone*/var w=AI.w;"),  # 판정도 ✅❌도 없으면 C 대신 '–'
+]
+
 
 def tidy_patch1109(name, s):
     for pg, a, b in PATCH1109:
