@@ -3254,12 +3254,12 @@
   "thread": "이란 해협 협상",
   "tier": "small",
   "status": "진행중",
-  "title": "트럼프·밴스, 카타르 총리 회동 — 소식통 \"좋은 진전\", 이란은 \"80억 달러 합의설\" 부인",
-  "summary": "카타르의 셰이크 무함마드 총리 겸 외무장관이 9일 트럼프 대통령, 밴스 부통령과 각각 만났습니다. 회담을 아는 소식통은 알자지라에 \"좋은 진전\"이 있었다고 했지만 합의 여부는 밝히지 않았습니다. 이란 관리는 파르스통신에 동결자금 80억 달러를 받고 해협을 여는 합의설은 사실이 아니며, 봉쇄·제재 해제와 동결자금 반환 등 7개 조건 안에서만 협상한다고 했습니다. 루비오 국무장관은 앞서 이란 요구가 \"터무니없다\"며 돌파구 직전이 아니라고 해, 기대와 경계가 함께 시장에 남습니다.",
+  "title": "트럼프, 카타르 총리 회동 뒤 \"이란 전쟁 군사적으론 사실상 끝\" — 봉쇄는 그대로",
+  "summary": "트럼프 대통령은 9일 백악관에서 카타르 총리를 만난 뒤 이란 전쟁이 \"군사적으로는 사실상 끝났다\"며 \"꽤 곧 끝날 것\"이라고 했습니다. 다만 \"현상 유지\"라며 해상 봉쇄와 육상 교역을 끊는 '아이언 게이트' 태스크포스는 이어 가고, \"상황이 바뀌면 바로 칠 준비가 돼 있다\"고 했습니다. 이란의 레자이 전 혁명수비대 사령관은 \"가상의 협상에 대한 가짜뉴스를 그만 만들라\"고 했고, 이란 안보 관리도 7개 조건 이행 전에는 협상 계획이 없다고 했습니다. 추가 공습 가능성이 낮아졌다는 신호여서 유가 하락 흐름과 맞물리지만, 봉쇄와 호르무즈 통항 문제는 풀리지 않았습니다.",
   "nasdaq_pct": 2.74,
   "mkt_note": "",
-  "source_url": "https://www.arabtimesonline.com/news/qatar-pms-talks-with-trump-vance-make-good-progress-on-iran/",
-  "media": "알자지라·파르스(아랍타임스 인용)·로이터"
+  "source_url": "https://www.aljazeera.com/news/2026/11/9/trump-calls-iran-war-effectively-over-after-talks-with-qatar-pm",
+  "media": "알자지라·이란인터내셔널·AP"
  },
  {
   "month": "2026-11",
@@ -3307,6 +3307,22 @@
   "source_url": "https://www.cbsnews.com/chicago/news/gov-jb-pritzker-federal-ai-artificial-intelligence-regulations-democratic-congress/",
   "media": "CBS 시카고(캐피톨뉴스일리노이)",
   "month": "2026-11",
+  "has_detail": false
+ },
+ {
+  "id": "e219",
+  "month": "2026-11",
+  "date": "2026-11-09",
+  "category": "이란 전쟁·유가",
+  "thread": "헤그세스 거취",
+  "tier": "small",
+  "status": "진행중",
+  "title": "공화당 매시 의원, 하원에 헤그세스 탄핵안 제출 — 이란 전쟁 책임론",
+  "summary": "공화당 토머스 매시 하원의원(켄터키)이 9일 이란 전쟁을 이유로 헤그세스 국방장관 탄핵안을 하원에 냈습니다. 중간선거 참패 뒤 공화당 안에서도 전쟁 비판이 커지는 가운데 나온 움직임입니다. 표결 일정은 아직 알려지지 않았습니다. 행정부 안팎의 재공습 압박이 약해질 수 있는 신호로 볼 수 있습니다.",
+  "nasdaq_pct": 2.74,
+  "mkt_note": "",
+  "source_url": "https://www.timesofisrael.com/liveblog-november-9-2026/",
+  "media": "타임스오브이스라엘·야후뉴스",
   "has_detail": false
  },
  {
