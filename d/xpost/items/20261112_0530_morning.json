@@ -1,0 +1,197 @@
+{
+  "req": "11/11(수) 뉴욕장 — 코어위브 호실적발 AI·반도체 랠리(CRWV +20%대, MU·SK하이닉스·ORCL 급등, NVDA +5% 반등), S&P500 7,600 돌파·나스닥100 +3%, 밸류에이션·모멘텀 차트, 이란 협상 보도 — 영향력 있는 계정만, 루머·익명·밈 제외 (수집 시점 05:3x KST = 미 동부 15:3x로 정규장 마감 전이라 종가·당일 장후 실적은 미반영)",
+  "at": "2026-11-12T05:33:00+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-11 04:20",
+      "text": "BREAKING: CoreWeave stock, $CRWV, surges over +16% after posting stronger than expected earnings due to AI.\n\nNasdaq 100 futures extend gains to +1.5% on the day. https://t.co/3JwUmWRssb",
+      "ko": "코어위브 실적 호조로 주가 +16% 급등, 나스닥100 선물 +1.5% 확대",
+      "url": "https://x.com/KobeissiLetter/status/2120446576434786804",
+      "media": [
+        "https://pbs.twimg.com/media/HW1W7DiWcAAop0w.jpg"
+      ],
+      "media_note": "코어위브 주가 급등 차트",
+      "views": 219398,
+      "likes": 2286
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-11 09:35",
+      "text": "CHIP STOCKS SURGE AS COREWEAVE EASES AI FEARS\n\nSemiconductors rally after CoreWeave's results:\n\n$MRVL: +8.5%\n$MU: +6.6%\n$INTC: +6.3%\n$AVGO: +6.2%\n$AMD: +3.2%\n$NVDA: +2.6%\n$QCOM: +2.6%\n$SOXX: +4.8%",
+      "ko": "코어위브가 AI 우려를 덜자 반도체 일제히 급등(MRVL +8.5%, MU +6.6%, AVGO +6.2%, SOXX +4.8%)",
+      "url": "https://x.com/DeItaone/status/2120525754442076339",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 115121,
+      "likes": 392
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "시장·실적 뉴스 계정",
+      "time_et": "2026-11-11 15:11",
+      "text": "Strong day across the AI trade as CoreWeave's earnings lifted sentiment:\n\n$CRWV +24% - Best since June '25\n$MU +15% - Best since July\nSK hynix +11%\n$ORCL +10%\n$NVDA +4% \n\nAnthropic's pre-IPO perp on @liquidtrading also rose 8% to an implied $1.82T valuation amid strong IPO demand https://t.co/4EQQZ6vPvT",
+      "ko": "AI 트레이드 강세 마감 무렵 정리: CRWV +24%(25년 6월 이후 최고), MU +15%, SK하이닉스 +11%, ORCL +10%, NVDA +4%, 앤트로픽 상장 전 무기한 선물 +8%(내재 기업가치 1.82조 달러)",
+      "url": "https://x.com/wallstengine/status/2120610330984464588",
+      "media": [
+        "https://pbs.twimg.com/media/HW3nOtnaoAAfOq3.jpg"
+      ],
+      "media_note": "AI 관련주 당일 등락 이미지",
+      "views": 9770,
+      "likes": 42
+    },
+    {
+      "author": "Reuters",
+      "handle": "@Reuters",
+      "role": "로이터 통신",
+      "time_et": "2026-11-11 15:14",
+      "text": "CoreWeave jumped more than 20% igniting a rally in battered AI cloud stocks, as its hefty spending yielded strong revenue growth and the company signaled a pullback from the borrowing binge that had set off alarms of an AI bubble https://t.co/XkG9GYGbPP https://t.co/HminFKXOOK",
+      "ko": "로이터: 코어위브 20%+ 급등이 AI 클라우드주 랠리 촉발 — 매출 고성장, 차입 확대 속도 조절 신호",
+      "url": "https://x.com/Reuters/status/2120611063477788805",
+      "media": [
+        "https://pbs.twimg.com/amplify_video_thumb/2120607792486871040/img/3D94CVacrWdhH1j3.jpg"
+      ],
+      "media_note": "로이터 영상(첨부는 영상 썸네일)",
+      "views": 19417,
+      "likes": 5
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "시장·실적 뉴스 계정",
+      "time_et": "2026-11-11 09:58",
+      "text": "CoreWeave $CRWV CEO Michael Intrator, asked on CNBC why it isn't buying back bonds yielding ~15%, said:\n\n\"I can deploy the capital at a higher rate of return.\"\n\nJim Cramer pressed whether it can really earn over 16%.\n\nIntrator also said he canceled his 10b5-1 stock trading plan.",
+      "ko": "코어위브 CEO 인트레이터, '15% 금리 회사채를 왜 안 사들이나'에 '더 높은 수익률로 자본을 쓸 수 있다' — 10b5-1 매도 계획도 취소",
+      "url": "https://x.com/wallstengine/status/2120531724119716221",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 58198,
+      "likes": 364
+    },
+    {
+      "author": "Bloomberg",
+      "handle": "@business",
+      "role": "블룸버그 공식 계정",
+      "time_et": "2026-11-11 10:10",
+      "text": "US stock futures are rising Wednesday as better-than-expected results from Coreweave, anticipation of Anthropic’s IPO and a blockbuster quarter for OpenAI are reviving the AI trade https://t.co/ja1Dx1TcIc",
+      "ko": "블룸버그: 코어위브 호실적·앤트로픽 IPO 기대·오픈AI 대형 분기가 AI 트레이드 되살려",
+      "url": "https://x.com/business/status/2120534546932170903",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 22896,
+      "likes": 43
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-11 09:32",
+      "text": "BREAKING: The S&P 500 surges above 7,600 as dip buyers continue to rotate back into technology stocks.\n\nWe are now 3% away from a new record high. https://t.co/bllclJUVwF",
+      "ko": "S&P500 7,600 돌파 — 기술주로 저가 매수 회귀, 사상 최고치까지 3%",
+      "url": "https://x.com/KobeissiLetter/status/2120525198776754351",
+      "media": [
+        "https://pbs.twimg.com/media/HW2ebZSXMAAkZEB.jpg"
+      ],
+      "media_note": "S&P500 지수 차트",
+      "views": 348527,
+      "likes": 5203
+    },
+    {
+      "author": "First Squawk",
+      "handle": "@FirstSquawk",
+      "role": "실시간 시장 헤드라인 계정",
+      "time_et": "2026-11-11 13:29",
+      "text": "NASDAQ 100 RALLIES 3%; S&P 500 JUMPS 1.6%",
+      "ko": "장중 나스닥100 +3%, S&P500 +1.6%",
+      "url": "https://x.com/FirstSquawk/status/2120584723701670393",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 19515,
+      "likes": 39
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 뉴스 계정",
+      "time_et": "2026-11-11 13:44",
+      "text": "Nvidia $NVDA bounced 5% today to $177.\n\nThe risk reversal skew just hit its highest level of the year as the stock fell 25% in a month. https://t.co/RnklTC5Z3v",
+      "ko": "엔비디아 +5% 반등해 177달러 — 한 달 25% 하락 속 리스크 리버설 스큐 연중 최고",
+      "url": "https://x.com/unusual_whales/status/2120588369801695497",
+      "media": [
+        "https://pbs.twimg.com/media/HW3X3eGa8AAhNfx.jpg"
+      ],
+      "media_note": "엔비디아 옵션 스큐 차트",
+      "views": 83121,
+      "likes": 202
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그(골드만 트레이딩 데스크 코멘트 인용)",
+      "time_et": "2026-11-11 15:24",
+      "text": "\"SOX approaching a big level, back within sniffing distance of the 200dma = 10,865. Amazing given that NVDA-540bps since Monday vs SOX +14% in that same time period\" - GS https://t.co/YEQfSijTWD",
+      "ko": "골드만: 필라델피아 반도체지수(SOX) 200일선(10,865) 근접 — 월요일 이후 NVDA -5.4% vs SOX +14%",
+      "url": "https://x.com/zerohedge/status/2120613548111897002",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 20175,
+      "likes": 34
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그(골드만 트레이딩 데스크 코멘트 인용)",
+      "time_et": "2026-11-11 15:19",
+      "text": "\"Today is the biggest outperformance of 12m Momentum (GSPRHIMO) vs shorter term momentum with both 3m (GSPRHMO3) and 6m momentum (GSPRHMO6) on our records\" - GS S&T https://t.co/QNeNnu0vKK https://t.co/q5oSL1oOpL",
+      "ko": "골드만 트레이딩 데스크: 12개월 모멘텀이 3·6개월 모멘텀을 기록상 최대폭으로 아웃퍼폼",
+      "url": "https://x.com/zerohedge/status/2120612286909800841",
+      "media": [
+        "https://pbs.twimg.com/media/HW3toOmWAAE2b23.png"
+      ],
+      "media_note": "골드만 모멘텀 바스켓 비교 차트",
+      "views": 29842,
+      "likes": 25
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "Creative Planning 수석 시장전략가",
+      "time_et": "2026-11-11 09:39",
+      "text": "The S&P 500's forward 12-Month P/E ratio has moved down to 17.7, the lowest level since Nov 2023.\n-5-Year Avg: 19.8\n-10-Year Avg: 19.1\n-15-Year Avg: 17.6\n\nWhat's driving this?\nIn 2026, earnings estimates (+34%) haven risen much faster than prices (+7%).\n\n(Note: data as of Nov 5) https://t.co/HX3EjDMKwa",
+      "ko": "S&P500 12개월 선행 PER 17.7배로 2023년 11월 이후 최저 — 2026년 이익 추정 +34% vs 주가 +7%(11/5 기준)",
+      "url": "https://x.com/charliebilello/status/2120526731128046062",
+      "media": [
+        "https://pbs.twimg.com/media/HW2XdrWW4AIQZTZ.jpg"
+      ],
+      "media_note": "S&P500 선행 PER 추이 차트",
+      "views": 23086,
+      "likes": 187
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 뉴스 계정",
+      "time_et": "2026-11-11 15:08",
+      "text": "BREAKING: Vance weighing face-to-face talks with Iran’s security chief Mohsen Rezaei, with Trump’s backing, per Reuters.\n\nIran’s FM said no such meeting is planned. Rezaei called the reports fake news.",
+      "ko": "밴스 부통령, 트럼프 지지 속 이란 안보 수장 레자에이와 대면 회담 검토(로이터) — 이란 외무장관은 계획 없다, 레자에이는 가짜 뉴스라고 반박",
+      "url": "https://x.com/unusual_whales/status/2120609674584289508",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 48293,
+      "likes": 118
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": [
+      "코어위브 실적이 이날 AI 밸류체인 전체 반등의 출발점이고, 장 전 +16% 급등 소식을 차트와 함께 가장 널리 퍼뜨린 게시물(조회 21만·좋아요 2천+).",
+      "반도체 급등·S&P500 7,600 돌파·엔비디아 반등 게시물과 이어 쓰기 좋은 영상 첫 장면."
+    ]
+  }
+}
