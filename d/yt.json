@@ -4,6 +4,22 @@
  "channel_url": "https://www.youtube.com/@멍뭉터미널",
  "items": [
   {
+   "id": "ku1ZZy_6Ufk",
+   "title": "금리 5%에도 코어위브는 왜 뛰었나? #shorts",
+   "published": "2026-11-11T10:21:24+00:00",
+   "url": "https://www.youtube.com/shorts/ku1ZZy_6Ufk",
+   "short": true,
+   "thumb": "https://i.ytimg.com/vi/ku1ZZy_6Ufk/mqdefault.jpg"
+  },
+  {
+   "id": "dyikD9BYNVw",
+   "title": "비둘기가 꺼낸 빅스텝, 그런데 네오클라우드는 왜 살아났나 | 미국증시 시황",
+   "published": "2026-11-11T10:20:34+00:00",
+   "url": "https://www.youtube.com/watch?v=dyikD9BYNVw",
+   "short": false,
+   "thumb": "https://i.ytimg.com/vi/dyikD9BYNVw/mqdefault.jpg"
+  },
+  {
    "id": "TpStkyzg4Y8",
    "title": "반도체 무너진 주, 8조 달러는 시장 밖에서 기다린다 | 다음 주 미국증시 미리보기",
    "published": "2026-11-08T22:05:16+00:00",
@@ -34,22 +50,6 @@
    "url": "https://www.youtube.com/shorts/AS0i5SLmm2c",
    "short": true,
    "thumb": "https://i.ytimg.com/vi/AS0i5SLmm2c/mqdefault.jpg"
-  },
-  {
-   "id": "wevOVeswM4s",
-   "title": "내일 아침 아이렌 실적, 네 칸만 보시면 됩니다 | 미국증시 시황",
-   "published": "2026-11-05T13:10:33+00:00",
-   "url": "https://www.youtube.com/watch?v=wevOVeswM4s",
-   "short": false,
-   "thumb": "https://i.ytimg.com/vi/wevOVeswM4s/mqdefault.jpg"
-  },
-  {
-   "id": "F4zPlVvs48o",
-   "title": "시장은 축제인데 왜 내 AI주만 파랄까? | 미국증시 시황",
-   "published": "2026-11-05T01:27:55+00:00",
-   "url": "https://www.youtube.com/watch?v=F4zPlVvs48o",
-   "short": false,
-   "thumb": "https://i.ytimg.com/vi/F4zPlVvs48o/mqdefault.jpg"
   }
  ]
 }
