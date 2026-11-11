@@ -1,4 +1,18 @@
-<!doctype html><link data-vt rel="stylesheet" href="_tools/vt.css?v=e48f675d"><script data-vt src="_tools/vt.js?v=2e774d50"></script><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202611112227">(function(){var me="202611112227",last=0;function chk(){var n=Date.now();if(n-last<20000)return;last=n;try{fetch("version.json?t="+n,{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")chk()});addEventListener("pageshow",function(e){if(e.persisted)chk()});function ver(){if(!/\/(index\.html)?$/.test(location.pathname))return;var t=document.querySelector("header.bn .tx");if(!t||document.getElementById("mm-ver"))return;var p=document.createElement("p");p.id="mm-ver";p.textContent="v2.9";p.style.cssText="margin:3px 0 0;font-size:12px;color:#9a978f;font-variant-numeric:tabular-nums;letter-spacing:.2px";t.appendChild(p)}document.readyState!=="loading"?ver():document.addEventListener("DOMContentLoaded",ver)})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 결과</title>
+<!doctype html><link data-vt rel="stylesheet" href="_tools/vt.css?v=e48f675d"><script data-earnlz>(function(){var MO=window.MutationObserver,P=Element.prototype,QA=P.querySelectorAll,Q1=P.querySelector,mo=null;
+var RX=/([가-힣A-Za-z])\((?=[^)\d\s][^)]+\))/g,SK={SCRIPT:1,STYLE:1,TEXTAREA:1,INPUT:1,CODE:1,PRE:1,NOSCRIPT:1},NUM=/[①②③④⑤⑥⑦⑧⑨⑩]/,SPL=/(?=[①②③④⑤⑥⑦⑧⑨⑩])/,BLK={P:1,DIV:1,LI:1,UL:1,OL:1,TABLE:1,SECTION:1,ARTICLE:1,H1:1,H2:1,H3:1,H4:1},SKS='button,a,select,option,svg,script,style,textarea,input,label,nav';
+// 열 때 붙이는 본문에도 페이지를 열 때 하던 손질을 똑같이(감시기가 늦게 붙은 칸을 놓치는 두 가지): 괄호 앞 줄바꿈 자리(wrapfix.js) · ①② 번호마다 줄바꿈(페이지 가독성 스크립트)
+function prep(f){try{var w=document.createTreeWalker(f,4),n,L=[];while((n=w.nextNode()))L.push(n);L.forEach(function(n){var p=n.parentNode;if(!p||SK[p.nodeName]||(p.closest&&p.closest('svg,[contenteditable]')))return;RX.lastIndex=0;if(RX.test(n.nodeValue)){RX.lastIndex=0;n.nodeValue=n.nodeValue.replace(RX,'$1​(')}});RX.lastIndex=0}catch(e){}
+ try{[].forEach.call(QA.call(f,'p,li,td,dd,blockquote,div,span.sub'),function(el){for(var j=0;j<el.children.length;j++)if(BLK[el.children[j].tagName])return;var t=el.textContent||'',m=t.match(/[①②③④⑤⑥⑦⑧⑨⑩]/g);if(!m||m.length<2||t.length<30||el.closest(SKS))return;
+  var tw=document.createTreeWalker(el,4),ns=[],seen=false;while(tw.nextNode())ns.push(tw.currentNode);
+  ns.forEach(function(n){var s=n.textContent;if(n.parentElement&&n.parentElement.closest(SKS)){if(s.trim())seen=true;return}var parts=s.split(SPL);if(!parts.some(function(q,i){return NUM.test(q.charAt(0))&&(seen||i>0)})){if(s.trim())seen=true;return}
+   var prev=n.previousSibling,g=document.createDocumentFragment();parts.forEach(function(q,i){if(NUM.test(q.charAt(0))&&(seen||i>0)){if(!(i===0&&prev&&prev.nodeName==='BR'))g.appendChild(document.createElement('br'));q=q.replace(/^\s+/,'')}else if(i<parts.length-1)q=q.replace(/\s+$/,'');if(q)g.appendChild(document.createTextNode(q));if(q.trim())seen=true});n.parentNode.replaceChild(g,n)})})}catch(e){}}
+function fill(a){if(!a.__lz||a.classList.contains('fold'))return;var f=a.__lz;a.__lz=null;delete a.querySelectorAll;delete a.querySelector;a.appendChild(f);try{if(window.drawViz)drawViz()}catch(e){}prep(a)}
+window.__lzHollow=function(){try{if(!mo)mo=new MO(function(ms){ms.forEach(function(m){fill(m.target)})});
+ document.querySelectorAll('article[data-date].fold').forEach(function(a){if(a.__lz)return;var k=[].slice.call(a.children),i=0;while(i<k.length&&k[i].matches('.sumrow,.tag,h3'))i++;if(i>=k.length)return;
+  var f=document.createDocumentFragment();k.slice(i).forEach(function(c){f.appendChild(c)});a.__lz=f;
+  a.querySelectorAll=function(s){var r=[].slice.call(QA.call(this,s));if(this.__lz)r=r.concat([].slice.call(this.__lz.querySelectorAll(s)));return r};
+  a.querySelector=function(s){return Q1.call(this,s)||(this.__lz?this.__lz.querySelector(s):null)};
+  mo.observe(a,{attributes:true,attributeFilter:['class']})})}catch(e){}};})();</script><script data-vt src="_tools/vt.js?v=2e774d50"></script><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta charset="utf-8"><script data-ver="202611112229">(function(){var me="202611112229",last=0;function chk(){var n=Date.now();if(n-last<20000)return;last=n;try{fetch("version.json?t="+n,{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){if(!j||!j.v||j.v<=me)return;var k="mmv-"+j.v+location.pathname;try{if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1")}catch(e){}var u=new URL(location.href);u.searchParams.set("v",j.v);location.replace(u.toString())}).catch(function(){})}catch(e){}}chk();document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")chk()});addEventListener("pageshow",function(e){if(e.persisted)chk()});function ver(){if(!/\/(index\.html)?$/.test(location.pathname))return;var t=document.querySelector("header.bn .tx");if(!t||document.getElementById("mm-ver"))return;var p=document.createElement("p");p.id="mm-ver";p.textContent="v2.9";p.style.cssText="margin:3px 0 0;font-size:12px;color:#9a978f;font-variant-numeric:tabular-nums;letter-spacing:.2px";t.appendChild(p)}document.readyState!=="loading"?ver():document.addEventListener("DOMContentLoaded",ver)})();</script><meta name="color-scheme" content="light"><script>document.documentElement.setAttribute("data-theme","light")</script><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>AI 밸류체인 실적 결과</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
@@ -145,7 +159,7 @@ article+article{margin-top:56px;padding-top:44px;border-top:3px solid var(--line
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}}
 :root[data-theme="dark"]{--ib-bg:#0b0b0b;--ib-fg:#f0efec;--ib-mu:#9a9891;--ib-fa:#6b6964;--ib-pn:#161615;--ib-line:rgba(255,255,255,.1)}
 
-.ib{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;white-space:nowrap!important}.ib>*{flex:none!important}</style><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html?v=202611110414">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html?v=202611110414">경고등</a><a href="p-brief.html?v=202611110414">데일리 시황</a><a href="p-earn.html?v=202611110414" aria-current="page">실적 결과</a><a href="p-prices.html?v=202611110414">시세 보드</a><a href="p-targets.html?v=202611110414">목표주가</a><a href="p-opt.html?v=202611110414">옵션 온도계</a><a href="p-bond.html?v=202611110414">채권·금리</a><a href="p-cal.html?v=202611110414">실적 일정</a><a href="p-econ.html?v=202611110414">경제지표</a><span class="tg">흐름</span><a href="p-trend.html?v=202611110414">종목 차트</a><a href="p-short.html?v=202611110414">공매도</a><a href="p-fx.html?v=202611110414">환율</a><a href="p-capex.html?v=202611110414">설비투자</a><a href="p-policy.html?v=202611110414">주요 뉴스</a><a href="p-tech.html?v=202611110414">AI·테크 뉴스</a><span class="tg">점검</span><a href="p-supply.html?v=202611110414">한국·대만</a><a href="p-neo.html?v=202611110414">네오클라우드</a><a href="p-qtr.html?v=202611110414">분기 실적</a><a href="p-insider.html?v=202611110414">내부자·기관</a></nav><script data-navorder src="_tools/navorder.js?v=d0b6a389"></script><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script>
+.ib{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;white-space:nowrap!important}.ib>*{flex:none!important}</style><nav class="ib" aria-label="통합본 페이지"><a class="home" href="index.html?v=202611112229">⌂ 홈</a><span class="tg">핵심</span><a href="p-lights.html?v=202611112229">경고등</a><a href="p-brief.html?v=202611112229">데일리 시황</a><a href="p-earn.html?v=202611112229" aria-current="page">실적 결과</a><a href="p-prices.html?v=202611112229">시세 보드</a><a href="p-targets.html?v=202611112229">목표주가</a><a href="p-opt.html?v=202611112229">옵션 온도계</a><a href="p-bond.html?v=202611112229">채권·금리</a><a href="p-cal.html?v=202611112229">실적 일정</a><a href="p-econ.html?v=202611112229">경제지표</a><span class="tg">흐름</span><a href="p-trend.html?v=202611112229">종목 차트</a><a href="p-short.html?v=202611112229">공매도</a><a href="p-fx.html?v=202611112229">환율</a><a href="p-capex.html?v=202611112229">설비투자</a><a href="p-policy.html?v=202611112229">주요 뉴스</a><a href="p-tech.html?v=202611112229">AI·테크 뉴스</a><span class="tg">점검</span><a href="p-supply.html?v=202611112229">한국·대만</a><a href="p-neo.html?v=202611112229">네오클라우드</a><a href="p-qtr.html?v=202611112229">분기 실적</a><a href="p-insider.html?v=202611112229">내부자·기관</a></nav><script data-navorder src="_tools/navorder.js?v=d0b6a389"></script><script>(function(){var c=document.querySelector(".ib a[aria-current]");if(c)c.scrollIntoView({block:"nearest",inline:"center"});})();</script>
 <main>
 <header><script data-perf src="_tools/perf.js?v=9ba57ad6"></script><link data-hsicon rel="manifest" href="manifest.webmanifest"><meta data-hsicon name="mobile-web-app-capable" content="yes"><meta data-hsicon name="apple-mobile-web-app-capable" content="yes"><script data-hshome src="_tools/homestart.js?v=c83e2f44"></script><link data-wrapfix rel="stylesheet" href="_tools/wrapfix.css?v=5dc6fb74"><script data-wrapfix src="_tools/wrapfix.js?v=bd6f94b8"></script><link data-navfab rel="stylesheet" href="_tools/navfab.css?v=e6107edd"><script data-navfab defer src="_tools/navfab.js?v=2b317daa"></script><link data-push rel="stylesheet" href="_tools/push.css?v=48cf3e4b"><script data-push defer src="_tools/push.js?v=9cd6d2a7"></script><script data-names src="_tools/names.js?v=5e4090ac"></script><script data-stale defer src="_tools/stale.js?v=3fdaf8d0"></script><link data-descfold rel="stylesheet" href="_tools/descfold.css?v=3f4d602c"><script data-descfold defer src="_tools/descfold.js?v=61b7b9e4"></script><link data-hsicon rel="apple-touch-icon" href="img/icon180.png?v=2"><meta data-hsicon name="apple-mobile-web-app-title" content="멍뭉 터미널"><link data-splash rel="stylesheet" href="_tools/splash.css?v=f2f9596e"><script data-splash src="_tools/splash.js?v=7b362534"></script><meta name="robots" content="noindex,nofollow"><meta property="og:type" content="website"><meta property="og:site_name" content="멍뭉 터미널"><meta property="og:title" content="AI 밸류체인 실적 결과"><meta property="og:description" content="AI 밸류체인 80종목의 실적 속보·실적 캘린더·목표주가·공매도·시세를 한 화면에서."><meta property="og:url" content="https://mung-mungi.github.io/mung-mung-market/p-earn.html"><meta property="og:image" content="https://mung-mungi.github.io/mung-mung-market/og-card.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
   <div class="bf-eyebrow"><i></i>AI 밸류체인 · 실적 결과 노트</div>
@@ -295,7 +309,7 @@ function render(){
   first.forEach(a=>H.appendChild(mkb(a)));
   if(rest.length){const box=document.createElement('div');box.className='hrest';box.hidden=!st.more;rest.forEach(a=>box.appendChild(mkb(a)));
     const t=document.createElement('button');t.type='button';t.className='hmore';t.textContent=st.more?'이전 노트 접기 ▴':'이전 노트 '+rest.length+'개 더 보기 ▾';t.onclick=()=>{st.more=!st.more;render()};H.appendChild(t);H.appendChild(box)}
-  const UP=[["11/10", [["아시아", ["TSMC", "AVC", "인벤텍"]]]], ["11/11", [["새벽 장후", ["코어위브"]], ["아시아", ["콴타컴퓨터"]]]], ["11/12", [["아시아", ["폭스콘", "에이수스"]], ["저녁 장전", ["네비우스"]]]], ["11/13", [["새벽 장후", ["어플라이드머티리얼즈", "시스코", "세레브라스"]], ["아시아", ["위스트론", "기가바이트"]]]]]; // [날짜, [[구간("새벽 장후"|"아시아"|"저녁 장전"), [회사…]], …]] — 구간 이름은 실적 캘린더와 같게
+  const UP=[["11/10", [["아시아", ["TSMC", "AVC", "인벤텍"]]]], ["11/11", [["새벽 장후", ["코어위브"]], ["아시아", ["콴타컴퓨터", "위스트론"]]]], ["11/12", [["아시아", ["폭스콘", "에이수스"]], ["저녁 장전", ["네비우스"]]]], ["11/13", [["새벽 장후", ["어플라이드머티리얼즈", "시스코", "세레브라스"]], ["아시아", ["기가바이트"]]]]]; // [날짜, [[구간("새벽 장후"|"아시아"|"저녁 장전"), [회사…]], …]] — 구간 이름은 실적 캘린더와 같게
   const U=document.getElementById('ups');U.textContent='';
   UP.forEach(([d,bl])=>{const row=document.createElement('div');row.className='ud';const e=document.createElement('em');e.textContent=d;row.appendChild(e);
     const blocks=typeof bl[0]==='string'?[['',bl]]:bl; // 예전 모양([회사…])도 그대로 받음
@@ -364,7 +378,7 @@ function paint(list){
   groups.forEach((arr,title)=>{const r=document.createElement('div');r.className='run';const h=document.createElement('h2');{const m=String(title).match(/한국시간\s*([0-9]+\.[0-9]+\([^)]+\))/);h.textContent=m?m[1]+' · '+(/장전/.test(title)?'저녁 장전':/마감 후|장후/.test(title)?'새벽 장후':'아시아'):title;}r.appendChild(h);
     arr.forEach(v=>{const t=document.createElement('template');t.innerHTML=v.html;const km=String(v.run||'').match(/한국시간\s*(\d+)\.(\d+)/);if(km&&v.date){const y=+String(v.date).slice(0,4),mm=+km[1],dd=+km[2],dm=+String(v.date).slice(5,7);const yy=(dm===12&&mm===1)?y+1:y;t.content.querySelectorAll('article').forEach(x=>x.dataset.krun=yy+'-'+String(mm).padStart(2,'0')+'-'+String(dd).padStart(2,'0'))}r.appendChild(t.content)});box.appendChild(r)});
   ld.hidden=list.length>0;if(!list.length)ld.textContent='아직 올라온 노트가 없습니다';
-  drawViz();linkTickers();initFind(open);first=false;
+  linkTickers();initFind(open);(window.__lzHollow||Object)();drawViz();first=false;
 }
 // 1) 페이지에 함께 넣어 둔 저장본으로 먼저 그린다 — 로그인·앱 종류와 상관없이 누구나 보임
 let seed=null;try{seed=JSON.parse(document.getElementById('seed').textContent)}catch(e){}
@@ -421,198 +435,12 @@ db.collection('notes').onSnapshot(snap=>{const list=[];snap.docs.forEach(d=>{con
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', later); else later();
   try { new MutationObserver(later).observe(document.documentElement, { childList: true, subtree: true, characterData: true }); } catch (e) {}
 })();
-</script>
-<script data-tick src="_tools/tick.js?v=b800f154"></script><style data-hero>
-/* 페이지 머리(제목 영역) 통일 — 사용자 2026-10-28 지시: 모든 페이지 같은 모양, 정보와 무관한 안내문은 지움 */
-.mm-hero{display:flex!important;flex-direction:column!important;gap:12px!important;padding:6px 0 0!important;margin:0 0 22px!important;background:none!important;border:0!important;box-shadow:none!important}
-.mm-hero>.mm-x{display:none!important}
-.mm-hero>.mm-eb{display:flex!important;align-items:center!important;gap:8px!important;margin:0!important;font:700 12px/1.3 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;letter-spacing:.14em!important;color:#8a877f!important;text-transform:none!important}
-.mm-hero>.mm-eb i{flex:none;width:6px!important;height:6px!important;border-radius:50%;background:#b23434!important;box-shadow:0 0 0 3px rgba(178,52,52,.16)!important}
-.mm-hero>h1.mm-h1{margin:0!important;padding:0 0 14px!important;font-family:ui-serif,"New York","Noto Serif KR",Georgia,serif!important;font-size:clamp(27px,7vw,36px)!important;line-height:1.22!important;letter-spacing:-.02em!important;font-weight:700!important;color:#0b0b0b!important;border-bottom:1px solid rgba(11,11,11,.1)!important;position:relative!important;text-wrap:balance}
-.mm-hero>h1.mm-h1::after{content:""!important;position:absolute!important;left:0!important;bottom:-1px!important;width:44px!important;height:3px!important;border-radius:2px!important;background:#a26a0c!important}
-.mm-hero>h1.mm-h1 .m,.mm-hero>h1.mm-h1 b{font-weight:700!important;color:#0b0b0b!important;font-size:1em!important}
-.mm-hero>h1.mm-h1 .s,.mm-hero>h1.mm-h1 .dim,.mm-hero>h1.mm-h1 .lt{font-weight:400!important;color:#8a877f!important;font-size:1em!important;white-space:normal!important}
-.mm-hero .mm-chipx,.mm-hero>.mm-chip{display:inline-flex!important;align-self:flex-start!important;align-items:center!important;margin:0!important;padding:3px 10px!important;border:1px solid rgba(162,106,12,.45)!important;border-radius:999px!important;background:rgba(162,106,12,.06)!important;color:#8a5a08!important;font:700 12.5px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;letter-spacing:0!important;font-variant-numeric:tabular-nums}
-.mm-hero>.mm-take{margin:2px 0 0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;font-size:17px!important;line-height:1.7!important;font-weight:400!important;letter-spacing:-.005em!important;color:#1d1c1a!important;text-wrap:pretty}
-.mm-hero>.mm-take b,.mm-hero>.mm-take strong{font-weight:700!important}
-.mm-hero>.mm-take>:first-child.mm-chipx{margin:0 0 8px!important;display:flex!important;width:max-content!important;max-width:100%}
-.mm-foot{margin:36px 0 8px!important;padding-top:14px!important;border-top:1px solid rgba(11,11,11,.08)!important;font:400 12px/1.6 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;color:#9a978f!important;text-align:center}
-/* 요약 칸 큰 숫자는 모든 페이지에서 가운데 — 사용자 2026-10-28 지시(이름·설명 글자는 왼쪽 유지) */
-[class*="-tile"]:not([class*="-tiles"])>.v{display:flex!important;justify-content:center!important;align-items:baseline!important;flex-wrap:wrap!important;width:100%!important;text-align:center!important}
-[class*="-tile"]:not([class*="-tiles"])>.v.mm-vtxt{justify-content:flex-start!important;text-align:left!important}
-</style>
-<script data-hero>(function(){
-function run(){
-  var h=null,hs=document.querySelectorAll('h1');
-  for(var i=0;i<hs.length;i++){if(!hs[i].closest('.ib,.bn')){h=hs[i];break}}
-  if(!h)return;var c=h.parentElement;if(!c||c===document.body)return;
-  c.classList.add('mm-hero');h.classList.add('mm-h1');
-  for(var k=c.firstElementChild;k;k=k.nextElementSibling){
-    if(k===h||/^(META|SCRIPT|STYLE|LINK)$/.test(k.tagName))continue;
-    var s=(k.className&&k.className.baseVal===undefined?k.className:'')+' '+k.id;
-    k.classList.remove('mm-eb','mm-chip','mm-take','mm-x');
-    if(/eyebrow|(^|[\s-])eb(\s|$)/.test(s))k.classList.add('mm-eb');
-    else if(/take|chg/.test(s)){
-      var t=(k.textContent||'').replace(/\s+/g,'');
-      if(/chg/.test(s)&&(t===''||t==='—'))k.classList.add('mm-x');else{
-        k.classList.add('mm-take');var f=k.firstElementChild;
-        var n=k.firstChild;while(n&&n.nodeType===3&&!n.textContent.trim())n=n.nextSibling;if(f&&n===f&&(f.tagName==='B'||/chip|dl/.test(f.className||'')))f.classList.add('mm-chipx');}
-    }
-    else if(/date|chip|asof/.test(s))k.classList.add('mm-chip');
-    else k.classList.add('mm-x');
-  }
-  var vs=document.querySelectorAll('[class*="-tile"]>.v');for(var j=0;j<vs.length;j++){var tx=(vs[j].textContent||'').trim();vs[j].classList.toggle('mm-vtxt',tx!==''&&!/^[\s+\-−~—]*[\d.]/.test(tx)&&tx!=='—')}
-  var w=c.parentElement;
-  if(w&&!document.querySelector('.mm-foot')){var p=document.createElement('p');p.className='mm-foot';p.textContent='참고용 정보이며 매수·매도 권유가 아닙니다.';w.appendChild(p)}
-}
-run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);setTimeout(run,800);setTimeout(run,2500);
-})();</script>
-<script data-hero-fix>(function(){
-/* 아이폰 사파리: 숨긴 열이 있는 표에서 펼침 줄(colspan)이 숨은 열 폭까지 잡아 표가 찌그러지는 문제 — 펼침 줄 colspan을 보이는 열 수로 맞춤 */
-function fix(){var ts=document.querySelectorAll('table');for(var i=0;i<ts.length;i++){var t=ts[i],hs=t.querySelectorAll('thead th');if(!hs.length)continue;var n=0;for(var j=0;j<hs.length;j++)if(getComputedStyle(hs[j]).display!=='none')n++;if(!n)n=hs.length;var cs=t.querySelectorAll('tbody td[colspan]');for(var k=0;k<cs.length;k++){if(cs[k].colSpan!==n)cs[k].colSpan=n}}}
-var q=0;function later(){if(q)return;q=1;requestAnimationFrame(function(){q=0;fix()})}
-document.addEventListener('click',function(){setTimeout(fix,0);setTimeout(fix,120)},true);
-/* 반응 속도(사용자 2026-11-01): 예전엔 페이지 어디든 class가 바뀌면(누름 효과·메뉴 숨김 등) 매번 표 전체를 다시 훑었음 → 표 안이 바뀌었을 때·html의 class가 바뀔 때만 */
-function rel(m){for(var i=0;i<m.length;i++){var t=m[i].target;if(t===document.documentElement)return 1;if(t.nodeType===1&&(t.tagName==='TABLE'||(t.closest&&t.closest('table'))))return 1;if(m[i].type==='childList'){var a=m[i].addedNodes;for(var j=0;j<a.length;j++){var n=a[j];if(n.nodeType===1&&(n.tagName==='TABLE'||(n.querySelector&&n.querySelector('table'))))return 1}}}return 0}
-try{new MutationObserver(function(m){if(rel(m))later()}).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['class']})}catch(e){}
-window.addEventListener('load',fix);setTimeout(fix,600);setTimeout(fix,2000);
-})();</script>
-<style data-hero2>
-/* 페이지 머리 2판 — 사용자 2026-10-28 지시: 시세 보드에서 정한 모양(파스텔 배너 + 유리 숫자칸 + 상황별 멍뭉이)을 전 페이지에. 요약 문장은 배너 아래 흰 카드로 */
-.mm-hero.mm-hx{display:grid!important;grid-template-columns:auto 1fr!important;grid-auto-rows:auto!important;column-gap:14px!important;row-gap:0!important;align-items:center!important;align-content:center!important;position:relative!important;overflow:hidden!important;min-height:104px!important;padding:14px 92px 14px 14px!important;margin:0 0 12px!important;border-radius:22px!important;
-background:radial-gradient(120% 90% at 0% 0%,#ffe9c4 0%,transparent 55%),radial-gradient(90% 90% at 100% 0%,#fde2d6 0%,transparent 55%),radial-gradient(100% 100% at 100% 100%,#dff1e2 0%,transparent 60%),#fffaf1!important;border:1px solid rgba(255,255,255,.9)!important;box-shadow:0 4px 0 rgba(30,22,8,.06),0 12px 26px rgba(30,22,8,.08)!important}
-.mm-hero.mm-hx>*{grid-column:2!important;min-width:0}
-.mm-hero.mm-hx>.hx-side{grid-column:1!important;grid-row:1/span 3!important;display:grid!important;place-content:center;text-align:center;align-self:stretch;width:68px;min-height:76px;border-radius:15px;background:rgba(255,255,255,.7);color:#a26a0c;border:1px solid rgba(162,106,12,.25);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 3px 0 rgba(140,95,20,.1),0 6px 14px rgba(140,95,20,.12);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
-.mm-hx .hx-side b{display:block;font-size:24px;line-height:1.05;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}.mm-hx .hx-side b.ic{font-size:30px;line-height:1.1}.mm-hx .hx-side small{display:block;font-size:11px;font-weight:700;margin-top:2px}
-.mm-hero.mm-hx>.hx-cat{position:absolute!important;right:2px;bottom:-30px;height:132px;width:auto;max-width:none;pointer-events:none;filter:drop-shadow(0 3px 6px rgba(80,50,10,.16));grid-column:auto!important}
-.mm-hero.mm-hx>.mm-eb{display:block!important;margin:0!important;font:800 12px/1.3 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;letter-spacing:.16em!important;color:#a26a0c!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mm-hero.mm-hx>.mm-eb i{display:none!important}
-.mm-hero.mm-hx>h1.mm-h1{margin:2px 0 4px!important;padding:0!important;border:0!important;font:900 clamp(25px,7.4vw,32px)/1.15 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;letter-spacing:-.035em!important;color:#141210!important;text-wrap:balance}
-.mm-hero.mm-hx>h1.mm-h1::after{display:none!important}
-.mm-hero.mm-hx>.hx-meta{display:flex!important;align-items:center;gap:6px;margin:0!important;font:600 13px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;color:#6b675f}
-.mm-hx .hx-meta>i{flex:none;width:7px;height:7px;border-radius:50%;background:#2f9a4c;box-shadow:0 0 0 3px rgba(47,154,76,.18)}
-.mm-hx .hx-meta>span{display:-webkit-box!important;-webkit-box-orient:vertical;-webkit-line-clamp:2;margin:0!important;padding:0!important;border:0!important;background:none!important;color:inherit!important;font:inherit!important;letter-spacing:0!important;min-width:0;overflow:hidden}
-.mm-hero.mm-hx>.mm-chip,.mm-hero.mm-hx>.hx-meta.hx-off{display:none!important}
-.mm-hero.mm-hx>img.hx-cat{display:block!important}
-.mm-take.hx-card{display:block!important;margin:0 0 16px!important;padding:14px 16px 13px!important;border-radius:16px!important;background:#fff!important;border:1px solid rgba(0,0,0,.06)!important;box-shadow:0 3px 0 rgba(30,22,8,.08),0 8px 18px rgba(30,22,8,.08)!important;font:400 16px/1.65 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important;color:#1d1c1a!important;text-wrap:pretty}
-.mm-take.hx-card .hx-sub{display:block!important;margin:8px 0 0!important;padding:8px 0 0!important;border:0!important;border-radius:0!important;box-shadow:none!important;border-top:1px dashed rgba(0,0,0,.1)!important;font-size:14.5px!important;color:#4a463f!important;background:none!important}
-.mm-take.hx-card b,.mm-take.hx-card strong{font-weight:700!important}
-.mm-take.hx-card .mm-chipx{display:flex!important;width:max-content!important;max-width:100%;margin:0 0 6px!important;padding:2px 9px!important;border:1px solid rgba(162,106,12,.4)!important;border-radius:999px!important;background:rgba(162,106,12,.06)!important;color:#8a5a08!important;font:700 12px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif!important}
-.mm-take.hx-card::before{content:"오늘 한눈에";display:block;font:800 12px/1.3 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;letter-spacing:.06em;color:#a26a0c;margin-bottom:6px}
-@media (min-width:760px){.mm-hero.mm-hx{padding-right:150px!important;min-height:128px!important}.mm-hero.mm-hx>.hx-cat{height:170px;bottom:-38px;right:14px}}
-</style>
-<script data-hero2>(function(){
-// 페이지별: 짧은 제목 · 영문 머리말 · 멍뭉이 동작 · 숫자칸(값을 글에서 뽑거나, 없으면 아이콘)
-var CFG={
- 'p-earn':{t:'실적 결과',en:'EARNINGS',cat:'earn',ic:'📑',lb:'실적 노트'},
- 'p-cal':{t:'실적 일정',en:'EARNINGS CALENDAR',cat:'cal',ic:'🗓️',lb:'이번 주'},
- 'p-qtr':{t:'분기별 실적 추이',en:'QUARTERLY',cat:'earn',ic:'📈',lb:'분기'},
- 'p-capex':{t:'빅테크 설비투자',en:'BIG TECH CAPEX',cat:'capex',ic:'🏗️',lb:'설비투자'},
- 'p-targets':{t:'목표주가',en:'PRICE TARGETS',cat:'target',ic:'🎯',lb:'목표가',re:/상향\s*([\d,]+)\s*건/,rl:'1년 상향'},
- 'p-opt':{t:'옵션 온도계',en:'OPTIONS',cat:'opt',ic:'🌡️',lb:'온도',re:/VIX\s*([\d.]+)/,rl:'VIX'},
- 'p-lights':{t:'시장 경고등',en:'MARKET LIGHTS',cat:'lights',ic:'🚦',lb:'경고등',re:/불\s*(\d+)\s*\/\s*10/,rl:'/10 켜짐',body:1},
- 'p-bond':{t:'채권 온도계',en:'BONDS & RATES',cat:'fx',ic:'🏦',lb:'금리'},
- 'p-fx':{t:'원·달러 환율',en:'USD / KRW',cat:'fx',ic:'💱',lb:'환율',re:/달러당\s*([\d,]+)/,rl:'원'},
- 'p-brief':{t:'데일리 시황',en:'DAILY BRIEF',cat:'brief',ic:'📰',lb:'아침'},
- 'p-econ':{t:'경제지표',en:'MACRO CALENDAR',cat:'cal',ic:'📊',lb:'지표'},
- 'p-policy':{t:'주요 뉴스',en:'NEWS & POLICY',cat:'globe',ic:'🌐',lb:'뉴스'},
- 'p-tech':{t:'AI·테크 뉴스',en:'AI & TECH NEWS',cat:'wafer',ic:'🎤',lb:'테크'},
- 'p-supply':{t:'아시아 반도체 수출',en:'ASIA SUPPLY',cat:'wafer',ic:'🚢',lb:'수출'},
- 'p-neo':{t:'네오클라우드 신용',en:'NEOCLOUD',cat:'magnify',ic:'☁️',lb:'신용'},
- 'p-insider':{t:'내부자·기관 보유',en:'INSIDERS',cat:'magnify',ic:'🕵️',lb:'수급'},
- 'p-short':{t:'공매도 추이',en:'SHORT INTEREST',cat:'magnify',ic:'🐻',lb:'공매도'},
- 'p-trend':{t:'종목 차트',en:'STOCK CHART',cat:'trend',ic:'🧭',lb:'지지·저항'},
- 'p-value':{t:'저평가 서치',en:'VALUE RADAR · 공사중',cat:'magnify',ic:'🔎',lb:'3관문'},
- 'p-pros':{t:'고수 성적표',en:'PRO SCORECARD · 공사중',cat:'target',ic:'🏆',lb:'적중률'}
-};
-var key=(location.pathname.split('/').pop()||'').replace(/\.html$/,'');var C=CFG[key];if(!C)return;
-function badge(c,side){
-  if(!C.re){return}
-  var src=C.body?document.body.innerText:(document.querySelector('.mm-take')||{}).textContent||'';var m=src&&src.match(C.re);
-  if(m){side.innerHTML='<b></b><small></small>';side.firstChild.textContent=m[1];side.lastChild.textContent=C.rl;}
-}
-function run(){
-  var c=document.querySelector('.mm-hero');if(!c||c.classList.contains('pb-hx'))return;
-  var h=c.querySelector('h1.mm-h1');if(!h)return;
-  if(!c.classList.contains('mm-hx')){
-    c.classList.add('mm-hx');
-    if(!h.title)h.title=h.textContent.trim();h.textContent=C.t;document.title=document.title||C.t;
-    var eb=c.querySelector(':scope>.mm-eb');if(!eb){eb=document.createElement('p');eb.className='mm-eb';c.insertBefore(eb,h)}eb.textContent=C.en;
-    var side=document.createElement('div');side.className='hx-side';side.setAttribute('aria-hidden','true');side.innerHTML='<b class="ic"></b><small></small>';side.firstChild.textContent=C.ic;side.lastChild.textContent=C.lb;c.insertBefore(side,c.firstChild);
-    var img=document.createElement('img');img.className='hx-cat';img.alt='';img.setAttribute('aria-hidden','true');img.src='img/cat-'+C.cat+'.webp?v=1';img.onerror=function(){img.remove()};c.appendChild(img);
-    var meta=document.createElement('p');meta.className='hx-meta';meta.innerHTML='<i></i>';h.after(meta);
-  }
-  var meta=c.querySelector(':scope>.hx-meta'),chip=c.querySelector(':scope>.mm-chip');
-  if(chip&&meta){var sp=meta.querySelector('span');if(!sp){sp=document.createElement('span');meta.appendChild(sp)}var ct=chip.textContent.trim();if(sp.textContent!==ct)sp.textContent=ct}
-  if(meta)meta.classList.toggle('hx-off',!meta.querySelector('span'));
-  var tks=[].slice.call(c.querySelectorAll(':scope>.mm-take'));tks.forEach(function(t){c.after(t)});
-  var all=[].slice.call(document.querySelectorAll('.mm-take'));if(all.length){var base=all.filter(function(t){return t.querySelector('.mm-chipx')})[0]||all[0];base.classList.add('hx-card');
-    all.forEach(function(t){if(t===base)return;t.classList.remove('mm-take');t.classList.add('hx-sub');base.appendChild(t)});}
-  var s=c.querySelector(':scope>.hx-side');if(s)badge(c,s);
-}
-run();document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);[300,900,1600,2600,4000].forEach(function(t){setTimeout(run,t)});
-})();</script>
-<link data-dock rel="stylesheet" href="_tools/dock.css?v=f186b805"><script data-dock src="_tools/dock.js?v=fc04248e"></script><link data-headui rel="stylesheet" href="_tools/headui.css?v=3b65af25"><script data-headui src="_tools/headui.js?v=927b277e"></script><link data-rdbox rel="stylesheet" href="_tools/rdbox.css?v=8d082c44"><script data-rdbox src="_tools/rdbox.js?v=de85409c"></script><link data-ibdrag rel="stylesheet" href="_tools/ibdrag.css?v=fee4f713"><script data-ibdrag src="_tools/ibdrag.js?v=c9eadee1"></script><style data-ptidy>
-details.mm-fold{margin-top:8px;border-top:1px dashed rgba(0,0,0,.12)}
-details.mm-fold>summary{list-style:none;cursor:pointer;padding:9px 2px 2px;font:700 14px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:#9a6200}
-details.mm-fold>summary::-webkit-details-marker{display:none}
-details.mm-fold>summary::after{content:" ▾"}details.mm-fold[open]>summary::after{content:" ▴"}
-details.mm-fold[open]>summary{margin-bottom:8px}
-
-.mg{flex:none;display:inline-flex;gap:4px;margin-right:4px;align-items:center}
-.sumrow .mk-l small b.g{display:none}
-.mg em{font-style:normal;display:inline-flex;align-items:baseline;gap:3px;border:1.5px solid;border-radius:7px;padding:1px 7px 2px;color:#fff;line-height:1.2;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;white-space:nowrap}
-.mg em b{font-size:15px;font-weight:900}.mg em small{font-size:11px;font-weight:700;opacity:.95}
-.mg em.ai{background:#fff!important}
-.sumrow .mk-ck{align-items:center}
-.mg-how{background:#fff;border:1px solid #ecdcb8;border-radius:12px;padding:9px 12px;margin:8px 0 10px;font-size:13.5px;line-height:1.55;color:#3a3630}
-.mg-how .t{font-weight:800;color:#9a6200;font-size:12.5px;margin:0 0 3px}
-.mg-how p{margin:0}.mg-how p+p{margin-top:2px}.mg-how .sc{color:#8a877f;font-size:12px;margin-top:4px}
-.mg-how .bd{display:inline-block;min-width:34px;text-align:center;border-radius:6px;padding:0 5px;font-size:11.5px;font-weight:800;color:#fff;background:#e0573a;margin-right:4px;vertical-align:1px}
-.mg-how .bd.ai{background:#fff;color:#e0573a;border:1.5px solid #e0573a}
-.mg-how .tot{margin-top:6px;padding-top:6px;border-top:1px dashed #ecdcb8;font-weight:700;color:#141210}
-.verdict .k .mgk{display:inline-block;margin-left:6px;border-radius:6px;padding:0 6px;font-weight:900;color:#fff;letter-spacing:0;font-size:13px}
-.verdict .k .mgk.ai{background:#fff!important;border:1.5px solid}
-</style><script data-ptidy>
-window.mmFold=function(card,keep,label,open){ // card 안에서 keep(남길 것) 말고 나머지를 접기
-  if(!card||card.dataset.fold)return; card.dataset.fold=1;
-  var kids=[].slice.call(card.children).filter(function(k){return !k.matches(keep)});
-  if(!kids.length)return; var d=document.createElement('details'); d.className='mm-fold'; if(open)d.open=true;
-  var s=document.createElement('summary'); s.innerHTML='<span>'+label+'</span>'; d.appendChild(s);
-  kids[0].before(d); kids.forEach(function(k){d.appendChild(k)});
-};
-
-var MGC={'A+':'#c9302c','A':'#e0573a','B':'#c47a12','C':'#6b675f','D':'#3a6fe0'};
-function mgVd(a,re){var vs=[].slice.call(a.querySelectorAll('.verdict'));var v=vs.filter(function(x){var k=x.querySelector('.k');return k&&re.test(k.textContent)})[0];var g=v&&v.querySelector('.g');return {v:v,w:g?g.textContent.trim():''}}
-function mgRx(a){var sum=a.dataset.sum||'';var fr=[].slice.call(a.querySelectorAll('.row')).filter(function(r){return /첫 거래일 종가/.test(r.textContent)})[0];var m;
-  if(fr&&(m=fr.textContent.match(/\(([+−-]\d+(?:\.\d+)?)%/)))return parseFloat(m[1].replace('−','-'));
-  m=sum.match(/(시간외|프리마켓|장중|종가)[^·]*?([+−-]\d+(?:\.\d+)?)/);return m?parseFloat(m[2].replace('−','-')):null}
-function mgGrade(a){
-  var g=(a.dataset.g||'').match(/실적\s*([A-D]\+?)\D*AI\s*([A-D]\+?|–)?/);if(g)return {p:g[1],ai:g[2]||'–'};
-  var sum=a.dataset.sum||'',P=mgVd(a,/실적 자체|숫자 자체/)/*mm-mgnum*/,AI=mgVd(a,/AI/);
-  var ok=(sum.match(/✅/g)||[]).length,no=(sum.match(/❌/g)||[]).length,s;
-  if(/좋음|호실적/.test(P.w))s=3;else if(/보통|혼조/.test(P.w))s=2;else if(/나쁨|부진/.test(P.w))s=.8;else s=2+(ok-no)*.4;
-  s+=Math.max(-.5,Math.min(.5,(ok-no)*.25));if(/가이던스✅/.test(sum))s+=.25;
-  var r=mgRx(a);if(r!=null)s+=r>=5?.4:r<=-12?-1.2:r<=-8?-.75:r<=-3?-.25:0;
-  var p=s>=3.7?'A+':s>=2.9?'A':s>=2.2?'B':s>=1?'C':'D';
-  if(!P.w&&!(ok+no))p='–';/*mm-mgnone*/var w=AI.w;if(!w){var m=sum.match(/AI 관점 (호재|중립|경고)/);w=m?m[1]:''}
-  var why=(sum.match(/AI 관점 [^(]*\(([^)]*)\)/)||[])[1]||'',big=/사상 최대|두 배/.test(why)||(why.match(/\+(\d+)/g)||[]).some(function(x){return +x.slice(1)>=50});
-  var ai=/호재|좋음/.test(w)?(big?'A+':'A'):/중립|보통/.test(w)?'B':/경고|나쁨/.test(w)?(/❌/.test(why)?'D':'C'):'–';
-  return {p:p,ai:ai}}
-function mgBadge(t,lab,ai){var i=document.createElement('em');var c=MGC[t]||'#a8a49b';if(ai){i.className='ai';i.style.borderColor=c;i.style.color=c}else{i.style.background=c;i.style.borderColor=c}var sm=document.createElement('small');sm.textContent=lab;var b=document.createElement('b');b.textContent=t;i.append(sm,b);return i}
-function tidy(){
-  if(window.mmStepCards)window.mmStepCards();  // 실적 DB가 새로 들어와 카드가 다시 그려지면 한 줄 카드 모양도 다시(사용자 2026-10-29)
-  var arts=[].slice.call(document.querySelectorAll('article[data-sum]'));
-  arts.forEach(function(a){var G=a.__mg||(a.__mg=mgGrade(a));
-    var sr=a.querySelector(':scope>.sumrow');if(sr&&sr.querySelector('.mk-row')&&!sr.querySelector('.mg')){var d=document.createElement('span');d.className='mg';d.append(mgBadge(G.p,'실적'),mgBadge(G.ai,'AI 관점',1));var ck=sr.querySelector('.mk-ck');if(ck)ck.insertBefore(d,ck.firstChild);else{var mr=sr.querySelector('.mk-row');if(mr)mr.after(d);else sr.insertBefore(d,sr.firstChild)}}
-    if(!a.__mgk||!a.querySelector('.verdict .mgk')){a.__mgk=1;[[/실적 자체|숫자 자체/,'📊 시장이 본 이 실적 ',G.p,0],[/AI/,'🧠 AI 사슬에서 본 이 실적 ',G.ai,1]].forEach(function(z){var v=mgVd(a,z[0]).v;if(!v)return;var k=v.querySelector('.k');k.textContent=z[1];var e=document.createElement('span');e.className='mgk'+(z[3]?' ai':'');var c=MGC[z[2]]||'#a8a49b';if(z[3]){e.style.borderColor=c;e.style.color=c}else e.style.background=c;e.textContent=(z[3]?'AI 관점 ':'실적 ')+z[2];k.appendChild(e)})}});
-  var SP=document.getElementById('spot');if(!SP||SP.hidden)return;var cur=[].slice.call(SP.querySelectorAll('#spl article[data-sum]'));if(!cur.length)return;
-  var h=SP.querySelector('.mg-how');if(!h){h=document.createElement('div');h.className='mg-how';var after=SP.querySelector('p.sum')||SP.querySelector('.sh');after.after(h)}
-  var nP=cur.filter(function(a){return /^A/.test(a.__mg.p)}).length,nA=cur.filter(function(a){return /^A/.test(a.__mg.ai)}).length;
-  var html='<p class="t">점수 보는 법</p><p><span class="bd">실적</span>시장이 본 성적표 — 매출·EPS가 예상보다 잘 나왔나, 가이던스, 주가 반응</p><p><span class="bd ai">AI 관점</span>AI 사슬에서 본 성적표 — AI 매출·수주·설비투자가 커졌나 (AI와 무관한 부진은 빼고 봄)</p><p class="sc">A+ 아주 좋음 · A 좋음 · B 보통 · C 아쉬움 · D 나쁨</p><p class="tot">'+cur.length+'곳 중 실적 A 이상 '+nP+'곳 · AI 관점 A 이상 '+nA+'곳</p>';
-  if(h.innerHTML!==html)h.innerHTML=html}
-
-(function(){var q=0,n=0,t0=0,busy=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(busy)return;var now=Date.now();if(now-t0>300){t0=now;n=0}if(++n>8){if(!q){q=1;setTimeout(function(){q=0;go()},120)}return}busy=1;try{go()}finally{busy=0}}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();</script><style data-ups>body .ups{gap:0!important}body .ups .ud{display:block!important;padding:7px 0!important}body .ups .ud>em{display:block;width:auto!important;font:800 13px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:var(--accent)!important;margin:0 0 3px}body .ups .ur{display:grid;grid-template-columns:4.1em 1fr;gap:4px;align-items:baseline;padding:2px 0}body .ups .ud .ur>.slot,body .ups .ud .ur>.slot.pre,body .ups .ud .ur>.slot.post,body .ups .ud .ur>.slot.asia{all:unset!important;font:700 11.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:var(--muted)!important;white-space:nowrap!important}body .ups .ud .ur>.slot.pre{color:var(--accent)!important}body .ups .un{display:flex;flex-wrap:wrap;gap:1px 7px}body .ups .un>*{all:unset;font:500 13.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:var(--faint,#9a978f);white-space:nowrap}body .ups .un>button{color:var(--fg);font-weight:700;cursor:pointer}body .ups .un>button i{font-style:normal;font-size:10.5px;color:var(--up);margin-left:1px}</style><script data-ups>(function(){function fix(){var u=document.getElementById('ups');if(!u)return;u.querySelectorAll('.ud').forEach(function(d){if(d.dataset.tidy)return;d.dataset.tidy=1;var kids=[].slice.call(d.childNodes),row=null,names=null;kids.forEach(function(n){if(n.nodeType===1&&n.tagName==='EM')return;if(n.nodeType===1&&n.classList.contains('slot')){row=document.createElement('div');row.className='ur';names=document.createElement('div');names.className='un';row.appendChild(n);row.appendChild(names);d.appendChild(row);return}if(n.nodeType!==1){if(n.textContent.trim()==='')n.remove();return}if(!names){row=document.createElement('div');row.className='ur';row.appendChild(document.createElement('span'));names=document.createElement('div');names.className='un';row.appendChild(names);d.appendChild(row)}if(n.tagName==='SPAN')n.textContent=n.textContent.replace(/\s*·\s*$/,'');if(n.tagName==='BUTTON'&&/✓/.test(n.textContent)){n.textContent=n.textContent.replace(/\s*✓\s*/,'');var c=document.createElement('i');c.textContent='✓';n.appendChild(c)}names.appendChild(n)})})}var k=0;(function go(){fix();var u=document.getElementById('ups');if(u&&!u.__mo){u.__mo=1;new MutationObserver(function(){fix()}).observe(u,{childList:true})}if(++k<20&&!(u&&u.children.length))setTimeout(go,300)})()})();</script><style data-sumrow>body .sumrow{align-items:flex-start!important}body .sumrow .ar{font-size:0!important;flex:none;align-self:flex-start;padding-top:4px}body .sumrow .ar::after{content:"▾";font-size:15px;color:var(--muted)}body .sumrow[aria-expanded=true] .ar::after{content:"▴"}body .sumrow .nm{font-family:inherit!important;font-weight:800!important}body .sumrow .sm.sx{display:block;margin-top:5px;font-size:13.5px!important;line-height:1.5!important;color:var(--fg)!important}body .sm.sx .sx-ai{display:block}body .sm.sx .sx-ai b{font-weight:800;margin-right:5px}body .sm.sx .sx-ai b.g{color:var(--up)}body .sm.sx .sx-ai b.y{color:#a26a0c}body .sm.sx .sx-ai b.r{color:var(--down)}body .sm.sx .sx-ck{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px}body .sm.sx .sx-ck i{font-style:normal;font-size:11.5px;font-weight:700;padding:1px 5px;border-radius:5px;background:color-mix(in srgb,var(--up) 11%,transparent);color:var(--up)}body .sm.sx .sx-ck i.n{background:color-mix(in srgb,var(--down) 11%,transparent);color:var(--down)}body .sm.sx .sx-ck i.m{background:var(--panel-2,#f1f0ec);color:var(--fg)}body .sm.sx .sx-ck i.m.dn{color:var(--down)}body .sm.sx .sx-ck i.m.up{color:var(--up)}body .sm.sx .sx-et{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);line-height:1.5}</style><script data-sumrow>(function(){function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}function fix(){document.querySelectorAll('.sumrow .sm:not(.sx)').forEach(function(sm){var raw=sm.textContent.trim();if(!raw)return;var parts=raw.split(/\s+·\s+/),ai='',chk=[],react=[],etc=[];parts.forEach(function(p,i){if(i===0&&/^\d{1,2}\/\d{1,2}$/.test(p))return;var m=p.match(/^AI 관점\s*(호재|중립|경고)\s*(?:\((.*)\))?$/);if(m){var c=m[1]==='호재'?'g':m[1]==='중립'?'y':'r';ai='<b class="'+c+'">AI '+m[1]+'</b>'+esc(m[2]||'');return}if(/(프리마켓|시간외|장중|종가)\s*[+\-−–~]/.test(p)&&p.length<30){var neg=/[\-−–]\d/.test(p)&&!/\+/.test(p);react.push('<i class="m '+(neg?'dn':'up')+'">'+esc(p)+'</i>');return}if(/[✅❌]/.test(p)){var re=/([^\s✅❌()]+)\s*(✅|❌)\s*(\([^)]*\))?/g,x,any=false;while((x=re.exec(p))){any=true;chk.push('<i class="'+(x[2]==='✅'?'':'n')+'">'+esc(x[1])+' '+(x[2]==='✅'?'✓':'✗')+'</i>');if(x[3])etc.push(esc(x[1]+' '+x[3].slice(1,-1)))}if(any)return}etc.push(esc(p))});var h='';if(ai)h+='<span class="sx-ai">'+ai+'</span>';if(chk.length||react.length)h+='<span class="sx-ck">'+chk.join('')+react.join('')+'</span>';if(etc.length)h+='<span class="sx-et">'+etc.join(' · ')+'</span>';if(h){sm.innerHTML=h;sm.classList.add('sx');var br=sm.previousElementSibling;if(br&&br.tagName==='BR')br.remove()}})}var k=0;(function go(){fix();if(!document.__sxmo){document.__sxmo=1;new MutationObserver(function(){fix()}).observe(document.body,{childList:true,subtree:true})}if(++k<10)setTimeout(go,400)})()})();</script><style data-earnui>/* 실적 결과: 시세 보드 양식(사용자 2026-10-29) — 찾기·탭·한 줄 카드 */
+</script><script data-tick src="_tools/tick.js?v=b800f154"></script><link data-hero rel="stylesheet" href="_tools/hero.css?v=ed67bad7">
+<script data-hero src="_tools/hero.js?v=daf04e3e"></script>
+<script data-hero-fix src="_tools/herofix.js?v=0e3d58b5"></script>
+<link data-hero2 rel="stylesheet" href="_tools/hero2.css?v=6f1456d8">
+<script data-hero2 src="_tools/hero2.js?v=4d6ebe99"></script>
+<link data-ibdrag rel="stylesheet" href="_tools/ibdrag.css?v=fee4f713"><script data-ibdrag src="_tools/ibdrag.js?v=c9eadee1"></script><style data-hits>body .hits{display:flex!important;flex-wrap:wrap!important;gap:3px!important;align-items:center}body .hits>.hday,body .hits>.hmore,body .hits>.hrest{flex-basis:100%}body .hits>.hday{flex-basis:auto;font-size:11.5px!important;padding:1px 7px!important;margin-right:2px}body .hits .hrest:not([hidden]){display:flex!important;flex-wrap:wrap!important;gap:3px!important}body .hits .hrest[hidden]{display:none!important}body .hits button:not(.hmore){display:inline-flex!important;align-items:center!important;gap:3px!important;padding:2px 7px!important;border-radius:999px!important;min-height:0!important;line-height:1.3!important;box-shadow:0 1px 0 rgba(0,0,0,.08)}body .hits button:not(.hmore) b{font-size:12px!important;font-weight:700;letter-spacing:-.03em}body .hits button:not(.hmore) span{display:none!important}body .hits .hmore{flex-basis:auto!important;border-radius:999px!important;padding:2px 9px!important;font-size:12px!important}</style><style data-ups>body .ups{gap:0!important}body .ups .ud{display:block!important;padding:7px 0!important}body .ups .ud>em{display:block;width:auto!important;font:800 13px/1.3 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:var(--accent)!important;margin:0 0 3px}body .ups .ur{display:grid;grid-template-columns:4.1em 1fr;gap:4px;align-items:baseline;padding:2px 0}body .ups .ud .ur>.slot,body .ups .ud .ur>.slot.pre,body .ups .ud .ur>.slot.post,body .ups .ud .ur>.slot.asia{all:unset!important;font:700 11.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif!important;color:var(--muted)!important;white-space:nowrap!important}body .ups .ud .ur>.slot.pre{color:var(--accent)!important}body .ups .un{display:flex;flex-wrap:wrap;gap:1px 7px}body .ups .un>*{all:unset;font:500 13.5px/1.5 -apple-system,"Apple SD Gothic Neo",sans-serif;color:var(--faint,#9a978f);white-space:nowrap}body .ups .un>button{color:var(--fg);font-weight:700;cursor:pointer}body .ups .un>button i{font-style:normal;font-size:10.5px;color:var(--up);margin-left:1px}</style><script data-ups>(function(){function fix(){var u=document.getElementById('ups');if(!u)return;u.querySelectorAll('.ud').forEach(function(d){if(d.dataset.tidy)return;d.dataset.tidy=1;var kids=[].slice.call(d.childNodes),row=null,names=null;kids.forEach(function(n){if(n.nodeType===1&&n.tagName==='EM')return;if(n.nodeType===1&&n.classList.contains('slot')){row=document.createElement('div');row.className='ur';names=document.createElement('div');names.className='un';row.appendChild(n);row.appendChild(names);d.appendChild(row);return}if(n.nodeType!==1){if(n.textContent.trim()==='')n.remove();return}if(!names){row=document.createElement('div');row.className='ur';row.appendChild(document.createElement('span'));names=document.createElement('div');names.className='un';row.appendChild(names);d.appendChild(row)}if(n.tagName==='SPAN')n.textContent=n.textContent.replace(/\s*·\s*$/,'');if(n.tagName==='BUTTON'&&/✓/.test(n.textContent)){n.textContent=n.textContent.replace(/\s*✓\s*/,'');var c=document.createElement('i');c.textContent='✓';n.appendChild(c)}names.appendChild(n)})})}var k=0;(function go(){fix();var u=document.getElementById('ups');if(u&&!u.__mo){u.__mo=1;new MutationObserver(function(){fix()}).observe(u,{childList:true})}if(++k<20&&!(u&&u.children.length))setTimeout(go,300)})()})();</script><style data-sumrow>body .sumrow{align-items:flex-start!important}body .sumrow .ar{font-size:0!important;flex:none;align-self:flex-start;padding-top:4px}body .sumrow .ar::after{content:"▾";font-size:15px;color:var(--muted)}body .sumrow[aria-expanded=true] .ar::after{content:"▴"}body .sumrow .nm{font-family:inherit!important;font-weight:800!important}body .sumrow .sm.sx{display:block;margin-top:5px;font-size:13.5px!important;line-height:1.5!important;color:var(--fg)!important}body .sm.sx .sx-ai{display:block}body .sm.sx .sx-ai b{font-weight:800;margin-right:5px}body .sm.sx .sx-ai b.g{color:var(--up)}body .sm.sx .sx-ai b.y{color:#a26a0c}body .sm.sx .sx-ai b.r{color:var(--down)}body .sm.sx .sx-ck{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px}body .sm.sx .sx-ck i{font-style:normal;font-size:11.5px;font-weight:700;padding:1px 5px;border-radius:5px;background:color-mix(in srgb,var(--up) 11%,transparent);color:var(--up)}body .sm.sx .sx-ck i.n{background:color-mix(in srgb,var(--down) 11%,transparent);color:var(--down)}body .sm.sx .sx-ck i.m{background:var(--panel-2,#f1f0ec);color:var(--fg)}body .sm.sx .sx-ck i.m.dn{color:var(--down)}body .sm.sx .sx-ck i.m.up{color:var(--up)}body .sm.sx .sx-et{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);line-height:1.5}</style><script data-sumrow>(function(){function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML}function fix(){document.querySelectorAll('.sumrow .sm:not(.sx)').forEach(function(sm){var raw=sm.textContent.trim();if(!raw)return;var parts=raw.split(/\s+·\s+/),ai='',chk=[],react=[],etc=[];parts.forEach(function(p,i){if(i===0&&/^\d{1,2}\/\d{1,2}$/.test(p))return;var m=p.match(/^AI 관점\s*(호재|중립|경고)\s*(?:\((.*)\))?$/);if(m){var c=m[1]==='호재'?'g':m[1]==='중립'?'y':'r';ai='<b class="'+c+'">AI '+m[1]+'</b>'+esc(m[2]||'');return}if(/(프리마켓|시간외|장중|종가)\s*[+\-−–~]/.test(p)&&p.length<30){var neg=/[\-−–]\d/.test(p)&&!/\+/.test(p);react.push('<i class="m '+(neg?'dn':'up')+'">'+esc(p)+'</i>');return}if(/[✅❌]/.test(p)){var re=/([^\s✅❌()]+)\s*(✅|❌)\s*(\([^)]*\))?/g,x,any=false;while((x=re.exec(p))){any=true;chk.push('<i class="'+(x[2]==='✅'?'':'n')+'">'+esc(x[1])+' '+(x[2]==='✅'?'✓':'✗')+'</i>');if(x[3])etc.push(esc(x[1]+' '+x[3].slice(1,-1)))}if(any)return}etc.push(esc(p))});var h='';if(ai)h+='<span class="sx-ai">'+ai+'</span>';if(chk.length||react.length)h+='<span class="sx-ck">'+chk.join('')+react.join('')+'</span>';if(etc.length)h+='<span class="sx-et">'+etc.join(' · ')+'</span>';if(h){sm.innerHTML=h;sm.classList.add('sx');var br=sm.previousElementSibling;if(br&&br.tagName==='BR')br.remove()}})}var k=0;(function go(){fix();if(!document.__sxmo){document.__sxmo=1;new MutationObserver(function(){fix()}).observe(document.body,{childList:true,subtree:true})}if(++k<10)setTimeout(go,400)})()})();</script><style data-earnui>/* 실적 결과: 시세 보드 양식(사용자 2026-10-29) — 찾기·탭·한 줄 카드 */
 body #find{display:flex;flex-direction:column;gap:8px}
 body #find #fq{border-radius:12px!important;padding:9px 12px!important;font-size:15px!important;border:1px solid rgba(11,11,11,.1)!important;background:#fff!important;box-shadow:inset 0 1px 2px rgba(0,0,0,.05)!important;margin:0!important}
 body #find .fl{display:flex!important;align-items:center;gap:8px;margin:0!important}
@@ -916,4 +744,64 @@ function load(){fetch('d/ir/ir.json?v='+Date.now(),{cache:'no-store'}).then(func
  if(location.hash==='#ir')setTimeout(function(){var s=document.getElementById('irlib');if(s)scrollTo(0,s.getBoundingClientRect().top+scrollY-70)},300)}).catch(function(){render()})}
 var n=0;(function go(){if(build())load();else if(++n<30)setTimeout(go,300)})();
 })();
-</script><style data-hits>body .hits{display:flex!important;flex-wrap:wrap!important;gap:3px!important;align-items:center}body .hits>.hday,body .hits>.hmore,body .hits>.hrest{flex-basis:100%}body .hits>.hday{flex-basis:auto;font-size:11.5px!important;padding:1px 7px!important;margin-right:2px}body .hits .hrest:not([hidden]){display:flex!important;flex-wrap:wrap!important;gap:3px!important}body .hits .hrest[hidden]{display:none!important}body .hits button:not(.hmore){display:inline-flex!important;align-items:center!important;gap:3px!important;padding:2px 7px!important;border-radius:999px!important;min-height:0!important;line-height:1.3!important;box-shadow:0 1px 0 rgba(0,0,0,.08)}body .hits button:not(.hmore) b{font-size:12px!important;font-weight:700;letter-spacing:-.03em}body .hits button:not(.hmore) span{display:none!important}body .hits .hmore{flex-basis:auto!important;border-radius:999px!important;padding:2px 9px!important;font-size:12px!important}</style>
+</script><link data-headui rel="stylesheet" href="_tools/headui.css?v=3b65af25"><script data-headui src="_tools/headui.js?v=927b277e"></script><link data-rdbox rel="stylesheet" href="_tools/rdbox.css?v=8d082c44"><script data-rdbox src="_tools/rdbox.js?v=de85409c"></script><link data-dock rel="stylesheet" href="_tools/dock.css?v=f186b805"><script data-dock src="_tools/dock.js?v=fc04248e"></script><style data-ptidy>
+details.mm-fold{margin-top:8px;border-top:1px dashed rgba(0,0,0,.12)}
+details.mm-fold>summary{list-style:none;cursor:pointer;padding:9px 2px 2px;font:700 14px/1.4 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;color:#9a6200}
+details.mm-fold>summary::-webkit-details-marker{display:none}
+details.mm-fold>summary::after{content:" ▾"}details.mm-fold[open]>summary::after{content:" ▴"}
+details.mm-fold[open]>summary{margin-bottom:8px}
+
+.mg{flex:none;display:inline-flex;gap:4px;margin-right:4px;align-items:center}
+.sumrow .mk-l small b.g{display:none}
+.mg em{font-style:normal;display:inline-flex;align-items:baseline;gap:3px;border:1.5px solid;border-radius:7px;padding:1px 7px 2px;color:#fff;line-height:1.2;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;white-space:nowrap}
+.mg em b{font-size:15px;font-weight:900}.mg em small{font-size:11px;font-weight:700;opacity:.95}
+.mg em.ai{background:#fff!important}
+.sumrow .mk-ck{align-items:center}
+.mg-how{background:#fff;border:1px solid #ecdcb8;border-radius:12px;padding:9px 12px;margin:8px 0 10px;font-size:13.5px;line-height:1.55;color:#3a3630}
+.mg-how .t{font-weight:800;color:#9a6200;font-size:12.5px;margin:0 0 3px}
+.mg-how p{margin:0}.mg-how p+p{margin-top:2px}.mg-how .sc{color:#8a877f;font-size:12px;margin-top:4px}
+.mg-how .bd{display:inline-block;min-width:34px;text-align:center;border-radius:6px;padding:0 5px;font-size:11.5px;font-weight:800;color:#fff;background:#e0573a;margin-right:4px;vertical-align:1px}
+.mg-how .bd.ai{background:#fff;color:#e0573a;border:1.5px solid #e0573a}
+.mg-how .tot{margin-top:6px;padding-top:6px;border-top:1px dashed #ecdcb8;font-weight:700;color:#141210}
+.verdict .k .mgk{display:inline-block;margin-left:6px;border-radius:6px;padding:0 6px;font-weight:900;color:#fff;letter-spacing:0;font-size:13px}
+.verdict .k .mgk.ai{background:#fff!important;border:1.5px solid}
+</style><script data-ptidy>
+window.mmFold=function(card,keep,label,open){ // card 안에서 keep(남길 것) 말고 나머지를 접기
+  if(!card||card.dataset.fold)return; card.dataset.fold=1;
+  var kids=[].slice.call(card.children).filter(function(k){return !k.matches(keep)});
+  if(!kids.length)return; var d=document.createElement('details'); d.className='mm-fold'; if(open)d.open=true;
+  var s=document.createElement('summary'); s.innerHTML='<span>'+label+'</span>'; d.appendChild(s);
+  kids[0].before(d); kids.forEach(function(k){d.appendChild(k)});
+};
+
+var MGC={'A+':'#c9302c','A':'#e0573a','B':'#c47a12','C':'#6b675f','D':'#3a6fe0'};
+function mgVd(a,re){var vs=[].slice.call(a.querySelectorAll('.verdict'));var v=vs.filter(function(x){var k=x.querySelector('.k');return k&&re.test(k.textContent)})[0];var g=v&&v.querySelector('.g');return {v:v,w:g?g.textContent.trim():''}}
+function mgRx(a){var sum=a.dataset.sum||'';var fr=[].slice.call(a.querySelectorAll('.row')).filter(function(r){return /첫 거래일 종가/.test(r.textContent)})[0];var m;
+  if(fr&&(m=fr.textContent.match(/\(([+−-]\d+(?:\.\d+)?)%/)))return parseFloat(m[1].replace('−','-'));
+  m=sum.match(/(시간외|프리마켓|장중|종가)[^·]*?([+−-]\d+(?:\.\d+)?)/);return m?parseFloat(m[2].replace('−','-')):null}
+function mgGrade(a){
+  var g=(a.dataset.g||'').match(/실적\s*([A-D]\+?)\D*AI\s*([A-D]\+?|–)?/);if(g)return {p:g[1],ai:g[2]||'–'};
+  var sum=a.dataset.sum||'',P=mgVd(a,/실적 자체|숫자 자체/)/*mm-mgnum*/,AI=mgVd(a,/AI/);
+  var ok=(sum.match(/✅/g)||[]).length,no=(sum.match(/❌/g)||[]).length,s;
+  if(/좋음|호실적/.test(P.w))s=3;else if(/보통|혼조/.test(P.w))s=2;else if(/나쁨|부진/.test(P.w))s=.8;else s=2+(ok-no)*.4;
+  s+=Math.max(-.5,Math.min(.5,(ok-no)*.25));if(/가이던스✅/.test(sum))s+=.25;
+  var r=mgRx(a);if(r!=null)s+=r>=5?.4:r<=-12?-1.2:r<=-8?-.75:r<=-3?-.25:0;
+  var p=s>=3.7?'A+':s>=2.9?'A':s>=2.2?'B':s>=1?'C':'D';
+  if(!P.w&&!(ok+no))p='–';/*mm-mgnone*/var w=AI.w;if(!w){var m=sum.match(/AI 관점 (호재|중립|경고)/);w=m?m[1]:''}
+  var why=(sum.match(/AI 관점 [^(]*\(([^)]*)\)/)||[])[1]||'',big=/사상 최대|두 배/.test(why)||(why.match(/\+(\d+)/g)||[]).some(function(x){return +x.slice(1)>=50});
+  var ai=/호재|좋음/.test(w)?(big?'A+':'A'):/중립|보통/.test(w)?'B':/경고|나쁨/.test(w)?(/❌/.test(why)?'D':'C'):'–';
+  return {p:p,ai:ai}}
+function mgBadge(t,lab,ai){var i=document.createElement('em');var c=MGC[t]||'#a8a49b';if(ai){i.className='ai';i.style.borderColor=c;i.style.color=c}else{i.style.background=c;i.style.borderColor=c}var sm=document.createElement('small');sm.textContent=lab;var b=document.createElement('b');b.textContent=t;i.append(sm,b);return i}
+function tidy(){
+  if(window.mmStepCards)window.mmStepCards();  // 실적 DB가 새로 들어와 카드가 다시 그려지면 한 줄 카드 모양도 다시(사용자 2026-10-29)
+  var arts=[].slice.call(document.querySelectorAll('article[data-sum]'));
+  arts.forEach(function(a){var G=a.__mg||(a.__mg=mgGrade(a));
+    var sr=a.querySelector(':scope>.sumrow');if(sr&&sr.querySelector('.mk-row')&&!sr.querySelector('.mg')){var d=document.createElement('span');d.className='mg';d.append(mgBadge(G.p,'실적'),mgBadge(G.ai,'AI 관점',1));var ck=sr.querySelector('.mk-ck');if(ck)ck.insertBefore(d,ck.firstChild);else{var mr=sr.querySelector('.mk-row');if(mr)mr.after(d);else sr.insertBefore(d,sr.firstChild)}}
+    if(!a.__mgk||!a.querySelector('.verdict .mgk')){a.__mgk=1;[[/실적 자체|숫자 자체/,'📊 시장이 본 이 실적 ',G.p,0],[/AI/,'🧠 AI 사슬에서 본 이 실적 ',G.ai,1]].forEach(function(z){var v=mgVd(a,z[0]).v;if(!v)return;var k=v.querySelector('.k');k.textContent=z[1];var e=document.createElement('span');e.className='mgk'+(z[3]?' ai':'');var c=MGC[z[2]]||'#a8a49b';if(z[3]){e.style.borderColor=c;e.style.color=c}else e.style.background=c;e.textContent=(z[3]?'AI 관점 ':'실적 ')+z[2];k.appendChild(e)})}});
+  var SP=document.getElementById('spot');if(!SP||SP.hidden)return;var cur=[].slice.call(SP.querySelectorAll('#spl article[data-sum]'));if(!cur.length)return;
+  var h=SP.querySelector('.mg-how');if(!h){h=document.createElement('div');h.className='mg-how';var after=SP.querySelector('p.sum')||SP.querySelector('.sh');after.after(h)}
+  var nP=cur.filter(function(a){return /^A/.test(a.__mg.p)}).length,nA=cur.filter(function(a){return /^A/.test(a.__mg.ai)}).length;
+  var html='<p class="t">점수 보는 법</p><p><span class="bd">실적</span>시장이 본 성적표 — 매출·EPS가 예상보다 잘 나왔나, 가이던스, 주가 반응</p><p><span class="bd ai">AI 관점</span>AI 사슬에서 본 성적표 — AI 매출·수주·설비투자가 커졌나 (AI와 무관한 부진은 빼고 봄)</p><p class="sc">A+ 아주 좋음 · A 좋음 · B 보통 · C 아쉬움 · D 나쁨</p><p class="tot">'+cur.length+'곳 중 실적 A 이상 '+nP+'곳 · AI 관점 A 이상 '+nA+'곳</p>';
+  if(h.innerHTML!==html)h.innerHTML=html}
+
+(function(){var q=0,n=0,t0=0,busy=0;function go(){try{tidy()}catch(e){}}go();document.addEventListener('DOMContentLoaded',go);window.addEventListener('load',go);try{new MutationObserver(function(){if(busy)return;var now=Date.now();if(now-t0>300){t0=now;n=0}if(++n>8){if(!q){q=1;setTimeout(function(){q=0;go()},120)}return}busy=1;try{go()}finally{busy=0}}).observe(document.documentElement,{subtree:true,childList:true})}catch(e){}})();</script><link data-chipfold rel="stylesheet" href="_tools/chipfold.css?v=1a5c2c61"><script data-chipfold src="_tools/chipfold.js?v=bc687aab"></script>
