@@ -28,13 +28,16 @@ fetch('d/notice.html?t='+Date.now(),{cache:'no-store'}).then(function(r){return 
     return true}
   var n=0,t=setInterval(function(){place();if(++n>15)clearInterval(t)},700);place();
   // 2) 전체 화면 공지 — 이번 창에서 닫았거나 '오늘 하루 안 보기'면 안 띄움
-  if(sg('mm-ntc-closed')===id||lg('mm-ntc-hide')===id+'|'+today())return;
+  // 알림을 눌러 들어오면(#ntc) 닫았던 적이 있어도 다시 띄움 · 앱이 이미 열려 있으면 hashchange로 다시 띄움(사용자 2026-11-12 '알림 눌렀는데 이동 안 함')
+  var forced=/^#ntc/.test(location.hash);
+  addEventListener('hashchange',function(){if(/^#ntc/.test(location.hash)&&!document.querySelector('.mm-ntc-pop'))open()});
+  if(!forced&&(sg('mm-ntc-closed')===id||lg('mm-ntc-hide')===id+'|'+today()))return;
   function open(){
     if(document.getElementById('mm-splash')){setTimeout(open,400);return}
     var p=document.createElement('div');p.className='mm-ntc-pop';
     p.innerHTML='<div class="mm-ntc-sheet"><div class="mm-ntc-top"><span class="chip">📌 전달사항 · '+dt+'</span><span class="x" role="button" aria-label="닫기">✕</span></div><div class="mm-ntc-scroll"><h3></h3><div class="mm-ntcb"></div></div><div class="mm-ntc-bot"><button class="d">오늘 하루 안 보기</button><button class="c">닫기</button></div></div>';
     p.querySelector('h3').textContent=tt;p.querySelector('.mm-ntcb').innerHTML=body;
-    function shut(hide){ss('mm-ntc-closed',id);if(hide)ls('mm-ntc-hide',id+'|'+today());p.classList.remove('on');document.documentElement.classList.remove('mm-ntc-lock');setTimeout(function(){p.remove()},300)}
+    function shut(hide){try{if(/^#ntc/.test(location.hash))history.replaceState(null,'',location.pathname+location.search)}catch(e){}ss('mm-ntc-closed',id);if(hide)ls('mm-ntc-hide',id+'|'+today());p.classList.remove('on');document.documentElement.classList.remove('mm-ntc-lock');setTimeout(function(){p.remove()},300)}
     p.querySelector('.x').addEventListener('click',function(){shut(false)});
     p.querySelector('.c').addEventListener('click',function(){shut(false)});
     p.querySelector('.d').addEventListener('click',function(){shut(true)});

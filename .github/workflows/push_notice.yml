@@ -37,6 +37,6 @@ jobs:
           PUSH_TEST: ${{ github.event.inputs.msg || env.AUTO_MSG }}
           PUSH_TITLE: ${{ github.event.inputs.title || env.AUTO_TITLE }}
           PUSH_OWNER: ${{ github.event.inputs.owner }}
-          PUSH_PATH: ${{ github.event.inputs.path || 'index.html' }}
+          PUSH_PATH: ${{ github.event.inputs.path || 'index.html#ntc' }}  # 누르면 전달사항 창이 다시 열리게(사용자 2026-11-12)
           PUSH_KIND: ${{ github.event_name == 'push' && '속보' || '전달' }}
         run: python3 -I _tools/push_notify.py .
