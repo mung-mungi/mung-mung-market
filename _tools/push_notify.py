@@ -53,7 +53,7 @@ if len(new) == 1:
     body = ((c['up'] + ' ▶ ' + x['name'] + ' · ') if c.get('up') else '') + (x.get('sum') or '실적 결과 노트가 올라왔습니다.'); body = body[:170]; url = SITE + 'p-earn.html#' + x['id']
 else:
     names = ' · '.join(x['name'] for x in new[:4]) + (' 외 %d곳' % (len(new) - 4) if len(new) > 4 else '')
-    head = '【실적】 새 실적 %d곳' % len(new); body = names; url = SITE + 'p-earn.html'
+    head = '【실적】 새 실적 %d곳' % len(new); body = names; url = SITE + 'p-earn.html#' + new[0]['id']  # 여러 곳이어도 맨 위 노트 자리로(2026-11-12)
 req = urllib.request.Request('https://api.onesignal.com/notifications', method='POST',
     headers={'Content-Type': 'application/json', 'Authorization': 'Key ' + KEY},
     data=json.dumps({'app_id': APP, 'included_segments': ['Total Subscriptions'], 'target_channel': 'push',

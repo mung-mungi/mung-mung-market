@@ -162,7 +162,8 @@
   "PATCH1109",
   "blobfix",
   "'homev2'",
-  "mm-mgnum"
+  "mm-mgnum",
+  "['earngo']"
  ],
  "_tools/owner.js": [
   "own-draft",
@@ -371,5 +372,8 @@
  ],
  "_tools/notice.js": [
   "/^#ntc/"
+ ],
+ "_tools/push_notify.py": [
+  "p-earn.html#' + new[0]['id']"
  ]
 }

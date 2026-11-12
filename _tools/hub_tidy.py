@@ -959,3 +959,5 @@ def tidy_patch1109(name, s):
 EASY['p-brief.html'] = EASY.get('p-brief.html', []) + ['blobfix']  # 깨진 그림 숨김(2026-11-09 점검)
 EASY['index.html'] = EASY.get('index.html', []) + ['homev2']  # 메인 13칸 재구성(2026-11-09 점검)
 EASY['p-fx.html'] = EASY.get('p-fx.html', []) + ['fxasia']  # 아시아 통화(2026-11-09)
+EASY['p-earn.html'] = EASY.get('p-earn.html', []) + ['earngo']  # 실적 알림 → 그 노트로(2026-11-12)
+EASY['index.html'] = EASY.get('index.html', []) + ['owngo']  # 주인장 보고 알림 → 주인장 칸(2026-11-12)

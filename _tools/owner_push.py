@@ -22,7 +22,7 @@ a, b = before('d/report/latest.json'), now('d/report/latest.json')
 if b.get('id') and b.get('id') != a.get('id'):
     print('업무 보고:', b.get('title'), b.get('msg'))
     with open(os.environ.get('GITHUB_OUTPUT', '/dev/stdout'), 'a', encoding='utf-8') as g:
-        g.write('title=%s\nmsg=%s\npath=%s\n' % ((b.get('title') or '🐾 작업 보고')[:60], (b.get('msg') or '')[:180].replace('\n', ' '), b.get('path') or 'index.html'))
+        g.write('title=%s\nmsg=%s\npath=%s\n' % ((b.get('title') or '🐾 작업 보고')[:60], (b.get('msg') or '')[:180].replace('\n', ' '), b.get('path') or 'index.html#own'))
     sys.exit(0)
 if out:
     msg = ' · '.join(out) + ' — 주인장 칸에서 확인하세요'
