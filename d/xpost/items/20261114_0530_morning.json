@@ -1,0 +1,263 @@
+{
+  "req": "11/13(금) 뉴욕장 — 10월 PPI 6.5%(예상 소폭 하회)와 연준 인상 전망, 젠슨 황 퇴진 여파 속 AI 트레이드 되돌림(나스닥100 장중 -2.4%·200일선 하회 위기, NVDA 주간 최악), 엔비디아 후임 보도, CCC 스프레드·재정적자·감원 차트 — 영향력 있는 계정만, 루머·익명·밈 제외 (수집 시점 05:4x KST = 미 동부 15:4x로 정규장 마감 전이라 종가·장후 반응은 미반영)",
+  "at": "2026-11-14T05:39:00+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-13 08:32",
+      "text": "BREAKING: October PPI Inflation rises to 6.5%, its highest level since November 2022.\n\nCore PPI Inflation was 5.0%, in-line with expectations of 5.0%.\n\nCPI, PPI, and PCE inflation continue to push higher in the US.\n\nAll signs point toward a December rate hike.",
+      "ko": "10월 PPI 전년비 6.5%로 2022년 11월 이후 최고, 근원 5.0% 예상 부합 — 12월 금리 인상 가능성 시사",
+      "url": "https://x.com/KobeissiLetter/status/2121234688391942348",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 430253,
+      "likes": 5352
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-13 08:30",
+      "text": "US PRODUCER INFLATION COOLS SLIGHTLY BUT REMAINS ELEVATED AT 6.5%\n\nUS producer prices rose 0.3% in October, below the 0.4% forecast, while annual PPI reached 6.5%, versus 6.6% expected.\n\n🔸 Headline PPI MoM: +0.3% vs. +0.4% expected\n🔸 Headline PPI YoY: +6.5% vs. +6.6% expected\n🔸 Core PPI MoM: +0.3%, in line\n🔸 Core PPI YoY: +5.0%, in line\n🔸 PPI excluding food, energy and trade MoM: +0.5%\n\nThe modest headline miss offers some relief, but persistent underlying price pressures reinforce concerns about inflation.",
+      "ko": "10월 PPI 전월비 +0.3%(예상 +0.4%), 전년비 6.5%(예상 6.6%)로 소폭 하회했지만 기저 물가 압력은 여전",
+      "url": "https://x.com/DeItaone/status/2121234275437514881",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 158620,
+      "likes": 528
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-13 08:59",
+      "text": "Huge pipeline inflation: intermediate PPI more than double final. https://t.co/cDys5TPhjK https://t.co/s2OBZL5PVP",
+      "ko": "중간재 PPI가 최종재의 두 배 이상 — 파이프라인 인플레이션 경고(제로헤지 기사 인용)",
+      "url": "https://x.com/zerohedge/status/2121241426524528948",
+      "media": [
+        "https://pbs.twimg.com/media/HXAp041WgAEpWP2.jpg"
+      ],
+      "media_note": "중간재·최종재 PPI 비교 차트",
+      "views": 66460,
+      "likes": 155
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-13 13:11",
+      "text": "*BOFA ECONOMISTS ADD THIRD RATE HIKE TO FED VIEW BY MARCH 2027",
+      "ko": "BofA 이코노미스트, 2027년 3월까지 연준 세 번째 금리 인상 전망 추가",
+      "url": "https://x.com/DeItaone/status/2121305018515050580",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 96421,
+      "likes": 177
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "시장·실적 뉴스 계정",
+      "time_et": "2026-11-13 10:44",
+      "text": "US stocks are lower:\n\nNasdaq: -1.6%\nS&P 500: -0.9%\nRussell 2000: -1.2%\nDow: -0.1%\n\nIt comes after producer price inflation came in cooler than expected, with the AI trade unwinding: $NBIS is down 14%, $CRWV -12%, $AMD -9.5% and $NVDA -4.5% https://t.co/pAGXTxOCvt https://t.co/7V0oBoGAop",
+      "ko": "PPI 예상 하회에도 미 증시 하락(나스닥 -1.6%, S&P500 -0.9%) — AI 트레이드 되돌림: NBIS -14%, CRWV -12%, AMD -9.5%, NVDA -4.5%",
+      "url": "https://x.com/wallstengine/status/2121267950263112149",
+      "media": [
+        "https://pbs.twimg.com/media/HXBB86HbsAExGHo.jpg"
+      ],
+      "media_note": "주요 지수·AI주 등락 이미지",
+      "views": 21270,
+      "likes": 71
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-13 11:06",
+      "text": "*NASDAQ 100 FALLS 2.4% TO INTRADAY LOW; S&P 500 DOWN 1.1%",
+      "ko": "나스닥100 장중 -2.4% 저점, S&P500 -1.1%",
+      "url": "https://x.com/zerohedge/status/2121273475755065553",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 69880,
+      "likes": 348
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 제공사",
+      "time_et": "2026-11-13 13:52",
+      "text": "JUST IN 🚨: Nasdaq 100 $QQQ on track to close below its 200-day moving average 📉 📉 https://t.co/xWiAHbLVM4",
+      "ko": "나스닥100(QQQ), 200일 이동평균선 아래 마감 앞둬",
+      "url": "https://x.com/Barchart/status/2121315354366369826",
+      "media": [
+        "https://pbs.twimg.com/media/HXBtEtAXEAAVfXh.jpg"
+      ],
+      "media_note": "QQQ 일봉과 200일 이동평균선 차트",
+      "views": 39318,
+      "likes": 450
+    },
+    {
+      "author": "Bloomberg",
+      "handle": "@business",
+      "role": "블룸버그 통신",
+      "time_et": "2026-11-13 15:20",
+      "text": "Nvidia stock is on track to notch its worst week in more than 18 months, as its share price continues to reel after Jensen Huang’s ouster from the top chipmaker https://t.co/XXqb8ghL3C",
+      "ko": "젠슨 황 퇴진 여파로 엔비디아 주가 18개월여 만에 최악의 주간 기록 앞둬",
+      "url": "https://x.com/business/status/2121337331722391611",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 11263,
+      "likes": 3
+    },
+    {
+      "author": "Evan",
+      "handle": "@StockMKTNewz",
+      "role": "시장 뉴스 계정(Evan)",
+      "time_et": "2026-11-13 12:13",
+      "text": "Nvidia $NVDA reportedly approached Arm Holdings $ARM CEO boss Rene Hass to take over as the CEO of Nvidia - Financial Times https://t.co/O8bRJjT8On",
+      "ko": "FT 보도: 엔비디아가 Arm CEO 르네 하스에게 차기 CEO직 제안",
+      "url": "https://x.com/StockMKTNewz/status/2121290377064034773",
+      "media": [
+        "https://pbs.twimg.com/media/HXBWWHHWcAA1Pi_.jpg"
+      ],
+      "media_note": "르네 하스 사진·FT 보도 이미지",
+      "views": 32700,
+      "likes": 179
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "시장·실적 뉴스 계정",
+      "time_et": "2026-11-13 14:11",
+      "text": "NVIDIA BOARD TELLS CNBC IT HAS NOT FORMALLY ENGAGED WITH ANY POTENTIAL CANDIDATES, SAYS ANY SPECULATION IS PREMATURE",
+      "ko": "엔비디아 이사회 \"후보와 공식 접촉한 적 없다, 후임 추측은 시기상조\"(CNBC)",
+      "url": "https://x.com/wallstengine/status/2121319954209497368",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 19249,
+      "likes": 193
+    },
+    {
+      "author": "Reuters",
+      "handle": "@Reuters",
+      "role": "로이터 통신",
+      "time_et": "2026-11-13 08:55",
+      "text": "Chinese AI stocks fell on concerns that Jensen Huang’s exit could further restrict access to US chips. But Joachim Klement of Panmure Liberum says China could emerge as the biggest winner, as a slowdown in US AI expansion gives Beijing room to catch up https://t.co/YZdHdMR7Ns https://t.co/o2Ce9gNlSD",
+      "ko": "젠슨 황 퇴진이 미국 칩 접근을 더 제한할 수 있다는 우려에 중국 AI주 하락, 다만 중국이 최대 수혜자 될 수도(판뮤어 리베룸)",
+      "url": "https://x.com/Reuters/status/2121240414640615744",
+      "media": [
+        "https://pbs.twimg.com/amplify_video_thumb/2121215501846355968/img/SKZjNrGitqUV0S90.jpg"
+      ],
+      "media_note": "로이터 영상(썸네일)",
+      "views": 51975,
+      "likes": 92
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "시장·실적 뉴스 계정",
+      "time_et": "2026-11-13 15:20",
+      "text": "UBS sees a much larger opportunity for server CPUs as agentic AI scales. Q3 server CPU shipments rose 31% YoY and 6% QoQ, vs. typical seasonal growth of 3%.\n\nMarket share by units:\n$ARM: 20.1% (+250 bps)\nIntel $INTC: 51.5% (-240 bps)\n$AMD: 28.4% (roughly flat)\n\nUBS estimates unconstrained CPU demand could support a market exceeding $500 billion by 2030, but memory supply constraints could limit the realizable market to around $210 billion.\n\nAnalyst Timothy Arcuri wrote: \"CPU demand could be substantially higher than our current forecasts.\"",
+      "ko": "UBS: 에이전트 AI 확산으로 서버 CPU 기회 확대 — 3분기 출하 +31% YoY, ARM 점유율 20.1%(+250bp), 2030년 시장 5천억 달러 가능",
+      "url": "https://x.com/wallstengine/status/2121337321257885844",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 8606,
+      "likes": 40
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "시장·실적 뉴스 계정",
+      "time_et": "2026-11-13 13:14",
+      "text": "Anthropic CEO Dario Amodei on why it buys compute conservatively:\n\n\"Compute is the deepest business dilemma that the company faces.\"\n\n\"If you buy too much ... you can financially overextend yourself. If you buy too little, then you can't support inference for customers ... you can't do the R&D.\"\n\n\"We actually tend to buy on the low side. We buy relatively little compute for relatively low cost ahead of time.\"\n\n\"If things go really well ... we have an opportunity to buy compute on the spot market. That costs more, but we're buying it in worlds where we're doing particularly well.\"\n\nHe compares the strategy to buying an insurance policy.",
+      "ko": "앤트로픽 CEO 아모데이: 컴퓨트는 가장 큰 사업 딜레마, 선구매는 보수적으로 하고 잘될 때 현물로 추가 구매(보험에 비유)",
+      "url": "https://x.com/wallstengine/status/2121305655462228382",
+      "media": [
+        "https://pbs.twimg.com/amplify_video_thumb/2121304873736232960/img/AHKOeff6NG5S-CdU.jpg"
+      ],
+      "media_note": "아모데이 인터뷰 영상(썸네일)",
+      "views": 34136,
+      "likes": 206
+    },
+    {
+      "author": "Sundar Pichai",
+      "handle": "@sundarpichai",
+      "role": "알파벳·구글 CEO",
+      "time_et": "2026-11-13 15:23",
+      "text": "What we shipped this week @google \n\nMonday: Two new 8th-gen TPUs\nTuesday: Gemini 4 Carbon\n- AlphaProof Code verified Signal protocol\n- Gemini Robotics 2.5\nWednesday: AlphaGenome 2 for disease research\n- Gemini Decisions API in AI Studio\nThursday: Gemini 4 Hydrogen\n- intelligent eyewear pre-orders\nFriday: U2 new album (ok not us but exciting!)\n\nonwards!",
+      "ko": "순다르 피차이: 이번 주 구글 출시 — 8세대 TPU 2종, Gemini 4 Carbon·Hydrogen, Gemini Robotics 2.5 등",
+      "url": "https://x.com/sundarpichai/status/2121338095664808238",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 18681,
+      "likes": 562
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-13 15:32",
+      "text": "US credit stress is intensifying among the weakest-quality borrowers:\n\nSpreads on CCC-rated and lower US corporate bonds are up to 13.3%, near the highest since the 2020 pandemic.\n\nSince January 2026, this figure has surged +490 basis points.\n\nAs a result, these spreads have now surpassed the 2022 bear market peak of 12.9%.\n\nFor perspective, during the 2020 February-March surge, this metric peaked at 18.8%.\n\nMeanwhile, the spread differential between CCC- and BBB-rated corporate debt has widened to ~1,200 basis points, its widest level in at least 5 years.\n\nThis means investors are demanding ~12 percentage points more in compensation to hold the lowest-rated debt rather than first-notch investment-grade corporate bonds.\n\nCracks are spreading quickly through the lowest-quality credit.",
+      "ko": "CCC 이하 회사채 스프레드 13.3%로 팬데믹 이후 최고권, 연초 대비 +490bp, CCC-BBB 격차 약 1,200bp로 최소 5년 내 최대",
+      "url": "https://x.com/KobeissiLetter/status/2121340353420886376",
+      "media": [
+        "https://pbs.twimg.com/media/HXCDzslWAAAflZK.jpg"
+      ],
+      "media_note": "CCC 회사채 스프레드 추이 차트",
+      "views": 31260,
+      "likes": 98
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-13 08:02",
+      "text": "GOLDMAN SACHS SEES S&P 500 HITTING 8,700 IN 2027\n\nGoldman Sachs forecasts the S&P 500 reaching 8,700 over the next 12 months, implying 14% upside from 7,619 and a 16% total return including dividends.\n\nChief global equity strategist Peter Oppenheimer expects 11% earnings growth in 2027, supported by more attractive valuations and lower bond yields, despite slowing AI spending growth.\n\nGoldman favors US hyperscalers and selected defensive stocks, remaining overweight the US and Japan while underweight Europe.\n\nThe bank expects equities to keep rising, but warns volatility will remain elevated.",
+      "ko": "골드만삭스, 향후 12개월 S&P500 목표 8,700(현 7,619 대비 +14%) — 미국 하이퍼스케일러 선호",
+      "url": "https://x.com/DeItaone/status/2121227192054985163",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 126905,
+      "likes": 380
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-13 13:57",
+      "text": "US layoffs continue to slow sharply:\n\nUS job cut announcements dropped -71% YoY in October, to 43,994, the lowest October total since 2023.\n\nYear-to-date announcements have declined -44% YoY, to 617,189, the lowest January-October total since 2022.\n\nThis is also the 8th month of 2026 with job cuts down YoY versus the corresponding month of the prior year.\n\nFood companies led October layoffs with 9,677 cuts, while Technology has recorded the most reductions year-to-date, at 171,501, up +21% YoY.\n\nMarket and economic conditions accounted for 16,407 announced job cuts in October, or ~37% of all layoffs, bringing the year-to-date total to 130,531, overtaking AI as the most cited reason.\n\nUS employers appear to be slowing job cuts.",
+      "ko": "10월 미 감원 발표 43,994건으로 전년비 -71%, 2023년 이후 최저 10월",
+      "url": "https://x.com/KobeissiLetter/status/2121316445711732776",
+      "media": [
+        "https://pbs.twimg.com/media/HXBuEFiWwAEB4z8.jpg"
+      ],
+      "media_note": "챌린저 감원 발표 추이 차트",
+      "views": 90320,
+      "likes": 470
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "크리에이티브 플래닝 수석 시장전략가",
+      "time_et": "2026-11-13 13:26",
+      "text": "October: The Federal Government took in $369 billion and spent $773 billion.\n\nThat's a $404 billion deficit in just one month.\n\nDon't try this at home.",
+      "ko": "10월 연방정부 세입 3,690억 달러·세출 7,730억 달러로 한 달 적자 4,040억 달러",
+      "url": "https://x.com/charliebilello/status/2121308746639118659",
+      "media": [
+        "https://pbs.twimg.com/media/HXBm_adXUAAbDwF.png"
+      ],
+      "media_note": "10월 연방 재정수지 차트",
+      "views": 32110,
+      "likes": 636
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": "10월 PPI 6.5%로 2022년 11월 이후 최고 — 오늘 금리·연준 인상 전망(BofA 3회 인상 추가)과 증시 하락의 출발점.\n조회 43만 회로 이번 묶음 최대 반응, 영상 첫 장면 인용 카드로 쓰기 좋음."
+  }
+}
