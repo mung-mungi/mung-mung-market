@@ -16,6 +16,7 @@ var SENSE={cpi:'inf','core-cpi':'inf',ppi:'inf','core-pce':'inf',pce:'inf',ahe:'
 // 전년비가 안 나오는 달(2026년 10월 CPI — 2025년 10월 셧다운)은 전월비 줄로: 일정 줄의 kind가 우선(2026-11-10)
 KS.unshift('core-cpi-mom','cpi-mom');HOW['cpi-mom']='전월비 물가 — 예상보다 높으면 금리 인하 기대가 줄어 주식에 부담입니다.';HOW['core-cpi-mom']='에너지·식품을 뺀 전월비 물가 — 연준이 더 눈여겨봅니다.';SENSE['cpi-mom']=SENSE['core-cpi-mom']='inf';
 var kindOf0=kindOf;kindOf=function(id){var R=rowOf(id);return R&&R.kind?R.kind:kindOf0(id)};
+KS.unshift('core-ppi');HOW['core-ppi']='식품·에너지를 뺀 생산자물가 전월비 — 몇 달 뒤 소비자물가로 넘어오는 기초 압력입니다.';SENSE['core-ppi']='inf';
 function regime(T){if(!T||!T.length)return null;var ff=T.filter(function(r){return r.ff_upper!=null}),cp=T.filter(function(r){return r.cpi_yoy!=null});if(!ff.length)return null;
  var last=ff[ff.length-1],ch=null;for(var i=ff.length-1;i>0;i--)if(ff[i].ff_upper!==ff[i-1].ff_upper){ch={dir:ff[i].ff_upper>ff[i-1].ff_upper?1:-1,m:+ff[i].month.slice(5,7)};break}
  return {dir:ch?ch.dir:0,m:ch?ch.m:0,lo:last.ff_lower,hi:last.ff_upper,cpi:cp.length?cp[cp.length-1].cpi_yoy:null}}

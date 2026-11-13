@@ -28,6 +28,8 @@ def want(x):
         return False
     if x.get('alert') is False:  # 발표 기관이 이번엔 그 숫자를 안 냄(예: 2026년 10월 CPI 전년비 — 2025년 10월 셧다운) → 대체 지표로 알림
         return False
+    if i.startswith('ppi-') or i.startswith('core-ppi-'):   # 생산자물가도 알림(사용자 2026-11-13 "PPI도 잊지마")
+        return True
     return x.get('stars') == 3 or i.startswith('jolts-') or i.startswith('ahe-') or i.startswith('adp-')
 
 
@@ -59,6 +61,8 @@ SPEC = {
     'gdp': (None, 'A191RL1Q225SBEA', 'level'),
     'core-pce': (None, 'PCEPILFE', 'yoy'),
 }
+SPEC['ppi'] = ('WPSFD4', 'PPIFIS', 'mom')              # 생산자물가 전월비(계절조정, 2026-11-13)
+SPEC['core-ppi'] = ('WPSFD49104', 'PPIFES', 'mom')     # 근원(식품·에너지 제외) 생산자물가 전월비
 MON = {'1월': 1, '2월': 2, '3월': 3, '4월': 4, '5월': 5, '6월': 6, '7월': 7, '8월': 8, '9월': 9, '10월': 10, '11월': 11, '12월': 12}
 
 
@@ -128,6 +132,11 @@ def calc(k, s, tp):
         return round(s[tp] / 1000, 3)
     return round(s[tp], 1)
 
+
+
+_calc0 = calc
+def calc(k, s, tp):   # 생산자물가 전월비는 CPI 전월비와 같은 계산(2026-11-13)
+    return _calc0('cpi-mom' if k in ('ppi', 'core-ppi') else k, s, tp)
 
 _SC = {}
 # 알림은 안 보내도 줄을 누르면 추세를 보여 줄 지표(FRED) — (시리즈, 계산: mom 전월비 % / level / weekly 주간 천 건)
@@ -249,6 +258,7 @@ def cmp(x, v):
 SHORT = {'cpi': '소비자물가(CPI) 전년비', 'core-cpi': '근원 CPI 전년비', 'cpi-mom': '소비자물가(CPI) 전월비', 'core-cpi-mom': '근원 CPI 전월비', 'nfp': '비농업 고용', 'adp': 'ADP 민간 고용', 'ur': '실업률', 'ahe': '시간당 임금 전년비',
          'jolts': '졸트 구인 건수', 'gdp': 'GDP 속보치(연율)', 'core-pce': '근원 PCE 전년비'}
 ORDER = ['adp', 'nfp', 'ur', 'ahe', 'cpi-mom', 'core-cpi-mom', 'cpi', 'core-cpi', 'gdp', 'core-pce', 'jolts']
+SHORT.update({'ppi': '생산자물가(PPI) 전월비', 'core-ppi': '근원 PPI 전월비'}); ORDER[ORDER.index('jolts'):ORDER.index('jolts')] = ['ppi', 'core-ppi']
 
 
 def build(group):
@@ -303,6 +313,15 @@ def title(group):
         return '🔔 %s졸트(구인)' % mm
     return '🔔 경제지표 발표'
 
+
+
+_title0 = title
+def title(group):   # 생산자물가 알림 제목(2026-11-13)
+    ks = {kind(x) for x in group}
+    if ks and ks <= {'ppi', 'core-ppi'}:
+        m = re.search(r'(\d+)월', group[0].get('period', ''))
+        return '🔔 %s생산자물가' % ((m.group(1) + '월 ') if m else '')
+    return _title0(group)
 
 def push(head, body, url=''):
     head = '【지표】 ' + re.sub(r'^\S+\s+', '', head)   # 알림 목록에서 종류가 한눈에(사용자 2026-11-06)
