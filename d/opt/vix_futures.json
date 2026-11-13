@@ -3,64 +3,64 @@
   "contract": "VX/X6",
   "month": "2026-11",
   "expiry": "2026-11-18",
+  "settle_2026-11-12": 18.7337,
   "settle_2026-11-11": 18.0519,
-  "settle_2026-11-10": 19.9067,
   "source": "CBOE 공식 정산(cdn.cboe.com VX 계약별 기록)"
  },
  {
   "contract": "VX/Z6",
   "month": "2026-12",
   "expiry": "2026-12-16",
+  "settle_2026-11-12": 18.9627,
   "settle_2026-11-11": 18.4042,
-  "settle_2026-11-10": 19.5125,
   "source": "CBOE 공식 정산(cdn.cboe.com VX 계약별 기록)"
  },
  {
   "contract": "VX/F7",
   "month": "2027-01",
   "expiry": "2027-01-20",
+  "settle_2026-11-12": 19.6767,
   "settle_2026-11-11": 19.2852,
-  "settle_2026-11-10": 20.0385,
   "source": "CBOE 공식 정산(cdn.cboe.com VX 계약별 기록)"
  },
  {
   "contract": "VX/G7",
   "month": "2027-02",
   "expiry": "2027-02-17",
+  "settle_2026-11-12": 20.1276,
   "settle_2026-11-11": 19.7947,
-  "settle_2026-11-10": 20.3507,
   "source": "CBOE 공식 정산(cdn.cboe.com VX 계약별 기록)"
  },
  {
   "contract": "VX/H7",
   "month": "2027-03",
   "expiry": "2027-03-17",
+  "settle_2026-11-12": 20.3992,
   "settle_2026-11-11": 20.1025,
-  "settle_2026-11-10": 20.5457,
   "source": "CBOE 공식 정산(cdn.cboe.com VX 계약별 기록)"
  },
  {
   "contract": "VX/J7",
   "month": "2027-04",
   "expiry": "2027-04-21",
+  "settle_2026-11-12": 20.8448,
   "settle_2026-11-11": 20.5072,
-  "settle_2026-11-10": 20.8593,
   "source": "CBOE 공식 정산(cdn.cboe.com VX 계약별 기록)"
  },
  {
   "contract": "VX/K7",
   "month": "2027-05",
   "expiry": "2027-05-18",
+  "settle_2026-11-12": 20.975,
   "settle_2026-11-11": 20.675,
-  "settle_2026-11-10": 20.9492,
   "source": "CBOE 공식 정산(cdn.cboe.com VX 계약별 기록)"
  },
  {
   "contract": "VX/M7",
   "month": "2027-06",
   "expiry": "2027-06-16",
+  "settle_2026-11-12": 21.0236,
   "settle_2026-11-11": 20.75,
-  "settle_2026-11-10": 21.0,
   "source": "CBOE 공식 정산(cdn.cboe.com VX 계약별 기록)"
  }
 ]
