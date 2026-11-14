@@ -31,6 +31,8 @@ CATS = {
 ME_CATS = {'이란 전쟁·유가'}
 BIG = ['strike', 'attack', 'ceasefire', 'deal', 'agreement', 'sanction', 'ban', 'announces', 'approves', 'blocks', 'closes', 'seize', 'killed', 'rate cut', 'raises rates', 'cuts rates', 'tariff', 'export control', 'emergency', 'invade', 'launches', 'missile']
 DROP = re.compile(r'\b(opinion|analysis|explainer|column|commentary|podcast|live:|live updates|what to know|factbox|breakingviews|newsletter|week ahead|morning bid|could|might|may|interview|review|obituary)\b|^(watch|how|why|what|where|when|who|inside|opinion|letters?)\b|where things stand|\blive\b|\bwar live\b|press release|company announcement|\bunpicking\b|missed a chance|still life|has nada|preview|on deck|risk report|takeaways|food fight|real estate boom|criticism|braces for|promises made|travel blitz|leaves no room|\?$', re.I)
+SPORTS = r"\b(rebounds?|assists|touchdowns?|quarterbacks?|innings|homers?|home runs?|3-point\w*|three-point\w*|ncaa|nba|nfl|mlb|nhl|wnba|playoffs?|halftime)\b|\bno\. \d+ \w+|\b(beats|routs?|tops|edges|defeats|downs|scores?|points)\b.*\b\d{1,3}-\d{1,3}\b|\bscores \d+\b"   # 스포츠 기사 거르기 — 선수 이름 Powell·Brent가 연준·유가로 잘못 분류됨(사용자 2026-11-14)
+DROP = re.compile(DROP.pattern + '|' + SPORTS, re.I)
 
 # 공식 발표(되는 것만 — 실패는 runs.jsonl에 기록)
 OFFICIAL = [
