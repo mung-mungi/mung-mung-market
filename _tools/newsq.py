@@ -73,7 +73,7 @@ def cats(title):
 _cats0 = cats
 _AMBIG = {'연준·정책': (re.compile(r'\bpowell\b', re.I), re.compile(r'\b(fed|federal reserve|jerome|chair|rates?|inflation|central bank|fomc|monetary|economy|trump)\b', re.I)),
           '이란 전쟁·유가': (re.compile(r'\bbrent\b', re.I), re.compile(r'\b(crude|oil|barrels?|futures|prices?|opec|iran|\$\d)', re.I))}
-_TANKER = (re.compile(r'\btankers?\b', re.I), re.compile(r'\b(oil|crude|lng|hormuz|iran\w*|houthis?|red sea|strait|seiz\w+|attack\w*|strike\w*|sanction\w*|shadow fleet|navy)\b', re.I))
+_TANKER = (re.compile(r'\btankers?\b', re.I), re.compile(r'\b(oil|crude|lng|hormuz|iran\w*|houthis?|red sea|strait|seiz\w+|attack\w*|missiles?|drones?|sanction\w*|shadow fleet|navy)\b', re.I))
 def cats(title):   # Powell·Brent 같은 흔한 이름: 문맥 단어가 없으면 그 분류에서 뺌(스포츠 선수 오분류, 사용자 2026-11-14)
     cs = _cats0(title)
     for c, (nm, ctx) in _AMBIG.items():
