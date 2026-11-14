@@ -33,6 +33,7 @@ BIG = ['strike', 'attack', 'ceasefire', 'deal', 'agreement', 'sanction', 'ban', 
 DROP = re.compile(r'\b(opinion|analysis|explainer|column|commentary|podcast|live:|live updates|what to know|factbox|breakingviews|newsletter|week ahead|morning bid|could|might|may|interview|review|obituary)\b|^(watch|how|why|what|where|when|who|inside|opinion|letters?)\b|where things stand|\blive\b|\bwar live\b|press release|company announcement|\bunpicking\b|missed a chance|still life|has nada|preview|on deck|risk report|takeaways|food fight|real estate boom|criticism|braces for|promises made|travel blitz|leaves no room|\?$', re.I)
 SPORTS = r"\b(rebounds?|assists|touchdowns?|quarterbacks?|innings|homers?|home runs?|3-point\w*|three-point\w*|ncaa|nba|nfl|mlb|nhl|wnba|playoffs?|halftime)\b|\bno\. \d+ \w+|\b(beats|routs?|tops|edges|defeats|downs|scores?|points)\b.*\b\d{1,3}-\d{1,3}\b|\bscores \d+\b"   # 스포츠 기사 거르기 — 선수 이름 Powell·Brent가 연준·유가로 잘못 분류됨(사용자 2026-11-14)
 DROP = re.compile(DROP.pattern + '|' + SPORTS, re.I)
+DROP = re.compile(DROP.pattern + r"|stock price today|stock price \(|\bin real time\b|goes viral", re.I)   # 시세 안내 페이지·가십(2026-11-14)
 
 # 공식 발표(되는 것만 — 실패는 runs.jsonl에 기록)
 OFFICIAL = [
@@ -72,11 +73,15 @@ def cats(title):
 _cats0 = cats
 _AMBIG = {'연준·정책': (re.compile(r'\bpowell\b', re.I), re.compile(r'\b(fed|federal reserve|jerome|chair|rates?|inflation|central bank|fomc|monetary|economy|trump)\b', re.I)),
           '이란 전쟁·유가': (re.compile(r'\bbrent\b', re.I), re.compile(r'\b(crude|oil|barrels?|futures|prices?|opec|iran|\$\d)', re.I))}
+_TANKER = (re.compile(r'\btankers?\b', re.I), re.compile(r'\b(oil|crude|lng|hormuz|iran\w*|houthis?|red sea|strait|seiz\w+|attack\w*|strike\w*|sanction\w*|shadow fleet|navy)\b', re.I))
 def cats(title):   # Powell·Brent 같은 흔한 이름: 문맥 단어가 없으면 그 분류에서 뺌(스포츠 선수 오분류, 사용자 2026-11-14)
     cs = _cats0(title)
     for c, (nm, ctx) in _AMBIG.items():
         if c in cs and nm.search(title) and not ctx.search(title) and not _RX[c].search(nm.sub(' ', title)):
             cs.remove(c)
+    nm, ctx = _TANKER   # 유조선 단어만 있고 유가·이란 문맥이 없으면(유람선 충돌 등) 뺌
+    if '이란 전쟁·유가' in cs and nm.search(title) and not ctx.search(title) and not _RX['이란 전쟁·유가'].search(nm.sub(' ', title)):
+        cs.remove('이란 전쟁·유가')
     return cs
 
 def norm(title):
