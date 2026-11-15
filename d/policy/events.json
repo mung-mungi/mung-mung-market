@@ -4416,6 +4416,38 @@
   "has_detail": false
  },
  {
+  "month": "2026-11",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "tier": "small",
+  "has_detail": false,
+  "category": "이란 전쟁·유가",
+  "id": "e287",
+  "date": "2026-11-14",
+  "thread": "후티-사우디 전선",
+  "title": "사우디 연합군 \"리야드 향한 후티 탄도미사일 2발 요격\" — 동부 지역서는 드론 격추",
+  "summary": "사우디 주도 연합군 대변인 투르키 알말리키는 일요일 이른 시각 리야드를 향해 날아온 후티의 탄도미사일 2발을 요격해 파괴했다고 밝혔습니다. 동부 지역에서도 드론을 격추했다고 했습니다. 후티는 알자우프 상공에서 연합군 정찰기를 격추했다고 주장했습니다. 사우디 당국 집계로 9월 23일 뒤 후티 공격으로 사우디에서 최소 26명이 숨졌습니다. 동부 지역은 사우디 원유 시설이 몰린 곳이라 유가 위험 요인으로 남습니다(우리 판단).",
+  "source_url": "https://www.aljazeera.com/news/2026/11/15/saudi-led-coalition-intercepts-two-missiles-two-drones-in-riyadh",
+  "media": "알자지라"
+ },
+ {
+  "month": "2026-11",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "tier": "small",
+  "has_detail": false,
+  "category": "이란 전쟁·유가",
+  "id": "e288",
+  "date": "2026-11-14",
+  "thread": "가자 전선",
+  "title": "이스라엘, 가자 남부 공습으로 하마스 라파 여단 사령관 사살 — 하마스도 확인",
+  "summary": "이스라엘군은 토요일 자정 직후 가자 남부 공습으로 하마스 라파 여단 사령관 사미르 아부 유니스를 사살했다고 밝혔습니다. 이스라엘군은 그가 공격 계획을 지휘해 왔다고 했고, 하마스도 성명으로 사망을 확인했습니다. 이란 전선과 별개로 가자에서도 공습이 이어지고 있다는 뜻입니다.",
+  "source_url": "https://www.click2houston.com/news/world/2026/11/15/israel-kills-a-top-hamas-commander-as-jordan-sentences-3-in-church-attack-and-other-mideast-news/",
+  "media": "AP"
+ },
+ {
   "id": "e25",
   "date": "2026-11-15",
   "month": "2026-11",
@@ -4429,6 +4461,22 @@
   "media": "지오폴리텍스",
   "tier": "big",
   "thread": "반도체 수출통제"
+ },
+ {
+  "month": "2026-11",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "tier": "small",
+  "has_detail": false,
+  "category": "이란 전쟁·유가",
+  "id": "e289",
+  "date": "2026-11-15",
+  "thread": "이란 해협 협상",
+  "title": "갈리바프 이란 국회의장 \"전쟁도 평화도 아닌 상태 안 머문다\" — \"7개 조건 받으면 합의 문 열려\"",
+  "summary": "이란 협상단을 이끄는 갈리바프 국회의장은 일요일 국회 공개회의에서 이란이 전쟁도 평화도 아닌 상태에 머물지 않겠다고 말했습니다. 그는 \"미국이 협상을 택하든 전쟁을 택하든 상관없다\"며 \"우리의 합리적인 7개 조건을 받아들이면 합의의 문이 열린다\"고 했습니다. 베선트 재무장관의 발언은 \"깊은 절박함\"을 보여 준다고 비난했습니다. 미국의 공격 보류 보도 뒤에도 이란이 지금 같은 교착을 오래 두지 않겠다고 밝힌 셈이라 해협 긴장이 쉽게 풀리기 어렵습니다(우리 판단).",
+  "source_url": "https://aninews.in/news/world/middle-east/iran-not-remain-in-state-of-neither-war-nor-peace-parliament-speaker-ghalibaf20261115131112/",
+  "media": "ANI(이란 메흐르통신 인용)"
  },
  {
   "id": "e26",
