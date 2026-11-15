@@ -4,6 +4,14 @@
  "channel_url": "https://www.youtube.com/@멍뭉터미널",
  "items": [
   {
+   "id": "JIizA4jecFg",
+   "title": "젠슨 없는 엔비디아, 수요일이 답한다",
+   "published": "2026-11-15T17:51:50+00:00",
+   "url": "https://www.youtube.com/watch?v=JIizA4jecFg",
+   "short": false,
+   "thumb": "https://i.ytimg.com/vi/JIizA4jecFg/mqdefault.jpg"
+  },
+  {
    "id": "0Kk0XW5pssQ",
    "title": "젠슨 황 사임, 스캔들이 전부일까? 진짜 바뀌는 건 'AI의 돈줄' (엔비디아 −14%)",
    "published": "2026-11-13T07:59:31+00:00",
@@ -42,14 +50,6 @@
    "url": "https://www.youtube.com/watch?v=TpStkyzg4Y8",
    "short": false,
    "thumb": "https://i.ytimg.com/vi/TpStkyzg4Y8/mqdefault.jpg"
-  },
-  {
-   "id": "Yu-b4ds0Y7Y",
-   "title": "아쉬운 반등, 진짜 바닥일까? — 코로나 6개월·관세 4개월로 채점",
-   "published": "2026-11-07T02:29:22+00:00",
-   "url": "https://www.youtube.com/watch?v=Yu-b4ds0Y7Y",
-   "short": false,
-   "thumb": "https://i.ytimg.com/vi/Yu-b4ds0Y7Y/mqdefault.jpg"
   }
  ]
 }
