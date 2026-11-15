@@ -1,0 +1,305 @@
+{
+  "req": "11/13(금) 뉴욕장 마감과 주말(11/14~15) — 엔비디아 주간 -13%·6주 연속 하락, 젠슨 황 복귀 검토(FT)·복귀 청원·베선트 '외부 CEO' 압박·AI 칩 수출 규제, IG 테크채 스프레드·부채 이자 차트, 호르무즈·FAA 이슈 — 영향력 있는 계정만, 루머·익명·밈 제외 (월요일 05:30 KST = 미 동부 일요일 15:30)",
+  "at": "2026-11-16T05:33:00+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-15 14:15",
+      "text": "BREAKING: Jensen Huang is considering returning to Nvidia, $NVDA, as CEO as tech executives pressure the company’s board to reinstate him, per FT.\n\nHuang is reportedly discussing a potential return even as an independent investigation by Nvidia's board is underway.\n\nOne \"ally\" of Jensen Huang is reportedly putting together a \"war room\" of tech executives to lobby for his return.\n\nIt's going to be an interesting week to say the least.",
+      "ko": "FT 보도: 젠슨 황이 엔비디아 CEO 복귀를 검토, 측근이 이사회 압박용 테크 경영진 \"워룸\" 구성 — 이사회 독립 조사는 진행 중",
+      "url": "https://x.com/KobeissiLetter/status/2122045918342238337",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 608370,
+      "likes": 12111
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-15 14:12",
+      "text": "JENSEN HUANG DISCUSSES COMEBACK AS NVIDIA CEO WITH ALLIES: FT https://t.co/UaqJAM3fax",
+      "ko": "젠슨 황, 측근들과 엔비디아 CEO 복귀 논의(FT) 헤드라인",
+      "url": "https://x.com/zerohedge/status/2122045140013609049",
+      "media": [
+        "https://pbs.twimg.com/media/HXMEy63XgAAU37x.jpg"
+      ],
+      "media_note": "FT 기사 화면 캡처 이미지",
+      "views": 202690,
+      "likes": 2466
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-15 14:40",
+      "text": "Jensen Huang’s odds of returning as Nvidia CEO have jumped to 20% on Kalshi following the Financial Times report that he’s considering a comeback. https://t.co/IOc5BrtR0N https://t.co/vYBP4byWo4",
+      "ko": "FT 보도 후 칼시(Kalshi)에서 젠슨 황 CEO 복귀 확률 20%로 급등",
+      "url": "https://x.com/wallstengine/status/2122052173274271787",
+      "media": [
+        "https://pbs.twimg.com/media/HXMLJ2EagAAmtCs.jpg",
+        "https://pbs.twimg.com/media/HXMLJ1_aoAAkZml.jpg"
+      ],
+      "media_note": "칼시 복귀 확률 차트·FT 기사 캡처 2장",
+      "views": 26304,
+      "likes": 250
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 뉴스 플랫폼",
+      "time_et": "2026-11-14 12:09",
+      "text": "BREAKING: A petition to reinstate Jensen Huang as Nvidia, $NVDA, CEO has passed 100,000 signatures.\n\nMore than 53,000 signers say they're shareholders, and 6,200 say they're current or former Nvidia employees. \n\nElon Musk is the lead signatory, and Fundstrat's Tom Lee and Shopify CEO Tobi Lütke have also signed.",
+      "ko": "젠슨 황 복귀 청원 10만 명 돌파 — 주주 5.3만 명, 전·현직 직원 6,200명, 일론 머스크 대표 서명, 톰 리·토비 뤼트케도 서명",
+      "url": "https://x.com/unusual_whales/status/2121651845173039406",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 927728,
+      "likes": 18202
+    },
+    {
+      "author": "Bloomberg",
+      "handle": "@business",
+      "role": "블룸버그 통신",
+      "time_et": "2026-11-15 10:25",
+      "text": "Treasury Secretary Scott Bessent said that Nvidia needs a “dramatic shakeup” in leadership after the ouster of chief executive Jensen Huang https://t.co/intl6Q9xBl",
+      "ko": "베선트 재무장관 \"엔비디아 리더십 대대적 쇄신 필요\"(블룸버그)",
+      "url": "https://x.com/business/status/2121987847229989279",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 84381,
+      "likes": 263
+    },
+    {
+      "author": "The Transcript",
+      "handle": "@TheTranscript_",
+      "role": "기업·정책 발언 전사 계정",
+      "time_et": "2026-11-15 11:44",
+      "text": "Scott Bessent: \"I want to keep coming back to what was the culture at Nvidia, and were they pressing these seemingly illicit sales to goose their revenues and their earnings?.. I think we need answers in the next 10 days from the the board and from the outside counsel\" $NVDA https://t.co/KwRhvXhcU7",
+      "ko": "베선트: 엔비디아가 불법 의심 판매로 매출·이익을 부풀렸는지 문화 문제를 봐야, 이사회·외부 변호인 답을 10일 안에 들어야",
+      "url": "https://x.com/TheTranscript_/status/2122007817280217519",
+      "media": [],
+      "media_note": "첨부 없음(인용 영상 링크)",
+      "views": 7047,
+      "likes": 23
+    },
+    {
+      "author": "Financial Times",
+      "handle": "@FT",
+      "role": "파이낸셜타임스",
+      "time_et": "2026-11-15 06:16",
+      "text": "Congress moves to pass tighter AI chip export rules following Nvidia scandal https://t.co/zsfCyM4blR",
+      "ko": "엔비디아 스캔들 여파로 의회가 AI 칩 수출 규제 강화 법안 추진(FT)",
+      "url": "https://x.com/FT/status/2121925257162297677",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 45059,
+      "likes": 93
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-13 16:02",
+      "text": "*NVIDIA FALLS 13% IN WORST WEEKLY DECLINE SINCE APRIL 2025",
+      "ko": "엔비디아 주간 -13%, 2025년 4월 이후 최악의 주",
+      "url": "https://x.com/zerohedge/status/2121348061939089548",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 102906,
+      "likes": 1023
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-15 15:26",
+      "text": "Nvidia is experiencing a historic losing streak:\n\nNvidia, $NVDA, has declined for 6 consecutive weeks, matching its 2nd-longest weekly losing streak on record.\n\nOver this span, the stock has declined -31%, to its lowest level since July 2025.\n\nSimilar 6-week losing streaks occurred twice in 2012 and once in 2002, following the 2000 Dot-Com Bubble burst.\n\nBy comparison, its longest losing streak was7 weeks, recorded during the 2008 Financial Crisis when $NVDA dropped -53%.\n\nSince its October peak, Nvidia has lost -$1.9 trillion in market value, down to $3.9 trillion.\n\nYear-to-date, the stock is down -12%, materially underperforming the S&P 500 and Nasdaq 100, which are up +10% and +11%, respectively.\n\nNvidia is facing a nearly unprecedented downturn.",
+      "ko": "엔비디아 6주 연속 하락(역대 2번째 최장 타이) 동안 -31%, 10월 고점 대비 시총 1.9조 달러 증발해 3.9조 달러, 연초 대비 -12%로 S&P500(+10%)·나스닥100(+11%) 대비 크게 부진",
+      "url": "https://x.com/KobeissiLetter/status/2122063588697247867",
+      "media": [
+        "https://pbs.twimg.com/media/HXK1qNhaYAAl58k.jpg"
+      ],
+      "media_note": "NVDA 주간 연속 하락 기록 차트",
+      "views": 38233,
+      "likes": 180
+    },
+    {
+      "author": "Reuters",
+      "handle": "@Reuters",
+      "role": "로이터 통신",
+      "time_et": "2026-11-13 20:24",
+      "text": "The S&P 500 and Nasdaq closed lower, as concerns about Nvidia pressured technology shares, with uncertainty about its leadership raising concerns about the durability of the AI trade https://t.co/RyTO060CT8 https://t.co/wkfpakQEfF",
+      "ko": "금요일 S&P500·나스닥 하락 마감 — 엔비디아 리더십 불확실성이 AI 트레이드 지속성 우려로 번짐",
+      "url": "https://x.com/Reuters/status/2121414048927678956",
+      "media": [
+        "https://pbs.twimg.com/amplify_video_thumb/2121412551234007040/img/VAXZzpWtEQWUbMfB.jpg"
+      ],
+      "media_note": "로이터 마감 시황 영상(썸네일 주소)",
+      "views": 51055,
+      "likes": 25
+    },
+    {
+      "author": "CNBC",
+      "handle": "@CNBC",
+      "role": "CNBC 경제방송",
+      "time_et": "2026-11-13 16:19",
+      "text": "These stocks were the S&P 500, Nasdaq and Dow's top market movers for the day — November 13, 2026. 📈📉 https://t.co/zZV4NVeSgs",
+      "ko": "11/13(금) S&P500·나스닥·다우 주요 등락 종목 정리",
+      "url": "https://x.com/CNBC/status/2121352250823966743",
+      "media": [
+        "https://pbs.twimg.com/media/HXCOoCwXMAAOqSF.jpg",
+        "https://pbs.twimg.com/media/HXCOoN5X0AAVfI1.jpg",
+        "https://pbs.twimg.com/media/HXCOoYuX0AA8Aqv.jpg"
+      ],
+      "media_note": "CNBC 등락 종목 표 이미지 3장",
+      "views": 36760,
+      "likes": 55
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-13 16:30",
+      "text": "Retail investors bought $1.96B of Nvidia $NVDA stock this week, the most since March 2025, despite its record weekly market-cap loss following Jensen Huang's resignation, with Vanda Research expecting purchases to top $2B after Friday's flows, per WSJ.",
+      "ko": "개인투자자 이번 주 엔비디아 19.6억 달러 순매수, 2025년 3월 이후 최대 — 사상 최대 주간 시총 손실에도 저가매수(반다·WSJ)",
+      "url": "https://x.com/wallstengine/status/2121355060622119359",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 35530,
+      "likes": 211
+    },
+    {
+      "author": "Evan",
+      "handle": "@StockMKTNewz",
+      "role": "시장 뉴스 계정(Evan)",
+      "time_et": "2026-11-13 18:52",
+      "text": "BRAD GERSTNER AND GAVIN BAKER JUST SAID THIS LETTER TO NVIDIA'S $NVDA BOARD OF DIRECTORS\n\n\"To the Distinguished Nvidia Board,\n\nWe write as shareholders to share a view that we believe is widely agreed to among shareholders and to make a simple request.\n\nGiven the extraordinary success of Jensen Huang s leadership over a long period of time and given the massive uncertainty associated with recent events surrounding his departure, we believe it is in the best interest of all stakeholders, and certainly the shareholders of Nvidia, for the Board to pursue a slow, measured, and deliberate process regarding the future leadership of Nvidia that leaves all options on the table, including the potential return of Jensen Huang.\n\nThere are more questions about recent events than answers. We believe the Board should avoid a rush to replace Jensen that undermines and thwarts the best interests of shareholders. The company will be capably led in the interim by Colette Kress and team and we have no doubt the Board has the benefit of time to get this right.\n\nIf after all the facts are known the Board decides that it is not in shareholders' best interest to have Jensen Huang back as CEO, that is the Board's prerogative. But the Founder and long time incredible leader of this extraordinary company has earned the right for a deliberate process that avoids any needless rush to replace him before all the facts are known.\"",
+      "ko": "브래드 거스트너·개빈 베이커, 엔비디아 이사회에 \"후임 서두르지 말고 젠슨 복귀 포함 모든 선택지 열어두라\" 주주 서한",
+      "url": "https://x.com/StockMKTNewz/status/2121390884293836841",
+      "media": [
+        "https://pbs.twimg.com/media/HXCxq9zWcAAbwrs.jpg"
+      ],
+      "media_note": "주주 서한 이미지",
+      "views": 158069,
+      "likes": 2070
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-15 14:08",
+      "text": "\"Pfizer now trades at a higher multiple than Nvidia\" - GS\n\ntells you how much faith in fwd EPS market has",
+      "ko": "골드만: 화이자가 이제 엔비디아보다 높은 밸류에이션 배수 — 시장이 선행 EPS를 얼마나 못 믿는지 보여줌",
+      "url": "https://x.com/zerohedge/status/2122044158101909838",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 59723,
+      "likes": 224
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-15 13:37",
+      "text": "Investors are demanding more compensation for holding US tech debt:\n\nUS investment-grade (IG) technology bonds are underperforming the broader IG corporate bond market by -9% year-to-date.\n\nThis brings the total return of IG tech bonds relative to broader IG bonds down to its lowest level in at least 30 years.\n\nAt the same time, the difference between IG technology bond spreads over Treasuries and broader IG corporate bond spreads over Treasuries has widened to +15 basis points, the widest in at least 14 years.\n\nBy comparison, this difference was negative from 2012 through 2025.\n\nIn other words, investors are demanding a higher yield premium to hold technology debt than the broader IG corporate bond market.\n\nThis comes as Big Tech bond issuance has surged to a record $182 billion so far in 2026, up +971% from just $17 billion in 2024, making AI the largest sector in the IG bond market.\n\nFinancing the AI revolution is becoming more expensive.",
+      "ko": "미 IG 테크 회사채가 전체 IG 대비 연초 이후 -9% 부진(최소 30년 최저), 스프레드 격차 +15bp로 14년 최대 — 빅테크 채권 발행 올해 1,820억 달러 사상 최대, AI 자금조달 비용 상승",
+      "url": "https://x.com/KobeissiLetter/status/2122036158003589617",
+      "media": [
+        "https://pbs.twimg.com/media/HXK1itAaMAAU-jM.jpg"
+      ],
+      "media_note": "IG 테크 채권 상대 수익률·스프레드 격차 차트",
+      "views": 107154,
+      "likes": 346
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "크리에이티브 플래닝 수석 시장 전략가",
+      "time_et": "2026-11-15 12:31",
+      "text": "% Below All-Time High\nApple: -1%\nS&P 500: -4%\nMicrosoft: -7%\nAmazon: -7%\nMeta: -20%\nAMD: -20%\nPalantir: -21%\nTesla: -22%\nGoogle: -28%\nGold: -31%\nNvidia: -33%\nSpaceX: -38%\nBitcoin: -49%\nNetflix: -54%\nEthereum: -64%\nStrategy: -79%\nDogecoin: -92%\nTrumpCoin: -99%\nMelaniaCoin: -99%",
+      "ko": "사상 최고가 대비 하락률: 애플 -1%, S&P500 -4%, MS·아마존 -7%, 엔비디아 -33%, 비트코인 -49% 등",
+      "url": "https://x.com/charliebilello/status/2122019790462075237",
+      "media": [],
+      "media_note": "첨부 없음(표 형식 텍스트)",
+      "views": 84834,
+      "likes": 539
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 뉴스 플랫폼",
+      "time_et": "2026-11-13 16:19",
+      "text": "A bunch of 13F activity is being filed right now. You can get it LIVE on unusualwhales!\n\nFor example, George Soros's Fund just released their new 13F.\n\nSoros reduced 25% in $AAPL,  -80% in $ADBE!!!!, -35% in $MSFT, -20% in $NVDA and more.\n\nSee more here: https://t.co/qnlV4fLvOh https://t.co/IY8Y25vd84",
+      "ko": "13F 공시: 소로스 펀드가 애플 -25%, 어도비 -80%, MS -35%, 엔비디아 -20% 축소",
+      "url": "https://x.com/unusual_whales/status/2121352328389521574",
+      "media": [
+        "https://pbs.twimg.com/media/HXCOXuqasAA-iIi.jpg"
+      ],
+      "media_note": "소로스 펀드 13F 변동 표 이미지",
+      "views": 186987,
+      "likes": 342
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "크리에이티브 플래닝 수석 시장 전략가",
+      "time_et": "2026-11-15 14:43",
+      "text": "Annual Interest Payments on US Public Debt have moved up to $1.33 trillion, another record high. At the current pace this will soon be the largest line item in the Federal budget, surpassing Social Security. https://t.co/f9gdbozYpL",
+      "ko": "미 국가부채 연간 이자 지급액 1.33조 달러로 사상 최고 — 곧 사회보장 넘어 연방 최대 지출 항목",
+      "url": "https://x.com/charliebilello/status/2122052767187357712",
+      "media": [
+        "https://pbs.twimg.com/media/HXL9Q3xWoAAB1sO.png"
+      ],
+      "media_note": "미 국채 이자 지급액 추이 차트",
+      "views": 14284,
+      "likes": 73
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-15 12:30",
+      "text": "Iran Hits Bahrain Again As Guards Declare Hormuz \"Closed\" https://t.co/iUImVYHV81",
+      "ko": "이란, 바레인 재차 공격하며 혁명수비대가 호르무즈 해협 \"폐쇄\" 선언(제로헤지 기사)",
+      "url": "https://x.com/zerohedge/status/2122019410009305233",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 78493,
+      "likes": 269
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-13 17:16",
+      "text": "FBI DOESN’T BELIEVE THE COMMUNICATION ISSUE AFFECTING AIR TRAFFIC CONTROL WAS DUE TO A CYBERATTACK OR CRIMINALITY",
+      "ko": "FBI \"항공교통관제 통신 장애는 사이버공격·범죄 아님\" — 금요일 FAA 전국 지상 정지 관련",
+      "url": "https://x.com/DeItaone/status/2121366644979036252",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 260147,
+      "likes": 897
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-13 18:49",
+      "text": "US OFFICIAL SAYS MUSK TO JOIN TRUMP ON CHINA TRIP",
+      "ko": "미 관리: 일론 머스크가 트럼프 중국 방문에 동행",
+      "url": "https://x.com/DeItaone/status/2121390035207385207",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 294544,
+      "likes": 1656
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": "주말 최대 변수: 젠슨 황 CEO 복귀 검토(FT) — 월요일 장과 11/17 엔비디아 실적 직전 AI 트레이드 방향을 좌우할 뉴스.\n조회 60만·좋아요 1.2만으로 이번 묶음 최대급 반응, 영상 첫 장면 인용 카드로 적합."
+  }
+}
