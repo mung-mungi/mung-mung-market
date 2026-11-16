@@ -4522,10 +4522,26 @@
   "date": "2026-11-15",
   "id": "e292",
   "thread": "후티-사우디 전선",
-  "title": "예멘 정부군, 바브엘만데브 일대서 철수 — 홍해 길목 후티 손에",
-  "summary": "예멘 정부 쪽 남부군은 일요일 바브엘만데브 해협 일대와 두바브 공항에서 병력을 빼 아덴 방어로 돌린다고 발표했습니다. 이에 따라 이란과 가까운 후티가 수에즈 운하로 이어지는 홍해 길목을 장악하게 됐습니다. 정부군이 10월 시작한 해안 탈환 공세가 실패로 끝난 셈입니다. 이란이 호르무즈를, 후티가 바브엘만데브를 쥐는 '양쪽 해협 압박'으로 걸프 산유국의 수출길이 더 좁아질 수 있습니다(우리 판단).",
-  "source_url": "https://www.usnews.com/news/world/articles/2026-11-15/yemen-government-forces-withdraw-from-area-near-bab-el-mandeb-strait-houthis-in-control",
-  "media": "US뉴스·데일리사바"
+  "title": "예멘 정부군, 바브엘만데브서 철수 — 후티는 아덴 60㎞ 앞까지 진격",
+  "summary": "예멘 정부는 일요일 바브엘만데브 해협 일대에서 병력 철수를 마치고 아덴과 주변 지역 방어에 우선 투입한다고 밝혔습니다. AFP가 정부군 소식통을 인용한 데 따르면 후티는 라헤즈주 마카티라·마다리바 지역을 장악하고 아덴에서 약 60㎞ 떨어진 카라즈 기지까지 내려왔습니다. 정부군은 아덴 주변에 모래주머니 방어선과 땅굴을 만들고 있고, 아덴-라헤즈 도로 전투에는 사우디 주도 연합군이 공중 지원을 하고 있습니다. 이란이 호르무즈를, 후티가 홍해 길목을 쥐는 '양쪽 해협 압박'으로 걸프 산유국의 수출길이 더 좁아질 수 있습니다(우리 판단).",
+  "source_url": "https://yalibnan.com/2026/11/16/yemens-iran-backed-houthis-advance-on-aden-as-government-forces-retreat-to-defend-their-capital/",
+  "media": "US뉴스·프랑스24(AFP)"
+ },
+ {
+  "id": "e293",
+  "date": "2026-11-15",
+  "month": "2026-11",
+  "category": "이란 전쟁·유가",
+  "title": "월츠 유엔대사 베이루트 방문 — 헤즈볼라 무장해제·유엔평화유지군 임무 종료 논의",
+  "summary": "마이크 월츠 미국 유엔대사가 일요일 베이루트에 도착해 레바논 정부 고위 인사들과 헤즈볼라 무장해제·이스라엘군 철수를 담은 '3자 프레임워크' 이행 지원을 논의합니다. 유엔 관계자들과는 유엔평화유지군(UNIFIL) 임무 종료와 레바논 정부로의 치안 이양을 협의한다고 대사실이 밝혔습니다. 월요일에는 모로코로 옮겨 아브라함 협정 확대를 논의합니다. 이스라엘이 헤즈볼라 공격 시 전투 재개를 경고해 온 만큼, 평화유지군 철수 뒤 공백이 레바논 전선 재점화 변수로 남습니다(우리 판단).",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "source_url": "https://www.timesofisrael.com/liveblog_entry/american-ambassador-to-the-un-waltz-in-beirut-for-talks-on-hezbollah-israel/",
+  "media": "타임스오브이스라엘",
+  "tier": "small",
+  "thread": "이스라엘-레바논",
+  "has_detail": false
  },
  {
   "id": "e26",
