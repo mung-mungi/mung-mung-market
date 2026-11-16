@@ -2071,5 +2071,167 @@
     "u": "https://www.washingtonpost.com/world/2026/11/07/israeli-president-taps-ex-general-eisenkot-opponent-netanyahu-form-government/"
    }
   ]
+ },
+ "e300": {
+  "updated": "11.17 07:50",
+  "lead": "미국 상무부가 16일 중국 기업이 동남아 등 제3국 데이터센터에서 미국 AI 칩을 빌려 쓰는 길을 막는 규칙을 냈습니다. 젠슨 황 퇴진과 메가스피드 의혹으로 시작된 칩 우회 논란이 처음으로 규제로 이어졌지만, 정부 안에서는 황 복귀론과 국가대표 지정까지 엇갈린 신호가 함께 나옵니다.",
+  "blocks": [
+   {
+    "k": "어떻게 여기까지 왔나",
+    "type": "steps",
+    "items": [
+     [
+      "11.11",
+      "로이터·악시오스 \"러트닉, 엔비디아 칩 우회 단속 지연\" 보도, 상무부는 부인"
+     ],
+     [
+      "11.12",
+      "젠슨 황 엔비디아 최고경영자 퇴진, 의회에서 대중 칩 규제 강화론"
+     ],
+     [
+      "11.13",
+      "베선트 \"메가스피드 제재 명단 올리자고 몇 달 주장, 펜은 상무부가 쥐어\""
+     ],
+     [
+      "11.15",
+      "베선트 \"엔비디아는 외부 출신 CEO를\", 이사회에 10일 시한"
+     ],
+     [
+      "11.16",
+      "상무부, 제3국 데이터센터 원격 사용 막는 잠정 최종 규칙 발표"
+     ],
+     [
+      "11.16",
+      "트럼프 \"황 복귀 나쁘지 않아\", WSJ \"엔비디아 등 AI 국가대표 지정 예정\""
+     ]
+    ]
+   },
+   {
+    "k": "쟁점, 어디까지 왔나",
+    "type": "conds",
+    "note": "보도를 바탕으로 한 우리 판단입니다.",
+    "items": [
+     {
+      "n": "시행 시점",
+      "s": "미정",
+      "t": "연방관보에 실리는 날 바로 시행되고 이후 60일 의견을 받지만, 게재일은 아직 알려지지 않았습니다"
+     },
+     {
+      "n": "기존 데이터센터",
+      "s": "진전",
+      "t": "이미 서비스 중인 업체는 시행 뒤 90일 안에 허가를 받아야 합니다"
+     },
+     {
+      "n": "5국 허가 심사",
+      "s": "쟁점",
+      "t": "말레이시아·싱가포르·인도네시아·태국·브라질 수출은 건별 심사이고 미국 본사 기업 몫은 예외라, 실제로 얼마나 막힐지는 심사 운영에 달렸습니다"
+     },
+     {
+      "n": "메가스피드 제재 명단",
+      "s": "미정",
+      "t": "트럼프는 베선트·러트닉 갈등에 \"내가 결정하겠다\"고만 했습니다"
+     },
+     {
+      "n": "엔비디아 지도부",
+      "s": "쟁점",
+      "t": "트럼프는 황 복귀를 열어 뒀고 베선트는 외부 인사를 요구하며, 이사회는 복귀를 검토하지 않는다고 전해졌습니다"
+     }
+    ]
+   },
+   {
+    "k": "누가 뭐라 했나",
+    "type": "quotes",
+    "items": [
+     {
+      "who": "상무부 규칙 문안",
+      "role": "산업안보국",
+      "say": "이번 통제는 기존 통제를 논리적으로 넓힌 것이다",
+      "media": "테크크런치",
+      "src": "https://techcrunch.com/2026/11/16/us-tightens-ai-chip-export-controls-to-deter-chinese-companies-from-accessing-compute-remotely"
+     },
+     {
+      "who": "베선트",
+      "role": "재무장관",
+      "say": "재무부·전쟁부·무역대표부·국무부는 몇 달 동안 메가스피드를 제재 명단에 올리자고 했지만, 펜은 상무부가 쥐고 있다",
+      "media": "폭스뉴스",
+      "src": "https://www.foxnews.com/politics/trump-brings-two-divided-cabinet-heavyweights-china-controversy-hangs-over-high-stakes-talks.amp"
+     },
+     {
+      "who": "트럼프",
+      "role": "대통령",
+      "say": "양쪽 다 이해한다. 내가 결정하겠다",
+      "media": "폭스뉴스",
+      "src": "https://www.foxnews.com/politics/trump-brings-two-divided-cabinet-heavyweights-china-controversy-hangs-over-high-stakes-talks.amp"
+     },
+     {
+      "who": "트럼프",
+      "role": "대통령",
+      "say": "많은 사람이 젠슨이 돌아가야 한다고 생각한다. 나쁜 생각은 아니다",
+      "media": "야후파이낸스",
+      "src": "https://finance.yahoo.com/markets/stocks/articles/trump-says-jensen-huang-return-195505875.html"
+     }
+    ]
+   },
+   {
+    "k": "시장과 어떻게 이어지나",
+    "type": "text",
+    "text": "규칙이 나온 16일 필라델피아 반도체 지수는 5.28%, 나스닥은 2.49% 내렸고 엔비디아는 4.1% 빠졌습니다(새벽 브리핑 시황정리). 하락이 규칙 때문인지 엔비디아 지도부 공백 때문인지는 가를 수 없습니다(우리 판단). 다만 규칙은 동남아 데이터센터를 거쳐 중국 수요가 들어오던 길을 좁히는 것이라, 이 지역 매출 비중이 큰 칩·서버 업체에 숫자로 확인할 부담이 생겼다고 우리는 봅니다."
+   },
+   {
+    "k": "시나리오",
+    "type": "scen",
+    "items": [
+     {
+      "h": "심사가 느슨하게 굴러감",
+      "c": "up",
+      "t": "미국 본사 기업 예외와 건별 허가로 대부분 물량이 나가면, 실제 매출 영향은 작고 우회 논란만 정리되는 효과가 날 수 있습니다."
+     },
+     {
+      "h": "단속이 넓어짐",
+      "c": "dn",
+      "t": "메가스피드 제재 명단 등재와 5국 심사 지연이 겹치면, 동남아 데이터센터 투자와 칩 주문이 미뤄질 수 있습니다."
+     }
+    ],
+    "con": "반대 시각 — 같은 날 정부가 엔비디아를 AI 국가대표로 지정할 계획이라는 보도가 나와, 규제와 지원이 함께 가며 실제 타격은 크지 않을 수 있습니다."
+   },
+   {
+    "k": "다음 볼 것",
+    "type": "list",
+    "items": [
+     "연방관보 게재일 — 그날부터 시행, 60일 의견수렴",
+     "11/17 엔비디아 실적 — 동남아·중국 관련 언급과 전망",
+     "11/18~19 APEC 선전 트럼프·시진핑 회동에서 칩 규제가 다뤄지는지",
+     "메가스피드 제재 명단 등재 여부(트럼프 결정)",
+     "러트닉 상원 은행위원회 증언(12/10, CBS 보도)"
+    ]
+   }
+  ],
+  "links": [
+   {
+    "media": "테크크런치",
+    "t": "미국, AI 칩 원격 사용 막는 수출통제 강화",
+    "u": "https://techcrunch.com/2026/11/16/us-tightens-ai-chip-export-controls-to-deter-chinese-companies-from-accessing-compute-remotely"
+   },
+   {
+    "media": "IB타임스",
+    "t": "5개국 허가제·90일 유예·60일 의견수렴",
+    "u": "https://www.ibtimes.com/us-restricts-china-remote-access-ai-chips-3809815"
+   },
+   {
+    "media": "폭스뉴스",
+    "t": "트럼프, 갈등하는 베선트·러트닉 데리고 중국행",
+    "u": "https://www.foxnews.com/politics/trump-brings-two-divided-cabinet-heavyweights-china-controversy-hangs-over-high-stakes-talks.amp"
+   },
+   {
+    "media": "야후파이낸스",
+    "t": "트럼프 \"황 복귀 나쁘지 않아\" — 이사회는 검토 안 해",
+    "u": "https://finance.yahoo.com/markets/stocks/articles/trump-says-jensen-huang-return-195505875.html"
+   },
+   {
+    "media": "포브스",
+    "t": "WSJ \"엔비디아, AI 국가대표 지정 예정\"",
+    "u": "https://www.forbes.com/sites/siladityaray/2026/11/16/scandal-hit-nvidia-among-trumps-planned-ai-national-champions-report-says/"
+   }
+  ]
  }
 }
