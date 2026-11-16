@@ -1,0 +1,422 @@
+{
+  "req": "11/16(월) 뉴욕장(한국 05:30 기준 장 마감 직전 15:30 ET까지) — 엔비디아 이사회 '젠슨 황 복귀 불가'(CNBC·WSJ)로 나스닥100 -2.3%, 트럼프 발언, AI 칩 원격접근 규제, 세미애널리시스 AI 설비투자 전망 하향, 앤트로픽 IPO 수요, 뉴욕 연은 제조업·해먹 발언, 금·유가, 차트 — 영향력 있는 계정만, 루머·익명·밈 제외 (장후 실적은 아직 발표 전)",
+  "at": "2026-11-17T05:41:00+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-16 12:40",
+      "text": "BREAKING: Nvidia’s board, $NVDA, is not considering bringing Jensen Huang back as CEO, CNBC reports.\n\nNvidia’s stock falls to a new low of the day on the news, now down -34% from its October 6th high.",
+      "ko": "CNBC 보도: 엔비디아 이사회는 젠슨 황 CEO 복귀를 검토하지 않음 — 주가 장중 신저가, 10/6 고점 대비 -34%",
+      "url": "https://x.com/KobeissiLetter/status/2122384301102694599",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 556029,
+      "likes": 6955
+    },
+    {
+      "author": "The Wall Street Journal",
+      "handle": "@WSJ",
+      "role": "월스트리트저널",
+      "time_et": "2026-11-16 15:23",
+      "text": "Nvidia’s board of directors isn’t considering reinstating Jensen Huang as chief executive, despite a drumbeat of calls for his return from some investors and employees. 🔗 https://t.co/Lmkf0Lywar https://t.co/KXIQIHDxot",
+      "ko": "WSJ: 일부 투자자·직원의 복귀 요구에도 엔비디아 이사회는 젠슨 황 재선임을 고려하지 않아",
+      "url": "https://x.com/WSJ/status/2122425329834766367",
+      "media": [
+        "https://pbs.twimg.com/media/HXRelMTXQAAc1ic.png"
+      ],
+      "media_note": "WSJ 기사 카드 이미지",
+      "views": 19818,
+      "likes": 11
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-16 13:08",
+      "text": "BREAKING: The Nasdaq 100 extends losses to -2.3% on the day amid reports that Nvidia’s board is not considering reinstating Jensen Huang as CEO. https://t.co/CqxnKFopgR",
+      "ko": "엔비디아 이사회 '복귀 불가' 보도에 나스닥100 낙폭 -2.3%로 확대",
+      "url": "https://x.com/KobeissiLetter/status/2122391449031585886",
+      "media": [
+        "https://pbs.twimg.com/media/HXQ_xfFW4AAcfoF.jpg"
+      ],
+      "media_note": "나스닥100 장중 차트",
+      "views": 143806,
+      "likes": 1891
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-16 09:38",
+      "text": "BREAKING: President Trump says we \"don't know\" that Jensen Huang was involved with a Chinese spy and he \"would not mind\" if Huang was reinstated as CEO of Nvidia, $NVDA.\n\nTrump also adds that Jensen Huang has \"learned a lesson.\"",
+      "ko": "트럼프 \"젠슨 황이 중국 스파이와 연루됐는지 모른다\", 복귀해도 \"상관없다\", \"교훈을 얻었다\"",
+      "url": "https://x.com/KobeissiLetter/status/2122338569347801430",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 412455,
+      "likes": 8170
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-16 09:46",
+      "text": "BREAKING: President Trump says he may talk to China's President Xi regarding the Nvidia, $NVDA, situation.\n\nNvidia's stock erases losses and turns positive on the day. https://t.co/KnWT3Ktt97",
+      "ko": "트럼프, 엔비디아 사태로 시진핑과 대화할 수도 — 엔비디아 주가 낙폭 만회 후 상승 전환(일시)",
+      "url": "https://x.com/KobeissiLetter/status/2122340464552517927",
+      "media": [
+        "https://pbs.twimg.com/media/HXQRVnfXAAEtI1P.jpg"
+      ],
+      "media_note": "엔비디아 장중 차트",
+      "views": 181510,
+      "likes": 1581
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-16 07:32",
+      "text": "BREAKING: Nasdaq 100 futures extend losses to -1.7% in premarket trading as Nvidia, $NVDA, falls more than -5%.\n\nNvidia has now erased nearly -$2 trillion in market cap since its peak on October 6th. https://t.co/Hw099VWHrN",
+      "ko": "프리마켓: 엔비디아 -5% 넘게 밀리며 나스닥100 선물 -1.7%, 10/6 고점 대비 시총 약 2조 달러 증발",
+      "url": "https://x.com/KobeissiLetter/status/2122306811886006632",
+      "media": [
+        "https://pbs.twimg.com/media/HXPyy-pXAAAWr02.jpg"
+      ],
+      "media_note": "엔비디아·나스닥 선물 차트",
+      "views": 316250,
+      "likes": 3935
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-16 08:36",
+      "text": "BREAKING: The US Commerce Department announces new restrictions on remote access to advanced American AI chips and computing infrastructure.\n\nThe new rules aim to prevent China and others subject to US export restrictions from circumventing existing controls by accessing American AI technology through cloud computing services.\n\nPrior to this, a loophole allowed foreign entities to access advanced US computing capabilities without physically importing restricted chips.\n\nMore AI regulation is on the way.",
+      "ko": "미 상무부, 클라우드 통한 첨단 AI 칩 원격 접근 제한 신규 규제 — 중국 등의 수출통제 우회 차단",
+      "url": "https://x.com/KobeissiLetter/status/2122322912086536623",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 356176,
+      "likes": 2743
+    },
+    {
+      "author": "Reuters",
+      "handle": "@Reuters",
+      "role": "로이터 통신",
+      "time_et": "2026-11-16 15:30",
+      "text": "US to curb China's access to AI chips as Trump heads to Asia https://t.co/VaLxsNfGc0",
+      "ko": "로이터: 트럼프 아시아 순방 앞두고 미국, 중국의 AI 칩 접근 추가 제한",
+      "url": "https://x.com/Reuters/status/2122427031409287536",
+      "media": [],
+      "media_note": "첨부 없음(기사 링크)",
+      "views": 15530,
+      "likes": 3
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "Creative Planning 수석 시장전략가",
+      "time_et": "2026-11-16 13:51",
+      "text": "Nvidia has now lost over $2 trillion in market value since its October 6 peak, the biggest peak-to-trough decline in history.\n\nIn just six weeks it has gone from the world's most valuable company to #3, trailing Apple and Microsoft.\n\nA stunning reversal of fortune. https://t.co/o0Qo0tqS6J",
+      "ko": "엔비디아 10/6 고점 이후 시총 2조 달러 이상 증발 — 사상 최대 고점 대비 감소, 시총 1위→3위(애플·MS 뒤)",
+      "url": "https://x.com/charliebilello/status/2122402234059157665",
+      "media": [
+        "https://pbs.twimg.com/media/HXRIOT3WwAA-ECc.jpg"
+      ],
+      "media_note": "엔비디아 시가총액 추이 차트",
+      "views": 24343,
+      "likes": 273
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "Creative Planning 수석 시장전략가",
+      "time_et": "2026-11-16 14:13",
+      "text": "Oct 6, 2026: Nvidia was up 28% YTD with a $5.8 trillion market cap, the world's largest.\n\nToday: After a 35% drawdown, Nvidia is now down 16% YTD with a market cap of $3.8 trillion. And Apple has reclaimed the world's top spot.\n\n$2 trillion erased in the last six weeks.\n\n$NVDA https://t.co/WzIgZ02End",
+      "ko": "10/6 연초 대비 +28%·시총 5.8조 달러 → 오늘 -35% 낙폭으로 연초 대비 -16%·3.8조 달러, 애플이 1위 탈환",
+      "url": "https://x.com/charliebilello/status/2122407660293063102",
+      "media": [
+        "https://pbs.twimg.com/media/HXROHSsW4AAz27O.jpg"
+      ],
+      "media_note": "엔비디아 연초 대비 수익률·시총 비교 차트",
+      "views": 18725,
+      "likes": 91
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-16 14:28",
+      "text": "$NVDA  - JENSEN HUANG TRANSFERRED OVER $10 BILLION IN NVIDIA STOCK TO FAMILY TRUST BEFORE DOWNFALL\n\nFormer Nvidia CEO Jensen Huang and his wife transferred nearly 60 million shares, worth over $10.5 billion, into an irrevocable family trust in March, according to SEC filings reviewed by Barron's.\n\nThe transfer followed a 10-year estate-planning strategy using trusts initially funded with approximately $51 million in Nvidia shares in 2016.\n\nEstate attorneys say the structure could allow the accumulated gains to pass to heirs without federal estate tax.\n\nThe transfer preceded Huang's resignation and Nvidia's recent stock selloff.",
+      "ko": "배런스: 젠슨 황 부부, 3월에 약 6천만 주(105억 달러 이상)를 취소불능 가족신탁으로 이전 — 사임·주가 급락 이전",
+      "url": "https://x.com/DeItaone/status/2122411464694604166",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 207953,
+      "likes": 1129
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-16 10:39",
+      "text": "Semiconductor research firm SemiAnalysis has sharply LOWERED its global AI accelerator capital expenditure forecasts, with cuts of up to 41%:\n\n2027: $770B → $627B (-19%)\n2028: $1.054T → $758B (-28%)\n2029: $1.352T → $796B (-41%)\n2030: $1.531T → $923B (-40%)\n\nThat's a $608 billion reduction in its 2030 forecast alone.\n\nSemiAnalysis also cut its cumulative 2026-2030 accelerator silicon shipment area forecast by 17%, with Nvidia accounting for 66% of that reduction.\n\nIts 2028 HBM shipment forecast was lowered from 9.0 to 6.4 exabytes, a 30% reduction, while projected 2030 AI accelerator power demand fell from 122.8 GW to 80.7 GW, down 34%.\n\nThe firm cited slowing revenue growth at frontier AI labs, tighter capital markets, and lower assumptions for future chip and memory pricing.\n\nImportantly, even after these cuts, SemiAnalysis still expects annual AI accelerator spending to more than double from $392 billion in 2026 to $923 billion by 2030.",
+      "ko": "세미애널리시스, 글로벌 AI 가속기 설비투자 전망 최대 41% 하향(2030년 1.531조→9,230억 달러), HBM·전력 수요 전망도 하향",
+      "url": "https://x.com/wallstengine/status/2122353777605071101",
+      "media": [
+        "https://pbs.twimg.com/media/HXQddOcaQAAUfon.jpg",
+        "https://pbs.twimg.com/media/HXQdei1bUAEIzrf.png"
+      ],
+      "media_note": "전망 하향 표·차트 2장",
+      "views": 145693,
+      "likes": 556
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-16 13:00",
+      "text": "OpenAI CEO Sam Altman on potential double-counting in AI chip demand:\n\nMany AI chipmakers are assuming OpenAI, Anthropic and other major buyers will purchase most of their output.\n\n\"We're not all gonna be able to or need to buy ... all of our supply from every chip vendor.\" https://t.co/mjGJV5I6bK",
+      "ko": "샘 올트먼, AI 칩 수요 이중계산 가능성 언급 — \"모든 칩 업체의 물량을 다 살 수도, 살 필요도 없다\"",
+      "url": "https://x.com/wallstengine/status/2122389234212601869",
+      "media": [
+        "https://pbs.twimg.com/amplify_video_thumb/2122387993692639232/img/ET24V8YRPC7q43oE.jpg"
+      ],
+      "media_note": "올트먼 인터뷰 영상(썸네일)",
+      "views": 32635,
+      "likes": 92
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-16 14:07",
+      "text": "ALTIMETER CAPITAL CEO GERSTNER: ANTHROPIC IPO IS 10 TO 20 TIMES OVERSUBSCRIBED",
+      "ko": "알티미터 거스트너: 앤트로픽 IPO 청약 10~20배 초과",
+      "url": "https://x.com/DeItaone/status/2122406316068962707",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 115745,
+      "likes": 345
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-16 13:08",
+      "text": "Brad Gerstner's Altimeter Capital plans to invest $5 billion in Anthropic's IPO, five times more than Gerstner has ever committed to an IPO, he told CNBC.\n\n\"I think this is a cornerstone compounder for a long time,\" Gerstner said. https://t.co/ZewOIrbwm1",
+      "ko": "알티미터, 앤트로픽 IPO에 50억 달러 투자 계획 — 거스트너 사상 최대 IPO 베팅",
+      "url": "https://x.com/wallstengine/status/2122391497039561165",
+      "media": [
+        "https://pbs.twimg.com/media/HXQ_FzjaAAAcrrU.png",
+        "https://pbs.twimg.com/media/HXQ_JhpbAAAu3rk.png"
+      ],
+      "media_note": "CNBC 인터뷰 캡처 2장",
+      "views": 40032,
+      "likes": 296
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-16 08:34",
+      "text": "NY Fed Empire Mfg 7.8, Exp. 18.0, Last 25.5",
+      "ko": "뉴욕 연은 제조업지수 7.8, 예상 18.0·직전 25.5 크게 하회",
+      "url": "https://x.com/zerohedge/status/2122322348552675335",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 112585,
+      "likes": 280
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-16 14:15",
+      "text": "*HAMMACK: MY BASE CASE IS I LIKE MOVING IN SMALLER INCREMENTS\n\n*HAMMACK: MY PREFERENCE HAS BEEN TO MOVE IN STEADY INCREMENTS\n\n*HAMMACK: IF INFLATION MINDSET SETS IN, MAY NEED BIGGER MOVES",
+      "ko": "클리블랜드 연은 해먹: 기본은 소폭·점진적 조정, 인플레 심리 고착 시 더 큰 폭 대응 필요",
+      "url": "https://x.com/DeItaone/status/2122408118575616258",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 78841,
+      "likes": 74
+    },
+    {
+      "author": "Reuters",
+      "handle": "@Reuters",
+      "role": "로이터 통신",
+      "time_et": "2026-11-16 15:10",
+      "text": "Gold sinks to 1-year low as Treasury yields and dollar bite, set for worst year since 2015 https://t.co/ohBRl8Lgbb",
+      "ko": "국채금리·달러 강세에 금값 1년 최저, 2015년 이후 최악의 해 전망",
+      "url": "https://x.com/Reuters/status/2122421989889474736",
+      "media": [],
+      "media_note": "첨부 없음(기사 링크)",
+      "views": 25313,
+      "likes": 25
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-16 14:25",
+      "text": "Goldman Warns Of Massive Oil Glut In 2027 As Gulf Barrels Flood Back Around Hormuz https://t.co/U7VLsO0PBd",
+      "ko": "골드만, 호르무즈 주변 걸프 물량 복귀로 2027년 대규모 원유 공급과잉 경고",
+      "url": "https://x.com/zerohedge/status/2122410741504381179",
+      "media": [],
+      "media_note": "첨부 없음(기사 링크)",
+      "views": 57381,
+      "likes": 206
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-16 14:30",
+      "text": "VANCE SAYS HE WILL NOT ALLOW IRAN TO BECOME TWO-YEAR US MILITARY COMMITMENT: FOX NEWS",
+      "ko": "밴스 부통령: 이란 문제가 2년짜리 미군 개입이 되게 두지 않겠다(폭스뉴스)",
+      "url": "https://x.com/DeItaone/status/2122412092959727794",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 119442,
+      "likes": 412
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-16 14:21",
+      "text": "BREAKING: The top 1% of US businesses by AI spending allocated a record $10,199 per employee to AI in October, according to Ramp data.\n\nSince January 2026, this figure has more than tripled.\n\nThe top 10% of firms spent a record $801 per employee last month, up +180% since January.\n\nThe median firm's average AI spend per employee rose to a record $16, up +164% since January.\n\nIn other words, the top 1% is now spending 625 times more per employee as the typical company.\n\nMeanwhile, AI adoption among US businesses on Ramp rose +1.0 percentage point in October, to a record 56.8%, up from 45.5% in January.\n\nCorporate AI spending is accelerating across the board.",
+      "ko": "램프 데이터: AI 지출 상위 1% 기업 10월 직원 1인당 AI 지출 1만199달러로 사상 최대, 1월 대비 3배 이상",
+      "url": "https://x.com/KobeissiLetter/status/2122409826302988403",
+      "media": [
+        "https://pbs.twimg.com/media/HXRQfSKW0AA9BAg.jpg"
+      ],
+      "media_note": "램프 AI 지출 추이 차트",
+      "views": 130902,
+      "likes": 719
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-16 10:50",
+      "text": "Value stocks are making a historic comeback:\n\nThe Russell 1000 Value Index is outperforming the Russell 1000 Growth Index by 27.7 percentage points so far in 2026, its strongest relative performance since 2000.\n\nThe Russell 1000 Value Index includes stocks across multiple sectors, including healthcare, industrials, consumer staples, and utilities.\n\nThis marks a sharp reversal after growth stocks outperformed value by 31.2 percentage points in 2023, 19.0 percentage points in 2024, and 2.7 percentage points in 2025.\n\nBy comparison, during the 2022 bear market, value stocks outperformed growth by 21.6 percentage points.\n\nThis comes as the Russell 1000 Value Index is up +24.8% year-to-date, while the Russell 1000 Growth Index is down -2.9% over the same period.\n\nMarket dynamics are rapidly shifting.",
+      "ko": "러셀1000 가치지수가 성장지수를 올해 27.7%p 앞서 2000년 이후 최대 — 가치 +24.8% vs 성장 -2.9%",
+      "url": "https://x.com/KobeissiLetter/status/2122356550710784495",
+      "media": [
+        "https://pbs.twimg.com/media/HXPrDm6XsAANyc3.png"
+      ],
+      "media_note": "가치 vs 성장 상대성과 차트",
+      "views": 126908,
+      "likes": 572
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 뉴스 플랫폼",
+      "time_et": "2026-11-16 14:17",
+      "text": "The S&P 500 has stopped tracking the average stock in it more than at any point since at least 1990.\n\nThe 26-week correlation between the S&P 500 and its equal-weight version has fallen to about 0.4, from close to 1.0 for most of the past 35 years, per data from Ophir and the NYSE.\n\n“It’s not a stock market; it’s a market of a few stocks.”",
+      "ko": "S&P500과 동일가중 지수의 26주 상관계수 약 0.4로 1990년 이후 최저 — '소수 종목의 시장'",
+      "url": "https://x.com/unusual_whales/status/2122408612031275295",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 107691,
+      "likes": 261
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-16 13:34",
+      "text": "OUTAGES HIT MULTIPLE MAJOR U.S. BANKS\n\nJPMorgan Chase, Bank of America, Wells Fargo and U.S. Bank are seeing sharp spikes in outage reports, with thousands of customers reporting trouble accessing accounts and logging into online banking. https://t.co/ZA4qpIR9h2",
+      "ko": "JP모건·BofA·웰스파고·US뱅크 등 대형 은행 접속 장애 신고 급증",
+      "url": "https://x.com/wallstengine/status/2122398039545704952",
+      "media": [
+        "https://pbs.twimg.com/media/HXRE0QibQAE3t0n.jpg"
+      ],
+      "media_note": "장애 신고 추이 캡처",
+      "views": 49078,
+      "likes": 367
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-16 08:23",
+      "text": "BREAKING: The Nasdaq 100 has recorded an average daily swing of 2.4% so far in November, putting it on track for its most volatile month since April 2025.\n\nThis metric has more than doubled from 1.0% in September.\n\nThis also puts the Nasdaq 100 on track for its 2nd-most volatile month in at least 2 years.\n\nThe Nasdaq 100 has also closed up or down more than 1% in half of its trading sessions in November so far.\n\nMeanwhile, the S&P 500 has recorded an average daily swing of 1.6% so far this month, also making November its most volatile month since April 2025.\n\nBy comparison, this figure did not exceed 1.0% in any of the previous 4 months.\n\nVolatility is back in full swing.",
+      "ko": "11월 나스닥100 일평균 변동폭 2.4%로 2025년 4월 이후 최대 — S&P500도 1.6%",
+      "url": "https://x.com/KobeissiLetter/status/2122319525584474425",
+      "media": [
+        "https://pbs.twimg.com/media/HXPrnvxWoAAVBKv.png"
+      ],
+      "media_note": "나스닥100 일평균 변동폭 차트",
+      "views": 154843,
+      "likes": 838
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 업체",
+      "time_et": "2026-11-15 19:29",
+      "text": "Nvidia $NVDA has plunged to its most oversold level since June 2019 🚨 https://t.co/T1X55shrDA",
+      "ko": "엔비디아, 2019년 6월 이후 가장 과매도 수준",
+      "url": "https://x.com/Barchart/status/2122124791410778299",
+      "media": [
+        "https://pbs.twimg.com/media/HXNNQJcWIAAUtcH.jpg"
+      ],
+      "media_note": "엔비디아 RSI 과매도 차트",
+      "views": 52526,
+      "likes": 703
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-16 15:10",
+      "text": "\"Embracing Risk\": Morgan Stanley Goes Max Overweight Stocks, Sees S&P 8,700 In 2027... With A Bear Case Of 6,000 https://t.co/fToZL2Xv5L",
+      "ko": "모건스탠리, 주식 최대 비중확대 — 2027년 S&P500 목표 8,700, 약세 시나리오 6,000",
+      "url": "https://x.com/zerohedge/status/2122422069446996296",
+      "media": [],
+      "media_note": "첨부 없음(기사 링크)",
+      "views": 51269,
+      "likes": 42
+    },
+    {
+      "author": "Nick Timiraos",
+      "handle": "@NickTimiraos",
+      "role": "WSJ 수석 경제기자(Fed 담당)",
+      "time_et": "2026-11-15 18:00",
+      "text": "With the CPI and PPI in hand, core PCE prices are expected to have risen 0.29% in October, which would push the 3-month annualized inflation rate to 3.5%, a six-month high.\n\nThe 12-month change would rise to 3.2%, the highest since January 2024. https://t.co/4VTpG0th49",
+      "ko": "CPI·PPI 반영 시 10월 근원 PCE +0.29% 예상 — 3개월 연율 3.5%(6개월 최고), 전년비 3.2%(2024년 1월 이후 최고)",
+      "url": "https://x.com/NickTimiraos/status/2122102347509768298",
+      "media": [
+        "https://pbs.twimg.com/media/HXDEg42WgAAqCKt.png"
+      ],
+      "media_note": "근원 PCE 추정 표",
+      "views": 124295,
+      "likes": 737
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-16 11:12",
+      "text": "$NVDA ANNOUNCES QUANTUM COMPUTING BREAKTHROUGH\n\nNvidia says its new CUDA-Q algorithm delivers up to 13,000x faster decoding for quantum error-correction research, reducing one computation from 12 weeks to just 45 minutes.\n\nAlongside the breakthrough, Nvidia announced a collaboration with $IBM and Fermilab to develop a modular quantum-classical computing platform.\n\nThe project will connect Nvidia DGX B200 systems with IBM quantum computers, including those powered by its Nighthawk processor, to help researchers develop error-correction methods, explore scientific applications and investigate how multiple quantum processors can operate together.\n\nNvidia is also expanding Slurm to allow quantum processors to be scheduled alongside CPUs and GPUs within existing supercomputing environments.\n\nSeparately, IBM and RIKEN used Nvidia-powered systems to model molecular complexes containing up to 12,635 atoms, more than 40x the previous quantum-classical benchmark. The research is a finalist for the 2026 Gordon Bell Prize.\n\nTogether, these developments aim to accelerate progress toward practical, fault-tolerant quantum computing.",
+      "ko": "엔비디아, CUDA-Q로 양자 오류정정 디코딩 최대 1만3천 배 가속 발표, IBM·페르미랩과 양자-고전 플랫폼 협력",
+      "url": "https://x.com/wallstengine/status/2122362083140637157",
+      "media": [
+        "https://pbs.twimg.com/media/HXQkBYObkAAayTo.jpg"
+      ],
+      "media_note": "발표 이미지",
+      "views": 63070,
+      "likes": 1033
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": "오늘 장의 핵심 변수: 엔비디아 이사회가 젠슨 황 복귀를 검토하지 않는다는 CNBC 보도 — 주말 '복귀 검토(FT)' 기대를 뒤집으며 엔비디아 장중 신저가(고점 대비 -34%)·나스닥100 -2.3%로 이어짐.\n조회 55만·좋아요 7천으로 이번 묶음 최대급 반응, 11/17 엔비디아 실적 직전 영상 첫 장면 인용 카드로 적합."
+  }
+}
