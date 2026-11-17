@@ -1,0 +1,520 @@
+{
+  "req": "11/17(화) 뉴욕장(한국 05:30 기준 장 마감 직전까지) — 엔비디아 실적 당일: 젠슨 황 '요청 시 복귀' 성명·직원 서한·CEO 물색·싱가포르 매출 공시 중단, 실적 기대치·옵션 내재변동, 다우 -1,000p·S&P 200일선 이탈, 앤트로픽 IPO 공모가 상향, 미 기관 잇단 전산장애, 경제지표(소매판매·수입물가·산업생산·주택심리), 10년물 5%·연준 이슈, 차트 — 영향력 있는 계정만, 루머·익명·밈 제외 (엔비디아 장후 실적은 아직 발표 전)",
+  "at": "2026-11-18T05:40:00+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-17 11:04",
+      "text": "BREAKING: Jensen Huang releases his first public statement since resigning as CEO of Nvidia, $NVDA, and says he is willing to return as CEO.\n\nJensen Huang specifically says he will return as CEO if the board asks him to.\n\nFull statement:\n\n“Since my departure, I’ve seen an outpouring of calls from Nvidia’s employees, investors, business partners, and customers for me to return as CEO. If the Board of Directors decides that my return is in the best interest of our shareholders, our employees, the company, and America, I would be honored to answer these calls and return as CEO.”\n\nWe continue to believe Nvidia’s board should leave the possibility of Huang returning as CEO open.",
+      "ko": "젠슨 황, 사임 후 첫 공식 성명 — \"이사회가 요청하면 CEO로 복귀하는 것을 영광으로 알겠다\"",
+      "url": "https://x.com/KobeissiLetter/status/2122722496667398408",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 602574,
+      "likes": 9617
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-17 07:18",
+      "text": "BREAKING: Senior Nvidia, $NVDA, employees have sent a letter to the company’s board of directors stating that failure to reinstate Jensen Huang as CEO could lead to the loss of “irreplaceable talent,” per WSJ.\n\nSome employees have discussed holding a \"demonstration\" in support of Huang on the company’s campus in coming days.",
+      "ko": "WSJ: 엔비디아 고위 직원들, 이사회에 '황 복귀 안 하면 대체 불가 인재 이탈' 서한 — 캠퍼스 지지 시위 논의",
+      "url": "https://x.com/KobeissiLetter/status/2122665555299795264",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 1233777,
+      "likes": 12426
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-17 12:20",
+      "text": "$NVDA $HSII $ARM - NVIDIA HIRES HEIDRICK & STRUGGLES TO FIND NEW CEO\n\nNvidia has hired executive search firm Heidrick & Struggles to lead its CEO search following Jensen Huang's resignation, according to The Wall Street Journal.\n\nThe search, led by Jeff Sanders, will consider internal and external candidates, with Arm CEO Rene Haas reportedly among those approached.\n\nColette Kress remains interim CEO.\n\nDespite Huang's willingness to return, Nvidia's board is reportedly not considering reinstatement.\n\nSeparately, Wachtell Lipton has been hired to investigate whether Huang disclosed corporate or national security secrets.",
+      "ko": "WSJ: 엔비디아, 헤드헌팅사 하이드릭&스트러글스 고용해 새 CEO 물색 — ARM 르네 하스 접촉, 이사회는 황 복귀 검토 안 해",
+      "url": "https://x.com/DeItaone/status/2122741665332928966",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 159580,
+      "likes": 424
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-17 10:15",
+      "text": "BREAKING: Former Nvidia, $NVDA, CEO Jensen Huang will testify to Congress on December 1st.\n\nThe House Foreign Affairs panel will be conducting the hearing regarding national security concerns, alleged Chinese espionage, and Nvidia's AI chip exports to China.",
+      "ko": "젠슨 황, 12/1 하원 외교위 청문회 증언 — 국가안보·중국 스파이 의혹·대중 AI칩 수출 문제",
+      "url": "https://x.com/KobeissiLetter/status/2122710310171668717",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 185134,
+      "likes": 1852
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-17 06:42",
+      "text": "BREAKING: Nvidia, $NVDA, announces the establishment of the \"National Security and Export Control Oversight Committee\" amid the Jensen Huang situation.\n\nThe Committee will \"provide oversight\" on Nvidia's national security and global trade compliance programs.\n\nIt will also retain independent, outside experts \"to provide legal, national security, and trade compliance expertise to support the Committee.\"\n\nPresident Trump just called it \"a good idea.\"",
+      "ko": "엔비디아, '국가안보·수출통제 감독위원회' 신설 — 트럼프 \"좋은 생각\"",
+      "url": "https://x.com/KobeissiLetter/status/2122656710984650855",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 231323,
+      "likes": 1826
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-17 12:11",
+      "text": "$NVDA  - NVIDIA STOPS DISCLOSING SINGAPORE SALES AS REVENUE SURGES TO $104 BILLION\n\nNvidia stopped separately reporting Singapore-linked revenue after changing its geographic reporting methodology from customer billing addresses to headquarters locations, according to the Financial Times.\n\nIts Singapore subsidiary booked $104 billion in external revenue in 2025, up 72%, representing nearly half of Nvidia's global sales.\n\nThe disclosure change comes amid U.S. investigations into Megaspeed, a major Singapore-based customer suspected of diverting advanced chips to China.\n\nNvidia says most Singapore-billed products were shipped elsewhere.\n\nThe shift raises transparency and export-control concerns, though it does not establish wrongdoing.",
+      "ko": "FT: 엔비디아, 싱가포르 매출 별도 공시 중단 — 2025년 1,040억 달러(+72%)로 전체 매출 절반 가까이, 대중 우회 수출 의혹 속",
+      "url": "https://x.com/DeItaone/status/2122739301935186194",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 157034,
+      "likes": 388
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-17 08:20",
+      "text": "It's officially Nvidia's earnings day.\n\nToday's earnings report and call will likely be the most watched earnings event in history.\n\nWe are watching two key things:\n\n1. Do executives show any willingness to reinstate Jensen Huang\n\n2. What has CHANGED from a business perspective\n\nAs of now, considering the information over the last 48 hours, we believe there is an <20% chance that Jensen returns.\n\nAny indication that the probability is higher would be strongly bullish for the stock.\n\nBut, if not, then what has changed for Nvidia? With or without Jensen, this company remains one of the best businesses in the world.\n\nWe are looking to see if the company still expects revenue growth of 70%+ in FY2028, as management previously indicated.\n\nWe also look for any changes to AI infrastructure spending, demand for Blackwell and Vera Rubin chips, and the company's relationships with its largest customers.\n\nIf the fundamental outlook remains intact, then investors must ask: Does Jensen Huang's departure justify the -$750 billion in lost market cap?\n\nWe believe the market has already priced in a significant portion of the uncertainty surrounding Jensen's departure.\n\nAt the same time, the long-term AI infrastructure investment cycle remains intact, and Nvidia continues to sit at the center of it.\n\nThe burden is now on management to demonstrate that the business can continue executing at the same level without Jensen Huang.\n\nMore to come after earnings.",
+      "ko": "오늘 엔비디아 실적 — 사상 가장 주목받는 실적 발표, 관전 포인트는 황 복귀 여부와 FY2028 매출 70%+ 성장 전망 유지",
+      "url": "https://x.com/KobeissiLetter/status/2122681159071179016",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 287723,
+      "likes": 2209
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 뉴스 플랫폼",
+      "time_et": "2026-11-17 10:37",
+      "text": "Nvidia, $NVDA,  reports earnings today after the bell. \n\nIt’s the company’s first report since Jensen Huang resigned as CEO.  \n\nInterim CEO Colette Kress will lead the call. \n\nThe expectations:  R\nevenue: about $109 billion, up roughly 90% from a year earlier. Nvidia guided for $108 billion, plus or minus 2%.  \nAdjusted EPS: about $2.48.  \nGross margin: guided at 74%.  \nLast quarter: revenue was $96.2 billion, including $89 billion from data centers.",
+      "ko": "엔비디아 장후 실적 기대치: 매출 약 1,090억 달러(+90%), 조정 EPS 2.48달러, 총마진 74% — 콜렛 크레스 임시 CEO가 콜 진행",
+      "url": "https://x.com/unusual_whales/status/2122715635553595807",
+      "media": [
+        "https://pbs.twimg.com/media/HXVhFxIbYAANz-S.png"
+      ],
+      "media_note": "실적 기대치 정리 이미지",
+      "views": 151877,
+      "likes": 223
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-17 13:43",
+      "text": "NVDA Guidance: sell vs buyside\n\nUBS expects Nvidia to beat Q3 revenue by $3-4 billion, potentially reaching $111-112 billion, and to guide Q4 to around $130 billion vs. a consensus of $125 billion https://t.co/E7dkaEYZKM https://t.co/qtfmHOKw1U",
+      "ko": "UBS: 엔비디아 3분기 매출 30~40억 달러 상회(1,110~1,120억), 4분기 가이던스 약 1,300억 달러(컨센 1,250억) 예상",
+      "url": "https://x.com/zerohedge/status/2122762475628318817",
+      "media": [
+        "https://pbs.twimg.com/media/HXWQ82DXgAAv6Uz.jpg"
+      ],
+      "media_note": "셀사이드 vs 바이사이드 가이던스 비교 표",
+      "views": 116356,
+      "likes": 137
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 뉴스 플랫폼",
+      "time_et": "2026-11-17 15:17",
+      "text": "Nvidia $NVDA reports after the bell today, and the options market is pricing in about a 6.88% move, or roughly $10.60 in either direction.\n\nThat’s higher than recent quarters, when implied moves mostly sat between 5% and 6%. It’s in line with history, though: over the past 16 quarters, Nvidia’s average earnings move has been about 6.67%.\n\nA move that size would swing Nvidia’s market value by roughly $259 billion.\n\nIt’s the company’s first report since Jensen Huang resigned",
+      "ko": "옵션시장, 엔비디아 실적 후 ±6.88%(약 10.6달러) 변동 반영 — 시총 약 2,590억 달러 규모",
+      "url": "https://x.com/unusual_whales/status/2122786099571609954",
+      "media": [
+        "https://pbs.twimg.com/media/HXV4GIjbQAAv_5K.jpg"
+      ],
+      "media_note": "내재 변동폭 차트",
+      "views": 56623,
+      "likes": 105
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-17 15:27",
+      "text": "According to BBG and Vital Knowledge, the  critical question for Nvidia is whether management will reiterate its current 70% sales growth guidance for next fiscal year or withdraw it.  \n\nOdds it is withdrawn: 20% https://t.co/xqTGmaQjGR https://t.co/WXQRo23qo0",
+      "ko": "블룸버그·바이탈놀리지: 핵심은 내년 매출 70% 성장 가이던스 유지 여부 — 철회 확률 20%",
+      "url": "https://x.com/zerohedge/status/2122788758969876592",
+      "media": [
+        "https://pbs.twimg.com/media/HXWpIFKW8AAXLqF.jpg"
+      ],
+      "media_note": "가이던스 관련 표 캡처",
+      "views": 29958,
+      "likes": 44
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "Creative Planning 수석 시장전략가",
+      "time_et": "2026-11-17 15:10",
+      "text": "Nvidia's forward P/E ratio has plunged below 10, its lowest level in over 3 years.\n\nEither the stock is incredibly cheap or earnings expectations are way too high.\n\nTonight's earnings report will be a major test.\n\n$NVDA https://t.co/ROP9BX8x2f",
+      "ko": "엔비디아 선행 PER 10배 아래로 3년여 만에 최저 — 오늘 밤 실적이 시험대",
+      "url": "https://x.com/charliebilello/status/2122784378363453447",
+      "media": [
+        "https://pbs.twimg.com/media/HXWj-p5W8AEjAGF.jpg"
+      ],
+      "media_note": "엔비디아 선행 PER 추이 차트",
+      "views": 14334,
+      "likes": 87
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-17 15:06",
+      "text": "$NVDA  -  MUDDY WATERS- IS SHORT NVIDIA",
+      "ko": "머디워터스, 엔비디아 공매도 포지션 공개",
+      "url": "https://x.com/DeItaone/status/2122783508783587802",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 79516,
+      "likes": 268
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-17 12:16",
+      "text": "AMAZON CEO ANDY JASSY, ON NVIDIA FALLOUT, SAYS NVIDIA \"HAS BEEN A REALLY IMPORTANT PARTNER FOR A LONG TIME AND WILL BE FOR AS LONG AS I CAN FORESEE IN THE FUTURE\" - SEMAFOR EVENT",
+      "ko": "아마존 재시 CEO: 엔비디아는 오랜 핵심 파트너, 앞으로도 그럴 것(세마포 행사)",
+      "url": "https://x.com/DeItaone/status/2122740567121756369",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 114959,
+      "likes": 512
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-17 11:56",
+      "text": "AMD CEO Lisa Su calls Nvidia a “phenomenal company” and Jensen Huang a “tremendous leader,” but says AMD needs to “separate a little bit from the noise.” Separately, Su says the the semiconductor cycle looks “generational,” not cyclical. https://t.co/LiSraycVOd",
+      "ko": "AMD 리사 수: 엔비디아는 훌륭한 회사·황은 뛰어난 리더, 반도체 사이클은 경기순환이 아닌 '세대적'",
+      "url": "https://x.com/wallstengine/status/2122735698352742899",
+      "media": [
+        "https://pbs.twimg.com/media/HXV43ADaIAAXkSo.jpg"
+      ],
+      "media_note": "리사 수 인터뷰 캡처",
+      "views": 32245,
+      "likes": 495
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-17 10:51",
+      "text": "BREAKING: US markets extend losses as Nvidia, $NVDA, is now on track for its 7th-straight weekly loss and Iranian officials say the US has struck Iran:\n\n1. S&P 500: -1.6%\n2. Dow Jones: -1.5%\n3. Nasdaq 100: -2.0%\n4. WTI Crude: +1.0%\n5. Gold: +0.9%\n\nNvidia has now lost over -$2 trillion since its October 6th high.\n\nThe stock is facing its longest losing streak since 2012.",
+      "ko": "엔비디아 7주 연속 주간 하락 위기·이란 'US 공습' 주장에 낙폭 확대 — S&P -1.6%, 다우 -1.5%, 나스닥100 -2.0%, 유가 +1.0%, 금 +0.9%",
+      "url": "https://x.com/KobeissiLetter/status/2122719257423159373",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 235910,
+      "likes": 1743
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-17 15:05",
+      "text": "BREAKING: The Dow Jones Industrial Average plunges over -1,000 points on the day as markets await Nvidia, $NVDA, earnings. https://t.co/VvoBqvrub1",
+      "ko": "엔비디아 실적 앞두고 다우 장중 -1,000포인트 넘게 급락",
+      "url": "https://x.com/KobeissiLetter/status/2122783194449695021",
+      "media": [
+        "https://pbs.twimg.com/media/HXWkEIoWQAA0gpJ.jpg"
+      ],
+      "media_note": "다우 장중 차트",
+      "views": 95093,
+      "likes": 931
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 업체",
+      "time_et": "2026-11-17 14:28",
+      "text": "BREAKING 🚨: Stock Market\n\nS&P 500 on track to close below its 200-day moving average for the first time in 7 months 📉📉",
+      "ko": "S&P500, 7개월 만에 처음 200일 이동평균선 아래 마감 임박",
+      "url": "https://x.com/Barchart/status/2122773961075462226",
+      "media": [
+        "https://pbs.twimg.com/media/HXWbg1EXQAEq618.jpg"
+      ],
+      "media_note": "S&P500·200일선 차트",
+      "views": 32495,
+      "likes": 541
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "Creative Planning 수석 시장전략가",
+      "time_et": "2026-11-17 11:36",
+      "text": "The S&P 500 is down 7% from its peak on October 6, the 3rd pullback of the year. This is now the 34th correction >5% off of a high since the March 2009 low. They all seemed like the end of the world at the time. https://t.co/OjCLGEL0PL",
+      "ko": "S&P500, 10/6 고점 대비 -7% — 올해 3번째 조정, 2009년 3월 이후 34번째 5% 이상 조정",
+      "url": "https://x.com/charliebilello/status/2122730509616767057",
+      "media": [
+        "https://pbs.twimg.com/media/HXV0GmQXIAAuLtM.png"
+      ],
+      "media_note": "S&P500 고점 대비 낙폭 차트",
+      "views": 56184,
+      "likes": 587
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 업체",
+      "time_et": "2026-11-17 12:36",
+      "text": "JUST IN 🚨: Extreme Fear returns to the Stock Market 👻😱",
+      "ko": "CNN 공포·탐욕 지수 '극단적 공포' 복귀",
+      "url": "https://x.com/Barchart/status/2122745804280467774",
+      "media": [
+        "https://pbs.twimg.com/media/HXWAjlVWIAAsOct.jpg"
+      ],
+      "media_note": "공포·탐욕 지수 캡처",
+      "views": 36943,
+      "likes": 819
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-17 10:36",
+      "text": "BREAKING: NSA Net, the US National Security Agency's highly classified network, has gone down and is experiencing an ongoing outage, per CNN.\n\nThe network allows employees to communicate classified information internally.\n\nThis follows several other major outages this week.",
+      "ko": "CNN: 미 국가안보국(NSA) 기밀 내부망 장애 — 이번 주 잇단 대형 장애에 이어",
+      "url": "https://x.com/KobeissiLetter/status/2122715520281743849",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 1664789,
+      "likes": 11559
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-17 14:16",
+      "text": "*APPLE SAYS OUTAGE WASN'T CAUSED BY CYBERATTACK https://t.co/acorUy0PRK",
+      "ko": "애플 \"이번 장애는 사이버공격 때문 아니다\"",
+      "url": "https://x.com/zerohedge/status/2122770859568050252",
+      "media": [
+        "https://pbs.twimg.com/media/HXWY15yW0AEkPjE.jpg"
+      ],
+      "media_note": "헤드라인 캡처",
+      "views": 90746,
+      "likes": 1356
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-17 12:31",
+      "text": "BREAKING: Anthropic, $ANT, is planning to raise its IPO price after stronger than expected investor demand, per WSJ.\n\nThe company could now price its shares over $80 per share, above the initial range of $70 to $78 per share.\n\nIts advisers have discussed putting its valuation at around $1.5 trillion or $1.6 trillion, up from the ~$1.33 trillion valuation of the existing range.\n\nDemand appears to be strong for Anthropics IPO.",
+      "ko": "WSJ: 앤트로픽, 수요 강해 IPO 공모가 80달러 이상으로 상향 검토 — 기업가치 1.5~1.6조 달러",
+      "url": "https://x.com/KobeissiLetter/status/2122744324307947814",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 343098,
+      "likes": 2351
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-17 12:05",
+      "text": "ANTHROPIC EXPECTS TO PRICE ITS IPO ABOVE $80 PER SHARE: WSJ\n\nThe Claude maker originally targeted $70-$78 per share, but its advisers are now discussing a valuation of $1.5 trillion to $1.6 trillion, up from roughly $1.33 trillion at the initial range.\n\nHedge funds have placed unusually large orders, with Altimeter founder Brad Gerstner saying his firm requested $5 billion worth of shares.\n\nExisting investors, including Bessemer Venture Partners, Menlo Ventures and Accel, also reportedly plan to increase their investments rather than sell down their stakes.\n\nAt the original price range, Anthropic planned to sell around $61 billion in IPO shares, alongside a separate $26 billion private placement backed by investors including Google and Nvidia. The company also plans to allocate up to 20% of the IPO to retail investors.\n\nFinal pricing is expected Wednesday, with trading set to begin Thursday on the Nasdaq under $ANT.",
+      "ko": "앤트로픽 IPO 80달러 이상 전망 — 알티미터 50억 달러 청약, 수요일 가격 확정·목요일 나스닥 $ANT 상장 예정",
+      "url": "https://x.com/wallstengine/status/2122738024593412537",
+      "media": [
+        "https://pbs.twimg.com/media/HXV6uElagAAQkia.png"
+      ],
+      "media_note": "앤트로픽 IPO 관련 이미지",
+      "views": 30538,
+      "likes": 184
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-17 09:15",
+      "text": "BREAKING: S&P 500 companies have reported +31.9% YoY EPS growth so far in Q3 2026, the strongest YoY growth rate in at least 4 years.\n\nThis marks the 3rd consecutive quarter of earnings growth above 25% and the 8th straight quarter of double-digit growth.\n\nActual earnings have also beaten estimates for 13 consecutive quarters.\n\nSo far in Q3, 84% of S&P 500 companies reporting results have beaten EPS estimates, above the 5-year average of 78%.\n\nThis comes as all 11 sectors are reporting positive earnings growth driven by Energy, Information Technology, and Materials, with 7 delivering double-digit increases.\n\nUS corporate earnings remain remarkably strong.",
+      "ko": "S&P500 3분기 EPS 전년비 +31.9%로 최소 4년 내 최고 — 84%가 예상치 상회, 11개 섹터 모두 이익 증가",
+      "url": "https://x.com/KobeissiLetter/status/2122694999695651222",
+      "media": [
+        "https://pbs.twimg.com/media/HXVGCSvWcAAzX9-.jpg"
+      ],
+      "media_note": "S&P500 EPS 성장률 차트",
+      "views": 169065,
+      "likes": 1194
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-17 13:26",
+      "text": "BREAKING: US Homebuilder Sentiment falls to its lowest level since 2012 as higher mortgage rates, costs, and weak Consumer Confidence led to more builders cutting prices.\n\n46% of builders reported cutting prices in November, the highest share in post-pandemic era.\n\nBuyer traffic fell to its lowest level in 15 years, excluding the start of the Pandemic in 2020.\n\nThe US housing market is coming to a halt.",
+      "ko": "미 주택건설업체 심리 2012년 이후 최저 — 11월 가격 인하 업체 46%, 구매자 방문 15년 최저",
+      "url": "https://x.com/KobeissiLetter/status/2122758165322408168",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 167082,
+      "likes": 1209
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-17 08:35",
+      "text": "Import Prices 1.1%, Exp. 0.7%\nExport Prices 0.8%, Exp. 0.5%\n\nImport prices are growing more than double CPI, biggest delta since Covid https://t.co/5x3k2HwLeX",
+      "ko": "10월 수입물가 +1.1%(예상 0.7%), 수출물가 +0.8%(예상 0.5%) — 수입물가 상승률, CPI의 두 배 이상",
+      "url": "https://x.com/zerohedge/status/2122685075682893910",
+      "media": [
+        "https://pbs.twimg.com/media/HXVKwfsWsAAYTY7.jpg"
+      ],
+      "media_note": "수입물가 vs CPI 차트",
+      "views": 77714,
+      "likes": 331
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스슈왑 수석 투자전략가",
+      "time_et": "2026-11-17 08:45",
+      "text": "October retail sales +0.2% m/m vs. +0.1% est. & +0.8% prior; sales ex-auto +0.6% vs. +1.1% prior … control group +0.6% vs. +0.5% prior https://t.co/4uPX64ZTrb",
+      "ko": "10월 소매판매 +0.2%(예상 0.1%), 자동차 제외 +0.6%, 컨트롤그룹 +0.6%",
+      "url": "https://x.com/LizAnnSonders/status/2122687667087536467",
+      "media": [
+        "https://pbs.twimg.com/media/HXVNLwMWkAEzziz.jpg"
+      ],
+      "media_note": "소매판매 추이 차트",
+      "views": 11151,
+      "likes": 53
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스슈왑 수석 투자전략가",
+      "time_et": "2026-11-17 10:14",
+      "text": "October industrial production (top pane) -0.4% m/m vs. +0.1% est. & +0.7% prior … manufacturing production (bottom pane) +0.3% vs. +0.2% est. & +0.3% prior https://t.co/uOVr8kTvEq",
+      "ko": "10월 산업생산 -0.4%(예상 +0.1%), 제조업 생산 +0.3%",
+      "url": "https://x.com/LizAnnSonders/status/2122710020387217585",
+      "media": [
+        "https://pbs.twimg.com/media/HXVhg6vW0AA6qKz.jpg"
+      ],
+      "media_note": "산업생산·제조업 생산 차트",
+      "views": 10435,
+      "likes": 22
+    },
+    {
+      "author": "Bloomberg",
+      "handle": "@business",
+      "role": "블룸버그 통신",
+      "time_et": "2026-11-17 13:45",
+      "text": "The 10-year Treasury yield is nearing its longest stretch above 5% in nearly two decades as investors brace for more Fed rate hikes https://t.co/aCSn5piDWB",
+      "ko": "10년물 국채금리 5% 이상 구간, 약 20년 만에 최장 기록 근접 — 연준 추가 인상 대비",
+      "url": "https://x.com/business/status/2122763000603894182",
+      "media": [],
+      "media_note": "첨부 없음(기사 링크)",
+      "views": 18190,
+      "likes": 12
+    },
+    {
+      "author": "Bloomberg",
+      "handle": "@business",
+      "role": "블룸버그 통신",
+      "time_et": "2026-11-17 13:10",
+      "text": "Federal Reserve Bank of Cleveland President Beth Hammack said policymakers should establish principles for when and how to intervene in Treasury markets, and communicate a clear exit strategy https://t.co/wL3LhYKcHm",
+      "ko": "클리블랜드 연은 해먹: 국채시장 개입 시기·방식 원칙과 명확한 출구전략 필요",
+      "url": "https://x.com/business/status/2122754181970727284",
+      "media": [],
+      "media_note": "첨부 없음(기사 링크)",
+      "views": 18379,
+      "likes": 7
+    },
+    {
+      "author": "Nick Timiraos",
+      "handle": "@NickTimiraos",
+      "role": "WSJ 수석 경제기자(Fed 담당)",
+      "time_et": "2026-11-17 12:51",
+      "text": "Fed governor Lisa Cook's attorney says she won't appear at next month's White House hearing, citing a process that he alleges is designed “only to manufacture ‘cause’ for a predetermined removal outcome.” https://t.co/tn7d1FwQLr",
+      "ko": "쿡 연준 이사 측 변호인: 다음 달 백악관 청문회 불출석 — '해임 결론을 위한 명분 만들기' 절차",
+      "url": "https://x.com/NickTimiraos/status/2122749507909919229",
+      "media": [],
+      "media_note": "첨부 없음(기사 링크)",
+      "views": 25382,
+      "likes": 48
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-17 14:04",
+      "text": "STANLEY DRUCKENMILLER ON THE MARKET:\n\n\"I can't remember a period where I had less clarity on where we're gonna be in 12 months.\"\n\n\"We're in capital preservation, trying to not lose money as opposed to make money.\"\n\n\"We're not long equities & we're not short.\"\n\n\"I'm really alert to the fact that the second half of '27 could be economically disappointing.\"\n\n\"I wouldn't dare go short with all the innovation going on.\"\n\n\"Those stocks are oversold, they're washed out. We have some small positions but we're basically staying away.\"\n\nWe are short Copper, “The Fed is not cutting, they’re hiking.”\n\n\"I'm not playing. I play big when I'm hot, when I'm cold I do little bunts.\"",
+      "ko": "드러켄밀러: 12개월 뒤가 이렇게 안 보인 적 없어 — 자본 보존 모드, 주식 롱·숏 없음, \"연준은 인하 아닌 인상\", 구리 숏",
+      "url": "https://x.com/wallstengine/status/2122767953628402116",
+      "media": [
+        "https://pbs.twimg.com/media/HXWTQfPasAAQnZ2.png"
+      ],
+      "media_note": "드러켄밀러 인터뷰 캡처",
+      "views": 51888,
+      "likes": 589
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-17 13:19",
+      "text": "MICROSOFT ANNOUNCES 6 NEW AI MODELS AT IGNITE\n\n$MSFT unveiled six MAI models across coding, cybersecurity, image generation and voice on the same day its partner OpenAI released GPT-6.2.\n\n1) MAI Code 2: Delivers 98% of GPT-6.1 Sol's performance at 40% of the cost. Now in GitHub Copilot.\n\n2) MAI Code 2 Flash: Outperformed GPT-6.1 Sol in AT&T testing while costing 50 times less.\n\n3) MAI Cyber 2 Flash: Outperformed GPT-6 Astra on a cybersecurity benchmark at less than 2% of the cost per task.\n\n4) MAI Realtime 1: Outperformed GPT Realtime 2.1 on public benchmarks and Microsoft's own evaluations.\n\nMicrosoft is also launching MAI Image 2.7 in public preview and bringing MAI Transcribe 2 to Dragon Copilot for medical use cases.\n\nSeparately, Microsoft says it is making progress on its own general-purpose frontier AI model.",
+      "ko": "마이크로소프트 이그나이트에서 MAI 모델 6종 공개 — 오픈AI GPT-6.2 출시와 같은 날",
+      "url": "https://x.com/wallstengine/status/2122756418667438504",
+      "media": [
+        "https://pbs.twimg.com/media/HXWLr8XasAAOJWN.jpg"
+      ],
+      "media_note": "MS 발표 이미지",
+      "views": 50742,
+      "likes": 358
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-17 14:54",
+      "text": "SpaceX $SPCX CFO Bret Johnsen says it could be the largest AI infrastructure player next year.\n\nHe sees orbital compute tests in 2027, scaling in 2028 and meaningful volume in 2029.\n\nHe expects Anthropic to need far more compute. It accounted for over 1/3 of SpaceX's Q3 revenue. https://t.co/Yg5SkzxRxV",
+      "ko": "스페이스X CFO: 내년 최대 AI 인프라 업체 가능 — 궤도 컴퓨팅 2027 시험·2029 본격, 앤트로픽이 3분기 매출 1/3 이상",
+      "url": "https://x.com/wallstengine/status/2122780396828106859",
+      "media": [
+        "https://pbs.twimg.com/media/HXWgHP_bUAAYw_4.png",
+        "https://pbs.twimg.com/media/HXWgHy3a4AAdP_Y.png"
+      ],
+      "media_note": "발표 자료 캡처 2장",
+      "views": 18337,
+      "likes": 175
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 업체",
+      "time_et": "2026-11-17 14:58",
+      "text": "Death Cross ☠️ imminent for Bank Stocks 📉📉 https://t.co/mgbPseZIU9",
+      "ko": "은행주 '데드크로스' 임박",
+      "url": "https://x.com/Barchart/status/2122781398792835135",
+      "media": [
+        "https://pbs.twimg.com/media/HXWibjKWUAAot7f.jpg"
+      ],
+      "media_note": "은행주 지수 이동평균 차트",
+      "views": 16179,
+      "likes": 209
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": "엔비디아 실적 당일 최대 변수: 젠슨 황이 사임 후 첫 공식 성명에서 '이사회가 원하면 CEO로 복귀하겠다'고 밝힘 — 이사회는 여전히 복귀 검토 안 한다는 보도와 정면 충돌.\n조회 60만·좋아요 9.6천으로 이번 묶음 최상위 반응, 성명 전문이 담겨 실적 발표 직전 영상 첫 장면 인용 카드로 적합."
+  }
+}
