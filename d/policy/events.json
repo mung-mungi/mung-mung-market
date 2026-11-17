@@ -4752,6 +4752,38 @@
   "has_detail": false
  },
  {
+  "id": "e307",
+  "date": "2026-11-16",
+  "month": "2026-11",
+  "category": "이란 전쟁·유가",
+  "title": "아락치 이란 외무, 파키스탄서 \"중재 믿는다\" — 다르 외무 \"이란 해협 재개안에 미국 아직 답 없어\"",
+  "summary": "아락치 이란 외무장관이 경제협력기구 회의차 파키스탄을 찾아 무니르 육군참모총장을 만났습니다. 아락치 장관은 \"파키스탄을 좋은 친구로 믿는다\"며 중재에 만족한다고 말했습니다. 다르 파키스탄 외무장관은 이란이 호르무즈 해협 재개를 위한 '이틀짜리 제안'을 내놨지만 미국이 아직 답하지 않았다고 했습니다. 협상 통로는 살아 있지만 해협이 다시 열릴 시점은 여전히 정해지지 않았다는 뜻입니다.",
+  "nasdaq_pct": -2.49,
+  "mkt_note": "",
+  "status": "발생",
+  "source_url": "https://www.arabnews.pk/pakistan/iran-says-it-trusts-pakistans-mediation-in-war-with-us-3007271",
+  "media": "아랍뉴스(AFP)",
+  "tier": "small",
+  "thread": "이란 해협 협상",
+  "has_detail": false
+ },
+ {
+  "id": "e308",
+  "date": "2026-11-16",
+  "month": "2026-11",
+  "category": "이란 전쟁·유가",
+  "title": "사우디, 예멘 연합군 사령관 교체 — 후티는 아덴 서쪽 100㎞ 코르 오마이라까지 진격",
+  "summary": "살만 국왕이 칙령으로 예멘 연합군 사령관 파흐드 빈 하마드 알살만 중장을 국방장관 고문으로 돌리고, 파야드 알루와일리 합참의장에게 연합군 지휘를 맡겼습니다. 서방 외교관 2명은 이번 교체가 최근 전황과 직접 관련 있다고 로이터에 말했습니다. 예멘 군 소식통은 후티가 아덴 서쪽 약 100㎞ 코르 오마이라에 이르렀다고 전했습니다. 홍해 입구 바브엘만데브 주변 통제가 흔들리면 해상 운임·보험료 부담이 커질 수 있습니다.",
+  "nasdaq_pct": -2.49,
+  "mkt_note": "",
+  "status": "발생",
+  "source_url": "https://anewz.tv/middle-east-conflict/news/26818/saudi-arabia-replaces-yemen-coalition-commander/news",
+  "media": "AnewZ(로이터 인용)",
+  "tier": "small",
+  "thread": "후티-사우디 전선",
+  "has_detail": false
+ },
+ {
   "id": "e26",
   "date": "2026-11-18",
   "month": "2026-11",
