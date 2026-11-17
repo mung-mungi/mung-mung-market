@@ -4,6 +4,14 @@
  "channel_url": "https://www.youtube.com/@멍뭉터미널",
  "items": [
   {
+   "id": "J0dUKjQErtY",
+   "title": "2026년 11월 17일",
+   "published": "2026-11-17T06:05:24+00:00",
+   "url": "https://www.youtube.com/watch?v=J0dUKjQErtY",
+   "short": false,
+   "thumb": "https://i.ytimg.com/vi/J0dUKjQErtY/mqdefault.jpg"
+  },
+  {
    "id": "JIizA4jecFg",
    "title": "젠슨 없는 엔비디아, 수요일이 답한다",
    "published": "2026-11-15T17:51:50+00:00",
@@ -42,14 +50,6 @@
    "url": "https://www.youtube.com/watch?v=dyikD9BYNVw",
    "short": false,
    "thumb": "https://i.ytimg.com/vi/dyikD9BYNVw/mqdefault.jpg"
-  },
-  {
-   "id": "TpStkyzg4Y8",
-   "title": "반도체 무너진 주, 8조 달러는 시장 밖에서 기다린다 | 다음 주 미국증시 미리보기",
-   "published": "2026-11-08T22:05:16+00:00",
-   "url": "https://www.youtube.com/watch?v=TpStkyzg4Y8",
-   "short": false,
-   "thumb": "https://i.ytimg.com/vi/TpStkyzg4Y8/mqdefault.jpg"
   }
  ]
 }
