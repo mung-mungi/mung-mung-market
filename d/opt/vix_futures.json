@@ -1,13 +1,5 @@
 [
  {
-  "contract": "VX/X6",
-  "month": "2026-11",
-  "expiry": "2026-11-18",
-  "settle_2026-11-17": 24.7417,
-  "settle_2026-11-16": 22.5309,
-  "source": "CBOE 공식 정산(cdn.cboe.com VX 계약별 기록)"
- },
- {
   "contract": "VX/Z6",
   "month": "2026-12",
   "expiry": "2026-12-16",
@@ -61,6 +53,14 @@
   "expiry": "2027-06-16",
   "settle_2026-11-17": 22.3005,
   "settle_2026-11-16": 21.6978,
+  "source": "CBOE 공식 정산(cdn.cboe.com VX 계약별 기록)"
+ },
+ {
+  "contract": "VX/N7",
+  "month": "2027-07",
+  "expiry": "2027-07-21",
+  "settle_2026-11-17": 22.2623,
+  "settle_2026-11-16": 21.875,
   "source": "CBOE 공식 정산(cdn.cboe.com VX 계약별 기록)"
  }
 ]
