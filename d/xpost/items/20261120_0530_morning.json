@@ -1,0 +1,530 @@
+{
+  "req": "11/19(목) 뉴욕장(한국 05:30 기준 장 마감 직전까지) — 앤트로픽($ANT) 사상 최대 IPO 상장 첫날 급등 후 반락, 기술주 매도·S&P 7200 하회·나스닥 -2%·VIX 28·극단적 공포, AMD 헌터브룩 대중 불법판매 의혹 -13%·부인, 엔비디아(대중 수출신청 공개·크레스 임시CEO·MS 협력), 연준(굴스비·JP모건 3연속 인상 전망·AI 위험), 경제지표(실업수당·필라델피아 연은·선행지수), 10년물 5.08%, SPR·9일물 CMB·비트코인, 차트 — 영향력 있는 계정만, 루머·익명·밈 제외 (당일 장후 실적은 아직 발표 전)",
+  "at": "2026-11-20T05:42:00+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-19 12:15",
+      "text": "BREAKING: Anthropic, $ANT, officially begins trading on the Nasdaq and surges to $115/share, up +39% from its $83 IPO price.\n\nThis officially pushes the company's fully diluted valuation above $2 trillion, making it the 6th most valuable publicly traded company in the world on this basis.",
+      "ko": "앤트로픽($ANT) 나스닥 상장 첫 거래 — 공모가 83달러 대비 +39% 115달러까지 급등, 완전희석 기업가치 2조 달러 돌파(세계 6위)",
+      "url": "https://x.com/KobeissiLetter/status/2123465131501736418",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 173613,
+      "likes": 1612
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-19 07:40",
+      "text": "BREAKING: Anthropic, $ANT, is expected to begin trading on the Nasdaq today at 10:00 AM ET, with shares being released for quotation at 9:50 AM ET.\n\nThe IPO is expected to raise $81.3 billion, making it the largest IPO in history.\n\nShares were priced at $83 each, valuing the company at $1.5 trillion.",
+      "ko": "앤트로픽 오늘 오전 10시(ET) 나스닥 거래 시작 — 공모 규모 813억 달러로 사상 최대 IPO, 공모가 83달러·기업가치 1.5조 달러",
+      "url": "https://x.com/KobeissiLetter/status/2123396042431385907",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 415135,
+      "likes": 3314
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-19 11:48",
+      "text": "$ANT  - ANTHROPIC SHARES OPEN AT $111.5 IN DEBUT VS IPO PRICE OF $83 PER SHARE",
+      "ko": "앤트로픽 시초가 111.5달러 — 공모가 83달러 대비",
+      "url": "https://x.com/DeItaone/status/2123458452978594257",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 124609,
+      "likes": 342
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-19 13:16",
+      "text": "*ANTHROPIC SHARES FALL 16% BELOW OPENING TRADE",
+      "ko": "앤트로픽, 시초가 대비 16% 하락",
+      "url": "https://x.com/DeItaone/status/2123480598694240627",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 134156,
+      "likes": 1027
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-19 13:13",
+      "text": "Anthropic $ANT has wiped out roughly $345B in market value from its intraday peak. Still, the stock is up 15.7% from its $83 IPO price, valuing the company at around $1.7T fully diluted. https://t.co/WpU0wFIBSv https://t.co/r5SBqKBj0r",
+      "ko": "앤트로픽, 장중 고점 대비 시총 약 3,450억 달러 증발 — 그래도 공모가 대비 +15.7%, 완전희석 기업가치 약 1.7조 달러",
+      "url": "https://x.com/wallstengine/status/2123479825159729378",
+      "media": [
+        "https://pbs.twimg.com/media/HXgcqbhaAAEadx0.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(앤트로픽 주가 관련)",
+      "views": 21474,
+      "likes": 112
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-19 09:26",
+      "text": "BREAKING: Markets now see just a 29% chance that Anthropic, $ANT, closes above $1.5 trillion in market cap today.\n\n6 weeks ago, there was a 75% chance of $ANT closing above $2 trillion today.\n\nWe expect trading to begin within the next 3 hours. https://t.co/MolSMK8SwR",
+      "ko": "예측시장: 앤트로픽 상장 첫날 시총 1.5조 달러 이상 마감 확률 29% — 6주 전엔 '2조 달러 이상' 확률 75%",
+      "url": "https://x.com/KobeissiLetter/status/2123422721103245313",
+      "media": [
+        "https://pbs.twimg.com/media/HXfnHnsWkAAmj2W.jpg"
+      ],
+      "media_note": "예측시장 확률 화면 캡처로 보이는 이미지 1장",
+      "views": 218659,
+      "likes": 1280
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-19 11:34",
+      "text": "BREAKING: The average Anthropic, $ANT, employee will be worth $44 million after today's IPO, based on current indicated share price:\n\n1. 7 Co-Founders: ~$20+ billion each\n2. Several early employees: $1+ billion each\n3. 598 employees: $100+ million each\n4. 2,800 employees: $1+ million each\n5. Total employee equity wealth: $232 billion\n6. Employee stock option gains: $119 billion\n\nSan Francisco’s median single-family home sale price jumped +29% year over year to $2.39 million in October amid the IPO process.\n\nThis marks the largest jump in San Francisco's media home price since February 2018.\n\nThousands of new millionaires will be minted today.",
+      "ko": "앤트로픽 직원 평균 지분가치 4,400만 달러 — 공동창업자 7명 각 200억+, 598명 1억+, 2,800명 100만+ 달러, 샌프란시스코 집값 +29%",
+      "url": "https://x.com/KobeissiLetter/status/2123454759118024840",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 1834546,
+      "likes": 13344
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-19 10:51",
+      "text": "Anthropic CEO Dario Amodei says its $900B in multiyear compute commitments aren't excessive given its cash and annual revenue, while future compute needs remain hard to predict, adding that “we've seen over and over again that it pays off” to spend heavily on compute. https://t.co/CSh2YehjW3",
+      "ko": "다리오 아모데이 CEO: 9,000억 달러 다년 컴퓨팅 약정은 과도하지 않다 — 컴퓨팅에 크게 쓰는 게 늘 보상받았다",
+      "url": "https://x.com/wallstengine/status/2123444024954822970",
+      "media": [
+        "https://pbs.twimg.com/amplify_video_thumb/2123440621818146816/img/qBeyJG0fjCoZ63og.jpg"
+      ],
+      "media_note": "인터뷰 영상(썸네일 주소)",
+      "views": 35126,
+      "likes": 193
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-19 12:06",
+      "text": "BREAKING: The S&P 500 falls over -230 points from its high of the day as the Anthropic, $ANT, IPO debuts and technology stocks sell off.\n\nThe S&P 500 is now trading below 7200 for the first time since May 5th. https://t.co/GNVVM63OuK",
+      "ko": "앤트로픽 데뷔와 기술주 매도에 S&P500 장중 고점 대비 230p 넘게 하락 — 5/5 이후 처음 7200 아래",
+      "url": "https://x.com/KobeissiLetter/status/2123462999839302085",
+      "media": [
+        "https://pbs.twimg.com/media/HXgOQDzWYAArTF_.png"
+      ],
+      "media_note": "S&P500 장중 차트로 보이는 이미지 1장",
+      "views": 275712,
+      "likes": 1994
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-19 09:40",
+      "text": "BREAKING: The Nasdaq 100 extends gains to +2% on the day as Nvidia, $NVDA, rises over +4% and traders await the Anthropic IPO. https://t.co/V0kAAbLkLt",
+      "ko": "장 초반: 나스닥100 +2%, 엔비디아 +4% 넘게 상승 — 앤트로픽 IPO 대기",
+      "url": "https://x.com/KobeissiLetter/status/2123426312937210221",
+      "media": [
+        "https://pbs.twimg.com/media/HXfsz6wXMAA9gwa.jpg"
+      ],
+      "media_note": "나스닥100 장중 차트로 보이는 이미지 1장",
+      "views": 197253,
+      "likes": 2000
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-19 15:03",
+      "text": "U.S. STOCKS EXTEND FALL, NASDAQ <.IXIC> DOWN 2.03 PCT",
+      "ko": "미 증시 낙폭 확대 — 나스닥 -2.03%",
+      "url": "https://x.com/DeItaone/status/2123507555993301377",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 63871,
+      "likes": 128
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-19 15:00",
+      "text": "BREAKING: US technology stock valuations have hit their lowest level since March 2020 amid the market correction.\n\nThe S&P 500 Info Tech Index P/E ratio is now at its lowest since March 20th, 2020, at 16.4x. https://t.co/KMxsZxBlql",
+      "ko": "S&P500 IT 섹터 PER 16.4배로 2020년 3월 이후 최저 — 조정장 속 기술주 밸류에이션 급락",
+      "url": "https://x.com/KobeissiLetter/status/2123506602015887795",
+      "media": [
+        "https://pbs.twimg.com/media/HXgwtu-WkAAgikj.png"
+      ],
+      "media_note": "IT 섹터 PER 추이 차트",
+      "views": 143566,
+      "likes": 1872
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "Creative Planning 수석 시장전략가",
+      "time_et": "2026-11-19 12:16",
+      "text": "The S&P 500 is now down 8% from its peak on October 6, the 3rd pullback of the year and largest since March. This is the 34th correction >5% off of a high since the March 2009 low. They all seemed like the end of the world at the time. https://t.co/cCadaPadtd",
+      "ko": "S&P500, 10/6 고점 대비 -8% — 올해 3번째·3월 이후 최대 조정, 2009년 3월 이후 34번째 5% 이상 조정",
+      "url": "https://x.com/charliebilello/status/2123465513565098450",
+      "media": [
+        "https://pbs.twimg.com/media/HXgQgeDXMAA-JJu.png"
+      ],
+      "media_note": "S&P500 고점 대비 낙폭 차트",
+      "views": 64694,
+      "likes": 680
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-19 12:05",
+      "text": "CBOE VOLATILITY INDEX HIT NEAR EIGHT-MONTH HIGH; LAST UP 3.75 POINTS AT 28.31",
+      "ko": "VIX 약 8개월 만의 최고 — 3.75p 오른 28.31",
+      "url": "https://x.com/DeItaone/status/2123462774768415227",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 95538,
+      "likes": 142
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 업체",
+      "time_et": "2026-11-19 15:20",
+      "text": "Extreme Fear returns to the Stock Market 📉 👻 😱 https://t.co/B2V1mrkrgy",
+      "ko": "증시에 '극단적 공포' 복귀",
+      "url": "https://x.com/Barchart/status/2123511870703190429",
+      "media": [
+        "https://pbs.twimg.com/media/HXg6yyxWoAAiYCc.jpg"
+      ],
+      "media_note": "공포·탐욕 지수 캡처로 보이는 이미지 1장",
+      "views": 14660,
+      "likes": 231
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-19 10:53",
+      "text": "BREAKING: AMD stock, $AMD, crashes -13% in 30 minutes after Hunterbrook Media accuses the company of illegally selling chips to China.\n\nHunterbrook Capital also disclosed a short position in AMD. https://t.co/CjuiWrZcFZ",
+      "ko": "AMD, 헌터브룩 '대중국 불법 칩 판매' 의혹 제기에 30분 만에 -13% 폭락 — 헌터브룩 캐피털은 공매도 포지션 공개",
+      "url": "https://x.com/KobeissiLetter/status/2123444634257109287",
+      "media": [
+        "https://pbs.twimg.com/media/HXf9pA4WoAAQ4Da.jpg"
+      ],
+      "media_note": "AMD 주가 차트로 보이는 이미지 1장",
+      "views": 1020011,
+      "likes": 10628
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-19 13:01",
+      "text": "BREAKING: AMD, $AMD, officially denies claims made by Hunterbrook Media that sent the stock -13% lower, saying that the claims \"misrepresent AMD's business practices and relationships,\" per Bloomberg.\n\n\"AMD complies with applicable US export control laws and regulations and maintains rigorous processes to ensure compliance across our global operations,\" a spokesperson said. \n\n\"We remain focused on serving our customers and upholding the highest standards of integrity,\" they added.\n\nHunterbrook Capital released the report with a short position in the stock.",
+      "ko": "AMD 공식 부인 — '헌터브룩 주장은 사업 관행을 왜곡', 미 수출통제 법규 준수(블룸버그)",
+      "url": "https://x.com/KobeissiLetter/status/2123476690873847984",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 202114,
+      "likes": 1714
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-19 14:44",
+      "text": "$NVDA  - U.S. HOUSE REVEALS 3.4 MILLION CHIP EXPORT APPLICATIONS TO CHINA, INCLUDING 445,000 NVIDIA H200s\n\nThe U.S. House Foreign Affairs Committee released new details on export-license applications for advanced American AI chips.\n\nAs of May 2026, the Commerce Department had received applications covering 3.4 million chips destined for Chinese companies.\n\n🔸 Alibaba: 948,950\n🔸 Tencent: 150,000\n🔸 Baidu: 43,000\n🔸 BYD: 4,000\n\nSeparately, Nvidia sought authorization to ship 445,000 H200 AI chips to Tencent in December 2025.\n\nThe disclosures intensify scrutiny of U.S. semiconductor exports to China.\n\nApplications do not necessarily indicate approved licenses or completed shipments.",
+      "ko": "미 하원 외교위: 상무부 접수 대중 AI칩 수출 신청 340만 개(알리바바 95만 등) — 엔비디아는 텐센트向 H200 44.5만 개 신청",
+      "url": "https://x.com/DeItaone/status/2123502784687542273",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 94630,
+      "likes": 261
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-19 13:31",
+      "text": "Nvidia VP Ian Buck on CFO Colette Kress serving as interim CEO:\n\n\"I don't know any other CFO that can speak to how many tokens per second Vera Rubin and NVL72 can deliver on a model like Nemotron or Meta Muse, and understand what it means.\"\n\n\"I mean, she intimately understands that.\"\n\n\"She understands not only our business but the whole ecosystem of people that are supplying compute.\"\n\nBuck also said members of Kress's team are embedded throughout Nvidia's product departments, highlighting how closely her finance organization works with the company's engineering and product teams.\n\nSource: Yahoo Finance",
+      "ko": "엔비디아 이언 벅 VP: 콜렛 크레스 임시 CEO만큼 베라 루빈·NVL72 성능과 생태계를 이해하는 CFO는 없다",
+      "url": "https://x.com/wallstengine/status/2123484291778933090",
+      "media": [
+        "https://pbs.twimg.com/media/HXghYpobUAA0TeB.jpg",
+        "https://pbs.twimg.com/media/HXghazKa4AAhiwr.png"
+      ],
+      "media_note": "인터뷰 캡처 2장",
+      "views": 99168,
+      "likes": 337
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 뉴스 플랫폼",
+      "time_et": "2026-11-19 13:37",
+      "text": "Elon Musk says Jensen Huang is like “Michael Jordan at his peak” for Nvidia, $NVDA.\n\n“There is no one that can replace Jensen... you need to think long and hard before kicking someone like that out,” Musk said. “They kicked Michael Jordan off their team while they were on a winning streak. It was a mistake.”\n\nIt’s Musk’s latest defense of the former Nvidia CEO. He’s the lead signer on a petition to reinstate Huang, which has passed 100,000 signatures, and he said last week it “would be an honor” to hire him. Nvidia board chair Harvey Jones has said Huang won’t be invited back.",
+      "ko": "머스크: 젠슨 황은 '전성기의 마이클 조던' — 대체 불가, 쫓아낸 건 실수(이사회 의장은 복귀 없다는 입장)",
+      "url": "https://x.com/unusual_whales/status/2123485710145540331",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 96523,
+      "likes": 280
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-19 15:33",
+      "text": "$NVDA & MICROSOFT EXPAND AI PARTNERSHIP FROM AZURE DATA CENTERS TO WINDOWS PCS\n\nNvidia and Microsoft $MSFT announced several new AI infrastructure and software integrations at Microsoft Ignite, covering cloud computing, enterprise AI models, robotics and local AI.\n\nHere are the key developments:\n\nVera Rubin on Azure: Nvidia's Vera Rubin NVL72 systems are already running in Microsoft's data centers, with Azure expanding access to Rubin-powered infrastructure for AI training, reasoning and inference.\n\nEnterprise AI models: Microsoft Foundry is expanding support for Nvidia's Nemotron 3.5 open models, allowing companies to customize AI models using their own data and deploy them through Microsoft's cloud services.\n\n55% accuracy improvement, 15x lower cost: EY used Nvidia Nemotron through Microsoft Foundry to improve the accuracy of corporate purchasing-record classification by 55% while reducing costs by 15x compared with proprietary frontier models in its evaluation.\n\nAI on local servers and PCs: Azure Local is adding support for Nvidia RTX PRO 6000 Blackwell GPUs and Jetson platforms for industrial AI and robotics. The companies are also demonstrating AI models running directly on Windows PCs powered by RTX Spark.\n\nMicrosoft's own AI development: Microsoft AI is using Nvidia Dynamo software to accelerate inference during model post-training, while Nvidia RTX PRO 6000 Blackwell GPUs are being used for Bing search models.\n\nThe companies are also expanding confidential computing to protect sensitive enterprise models and data during processing on Vera Rubin infrastructure.",
+      "ko": "엔비디아·MS 이그나이트에서 AI 협력 확대 — 애저에 베라 루빈 NVL72 가동, 네모트론 3.5, 윈도 PC·로컬 AI까지",
+      "url": "https://x.com/wallstengine/status/2123515147952288002",
+      "media": [
+        "https://pbs.twimg.com/media/HXg9wyFbMAA7FZT.png"
+      ],
+      "media_note": "발표 내용 정리 이미지 1장",
+      "views": 7117,
+      "likes": 38
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 뉴스 플랫폼",
+      "time_et": "2026-11-19 13:57",
+      "text": "The state of Arizona has opened a criminal investigation into OpenAI and other AI companies relating to the 'apparent ​infiltration of banks by rogue AI agents,’ per Reuters",
+      "ko": "로이터: 애리조나주, '은행에 침투한 불량 AI 에이전트' 관련 오픈AI 등 AI 기업 형사수사 착수",
+      "url": "https://x.com/unusual_whales/status/2123490742362653163",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 127625,
+      "likes": 1725
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스슈왑 수석 투자전략가",
+      "time_et": "2026-11-19 07:58",
+      "text": "Nearly 90% of respondents cited AI as the biggest risk to U.S. financial stability over the next 12-18 months, according to @NewYorkFed survey … risk asset correction and higher long-term rates rounded out the top three https://t.co/z01gepqxX8",
+      "ko": "뉴욕 연은 설문: 응답자 약 90%가 향후 12~18개월 미 금융안정 최대 위험으로 AI 꼽아 — 위험자산 조정·장기금리 상승이 뒤이어",
+      "url": "https://x.com/LizAnnSonders/status/2123400505741529191",
+      "media": [
+        "https://pbs.twimg.com/media/HXfVgWwXEAA--dZ.jpg"
+      ],
+      "media_note": "설문 결과 차트",
+      "views": 12464,
+      "likes": 40
+    },
+    {
+      "author": "Nick Timiraos",
+      "handle": "@NickTimiraos",
+      "role": "WSJ 수석 경제기자(Fed 담당)",
+      "time_et": "2026-11-19 10:18",
+      "text": "Fed staff economists review recent macroeconomic impacts of AI investment and adoption:\n\nEffects on aggregate productivity growth \"appear to be small so far, and the recent pickup in productivity likely reflects factors that predated the diffusion on generative AI.\"\n\nhttps://t.co/RRewlZ6BmP",
+      "ko": "연준 스태프 분석: AI 투자·도입의 총생산성 효과는 아직 작아 — 최근 생산성 개선은 생성형 AI 이전 요인",
+      "url": "https://x.com/NickTimiraos/status/2123435788671041570",
+      "media": [],
+      "media_note": "첨부 없음(링크)",
+      "views": 45603,
+      "likes": 171
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-19 13:01",
+      "text": "FED'S GOOLSBEE: \n\nTHE FED'S JOB RIGHT NOW IS TO PREVENT THE AI INVESTMENTS SURGE FROM OVERHEATING THE ECONOMY",
+      "ko": "굴스비 시카고 연은 총재: 지금 연준의 일은 AI 투자 급증이 경제를 과열시키지 않게 막는 것",
+      "url": "https://x.com/wallstengine/status/2123476706069458999",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 40082,
+      "likes": 174
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-19 12:40",
+      "text": "FED'S GOOLSBEE: JOB MARKET IS STABLE BUT INFLATION IS \"WAY HIGHER\" THAN THE FED'S 2% TARGET",
+      "ko": "굴스비: 고용시장 안정적이지만 인플레이션은 2% 목표보다 '훨씬 높다'",
+      "url": "https://x.com/DeItaone/status/2123471455622942829",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 99996,
+      "likes": 255
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 업체",
+      "time_et": "2026-11-19 11:45",
+      "text": "The Fed will hike rates at the next 3 FOMC meetings, says JP Morgan 🚨 🚨 https://t.co/i06RBpVLdt",
+      "ko": "JP모건: 연준, 다음 3번의 FOMC에서 연속 금리 인상 전망",
+      "url": "https://x.com/Barchart/status/2123457699685773430",
+      "media": [
+        "https://pbs.twimg.com/media/HXgJhmnXgAAkkAw.png"
+      ],
+      "media_note": "관련 이미지 1장",
+      "views": 32698,
+      "likes": 212
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-19 08:30",
+      "text": "US JOBLESS CLAIMS +1K TO 203K IN NOV-14 WK; SURVEY 197K\n\nUS NOV-7 WEEK CONTINUING CLAIMS +70K TO 1,763,000\n\nUS NOV-7 WEEK JOBLESS CLAIMS REVISED TO 202K",
+      "ko": "주간 신규 실업수당 청구 20.3만 건(예상 19.7만) — 계속청구 7만 건 늘어 176.3만 건",
+      "url": "https://x.com/DeItaone/status/2123408601629004276",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 149302,
+      "likes": 426
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스슈왑 수석 투자전략가",
+      "time_et": "2026-11-19 08:45",
+      "text": "November @philadelphiafed Manufacturing Index +6.3 vs. +20.1 est. & +20.9 prior … prices paid +58.2 vs. +43.2 prior; new orders -0.4 vs. +4.3 prior; shipments +25.7 vs. +15.3 prior; employment +11.6 vs. +9.1 https://t.co/nypi44jCcW",
+      "ko": "11월 필라델피아 연은 제조업지수 +6.3(예상 +20.1) 급락 — 지불가격 +58.2로 급등, 신규주문 마이너스",
+      "url": "https://x.com/LizAnnSonders/status/2123412233896230928",
+      "media": [
+        "https://pbs.twimg.com/media/HXfgLBfWEAA9iOx.jpg"
+      ],
+      "media_note": "지수 추이 차트",
+      "views": 13211,
+      "likes": 55
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스슈왑 수석 투자전략가",
+      "time_et": "2026-11-19 10:39",
+      "text": "October @Conferenceboard Leading Economic Index -0.3% m/m vs. 0.0% est. & 0.0% prior https://t.co/NRezidHAaR",
+      "ko": "10월 컨퍼런스보드 경기선행지수 -0.3%(예상 0.0%)",
+      "url": "https://x.com/LizAnnSonders/status/2123441127009468902",
+      "media": [
+        "https://pbs.twimg.com/media/HXf6c0rWMAADrqo.jpg"
+      ],
+      "media_note": "선행지수 추이 차트",
+      "views": 11538,
+      "likes": 53
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-19 08:35",
+      "text": "*US TREASURY YIELDS PARE GAINS FOLLOWING ECONOMIC DATA\n\n*US 10-YEAR TREASURY YIELD UP 1.85 BPS AT 5.085%\n*US 2-YEAR TREASURY YIELD UP 3.21 BPS AT 4.832%",
+      "ko": "지표 발표 후 국채금리 상승폭 축소 — 10년물 5.085%, 2년물 4.832%",
+      "url": "https://x.com/DeItaone/status/2123409864370077896",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 113596,
+      "likes": 208
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-19 11:16",
+      "text": "SEAPORT RESEARCH PARTNERS CUTS 2026 YEAR-END TARGET FOR THE S&P 500 INDEX TO 7700 FROM 8200\n\nSEAPORT RESEARCH PARTNERS CUTS 2026 YEAR-END TARGET FOR S&P 500 INDEX TO 7700 FROM 8200\n\nOUTLOOK 2027: SEAPORT RESEARCH PARTNERS EXPECTS S&P 500 INDEX TO HIT 8,400 POINTS BY YEAR-END 2027",
+      "ko": "시포트 리서치, 2026년 말 S&P500 목표 8,200→7,700 하향 — 2027년 말 8,400 전망",
+      "url": "https://x.com/DeItaone/status/2123450439177806213",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 110922,
+      "likes": 108
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-19 13:07",
+      "text": "Whoa, we doing 9-day CMBs now? Last time Treasury sold 9-day paper was... July 2008 https://t.co/9jzbLR2U2u",
+      "ko": "재무부, 2008년 7월 이후 처음 9일물 현금관리증권(CMB) 발행 — 월말 자금 빡빡",
+      "url": "https://x.com/zerohedge/status/2123478334554451989",
+      "media": [
+        "https://pbs.twimg.com/media/HXgcRNxWsAArRzj.jpg"
+      ],
+      "media_note": "발행 공고 캡처로 보이는 이미지 1장",
+      "views": 101661,
+      "likes": 572
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-19 09:06",
+      "text": "BREAKING: The Strategic Petroleum Reserve (SPR) fell -3.2 million barrels last week, to 276.4 million barrels, its lowest level since August 1982.\n\nThis follows declines of -2.65 million barrels and -399,000 barrels in the previous two weeks.\n\nSince the March high, US SPR inventories have collapsed -139.1 million barrels, or -34%, down in 33 of the last 34 weeks.\n\nThe SPR now stands -450.3 million barrels, or -62%, below its all-time high set in 2010.\n\nThis is also just 5.9 million barrels above its lowest level on record, set in the week ending August 20th, 1982.\n\nUS oil reserves have rarely been this low.",
+      "ko": "전략비축유(SPR) 320만 배럴 감소한 2.764억 배럴 — 1982년 8월 이후 최저, 3월 고점 대비 -34%",
+      "url": "https://x.com/KobeissiLetter/status/2123417510452351156",
+      "media": [
+        "https://pbs.twimg.com/media/HXfRAp3XEAAhQDp.jpg"
+      ],
+      "media_note": "SPR 추이 차트",
+      "views": 159291,
+      "likes": 1008
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-19 14:00",
+      "text": "BREAKING: MicroStrategy, $MSTR, and Bitmine, $BMNR, extend losses to their lowest level of the day as Bitcoin falls below $63,000.\n\nThe stocks are now down -88% and -91%, respectively, from their record highs. https://t.co/BgxojZPDps",
+      "ko": "비트코인 6.3만 달러 하회 — 마이크로스트래티지·비트마인 고점 대비 -88%·-91%, 장중 최저",
+      "url": "https://x.com/KobeissiLetter/status/2123491505872797719",
+      "media": [
+        "https://pbs.twimg.com/media/HXgdOX5X0AA8uRr.jpg",
+        "https://pbs.twimg.com/media/HXgdSvlWsAAZLDP.jpg"
+      ],
+      "media_note": "주가 차트 2장",
+      "views": 193041,
+      "likes": 1920
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-19 10:53",
+      "text": "$V $MA $JPM - HACKERS LEAK CUSTOMER DATA FROM VISA, MASTERCARD AND JPMORGAN\n\nThousands of customers have reportedly been affected by a ransomware attack targeting third-party service providers linked to Visa, Mastercard and JPMorgan Chase.\n\nCybersecurity firm SOCRadar identified the ransomware group n0n as claiming responsibility.\n\nVisa says no card numbers or payment data were compromised.\n\nMastercard confirms limited customer information was exposed but says its payment network remains unaffected.\n\nJPMorgan says attackers may have accessed customer names, email addresses and marketing data.\n\nAll three firms say core services remain operational, with JPMorgan confirming the breach is unrelated to its earlier banking outage.",
+      "ko": "랜섬웨어 그룹 n0n, 비자·마스터카드·JP모건 관련 고객 데이터 유출 — 카드번호·결제정보는 무사",
+      "url": "https://x.com/DeItaone/status/2123444639747240248",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 155023,
+      "likes": 441
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-19 13:28",
+      "text": "TRUMP SAYS HE IS NOT RUSHING INTO ANY DECISION ON IRAN; SAYS WILL SEE WHAT HAPPENS AFTER THE BEGINNING OF THE YEAR -AXIOS",
+      "ko": "트럼프: 이란 관련 결정 서두르지 않아 — 연초 이후 상황 볼 것(악시오스)",
+      "url": "https://x.com/DeItaone/status/2123483589316665845",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 120420,
+      "likes": 486
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": "이날 뉴욕장의 중심: 앤트로픽이 사상 최대 IPO로 나스닥에 상장해 공모가 83달러 대비 +39% 115달러, 기업가치 2조 달러(세계 6위)를 찍은 순간.\n이후 시초가 대비 -16% 반락과 함께 기술주 매도·S&P 7200 하회로 이어져, 영상 첫 장면 인용 카드로 '상장 첫날 급등→반락' 흐름을 여는 데 적합."
+  }
+}
