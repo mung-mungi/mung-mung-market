@@ -4,6 +4,14 @@
  "channel_url": "https://www.youtube.com/@멍뭉터미널",
  "items": [
   {
+   "id": "iIScdJxpQdI",
+   "title": "앤트로픽 상장, 시장엔 좋은 일일까 나쁜 일일까 | 오늘 밤 볼 것은 '같이 오르느냐'",
+   "published": "2026-11-19T07:35:19+00:00",
+   "url": "https://www.youtube.com/watch?v=iIScdJxpQdI",
+   "short": false,
+   "thumb": "https://i.ytimg.com/vi/iIScdJxpQdI/mqdefault.jpg"
+  },
+  {
    "id": "kWetBfi6dnQ",
    "title": "젠슨 없이 받은 첫 성적표, 엔비디아는 잘 굴러간다 | 그런데 주가는 왜 본전일까",
    "published": "2026-11-18T05:16:42+00:00",
@@ -42,14 +50,6 @@
    "url": "https://www.youtube.com/watch?v=aGohxe1NQZ8",
    "short": false,
    "thumb": "https://i.ytimg.com/vi/aGohxe1NQZ8/mqdefault.jpg"
-  },
-  {
-   "id": "ku1ZZy_6Ufk",
-   "title": "금리 5%에도 코어위브는 왜 뛰었나? #shorts",
-   "published": "2026-11-11T10:21:24+00:00",
-   "url": "https://www.youtube.com/shorts/ku1ZZy_6Ufk",
-   "short": true,
-   "thumb": "https://i.ytimg.com/vi/ku1ZZy_6Ufk/mqdefault.jpg"
   }
  ]
 }
