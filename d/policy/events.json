@@ -5238,6 +5238,23 @@
   "month": "2026-11"
  },
  {
+  "id": "e338",
+  "date": "2026-11-19",
+  "month": "2026-11",
+  "category": "이란 전쟁·유가",
+  "title": "국제에너지기구 \"호르무즈 위기, 역사상 최대 에너지 안보 위협\" — 유가는 보합 마감, 서부텍사스유 8월 이후 최저",
+  "summary": "파티 비롤 국제에너지기구(IEA) 사무총장이 호르무즈 해협 위기를 \"역사상 최대의 에너지 안보 위협\"이라고 했습니다. IEA는 중동 분쟁에 따른 누적 손실이 원유 28억 배럴, 가스 600억㎥에 이른다고 집계했습니다. 유가는 낮에 소폭 올랐다가 브렌트가 0.03% 오른 91.98달러, 서부텍사스유가 0.06% 내린 83.21달러로 마감했습니다. 서부텍사스유는 8월 26일 이후 최저로, 유조선 공격보다 공급 과잉 우려가 더 크게 작용하고 있습니다.",
+  "nasdaq_pct": -2.25,
+  "mkt_note": "",
+  "status": "발생",
+  "source_url": "https://au.investing.com/news/commodities-news/oil-prices-steady-as-supply-surplus-softens-sentiment-though-gulf-war-supports-4782046",
+  "media": "로이터·CBS",
+  "tier": "small",
+  "thread": "유가·공급 대응",
+  "has_detail": false,
+  "time": "02:25"
+ },
+ {
   "month": "2026-11",
   "has_detail": false,
   "mkt_note": "",
@@ -5300,23 +5317,6 @@
   "tier": "small",
   "thread": "반도체 수출통제",
   "has_detail": false
- },
- {
-  "id": "e338",
-  "date": "2026-11-19",
-  "month": "2026-11",
-  "category": "이란 전쟁·유가",
-  "title": "국제에너지기구 \"호르무즈 위기, 역사상 최대 에너지 안보 위협\" — 유가는 보합 마감, 서부텍사스유 8월 이후 최저",
-  "summary": "파티 비롤 국제에너지기구(IEA) 사무총장이 호르무즈 해협 위기를 \"역사상 최대의 에너지 안보 위협\"이라고 했습니다. IEA는 중동 분쟁에 따른 누적 손실이 원유 28억 배럴, 가스 600억㎥에 이른다고 집계했습니다. 유가는 낮에 소폭 올랐다가 브렌트가 0.03% 오른 91.98달러, 서부텍사스유가 0.06% 내린 83.21달러로 마감했습니다. 서부텍사스유는 8월 26일 이후 최저로, 유조선 공격보다 공급 과잉 우려가 더 크게 작용하고 있습니다.",
-  "nasdaq_pct": -2.25,
-  "mkt_note": "",
-  "status": "발생",
-  "source_url": "https://au.investing.com/news/commodities-news/oil-prices-steady-as-supply-surplus-softens-sentiment-though-gulf-war-supports-4782046",
-  "media": "로이터·CBS",
-  "tier": "small",
-  "thread": "유가·공급 대응",
-  "has_detail": false,
-  "time": "02:25"
  },
  {
   "id": "e341",
@@ -5397,6 +5397,38 @@
   "summary": "브렌트유는 그리니치 01시 18분 기준 0.3% 오른 배럴당 92.22달러, 서부텍사스유 12월물은 0.2% 오른 83.40달러에 거래됐습니다. 후티의 리야드 공격과 이란의 호르무즈 유조선 기뢰 주장이 공급 우려를 키웠습니다. 다만 호르무즈 원유 통과량이 전쟁 전 수준에 가까워져 공급 과잉 전망이 여전하고, 주간으로는 브렌트 3.5%, 서부텍사스유 6% 하락이 예상됩니다. 11월 29일 오펙플러스 회의에서 감산 유지 여부가 다음 변수입니다.",
   "source_url": "https://www.brecorder.com/news/40449950/oil-prices-edge-higher-as-houthi-attacks-on-riyadh-raise-supply-concerns",
   "media": "로이터"
+ },
+ {
+  "date": "2026-11-19",
+  "month": "2026-11",
+  "nasdaq_pct": -2.25,
+  "mkt_note": "",
+  "status": "발생",
+  "tier": "small",
+  "has_detail": false,
+  "id": "e347",
+  "category": "이란 전쟁·유가",
+  "thread": "이란 핵 문제",
+  "title": "미·영·프·독, 국제원자력기구 이사회서 \"이란, 폭격당한 핵시설 사찰 막아\" — 고농축 우라늄 행방 몰라",
+  "summary": "미국·영국·프랑스·독일이 국제원자력기구 이사회에서 이란이 폭격당한 핵시설에 사찰단 복귀를 막고 있다며 공동으로 압박했습니다. 이란은 2025년 6월 공습 이후 해당 시설 접근을 허용하지 않았고, 고농축 우라늄 재고의 행방도 밝히지 않았습니다. 지난 분기 사찰은 피해가 없는 부셰르 원전에서만 이뤄졌습니다. 이란은 미국·이스라엘의 공격 탓이라고 맞서 핵 문제가 공습 재개 명분으로 이어질 여지가 남아 있습니다.",
+  "source_url": "https://www.al-monitor.com/originals/2026/11/west-presses-iran-iaea-let-inspections-resume-bombed-nuclear-sites",
+  "media": "로이터"
+ },
+ {
+  "date": "2026-11-19",
+  "month": "2026-11",
+  "nasdaq_pct": -2.25,
+  "mkt_note": "",
+  "status": "발생",
+  "tier": "small",
+  "has_detail": false,
+  "id": "e348",
+  "category": "반도체 수출통제",
+  "thread": "반도체 수출통제",
+  "title": "캘리포니아 법무장관, 엔비디아에 조사 소환장 — \"첨단 칩·기밀 중국 갔는지, 투자자 속였는지\"",
+  "summary": "롭 본타 캘리포니아 법무장관이 엔비디아에 조사 소환장을 보냈다고 밝혔습니다. 엔비디아나 젠슨 황 전 최고경영자의 행동으로 중국이 첨단 칩이나 기밀 정보를 얻었는지, 회사가 투자자와 대중을 오도했는지를 주 증권법에 따라 들여다봅니다. 본타는 \"기업은 투자자를 속일 수 없다\"고 말했습니다. 연방 의회 청문회(12월 1~2일)에 이어 주 정부까지 나서 수출통제 압박이 겹겹이 커지고 있습니다.",
+  "source_url": "https://abcnews.com/Technology/wireStory/california-attorney-general-subpoenas-nvidia-chips-former-ceos-138308129",
+  "media": "AP·CNBC"
  },
  {
   "id": "e346",
