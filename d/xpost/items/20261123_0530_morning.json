@@ -1,0 +1,664 @@
+{
+  "req": "11/20(금) 뉴욕장 마감과 주말(11/21~22) — 2020년 3월 이후 최악의 주간(나스닥100 -10.4%·반도체 -17.1%·NVDA 주간 -23%), 나스닥100 약세장 진입·S&P500 과매도, VIX·공포지수, 엔비디아 조사 8가지·이사회 압박, 대만 공매도 금지·한국 증안펀드·중국 신용규제 완화, 트럼프 증시 발언, FBI 해킹, 비트코인 급락, 주택·국채·10년물 5%·기술채 금리, AI 투자 GDP 기여, CRWD-ZS 인수설 시간외, 금·은 급락, 이번 주 일정 — 영향력 있는 계정만, 루머·익명·밈 제외 (월요일 05:30 KST = 미 동부 일요일 15:30, 금요일 장 마감 후 주요 AI 실적 없음)",
+  "at": "2026-11-23T05:37:18+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-20 15:38",
+      "text": "This is the WORST WEEK for the STOCK MARKET since March 2020\n\nNasdaq 100: -5.6% today, -10.4% this week, worst since 2020.\n\nS&P 500: -3.7% today, -8.6% this week, its worst week since April 2025\n\nSemiconductors: -10.7% today, -17.1% this week, worst since 2001 https://t.co/2Z9gqG5Ype",
+      "ko": "2020년 3월 이후 최악의 주간 — 나스닥100 당일 -5.6%·주간 -10.4%, S&P500 당일 -3.7%·주간 -8.6%, 반도체 당일 -10.7%·주간 -17.1%(2001년 이후 최악)",
+      "url": "https://x.com/wallstengine/status/2123878579796914453",
+      "media": [
+        "https://pbs.twimg.com/media/HXmHYpdbEAAtEwg.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 125746,
+      "likes": 1129
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-20 16:01",
+      "text": "BREAKING: The S&P 500 officially closes the day down -3.7%, erasing -$6 trillion worth of market cap this week.\n\nThis marks the S&P 500's first 7-day losing streak since the 2020 Pandemic. https://t.co/stbShTGH4F",
+      "ko": "S&P500 -3.7%로 마감, 이번 주 시총 6조 달러 증발 — 2020년 팬데믹 이후 첫 7거래일 연속 하락",
+      "url": "https://x.com/KobeissiLetter/status/2123884549574623420",
+      "media": [
+        "https://pbs.twimg.com/media/HXmNvdzXsAATlcQ.png"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 511272,
+      "likes": 7383
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-20 16:03",
+      "text": "UNOFFICIALLY, FOR THE WEEK, THE S&P 500 FELL 8.61%, THE NASDAQ DECLINED 10.02%, AND THE DOW FELL 8.02%",
+      "ko": "주간 잠정치: S&P500 -8.61%, 나스닥 -10.02%, 다우 -8.02%",
+      "url": "https://x.com/DeItaone/status/2123884885987496122",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 211751,
+      "likes": 1254
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-20 16:00",
+      "text": "NASDAQ UNOFFICIALLY CLOSES DOWN 1,259.03 POINTS, OR 5.27 PERCENT, AT 22,620.17",
+      "ko": "나스닥 잠정 마감 -1,259.03p(-5.27%), 22,620.17",
+      "url": "https://x.com/DeItaone/status/2123884290794459197",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 135607,
+      "likes": 264
+    },
+    {
+      "author": "Nick Timiraos",
+      "handle": "@NickTimiraos",
+      "role": "WSJ 수석 경제기자(Fed 담당)",
+      "time_et": "2026-11-20 16:42",
+      "text": "The Dow Jones Industrial Average posted its largest one-week decline (-8%) since the week ended March 20, 2020 (the Covid shock). Same for Nasdaq, down 10% this week.\n\nThe 8.6% decline in the S&P 500 is the largest since Liberation Day in April 2025. https://t.co/nRHXqA3Vqq",
+      "ko": "다우 주간 -8%·나스닥 -10%로 2020년 3월 코로나 충격 이후 최대, S&P500 -8.6%는 2025년 4월 '해방의 날' 이후 최대",
+      "url": "https://x.com/NickTimiraos/status/2123894722896752684",
+      "media": [
+        "https://pbs.twimg.com/media/HXmW9SSWoAAANBc.png"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 71849,
+      "likes": 402
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-20 16:17",
+      "text": "ABOUT $7.4 TRILLION WIPED OUT OF THE U.S. STOCK MARKET THIS WEEK https://t.co/NAXbCAZsGd",
+      "ko": "이번 주 미국 증시에서 약 7.4조 달러 증발",
+      "url": "https://x.com/wallstengine/status/2123888426370081246",
+      "media": [
+        "https://pbs.twimg.com/media/HXmRQaYaoAAHq7s.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 500994,
+      "likes": 3087
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-20 16:05",
+      "text": "BREAKING: Nvidia, $NVDA, ends the week down -23% in its biggest weekly decline since October 2008.\n\nThe stock erased -$905 billion in market cap this week and officially closed down -$2.88 trillion since October 6th.\n\nNo comment from the company's board or interim CEO amid today's collapse.",
+      "ko": "엔비디아 주간 -23%로 2008년 10월 이후 최대 주간 하락 — 이번 주 시총 9,050억 달러, 10/6 이후 2.88조 달러 증발",
+      "url": "https://x.com/KobeissiLetter/status/2123885395033100559",
+      "media": [
+        "https://pbs.twimg.com/media/HXmOVUrWkAAXCSf.png"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 298740,
+      "likes": 2858
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "Creative Planning 수석 시장전략가",
+      "time_et": "2026-11-20 16:36",
+      "text": "The S&P 500 is now down 12% from its peak on October 6, the biggest correction for the index since the tariff bear market that ended in April 2025. https://t.co/njVqmnkYor",
+      "ko": "S&P500 10/6 고점 대비 -12% — 2025년 4월 관세 약세장 이후 최대 조정",
+      "url": "https://x.com/charliebilello/status/2123893254567624923",
+      "media": [
+        "https://pbs.twimg.com/media/HXmUyUMXkAASjbJ.png"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 53872,
+      "likes": 550
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "Creative Planning 수석 시장전략가",
+      "time_et": "2026-11-20 17:45",
+      "text": "At 6,910 the S&P 500 is now up less than 1% in 2026 and below every major Wall Street firm's price target.\n\nTo get to the average target (7,600), the S&P 500 would need to rally 10% by year end. https://t.co/S95LLKGL69",
+      "ko": "S&P500 6,910으로 연초 대비 +1% 미만, 월가 모든 주요 기관 목표치 하회 — 평균 목표 7,600까지 연말 +10% 필요",
+      "url": "https://x.com/charliebilello/status/2123910739152781723",
+      "media": [
+        "https://pbs.twimg.com/media/HXmlfD1XgAEL9fL.png"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 51728,
+      "likes": 297
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-21 00:08",
+      "text": "BREAKING: This past week's -10.4% drop in the Nasdaq 100 was one of the rarest weekly declines in 40 years.\n\nOf the last 2,133 trading weeks, just 11 saw declines of this magnitude or worse.\n\nThat's 0.52% of all weeks, a 3.27 standard deviation move based on the historical mean and volatility.\n\nOf course, market returns exhibit \"fat tails,\" meaning extreme moves occur more frequently than a normal distribution would predict.\n\nHowever, even accounting for the fact that extreme market moves are more common than traditional statistical models suggest, this was a historically rare selloff.\n\nVolatility returns when markets least expect it.",
+      "ko": "나스닥100 주간 -10.4%는 40년간 2,133주 중 11번뿐인 희귀한 하락(0.52%, 3.27 표준편차)",
+      "url": "https://x.com/KobeissiLetter/status/2124006893807169960",
+      "media": [
+        "https://pbs.twimg.com/media/HXnvCp2XIAANji8.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 450108,
+      "likes": 3696
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-21 10:20",
+      "text": "US stocks have rarely been this oversold:\n\nThe S&P 500 closed the week 4.1 standard deviations below its 50-day moving average, its widest deviation since August 2015.\n\nThis also marks its 3rd-largest deviation in at least 20 years.\n\nBy comparison, during the 2008 Financial Crisis, the index’s largest deviation from its 50-DMA was 3.6 standard deviations.\n\nNot even the 2020 Pandemic crash saw such extreme oversold conditions, with the S&P 500 falling 3.8 standard deviations below its 50-day moving average in February.\n\nDuring the 2022 bear market and the April 2025 post-\"Liberation Day\" selloff, the S&P 500 fell 3.2 and 3.3 standard deviations below its 50-day moving average, respectively.\n\nThis has been one of the sharpest market sell-offs in history.",
+      "ko": "S&P500 50일선 대비 -4.1 표준편차로 2015년 8월 이후 최대 괴리 — 2008년(3.6)·2020년(3.8)보다 과매도",
+      "url": "https://x.com/KobeissiLetter/status/2124160908968530208",
+      "media": [
+        "https://pbs.twimg.com/media/HXptg1SWwAAzprM.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 389509,
+      "likes": 4592
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-22 11:51",
+      "text": "The US equity market experienced just one of its sharpest sell-offs on record:\n\nThe S&P 500 fell -11.6% from its October 6th peak in just 33 trading days, placing the decline among the 15 fastest corrections since 1928.\n\nBy comparison, at the start of the 2022 bear market, it took 34 sessions for the index to fall at least -10%.\n\nDuring the 2020 pandemic selloff, the same decline took just 6 trading days, while in March 2025 it took 17 sessions.\n\nOverall, 4 of the 15 fastest corrections since 1928 have occurred over the last 6 years.\n\nMeanwhile, 94% of S&P 500 stocks were down last week, with 111 declining by at least -10%.\n\nAt the same time, 11 stocks in the index were down by at least -20%.\n\nMarket sentiment has become extremely pessimistic.",
+      "ko": "S&P500 10/6 고점 대비 33거래일 만에 -11.6%, 1928년 이후 가장 빠른 조정 15위 안 — 지난주 94% 종목 하락",
+      "url": "https://x.com/KobeissiLetter/status/2124546222031622222",
+      "media": [
+        "https://pbs.twimg.com/media/HXvnVMWXcAE97kI.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 129248,
+      "likes": 672
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 업체",
+      "time_et": "2026-11-20 19:18",
+      "text": "JUST IN 🚨: Nasdaq 100 $QQQ enters Bear Market 🐻 after plunging more than 20% from its October all-time high 📉 📉 https://t.co/vL7JNDfUWG",
+      "ko": "나스닥100(QQQ) 10월 고점 대비 -20% 넘게 하락하며 약세장 진입",
+      "url": "https://x.com/Barchart/status/2123934123613995170",
+      "media": [
+        "https://pbs.twimg.com/media/HXm61ItW4AAYEVz.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 59395,
+      "likes": 1024
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-20 16:04",
+      "text": "NASDAQ 100 ERASES ALL GAINS AND FLIPS NEGATIVE YEAR-TO-DATE, CLOSES WITHIN 0.2% OF A BEAR MARKET https://t.co/OEvc98zBn9",
+      "ko": "나스닥100 연초 대비 상승분 모두 반납하고 마이너스 전환, 약세장 0.2% 앞에서 마감",
+      "url": "https://x.com/wallstengine/status/2123885144520196425",
+      "media": [
+        "https://pbs.twimg.com/media/HXmNybsbkAApZar.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 31410,
+      "likes": 216
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-20 15:46",
+      "text": "BREAKING: The Volatility Index, $VIX, extends gains to +35% on the day and rises above 38 for the first time since April 2025.\n\nThis puts the $VIX up +159% since October 6th. https://t.co/zqsO6DLAjK",
+      "ko": "VIX 당일 +35%, 2025년 4월 이후 처음 38 돌파 — 10/6 이후 +159%",
+      "url": "https://x.com/KobeissiLetter/status/2123880567972474963",
+      "media": [
+        "https://pbs.twimg.com/media/HXmJxQSXwAA2IJp.png"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 501125,
+      "likes": 2496
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 업체",
+      "time_et": "2026-11-21 00:18",
+      "text": "Semiconductor Stocks $SOXX have plunged 35% since the end of September, on track for their largest 2-month loss this century 🚨 🚨 🚨 https://t.co/OcjQYYDjpV",
+      "ko": "반도체주(SOXX) 9월 말 이후 -35%, 이번 세기 최대 2개월 하락 페이스",
+      "url": "https://x.com/Barchart/status/2124009432447107304",
+      "media": [
+        "https://pbs.twimg.com/media/HXn_UsDWEAEZ2nT.png"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 42089,
+      "likes": 363
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-21 13:42",
+      "text": "US semiconductor stocks are experiencing incredible volatility:\n\nThe Semiconductor Index to S&P 500 ratio is down to 1.45 points, its lowest since April 2026.\n\nThis ratio has declined -0.46 points, or -24%, from its mid-June peak.\n\nOver this period, SOX has fallen -24%, while the S&P 500 has gained +2%.\n\nThe relative decline is comparable to the one seen following the 2000 Dot-Com Bubble burst.\n\nHowever, the ratio is still up +142% since the 2022 bear market low of, has also declined for 8 consecutive trading sessions, its longest streak since the 2008 Financial Crisis.\n\nSemiconductor stocks are more volatile than ever.",
+      "ko": "반도체지수/S&P500 비율 1.45로 2026년 4월 이후 최저, 6월 고점 대비 -24% — 닷컴 붕괴 후와 비슷한 상대 하락",
+      "url": "https://x.com/KobeissiLetter/status/2124211835163570344",
+      "media": [
+        "https://pbs.twimg.com/media/HU_4sX3W0AEvs0U.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 169764,
+      "likes": 758
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-22 12:51",
+      "text": "US technology ETFs are seeing massive wave of deleveraging:\n\nThe 3x leveraged long Semiconductor ETF, $SOXL, is down -90% from its June peak, to its lowest since September 2025.\n\nThis marks its 2nd-largest drawdown since the fund's inception in March 2010, surpassed only by the -91% decline during the 2022 bear market.\n\nBy comparison, the fund dropped -89% during the July 2024-April 2025 period.\n\nMeanwhile, the 3x leveraged long Nasdaq 100 ETF, $TQQQ, is down -53% from its June peak to its lowest since early April.\n\nSince October 5th alone, the fund has dropped -51%.\n\nFor perspective, $TQQQ fell -61% during the February-April 2025 drawdown.\n\nLeveraged tech funds have experienced a historic liquidation wave.",
+      "ko": "기술 레버리지 ETF 대규모 디레버리징 — SOXL 6월 고점 대비 -90%, TQQQ -53%",
+      "url": "https://x.com/KobeissiLetter/status/2124561296787943647",
+      "media": [
+        "https://pbs.twimg.com/media/HXvnscuXgAAn4iY.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 126948,
+      "likes": 642
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-20 16:44",
+      "text": "Nvidia Is Now Facing:\n\n1. SEC investigation into potential \"accounting irregularities\"\n\n2. FBI investigation into \"Chinese intelligence operations\" involving Jensen Huang\n\n3. Allegations of Jensen Huang having an affair with a Chinese spy\n\n4. California investigation into allegedly \"misleading shareholders\"\n\n5. Criminal investigation into Megaspeed over export control violations\n\n6. Shareholder lawsuit over \"undisclosed ties\" between Jensen Huang and Megaspeed\n\n7. Congressional investigation into alleged interference with the Megaspeed probe\n\n8. Internal board investigation into \"national security and corporate governance failures\"\n\nJust 14 days ago, none of these investigations had been publicly reported.\n\n~40% of the market cap loss in the S&P 500 since its high is attributable to Nvidia, $NVDA.\n\nTalk about a turn of events.\n\nRead more on what this means for the market below.",
+      "ko": "엔비디아가 직면한 조사 8가지 정리 — SEC 회계, FBI 중국 정보활동, 캘리포니아 주주 오도, Megaspeed 수출통제 형사조사 등(14일 전엔 모두 비공개)",
+      "url": "https://x.com/KobeissiLetter/status/2123895235063263728",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 688216,
+      "likes": 6034
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-21 01:34",
+      "text": "If you're Nvidia's board, what do you do this weekend?\n\nYour stock is down -45%, almost every government agency is investigating you, Jensen Huang says he wants to return, and shareholders are calling for you to be fired.\n\nYou have 48 hours before markets reopen. What do you do? https://t.co/yyt6xpimDd",
+      "ko": "엔비디아 이사회는 이번 주말 무엇을 할까 — 주가 -45%, 거의 모든 정부기관 조사, 젠슨 황 복귀 의사, 주주들 이사회 해임 요구, 개장까지 48시간",
+      "url": "https://x.com/KobeissiLetter/status/2124028536164139438",
+      "media": [
+        "https://pbs.twimg.com/media/HXn1SUPW4AA3BiD.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 634927,
+      "likes": 6200
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 뉴스 플랫폼",
+      "time_et": "2026-11-21 21:46",
+      "text": "Bill Ackman says Nvidia's board had major governance failures by ruling out Jensen Huang's return before its investigation is done.\n\nRead more: https://t.co/fh3ksMkdmw",
+      "ko": "빌 애크먼: 엔비디아 이사회가 조사 완료 전에 젠슨 황 복귀를 배제한 건 중대한 지배구조 실패",
+      "url": "https://x.com/unusual_whales/status/2124333545888092209",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 44756,
+      "likes": 18
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 뉴스 플랫폼",
+      "time_et": "2026-11-22 00:01",
+      "text": "AMD stock fell sharply after Hunterbrook Media reported possible China export control violations and disclosed a short position.\n\nRead more: https://t.co/KLiRNcN4zO",
+      "ko": "AMD, 헌터브룩 미디어의 중국 수출통제 위반 가능성 보도·숏 포지션 공개 후 급락",
+      "url": "https://x.com/unusual_whales/status/2124367520031293589",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 41705,
+      "likes": 14
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-21 12:19",
+      "text": "BREAKING: Taiwan announces new restrictions on short selling after its stock market falls -18% in one week, its worst weekly decline in 35 years.\n\nEffective Monday, regulators will ban short sales below the previous closing price and raise margin requirements to 150%.\n\nTaiwan’s $15 billion stock stabilization fund has also been buying shares to support the market.\n\nAuthorities are intervening to contain selling pressure.",
+      "ko": "대만 증시 주간 -18%(35년 만에 최악) — 월요일부터 전일 종가 아래 공매도 금지·증거금 150%로 상향, 150억 달러 안정기금 매수",
+      "url": "https://x.com/KobeissiLetter/status/2124190855770656830",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 700326,
+      "likes": 7082
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-21 09:52",
+      "text": "TAIWAN 🇹🇼 BANS SHORT SELLING BELOW THE PREVIOUS CLOSE ON ALL STOCKS STARTING MONDAY, THE FIRST BLANKET CURB SINCE 2015",
+      "ko": "대만, 월요일부터 전 종목 전일 종가 아래 공매도 금지 — 2015년 이후 첫 전면 제한",
+      "url": "https://x.com/wallstengine/status/2124153919274463235",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 675951,
+      "likes": 3059
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-22 12:35",
+      "text": "SOUTH KOREA 🇰🇷 IS PREPARING TO ACTIVATE ITS STOCK MARKET STABILIZATION FUND FOR THE FIRST TIME SINCE THE 2008 FINANCIAL CRISIS",
+      "ko": "한국, 2008년 금융위기 이후 처음으로 증시안정펀드 가동 준비",
+      "url": "https://x.com/wallstengine/status/2124557292414828773",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 101283,
+      "likes": 1210
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-22 08:55",
+      "text": "🇨🇳 CHINA EASES MARGIN RULES TO SUPPORT STOCK MARKETS\n\nChina’s three major stock exchanges are easing trading restrictions to stabilize struggling equities.\n\nStarting November 30, minimum margin requirements will fall to 80% from 100%, allowing investors to borrow more.\n\nShanghai and Shenzhen will also cut trading fees.\n\nThe move follows 40%+ declines in China’s tech-heavy STAR Market and ChiNext from their June peaks.",
+      "ko": "중국 3대 거래소 증시 부양 위해 신용 증거금 100%→80% 인하(11/30부터), 수수료도 인하 — 커촹반·창업판 6월 고점 대비 -40%대",
+      "url": "https://x.com/DeItaone/status/2124501934509859060",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 217456,
+      "likes": 947
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-22 12:26",
+      "text": "BREAKING: President Trump says the stock market crash “will only get worse” if the Democrats “don’t change fast.” https://t.co/HZpau4TjT1",
+      "ko": "트럼프 \"민주당이 빨리 바뀌지 않으면 증시 폭락은 더 심해질 것\"",
+      "url": "https://x.com/KobeissiLetter/status/2124555029885460532",
+      "media": [
+        "https://pbs.twimg.com/media/HXvvikoXEAAdBCS.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 544376,
+      "likes": 6456
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-21 14:10",
+      "text": "TRUMP VOWS TO WORK WITH DEMOCRATS TO CAP CREDIT CARD INTEREST RATES AT 10%",
+      "ko": "트럼프, 민주당과 협력해 신용카드 금리 10% 상한 추진 약속",
+      "url": "https://x.com/wallstengine/status/2124218875462160872",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 173391,
+      "likes": 648
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "실시간 금융 헤드라인 계정",
+      "time_et": "2026-11-21 10:56",
+      "text": "TRUMP ON IRAN: AM GOING TO MAKE A DEAL THAT IS PERMANENT -FOX NEWS INTERVIEW",
+      "ko": "트럼프, 이란 관련 \"영구적인 합의를 하겠다\"(폭스뉴스 인터뷰)",
+      "url": "https://x.com/DeItaone/status/2124170134571127024",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 369484,
+      "likes": 1993
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-20 22:17",
+      "text": "BREAKING: The FBI's national crime database has been hacked in a \"major cybersecurity breach,\" per CNN.\n\nThe hacked database includes on nationwide information regarding criminal warrants, stolen property, and background checks.\n\nThis comes amid several other outages and hacks over the last 10 days.",
+      "ko": "CNN: FBI 국가범죄정보센터(NCIC) 데이터베이스 해킹 — 수배·도난물·신원조회 정보 포함",
+      "url": "https://x.com/KobeissiLetter/status/2123979189405487585",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 561929,
+      "likes": 6207
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-20 23:16",
+      "text": "BREAKING: Bitcoin falls below $56,000 as $650 million worth of levered positions are liquidated in 60 minutes.\n\nThis puts Bitcoin down -$31,000 over the last 45 days. https://t.co/9RVIqghX55",
+      "ko": "비트코인 5만 6천 달러 하회, 60분 만에 레버리지 포지션 6.5억 달러 청산",
+      "url": "https://x.com/KobeissiLetter/status/2123993886771331080",
+      "media": [
+        "https://pbs.twimg.com/media/HXnxA0YWgAAhPPi.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 393384,
+      "likes": 4583
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-20 17:43",
+      "text": "BREAKING: The US Pending Homes Sales Index dropped -4.7% MoM in October, to 63.0 points, its lowest level on record in data going back to 2001.\n\nAll regions posted declines, with the West seeing the steepest drop, at -6.9%, while sales in the South, the biggest home-selling region, fell -6.3%.\n\nYoY, sales plunged -16.7% in the biggest annual decline since August 2023.\n\nOver the last 2 months, the Pending Homes Sales Index has fallen -8.2 points, its largest 2-month decline since October 2022.\n\nUS pending home sales are now -51% below their post-pandemic recovery peak.\n\nThe US housing market is coming to a halt.",
+      "ko": "10월 미 잠정주택판매지수 -4.7%로 63.0, 2001년 통계 이후 사상 최저 — 전년 대비 -16.7%",
+      "url": "https://x.com/KobeissiLetter/status/2123910179137654894",
+      "media": [
+        "https://pbs.twimg.com/media/HXmlDU2XgAAT0KN.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 209000,
+      "likes": 1348
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-21 11:45",
+      "text": "BREAKING: Foreign holdings of US Treasuries fell -$76 billion in September, to $9.24 trillion, the lowest since October 2025.\n\nThis also marks the 3rd monthly decline over the last 4 months, down -$246 billion since February.\n\nJapan, the largest foreign holder, cut its holdings by -$5 billion in September, to $1.06 trillion, its lowest since December 2024.\n\nThe UK, the 2nd-largest holder, reduced its holdings by -$9 billion, to $986 billion, its 3rd-highest on record.\n\nAt the same time, China, the 3rd-largest holder, slashed its holdings by -$27 billion, to $564 billion, its lowest since July 2008.\n\nForeign demand for US Treasuries is weakening.",
+      "ko": "9월 외국인 미 국채 보유 -760억 달러로 9.24조 달러 — 중국 -270억 달러로 2008년 7월 이후 최저",
+      "url": "https://x.com/KobeissiLetter/status/2124182519239356555",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 265992,
+      "likes": 1621
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-22 10:41",
+      "text": "BREAKING: The 10Y Note yield has traded above 5.00% for 27 trading days so far in 2026, the longest streak for any year since 2007.\n\nLast week, the 10Y Note yield surged +29 basis points, moving back above 5.00% and marking its largest weekly increase since April 2025.\n\nThe 10Y is now on track for its longest period above 5.00% since 2006, when 65 trading days above this threshold were recorded.\n\nYear-to-date, the 10Y Note yield is up +94 basis points, to 5.10%, after peaking at 5.36% in early October, its highest level since 2002.\n\nThis puts the yield on track for its 6th consecutive annual increase.\n\nHigher for longer has become the new normal.",
+      "ko": "미 10년물 금리 올해 27거래일 5% 상회(2007년 이후 최장), 지난주 +29bp로 2025년 4월 이후 최대 주간 상승",
+      "url": "https://x.com/KobeissiLetter/status/2124528759395029267",
+      "media": [
+        "https://pbs.twimg.com/media/HXaYN7IXoAAeacN.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 135941,
+      "likes": 664
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "옵션 흐름·시장 뉴스 플랫폼",
+      "time_et": "2026-11-22 13:01",
+      "text": "High-grade tech companies are paying the most to borrow since the 2008 financial crisis, as the AI funding rush shows signs of cracking, per Bloomberg.\n\nYields on investment-grade tech bonds have climbed above 6%, the highest since 2009.",
+      "ko": "블룸버그: 우량 기술기업 회사채 금리 6% 돌파, 2009년 이후 최고 — AI 자금조달 붐에 균열 신호",
+      "url": "https://x.com/unusual_whales/status/2124563813550735742",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 114259,
+      "likes": 464
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-22 09:33",
+      "text": "Prices of imported computers and semiconductors are skyrocketing:\n\nUS import prices for computers, peripherals, and semiconductors surged +26.5% YoY in October, their largest annual increase on record in data going back to the 1990s.\n\nThis also marks the 7th consecutive YoY increase of at least +10.0%.\n\nMoM, the US Import Price Index for computers, peripherals, and semiconductors rose +3.6%, to 61.1 points, its highest level since December 2008.\n\nSince March 2025, this figure has soared +30.0%, reversing its long-term downwtrend.\n\nThe AI investment boom is reversing decades of falling electronics prices.",
+      "ko": "10월 미 컴퓨터·반도체 수입물가 전년 대비 +26.5%, 1990년대 통계 이후 최대 — AI 투자 붐이 전자제품 가격 하락 추세를 뒤집음",
+      "url": "https://x.com/KobeissiLetter/status/2124511538773970999",
+      "media": [
+        "https://pbs.twimg.com/media/HXlHBbuWQAANmD_.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 162604,
+      "likes": 1126
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-21 19:53",
+      "text": "BREAKING: AI-related investment contributed +1.27 percentage points to real US GDP growth in Q1 through Q3 2026.\n\nThis represents ~65% of the economy's cumulative growth of ~2% over this period.\n\nSoftware investment contributed the most, at +0.45 percentage points, followed by computers and peripheral equipment, at +0.37 percentage points.\n\nCommunication and electrical equipment contributed +0.21 percentage points, R&D +0.16 percentage points, and data center structures +0.07 percentage points.\n\nAI investment has become the backbone of the US economy.",
+      "ko": "2026년 1~3분기 AI 관련 투자가 미 실질 GDP 성장에 +1.27%p 기여 — 누적 성장(~2%)의 약 65%",
+      "url": "https://x.com/KobeissiLetter/status/2124305136692408552",
+      "media": [
+        "https://pbs.twimg.com/media/HXps80sWUAASBmH.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 196588,
+      "likes": 1225
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-21 09:19",
+      "text": "Market sentiment has taken a complete 180 degree turn:\n\nThe Fear & Greed Index fell to 9.7 points on Friday, below 10.0 for the first time since March 2026.\n\nThis marks its 4th lowest level since the 2022 bear market.\n\nA reading below 30.0 indicates \"Extreme Fear\" territory and oversold market conditions.\n\nThe index has fallen -30.6 points, or -76%, over the last 6 trading sessions, its sharpest decline since February 2025.\n\nThe last 3 times the Fear & Greed Index fell below 10.0, the S&P 500 rallied +10.5% on average over the next 3 weeks.\n\nSince 2021, the S&P 500 has gained +9.0% on average over the 3 weeks following readings below 10.0.\n\nSentiment is extremely polarized right now.",
+      "ko": "공포·탐욕 지수 9.7로 3월 이후 처음 10 아래 — 과거 3번은 이후 3주간 S&P500 평균 +10.5%",
+      "url": "https://x.com/KobeissiLetter/status/2124145557493195247",
+      "media": [
+        "https://pbs.twimg.com/media/HXptMrSWwAAysey.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 224679,
+      "likes": 1530
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-21 18:30",
+      "text": "\"As Challenging As We Have Seen\": Goldman's Panic Index Hits Record 9.8 After Fifth-Biggest VIX Spike On Record... Here's What Happened After The O... https://t.co/ifnliHXSYN",
+      "ko": "골드만삭스 패닉지수 사상 최고 9.8, VIX 역대 5번째 큰 급등",
+      "url": "https://x.com/zerohedge/status/2124284335725408588",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 112562,
+      "likes": 263
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-22 09:00",
+      "text": "Shorting The Dip: Hedge Funds Launch Biggest Single-Stock Short Wave Since 2022, Dump US Financials At Fastest Pace In Five Years https://t.co/WemVJuiNRC",
+      "ko": "헤지펀드, 2022년 이후 최대 개별주 공매도 물결·금융주 5년 만에 최고 속도로 매도",
+      "url": "https://x.com/zerohedge/status/2124503278113214785",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 84119,
+      "likes": 234
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-20 16:08",
+      "text": "CROWDSTRIKE $CRWD IS SAID IN TALKS TO BUY CYBERSECURITY FIRM ZSCALER $ZS",
+      "ko": "크라우드스트라이크(CRWD), 지스케일러(ZS) 인수 협상 중이라는 보도",
+      "url": "https://x.com/wallstengine/status/2123886186452426822",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 101655,
+      "likes": 429
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-20 16:19",
+      "text": "$CRWD -10% 🩸\n$ZS +17% 🟢 https://t.co/vKMAIDWbiD https://t.co/A8OuYemHNc",
+      "ko": "인수 보도 후 시간외 CRWD -10%, ZS +17%",
+      "url": "https://x.com/wallstengine/status/2123889095449677986",
+      "media": [
+        "https://pbs.twimg.com/media/HXmRbJna8AE96TO.jpg",
+        "https://pbs.twimg.com/media/HXmRh-rasAA0ZMY.jpg"
+      ],
+      "media_note": "첨부 이미지 2장(이미지 내용은 직접 열어보지 않음)",
+      "views": 44627,
+      "likes": 195
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-21 20:41",
+      "text": "ELON MUSK WARNS THE AI INDUSTRY'S CASH SHORTAGE IS \"GOING TO BE NUTS NEXT YEAR,\" WITH HUNDREDS OF BILLIONS NEEDED JUST TO COVER DELAYS BEFORE COMPUTE MAKES MONEY",
+      "ko": "일론 머스크 \"AI 업계 현금 부족은 내년에 엄청날 것\" — 컴퓨트가 돈을 벌기 전 지연만 메우는 데 수천억 달러 필요",
+      "url": "https://x.com/wallstengine/status/2124317431854518527",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 290706,
+      "likes": 1910
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-21 18:22",
+      "text": "Anthropic is sitting on an enormous cash pile:\n\nAnthropic's cash and cash equivalents are up to a record $237 billion following its IPO.\n\nThis comes as its IPO raised $81 billion, with another $26 billion secured through a private placement with selected investors.\n\nBy comparison, Alphabet, $GOOGL, Amazon, $AMZN, SpaceX, $SPCX, and Apple, $AAPL, each hold less than 25% of this amount.\n\nAnthropic's cash pile is therefore larger than those 4 companies combined.\n\nThis is also 8 times Nvidia's, $NVDA, cash balance, 12 times Microsoft's, $MSFT, and 22 times Meta's, $META.\n\nFor perspective, Berkshire Hathaway’s cash pile stands at $377 billion.\n\nAnthropic has a huge amount of cash to deploy.",
+      "ko": "앤트로픽 상장 후 현금성 자산 사상 최대 2,370억 달러 — 엔비디아의 8배, 알파벳·아마존·스페이스X·애플 합계보다 많음",
+      "url": "https://x.com/KobeissiLetter/status/2124282426209775663",
+      "media": [
+        "https://pbs.twimg.com/media/HXpstwFWgAAbYKt.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 452808,
+      "likes": 3957
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-22 15:09",
+      "text": "BREAKING: Gold is now on track for its worst 3-month rolling performance since June 2013, down -21.6% since the start of September.\n\nThis would also mark gold's largest 3-month rolling price decline since 1981.\n\nBy comparison, during the 2008 Financial Crisis, gold's biggest 3-month drawdown was -22.2%.\n\nMeanwhile, silver prices are down -38.7% since the start of September, putting them on track for their biggest 3-month rolling decline since 2008, when prices fell -45.3%.\n\nBy comparison, silver's largest 3-month rolling decline on record was -63.6% in 1980.\n\nGold and silver are experiencing historic selling pressure.",
+      "ko": "금 9월 초 대비 -21.6%로 2013년 6월 이후 최악의 3개월, 1981년 이후 최대 낙폭 — 은 -38.7%",
+      "url": "https://x.com/KobeissiLetter/status/2124596025776087144",
+      "media": [
+        "https://pbs.twimg.com/media/HXvoaIhXUAAP8mj.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 68616,
+      "likes": 482
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "자본시장 리서치 뉴스레터",
+      "time_et": "2026-11-22 08:18",
+      "text": "Key Events This Week:\n\n1. November S&P Global Services PMI data - Monday\n\n2. November S&P Global Manufacturing PMI data - Monday\n\n3. November Consumer Confidence data - Tuesday\n\n4. October PCE Inflation data - Wednesday\n\n5. US Q3 2026 GDP data - Wednesday\n\n6. October New Home Sales data - Wednesday\n\n7. US Markets Closed, Happy Thanksgiving! - Thursday\n\nA short but eventful week ahead.",
+      "ko": "이번 주 주요 일정 — 월 S&P 서비스·제조업 PMI, 화 소비자신뢰, 수 10월 PCE·3분기 GDP·신규주택판매, 목 추수감사절 휴장",
+      "url": "https://x.com/KobeissiLetter/status/2124492782014259376",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 181308,
+      "likes": 1125
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": "금요일 마감으로 확정된 주간 성적표: 나스닥100 -10.4%·S&P500 -8.6%로 2020년 3월 이후 최악, 반도체 주간 -17.1%는 2001년 이후 최악.\nAI 밸류체인 붕괴의 크기를 숫자 네 줄과 차트 한 장으로 보여 줘 영상 첫 장면 인용 카드로 적합."
+  }
+}
