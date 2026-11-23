@@ -1,0 +1,706 @@
+{
+  "req": "11/23(월) 뉴욕장(미 동부 15:30까지) — 엔비디아 젠슨 황 CEO 복귀·NVDA +30%대·시총 +1조 달러, 나스닥100 선물 거래정지·S&P500 +5%대(2025년 4월 이후 최대), 반도체 전 종목 반등, 트럼프·백악관 개입과 의회 조사·12/3 청문회, Megaspeed 블랙리스트, 앤트로픽 상장 첫 주·SpaceX AI 컴퓨팅 임대, 레버리지 ETF 매수, 금리 인상 확률·PMI, VIX·금·구리·원유·비트코인 ETF — 영향력 있는 계정만, 루머·익명·밈 제외 (화요일 05:30 KST = 미 동부 월요일 15:30, 장 마감 전이라 당일 장후 실적(SMTC 등) 반응은 아직 없음)",
+  "at": "2026-11-24T05:36:20+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 09:30",
+      "text": "BREAKING: Nvidia stock, $NVDA, extends gains to over +35% on the day after Jensen Huang is reinstated as CEO.\n\nThe stock has now added +$1 trillion in market cap today.\n\nIf Nvidia closes at or above current levels, it’ll be the first company in history to add $1 trillion in a https://t.co/iXOi4jr06S",
+      "ko": "엔비디아, 젠슨 황 복귀 후 장중 +35% 넘게 상승·하루 시총 +1조 달러 — 종가 유지 시 사상 첫 하루 1조 달러 증가",
+      "url": "https://x.com/KobeissiLetter/status/2124873304464904473",
+      "media": [
+        "https://pbs.twimg.com/media/HX0RAh9WcAAe1uh.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 334766,
+      "likes": 3829
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 09:03",
+      "text": "BREAKING: Nvidia stock, $NVDA, surges over +28% after the company reinstates Jensen Huang as CEO, effectively immediately.\n\nThe stock has now added +$820 billion in market cap today on the news.\n\nJensen Huang is officially back. https://t.co/3UabhFKxzu",
+      "ko": "엔비디아, 젠슨 황 CEO 즉시 복귀 발표 후 +28% 급등·시총 +8,200억 달러",
+      "url": "https://x.com/KobeissiLetter/status/2124866337000325454",
+      "media": [
+        "https://pbs.twimg.com/media/HX0KrC9XUAAKTBp.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 1614418,
+      "likes": 13706
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 08:58",
+      "text": "BREAKING: Nvidia, $NVDA, reinstates Jensen Huang as CEO, President, and Board Member, effective immediately. https://t.co/FwXpSC8mRb",
+      "ko": "속보: 엔비디아, 젠슨 황을 CEO·사장·이사로 즉시 복귀시킴",
+      "url": "https://x.com/KobeissiLetter/status/2124865188927291642",
+      "media": [
+        "https://pbs.twimg.com/media/HX0JnxvWoAAgq5L.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 2344020,
+      "likes": 33314
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 09:18",
+      "text": "BREAKING: The US stock market adds +$3 trillion in market cap as Jensen Huang is reinstated as CEO of Nvidia, $NVDA. https://t.co/pOrpbfD45N",
+      "ko": "젠슨 황 복귀로 미국 증시 시가총액 +3조 달러",
+      "url": "https://x.com/KobeissiLetter/status/2124870184003424673",
+      "media": [
+        "https://pbs.twimg.com/media/HX0OK8nWoAAtZRy.jpg",
+        "https://pbs.twimg.com/media/HX0OK8pXIAAs8PH.jpg"
+      ],
+      "media_note": "첨부 이미지 2장(이미지 내용은 직접 열어보지 않음)",
+      "views": 1444157,
+      "likes": 10155
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 09:25",
+      "text": "BREAKING: Nasdaq 100 futures have been halted after surging +7% on news of Nvidia, $NVDA, reinstating Jensen Huang as CEO. https://t.co/BVhPxBE8Li",
+      "ko": "엔비디아 젠슨 황 복귀 소식에 나스닥100 선물 +7% 급등 후 거래 일시 정지",
+      "url": "https://x.com/KobeissiLetter/status/2124871861804654908",
+      "media": [
+        "https://pbs.twimg.com/media/HX0PslSWUAAjklp.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 317317,
+      "likes": 3166
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 10:58",
+      "text": "BREAKING: The S&P 500 extends gains to +5.3% on the day, now on track for its biggest daily gain since April 2025.\n\nThe US stock market has now added +$3.5 trillion in market cap today. https://t.co/rH40yKbRPk",
+      "ko": "S&P500 장중 +5.3%, 2025년 4월 이후 최대 일간 상승 페이스·미 증시 시총 +3.5조 달러",
+      "url": "https://x.com/KobeissiLetter/status/2124895247121654238",
+      "media": [
+        "https://pbs.twimg.com/media/HX0igViWEAAzbI6.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 154591,
+      "likes": 1858
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 회사",
+      "time_et": "2026-11-23 13:45",
+      "text": "S&P 500 $SPY on track for its 3rd best day since Covid 📈 🤑 🥳 https://t.co/OlArhRIST4",
+      "ko": "S&P500, 코로나 이후 세 번째로 좋은 하루 페이스",
+      "url": "https://x.com/Barchart/status/2124937470764527891",
+      "media": [
+        "https://pbs.twimg.com/media/HX1LXoHWkAAVYAe.png"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 20924,
+      "likes": 220
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 14:04",
+      "text": "US Tech Stocks Today:\n\n1. Nvidia, $NVDA: +32%\n2. Dell, $DELL: +22%\n3. Nebius, $NBIS: +21%\n4. CoreWeave, $CRWV: +21%\n5. Micron, $MU: +19%\n6. Marvell Technology, $MRVL: +18%\n7. Arm, $ARM: +16%\n8. TSMC, $TSM: +16%\n9. Western Digital, $WDC: +15%\n10. Seagate, $STX: +14%\n11. SanDisk,",
+      "ko": "오늘 미국 기술주 상승률 순위 — NVDA +32%, DELL +22%, NBIS·CRWV +21%, MU +19%, MRVL +18%, ARM·TSM +16% 등",
+      "url": "https://x.com/KobeissiLetter/status/2124942055952482332",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 155155,
+      "likes": 1627
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 데이터 계정",
+      "time_et": "2026-11-23 12:56",
+      "text": "Semiconductor heatmap went from a sea of red to a sea of green.\n\nJensen Huang is back, and the whole sector is ripping.\n\n$NVDA +32.8%\n$MU +19.0%\n$MRVL +18.9%\n$MPWR +16.1%\n$INTC +13.0%\n$TXN +10.5%\n$QCOM +10.2%\n$ADI +10.0%\n$AMD +8.5%\n\nEvery chip stock in the S&P 500 is green. https://t.co/hcyiVE45yy",
+      "ko": "반도체 히트맵이 빨강에서 초록으로 — NVDA +32.8%, MU +19%, MRVL +18.9% 등 S&P500 반도체 전 종목 상승",
+      "url": "https://x.com/unusual_whales/status/2124924942776938506",
+      "media": [
+        "https://pbs.twimg.com/media/HX033cTagAARjtB.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 102984,
+      "likes": 256
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 11:34",
+      "text": "BREAKING: Nvidia, $NVDA, short sellers have now lost -$12.2 billion today, on track for their biggest one-day loss in at least 7 years.\n\nThe stock is currently on track to make history by adding +$1 trillion in market cap in a single day.",
+      "ko": "엔비디아 공매도 세력 하루 -122억 달러 손실, 최소 7년 만의 최대 일일 손실",
+      "url": "https://x.com/KobeissiLetter/status/2124904528164053334",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 235462,
+      "likes": 6503
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 09:23",
+      "text": "BREAKING: Jensen Huang releases a statement after being reinstated as CEO of Nvidia, $NVDA:\n\nFull statement:\n\n\"I am honored to return to NVIDIA and lead one of the most consequential technology companies in the world at the beginning of a new industrial revolution. I take this",
+      "ko": "젠슨 황 복귀 공식 성명 전문 — '새 산업혁명의 시작에 엔비디아로 돌아와 영광'",
+      "url": "https://x.com/KobeissiLetter/status/2124871560028725383",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 636124,
+      "likes": 11098
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 13:48",
+      "text": "BREAKING: Jensen Huang officially returns to Nvidia's office, $NVDA, and receives a standing ovation from Nvidia employees.\n\n\"I'm going to be a better CEO the second time around,\" Jensen Huang told employees. https://t.co/WdhJtMdb71",
+      "ko": "젠슨 황 본사 출근, 직원 기립박수 — '두 번째에는 더 나은 CEO가 되겠다'",
+      "url": "https://x.com/KobeissiLetter/status/2124938048253116837",
+      "media": [
+        "https://pbs.twimg.com/amplify_video_thumb/2124924689579716608/img/5jGQlavDNs7jTtIQ.jpg"
+      ],
+      "media_note": "첨부 동영상 썸네일(영상은 직접 보지 않음)",
+      "views": 990276,
+      "likes": 28891
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-23 10:10",
+      "text": "TRUMP PERSONALLY INTERVENED IN NVIDIA'S DECISION TO REINSTATE JENSEN HUANG, JOINING THE BOARD CALL TO ARGUE FOR HIS RETURN, THE WHITE HOUSE CONFIRMS",
+      "ko": "백악관 확인: 트럼프가 엔비디아 이사회 통화에 직접 참여해 젠슨 황 복귀를 주장",
+      "url": "https://x.com/wallstengine/status/2124883195275497579",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 437123,
+      "likes": 1971
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 10:09",
+      "text": "BREAKING: The White House says President Trump personally joined an Nvidia, $NVDA, board meeting and \"intervened\" to advocate for Jensen Huang to be reinstated as CEO.\n\n\"President Trump was totally involved and this is a great decision by the NVIDIA board. We have to protect our",
+      "ko": "백악관 '트럼프 대통령이 엔비디아 이사회 회의에 직접 참여해 개입' 발표",
+      "url": "https://x.com/KobeissiLetter/status/2124882928001781904",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 1066041,
+      "likes": 14283
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 09:09",
+      "text": "BREAKING: President Trump releases a statement saying Nvidia's board, $NVDA, has made the \"correct and proper decision\" to rehire Jensen Huang as CEO.\n\nAs we posted 14 hours ago, something was happening behind the scenes.\n\nThe leader of the AI revolution is back. https://t.co/bE8aMfQiF7",
+      "ko": "트럼프 성명: 엔비디아 이사회가 젠슨 황 재고용으로 '옳고 적절한 결정'",
+      "url": "https://x.com/KobeissiLetter/status/2124867877324861561",
+      "media": [
+        "https://pbs.twimg.com/media/HX0L3Y3WMAABdfv.png"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 318274,
+      "likes": 4459
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 10:16",
+      "text": "BREAKING: President Trump says Nvidia's board, $NVDA, asked for \"assurance\" on the national security threat and \"we gave them assurance.\"\n\nIt now seems as though the Trump Administration is suggesting that the national security threat will not be as big of an issue as many",
+      "ko": "트럼프 '엔비디아 이사회가 국가안보 위협에 대한 보증을 요청했고 우리가 보증해 줬다'",
+      "url": "https://x.com/KobeissiLetter/status/2124884904811036689",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 318197,
+      "likes": 2824
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정",
+      "time_et": "2026-11-23 12:59",
+      "text": "$NVDA  - TRUMP PRESSURED NVIDIA BOARD TO REINSTATE JENSEN HUANG WITHOUT CONSULTING SENIOR EXECUTIVES \n\nNvidia's surprise decision to reinstate Jensen Huang as CEO came after political pressure from President Donald Trump, according to Bloomberg, citing people familiar with the",
+      "ko": "블룸버그: 트럼프가 고위 경영진 협의 없이 엔비디아 이사회에 젠슨 황 복귀 압박",
+      "url": "https://x.com/DeItaone/status/2124925801376161947",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 127536,
+      "likes": 511
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정",
+      "time_et": "2026-11-23 11:51",
+      "text": "$NVDA  - TRUMP ADMIN WARNED NVIDIA TO ENSURE EXPORT CONTROL COMPLIANCE IF HUANG REINSTATED AS CEO: SOURCE\n\nTRUMP ADMIN RAISED EXPORT CONTROL CONCERNS WITH NVIDIA IN WEEKEND CALL: SOURCE",
+      "ko": "소식통: 트럼프 행정부, 황 복귀 시 수출통제 준수를 엔비디아에 경고(주말 통화)",
+      "url": "https://x.com/DeItaone/status/2124908648124051642",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 110611,
+      "likes": 238
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 데이터 계정",
+      "time_et": "2026-11-23 11:09",
+      "text": "BREAKING: Senator Ruben Gallego is calling for an investigation into stock positions taken ahead of Nvidia’s announcement that it would reinstate Jensen Huang as CEO.\n\nNvidia announced the board’s unanimous vote before the market opened Monday, and the stock surged at the open.",
+      "ko": "갈레고 상원의원, 젠슨 황 복귀 발표 전 주식 포지션 조사 요구",
+      "url": "https://x.com/unusual_whales/status/2124898015580488067",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 232574,
+      "likes": 2819
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 데이터 계정",
+      "time_et": "2026-11-23 12:27",
+      "text": "BREAKING: Senate Democratic Leader Chuck Schumer says Democrats will investigate Jensen Huang’s reinstatement as Nvidia CEO.\n\n“Democrats will wield their full power to investigate any wrongdoing by the Trump Administration” and “anyone selling out our national security for",
+      "ko": "슈머 민주당 원내대표, 젠슨 황 복귀 과정 조사 예고",
+      "url": "https://x.com/unusual_whales/status/2124917644717691166",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 184415,
+      "likes": 989
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정",
+      "time_et": "2026-11-23 12:42",
+      "text": "$NVDA  - *NVIDIA'S ABOUT-FACE ON HUANG MADE WITHOUT CONSULTING LEADERSHIP",
+      "ko": "엔비디아의 황 복귀 결정, 경영진과 협의 없이 이뤄짐",
+      "url": "https://x.com/DeItaone/status/2124921435101503532",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 165160,
+      "likes": 277
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정",
+      "time_et": "2026-11-23 12:06",
+      "text": "US SEN. SCOTT ANNOUNCES THE HUANG HEARING FOR DECEMBER 3RD",
+      "ko": "스콧 상원의원, 12월 3일 '황 청문회' 개최 발표",
+      "url": "https://x.com/DeItaone/status/2124912394933874969",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 123003,
+      "likes": 363
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 07:11",
+      "text": "BREAKING: Arm, $ARM, CEO Rene Haas, widely viewed as a leading candidate to become Nvidia's, $NVDA, next CEO, will become SoftBank's Vice Chairman on December 1st.\n\nHaas also reaffirmed his \"long-term commitment\" to leading Arm.\n\nThis comes just hours after President Trump urged",
+      "ko": "엔비디아 차기 CEO 유력 후보였던 Arm CEO 르네 하스, 12월 1일 소프트뱅크 부회장 취임·Arm 장기 리더십 재확인",
+      "url": "https://x.com/KobeissiLetter/status/2124838190666199095",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 349498,
+      "likes": 2299
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정",
+      "time_et": "2026-11-23 11:16",
+      "text": "$SPCX  - *MUSK TOLD STAFF SPACEX IS FALLING BEHIND ON AI DEVELOPMENT: NYT\n\n*MUSK SAYS RENTING OUT SPACEX COMPUTING POWER WOULD BE MORE LUCRATIVE: NYT\n\n*MUSK SHARED DATA SHOWING SPACEX LAGGING AI COMPETITORS: NYT",
+      "ko": "NYT: 머스크 'SpaceX가 AI 개발에서 뒤처지고 있다', 컴퓨팅 임대가 더 수익성 높다고 직원들에 언급",
+      "url": "https://x.com/DeItaone/status/2124899948949037242",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 213979,
+      "likes": 1143
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정",
+      "time_et": "2026-11-23 11:20",
+      "text": "ANTHROPIC HAS SO MUCH DEMAND FOR COMPUTING POWER THAT BY OCTOBER, SPACEXSI NEEDED TO FINISH NEW DATA CENTERS TO FULFILL ANTHROPIC'S ORDERS - NYT",
+      "ko": "NYT: 앤트로픽 컴퓨팅 수요가 커 SpaceX가 10월까지 새 데이터센터를 완공해야 했음",
+      "url": "https://x.com/DeItaone/status/2124901020287553818",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 161898,
+      "likes": 1359
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정",
+      "time_et": "2026-11-23 11:18",
+      "text": "$SPCX  $ANT  - ELON MUSK'S SPACEX MAKES BILLIONS RENTING AI COMPUTING POWER TO ITS BIGGEST RIVALS — NYT\n\nSpaceX is generating billions of dollars monthly by leasing AI computing capacity to competitors, including Anthropic and Google, according to The New York Times.\n\nAnthropic's",
+      "ko": "NYT: SpaceX, 앤트로픽·구글 등 경쟁사에 AI 컴퓨팅을 임대해 매달 수십억 달러 벌어",
+      "url": "https://x.com/DeItaone/status/2124900367116681455",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 125748,
+      "likes": 397
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정",
+      "time_et": "2026-11-23 10:48",
+      "text": "$ANT  - TRUMP SAYS HE MET ANTHROPIC'S DARIO AMODEI, CALLS HIM BRILLIANT AND PRAISES HIS LEADERSHIP",
+      "ko": "트럼프, 앤트로픽 다리오 아모데이 만나 '뛰어나다' 칭찬",
+      "url": "https://x.com/DeItaone/status/2124892823237300669",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 105642,
+      "likes": 266
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정",
+      "time_et": "2026-11-23 10:47",
+      "text": "*TRUMP SAYS DOJ WILL INTERVENE IN AI COMPANIES IF NECESSARY OVER SAFETY CONCERNS",
+      "ko": "트럼프 '필요하면 안전 우려로 법무부가 AI 기업에 개입할 것'",
+      "url": "https://x.com/DeItaone/status/2124892613366948156",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 97949,
+      "likes": 254
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 회사",
+      "time_et": "2026-11-23 13:25",
+      "text": "Anthropic is finally public, but its IPO couldn't have come at a worse time: the Nasdaq 100 $QQQ just suffered its worst week since COVID 🚨 And $ANT paid the price, plunging 20% from its opening-day trading price!\n\nFor magnified bearish exposure, consider the Tradr 2X Short https://t.co/SjBz3n69fu",
+      "ko": "앤트로픽 상장했지만 나스닥100 코로나 이후 최악 주간 직후라 시점 최악 — ANT 첫날 시가 대비 -20%",
+      "url": "https://x.com/Barchart/status/2124932476988436967",
+      "media": [
+        "https://pbs.twimg.com/media/HX1GxP5WwAA7DN-.png"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 317836,
+      "likes": 97
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정",
+      "time_et": "2026-11-23 14:09",
+      "text": "$SPY  $QQQ  - CITADEL SECURITIES WARNS 2018 PLAYBOOK SIGNALS MORE MARKET PAIN\n\nCitadel Securities warns that U.S. markets are showing troubling similarities to late 2018, when aggressive Fed tightening contributed to a nearly 20% S&P 500 selloff.\n\nStrategists cite a stronger https://t.co/nGWo8kKcQW",
+      "ko": "시타델 증권 '2018년 각본처럼 시장 고통 더 올 수 있다' — 공격적 연준 긴축 유사성 경고",
+      "url": "https://x.com/DeItaone/status/2124943492732330294",
+      "media": [
+        "https://pbs.twimg.com/media/HX1QyvNXYAANWTl.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 100187,
+      "likes": 262
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-23 12:41",
+      "text": "Leveraged ETF estimate ahead of today's close: Nomura's live projection is +$41.0 billion to buy, of which $16.7 billion is tech, $12.8 billion semis, $4.2 billion Mag7 and $4.1 billion S&P products, every one of them a 100th percentile reading https://t.co/CtviupBGj9 https://t.co/dTDXw47QZ1",
+      "ko": "노무라: 오늘 마감 레버리지 ETF 리밸런싱 매수 추정 +410억 달러(기술 167억·반도체 128억), 모두 역대 100백분위",
+      "url": "https://x.com/zerohedge/status/2124921195191533641",
+      "media": [
+        "https://pbs.twimg.com/media/HX08kKHXgAACbix.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 38623,
+      "likes": 107
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-23 12:57",
+      "text": "Goldman: \"Not sure yet whether good or bad that the fate of the market is almost equal to the fate of one person. But hey... We are not picky here.\"",
+      "ko": "골드만 '시장의 운명이 한 사람의 운명과 거의 같아진 게 좋은지 나쁜지 모르겠다'",
+      "url": "https://x.com/zerohedge/status/2124925435469242515",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 73449,
+      "likes": 563
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-23 13:30",
+      "text": "Goldman's chart of the day https://t.co/5n5dI1ibCo",
+      "ko": "골드만삭스 오늘의 차트",
+      "url": "https://x.com/zerohedge/status/2124933508137210303",
+      "media": [
+        "https://pbs.twimg.com/media/HX1Hws1W4AANTHd.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 53692,
+      "likes": 105
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 회사",
+      "time_et": "2026-11-23 12:05",
+      "text": "Nvidia $NVDA has traded red for 7 consecutive weeks, its longest losing streak since the Global Financial Crisis 🚨 If you think today's rally won't last and want magnified bearish exposure, consider the Tradr 1.5X Short NVDA Daily ETF $NVDS from @TradrETFs https://t.co/XHZ3UEYNTz",
+      "ko": "엔비디아 7주 연속 하락 — 금융위기 이후 최장 연속 하락",
+      "url": "https://x.com/Barchart/status/2124912183478018514",
+      "media": [
+        "https://pbs.twimg.com/media/HX00Tg6XYAAK5N6.png"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 123232,
+      "likes": 95
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 12:57",
+      "text": "BREAKING: Retail investors sold -$250 million worth of technology ETFs last week, their largest weekly sale in at least 2 years.\n\nThis follows 4 consecutive weekly purchases, totaling +$1.2 billion.\n\nRetail investors have sold technology ETFs in 9 of the last 20 weeks, a https://t.co/YbiXfNM5a0",
+      "ko": "지난주 개인투자자 기술 ETF -2.5억 달러 순매도, 최소 2년 내 최대 주간 매도",
+      "url": "https://x.com/KobeissiLetter/status/2124925429052329989",
+      "media": [
+        "https://pbs.twimg.com/media/HX0Grk5WAAAeKpv.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 120881,
+      "likes": 528
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 08:09",
+      "text": "US net equity inflows are up to ~3.0% of GDP, their highest on record in data going back to the 1980s.\n\nNet equity inflows measure foreign purchases of US stocks minus US investors' purchases of foreign equities.\n\nThis figure has risen nearly +5.0 percentage points since the 2022 https://t.co/vCLEQEJXaK",
+      "ko": "미국 순주식유입 GDP 대비 약 3.0%, 1980년대 이후 사상 최고",
+      "url": "https://x.com/KobeissiLetter/status/2124852873653575727",
+      "media": [
+        "https://pbs.twimg.com/media/HXlHPEjWUAAV2qZ.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 144601,
+      "likes": 485
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-23 15:02",
+      "text": "BREAKING: The largest Bitcoin ETF, $IBIT, has posted -$3.0 billion in outflows so far in November, on track for its 2nd-largest monthly outflow on record.\n\nThis snaps a streak of 4 consecutive monthly inflows. \n\nLast week alone, $IBIT saw -$829 million in outflows, marking its https://t.co/4Ur9YHnOoC",
+      "ko": "최대 비트코인 ETF IBIT 11월 -30억 달러 유출, 역대 2번째 큰 월간 유출 페이스",
+      "url": "https://x.com/KobeissiLetter/status/2124956652185309373",
+      "media": [
+        "https://pbs.twimg.com/media/HX1L9cCWQAE_XtG.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 82958,
+      "likes": 482
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스슈왑 수석 투자전략가",
+      "time_et": "2026-11-23 10:51",
+      "text": "November @SPGlobalPMI U.S. Manufacturing slipped to 54.5 vs. 54.5 est. & 54.9 prior; Services PMI down to 54.7 vs. 55.5 est. & 56.1 prior; Composite PMI down to 54.6 vs. 55.6 est. & 55.9 prior … (see what I did there with the lining up of the numbers) https://t.co/K9xdzPZfpc",
+      "ko": "11월 S&P글로벌 PMI — 제조 54.5(예상 54.5), 서비스 54.7(예상 55.5), 종합 54.6(예상 55.6)",
+      "url": "https://x.com/LizAnnSonders/status/2124893566853894290",
+      "media": [
+        "https://pbs.twimg.com/media/HX0jcA5WgAE_ESO.jpg",
+        "https://pbs.twimg.com/media/HX0jcA9WkAAuw1w.jpg"
+      ],
+      "media_note": "첨부 이미지 2장(이미지 내용은 직접 열어보지 않음)",
+      "views": 11125,
+      "likes": 35
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스슈왑 수석 투자전략가",
+      "time_et": "2026-11-23 09:27",
+      "text": "Perhaps in part because heeeeee’s baaaaaack, rate hike probability per @CMEGroup #FedWatchTool at near-100% (up from 88% on Friday) https://t.co/uFokuKedeC",
+      "ko": "CME 페드워치 금리 인상 확률 거의 100%(금요일 88%에서 상승)",
+      "url": "https://x.com/LizAnnSonders/status/2124872576056832045",
+      "media": [
+        "https://pbs.twimg.com/media/HX0QWFCWoAAVK4S.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 10811,
+      "likes": 35
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스슈왑 수석 투자전략가",
+      "time_et": "2026-11-23 08:27",
+      "text": "Last week’s S&P 500 decline of 8.6% ranks among top ten worst weeks since 1990 (all prior incidents other than in 2025 were during bear markets)\n[Past performance is no guarantee of future results] https://t.co/Mk8P5Iqrnm",
+      "ko": "지난주 S&P500 -8.6%는 1990년 이후 최악 10주 안 — 2025년 외엔 모두 약세장 때",
+      "url": "https://x.com/LizAnnSonders/status/2124857393368760495",
+      "media": [
+        "https://pbs.twimg.com/media/HX0CibqXYAEpHQF.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 14766,
+      "likes": 95
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스슈왑 수석 투자전략가",
+      "time_et": "2026-11-23 08:40",
+      "text": "Ahead of this morning’s open, VIX is down nearly 5 points (>13%) from Friday’s close\n[Past performance is no guarantee of future results] https://t.co/rmJbboC7VL",
+      "ko": "개장 전 VIX 금요일 종가 대비 약 5포인트(13% 넘게) 하락",
+      "url": "https://x.com/LizAnnSonders/status/2124860549829886262",
+      "media": [
+        "https://pbs.twimg.com/media/HX0FaHuXwAArDCH.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 12591,
+      "likes": 44
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스슈왑 수석 투자전략가",
+      "time_et": "2026-11-23 07:39",
+      "text": "Both profitable and non-profitable small caps have plunged, but spread between two has widened to about 25 percentage points (in favor of profitable)\n\nSource: Bloomberg, as of 11/13/2026. Profitable companies have trailing 12-month earnings per share greater than $0. Indexes are https://t.co/I067ct5uSJ",
+      "ko": "흑자·적자 소형주 모두 급락, 둘 사이 격차 약 25%p(흑자 쪽 우위)",
+      "url": "https://x.com/LizAnnSonders/status/2124845271372747205",
+      "media": [
+        "https://pbs.twimg.com/media/HXz3g46XEAAHwI4.jpg",
+        "https://pbs.twimg.com/media/HXz3g4uXUAA60Az.jpg"
+      ],
+      "media_note": "첨부 이미지 2장(이미지 내용은 직접 열어보지 않음)",
+      "views": 13757,
+      "likes": 73
+    },
+    {
+      "author": "Liz Ann Sonders",
+      "handle": "@LizAnnSonders",
+      "role": "찰스슈왑 수석 투자전략가",
+      "time_et": "2026-11-23 09:29",
+      "text": "Gold was not shielded from last week’s rout, suffering its steepest weekly decline since March, but is rebounding this morning, up >3%\n[Past performance is no guarantee of future results] https://t.co/GFYdmfcYcW",
+      "ko": "금, 지난주 3월 이후 최대 주간 하락 뒤 오늘 아침 3% 넘게 반등",
+      "url": "https://x.com/LizAnnSonders/status/2124872943498866856",
+      "media": [
+        "https://pbs.twimg.com/media/HX0QrgKWkAAV3Gn.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 10677,
+      "likes": 34
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "Creative Planning 수석 시장전략가",
+      "time_et": "2026-11-23 15:11",
+      "text": "Hiking rates to bring down inflation is not a \"policy mistake,\" it's the Fed's #1 job. The true policy mistake was believing that 0% rates, buying trillions of mortgage bonds in a housing bubble & increasing the money supply by 40% in 2 years would have no negative consequences. https://t.co/K4y02YELbs",
+      "ko": "빌레로 '인플레 잡기 위한 금리 인상은 정책 실수가 아니라 연준의 1번 임무'",
+      "url": "https://x.com/charliebilello/status/2124959161226072574",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 11911,
+      "likes": 82
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 데이터 계정",
+      "time_et": "2026-11-23 13:57",
+      "text": "Copper prices are falling fast, and some economists say it’s a warning sign for the US economy, per Business Insider.\n\nCopper traded around $5.48 a pound on Friday. That’s down 17% from its September peak of nearly $6.90, after one of 2025’s hottest rallies on AI and data center",
+      "ko": "구리 파운드당 약 5.48달러, 9월 고점 대비 -17% — 미국 경제 경고 신호라는 분석(Business Insider)",
+      "url": "https://x.com/unusual_whales/status/2124940293988647335",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 82515,
+      "likes": 244
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트 회사",
+      "time_et": "2026-11-23 12:23",
+      "text": "Crude Oil falls to its lowest price since August 📉 📉 https://t.co/jyVW5pE7EO",
+      "ko": "원유, 8월 이후 최저가로 하락",
+      "url": "https://x.com/Barchart/status/2124916825972457817",
+      "media": [
+        "https://pbs.twimg.com/media/HX04l8EWQAAi6Qq.png"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 32895,
+      "likes": 542
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-23 10:13",
+      "text": "Health insurers $UNH, $HUM, $CVS, trading under pressure\n\nAfter federal health officials proposed Medicare changes poised to cut billions in payments to insurers, and as President Trump reposted Democratic Sen.-elect Abdul El-Sayed's pitch for universal \"TrumpCare.\" https://t.co/xRIZuIv8Pg",
+      "ko": "메디케어 지급 삭감 제안에 UNH·HUM·CVS 등 건강보험주 약세",
+      "url": "https://x.com/wallstengine/status/2124884001546756498",
+      "media": [
+        "https://pbs.twimg.com/media/HX0ahCbbMAEBt31.jpg",
+        "https://pbs.twimg.com/media/HX0ajlqb0AAbs7f.jpg"
+      ],
+      "media_note": "첨부 이미지 2장(이미지 내용은 직접 열어보지 않음)",
+      "views": 24716,
+      "likes": 86
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-23 12:09",
+      "text": "$GOOGL DEEPMIND USES AI TO CUT QUANTUM COMPUTING RESOURCE COSTS BY UP TO 290X\n\nGoogle DeepMind researchers used teams of Gemini 4 AI agents to discover more efficient quantum algorithms, with their correctness and resource requirements mathematically verified using the Lean https://t.co/EAErV2mnmc",
+      "ko": "구글 딥마인드, Gemini 4 AI 에이전트로 양자컴퓨팅 자원 비용 최대 290배 절감",
+      "url": "https://x.com/wallstengine/status/2124913183605620884",
+      "media": [
+        "https://pbs.twimg.com/media/HX01RY7bkAALdQq.jpg"
+      ],
+      "media_note": "첨부 이미지 1장(이미지 내용은 직접 열어보지 않음)",
+      "views": 36288,
+      "likes": 585
+    },
+    {
+      "author": "Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정",
+      "time_et": "2026-11-23 14:51",
+      "text": "$NVDA  - TRUMP ADMINISTRATION MOVES TO BLACKLIST MEGASPEED AMID NVIDIA SCANDAL\n\nThe Trump administration plans to add Singapore-based Megaspeed to the U.S. Commerce Department's Entity List on Monday, according to sources familiar with the matter.\n\nThe designation would restrict",
+      "ko": "트럼프 행정부, 엔비디아 스캔들 관련 싱가포르 Megaspeed를 상무부 수출 블랙리스트에 추가 예정",
+      "url": "https://x.com/DeItaone/status/2124953889384317182",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 71759,
+      "likes": 149
+    }
+  ],
+  "pick": {
+    "index": 0,
+    "reason": "젠슨 황 복귀 하루 만에 엔비디아 +35%·시총 +1조 달러, 마감 유지 시 사상 첫 '하루 1조 달러' 기록이라는 한 줄 숫자.\n지난주 2020년 이후 최악 주간에서 하루 만의 대반전을 보여 줘 영상 첫 장면 인용 카드로 적합."
+  }
+}
