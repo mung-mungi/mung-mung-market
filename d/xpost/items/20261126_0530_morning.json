@@ -1,0 +1,811 @@
+{
+  "req": "11/25(수) 뉴욕장(미 동부 15:30까지, 추수감사절 전날)과 11/24(화) 장 마감·장후 — 트럼프 엔비디아 지분·젠슨 황 사면 발언, 14개국 신규 관세 제안, 뜨거운 10월 PCE·GDP 4.3%·12월 금리 인상 확률 97%, 나스닥100 약세장 문턱, AI 신용 위험(코어위브·오라클 CDS·연준 금융안정보고서), 앤트로픽·소프트뱅크, 델·뉴타닉스(장후)·암바렐라 실적, 금·은·비트코인 — 영향력 있는 계정만, 루머·익명·밈 제외 (목요일 05:30 KST = 미 동부 수요일 15:30, 장 마감 전이라 당일 장후 실적 반응은 아직 없음)",
+  "at": "2026-11-26T05:33:09+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-24 18:40",
+      "text": "BREAKING: President Trump says the US government could take an equity stake in Nvidia, $NVDA.\n\n“It’s probably not too late,” President Trump says.",
+      "ko": "트럼프 \"엔비디아 지분 취득 아직 늦지 않았다\" — 미 정부의 NVDA 지분 가능성 언급",
+      "url": "https://x.com/KobeissiLetter/status/2125373983025734076",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 1191180,
+      "likes": 8603
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-24 18:01",
+      "text": "BREAKING: President Trump says he is willing to pardon Nvidia, $NVDA, CEO Jensen Huang “if necessary,” per NY Post.\n\nTrump also tells Jensen Huang not to plead the 5th at his congressional testimony next week.\n\nPresident Trump is fully backing Jensen Huang.",
+      "ko": "트럼프, 필요하면 젠슨 황 사면 용의(뉴욕포스트) — 다음 주 의회 청문회서 묵비권 쓰지 말라고 당부",
+      "url": "https://x.com/KobeissiLetter/status/2125364172397666355",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 884530,
+      "likes": 12602
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-24 16:58",
+      "text": "Congress is going to war with Nvidia, per POLITICO",
+      "ko": "폴리티코: 미 의회, 엔비디아와 전면전",
+      "url": "https://x.com/unusual_whales/status/2125348231848878346",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 773837,
+      "likes": 5874
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-24 16:31",
+      "text": "Jensen Huang disclosed more affairs to Nvidia’s board beyond the two that had been widely reported, but was “contrite” about his behavior, per WSJ\n\nThe disclosure came during an hours-long board meeting on Sunday, before the board voted to reinstate him as CEO. Board members",
+      "ko": "WSJ: 젠슨 황, 이사회에 알려진 2건 외 추가 외도 공개 — 일요일 이사회서 CEO 복귀 의결",
+      "url": "https://x.com/unusual_whales/status/2125341437659156731",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 243917,
+      "likes": 841
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-24 16:08",
+      "text": "BREAKING: Jensen Huang has said that he is currently undergoing therapy, shortly after his reinstatement as CEO, per Bloomberg",
+      "ko": "블룸버그: 젠슨 황, CEO 복귀 직후 치료(상담) 받고 있다고 밝힘",
+      "url": "https://x.com/unusual_whales/status/2125335736580968478",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 237626,
+      "likes": 1378
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 10:58",
+      "text": "BREAKING: US intelligence finds “no evidence” that Alice Huang, the woman Jensen Huang had an affair with, was directed by Chinese intelligence to spy on him, per US officials.\n\nIn fact, current evidence suggests Alice Huang and Jensen Huang’s relationship may have been amorous.",
+      "ko": "미 정보당국 \"앨리스 황이 중국 정보기관 지시로 접근했다는 증거 없음\"",
+      "url": "https://x.com/KobeissiLetter/status/2125620263513432251",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 603698,
+      "likes": 7032
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 12:31",
+      "text": "$NVDA  - NVIDIA CHIP SELLERS SCRAMBLE FOR BUYERS AS U.S. TIGHTENS CHINA AI RESTRICTIONS\n\nNvidia GPU sellers are seeking new buyers for thousands of advanced B300 chips after Washington restricted Chinese companies' remote access to U.S. AI computing infrastructure, CNBC reports.",
+      "ko": "미국의 중국 AI 원격접속 제한 강화로 엔비디아 B300 재판매상들 새 구매처 찾기 분주",
+      "url": "https://x.com/DeItaone/status/2125643522418118891",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 147331,
+      "likes": 378
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 09:09",
+      "text": "$NVDA  $BABA  $ANT  - U.S. CRACKDOWN THREATENS CHINA'S AI DEVELOPMENT — THE INFORMATION\n\nChinese AI developers face growing challenges as Washington tightens restrictions on advanced Nvidia chips while OpenAI and Anthropic strengthen protections against model distillation,",
+      "ko": "디인포메이션: 미 엔비디아 칩 규제 강화로 중국 AI 개발 차질",
+      "url": "https://x.com/DeItaone/status/2125592836615667954",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 129309,
+      "likes": 226
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 09:02",
+      "text": "CHINESE AI MODEL DEVELOPMENT FACES SEVERE DELAYS, WIDENING GAP WITH U.S. - THE INFORMATION",
+      "ko": "디인포메이션: 중국 AI 모델 개발 심각한 지연, 미국과 격차 확대",
+      "url": "https://x.com/DeItaone/status/2125590965947896202",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 170623,
+      "likes": 459
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 13:42",
+      "text": "$NVDA  - S&P PLACES NVIDIA'S AA CREDIT RATING ON WATCH FOR POSSIBLE DOWNGRADE\n\nS&P Global Ratings has placed Nvidia's AA credit ratings on CreditWatch Negative, citing rising management and governance risks.\n\nThe agency says Jensen Huang's departure and subsequent reinstatement",
+      "ko": "S&P, 엔비디아 AA 신용등급 하향 검토(CreditWatch Negative) — 경영·지배구조 위험",
+      "url": "https://x.com/DeItaone/status/2125661310369366182",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 112083,
+      "likes": 411
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-25 12:27",
+      "text": "Nvidia’s Huang rally is fading fast.\n\n$NVDA is down another 7.4% today to $144, after an 8% drop yesterday.\n\nThat’s about 13% lost in two days. Roughly $500 billion of Monday’s $1 trillion gain is already gone.\n\nThe stock is back near where it was before Jensen Huang returned. https://t.co/uy0Umk1log",
+      "ko": "엔비디아 '황 랠리' 빠르게 소멸 — 이틀 새 약 13% 하락, 월요일 1조 달러 상승분 절반 반납",
+      "url": "https://x.com/unusual_whales/status/2125642420389888365",
+      "media": [
+        "https://pbs.twimg.com/media/HX_Jp3jbcAAKARs.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 엔비디아 주가 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 105943,
+      "likes": 387
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-25 12:42",
+      "text": "Semiconductor heatmap is red for the second straight day.\n\n$MU −10.1%\n$NVDA −7.3%\n$MRVL −6.8%\n$AMD −6.8%\n$INTC −6.5%\n$MPWR −5.0%\n$AVGO −4.6% https://t.co/0K9Okp3Kof",
+      "ko": "반도체 히트맵 이틀째 빨간불 — MU -10.1%, NVDA -7.3%, MRVL·AMD -6.8%",
+      "url": "https://x.com/unusual_whales/status/2125646195435442628",
+      "media": [
+        "https://pbs.twimg.com/media/HX_OMA3aEAEakKh.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 반도체 종목 히트맵 (이미지 내용은 직접 열어보지 않음)",
+      "views": 90969,
+      "likes": 245
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 04:18",
+      "text": "BREAKING: Nvidia stock, $NVDA, falls over -5% in premarket trading after the tech stock selloff in Asian markets. https://t.co/tTsE8uYRtZ",
+      "ko": "아시아 기술주 매도 여파로 엔비디아 프리마켓 -5% 넘게 하락",
+      "url": "https://x.com/KobeissiLetter/status/2125519423142322382",
+      "media": [
+        "https://pbs.twimg.com/media/HX9cpp1XcAADh6o.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 엔비디아 주가(프리마켓) 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 326374,
+      "likes": 4044
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 08:21",
+      "text": "BREAKING: The Trump Administration proposes new tariffs on 14 major US trading partners following the conclusion of its trade investigations.\n\nProposed tariff rates include:\n\n1. China: 20%, potentially rising to 40%\n2. Vietnam: Up to 35%\n3. India: Up to 25%\n4. Taiwan: Up to 25%",
+      "ko": "트럼프 행정부, 무역조사 마치고 14개 주요 교역국에 신규 관세 제안 — 중국 20%(최대 40%)·베트남 최대 35% 등",
+      "url": "https://x.com/KobeissiLetter/status/2125580585972228367",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 1097035,
+      "likes": 6799
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 08:10",
+      "text": "TRUMP ADMINISTRATION PROPOSES NEW TARIFFS ON 14 MAJOR TRADING PARTNERS\n\nThe U.S. has concluded investigations into structural industrial overcapacity, determining that new trade measures are warranted against 14 major trading partners.\n\nA senior U.S. official outlined proposed",
+      "ko": "트럼프 행정부, 구조적 과잉생산 조사 결론 — 14개국 대상 신규 무역조치 제안",
+      "url": "https://x.com/DeItaone/status/2125577856021352628",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 456174,
+      "likes": 812
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-25 08:18",
+      "text": "*US PROPOSES 20% 'DEAL RATE' TARIFF ON CHINA AFTER TRADE PROBE\n\n*US PROPOSES AT LEAST 15% 'DEAL RATE' TARIFF ON EU\n\n*US PROPOSES AT LEAST 20% TARIFF ON VIETNAM IF DEAL REACHED",
+      "ko": "중국 20% '딜 레이트' 관세, EU 최소 15%, 베트남(합의 시) 최소 20% 제안",
+      "url": "https://x.com/zerohedge/status/2125579990821408958",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 139648,
+      "likes": 291
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-25 08:38",
+      "text": "U.S. PROPOSES NEW TARIFFS ON 14 TRADING PARTNERS OVER INDUSTRIAL OVERCAPACITY\n\n🇨🇳 China: 20% (up to 40% if trade truce is broken)\n🇻🇳 Vietnam: Up to 35%\n🇮🇳 India: Up to 25% (17% if a deal is reached)\n🇰🇷 South Korea: Up to 25%\n🇹🇼 Taiwan: Up to 25%\n🇮🇩 Indonesia: Up to 25%\n🇲🇾",
+      "ko": "국가별 제안 관세율 정리 — 한국·대만 최대 25%, 중국 20%(휴전 깨지면 40%)",
+      "url": "https://x.com/wallstengine/status/2125584848840790202",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 121668,
+      "likes": 476
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 08:31",
+      "text": "BREAKING: US October PCE inflation, the Fed's preferred inflation metric, rises to 3.8%, its 2nd-highest level since April 2023.\n\nCore PCE inflation also rose to 3.3%, above expectations of 3.2%.\n\nCPI, PPI, and PCE inflation all continue to push higher.\n\nDecember rate hike odds",
+      "ko": "10월 PCE 3.8%로 2023년 4월 이후 두 번째 높은 수준, 근원 3.3%로 예상(3.2%) 상회",
+      "url": "https://x.com/KobeissiLetter/status/2125583144338260387",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 549819,
+      "likes": 4703
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 08:32",
+      "text": "U.S. CORE PCE INFLATION HOTTER THAN EXPECTED AT 3.3% IN OCTOBER\n\nU.S. October PCE inflation data showed persistent price pressures, with annual core inflation exceeding expectations.\n\n🔸 Headline PCE (MoM): +0.3% vs. +0.3% expected\n🔸 Headline PCE (YoY): +3.8% vs. +3.8% expected",
+      "ko": "근원 PCE 3.3% 예상 상회 — 항목별 수치 정리",
+      "url": "https://x.com/DeItaone/status/2125583280409817288",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 216763,
+      "likes": 670
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-25 08:30",
+      "text": "US 🇺🇸 PCE / GDP DATA:\n\nCore PCE YoY: 3.3% (Est. 3.2%, Prior 3.1%)\nCore PCE MoM: 0.3% (Est. 0.3%, Prior 0.3%)\n\nPCE YoY: 3.8% (Est. 3.8%, Prior 3.7%)\nPCE MoM: 0.3% (Est. 0.3%, Prior 0.5%)\n\nQ3 GDP (2nd Est.): 4.3% (Est. 3.5%, Prior 3.4%)\nSpending MoM: 0.3% (Est. 0.4%, Prior 0.6%)",
+      "ko": "PCE·GDP 지표 한눈에 — 근원 PCE 3.3%, 3분기 GDP 잠정 4.3%(예상 3.5%)",
+      "url": "https://x.com/wallstengine/status/2125582951215763560",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 124626,
+      "likes": 407
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 08:30",
+      "text": "US PRELIM Q3 GDP +4.3% (CONSENSUS +3.5%)",
+      "ko": "미 3분기 GDP 4.3% 성장(예상 3.5%)",
+      "url": "https://x.com/DeItaone/status/2125582857620074972",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 224239,
+      "likes": 592
+    },
+    {
+      "author": "Nick Timiraos",
+      "handle": "@NickTimiraos",
+      "role": "WSJ 연준 담당 수석 기자",
+      "time_et": "2026-11-25 08:38",
+      "text": "Core PCE prices rose 0.29% in October (a 3.6% annualized rate), which dragged up the 12-month core inflation rate to 3.3% (from 3.1% in September). \n\nCore prices in October 2025 rose 2.7% from a year earlier. https://t.co/1NlwGzGfWz",
+      "ko": "WSJ 티미라오스: 10월 근원 PCE 0.29%(연율 3.6%), 12개월 3.3%로 상승",
+      "url": "https://x.com/NickTimiraos/status/2125584973520404760",
+      "media": [
+        "https://pbs.twimg.com/media/HX-YN9tXQAA8suD.png"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 근원 PCE 물가 추이 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 77939,
+      "likes": 426
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 08:52",
+      "text": "BREAKING: Market expectations for a December rate hike rise above 97% after US PCE inflation hits its 2nd highest level since April 2023. \n\nThis will mark the Fed's second interest rate hike of 2026.\n\n12 months ago, markets expected 3 rate cuts in 2026.\n\nHigher rates are on the https://t.co/MuMFi8V4BK",
+      "ko": "PCE 이후 12월 금리 '인상' 확률 97% 넘어 — 2026년 두 번째 인상 전망",
+      "url": "https://x.com/KobeissiLetter/status/2125588341064077798",
+      "media": [
+        "https://pbs.twimg.com/media/HX-bVMuWgAEDGSO.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 12월 금리 확률(FedWatch류) 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 221155,
+      "likes": 1417
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 10:09",
+      "text": "HASSETT: WE'RE IN A 'GOLDILOCKS' ECONOMY RIGHT NOW",
+      "ko": "해싯 \"지금은 골디락스 경제\"",
+      "url": "https://x.com/DeItaone/status/2125607927142899859",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 248845,
+      "likes": 606
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 10:03",
+      "text": "U.S. NEW HOME SALES SURGE 14.2% IN OCTOBER, BEATING EXPECTATIONS\n\nU.S. new single-family home sales jumped 14.2% in October to an annualized 701,000 units, beating expectations of 650,000.\n\nSeptember sales were sharply revised lower to 614,000 units from 676,000.\n\n🔸 South:",
+      "ko": "10월 신규주택판매 14.2% 급증(70.1만 채, 예상 65만)",
+      "url": "https://x.com/DeItaone/status/2125606270841323632",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 135892,
+      "likes": 340
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 11:32",
+      "text": "U.S. $44 BILLION 7-YEAR TREASURY AUCTION TAILS AS DEMAND DISAPPOINTS\n\nThe U.S. Treasury sold $44 billion in 7-year notes at a high yield of 4.708%, above the 4.698% when-issued yield before the auction.\n\nThat represents a 1-basis-point tail, signaling weaker-than-expected demand.",
+      "ko": "440억 달러 7년물 입찰 1bp 테일 — 수요 부진",
+      "url": "https://x.com/DeItaone/status/2125628756547031259",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 129325,
+      "likes": 254
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 09:45",
+      "text": "BREAKING: The Nasdaq 100 extends losses to over -4.5% on the day after the Trump Administration announces new tariffs and PCE inflation comes in hot. https://t.co/P50q1Jw8AG",
+      "ko": "신규 관세·뜨거운 PCE에 나스닥100 장중 -4.5% 넘게 확대",
+      "url": "https://x.com/KobeissiLetter/status/2125601676258111823",
+      "media": [
+        "https://pbs.twimg.com/media/HX-ndZ7XYAIMBG6.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 나스닥100 일중 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 302859,
+      "likes": 4328
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 09:47",
+      "text": "NASDAQ 100 INDEX FLIRTS WITH BEAR MARKET TERRITORY, BRIEFLY DOWN OVER 20% FROM RECORD CLOSING HIGH",
+      "ko": "나스닥100 장중 고점 대비 20% 넘게 빠지며 약세장 문턱",
+      "url": "https://x.com/DeItaone/status/2125602176101704093",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 125599,
+      "likes": 471
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 12:55",
+      "text": "BREAKING: The Dow Jones Industrial Average erases all losses and turns green on the day. https://t.co/HYCmFEAtTW",
+      "ko": "다우, 낙폭 모두 만회하고 상승 전환",
+      "url": "https://x.com/KobeissiLetter/status/2125649652917612803",
+      "media": [
+        "https://pbs.twimg.com/media/HX_TF8IXUAA4lVq.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 다우 일중 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 243096,
+      "likes": 3117
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 12:16",
+      "text": "BREAKING: President Trump says the US stock market is “down sharply” because he wasn’t on the ballot for the US Midterm Elections. https://t.co/DIJQSV7sJQ",
+      "ko": "트럼프 \"증시 급락은 내가 중간선거 투표용지에 없었기 때문\"",
+      "url": "https://x.com/KobeissiLetter/status/2125639719564333126",
+      "media": [
+        "https://pbs.twimg.com/media/HX_KDz-WoAEduP7.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 관련 이미지(트럼프 발언 캡처) (이미지 내용은 직접 열어보지 않음)",
+      "views": 381191,
+      "likes": 2876
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-25 09:53",
+      "text": "CNN'S FEAR & GREED INDEX JUST PLUNGED TO 9, \"EXTREME FEAR,\" ITS LOWEST LEVEL SINCE MARCH https://t.co/k16Obmzpgr",
+      "ko": "CNN 공포·탐욕 지수 9 '극단적 공포' — 3월 이후 최저",
+      "url": "https://x.com/wallstengine/status/2125603805505155531",
+      "media": [
+        "https://pbs.twimg.com/media/HX-pYxgaoAEenBP.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 공포·탐욕 지수 게이지 (이미지 내용은 직접 열어보지 않음)",
+      "views": 86424,
+      "likes": 935
+    },
+    {
+      "author": "Bespoke",
+      "handle": "@bespokeinvest",
+      "role": "Bespoke Investment Group 리서치",
+      "time_et": "2026-11-25 08:34",
+      "text": "Worst Novembers through the day before Thanksgiving for the Nasdaq Composite:\n\nNovember 2000: -18.2%\nNovember 1973: -11.7%\nNovember 2008: -11.0%\nNovember 2007: -10.4%\nNovember 2026: -9.4% (based on pre-market levels)",
+      "ko": "추수감사절 전날 기준 나스닥 최악의 11월 순위 — 2026년 -9.4%로 5위",
+      "url": "https://x.com/bespokeinvest/status/2125583867042046095",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 45839,
+      "likes": 197
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터 플랫폼",
+      "time_et": "2026-11-25 02:03",
+      "text": "S&P 500 $SPY has closed below its 200-day moving average for 5 straight days, and now the 200-day is getting dangerously close to sloping downward 🚨 📉 👀 https://t.co/o7EhcrXpWV",
+      "ko": "S&P500 5거래일 연속 200일선 아래 마감, 200일선 하향 전환 임박",
+      "url": "https://x.com/Barchart/status/2125485447598010720",
+      "media": [
+        "https://pbs.twimg.com/media/HX89wGOXgAAjsWz.png"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 S&P500과 200일 이동평균 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 69580,
+      "likes": 872
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 07:09",
+      "text": "BANKS SELL AI DATA CENTER LOANS AS FINANCING RISKS MOUNT\n\nMajor banks are reducing exposure to AI data center financing amid concerns over construction delays, according to Reuters Breakingviews columnist Jennifer Johnson.\n\nING reportedly offered $500 million in data center loans",
+      "ko": "은행들, 공사 지연 우려에 AI 데이터센터 대출 매각 — ING 5억 달러 등",
+      "url": "https://x.com/DeItaone/status/2125562424111596003",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 375400,
+      "likes": 1259
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 10:21",
+      "text": "$CRWV  - COREWEAVE BONDS PLUNGE AS 2031 YIELD SURGES TO 17.91%\n\nCoreWeave's debt is coming under renewed selling pressure, with bond prices falling sharply amid growing concerns over AI infrastructure financing.\n\nAccording to Tradeweb data:\n\n🔸 October 2031 bonds: Down 1.92 cents",
+      "ko": "코어위브 2031년물 채권 급락, 수익률 17.91%",
+      "url": "https://x.com/DeItaone/status/2125610724885950960",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 180369,
+      "likes": 397
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 12:51",
+      "text": "$CRWV  - COREWEAVE BANKS PREPARE $4.5 BILLION LOAN SALE AS DEFAULT FEARS SURGE\n\nMorgan Stanley and MUFG are preparing to sell $4.5 billion in CoreWeave-linked debt as soon as next week, Bloomberg reports.\n\nThe loan, backed by GPUs supporting a Meta data center project, is",
+      "ko": "모건스탠리·MUFG, 코어위브 연계 45억 달러 대출 매각 준비 — 부도 우려",
+      "url": "https://x.com/DeItaone/status/2125648504441761813",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 135610,
+      "likes": 408
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-25 05:21",
+      "text": "Oracle's 5-year credit default swaps hit a record 356 bps. \n\nSoftBank's jumped above 500 bps, a four-year high. \n\nCoreWeave's CDS also hit a record high, above the 1,289 bps it reached earlier this month.",
+      "ko": "오라클 5년 CDS 356bp 사상 최고, 소프트뱅크 500bp 돌파, 코어위브도 최고",
+      "url": "https://x.com/wallstengine/status/2125535243180585449",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 89384,
+      "likes": 583
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터 플랫폼",
+      "time_et": "2026-11-25 00:16",
+      "text": "Oracle $ORCL Credit Default Swaps are almost twice as wide as Bear Stearns' were in the months leading up to its collapse during the Global Financial Crisis 🚨 🚨 https://t.co/ywKmliBbsw",
+      "ko": "오라클 CDS, 붕괴 직전 베어스턴스의 거의 두 배",
+      "url": "https://x.com/Barchart/status/2125458580786622724",
+      "media": [
+        "https://pbs.twimg.com/media/HX8lUO7WkAAhgXs.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 오라클 CDS vs 베어스턴스 비교 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 107028,
+      "likes": 1278
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-25 08:17",
+      "text": "Borrowing for AI infrastructure has exploded, the Fed warns.\n\nDebt issued to build AI computing infrastructure topped $680 billion by October, up from $130 billion in all of 2023, according to the Fed’s latest Financial Stability Report.\n\nThe Fed says the AI financing boom is now",
+      "ko": "연준 금융안정보고서: AI 인프라 부채 10월까지 6,800억 달러(2023년 1,300억)",
+      "url": "https://x.com/unusual_whales/status/2125579506446443001",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 133481,
+      "likes": 509
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-25 07:57",
+      "text": "The Fed says stock prices are high, “partly driven by market enthusiasm for super intelligence.”\n\nIn its latest Financial Stability Report, the Fed warned that valuations could fall sharply if AI earnings disappoint. The S&P 500’s forward price-to-earnings ratio remains well",
+      "ko": "연준 \"주가 고평가는 초지능 열광 탓도\" — AI 실적 실망 시 급락 경고",
+      "url": "https://x.com/unusual_whales/status/2125574472937971885",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 234044,
+      "likes": 546
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 12:38",
+      "text": "BREAKING: Anthropic stock, $ANT, erases losses and turns positive on the day.\n\nThe stock is now trading above its $83/share IPO price. https://t.co/MOgY0OcZVr",
+      "ko": "앤트로픽(ANT) 하락 만회하고 상승 전환 — 공모가 83달러 위로",
+      "url": "https://x.com/KobeissiLetter/status/2125645220524286373",
+      "media": [
+        "https://pbs.twimg.com/media/HX_PD-6XIAE5B_G.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 앤트로픽 일중 주가 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 180696,
+      "likes": 1408
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 12:30",
+      "text": "Retail demand for Anthropic is accelerating:\n\nRetail investors bought +$100 million in Anthropic, $ANT, shares on Monday, marking a 2nd consecutive daily increase in purchases.\n\nAs a result, $ANT was the 2nd-most purchased stock among retail investors during that session.\n\nThat https://t.co/bHrZgAOn7f",
+      "ko": "개인투자자 월요일 앤트로픽 1억 달러 순매수, 이틀 연속 증가",
+      "url": "https://x.com/KobeissiLetter/status/2125643178975936763",
+      "media": [
+        "https://pbs.twimg.com/media/HX_C7xiWUAEUwre.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 개인투자자 순매수 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 192627,
+      "likes": 486
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-25 10:52",
+      "text": "The GPU Landlord Blinks? SpaceX Reportedly Slashes Blackwell Rents As Anthropic Hands Back 50,000 H200s https://t.co/fkHrExVKMR",
+      "ko": "스페이스X 블랙웰 임대료 인하 보도, 앤트로픽은 H200 5만 개 반납",
+      "url": "https://x.com/zerohedge/status/2125618628670201956",
+      "media": [],
+      "media_note": "첨부 없음(기사 링크)",
+      "views": 151233,
+      "likes": 672
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-24 20:13",
+      "text": "BREAKING: SoftBank stock falls over -10% as the AI selloff continues in Asian markets. https://t.co/9biRGlFSQk",
+      "ko": "아시아 AI 매도 지속에 소프트뱅크 -10% 넘게 급락",
+      "url": "https://x.com/KobeissiLetter/status/2125397415650033913",
+      "media": [
+        "https://pbs.twimg.com/media/HX7trxWXwAAa4CE.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 소프트뱅크 주가 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 685084,
+      "likes": 7483
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 헤드라인 계정(Walter Bloomberg)",
+      "time_et": "2026-11-25 06:34",
+      "text": "SOFTBANK PLUNGES 15% AS AI-DRIVEN SELLOFF WIPES OUT $200 BILLION\n\nSoftBank shares plunged 14.8% on Wednesday, extending their decline to 68% from June's record high and erasing more than $200 billion in market value.\n\nThe collapse marks SoftBank's worst prolonged stock decline",
+      "ko": "소프트뱅크 14.8% 폭락, 6월 고점 대비 -68%, 시총 2,000억 달러 증발",
+      "url": "https://x.com/DeItaone/status/2125553703675433066",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 200875,
+      "likes": 955
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "Creative Planning 수석 시장전략가",
+      "time_et": "2026-11-24 22:24",
+      "text": "SoftBank is down 69% from its peak in June, the biggest drawdown since shares began trading in the US back in 2011. https://t.co/j2SzRdUvFV",
+      "ko": "소프트뱅크 고점 대비 -69%, 2011년 미국 거래 시작 이후 최대 낙폭",
+      "url": "https://x.com/charliebilello/status/2125430457261310436",
+      "media": [
+        "https://pbs.twimg.com/media/HX8LK82WgAAFkxz.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 소프트뱅크 고점 대비 낙폭 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 59016,
+      "likes": 406
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-25 13:18",
+      "text": "BREAKING: Michael Burry says he’s now almost entirely long after selling the rest of his bearish Nasdaq 100 puts.\n\n“Globally, my portfolio is more long, and less short, than it has been in some time.\"\n\n“In fact, when I say less short, right now apart from Palantir puts and",
+      "ko": "마이클 버리, 나스닥100 풋 전량 매도 — \"지금은 거의 전부 롱\"",
+      "url": "https://x.com/unusual_whales/status/2125655255178469647",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 282044,
+      "likes": 1353
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 10:18",
+      "text": "BREAKING: Bitcoin falls below $57,500 and ETH nears $1,600 as the selloff in crypto gains momentum.\n\nAnother -$500 million worth of levered positions have been liquidated over the last 24 hours. https://t.co/oyvKjyQ9US",
+      "ko": "비트코인 5만7,500달러 아래로, 이더 1,600달러 근접 — 24시간 5억 달러 청산",
+      "url": "https://x.com/KobeissiLetter/status/2125609956615573530",
+      "media": [
+        "https://pbs.twimg.com/media/HX-pmSrXwAATzVu.jpg",
+        "https://pbs.twimg.com/media/HX-pmS1XMAAxfcx.jpg"
+      ],
+      "media_note": "이미지 2장 — 본문 기준 비트코인·이더리움 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 168606,
+      "likes": 1793
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-25 07:47",
+      "text": "Silver drawdown about to become the biggest on record https://t.co/BDei4a1K7t",
+      "ko": "은 낙폭 사상 최대 기록 임박",
+      "url": "https://x.com/zerohedge/status/2125572127894249584",
+      "media": [
+        "https://pbs.twimg.com/media/HX-MlQsXwAAGaTp.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 은 낙폭 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 177941,
+      "likes": 2309
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 15:21",
+      "text": "Gold has rarely been this oversold:\n\nGold prices are trading -20% below their 200-day moving average, their largest negative deviation since June 2013.\n\nThis marks a sharp reversal from the +45% deviation above the 200-day moving average recorded in January, the largest since the https://t.co/azfgCw8xq1",
+      "ko": "금, 200일선 대비 -20%로 2013년 6월 이후 최대 과매도",
+      "url": "https://x.com/KobeissiLetter/status/2125686323818180737",
+      "media": [
+        "https://pbs.twimg.com/media/HX_DuAGXwAA5aP-.png"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 금 200일선 괴리율 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 46168,
+      "likes": 314
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-24 16:07",
+      "text": "$DELL TECHNOLOGIES Q3’27 EARNINGS HIGHLIGHTS\n\n🔹 Revenue: $54.9B (Est. $49.32B) 🟢; +103% YoY\n🔹 Adj. EPS: $9.45 (Est. $6.59) 🟢; +265% YoY\n🔹 AI Orders: $60.2B\n\nRaises FY27 Guide:\n🔹 Revenue: $202.0B (Est. $194.48B) 🟢; from $192.0B\n🔹 Adj. EPS: $29.68 (Est. $26.01) 🟢; from https://t.co/I4BwL1Wg5H",
+      "ko": "델 3분기 매출 549억 달러(+103%)·EPS 9.45달러 예상 크게 상회, AI 주문 602억 달러, 연간 가이던스 상향",
+      "url": "https://x.com/wallstengine/status/2125335489888526589",
+      "media": [
+        "https://pbs.twimg.com/media/HX61XWQWgAE_YnM.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 델 실적 요약 (이미지 내용은 직접 열어보지 않음)",
+      "views": 233987,
+      "likes": 747
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-24 16:15",
+      "text": "$DELL NOW HAS A $132 BILLION BACKLOG OF AI SERVER ORDERS, UP 619% YOY, BIGGER THAN ITS ENTIRE REVENUE LAST YEAR https://t.co/Bq1WaFgNjl",
+      "ko": "델 AI 서버 수주잔고 1,320억 달러(+619%) — 작년 전체 매출보다 커",
+      "url": "https://x.com/wallstengine/status/2125337498327085078",
+      "media": [],
+      "media_note": "첨부 없음(링크)",
+      "views": 124261,
+      "likes": 1254
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-24 16:02",
+      "text": "NUTANIX $NTNX Q1'27 EARNINGS HIGHLIGHTS\n\n🔹 Revenue: $772.4M (Est. $762M) 🟢; +15% YoY\n🔹 Adj. EPS: $0.73 (Est. $0.61) 🟢; +78% YoY\n🔹 ARR: $2.63B; +15% YoY\n🔹 Non-GAAP Gross Margin: 88.5%; +50 bps YoY\n\nFY27 Guide:\n🔹 Revenue: $3.18B-$3.23B (Est. $3.22B) 🟡\n🔹 Non-GAAP Oper https://t.co/y6oZYlEWCk",
+      "ko": "뉴타닉스 1분기 매출·EPS 예상 상회, 연간 매출 가이던스는 예상 수준",
+      "url": "https://x.com/wallstengine/status/2125334206754464098",
+      "media": [
+        "https://pbs.twimg.com/media/HX60Mj3X0AAPXvz.png"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 뉴타닉스 실적 요약 (이미지 내용은 직접 열어보지 않음)",
+      "views": 36698,
+      "likes": 58
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-24 20:46",
+      "text": "Best Buy: PC prices up ~25% on memory costs\n\nHPE: memory shortage lasts \"to at least the second half of calendar 2028\"\n\nDell: gap between supply and demand \"continues to widen\"\n\nAnalog Devices: \"it's tight everywhere\"",
+      "ko": "메모리 부족 코멘트 모음 — 베스트바이 PC가격 25%↑, HPE '2028년 하반기까지', 델·ADI '공급 빠듯'",
+      "url": "https://x.com/wallstengine/status/2125405792870514834",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 108531,
+      "likes": 619
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-25 09:45",
+      "text": "\"Calamitous Guide\" Sends Ambarella Crashing   https://t.co/GWwqaqYtmb",
+      "ko": "'참담한 가이던스'에 암바렐라 폭락",
+      "url": "https://x.com/zerohedge/status/2125601765919732082",
+      "media": [],
+      "media_note": "첨부 없음(기사 링크)",
+      "views": 54166,
+      "likes": 34
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "월가 뉴스·데이터 계정",
+      "time_et": "2026-11-25 11:51",
+      "text": "THE FCC HAS AUTHORIZED SPACEX TO DEPLOY 1 MILLION SATELLITES FOR DATA CENTERS IN SPACE https://t.co/8uYDyqGRFo",
+      "ko": "FCC, 스페이스X 우주 데이터센터용 위성 100만 기 배치 승인",
+      "url": "https://x.com/wallstengine/status/2125633378582151229",
+      "media": [
+        "https://pbs.twimg.com/media/HX_EHBiaQAQmd7e.png",
+        "https://pbs.twimg.com/media/HX_ESPYaQAEeHrV.png"
+      ],
+      "media_note": "이미지 2장 — 본문 기준 스페이스X 관련 (이미지 내용은 직접 열어보지 않음)",
+      "views": 81539,
+      "likes": 1811
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-24 23:53",
+      "text": "NAND prices https://t.co/obTB5Sytlm",
+      "ko": "낸드 가격 차트",
+      "url": "https://x.com/zerohedge/status/2125452883835425266",
+      "media": [
+        "https://pbs.twimg.com/media/HX8gHiXXIAAc_Qi.jpg"
+      ],
+      "media_note": "이미지 1장 — 본문 기준 낸드 가격 차트 (이미지 내용은 직접 열어보지 않음)",
+      "views": 282801,
+      "likes": 1382
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스 블로그",
+      "time_et": "2026-11-25 07:47",
+      "text": "there goes the last bullish chart in AI https://t.co/vtiqRVTF0G",
+      "ko": "제로헤지 \"AI의 마지막 강세 차트도 꺾였다\"",
+      "url": "https://x.com/zerohedge/status/2125572018917847318",
+      "media": [],
+      "media_note": "첨부 없음(인용 게시물 링크)",
+      "views": 181598,
+      "likes": 617
+    }
+  ],
+  "pick": {
+    "index": 26,
+    "reason": "신규 관세 제안과 예상보다 뜨거운 근원 PCE(3.3%)가 같은 날 겹치며 나스닥100이 장중 -4.5%까지 밀린 순간 — 오늘 장의 핵심 흐름을 한 줄로 보여줌.\n일중 차트가 첨부돼 있어 영상 첫 장면 인용 카드로 쓰기 좋고, 이후 '약세장 문턱'·'다우 상승 전환' 게시물로 이어 붙이기 좋음."
+  }
+}
