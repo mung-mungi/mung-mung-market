@@ -1,0 +1,619 @@
+{
+  "req": "11/25(수) 뉴욕장 마감(다우 -1,100p 회복 후 상승 마감)과 장후, 11/26(목) 추수감사절 휴장 중 선물 반등·AI 신용 위험(하이퍼스케일러·코어위브·엔비디아·오라클 CDS, 연준 '순환 금융' 경고)·엔비디아 동남아 출하 중단과 중국 연계 논란·화웨이 HBM·ASML·트럼프 경제 지표 조사 요구·신규 주택 판매·달러·유가·은 — 영향력 있는 계정만, 루머·익명·밈 제외 (11/26 미국 휴장이라 정규장·장후 실적 반응 없음, 11/25 장후 AI 밸류체인 주요 실적 발표 없음)",
+  "at": "2026-11-27T05:33:24+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 16:05",
+      "text": "BREAKING: The Dow Jones Industrial Average erases its -1,100 point loss and closes the day positive. https://t.co/Ehiu2UREi8",
+      "ko": "다우, 장중 -1,100포인트 낙폭을 모두 지우고 상승 마감(11/25)",
+      "url": "https://x.com/KobeissiLetter/status/2125697370008555911",
+      "media": [
+        "https://pbs.twimg.com/media/HX_-fc_WIAA94DL.jpg"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 204601,
+      "likes": 1991
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-25 16:31",
+      "text": "Anthropic \"has pulled up the ladder,\" the FT has said.\n\nBy pushing its IPO to the limit, \"the Claude maker has made itself a hard act to follow.\"\n\nAnthropic raised $107.3 billion at $83 a share, the largest IPO on record. With that much money raised, it may be harder for rival AI labs to come to market on similar terms.",
+      "ko": "FT: 앤트로픽, 사상 최대 IPO(1,073억 달러, 주당 83달러)로 경쟁 AI 연구소의 상장 문턱을 높여",
+      "url": "https://x.com/unusual_whales/status/2125703825214320816",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 320110,
+      "likes": 1323
+    },
+    {
+      "author": "Bespoke Investment Group",
+      "handle": "@bespokeinvest",
+      "role": "투자 리서치 회사",
+      "time_et": "2026-11-25 17:54",
+      "text": "Even though the S&P closed down 25 bps today (erasing what was a 2.8% drop an hour into the trading day), the advance/decline line was +245, and ten of eleven sectors, including TECH, had positive breadth. \n\nHappy Thanksgiving. https://t.co/sKwzDKgRln",
+      "ko": "S&P500 -0.25% 마감(장 초반 -2.8%에서 회복), 상승·하락 종목 수는 +245, 11개 중 10개 업종(기술 포함) 상승 종목 우위",
+      "url": "https://x.com/bespokeinvest/status/2125724774223802632",
+      "media": [
+        "https://pbs.twimg.com/media/HYAXHLaXcAA6kq-.png"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 8125,
+      "likes": 53
+    },
+    {
+      "author": "Bespoke Investment Group",
+      "handle": "@bespokeinvest",
+      "role": "투자 리서치 회사",
+      "time_et": "2026-11-25 17:57",
+      "text": "Sector relative strength charts really highlight the rotation out of Tech into other areas of the market in the last two months.  The two Consumer sectors have really seen their relative strength spike, along with Health Care, Financials, Utilities, and even Real Estate: https://t.co/CGuo7HftR5",
+      "ko": "업종 상대강도 차트: 최근 두 달 기술주에서 소비재·헬스케어·금융·유틸리티·부동산으로 자금 이동",
+      "url": "https://x.com/bespokeinvest/status/2125725667002061295",
+      "media": [
+        "https://pbs.twimg.com/media/HYAX0J4XEAAqRlp.jpg"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 7566,
+      "likes": 19
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 18:01",
+      "text": "BREAKING: US oil prices have recorded 3 drawdowns of at least 20% so far in 2026, matching their 2nd-longest such streak since the 1980s.\n\n2020 was the only year with a longer streak, at 4 such declines, while 1990, 1991, 1998, and 2022 each recorded 3.\n\nTaking intraday prices into account, US oil prices have posted 4 drawdowns of at least 20% this year.\n\nFurthermore, oil prices have seen 8 corrections of 10%+ so far in 2026, their longest such streak since 1986.\n\nThe same number of 10%+ drawdowns was posted in 1990, 2004, and 2009.\n\nYear-to-date, oil prices are up +42%, on track for the largest annual gain since 2021.\n\nUS oil prices have rarely been this volatile.",
+      "ko": "올해 미국 유가 20% 넘는 하락 3번(1980년대 이후 두 번째로 많음), 그래도 연초 대비 +42%",
+      "url": "https://x.com/KobeissiLetter/status/2125726722200842708",
+      "media": [
+        "https://pbs.twimg.com/media/HX_Elp_WQAAptlP.png"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 160267,
+      "likes": 690
+    },
+    {
+      "author": "Bespoke Investment Group",
+      "handle": "@bespokeinvest",
+      "role": "투자 리서치 회사",
+      "time_et": "2026-11-25 18:31",
+      "text": "Today was the 1st time the Dow 30 ETF $DIA erased a 2%+ decline to finish the day positive since 2/24/22, and only the 34th time it has done it since it began trading in 1998. https://t.co/rsleCkf5ap",
+      "ko": "다우 ETF(DIA)가 2% 넘는 낙폭을 지우고 상승 마감 — 2022년 2월 24일 이후 처음, 1998년 이후 34번째",
+      "url": "https://x.com/bespokeinvest/status/2125734106382078029",
+      "media": [
+        "https://pbs.twimg.com/media/HYAf4veWcAAxPF3.png"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 8461,
+      "likes": 34
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-25 19:01",
+      "text": "Jensen Huang tells staff that Nvidia doesn't need a succession plan, per CNBC",
+      "ko": "CNBC: 젠슨 황, 직원들에게 \"엔비디아는 후계 계획 필요 없다\"",
+      "url": "https://x.com/unusual_whales/status/2125741574223024631",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 273950,
+      "likes": 2420
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-25 19:32",
+      "text": "BREAKING: US M2 money supply surged +$119 billion in October, to a record $23.53 trillion.\n\nYoY, M2 growth accelerated to +5.9%, its highest since May 2022.\n\nThis also marks its 32nd consecutive month of YoY growth.\n\nSince October 2023, M2 has soared +$2.82 trillion, or +$78 billion per month on average.\n\nUS M2 money supply is now $8.18 trillion above its 2019 pre-pandemic levels.\n\nThe purchasing power of the US Dollar is in an eternal bear market.",
+      "ko": "10월 미국 M2 통화량 +1,190억 달러 늘어 사상 최대 23.53조 달러, 전년 대비 +5.9%(2022년 5월 이후 최고)",
+      "url": "https://x.com/KobeissiLetter/status/2125749523452510647",
+      "media": [
+        "https://pbs.twimg.com/media/HX_DhFBXIAAX9vR.png"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 338326,
+      "likes": 3069
+    },
+    {
+      "author": "Nick Timiraos",
+      "handle": "@NickTimiraos",
+      "role": "월스트리트저널(WSJ) 연준 담당 기자",
+      "time_et": "2026-11-25 20:22",
+      "text": "How would the Warsh Fed address market signals saying financial conditions are tightening, with an inflation picture that still looks uncomfortably hot? I wrote about the issue here: https://t.co/E5dwVHFA53  Despite some easy parallels to the December 2018 situation the Powell Fed faced (A new chair! Trump facing a midterm setback! A hawkish committee! Risk-off!), the inflation backdrop is so different that the comparison struggles to reveal much.\n\nConsider: At that December meeting, the committee's leading intellectual dove, Jim Bullard of the St. Louis Fed, warned colleagues that raising rates risked looking \"tone deaf.\" He presciently predicted that the yield curve would invert if they kept going. But he added a caveat that looks very different today: \n\n\"Taking these types of risks at a meeting like this might be worth it if inflation was running above target and we really felt that we had to be aggressive to keep inflation and inflation expectations contained. But it's not running above target.\"",
+      "ko": "워시 연준은 금융 여건 긴축 신호와 여전히 뜨거운 물가 사이에서 어떻게 할까 — 2018년 12월과 비교는 물가 배경이 달라 한계",
+      "url": "https://x.com/NickTimiraos/status/2125762207434654042",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 63808,
+      "likes": 248
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트",
+      "time_et": "2026-11-25 21:26",
+      "text": "Nasdaq 100 $QQQ on track for its worst November since the Global Financial Crisis 📉 🚨 https://t.co/bz8iLAvIxj",
+      "ko": "나스닥100(QQQ), 2008년 금융위기 이후 최악의 11월로 갈 기세",
+      "url": "https://x.com/Barchart/status/2125778277730021421",
+      "media": [
+        "https://pbs.twimg.com/media/HYBIFB7WAAA34IK.jpg"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 80990,
+      "likes": 859
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트",
+      "time_et": "2026-11-25 21:57",
+      "text": "Hyperscaler Credit Risk jumps to new all-time high 🚨 🚨 🚨 https://t.co/90LXOD5Lll",
+      "ko": "하이퍼스케일러(초대형 클라우드 기업) 신용 위험, 사상 최고로 상승",
+      "url": "https://x.com/Barchart/status/2125786066766426359",
+      "media": [
+        "https://pbs.twimg.com/media/HYBPKcTWMAAiA8y.png"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 68935,
+      "likes": 1002
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-25 22:12",
+      "text": "SpaceX, $SPCX, says it will give one newly issued share to every currently active Trump Account, and Elon Musk says he’ll personally match it. That’s two SpaceX shares per account.",
+      "ko": "스페이스X, 모든 트럼프 계좌에 신주 1주 지급 + 머스크 개인 1주 추가 — 계좌당 2주",
+      "url": "https://x.com/unusual_whales/status/2125789748367384799",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 207684,
+      "likes": 1219
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트",
+      "time_et": "2026-11-25 22:19",
+      "text": "JUST IN 🚨: Leopold Aschenbrenner says today's opportunities have the highest potential return that he's ever seen in his life 📈 🤑 https://t.co/wIIB2mEi9I",
+      "ko": "레오폴드 아셴브레너 \"지금 기회가 내 인생 최고의 잠재 수익\"",
+      "url": "https://x.com/Barchart/status/2125791522226307428",
+      "media": [
+        "https://pbs.twimg.com/media/HYBUH-MXgAAFMYj.png"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 261863,
+      "likes": 1550
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·블로그",
+      "time_et": "2026-11-25 23:57",
+      "text": "Seoul Fears Its Plunge Protection Fund Is Too Broke To Stop The KOSPI Crash, Passes The Hat To Banks https://t.co/tnSINjOCii",
+      "ko": "한국 증시안정펀드 여력 부족 우려, 코스피 급락 막으려 은행에 출자 요청",
+      "url": "https://x.com/zerohedge/status/2125816174399111635",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 87907,
+      "likes": 445
+    },
+    {
+      "author": "Barchart",
+      "handle": "@Barchart",
+      "role": "시장 데이터·차트",
+      "time_et": "2026-11-26 00:53",
+      "text": "Nvidia $NVDA is facing a potential downgrade of its AA credit rating by S&P Global 🚨 🚨 https://t.co/5h2XeFGNmv",
+      "ko": "엔비디아, S&P글로벌로부터 AA 신용등급 하향 가능성 직면",
+      "url": "https://x.com/Barchart/status/2125830357014491258",
+      "media": [
+        "https://pbs.twimg.com/media/HYB3cfCWwAAYyCf.png"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 48458,
+      "likes": 559
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-26 07:09",
+      "text": "Nvidia has halted AI server shipments to Singapore, Malaysia, Thailand and Indonesia following tighter US export controls, per the FT.\n\nNvidia told manufacturing partners including Dell and Super Micro to stop delivering servers with its AI chips to the four countries. Those partners have told customers in the region that Nvidia won’t authorize their orders.",
+      "ko": "FT: 엔비디아, 수출 통제 강화로 싱가포르·말레이시아·태국·인도네시아에 AI 서버 출하 중단(델·슈퍼마이크로에 통보)",
+      "url": "https://x.com/unusual_whales/status/2125924894315831301",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 183894,
+      "likes": 1245
+    },
+    {
+      "author": "Bespoke Investment Group",
+      "handle": "@bespokeinvest",
+      "role": "투자 리서치 회사",
+      "time_et": "2026-11-26 07:40",
+      "text": "The Tech sector is in a 25% drawdown and Apple's $AAPL price chart looks like it has no idea: https://t.co/acnB4XxI0F",
+      "ko": "기술 업종은 고점 대비 -25%인데 애플(AAPL) 주가는 아랑곳없음",
+      "url": "https://x.com/bespokeinvest/status/2125932755611439231",
+      "media": [
+        "https://pbs.twimg.com/media/HYDT_spWsAAHraG.png"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 7430,
+      "likes": 36
+    },
+    {
+      "author": "Bespoke Investment Group",
+      "handle": "@bespokeinvest",
+      "role": "투자 리서치 회사",
+      "time_et": "2026-11-26 07:49",
+      "text": "NVIDIA $NVDA went from mentioning \"AI\" more than any other mega-cap on its conference calls in prior quarters to mentioning it the least on this quarter's call.  Did something else capture their attention?? https://t.co/VWWpltlUao",
+      "ko": "엔비디아, 실적 발표에서 'AI' 언급 횟수가 대형주 중 1위에서 꼴찌로",
+      "url": "https://x.com/bespokeinvest/status/2125935041360355526",
+      "media": [
+        "https://pbs.twimg.com/media/HYDV4PCW0AAlr6p.png"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 6771,
+      "likes": 16
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-26 07:52",
+      "text": "BREAKING: S&P 500 futures extend to +0.8% on the day, rising further out of correction territory.\n\nNasdaq 100 futures are nearly +1%. https://t.co/kr4UkF4Hki",
+      "ko": "추수감사절 휴장 중 S&P500 선물 +0.8%로 조정 구간 탈출 확대, 나스닥100 선물 약 +1%",
+      "url": "https://x.com/KobeissiLetter/status/2125935808930582656",
+      "media": [
+        "https://pbs.twimg.com/media/HYDXWe6WkAAQ1yF.jpg"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 330115,
+      "likes": 3630
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-26 08:01",
+      "text": "Another Nvidia executive has been romantically linked to a chip buyer at the center of an alleged China smuggling scheme.\n\nJay Puri, Nvidia’s longtime head of worldwide sales, married Cenly Chen, a senior executive at Super Micro Computer, in March, per the WSJ. Super Micro is one of Nvidia’s biggest customers. Chen reportedly dealt frequently with Puri and pushed Nvidia to supply more GPUs to Super Micro’s customers.\n\nThe DOJ indicted three people tied to Super Micro in March over an alleged scheme to divert AI servers with Nvidia chips to China. A shareholder lawsuit alleges Chen managed Super Micro’s purchases of Nvidia GPUs and decided how scarce allocations were distributed.\n\nNeither Puri nor Chen has been charged or accused of wrongdoing. Chen says her personal relationship “had no bearing” on her work.",
+      "ko": "WSJ: 엔비디아 영업 총괄 제이 푸리, 슈퍼마이크로 임원과 3월 결혼 — 중국 밀반출 의혹 회사와 연결(둘 다 혐의 없음)",
+      "url": "https://x.com/unusual_whales/status/2125937868548047164",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 279727,
+      "likes": 1971
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·블로그",
+      "time_et": "2026-11-26 09:00",
+      "text": "Iranian Drone Attack On Kuwait Kills Two Italian Engineers For Arms-Maker Rheinmetall ; Three Tankers On Fire In Hormuz https://t.co/eXg3h0ZDNJ",
+      "ko": "이란 드론 쿠웨이트 공격으로 라인메탈 이탈리아 기술자 2명 사망, 호르무즈서 유조선 3척 화재",
+      "url": "https://x.com/zerohedge/status/2125952838186504507",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 66189,
+      "likes": 278
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·블로그",
+      "time_et": "2026-11-26 09:12",
+      "text": "“It’s a real mystery why dip buyers emerged\" said Joachim Klement at Panmure Liberum. “Friday will be the real test if the recovery has staying power.” https://t.co/K4ScXlrr8T",
+      "ko": "판뮤어 리베럼 클레먼트 \"저가 매수가 왜 나왔는지 수수께끼, 금요일이 진짜 시험대\"",
+      "url": "https://x.com/zerohedge/status/2125955804264055121",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 133943,
+      "likes": 261
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·블로그",
+      "time_et": "2026-11-26 09:18",
+      "text": "Someone forgot to tell credit about the \"mystery\" market meltup off the bear market line: hyperscaler CDS closed at record highs. https://t.co/NJICWjrRXx https://t.co/RtH9XCos69",
+      "ko": "주가는 약세장 문턱에서 반등했지만 하이퍼스케일러 CDS(부도 보험료)는 사상 최고로 마감",
+      "url": "https://x.com/zerohedge/status/2125957252951785971",
+      "media": [
+        "https://pbs.twimg.com/media/HYDqzjrWMAA21lJ.jpg"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 140318,
+      "likes": 585
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·블로그",
+      "time_et": "2026-11-26 09:21",
+      "text": "CRWV CDS +125 to record 1,450bps (25/27 points up) https://t.co/4BGS15PD5D https://t.co/xGtAjiA4C3",
+      "ko": "코어위브(CRWV) CDS +125bp, 사상 최고 1,450bp",
+      "url": "https://x.com/zerohedge/status/2125958019401855440",
+      "media": [
+        "https://pbs.twimg.com/media/HYDrhB-X0AA1yd2.jpg"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 118261,
+      "likes": 300
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-26 09:25",
+      "text": "BREAKING: The Dutch government says it will resist US plans to further restrict ASML's sales to China",
+      "ko": "네덜란드 정부, 미국의 ASML 대중국 판매 추가 제한 계획에 반대 방침",
+      "url": "https://x.com/unusual_whales/status/2125959118397882820",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 495285,
+      "likes": 3642
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·블로그",
+      "time_et": "2026-11-26 09:27",
+      "text": "Trump: if people had known that data centers contributed even more to GDP growth, I would have won https://t.co/Iis1QnH5XZ",
+      "ko": "트럼프 \"데이터센터가 GDP 성장에 더 기여한 걸 사람들이 알았다면 내가 이겼을 것\"",
+      "url": "https://x.com/zerohedge/status/2125959742715802052",
+      "media": [
+        "https://pbs.twimg.com/media/HYDtEsQWsAAKgQv.png"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 172404,
+      "likes": 2044
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·블로그",
+      "time_et": "2026-11-26 09:32",
+      "text": "NVDA CDS tags new record wide; ORCL +10bps to 371, 28% default odds in 5yrs https://t.co/2q5toj2n0W https://t.co/QLZCSBnnqS",
+      "ko": "엔비디아 CDS 사상 최고, 오라클 CDS +10bp로 371bp(5년 내 부도 확률 28%)",
+      "url": "https://x.com/zerohedge/status/2125960915527110738",
+      "media": [
+        "https://pbs.twimg.com/media/HYDuE80XoAAFOos.jpg"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 75745,
+      "likes": 302
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-26 10:01",
+      "text": "BREAKING: Huawei Technologies is preparing to release details of a new high-bandwidth memory chip that could surpass current offerings from Samsung Electronics and SK Hynix, moving to launch Chinese production of a key AI component currently blocked by US sanctions, per Bloomberg",
+      "ko": "블룸버그: 화웨이, 삼성·SK하이닉스를 넘을 수 있는 새 HBM(고대역폭 메모리) 공개 준비",
+      "url": "https://x.com/unusual_whales/status/2125968066752516505",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 281779,
+      "likes": 2832
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·블로그",
+      "time_et": "2026-11-26 10:03",
+      "text": "HY Data Center junk bond update https://t.co/pGG2EBto4M",
+      "ko": "데이터센터 하이일드(정크) 채권 가격 동향 차트 4장",
+      "url": "https://x.com/zerohedge/status/2125968729674825954",
+      "media": [
+        "https://pbs.twimg.com/media/HYD1I9qXoAAz_ZP.jpg",
+        "https://pbs.twimg.com/media/HYD1MxJXQAASgR2.jpg",
+        "https://pbs.twimg.com/media/HYD1OFUWMAAzC22.jpg",
+        "https://pbs.twimg.com/media/HYD1RqVW8AAjdOq.jpg"
+      ],
+      "media_note": "데이터센터 정크 채권 가격 표·차트 4장",
+      "views": 97965,
+      "likes": 409
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·블로그",
+      "time_et": "2026-11-26 10:20",
+      "text": "Silver's 70% Crash Nears Biggest Drawdown On Record As Specs Go Flat: UBS Says It Has \"Overshot To The Downside\" https://t.co/HzzoXnimXA",
+      "ko": "은 가격 -70% 폭락, 사상 최대 하락폭에 근접 — UBS \"과도하게 떨어졌다\"",
+      "url": "https://x.com/zerohedge/status/2125972960649318866",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 84706,
+      "likes": 564
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-26 10:49",
+      "text": "BREAKING: US new home sales jumped +14.2% MoM in October, to an annualized rate of 701,000 units, the highest since December 2025, crushing expectations of a -3.8% decline.\n\nThis marks the largest monthly increase since November 2025 and the 2nd-largest since August 2022.\n\nIt also marks a sharp recovery from the -9.7% MoM decline in September.\n\nOctober's surge was driven by sales in the South, the nation's largest home-selling region, which soared +36.2% MoM, to an annualized rate of 515,000 units, the highest since March 2021.\n\nAt the same time, the median new home sale price fell -0.3% MoM and -3.2% YoY, to $391,300, the 2nd-lowest reading since July 2021.\n\nSince the October 2022 peak, the median new home sale price has declined by $69,000, or -15.0%.\n\nNew home prices are falling sharply.",
+      "ko": "10월 미국 신규 주택 판매 +14.2%(연율 70.1만 채), 예상 -3.8% 크게 상회 — 중간 가격은 -3.2%",
+      "url": "https://x.com/KobeissiLetter/status/2125980206053708183",
+      "media": [
+        "https://pbs.twimg.com/media/HYDeg3nX0AA1dyi.jpg"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 165784,
+      "likes": 996
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-26 11:01",
+      "text": "BREAKING: Two California companies are buying some of Nvidia’s most advanced chips, but both are actually Chinese-owned, per CBS\n\nRiCloud AI (San Jose) is an Nvidia “preferred” cloud partner, which gives it priority access to advanced chips. Its parent is Yuxing InfoTech, based in Shenzhen and listed in Hong Kong. Its CEO, Cong Yu, holds a degree from a People’s Liberation Army military college. RiCloud got partner status about 10 weeks after it was incorporated.\n\nAivres is an Nvidia “elite” partner, the top tier. It was formerly called Inspur, after its Chinese parent, which the US blacklisted in 2023, and changed its name afterward. Citing an NYT analysis, CBS reports Aivres exported at least $5.6 billion in advanced technology to Southeast Asia, including about $3 billion in Blackwell-equipped computers. Some went to Megaspeed, the firm linked to Alice Huang, which provided AI cloud services to Alibaba and ByteDance.",
+      "ko": "CBS: 엔비디아 최상위 칩을 사는 캘리포니아 두 회사(RiCloud AI·Aivres)가 실제로는 중국 소유",
+      "url": "https://x.com/unusual_whales/status/2125983167081513076",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 195539,
+      "likes": 1383
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-26 11:02",
+      "text": "BREAKING: President Trump issues a Thanksgiving message and claims that fake US economic data was released prior to the US Midterm Elections.\n\n“It should be immediately investigated, Trump says. https://t.co/TU0Mnnj8kW",
+      "ko": "트럼프 추수감사절 메시지: 중간선거 전 가짜 경제 지표 발표됐다며 즉시 조사 요구",
+      "url": "https://x.com/KobeissiLetter/status/2125983454097543386",
+      "media": [
+        "https://pbs.twimg.com/media/HYECrtpWkAAaZSq.jpg"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 318505,
+      "likes": 2379
+    },
+    {
+      "author": "FinancialJuice",
+      "handle": "@financialjuice",
+      "role": "실시간 시장 속보",
+      "time_et": "2026-11-26 11:05",
+      "text": "Chip sellers have told Neoclouds they won't supply Nvidia chips if any of the computing capacity will be rented to Chinese companies - CNBC. $NVDA",
+      "ko": "CNBC: 칩 판매사들, 중국 기업에 임대하면 네오클라우드에 엔비디아 칩 공급 안 한다고 통보",
+      "url": "https://x.com/financialjuice/status/2125984404426146018",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 52847,
+      "likes": 89
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·블로그",
+      "time_et": "2026-11-26 11:53",
+      "text": "*SAP SAID TO WEIGH CUTTING AT LEAST 10,000 JOBS IN RESTRUCTURING",
+      "ko": "SAP, 구조조정으로 최소 1만 명 감원 검토",
+      "url": "https://x.com/zerohedge/status/2125996278089658444",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 129544,
+      "likes": 969
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-26 12:01",
+      "text": "The Fed is warning about “circular financing” in AI.\n\nBig tech companies are lending to, investing in and guaranteeing smaller, riskier AI firms, which then buy their products, according to the Fed’s latest Financial Stability Report. In a downturn, the Fed says, their exposure “may be substantially larger than suggested by their on-balance-sheet liabilities.”\n\nNvidia alone has $530 billion in off-balance-sheet commitments, including up to $105 billion backing OpenAI’s Ohio data center.",
+      "ko": "연준 금융안정보고서, AI '순환 금융' 경고 — 엔비디아 장부 밖 약정만 5,300억 달러",
+      "url": "https://x.com/unusual_whales/status/2125998265707483323",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 228293,
+      "likes": 2320
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-26 12:35",
+      "text": "Investors are piling into leveraged semiconductor trades:\n\nThe 3x leveraged long semiconductor ETF, SOXL, has attracted +$1.9 billion in inflows so far this week.\n\nOn Monday alone, the fund recorded +$1.7 billion in inflows, its largest daily intake since November 6th.\n\nThis follows +$2.7 billion in inflows during the previous week, its 3rd-largest weekly intake since June.\n\nMeanwhile, over the 20 trading days ended Friday, retail net purchases of SOXL rose to +$1.3 billion, the largest 20-day rolling sum since at least December 2024.\n\nFurthermore, the semiconductor ETF, SMH, has attracted +$2.9 billion in inflows so far in November, on track for its biggest monthly intake since July and 3rd-largest since May 2023.\n\nInvestors are buying the dip in chip stocks on leverage.",
+      "ko": "반도체 3배 레버리지 ETF(SOXL) 이번 주 +19억 달러 유입 — 레버리지로 반도체 저가 매수",
+      "url": "https://x.com/KobeissiLetter/status/2126007068456854006",
+      "media": [
+        "https://pbs.twimg.com/media/HYDePnnWcAAmZ-W.jpg"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 144167,
+      "likes": 702
+    },
+    {
+      "author": "CNBC",
+      "handle": "@CNBC",
+      "role": "미국 경제 방송",
+      "time_et": "2026-11-26 12:59",
+      "text": "Trump demands probe into ‘record setting error’ after third-quarter GDP data gets massive revision higher https://t.co/2K2zrbQv1d",
+      "ko": "트럼프, 3분기 GDP 대폭 상향 수정에 '기록적 오류' 조사 요구",
+      "url": "https://x.com/CNBC/status/2126012981167182055",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 21812,
+      "likes": 18
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-26 13:17",
+      "text": "BREAKING: While Wall Street is closed for Thanksgiving, major U.S. stock indices are moving higher on @liquidtrading \n\nThe S&P 500 and Nasdaq 100 perpetuals are up 0.57% and 0.48%, respectively, since Wednesday's market close, with AI infrastructure stocks among the biggest gainers.",
+      "ko": "휴장 중 무기한 선물(퍼페추얼)에서 S&P500 +0.57%, 나스닥100 +0.48% — AI 인프라주가 상승 주도",
+      "url": "https://x.com/unusual_whales/status/2126017577243799643",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 106020,
+      "likes": 212
+    },
+    {
+      "author": "FinancialJuice",
+      "handle": "@financialjuice",
+      "role": "실시간 시장 속보",
+      "time_et": "2026-11-26 13:17",
+      "text": "Brent Crude futures settle at $96.57/bbl, up $1.96, 2.07%",
+      "ko": "브렌트유 선물 배럴당 96.57달러 마감(+1.96달러, +2.07%)",
+      "url": "https://x.com/financialjuice/status/2126017584319594732",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 30860,
+      "likes": 17
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-26 13:38",
+      "text": "Demand for corporate default protection is rapidly rising.\n\nCumulative trading volume in US corporate credit default swap (CDS) indexes is up to a record $9.6 trillion so far in 2026.\n\nThis already surpasses the full-year 2025 record of $9.0 trillion and exceeds the full-year 2024 figure by +66%.\n\nMeanwhile, just 7 stocks saw a record $9.5 billion in CDS volume traded on average per week in September.\n\nThis represents a +425% increase from June and July levels.\n\nInvestors are increasingly hedging against AI debt risks.",
+      "ko": "2026년 미국 회사채 CDS 지수 거래량 누적 9.6조 달러로 사상 최대 — AI 부채 위험 헤지 급증",
+      "url": "https://x.com/KobeissiLetter/status/2126022743519101369",
+      "media": [
+        "https://pbs.twimg.com/media/HVKPZoWXgAIlvqK.png"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 101016,
+      "likes": 502
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-26 14:20",
+      "text": "BREAKING: Polymarket has launched perpetual trading on the hourly rental price of Nvidia H100 GPUs.\n\nTraders can now go long or short the cost of AI compute 24/7 with up to 3x leverage. https://t.co/JDj2QX2h0e",
+      "ko": "폴리마켓, 엔비디아 H100 GPU 시간당 임대료 무기한 선물 출시(최대 3배 레버리지)",
+      "url": "https://x.com/unusual_whales/status/2126033468618395954",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 91109,
+      "likes": 207
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-26 15:28",
+      "text": "The US Dollar is experiencing one of its strongest rallies in years:\n\nThe US Dollar Index has surged +7.0% over the last 9 months, its strongest 9-month rolling performance since November 2022.\n\nThis also marks its 2nd-strongest such run since October 2015.\n\nOver the last 3 months alone, the US Dollar Index has risen +4.8%, its largest 3-month increase since December 2024.\n\nSince its January 2026 low, the US Dollar Index is up +8.8%, to its highest level since April 2024.\n\nMeanwhile, the EUR/USD is down -9.1% since its January high, to 1.1, near its lowest level since April 2025.\n\nThis comes as rising Fed rate hike expectations, strong US economic data, and record foreign demand for US stocks are all driving the currency higher.\n\nThe US Dollar is seeing a massive comeback this year.",
+      "ko": "달러 인덱스 9개월간 +7.0%, 2022년 11월 이후 가장 강한 상승 — 연준 인상 기대·강한 지표 영향",
+      "url": "https://x.com/KobeissiLetter/status/2126050442513961064",
+      "media": [
+        "https://pbs.twimg.com/media/HYDe2f8WoAAQLSw.jpg"
+      ],
+      "media_note": "첨부 차트 1장",
+      "views": 23731,
+      "likes": 68
+    }
+  ],
+  "pick": {
+    "index": 22,
+    "reason": "주가는 약세장 문턱에서 반등하고 휴장 중 선물도 올랐지만, 하이퍼스케일러 CDS(부도 보험료)는 오히려 사상 최고로 마감 — 주식과 신용의 엇갈림이 지금 장의 핵심.\n차트가 첨부돼 있어 인용 카드로 쓰기 좋고, 코어위브·엔비디아·오라클 CDS, 연준 '순환 금융' 경고 게시물로 이어 붙이기 좋음."
+  }
+}
