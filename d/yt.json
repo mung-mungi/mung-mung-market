@@ -4,6 +4,14 @@
  "channel_url": "https://www.youtube.com/@멍뭉터미널",
  "items": [
   {
+   "id": "s_78ERQSPKE",
+   "title": "죽다 살아난 나스닥, 악재 세 방에도 왜 말아 올렸을까? | 미국증시 시황",
+   "published": "2026-11-26T12:48:01+00:00",
+   "url": "https://www.youtube.com/watch?v=s_78ERQSPKE",
+   "short": false,
+   "thumb": "https://i.ytimg.com/vi/s_78ERQSPKE/mqdefault.jpg"
+  },
+  {
    "id": "280_CP00ccQ",
    "title": "속슬 28달러, 팔 사람은 다 팔았을까? | 미국증시 시황",
    "published": "2026-11-25T09:14:44+00:00",
@@ -42,14 +50,6 @@
    "url": "https://www.youtube.com/watch?v=J0dUKjQErtY",
    "short": false,
    "thumb": "https://i.ytimg.com/vi/J0dUKjQErtY/mqdefault.jpg"
-  },
-  {
-   "id": "JIizA4jecFg",
-   "title": "젠슨 없는 엔비디아, 수요일이 답한다",
-   "published": "2026-11-15T17:51:50+00:00",
-   "url": "https://www.youtube.com/watch?v=JIizA4jecFg",
-   "short": false,
-   "thumb": "https://i.ytimg.com/vi/JIizA4jecFg/mqdefault.jpg"
   }
  ]
 }
