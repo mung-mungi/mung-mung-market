@@ -6406,6 +6406,23 @@
   "media": "ABC·이란인터내셔널"
  },
  {
+  "month": "2026-11",
+  "category": "이란 전쟁·유가",
+  "status": "발생",
+  "tier": "small",
+  "has_detail": false,
+  "id": "e416",
+  "date": "2026-11-26",
+  "time": "21:28",
+  "thread": "이란 해협 협상",
+  "nasdaq_pct": null,
+  "mkt_note": "추수감사절 휴장 — 장 없음",
+  "title": "트럼프 \"이란전 승리가 눈앞\" — 중·러의 이란 지원은 \"아주 적다\"",
+  "summary": "트럼프 대통령은 추수감사절 장병 통화에서 \"승리가 눈앞에 있다\"며 이란에 협상할 기회를 주고 있다고 말했습니다. 다만 이란 지도부가 그 기회를 잡을지는 \"확신하지 못한다\"고 했습니다. 마러라고 회견에서는 중국·러시아가 이란 일에 \"아주 조금 관여할 뿐\"이고 두 나라도 전쟁이 끝나길 바란다고 했습니다. 해군 통화에선 이란 봉쇄를 \"해군 역사상 가장 성공한 봉쇄\"라고 불러, 압박을 풀 뜻은 내비치지 않았습니다.",
+  "source_url": "https://www.cbsnews.com/live-updates/iran-war-us-military-ai-weapons-oil/",
+  "media": "CBS·타임스오브이스라엘"
+ },
+ {
   "id": "e402",
   "date": "2026-11-26",
   "month": "2026-11",
@@ -6530,6 +6547,38 @@
   "summary": "이스라엘 공군이 목요일 저녁 국경에서 북쪽으로 25km 떨어진 레바논 동부 베카 계곡 아인알티나 인근을 공습했다고 군이 밝혔습니다. 표적은 헤즈볼라 정예 라드완 부대 훈련소에 있던 로켓과 발사대 수십 기였고, 부상자는 보고되지 않았습니다. 이스라엘의 베카 계곡 타격은 일주일 만으로, 6월 합의 뒤에도 레바논 전선의 산발적 교전이 이어지고 있다는 뜻입니다.",
   "source_url": "https://www.timesofisrael.com/air-force-strikes-hezbollah-rockets-launchers-in-eastern-lebanon-idf/",
   "media": "타임스오브이스라엘"
+ },
+ {
+  "month": "2026-11",
+  "category": "이란 전쟁·유가",
+  "status": "발생",
+  "tier": "small",
+  "has_detail": false,
+  "id": "e417",
+  "date": "2026-11-27",
+  "thread": "걸프국 공격",
+  "nasdaq_pct": null,
+  "mkt_note": "장 전(추수감사절 다음 날 단축장)",
+  "title": "아라그치 \"쿠웨이트 공격은 의심스러운 각본\" — 공동 조사 제안",
+  "summary": "아라그치 이란 외무장관은 이탈리아인 2명이 숨진 쿠웨이트 드론 공격을 \"의심스럽다\"며 \"미리 짜 놓은 전쟁 각본\"이라고 말했습니다. 그는 이란의 관여를 부인하면서 쿠웨이트에 공동 조사를 제안했습니다. 공격 주체를 두고 쿠웨이트와 이란의 말이 엇갈린 채, 독립적인 조사 결과는 아직 없습니다.",
+  "source_url": "https://www.aljazeera.com/news/liveblog/2026/11/27/iran-war-live-irans-araghchi-calls-deadly-kuwait-attack-suspicious",
+  "media": "알자지라·걸프뉴스"
+ },
+ {
+  "month": "2026-11",
+  "category": "이란 전쟁·유가",
+  "status": "발생",
+  "tier": "small",
+  "has_detail": false,
+  "id": "e418",
+  "date": "2026-11-27",
+  "thread": "호르무즈 해상 충돌",
+  "nasdaq_pct": null,
+  "mkt_note": "장 전(추수감사절 다음 날 단축장)",
+  "title": "이란 해군 \"미군이 빼앗은 유조선 2척 되찾아\" — 미국은 반응 없어",
+  "summary": "샤흐람 이라니 이란 해군사령관은 \"미군이 이란 유조선 2척을 훔쳤지만, 선원들이 자는 사이 배에 올라 되찾았다\"고 말했습니다(타스님 통신, 알자지라 인용). 언제 빼앗기고 되찾았는지, 배 이름은 밝히지 않았습니다. 미국은 아직 이 주장에 반응하지 않았고, 사실이라면 미국의 해상 봉쇄와 이란의 직접 충돌이 한 단계 더 가까워진 셈입니다.",
+  "source_url": "https://www.aljazeera.com/news/liveblog/2026/11/27/iran-war-live-irans-araghchi-calls-deadly-kuwait-attack-suspicious",
+  "media": "알자지라(타스님 인용)"
  },
  {
   "id": "e27",
