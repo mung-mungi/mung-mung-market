@@ -4,6 +4,14 @@
  "channel_url": "https://www.youtube.com/@멍뭉터미널",
  "items": [
   {
+   "id": "vHM4XQMnU48",
+   "title": "숏의 대부도 접었다, 공매도가 뭐길래? #shorts",
+   "published": "2026-11-27T12:40:28+00:00",
+   "url": "https://www.youtube.com/shorts/vHM4XQMnU48",
+   "short": true,
+   "thumb": "https://i.ytimg.com/vi/vHM4XQMnU48/mqdefault.jpg"
+  },
+  {
    "id": "s_78ERQSPKE",
    "title": "죽다 살아난 나스닥, 악재 세 방에도 왜 말아 올렸을까? | 미국증시 시황",
    "published": "2026-11-26T12:48:01+00:00",
@@ -42,14 +50,6 @@
    "url": "https://www.youtube.com/watch?v=kWetBfi6dnQ",
    "short": false,
    "thumb": "https://i.ytimg.com/vi/kWetBfi6dnQ/mqdefault.jpg"
-  },
-  {
-   "id": "J0dUKjQErtY",
-   "title": "2026년 11월 17일",
-   "published": "2026-11-17T06:05:24+00:00",
-   "url": "https://www.youtube.com/watch?v=J0dUKjQErtY",
-   "short": false,
-   "thumb": "https://i.ytimg.com/vi/J0dUKjQErtY/mqdefault.jpg"
   }
  ]
 }
