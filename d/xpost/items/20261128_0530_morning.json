@@ -1,0 +1,748 @@
+{
+  "req": "11/27(금) 블랙프라이데이 단축장(오후 1시 동부 조기 마감) 뉴욕장 — S&P500 +1.6%·주간 2025년 4월 이후 최대 상승, 엔비디아 블랙웰 중국 반입 보도로 상승분 반납, 앤트로픽 +10% 급등, 트럼프 경제지표 조작 주장·엔비디아 정부 지분 검토, 미·중 반도체 수출 통제(ASML·BIS), 화웨이 HBM, AI 신용(소프트뱅크 CDS·CCC 스프레드), 호르무즈·유가, 블랙프라이데이 소비, 한국은행 인상 — 영향력 있는 계정만, 루머·익명·밈 제외 (11/27 단축장이라 장후 AI 밸류체인 주요 실적 발표 없음)",
+  "at": "2026-11-28T05:36:29+09:00",
+  "by": "그록봇",
+  "posts": [
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-27 07:37",
+      "text": "Productivity in AI-adopting industries is surging in the US, but not in other rich countries, per the Financial Times.\n\nOutput per worker in US tech, finance and professional services has climbed to roughly 45% above its 2012 level, far above its pre-pandemic trend, with the gap",
+      "ko": "FT: AI 도입 업종 생산성이 미국에서만 급등(2012년 대비 약 +45%)",
+      "url": "https://x.com/unusual_whales/status/2126294215525335119",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 200624,
+      "likes": 1005
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 계정(월가 뉴스)",
+      "time_et": "2026-11-27 07:53",
+      "text": "CONSUMERS HAVE ALREADY SPENT $7.1 BLN ONLINE ON THANKSGIVING DAY, UP 10.4% Y/Y, EXCEEDING ADOBE'S $6.9 BLN FORECAST - ADOBE REPORT",
+      "ko": "추수감사절 온라인 소비 71억 달러(+10.4%), 어도비 예상 69억 달러 상회",
+      "url": "https://x.com/DeItaone/status/2126298367324205355",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 199107,
+      "likes": 567
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 계정(월가 뉴스)",
+      "time_et": "2026-11-27 07:54",
+      "text": "ADOBE EXPECTS CONSUMERS TO SPEND A RECORD $12.9 BLN ONLINE ON BLACK FRIDAY, UP 9.2% YEAR-OVER-YEAR https://t.co/mLskVofcMg",
+      "ko": "어도비: 블랙프라이데이 온라인 소비 129억 달러(+9.2%) 사상 최대 예상",
+      "url": "https://x.com/DeItaone/status/2126298586958671980",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 117949,
+      "likes": 163
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·논평 매체",
+      "time_et": "2026-11-27 08:00",
+      "text": "Nvidia Pares Gains As Report Traces Shipment Of Restricted AI Blackwell Chips To China Data Center Project https://t.co/ioqWT2czL4",
+      "ko": "엔비디아, 금수 블랙웰 칩 중국 데이터센터 반입 보도에 상승폭 축소",
+      "url": "https://x.com/zerohedge/status/2126300116441071793",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 72013,
+      "likes": 226
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·논평 매체",
+      "time_et": "2026-11-27 08:08",
+      "text": "Premarket movers\n\nMag 7 stocks are all higher: (Meta Platforms (META) +3.2%, Nvidia (NVDA) +2.4%, Alphabet (GOOGL) +2.6%, Amazon (AMZN) +2.6%, Tesla (TSLA) +2.1%, Microsoft (MSFT) +1.9%, Apple (AAPL) +0.7%)\n\nAI-linked stocks (ANT +3.1%, NBIS +7.1%, BE +7.5%) are rallying,",
+      "ko": "장전 매그7 전부 상승(메타 +3.2%, 엔비디아 +2.4% 등), AI 관련주(ANT·NBIS·BE) 강세",
+      "url": "https://x.com/zerohedge/status/2126302048308138152",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 83845,
+      "likes": 220
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-27 08:16",
+      "text": "BREAKING: S&P 500 is on track for a 4th consecutive week with a return of at least 2.5% in either direction, its longest such streak since the 2022 bear market.\n\nThis would also match the 4-week streaks recorded during the 2020 sell-off and the 2000 decline following the Dot-com https://t.co/cuCQaUMlHL",
+      "ko": "S&P500, 4주 연속 ±2.5% 이상 주간 변동 — 2022년 약세장 이후 최장",
+      "url": "https://x.com/KobeissiLetter/status/2126304264553144509",
+      "media": [
+        "https://pbs.twimg.com/media/HYImTSmWYAAv9Wk.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 167670,
+      "likes": 952
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·논평 매체",
+      "time_et": "2026-11-27 08:23",
+      "text": "Nasdaq Futures Jump 2.5% In Black Friday Tech Rebound As Beijing Unleashes The \"National Team\" https://t.co/xATCRaYxWU",
+      "ko": "중국 '국가대표 펀드' 투입 속 블랙프라이데이 나스닥 선물 +2.5%",
+      "url": "https://x.com/zerohedge/status/2126305904165372311",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 70257,
+      "likes": 135
+    },
+    {
+      "author": "Wall St Engine",
+      "handle": "@wallstengine",
+      "role": "시장 뉴스 계정",
+      "time_et": "2026-11-27 08:25",
+      "text": "TAIWAN 🇹🇼 NOW SEES ITS ECONOMY GROWING 13.28% IN 2026, UP FROM AN 11.05% FORECAST",
+      "ko": "대만, 2026년 경제성장률 전망 11.05% → 13.28%로 상향",
+      "url": "https://x.com/wallstengine/status/2126306395947757620",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 92568,
+      "likes": 1786
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 계정(월가 뉴스)",
+      "time_et": "2026-11-27 08:31",
+      "text": "U.S. GOODS TRADE DEFICIT SURGES TO $149.5 BILLION IN OCTOBER\n\nThe U.S. goods trade deficit widened by $14.4 billion in October to $149.5 billion, according to the Census Bureau's preliminary report.\n\n🔸 Goods exports: $215.8B (+$6.7B)\n🔸 Goods imports: $365.3B (+$21.1B)\n🔸 Trade",
+      "ko": "10월 미국 상품무역 적자 1,495억 달러로 144억 달러 확대(수입 +211억 달러)",
+      "url": "https://x.com/DeItaone/status/2126307977673965852",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 143933,
+      "likes": 323
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-27 08:46",
+      "text": "BREAKING: US consumers spent $7.1 billion online on Thanksgiving Day, up +10.4% year-over-year and above expectations, per Adobe data. \n\nAdobe now expects US consumers to spend a record $12.9 billion online today, on Black Friday, which would mark a +9.2% year-over-year increase.",
+      "ko": "어도비: 추수감사절 당일 온라인 소비 71억 달러(+10.4%), 블랙프라이데이 129억 달러(+9.2%) 사상 최대 예상",
+      "url": "https://x.com/KobeissiLetter/status/2126311579918405919",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 288404,
+      "likes": 2084
+    },
+    {
+      "author": "Bespoke",
+      "handle": "@bespokeinvest",
+      "role": "투자 리서치 회사",
+      "time_et": "2026-11-27 08:46",
+      "text": "If pre-market gains of more than 1.5% hold, today will be $SPY's biggest gap higher at the open on a Black Friday in its history. https://t.co/kgZZzAVlck",
+      "ko": "장전 상승 1.5% 유지 시 SPY 블랙프라이데이 역대 최대 갭 상승 출발",
+      "url": "https://x.com/bespokeinvest/status/2126311737351974984",
+      "media": [
+        "https://pbs.twimg.com/media/HYItCQMXEAAzNDL.png"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 12403,
+      "likes": 45
+    },
+    {
+      "author": "Bespoke",
+      "handle": "@bespokeinvest",
+      "role": "투자 리서치 회사",
+      "time_et": "2026-11-27 08:57",
+      "text": "After one of the most volatile Thanksgiving Eves on record, the S&P 500 heads into Black Friday trading at 'extreme' oversold levels, but the sector-by-sector picture is much more nuanced. https://t.co/BhfySzUWdm",
+      "ko": "S&P500, 블랙프라이데이 앞두고 '극단적 과매도' — 업종별로는 엇갈려",
+      "url": "https://x.com/bespokeinvest/status/2126314352987033608",
+      "media": [
+        "https://pbs.twimg.com/media/HYIvmxQXkAApOiq.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 7160,
+      "likes": 29
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·논평 매체",
+      "time_et": "2026-11-27 09:11",
+      "text": "SoftBank CDS +50bps in 2 weeks to 543bps, just 25 away from an 18 year high. https://t.co/WwoeN7cnGK https://t.co/fReIOGYtQY",
+      "ko": "소프트뱅크 CDS 2주 새 +50bp → 543bp, 18년 최고치에 25bp 차이",
+      "url": "https://x.com/zerohedge/status/2126318100832481505",
+      "media": [
+        "https://pbs.twimg.com/media/HYIy_aiXsAAEAOY.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 99101,
+      "likes": 521
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 계정(월가 뉴스)",
+      "time_et": "2026-11-27 09:32",
+      "text": "NVIDIA SHARES UP 0.1%; REPORT SAYS CO'S CHIPS TURN UP AT CHINA SITE TIED TO ALICE HUANG",
+      "ko": "엔비디아 +0.1%로 축소 — 중국 시설 칩 발견 보도",
+      "url": "https://x.com/DeItaone/status/2126323212103598193",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 137512,
+      "likes": 324
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 계정(월가 뉴스)",
+      "time_et": "2026-11-27 09:33",
+      "text": "BIG TECH STOCKS REBOUND AFTER SHARP SELLOFF\n\nU.S. technology stocks rallied Friday, recovering some of the losses suffered during this week's heavy selling.\n\n🔸 $ANT: +3.5%\n🔸 $META: +3.0%\n🔸 $SPCX: +2.5%\n🔸 $AMZN: +1.9%\n🔸 $MSFT: +1.9%\n🔸 $GOOGL: +1.4%",
+      "ko": "빅테크 반등: 앤트로픽 +3.5%·메타 +3.0%·스페이스X +2.5%·아마존·MS +1.9%·구글 +1.4%",
+      "url": "https://x.com/DeItaone/status/2126323481620992362",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 127950,
+      "likes": 234
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·논평 매체",
+      "time_et": "2026-11-27 09:40",
+      "text": "Crude Surges As Houthis Torch Saudi Refinery, Tanker Hits Mine In Hormuz; Trump Claims \"We Don't Need The Oil\" https://t.co/Vn5upArUX5",
+      "ko": "후티 반군 사우디 정유소 공격·호르무즈 유조선 기뢰 피격에 유가 급등",
+      "url": "https://x.com/zerohedge/status/2126325281992425727",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 66500,
+      "likes": 135
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-27 09:50",
+      "text": "BREAKING: Nvidia stock, $NVDA, erases gains and turns negative on the day after Bloomberg claims that Nvidia's Blackwell chips have been found at a site in China linked to Alice Huang. https://t.co/L9uwBs0ZIl",
+      "ko": "엔비디아, 블룸버그의 '블랙웰 칩이 앨리스 황 연계 중국 시설에서 발견' 보도 후 상승분 반납·하락 전환",
+      "url": "https://x.com/KobeissiLetter/status/2126327729712968167",
+      "media": [
+        "https://pbs.twimg.com/media/HYI7YWnXAAEabwE.png"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 1128359,
+      "likes": 12127
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·논평 매체",
+      "time_et": "2026-11-27 09:50",
+      "text": "CCCs Blow Past 1,200bps As AI Debt Hits $705 Billion: Goldman Warns Credit Is Now A \"Three-Speed Market\" https://t.co/TKdPGMNqK1",
+      "ko": "골드만: CCC 등급 스프레드 1,200bp 돌파, AI 부채 7,050억 달러 — '3단 속도 시장'",
+      "url": "https://x.com/zerohedge/status/2126327798658678792",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 68176,
+      "likes": 176
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 계정(월가 뉴스)",
+      "time_et": "2026-11-27 09:55",
+      "text": "$CRWV - COREWEAVE SHARES FALL 2.3% IN EARLY TRADING, EXTENDING TWO-SESSION LOSSES",
+      "ko": "코어위브 장 초반 -2.3%, 이틀 연속 하락",
+      "url": "https://x.com/DeItaone/status/2126329004504588359",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 132266,
+      "likes": 235
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-27 09:56",
+      "text": "Donald Trump has accused his Commerce Department of purposely issuing incorrect economic growth figures before the midterm elections, and said he wants to launch an investigation.",
+      "ko": "트럼프, 상무부가 중간선거 전 성장률 수치를 고의로 틀리게 냈다며 조사 원한다고 주장",
+      "url": "https://x.com/unusual_whales/status/2126329339406897457",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 313338,
+      "likes": 2188
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-27 10:14",
+      "text": "A pair of Chinese firms installed Nvidia’s Blackwell semiconductors in a Shanghai data center linked to Alice Huang, per Bloomberg",
+      "ko": "블룸버그: 중국 업체 2곳이 앨리스 황 연계 상하이 데이터센터에 엔비디아 블랙웰 설치",
+      "url": "https://x.com/unusual_whales/status/2126333733720715726",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 181101,
+      "likes": 957
+    },
+    {
+      "author": "FinancialJuice",
+      "handle": "@financialjuice",
+      "role": "실시간 금융 속보",
+      "time_et": "2026-11-27 10:19",
+      "text": "Fear & Greed Index: 21/100 - Extreme Fear https://t.co/X4xIajrX00",
+      "ko": "CNN 공포·탐욕 지수 21/100 '극단적 공포'",
+      "url": "https://x.com/financialjuice/status/2126335107837358355",
+      "media": [
+        "https://pbs.twimg.com/media/HYJCZyMWoAICt1O.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 39748,
+      "likes": 34
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 계정(월가 뉴스)",
+      "time_et": "2026-11-27 10:22",
+      "text": "$ANT  - ANTHROPIC SHARES EXTEND GAINS; LAST UP 8.1%",
+      "ko": "앤트로픽 주가 상승 확대, +8.1%",
+      "url": "https://x.com/DeItaone/status/2126335959482659321",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 144654,
+      "likes": 445
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-27 10:34",
+      "text": "Huawei Technologies is preparing to release details of a new high-bandwidth memory chip that could surpass current offerings from Samsung Electronics and SK Hynix, moving to launch Chinese production of a key AI component currently blocked by US sanctions, per Bloomberg",
+      "ko": "블룸버그: 화웨이, 삼성·SK하이닉스 제품을 넘어설 수 있는 신형 HBM 공개 준비",
+      "url": "https://x.com/unusual_whales/status/2126338818299068916",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 141910,
+      "likes": 788
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 계정(월가 뉴스)",
+      "time_et": "2026-11-27 10:53",
+      "text": "UBS SAYS BUY SILVER AFTER NEARLY 70% CRASH, EXPECTS SHARP REBOUND IN 2027\n\nUBS believes silver has fallen too far after plunging nearly 70% from its 2026 peak, describing the selloff as one of the most severe in decades.\n\nStrategist Dominic Schnider says the metal has overshot to",
+      "ko": "UBS: 고점 대비 약 70% 폭락한 은 매수 권고, 2027년 급반등 예상",
+      "url": "https://x.com/DeItaone/status/2126343624874947002",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 151321,
+      "likes": 575
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-27 10:56",
+      "text": "Hackers have breached the US Air Force's flagship Cloud One computing platform, per Reuters.\n\nCloud One runs everything from pay and logistics to air defense radar feeds across North America and munitions tracking at more than 200 sites. One source says the intruders reached the",
+      "ko": "로이터: 해커가 미 공군 핵심 클라우드 플랫폼 '클라우드 원' 침입",
+      "url": "https://x.com/unusual_whales/status/2126344534447505432",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 345031,
+      "likes": 3168
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 계정(월가 뉴스)",
+      "time_et": "2026-11-27 11:04",
+      "text": "COULD THE US TAKE A STAKE IN NVIDIA?\n\nTrump says he has considered a government stake in Nvidia, similar to Intel.\n\n“It's probably not too late,” he told the NYP, while citing insider trading concerns on CNBC.\n\nPrediction market odds for a US stake by year-end:\n\n🔸 Nvidia ($NVDA https://t.co/C91Fkxm0td",
+      "ko": "트럼프, 인텔처럼 엔비디아 정부 지분 취득도 검토했다 — '아직 늦지 않았다'",
+      "url": "https://x.com/DeItaone/status/2126346536250400914",
+      "media": [
+        "https://pbs.twimg.com/media/HYJL8f-WwAA1Pww.png"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 132280,
+      "likes": 317
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-27 11:07",
+      "text": "Market leadership has shifted:\n\nApple, $AAPL, has outperformed Nvidia, $NVDA, by 30.2 percentage points so far in November, putting it on track for its largest monthly outperformance since the 2008 Financial Crisis.\n\nThis comes as $NVDA is down -27.0% over this period, while https://t.co/iXqiXAcUOf",
+      "ko": "11월 애플이 엔비디아를 30.2%p 앞서 — 2008년 이후 최대 월간 격차 전망",
+      "url": "https://x.com/KobeissiLetter/status/2126347119699149227",
+      "media": [
+        "https://pbs.twimg.com/media/HYImfL-WYAAYS1o.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 149843,
+      "likes": 703
+    },
+    {
+      "author": "Evan",
+      "handle": "@StockMKTNewz",
+      "role": "시장 뉴스 계정",
+      "time_et": "2026-11-27 11:09",
+      "text": "Elon Musk said he offered Samsung a long-term chip purchase commitment for memory ... Samsung's executive chairman reportedly responded \n\n- Everyone else was offering him that, so what else could Musk do? \n\nAnd when Musk then offered financing guarantees for new Samsung chip https://t.co/E7Wzi1oxxe",
+      "ko": "머스크, 삼성에 메모리 장기 구매 약정·신규 공장 금융 보증 제안했다고 밝혀",
+      "url": "https://x.com/StockMKTNewz/status/2126347679730982993",
+      "media": [
+        "https://pbs.twimg.com/media/HYJN32BXkAAuyQB.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 37815,
+      "likes": 137
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-27 11:21",
+      "text": "\"Trump has accused his own government of deliberately falsifying economic data before the midterm elections in which Republicans saw sweeping losses,\" per TIME",
+      "ko": "TIME: 트럼프, 중간선거 전 정부가 경제 데이터를 조작했다고 비난",
+      "url": "https://x.com/unusual_whales/status/2126350758010306894",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 188644,
+      "likes": 1510
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·논평 매체",
+      "time_et": "2026-11-27 11:35",
+      "text": "Democrats On Warpath Have Fresh Ammo Against Nvidia As Two 'American' Customers Answer To Chinese Owners https://t.co/SrKTGMixgg",
+      "ko": "엔비디아 '미국' 고객 2곳이 중국계 소유로 드러나 민주당 공세 강화",
+      "url": "https://x.com/zerohedge/status/2126354222211793104",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 64084,
+      "likes": 125
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-27 11:45",
+      "text": "Nvidia, $NVDA, has swung about $50 in two weeks.\n\nNov. 12: about $175\nNov. 20: low of about $125, down 29%\nNov. 23: about $170, up 36%, on the heaviest volume of the stretch\nToday: $148.91, down 12% from that high\n\nThe stock is still down about 15% over the two weeks. https://t.co/Dn4wSECHub",
+      "ko": "엔비디아 2주간 약 50달러 출렁 — 현재 148.91달러, 2주 기준 약 -15%",
+      "url": "https://x.com/unusual_whales/status/2126356644909220241",
+      "media": [
+        "https://pbs.twimg.com/media/HYJWCCIbkAAjIRI.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 100042,
+      "likes": 166
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 계정(월가 뉴스)",
+      "time_et": "2026-11-27 11:48",
+      "text": "NEITHER WILL HORMUZ STRAIT BE REOPENED, NOR WILL WE ALLOW BLOCKADE TO REMAIN IN PLACE, IRAN'S MOKHBER, AN ADVISER TO THE SUPREME LEADER, CITED BY IRAN MEDIA AS SAYING",
+      "ko": "이란 최고지도자 고문 모크베르: 호르무즈 해협 재개방도, 봉쇄 유지도 허용 않겠다",
+      "url": "https://x.com/DeItaone/status/2126357626846154825",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 136260,
+      "likes": 505
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 계정(월가 뉴스)",
+      "time_et": "2026-11-27 11:59",
+      "text": "$ANT  - *ANTHROPIC SHARES SURGE 10%, HIT SESSION HIGH",
+      "ko": "앤트로픽 +10% 급등, 장중 최고",
+      "url": "https://x.com/DeItaone/status/2126360319127650624",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 127127,
+      "likes": 441
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-27 12:01",
+      "text": "BREAKING: Anthropic stock, $ANT, extends gains to over +11% as the S&P 500 hits a new high of the day.\n\nAnthropic is now nearing $92/share, up +11% from its IPO price. https://t.co/tAf0R6Ii5d",
+      "ko": "앤트로픽(ANT) +11% 이상, 주당 92달러 근접 — 공모가 대비 +11%",
+      "url": "https://x.com/KobeissiLetter/status/2126360829151068191",
+      "media": [
+        "https://pbs.twimg.com/media/HYJZ54XXwAAE1w9.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 181511,
+      "likes": 1546
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-27 12:03",
+      "text": "Anthropic, $ANT, is up nearly 10% to $90.83, a 23% bounce off its Nov. 25 low.\n\nThe stock peaked near $115 on its first day of trading, Nov. 19. Gamma exposure has also flipped from negative to positive today. https://t.co/M78y2kAaUT",
+      "ko": "앤트로픽 약 +10% 90.83달러, 11/25 저점 대비 +23% 반등·감마 노출 양전환",
+      "url": "https://x.com/unusual_whales/status/2126361156780724236",
+      "media": [
+        "https://pbs.twimg.com/media/HYJWjcJbMAA4gU2.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 99811,
+      "likes": 166
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·논평 매체",
+      "time_et": "2026-11-27 12:05",
+      "text": "Chip War Goes Nuclear: Beijing Hoarded 340 ASML Scanners, Congress Targets The Service Calls, And Tokyo And The Hague Brace For Revenge https://t.co/5xoEkyU0MP",
+      "ko": "중국, ASML 노광장비 340대 비축 — 미 의회 서비스(유지보수) 제한 겨냥, 일본·네덜란드 보복 대비",
+      "url": "https://x.com/zerohedge/status/2126361772831522904",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 123326,
+      "likes": 249
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·논평 매체",
+      "time_et": "2026-11-27 12:13",
+      "text": "Summarizing the US-China chip war of 2027: the four chip export controls under consideration (and almost certain to pass) https://t.co/tcmyZcWYgu https://t.co/PRkEJMuq48",
+      "ko": "미·중 반도체 전쟁 정리: 검토 중인 4가지 반도체 수출 통제안",
+      "url": "https://x.com/zerohedge/status/2126363883229389217",
+      "media": [
+        "https://pbs.twimg.com/media/HYJco89XcAA7gcV.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 69266,
+      "likes": 91
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·논평 매체",
+      "time_et": "2026-11-27 12:14",
+      "text": "House vs Senate export control bills: key differences https://t.co/fjfyac7WQg https://t.co/CzQ2Xjl6JS",
+      "ko": "하원 vs 상원 수출 통제 법안 핵심 차이 표",
+      "url": "https://x.com/zerohedge/status/2126364046265884680",
+      "media": [
+        "https://pbs.twimg.com/media/HYJcyqYXAAAgOB9.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 72402,
+      "likes": 39
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·논평 매체",
+      "time_et": "2026-11-27 12:15",
+      "text": "The BIS new remote access rule is already in effect https://t.co/pnKxQkN6Ss https://t.co/KXTF763Yfm",
+      "ko": "미 상무부 산업안보국(BIS) 새 원격 접속 규제 이미 시행",
+      "url": "https://x.com/zerohedge/status/2126364320284266730",
+      "media": [
+        "https://pbs.twimg.com/media/HYJdDwfXsAAEZtO.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 84883,
+      "likes": 85
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·논평 매체",
+      "time_et": "2026-11-27 12:19",
+      "text": "Beijing knew this was coming: Chinese fabs have amassed a 3 year stockpile of ASML DUV systems ahead of the chip rules https://t.co/yc5a6R3PAk https://t.co/lNNyNBqsyW",
+      "ko": "중국 팹, 규제 앞두고 ASML DUV 장비 3년치 비축",
+      "url": "https://x.com/zerohedge/status/2126365209728339996",
+      "media": [
+        "https://pbs.twimg.com/media/HYJdwP2WkAE_DhK.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 60563,
+      "likes": 185
+    },
+    {
+      "author": "Charlie Bilello",
+      "handle": "@charliebilello",
+      "role": "자산운용사 창업자·데이터 분석가",
+      "time_et": "2026-11-27 12:22",
+      "text": "Global Central Bank Update:\n-South Korea hiked rates for the 3rd time this year, 25 bps move up to 3.25%. Policymakers signaled more hikes to come. https://t.co/Q0UcBAFZaz",
+      "ko": "세계 중앙은행: 한국은행 올해 3번째 인상(25bp, 3.25%), 추가 인상 시사",
+      "url": "https://x.com/charliebilello/status/2126366130105377156",
+      "media": [
+        "https://pbs.twimg.com/media/HYJegZEXkAAuRL4.png"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 18906,
+      "likes": 46
+    },
+    {
+      "author": "unusual_whales",
+      "handle": "@unusual_whales",
+      "role": "시장·옵션 흐름 뉴스",
+      "time_et": "2026-11-27 12:23",
+      "text": "AMD, $AMD, is up 3% today but still down about 30% from its Nov. 12 high.\n\nGamma exposure has been negative for most of the past week, while risk reversal skew has stayed positive, meaning calls are still pricing richer than puts. https://t.co/is8xL1zHmc",
+      "ko": "AMD 오늘 +3%지만 11/12 고점 대비 약 -30%, 콜 옵션은 여전히 풋보다 비싸",
+      "url": "https://x.com/unusual_whales/status/2126366189618077982",
+      "media": [
+        "https://pbs.twimg.com/media/HYJYAEAacAA-VRR.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 96234,
+      "likes": 145
+    },
+    {
+      "author": "Evan",
+      "handle": "@StockMKTNewz",
+      "role": "시장 뉴스 계정",
+      "time_et": "2026-11-27 12:29",
+      "text": "Anthropic $ANT is back to having a larger market cap than Berkshire Hathaway $BRK.B https://t.co/RYtku98pZ7 https://t.co/zCGMeh8UJH",
+      "ko": "앤트로픽 시가총액, 다시 버크셔 해서웨이 추월",
+      "url": "https://x.com/StockMKTNewz/status/2126367895307661495",
+      "media": [
+        "https://pbs.twimg.com/media/HYJgUcRXEAAI6kk.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 28429,
+      "likes": 82
+    },
+    {
+      "author": "Reuters",
+      "handle": "@Reuters",
+      "role": "글로벌 통신사",
+      "time_et": "2026-11-27 12:40",
+      "text": "Poland signs contract with Palantir worth $300 mln over 5 years https://t.co/O3rFKmYHZz",
+      "ko": "폴란드, 팔란티어와 5년 3억 달러 계약 체결",
+      "url": "https://x.com/Reuters/status/2126370519482056985",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 76639,
+      "likes": 156
+    },
+    {
+      "author": "Evan",
+      "handle": "@StockMKTNewz",
+      "role": "시장 뉴스 계정",
+      "time_et": "2026-11-27 12:51",
+      "text": "Anthropic's $ANT market cap is up by more than $100 Billion so far today\n\nAmazon's $AMZN  market cap is up by more than $100 Billion so far today https://t.co/UKG42PPaeQ",
+      "ko": "앤트로픽·아마존 시가총액 하루에 각각 1,000억 달러 이상 증가",
+      "url": "https://x.com/StockMKTNewz/status/2126373265102823447",
+      "media": [
+        "https://pbs.twimg.com/media/HYJlNj2W0AAzWw8.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 23440,
+      "likes": 70
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-27 13:01",
+      "text": "BREAKING: The S&P 500 rises +1.6% to close at its highest level since November 18th.\n\nThe index added +$1 trillion worth of market cap today. https://t.co/dWAHCOHAJr",
+      "ko": "S&P500 +1.6% 마감, 11/18 이후 최고치·하루 시가총액 1조 달러 증가",
+      "url": "https://x.com/KobeissiLetter/status/2126375863121834116",
+      "media": [
+        "https://pbs.twimg.com/media/HYJndEfWcAA98CL.png"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 151254,
+      "likes": 1558
+    },
+    {
+      "author": "*Walter Bloomberg",
+      "handle": "@DeItaone",
+      "role": "속보 계정(월가 뉴스)",
+      "time_et": "2026-11-27 13:04",
+      "text": "FOR THE WEEK, THE S&P 500 ROSE 5.6%, THE DOW ROSE 5.5% AND THE NASDAQ ROSE 6.7%\n\nS&P 500 RECORDS BIGGEST WEEKLY GAIN SINCE APRIL 2025\n\nNASDAQ RECORDS BIGGEST WEEKLY GAIN SINCE APRIL 2026",
+      "ko": "주간 S&P500 +5.6%·다우 +5.5%·나스닥 +6.7% — S&P 2025년 4월 이후 최대 주간 상승",
+      "url": "https://x.com/DeItaone/status/2126376724854432090",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 126712,
+      "likes": 456
+    },
+    {
+      "author": "Bespoke",
+      "handle": "@bespokeinvest",
+      "role": "투자 리서치 회사",
+      "time_et": "2026-11-27 13:06",
+      "text": "Investors were cheerful today.  We saw a big gap up followed by a big rally into the 1 PM ET close.  Here’s how $QQQ traded intraday: https://t.co/wbiCe6PuXm",
+      "ko": "큰 갭 상승 후 오후 1시(동부) 조기 마감까지 랠리 — QQQ 일중 차트",
+      "url": "https://x.com/bespokeinvest/status/2126377062319677673",
+      "media": [
+        "https://pbs.twimg.com/media/HYJoqyeWUAEF1vU.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 5360,
+      "likes": 10
+    },
+    {
+      "author": "Evan",
+      "handle": "@StockMKTNewz",
+      "role": "시장 뉴스 계정",
+      "time_et": "2026-11-27 13:07",
+      "text": "The S&P 500 just had its biggest weekly gain since April 2025",
+      "ko": "S&P500, 2025년 4월 이후 최대 주간 상승",
+      "url": "https://x.com/StockMKTNewz/status/2126377482823532614",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 32814,
+      "likes": 303
+    },
+    {
+      "author": "zerohedge",
+      "handle": "@zerohedge",
+      "role": "금융 뉴스·논평 매체",
+      "time_et": "2026-11-27 13:31",
+      "text": "*OPENAI COUNTERSUES APPLE FOR STEALING TRADE SECRETS: FT\n\nLOL",
+      "ko": "FT: 오픈AI, 애플을 영업비밀 탈취로 맞소송",
+      "url": "https://x.com/zerohedge/status/2126383460075897180",
+      "media": [],
+      "media_note": "첨부 없음",
+      "views": 69171,
+      "likes": 563
+    },
+    {
+      "author": "The Kobeissi Letter",
+      "handle": "@KobeissiLetter",
+      "role": "시장 분석 뉴스레터",
+      "time_et": "2026-11-27 14:42",
+      "text": "Banking conditions are tightening in the US:\n\nA net 30% of leaders from the banking sector and lending institutions across the Fed's 8th District reported lower loan demand in the current quarter, according to the Fed Economic Conditions Survey.\n\nThis marks a sharp deterioration https://t.co/Up9oUcI27K",
+      "ko": "연준 8지구 조사: 은행 순 30%가 대출 수요 감소 보고 — 신용 여건 긴축",
+      "url": "https://x.com/KobeissiLetter/status/2126401401831985156",
+      "media": [
+        "https://pbs.twimg.com/media/HYIlnZhWgAApyEc.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 69585,
+      "likes": 313
+    },
+    {
+      "author": "Evan",
+      "handle": "@StockMKTNewz",
+      "role": "시장 뉴스 계정",
+      "time_et": "2026-11-27 15:00",
+      "text": "This is how every stock in the S&P 500 performed today https://t.co/Ny6BjT7nLp https://t.co/oDYo1a0ySP",
+      "ko": "오늘 S&P500 전 종목 등락 지도(히트맵)",
+      "url": "https://x.com/StockMKTNewz/status/2126405723898704276",
+      "media": [
+        "https://pbs.twimg.com/media/HYKB_hTW0AAbC-1.jpg"
+      ],
+      "media_note": "첨부 이미지 1장",
+      "views": 13238,
+      "likes": 39
+    }
+  ],
+  "pick": {
+    "index": 16,
+    "reason": "주간 최대 반등 랠리 속에서 '엔비디아 블랙웰 칩이 중국 시설에서 발견' 보도로 엔비디아만 상승분을 반납·하락 전환한 순간 — AI 밸류체인 대장주와 미·중 수출 통제 이슈가 겹친 오늘의 핵심 장면.\n오늘 가장 많이 반응을 얻은 게시물(좋아요 1.2만)이고 일중 차트가 첨부돼 있어 인용 카드로 쓰기 좋으며, 블룸버그 원보도·트럼프 엔비디아 지분 검토 게시물로 이어 붙이기 좋음."
+  }
+}
