@@ -1,0 +1,477 @@
+{
+ "at": "2026-11-28 09:24",
+ "weekend": false,
+ "problems": [
+  "p-bond.html: 쉬는 동안 화면이 계속 바뀜 3초에 57번(버벅임·배터리) — attributes @I.dot 14번, childList @DIV.mm-bd-steps 12번",
+  "p-prices.html: 쉬는 동안 화면이 계속 바뀜 3초에 10번(버벅임·배터리) — childList @SPAN.mm-new 5번, attributes @SPAN.mm-new 5번",
+  "시세(5분): 5.9시간 갱신 없음(마지막 11.28 03:27)",
+  "옛 코드로 덮인 페이지 16개(정리 다시 입히면 바뀜): index.html, p-bond.html, p-brief.html, p-cal.html, p-earn.html, p-econ.html"
+ ],
+ "total_kb": 3916,
+ "total_inline": 252,
+ "prev_total_kb": 3914,
+ "prev_total_inline": 252,
+ "heaviest": [
+  [
+   1221,
+   "p-earn.html"
+  ],
+  [
+   728,
+   "p-trend.html"
+  ],
+  [
+   344,
+   "p-cal.html"
+  ]
+ ],
+ "fresh": [
+  {
+   "name": "시세(5분)",
+   "path": "live/stamp.json",
+   "age_h": 5.9,
+   "limit_h": 2,
+   "state": "late",
+   "last": "11.28 03:27"
+  },
+  {
+   "name": "시장 경고등",
+   "path": "d/lights",
+   "age_h": 1.1,
+   "limit_h": 30,
+   "state": "ok",
+   "last": "11.28 08:15"
+  },
+  {
+   "name": "옵션 온도계",
+   "path": "d/opt",
+   "age_h": 10.0,
+   "limit_h": 30,
+   "state": "ok",
+   "last": "11.27 23:27"
+  },
+  {
+   "name": "주요 뉴스",
+   "path": "d/policy",
+   "age_h": 2.0,
+   "limit_h": 30,
+   "state": "ok",
+   "last": "11.28 07:26"
+  },
+  {
+   "name": "AI·테크 뉴스",
+   "path": "d/tech",
+   "age_h": 6.6,
+   "limit_h": 36,
+   "state": "ok",
+   "last": "11.28 02:45"
+  },
+  {
+   "name": "유튜브 영상",
+   "path": "d/yt.json",
+   "age_h": 7.4,
+   "limit_h": 9999,
+   "state": "ok",
+   "last": "11.28 01:57"
+  },
+  {
+   "name": "공포·탐욕",
+   "path": "d/fng.json",
+   "age_h": 1.1,
+   "limit_h": 30,
+   "state": "ok",
+   "last": "11.28 08:15"
+  },
+  {
+   "name": "금융 스트레스",
+   "path": "d/stress",
+   "age_h": 2.3,
+   "limit_h": 30,
+   "state": "ok",
+   "last": "11.28 07:04"
+  },
+  {
+   "name": "시황 브리핑",
+   "path": "d/brief",
+   "age_h": 1.9,
+   "limit_h": 30,
+   "state": "ok",
+   "last": "11.28 07:31"
+  },
+  {
+   "name": "목표주가",
+   "path": "d/targets",
+   "age_h": 1.9,
+   "limit_h": 26,
+   "state": "ok",
+   "last": "11.28 07:31"
+  },
+  {
+   "name": "실적 노트",
+   "path": "d/notes.json",
+   "age_h": 47.9,
+   "limit_h": 72,
+   "state": "ok",
+   "last": "11.26 09:31"
+  },
+  {
+   "name": "공매도",
+   "path": "d/short",
+   "age_h": 23.9,
+   "limit_h": 72,
+   "state": "ok",
+   "last": "11.27 09:30"
+  },
+  {
+   "name": "경제지표",
+   "path": "d/econ",
+   "age_h": 17.4,
+   "limit_h": 72,
+   "state": "ok",
+   "last": "11.27 16:02"
+  },
+  {
+   "name": "아이디어(저평가·고수)",
+   "path": "d/ideas",
+   "age_h": 0.9,
+   "limit_h": 30,
+   "state": "ok",
+   "last": "11.28 08:29"
+  },
+  {
+   "name": "IR 서재",
+   "path": "d/ir",
+   "age_h": 49.9,
+   "limit_h": 96,
+   "state": "ok",
+   "last": "11.26 07:31"
+  }
+ ],
+ "posts": {
+  "total_24h": 90,
+  "by_author": {
+   "github-actions[bot]": 13,
+   "mung-mungi": 13,
+   "mung-bot": 64
+  },
+  "bot_under_5min": 0,
+  "busiest_hour_posts": 10,
+  "hours_over_10": 0
+ },
+ "drift": [
+  "index.html",
+  "p-bond.html",
+  "p-brief.html",
+  "p-cal.html",
+  "p-earn.html",
+  "p-econ.html",
+  "p-fx.html",
+  "p-lights.html",
+  "p-opt.html",
+  "p-policy.html",
+  "p-prices.html",
+  "p-qtr.html",
+  "p-short.html",
+  "p-targets.html",
+  "p-tech.html",
+  "p-trend.html"
+ ],
+ "lost": [],
+ "live_lag": null,
+ "pages": {
+  "index.html": {
+   "kb": 129,
+   "inline": 15,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 2289,
+   "elements": 417
+  },
+  "p-bond.html": {
+   "kb": 59,
+   "inline": 11,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 57,
+   "idle_top": [
+    "attributes @I.dot 14번",
+    "childList @DIV.mm-bd-steps 12번"
+   ],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 6443,
+   "elements": 2951
+  },
+  "p-brief.html": {
+   "kb": 102,
+   "inline": 26,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 10445,
+   "elements": 1495
+  },
+  "p-cal.html": {
+   "kb": 344,
+   "inline": 10,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 6791,
+   "elements": 813
+  },
+  "p-capex.html": {
+   "kb": 45,
+   "inline": 7,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 8210,
+   "elements": 993
+  },
+  "p-earn.html": {
+   "kb": 1221,
+   "inline": 23,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 16436,
+   "elements": 4026
+  },
+  "p-econ.html": {
+   "kb": 50,
+   "inline": 7,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 7142,
+   "elements": 1670
+  },
+  "p-fx.html": {
+   "kb": 65,
+   "inline": 8,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 5683,
+   "elements": 995
+  },
+  "p-insider.html": {
+   "kb": 53,
+   "inline": 7,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 6262,
+   "elements": 3109
+  },
+  "p-lights.html": {
+   "kb": 168,
+   "inline": 21,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 12186,
+   "elements": 2860
+  },
+  "p-neo.html": {
+   "kb": 114,
+   "inline": 8,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 12142,
+   "elements": 1550
+  },
+  "p-opt.html": {
+   "kb": 75,
+   "inline": 11,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 2,
+   "idle_top": [
+    "attributes @SECTION#bt-card.bt-card 2번"
+   ],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 5493,
+   "elements": 2330
+  },
+  "p-policy.html": {
+   "kb": 73,
+   "inline": 11,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 5911,
+   "elements": 7648
+  },
+  "p-prices.html": {
+   "kb": 141,
+   "inline": 10,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 10,
+   "idle_top": [
+    "childList @SPAN.mm-new 5번",
+    "attributes @SPAN.mm-new 5번"
+   ],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 8784,
+   "elements": 2817
+  },
+  "p-pros.html": {
+   "kb": 56,
+   "inline": 7,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 4749,
+   "elements": 1306
+  },
+  "p-qtr.html": {
+   "kb": 64,
+   "inline": 8,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 3647,
+   "elements": 2989
+  },
+  "p-short.html": {
+   "kb": 95,
+   "inline": 10,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 7089,
+   "elements": 2662
+  },
+  "p-supply.html": {
+   "kb": 67,
+   "inline": 8,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 6895,
+   "elements": 1744
+  },
+  "p-targets.html": {
+   "kb": 135,
+   "inline": 14,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 4544,
+   "elements": 853
+  },
+  "p-tech.html": {
+   "kb": 75,
+   "inline": 11,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 6557,
+   "elements": 4787
+  },
+  "p-trend.html": {
+   "kb": 728,
+   "inline": 12,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 849,
+   "elements": 2259
+  },
+  "p-value.html": {
+   "kb": 57,
+   "inline": 7,
+   "missing_core": [],
+   "doctype_first": true,
+   "idle_changes": 0,
+   "idle_top": [],
+   "errors": [],
+   "missing_files": [],
+   "overflow": false,
+   "height": 3940,
+   "elements": 2829
+  }
+ }
+}
