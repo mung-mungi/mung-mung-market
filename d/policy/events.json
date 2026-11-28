@@ -6661,6 +6661,38 @@
   "source_url": "https://www.aljazeera.com/news/2026/11/27/trump-backs-iraqi-pms-oil-smuggling-crackdown"
  },
  {
+  "date": "2026-11-28",
+  "month": "2026-11",
+  "category": "이란 전쟁·유가",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "tier": "small",
+  "has_detail": false,
+  "id": "e424",
+  "thread": "이란 역외 위협",
+  "title": "FT \"미군, 13일 영국 레이컨히스 기지에 온 드론 약 6대 쫓아내\" — 이란 연루 의심",
+  "summary": "파이낸셜타임스는 미군이 11월 13일 영국 레이컨히스 공군기지 상공에 나타난 드론 약 6대를 대드론 장비로 쫓아냈고, 이란 연루가 의심된다고 소식통을 인용해 보도했습니다(로이터 인용). 드론은 회수되지 않았습니다. 영국 국방부는 \"상황은 빨리 해결됐고 기지는 평상시 경계로 돌아갔다\"고 했고, 미 공군은 당시 \"인원·항공기·시설 피해는 없었다\"고 밝혔습니다. 9월 페어퍼드 기지 위협에 이어 이란 관련 위협이 유럽 내 미군 기지로 번졌다는 의심이 커지는 대목이라는 것이 우리 판단입니다.",
+  "source_url": "https://www.timesofisrael.com/report-us-military-repelled-drones-at-uk-airbase-this-month-iran-suspected/",
+  "media": "타임스오브이스라엘(로이터·FT)"
+ },
+ {
+  "date": "2026-11-28",
+  "month": "2026-11",
+  "category": "이란 전쟁·유가",
+  "nasdaq_pct": null,
+  "mkt_note": "주말 — 장 없음",
+  "status": "발생",
+  "tier": "small",
+  "has_detail": false,
+  "id": "e425",
+  "thread": "아덴만 해상 안전",
+  "title": "아덴만서 무장 괴한이 화물선 장악 — 예멘 발하프 남서쪽 64해리",
+  "summary": "영국해사무역기구(UKMTO)는 세계표준시 06시30분 예멘 발하프 남서쪽 64해리 해상에서 무장한 무단 승선자들이 화물선에 올라 배를 장악했다고 선장이 알려 왔다고 밝혔습니다. 배 이름·국적과 어느 세력의 소행인지는 나오지 않았습니다. UKMTO는 지나는 배들에 주의를 당부했습니다. 사우디-후티 교전이 이어지는 가운데 홍해·아덴만 항로의 해상 위험이 한 가지 더 늘었다는 뜻입니다(우리 판단).",
+  "source_url": "https://thepeninsulaqatar.com/article/28/11/2026/cargo-ship-hijacked-off-yemen-coast-says-ukmto",
+  "media": "더페닌슐라(UKMTO 발표)"
+ },
+ {
   "id": "e27",
   "date": "2026-12-09",
   "month": "2026-12",
